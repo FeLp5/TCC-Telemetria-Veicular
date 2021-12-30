@@ -1,0 +1,547 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"32 diskio.c
+[v _RAM_disk_status `(i ~T0 @X0 0 ef ]
+"39
+[v _MMC_disk_status `(i ~T0 @X0 0 ef ]
+"46
+[v _USB_disk_status `(i ~T0 @X0 0 ef ]
+"70
+[v _RAM_disk_initialize `(i ~T0 @X0 0 ef ]
+"77
+[v _MMC_disk_initialize `(i ~T0 @X0 0 ef ]
+"84
+[v _USB_disk_initialize `(i ~T0 @X0 0 ef ]
+"105
+[c E208 0 1 2 3 4 .. ]
+[n E208 . RES_OK RES_ERROR RES_WRPRT RES_NOTRDY RES_PARERR  ]
+"113
+[v _RAM_disk_read `(i ~T0 @X0 0 ef ]
+"122
+[v _MMC_disk_read `(i ~T0 @X0 0 ef ]
+"131
+[v _USB_disk_read `(i ~T0 @X0 0 ef ]
+"163
+[v _RAM_disk_write `(i ~T0 @X0 0 ef ]
+"172
+[v _MMC_disk_write `(i ~T0 @X0 0 ef ]
+"181
+[v _USB_disk_write `(i ~T0 @X0 0 ef ]
+[; ;ff.h: 58: typedef unsigned int UINT;
+[; ;ff.h: 59: typedef unsigned char BYTE;
+[; ;ff.h: 60: typedef unsigned short WORD;
+[; ;ff.h: 61: typedef unsigned long DWORD;
+[; ;ff.h: 62: typedef WORD WCHAR;
+[; ;ff.h: 82: typedef DWORD FSIZE_t;
+[; ;ff.h: 83: typedef DWORD LBA_t;
+[; ;ff.h: 105: typedef char TCHAR;
+[; ;ff.h: 132: typedef struct {
+[; ;ff.h: 133: BYTE fs_type;
+[; ;ff.h: 134: BYTE pdrv;
+[; ;ff.h: 135: BYTE n_fats;
+[; ;ff.h: 136: BYTE wflag;
+[; ;ff.h: 137: BYTE fsi_flag;
+[; ;ff.h: 138: WORD id;
+[; ;ff.h: 139: WORD n_rootdir;
+[; ;ff.h: 140: WORD csize;
+[; ;ff.h: 154: DWORD last_clst;
+[; ;ff.h: 155: DWORD free_clst;
+[; ;ff.h: 165: DWORD n_fatent;
+[; ;ff.h: 166: DWORD fsize;
+[; ;ff.h: 167: LBA_t volbase;
+[; ;ff.h: 168: LBA_t fatbase;
+[; ;ff.h: 169: LBA_t dirbase;
+[; ;ff.h: 170: LBA_t database;
+[; ;ff.h: 174: LBA_t winsect;
+[; ;ff.h: 175: BYTE win[512];
+[; ;ff.h: 176: } FATFS;
+[; ;ff.h: 182: typedef struct {
+[; ;ff.h: 183: FATFS* fs;
+[; ;ff.h: 184: WORD id;
+[; ;ff.h: 185: BYTE attr;
+[; ;ff.h: 186: BYTE stat;
+[; ;ff.h: 187: DWORD sclust;
+[; ;ff.h: 188: FSIZE_t objsize;
+[; ;ff.h: 199: } FFOBJID;
+[; ;ff.h: 205: typedef struct {
+[; ;ff.h: 206: FFOBJID obj;
+[; ;ff.h: 207: BYTE flag;
+[; ;ff.h: 208: BYTE err;
+[; ;ff.h: 209: FSIZE_t fptr;
+[; ;ff.h: 210: DWORD clust;
+[; ;ff.h: 211: LBA_t sect;
+[; ;ff.h: 213: LBA_t dir_sect;
+[; ;ff.h: 214: BYTE* dir_ptr;
+[; ;ff.h: 220: BYTE buf[512];
+[; ;ff.h: 222: } FIL;
+[; ;ff.h: 228: typedef struct{
+[; ;ff.h: 229: FFOBJID obj;
+[; ;ff.h: 230: DWORD dptr;
+[; ;ff.h: 231: DWORD clust;
+[; ;ff.h: 232: LBA_t sect;
+[; ;ff.h: 233: BYTE* dir;
+[; ;ff.h: 234: BYTE fn[12];
+[; ;ff.h: 241: } DIR;
+[; ;ff.h: 247: typedef struct {
+[; ;ff.h: 248: FSIZE_t fsize;
+[; ;ff.h: 249: WORD fdate;
+[; ;ff.h: 250: WORD ftime;
+[; ;ff.h: 251: BYTE fattrib;
+[; ;ff.h: 256: TCHAR fname[12 + 1];
+[; ;ff.h: 258: } FILINFO;
+[; ;ff.h: 264: typedef struct {
+[; ;ff.h: 265: BYTE fmt;
+[; ;ff.h: 266: BYTE n_fat;
+[; ;ff.h: 267: UINT align;
+[; ;ff.h: 268: UINT n_root;
+[; ;ff.h: 269: DWORD au_size;
+[; ;ff.h: 270: } MKFS_PARM;
+[; ;ff.h: 276: typedef enum {
+[; ;ff.h: 277: FR_OK = 0,
+[; ;ff.h: 278: FR_DISK_ERR,
+[; ;ff.h: 279: FR_INT_ERR,
+[; ;ff.h: 280: FR_NOT_READY,
+[; ;ff.h: 281: FR_NO_FILE,
+[; ;ff.h: 282: FR_NO_PATH,
+[; ;ff.h: 283: FR_INVALID_NAME,
+[; ;ff.h: 284: FR_DENIED,
+[; ;ff.h: 285: FR_EXIST,
+[; ;ff.h: 286: FR_INVALID_OBJECT,
+[; ;ff.h: 287: FR_WRITE_PROTECTED,
+[; ;ff.h: 288: FR_INVALID_DRIVE,
+[; ;ff.h: 289: FR_NOT_ENABLED,
+[; ;ff.h: 290: FR_NO_FILESYSTEM,
+[; ;ff.h: 291: FR_MKFS_ABORTED,
+[; ;ff.h: 292: FR_TIMEOUT,
+[; ;ff.h: 293: FR_LOCKED,
+[; ;ff.h: 294: FR_NOT_ENOUGH_CORE,
+[; ;ff.h: 295: FR_TOO_MANY_OPEN_FILES,
+[; ;ff.h: 296: FR_INVALID_PARAMETER
+[; ;ff.h: 297: } FRESULT;
+[; ;ff.h: 304: FRESULT f_open (FIL* fp, const TCHAR* path, BYTE mode);
+[; ;ff.h: 305: FRESULT f_close (FIL* fp);
+[; ;ff.h: 306: FRESULT f_read (FIL* fp, void* buff, UINT btr, UINT* br);
+[; ;ff.h: 307: FRESULT f_write (FIL* fp, const void* buff, UINT btw, UINT* bw);
+[; ;ff.h: 308: FRESULT f_lseek (FIL* fp, FSIZE_t ofs);
+[; ;ff.h: 309: FRESULT f_truncate (FIL* fp);
+[; ;ff.h: 310: FRESULT f_sync (FIL* fp);
+[; ;ff.h: 311: FRESULT f_opendir (DIR* dp, const TCHAR* path);
+[; ;ff.h: 312: FRESULT f_closedir (DIR* dp);
+[; ;ff.h: 313: FRESULT f_readdir (DIR* dp, FILINFO* fno);
+[; ;ff.h: 314: FRESULT f_findfirst (DIR* dp, FILINFO* fno, const TCHAR* path, const TCHAR* pattern);
+[; ;ff.h: 315: FRESULT f_findnext (DIR* dp, FILINFO* fno);
+[; ;ff.h: 316: FRESULT f_mkdir (const TCHAR* path);
+[; ;ff.h: 317: FRESULT f_unlink (const TCHAR* path);
+[; ;ff.h: 318: FRESULT f_rename (const TCHAR* path_old, const TCHAR* path_new);
+[; ;ff.h: 319: FRESULT f_stat (const TCHAR* path, FILINFO* fno);
+[; ;ff.h: 320: FRESULT f_chmod (const TCHAR* path, BYTE attr, BYTE mask);
+[; ;ff.h: 321: FRESULT f_utime (const TCHAR* path, const FILINFO* fno);
+[; ;ff.h: 322: FRESULT f_chdir (const TCHAR* path);
+[; ;ff.h: 323: FRESULT f_chdrive (const TCHAR* path);
+[; ;ff.h: 324: FRESULT f_getcwd (TCHAR* buff, UINT len);
+[; ;ff.h: 325: FRESULT f_getfree (const TCHAR* path, DWORD* nclst, FATFS** fatfs);
+[; ;ff.h: 326: FRESULT f_getlabel (const TCHAR* path, TCHAR* label, DWORD* vsn);
+[; ;ff.h: 327: FRESULT f_setlabel (const TCHAR* label);
+[; ;ff.h: 328: FRESULT f_forward (FIL* fp, UINT(*func)(const BYTE*,UINT), UINT btf, UINT* bf);
+[; ;ff.h: 329: FRESULT f_expand (FIL* fp, FSIZE_t fsz, BYTE opt);
+[; ;ff.h: 330: FRESULT f_mount (FATFS* fs, const TCHAR* path, BYTE opt);
+[; ;ff.h: 331: FRESULT f_mkfs (const TCHAR* path, const MKFS_PARM* opt, void* work, UINT len);
+[; ;ff.h: 332: FRESULT f_fdisk (BYTE pdrv, const LBA_t ptbl[], void* work);
+[; ;ff.h: 333: FRESULT f_setcp (WORD cp);
+[; ;ff.h: 334: int f_putc (TCHAR c, FIL* fp);
+[; ;ff.h: 335: int f_puts (const TCHAR* str, FIL* cp);
+[; ;ff.h: 336: int f_printf (FIL* fp, const TCHAR* str, ...);
+[; ;ff.h: 337: TCHAR* f_gets (TCHAR* buff, int len, FIL* fp);
+[; ;ff.h: 356: DWORD get_fattime (void);
+[; ;diskio.h: 13: typedef BYTE DSTATUS;
+[; ;diskio.h: 16: typedef enum {
+[; ;diskio.h: 17: RES_OK = 0,
+[; ;diskio.h: 18: RES_ERROR,
+[; ;diskio.h: 19: RES_WRPRT,
+[; ;diskio.h: 20: RES_NOTRDY,
+[; ;diskio.h: 21: RES_PARERR
+[; ;diskio.h: 22: } DRESULT;
+[; ;diskio.h: 29: DSTATUS disk_initialize (BYTE pdrv);
+[; ;diskio.h: 30: DSTATUS disk_status (BYTE pdrv);
+[; ;diskio.h: 31: DRESULT disk_read (BYTE pdrv, BYTE* buff, LBA_t sector, UINT count);
+[; ;diskio.h: 32: DRESULT disk_write (BYTE pdrv, const BYTE* buff, LBA_t sector, UINT count);
+[; ;diskio.h: 33: DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
+"23 diskio.c
+[v _disk_status `(uc ~T0 @X0 1 ef1`uc ]
+"26
+{
+[; ;diskio.c: 23: DSTATUS disk_status (
+[; ;diskio.c: 24: BYTE pdrv
+[; ;diskio.c: 25: )
+[; ;diskio.c: 26: {
+[e :U _disk_status ]
+"24
+[v _pdrv `uc ~T0 @X0 1 r1 ]
+"26
+[f ]
+"27
+[v _stat `uc ~T0 @X0 1 a ]
+"28
+[v _result `i ~T0 @X0 1 a ]
+[; ;diskio.c: 27: DSTATUS stat;
+[; ;diskio.c: 28: int result;
+[; ;diskio.c: 30: switch (pdrv) {
+"30
+[e $U 9  ]
+{
+[; ;diskio.c: 31: case 0 :
+"31
+[e :U 10 ]
+[; ;diskio.c: 32: result = RAM_disk_status();
+"32
+[e = _result ( _RAM_disk_status ..  ]
+[; ;diskio.c: 36: return stat;
+"36
+[e ) _stat ]
+[e $UE 7  ]
+[; ;diskio.c: 38: case 1 :
+"38
+[e :U 11 ]
+[; ;diskio.c: 39: result = MMC_disk_status();
+"39
+[e = _result ( _MMC_disk_status ..  ]
+[; ;diskio.c: 43: return stat;
+"43
+[e ) _stat ]
+[e $UE 7  ]
+[; ;diskio.c: 45: case 2 :
+"45
+[e :U 12 ]
+[; ;diskio.c: 46: result = USB_disk_status();
+"46
+[e = _result ( _USB_disk_status ..  ]
+[; ;diskio.c: 50: return stat;
+"50
+[e ) _stat ]
+[e $UE 7  ]
+"51
+}
+[; ;diskio.c: 51: }
+[e $U 8  ]
+"30
+[e :U 9 ]
+[e [\ _pdrv , $ -> -> 0 `i `uc 10
+ , $ -> -> 1 `i `uc 11
+ , $ -> -> 2 `i `uc 12
+ 8 ]
+"51
+[e :U 8 ]
+[; ;diskio.c: 52: return 0x01;
+"52
+[e ) -> -> 1 `i `uc ]
+[e $UE 7  ]
+[; ;diskio.c: 53: }
+"53
+[e :UE 7 ]
+}
+"61
+[v _disk_initialize `(uc ~T0 @X0 1 ef1`uc ]
+"64
+{
+[; ;diskio.c: 61: DSTATUS disk_initialize (
+[; ;diskio.c: 62: BYTE pdrv
+[; ;diskio.c: 63: )
+[; ;diskio.c: 64: {
+[e :U _disk_initialize ]
+"62
+[v _pdrv `uc ~T0 @X0 1 r1 ]
+"64
+[f ]
+"65
+[v _stat `uc ~T0 @X0 1 a ]
+"66
+[v _result `i ~T0 @X0 1 a ]
+[; ;diskio.c: 65: DSTATUS stat;
+[; ;diskio.c: 66: int result;
+[; ;diskio.c: 68: switch (pdrv) {
+"68
+[e $U 15  ]
+{
+[; ;diskio.c: 69: case 0 :
+"69
+[e :U 16 ]
+[; ;diskio.c: 70: result = RAM_disk_initialize();
+"70
+[e = _result ( _RAM_disk_initialize ..  ]
+[; ;diskio.c: 74: return stat;
+"74
+[e ) _stat ]
+[e $UE 13  ]
+[; ;diskio.c: 76: case 1 :
+"76
+[e :U 17 ]
+[; ;diskio.c: 77: result = MMC_disk_initialize();
+"77
+[e = _result ( _MMC_disk_initialize ..  ]
+[; ;diskio.c: 81: return stat;
+"81
+[e ) _stat ]
+[e $UE 13  ]
+[; ;diskio.c: 83: case 2 :
+"83
+[e :U 18 ]
+[; ;diskio.c: 84: result = USB_disk_initialize();
+"84
+[e = _result ( _USB_disk_initialize ..  ]
+[; ;diskio.c: 88: return stat;
+"88
+[e ) _stat ]
+[e $UE 13  ]
+"89
+}
+[; ;diskio.c: 89: }
+[e $U 14  ]
+"68
+[e :U 15 ]
+[e [\ _pdrv , $ -> -> 0 `i `uc 16
+ , $ -> -> 1 `i `uc 17
+ , $ -> -> 2 `i `uc 18
+ 14 ]
+"89
+[e :U 14 ]
+[; ;diskio.c: 90: return 0x01;
+"90
+[e ) -> -> 1 `i `uc ]
+[e $UE 13  ]
+[; ;diskio.c: 91: }
+"91
+[e :UE 13 ]
+}
+"99
+[v _disk_read `(E208 ~T0 @X0 1 ef4`uc`*uc`ul`ui ]
+"105
+{
+[; ;diskio.c: 99: DRESULT disk_read (
+[; ;diskio.c: 100: BYTE pdrv,
+[; ;diskio.c: 101: BYTE *buff,
+[; ;diskio.c: 102: LBA_t sector,
+[; ;diskio.c: 103: UINT count
+[; ;diskio.c: 104: )
+[; ;diskio.c: 105: {
+[e :U _disk_read ]
+"100
+[v _pdrv `uc ~T0 @X0 1 r1 ]
+"101
+[v _buff `*uc ~T0 @X0 1 r2 ]
+"102
+[v _sector `ul ~T0 @X0 1 r3 ]
+"103
+[v _count `ui ~T0 @X0 1 r4 ]
+"105
+[f ]
+"106
+[v _res `E208 ~T0 @X0 1 a ]
+"107
+[v _result `i ~T0 @X0 1 a ]
+[; ;diskio.c: 106: DRESULT res;
+[; ;diskio.c: 107: int result;
+[; ;diskio.c: 109: switch (pdrv) {
+"109
+[e $U 21  ]
+{
+[; ;diskio.c: 110: case 0 :
+"110
+[e :U 22 ]
+[; ;diskio.c: 113: result = RAM_disk_read(buff, sector, count);
+"113
+[e = _result ( _RAM_disk_read , , _buff _sector _count ]
+[; ;diskio.c: 117: return res;
+"117
+[e ) _res ]
+[e $UE 19  ]
+[; ;diskio.c: 119: case 1 :
+"119
+[e :U 23 ]
+[; ;diskio.c: 122: result = MMC_disk_read(buff, sector, count);
+"122
+[e = _result ( _MMC_disk_read , , _buff _sector _count ]
+[; ;diskio.c: 126: return res;
+"126
+[e ) _res ]
+[e $UE 19  ]
+[; ;diskio.c: 128: case 2 :
+"128
+[e :U 24 ]
+[; ;diskio.c: 131: result = USB_disk_read(buff, sector, count);
+"131
+[e = _result ( _USB_disk_read , , _buff _sector _count ]
+[; ;diskio.c: 135: return res;
+"135
+[e ) _res ]
+[e $UE 19  ]
+"136
+}
+[; ;diskio.c: 136: }
+[e $U 20  ]
+"109
+[e :U 21 ]
+[e [\ _pdrv , $ -> -> 0 `i `uc 22
+ , $ -> -> 1 `i `uc 23
+ , $ -> -> 2 `i `uc 24
+ 20 ]
+"136
+[e :U 20 ]
+[; ;diskio.c: 138: return RES_PARERR;
+"138
+[e ) . `E208 4 ]
+[e $UE 19  ]
+[; ;diskio.c: 139: }
+"139
+[e :UE 19 ]
+}
+"149
+[v _disk_write `(E208 ~T0 @X0 1 ef4`uc`*Cuc`ul`ui ]
+"155
+{
+[; ;diskio.c: 149: DRESULT disk_write (
+[; ;diskio.c: 150: BYTE pdrv,
+[; ;diskio.c: 151: const BYTE *buff,
+[; ;diskio.c: 152: LBA_t sector,
+[; ;diskio.c: 153: UINT count
+[; ;diskio.c: 154: )
+[; ;diskio.c: 155: {
+[e :U _disk_write ]
+"150
+[v _pdrv `uc ~T0 @X0 1 r1 ]
+"151
+[v _buff `*Cuc ~T0 @X0 1 r2 ]
+"152
+[v _sector `ul ~T0 @X0 1 r3 ]
+"153
+[v _count `ui ~T0 @X0 1 r4 ]
+"155
+[f ]
+"156
+[v _res `E208 ~T0 @X0 1 a ]
+"157
+[v _result `i ~T0 @X0 1 a ]
+[; ;diskio.c: 156: DRESULT res;
+[; ;diskio.c: 157: int result;
+[; ;diskio.c: 159: switch (pdrv) {
+"159
+[e $U 27  ]
+{
+[; ;diskio.c: 160: case 0 :
+"160
+[e :U 28 ]
+[; ;diskio.c: 163: result = RAM_disk_write(buff, sector, count);
+"163
+[e = _result ( _RAM_disk_write , , _buff _sector _count ]
+[; ;diskio.c: 167: return res;
+"167
+[e ) _res ]
+[e $UE 25  ]
+[; ;diskio.c: 169: case 1 :
+"169
+[e :U 29 ]
+[; ;diskio.c: 172: result = MMC_disk_write(buff, sector, count);
+"172
+[e = _result ( _MMC_disk_write , , _buff _sector _count ]
+[; ;diskio.c: 176: return res;
+"176
+[e ) _res ]
+[e $UE 25  ]
+[; ;diskio.c: 178: case 2 :
+"178
+[e :U 30 ]
+[; ;diskio.c: 181: result = USB_disk_write(buff, sector, count);
+"181
+[e = _result ( _USB_disk_write , , _buff _sector _count ]
+[; ;diskio.c: 185: return res;
+"185
+[e ) _res ]
+[e $UE 25  ]
+"186
+}
+[; ;diskio.c: 186: }
+[e $U 26  ]
+"159
+[e :U 27 ]
+[e [\ _pdrv , $ -> -> 0 `i `uc 28
+ , $ -> -> 1 `i `uc 29
+ , $ -> -> 2 `i `uc 30
+ 26 ]
+"186
+[e :U 26 ]
+[; ;diskio.c: 188: return RES_PARERR;
+"188
+[e ) . `E208 4 ]
+[e $UE 25  ]
+[; ;diskio.c: 189: }
+"189
+[e :UE 25 ]
+}
+"198
+[v _disk_ioctl `(E208 ~T0 @X0 1 ef3`uc`uc`*v ]
+"203
+{
+[; ;diskio.c: 198: DRESULT disk_ioctl (
+[; ;diskio.c: 199: BYTE pdrv,
+[; ;diskio.c: 200: BYTE cmd,
+[; ;diskio.c: 201: void *buff
+[; ;diskio.c: 202: )
+[; ;diskio.c: 203: {
+[e :U _disk_ioctl ]
+"199
+[v _pdrv `uc ~T0 @X0 1 r1 ]
+"200
+[v _cmd `uc ~T0 @X0 1 r2 ]
+"201
+[v _buff `*v ~T0 @X0 1 r3 ]
+"203
+[f ]
+"204
+[v _res `E208 ~T0 @X0 1 a ]
+"205
+[v _result `i ~T0 @X0 1 a ]
+[; ;diskio.c: 204: DRESULT res;
+[; ;diskio.c: 205: int result;
+[; ;diskio.c: 207: switch (pdrv) {
+"207
+[e $U 33  ]
+{
+[; ;diskio.c: 208: case 0 :
+"208
+[e :U 34 ]
+[; ;diskio.c: 212: return res;
+"212
+[e ) _res ]
+[e $UE 31  ]
+[; ;diskio.c: 214: case 1 :
+"214
+[e :U 35 ]
+[; ;diskio.c: 218: return res;
+"218
+[e ) _res ]
+[e $UE 31  ]
+[; ;diskio.c: 220: case 2 :
+"220
+[e :U 36 ]
+[; ;diskio.c: 224: return res;
+"224
+[e ) _res ]
+[e $UE 31  ]
+"225
+}
+[; ;diskio.c: 225: }
+[e $U 32  ]
+"207
+[e :U 33 ]
+[e [\ _pdrv , $ -> -> 0 `i `uc 34
+ , $ -> -> 1 `i `uc 35
+ , $ -> -> 2 `i `uc 36
+ 32 ]
+"225
+[e :U 32 ]
+[; ;diskio.c: 227: return RES_PARERR;
+"227
+[e ) . `E208 4 ]
+[e $UE 31  ]
+[; ;diskio.c: 228: }
+"228
+[e :UE 31 ]
+}

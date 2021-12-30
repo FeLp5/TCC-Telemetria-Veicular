@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/production\spi_sdcard.X.production.hex">
+    <memory name="program">
+      <units>bytes</units>
+      <length>32768</length>
+      <used>2527</used>
+      <free>30241</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>2048</length>
+      <used>134</used>
+      <free>1914</free>
+    </memory>
+  </executable>
+</project>

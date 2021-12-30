@@ -1,0 +1,2578 @@
+
+# 1 "mem-ffs.c"
+
+# 169 "mem-ffs.h"
+typedef struct _FFS_FILE
+{
+DWORD directory_entry_sector;
+BYTE directory_entry_within_sector;
+DWORD current_cluster;
+BYTE current_sector;
+WORD current_byte;
+DWORD current_byte_within_file;
+DWORD file_size;
+
+union
+{
+typedef struct
+{
+unsigned int file_is_open :1;
+unsigned int read_permitted :1;
+unsigned int write_permitted :1;
+unsigned int write_append_only :1;
+unsigned int inc_posn_before_next_rw :1;
+unsigned int access_error :1;
+unsigned int end_of_file :1;
+unsigned int file_size_has_changed :1;
+unsigned int reserved :8;
+} bits;
+WORD word;
+} flags;
+
+} FFS_FILE;
+
+# 224
+DWORD ffs_find_file (const char *filename, DWORD *file_size, BYTE *attribute_byte, DWORD *directory_entry_sector, BYTE *directory_entry_within_sector, BYTE *read_file_name, BYTE *read_file_extension);
+BYTE ffs_convert_filename_to_dos (const char *source_filename, BYTE *dos_filename, BYTE *dos_extension);
+BYTE ffs_read_next_directory_entry (BYTE *file_name, BYTE *file_extension, BYTE *attribute_byte, DWORD *file_size, DWORD *cluster_number, BYTE start_from_beginning, DWORD *directory_entry_sector, BYTE *directory_entry_within_sector);
+void ffs_overwrite_last_directory_entry (BYTE *file_name, BYTE *file_extension, BYTE *attribute_byte, DWORD *file_size, DWORD *cluster_number, BYTE write_time_date);
+DWORD get_file_start_cluster(FFS_FILE *file_pointer);
+BYTE ffs_create_new_file (const char *file_name, DWORD *write_file_start_cluster, DWORD *directory_entry_sector, BYTE *directory_entry_within_sector);
+DWORD ffs_get_next_free_cluster (void);
+DWORD ffs_get_next_cluster_no (DWORD current_cluster);
+void ffs_modify_cluster_entry_in_fat (DWORD cluster_to_modify, DWORD cluster_entry_new_value);
+
+# 239
+FFS_FILE* ffs_fopen (const char *filename, const char *access_mode);
+int ffs_fseek (FFS_FILE *file_pointer, long offset, int origin);
+int ffs_fsetpos (FFS_FILE *file_pointer, long *position);
+long ffs_ftell (FFS_FILE *file_pointer);
+int ffs_fgetpos (FFS_FILE *file_pointer, long *position);
+void ffs_rewind (FFS_FILE *file_pointer);
+int ffs_fputc (int data, FFS_FILE *file_pointer);
+int ffs_fgetc (FFS_FILE *file_pointer);
+int ffs_fputs (const char *string, FFS_FILE *file_pointer);
+int ffs_fputs_char (char *string, FFS_FILE *file_pointer);
+char* ffs_fgets (char *string, int length, FFS_FILE *file_pointer);
+int ffs_fwrite (const void *buffer, int size, int count, FFS_FILE *file_pointer);
+int ffs_fread (void *buffer, int size, int count, FFS_FILE *file_pointer);
+int ffs_fflush (FFS_FILE *file_pointer);
+int ffs_fclose (FFS_FILE *file_pointer);
+int ffs_remove (const char *filename);
+int ffs_change_file_size (const char *filename, DWORD new_file_size);
+int ffs_rename (const char *old_filename, const char *new_filename);
+void ffs_clearerr (FFS_FILE *file_pointer);
+int ffs_feof (FFS_FILE *file_pointer);
+int ffs_ferror (FFS_FILE *file_pointer);
+BYTE ffs_is_card_available (void);
+
+# 322
+FFS_FILE ffs_file[2];
+BYTE ffs_card_ok = 0;
+volatile BYTE ffs_10ms_timer = 0;
+WORD ffs_bytes_per_sector;
+
+# 336
+BYTE ffs_general_buffer[512];
+
+# 338 "mem-mmcsd.h"
+typedef enum _FFS_PROCESS_STATE
+{
+FFS_PROCESS_NO_CARD,
+FFS_PROCESS_WAIT_FOR_CARD_FULLY_INSERTED,
+FFS_PROCESS_CARD_INITIALSIED
+} FFS_PROCESS_STATE;
+
+# 382
+extern void ffs_process (void);
+extern BYTE ffs_is_card_present (void);
+extern void ffs_read_sector_to_buffer (DWORD sector_lba);
+extern void ffs_write_sector_from_buffer (DWORD sector_lba);
+extern BYTE ffs_write_byte (BYTE data);
+extern WORD ffs_read_word (void);
+extern BYTE ffs_read_byte (void);
+
+# 439
+extern WORD number_of_root_directory_sectors;
+extern BYTE ffs_buffer_needs_writing_to_card;
+extern DWORD ffs_buffer_contains_lba;
+extern DWORD fat1_start_sector;
+extern DWORD root_directory_start_sector_cluster;
+extern DWORD data_area_start_sector;
+extern BYTE disk_is_fat_32;
+extern BYTE sectors_per_cluster;
+extern DWORD last_found_free_cluster;
+extern DWORD sectors_per_fat;
+extern BYTE active_fat_table_flags;
+extern DWORD read_write_directory_last_lba;
+extern WORD read_write_directory_last_entry;
+extern BYTE ffs_card_write_protected;
+
+# 70 "mem-ffs.c"
+FFS_FILE* ffs_fopen (const char *filename, const char *access_mode)
+{
+BYTE file_number;
+BYTE attribute_byte;
+BYTE count;
+BYTE read_file_name[8];
+BYTE read_file_extension[3];
+
+
+
+
+for (file_number = 0; file_number < 2; file_number++)
+{
+if (ffs_file[file_number].flags.bits.file_is_open == 0)
+{
+
+break;
+}
+if (file_number == (2 - 1))
+{
+
+return(0);
+}
+}
+
+# 102
+ffs_file[file_number].current_cluster = ffs_find_file (filename, &ffs_file[file_number].file_size, &attribute_byte, &ffs_file[file_number].directory_entry_sector, &ffs_file[file_number].directory_entry_within_sector, &read_file_name[0], &read_file_extension[0]);
+
+# 108
+if (ffs_file[file_number].current_cluster != 0xffffffff)
+{
+for (count = 0; count < 2; count++)
+{
+if (ffs_file[count].flags.bits.file_is_open)
+{
+if (
+(count != file_number) &&
+(ffs_file[count].directory_entry_sector == ffs_file[file_number].directory_entry_sector) &&
+(ffs_file[count].directory_entry_within_sector == ffs_file[file_number].directory_entry_within_sector)
+)
+{
+return(0);
+}
+}
+}
+}
+
+
+
+
+if (ffs_file[file_number].current_cluster == 0xffffffff)
+{
+if (*access_mode == 'r')
+{
+
+return(0);
+}
+}
+
+
+
+
+if (ffs_file[file_number].current_cluster != 0xffffffff)
+{
+if (*access_mode == 'w')
+{
+
+ffs_remove(filename);
+ffs_file[file_number].current_cluster = 0xffffffff;
+}
+else
+{
+
+# 155
+}
+}
+
+
+
+
+if (ffs_file[file_number].current_cluster == 0xffffffff)
+{
+if (ffs_create_new_file(filename, &ffs_file[file_number].current_cluster, &ffs_file[file_number].directory_entry_sector,
+&ffs_file[file_number].directory_entry_within_sector) == 0)
+{
+
+return(0);
+}
+ffs_file[file_number].file_size = 0;
+}
+
+# 176
+ffs_file[file_number].flags.bits.file_is_open = 1;
+ffs_file[file_number].flags.bits.access_error = 0;
+ffs_file[file_number].flags.bits.end_of_file = 0;
+ffs_file[file_number].flags.bits.file_size_has_changed = 0;
+
+# 185
+if (*access_mode == 'r')
+{
+if (
+(*(access_mode + 1) == '+') ||
+((*(access_mode + 1) != 0x00) && (*(access_mode + 2) == '+'))
+)
+{
+
+ffs_file[file_number].flags.bits.read_permitted = 1;
+ffs_file[file_number].flags.bits.write_permitted = 1;
+ffs_file[file_number].flags.bits.write_append_only = 0;
+}
+else
+{
+
+ffs_file[file_number].flags.bits.read_permitted = 1;
+ffs_file[file_number].flags.bits.write_permitted = 0;
+ffs_file[file_number].flags.bits.write_append_only = 0;
+}
+
+ffs_file[file_number].current_sector = 0;
+ffs_file[file_number].current_byte = 0;
+ffs_file[file_number].current_byte_within_file = 0;
+ffs_file[file_number].flags.bits.inc_posn_before_next_rw = 0;
+}
+else if (*access_mode == 'w')
+{
+if (
+(*(access_mode + 1) == '+') ||
+((*(access_mode + 1) != 0x00) && (*(access_mode + 2) == '+'))
+)
+{
+
+ffs_file[file_number].flags.bits.read_permitted = 1;
+ffs_file[file_number].flags.bits.write_permitted = 1;
+ffs_file[file_number].flags.bits.write_append_only = 0;
+}
+else
+{
+
+ffs_file[file_number].flags.bits.read_permitted = 0;
+ffs_file[file_number].flags.bits.write_permitted = 1;
+ffs_file[file_number].flags.bits.write_append_only = 0;
+}
+
+ffs_file[file_number].current_sector = 0;
+ffs_file[file_number].current_byte = 0;
+ffs_file[file_number].current_byte_within_file = 0;
+ffs_file[file_number].flags.bits.inc_posn_before_next_rw = 0;
+}
+else if (*access_mode == 'a')
+{
+if (
+(*(access_mode + 1) == '+') ||
+((*(access_mode + 1) != 0x00) && (*(access_mode + 2) == '+'))
+)
+{
+
+ffs_file[file_number].flags.bits.read_permitted = 1;
+ffs_file[file_number].flags.bits.write_permitted = 1;
+ffs_file[file_number].flags.bits.write_append_only = 1;
+}
+else
+{
+
+ffs_file[file_number].flags.bits.read_permitted = 0;
+ffs_file[file_number].flags.bits.write_permitted = 1;
+ffs_file[file_number].flags.bits.write_append_only = 1;
+}
+
+
+ffs_file[file_number].current_sector = 0;
+ffs_file[file_number].current_byte = 0;
+ffs_file[file_number].current_byte_within_file = 0;
+ffs_file[file_number].flags.bits.inc_posn_before_next_rw = 0;
+
+ffs_fseek(&ffs_file[file_number], 0, 2);
+
+if (ffs_file[file_number].file_size)
+{
+ffs_file[file_number].flags.bits.inc_posn_before_next_rw = 1;
+}
+
+}
+
+return(&ffs_file[file_number]);
+}
+
+# 293
+int ffs_fseek (FFS_FILE *file_pointer, long offset, int origin)
+{
+DWORD dw_temp;
+DWORD bytes_to_new_posn;
+DWORD bytes_per_cluster;
+BYTE calculate_new_posn;
+
+
+bytes_per_cluster = sectors_per_cluster * ffs_bytes_per_sector;
+
+# 307
+if (file_pointer->flags.bits.file_is_open == 0)
+return(1);
+
+
+if (origin == 0)
+{
+
+
+
+if (offset < 0)
+{
+
+return(1);
+}
+else if (offset == 0)
+{
+
+bytes_to_new_posn = 0;
+}
+else
+{
+
+bytes_to_new_posn = (DWORD)offset;
+}
+}
+else if (origin == 1)
+{
+
+
+
+bytes_to_new_posn = file_pointer->current_byte_within_file;
+
+if (file_pointer->flags.bits.inc_posn_before_next_rw)
+bytes_to_new_posn++;
+
+if (offset < 0)
+{
+
+bytes_to_new_posn -= (DWORD)(0 - offset);
+}
+else
+{
+
+bytes_to_new_posn += (DWORD)offset;
+}
+
+}
+else if (origin == 2)
+{
+
+
+
+if (offset > 1)
+{
+
+return(1);
+}
+else if (offset == 1)
+{
+bytes_to_new_posn = file_pointer->file_size;
+}
+else
+{
+bytes_to_new_posn = (file_pointer->file_size) - (DWORD)(0 - offset) - 1;
+}
+}
+else
+{
+
+return(1);
+}
+
+# 387
+if (bytes_to_new_posn > (file_pointer->file_size))
+{
+
+return(1);
+}
+else if (bytes_to_new_posn == (file_pointer->file_size))
+{
+
+if (bytes_to_new_posn)
+{
+bytes_to_new_posn--;
+file_pointer->flags.bits.inc_posn_before_next_rw = 1;
+}
+else
+{
+file_pointer->flags.bits.inc_posn_before_next_rw = 0;
+}
+}
+else
+{
+
+file_pointer->flags.bits.inc_posn_before_next_rw = 0;
+}
+
+
+if (bytes_to_new_posn == 0)
+{
+
+
+
+file_pointer->current_cluster = get_file_start_cluster(file_pointer);
+file_pointer->current_sector = 0;
+file_pointer->current_byte = 0;
+file_pointer->current_byte_within_file = 0;
+
+}
+else
+{
+
+# 431
+if (bytes_to_new_posn == file_pointer->current_byte_within_file)
+{
+
+calculate_new_posn = 0;
+}
+else if (bytes_to_new_posn < file_pointer->current_byte_within_file)
+{
+
+if (
+(file_pointer->current_byte_within_file - bytes_to_new_posn) <
+(file_pointer->current_byte + (file_pointer->current_sector * ffs_bytes_per_sector))
+)
+{
+
+
+calculate_new_posn = 0;
+
+
+dw_temp = bytes_to_new_posn;
+bytes_to_new_posn = (file_pointer->current_byte_within_file - bytes_to_new_posn);
+file_pointer->current_byte_within_file = dw_temp;
+
+while (bytes_to_new_posn >= ffs_bytes_per_sector)
+{
+bytes_to_new_posn -= ffs_bytes_per_sector;
+if (file_pointer->current_sector)
+file_pointer->current_sector--;
+else
+calculate_new_posn = 1;
+}
+
+
+file_pointer->current_byte -= (WORD)bytes_to_new_posn;
+if (file_pointer->current_byte >= ffs_bytes_per_sector)
+{
+file_pointer->current_byte += ffs_bytes_per_sector;
+if (file_pointer->current_sector)
+file_pointer->current_sector--;
+else
+calculate_new_posn = 1;
+}
+}
+else
+{
+
+calculate_new_posn = 1;
+}
+}
+else
+{
+
+if (
+(bytes_to_new_posn - file_pointer->current_byte_within_file) <
+(bytes_per_cluster - (file_pointer->current_byte + (file_pointer->current_sector * ffs_bytes_per_sector)))
+)
+{
+
+
+calculate_new_posn = 0;
+
+
+dw_temp = bytes_to_new_posn;
+bytes_to_new_posn = (bytes_to_new_posn - file_pointer->current_byte_within_file);
+file_pointer->current_byte_within_file = dw_temp;
+
+while (bytes_to_new_posn >= ffs_bytes_per_sector)
+{
+bytes_to_new_posn -= ffs_bytes_per_sector;
+if (file_pointer->current_sector < sectors_per_cluster)
+file_pointer->current_sector++;
+else
+calculate_new_posn = 1;
+}
+
+file_pointer->current_byte += (WORD)bytes_to_new_posn;
+if (file_pointer->current_byte >= ffs_bytes_per_sector)
+{
+file_pointer->current_byte -= ffs_bytes_per_sector;
+if (file_pointer->current_sector < sectors_per_cluster)
+file_pointer->current_sector++;
+else
+calculate_new_posn = 1;
+}
+}
+else
+{
+
+calculate_new_posn = 1;
+}
+}
+
+
+
+if (calculate_new_posn)
+{
+
+
+
+file_pointer->current_cluster = get_file_start_cluster(file_pointer);
+file_pointer->current_sector = 0;
+file_pointer->current_byte_within_file = bytes_to_new_posn;
+
+
+while (bytes_to_new_posn >= bytes_per_cluster)
+{
+bytes_to_new_posn -= bytes_per_cluster;
+file_pointer->current_cluster = ffs_get_next_cluster_no(file_pointer->current_cluster);
+}
+
+
+while (bytes_to_new_posn >= ffs_bytes_per_sector)
+{
+bytes_to_new_posn -= ffs_bytes_per_sector;
+file_pointer->current_sector++;
+}
+
+file_pointer->current_byte = (WORD)bytes_to_new_posn;
+}
+}
+
+file_pointer->flags.bits.end_of_file = 0;
+return(0);
+
+
+}
+
+# 568
+int ffs_fsetpos (FFS_FILE *file_pointer, long *position)
+{
+
+if (file_pointer->flags.bits.file_is_open == 0)
+return(1);
+
+file_pointer->flags.bits.end_of_file = 0;
+
+return(ffs_fseek(file_pointer, *position, 0));
+}
+
+# 587
+long ffs_ftell (FFS_FILE *file_pointer)
+{
+
+
+if (file_pointer->flags.bits.file_is_open == 0)
+return(1);
+
+
+if (file_pointer->flags.bits.inc_posn_before_next_rw)
+return((long)file_pointer->current_byte_within_file + 1);
+else
+return((long)file_pointer->current_byte_within_file);
+}
+
+# 612
+int ffs_fgetpos (FFS_FILE *file_pointer, long *position)
+{
+
+
+
+if (file_pointer->flags.bits.file_is_open == 0)
+return(1);
+
+
+*position = ffs_ftell(file_pointer);
+return(0);
+
+}
+
+# 634
+void ffs_rewind (FFS_FILE *file_pointer)
+{
+
+ffs_fseek (file_pointer, 0, 0);
+
+file_pointer->flags.bits.access_error = 0;
+}
+
+# 656
+int ffs_fputc (int data, FFS_FILE *file_pointer)
+{
+DWORD dw_temp;
+BYTE *buffer_pointer;
+
+
+
+if (ffs_card_write_protected)
+return(-1);
+
+
+
+
+if (file_pointer->flags.bits.file_is_open == 0)
+return(-1);
+
+# 676
+if (file_pointer->flags.bits.write_permitted == 0)
+{
+
+file_pointer->flags.bits.access_error = 1;
+return(-1);
+}
+if (file_pointer->flags.bits.write_append_only)
+{
+
+dw_temp = file_pointer->current_byte_within_file;
+if (file_pointer->flags.bits.inc_posn_before_next_rw)
+{
+dw_temp++;
+}
+
+if (dw_temp < file_pointer->file_size)
+{
+
+ffs_fseek(file_pointer, 1, 2);
+}
+}
+
+# 702
+if (file_pointer->flags.bits.inc_posn_before_next_rw)
+{
+
+file_pointer->current_byte_within_file++;
+
+file_pointer->current_byte++;
+
+if (file_pointer->current_byte >= ffs_bytes_per_sector)
+{
+
+file_pointer->current_byte = 0;
+
+file_pointer->current_sector++;
+
+if (file_pointer->current_sector >= sectors_per_cluster)
+{
+
+file_pointer->current_sector = 0;
+
+if (file_pointer->current_byte_within_file >= file_pointer->file_size)
+{
+
+dw_temp = ffs_get_next_free_cluster();
+if (dw_temp == 0xffffffff)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+file_pointer->flags.bits.end_of_file = 1;
+return(-1);
+}
+
+
+ffs_modify_cluster_entry_in_fat (file_pointer->current_cluster, dw_temp);
+
+
+ffs_modify_cluster_entry_in_fat (dw_temp, 0x0fffffff);
+}
+else
+{
+
+dw_temp = ffs_get_next_cluster_no(file_pointer->current_cluster);
+if (dw_temp == 0xffffffff)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+file_pointer->flags.bits.access_error = 1;
+return(-1);
+}
+}
+
+file_pointer->current_cluster = dw_temp;
+}
+}
+
+file_pointer->flags.bits.inc_posn_before_next_rw = 0;
+}
+
+# 763
+dw_temp = (
+((file_pointer->current_cluster - 2) * sectors_per_cluster) +
+(DWORD)file_pointer->current_sector +
+data_area_start_sector
+);
+if (ffs_buffer_contains_lba != dw_temp)
+{
+ffs_read_sector_to_buffer(dw_temp);
+}
+
+# 777
+buffer_pointer = &ffs_general_buffer[0] + file_pointer->current_byte;
+*buffer_pointer = (BYTE)(data & 0x00ff);
+
+# 784
+if (file_pointer->current_byte_within_file >= file_pointer->file_size)
+{
+file_pointer->file_size++;
+file_pointer->flags.bits.file_size_has_changed = 1;
+}
+
+# 795
+file_pointer->flags.bits.inc_posn_before_next_rw = 1;
+
+
+
+
+ffs_buffer_needs_writing_to_card = 1;
+
+
+
+
+return(data);
+}
+
+# 821
+int ffs_fgetc (FFS_FILE *file_pointer)
+{
+BYTE data;
+DWORD dw_temp;
+BYTE *buffer_pointer;
+
+
+
+
+if (file_pointer->flags.bits.file_is_open == 0)
+return(-1);
+
+
+
+
+if (file_pointer->flags.bits.read_permitted == 0)
+{
+
+file_pointer->flags.bits.access_error = 1;
+return(-1);
+}
+
+# 847
+dw_temp = file_pointer->current_byte_within_file;
+if (file_pointer->flags.bits.inc_posn_before_next_rw)
+dw_temp++;
+
+if (dw_temp >= file_pointer->file_size)
+{
+
+file_pointer->flags.bits.end_of_file = 1;
+return(-1);
+}
+
+# 862
+if (file_pointer->flags.bits.inc_posn_before_next_rw)
+{
+
+file_pointer->current_byte_within_file++;
+
+file_pointer->current_byte++;
+
+if (file_pointer->current_byte >= ffs_bytes_per_sector)
+{
+
+file_pointer->current_byte = 0;
+
+file_pointer->current_sector++;
+
+if (file_pointer->current_sector >= sectors_per_cluster)
+{
+
+file_pointer->current_sector = 0;
+
+
+dw_temp = ffs_get_next_cluster_no(file_pointer->current_cluster);
+
+if (disk_is_fat_32)
+{
+
+if (dw_temp >= 0x0ffffff8)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+file_pointer->flags.bits.end_of_file = 1;
+return(-1);
+}
+}
+else
+{
+
+if (dw_temp >= 0xfff8)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+file_pointer->flags.bits.end_of_file = 1;
+return(-1);
+}
+}
+
+file_pointer->current_cluster = dw_temp;
+
+}
+}
+
+file_pointer->flags.bits.inc_posn_before_next_rw = 0;
+}
+
+# 919
+dw_temp = (
+((file_pointer->current_cluster - 2) * sectors_per_cluster) +
+(DWORD)file_pointer->current_sector +
+data_area_start_sector
+);
+if (ffs_buffer_contains_lba != dw_temp)
+{
+ffs_read_sector_to_buffer(dw_temp);
+}
+
+# 933
+buffer_pointer = &ffs_general_buffer[0] + file_pointer->current_byte;
+data = (int)*buffer_pointer;
+
+# 942
+file_pointer->flags.bits.inc_posn_before_next_rw = 1;
+
+
+
+
+return((int)data);
+}
+
+# 966
+int ffs_fputs (const char *string, FFS_FILE *file_pointer)
+{
+char *string_pointer;
+int return_value;
+
+
+
+if (ffs_card_write_protected)
+return(-1);
+
+
+string_pointer = (char*)string;
+
+while (*string_pointer != 0x00)
+{
+return_value = ffs_fputc ((int)*string_pointer++, file_pointer);
+
+if (return_value == -1)
+return(-1);
+}
+
+return(0);
+}
+
+
+
+int ffs_fputs_char (char *string, FFS_FILE *file_pointer)
+{
+char *string_pointer;
+int return_value;
+
+
+
+
+if (ffs_card_write_protected)
+return(-1);
+
+
+string_pointer = string;
+
+while (*string_pointer != 0x00)
+{
+return_value = ffs_fputc ((int)*string_pointer++, file_pointer);
+
+if (return_value == -1)
+return(-1);
+}
+
+return(0);
+}
+
+# 1033
+char* ffs_fgets (char *string, int length, FFS_FILE *file_pointer)
+{
+char *string_pointer;
+int return_value;
+
+
+string_pointer = string;
+
+return_value = ffs_fgetc(file_pointer);
+while ((return_value != -1) && (length > 1))
+{
+*string_pointer++ = (char)return_value;
+
+length--;
+
+if (return_value == (int)'\n')
+break;
+
+return_value = ffs_fgetc(file_pointer);
+}
+
+
+*string_pointer++ = 0x00;
+
+if (return_value == -1)
+return(0x00);
+else
+return(string);
+
+}
+
+# 1080
+int ffs_fwrite (const void *buffer, int size, int count, FFS_FILE *file_pointer)
+{
+int size_count;
+BYTE *string_Pointer;
+int number_of_items_written = 0;
+
+
+
+if (ffs_card_write_protected)
+return(-1);
+
+string_Pointer = (BYTE*)buffer;
+
+
+while (count)
+{
+
+for (size_count = 0; size_count < size; size_count++)
+{
+
+if (ffs_fputc((int)*string_Pointer++, file_pointer) == -1)
+{
+return(number_of_items_written);
+}
+}
+number_of_items_written++;
+count--;
+}
+
+return(number_of_items_written);
+}
+
+# 1126
+int ffs_fread (void *buffer, int size, int count, FFS_FILE *file_pointer)
+{
+int size_count;
+int return_value;
+BYTE *string_Pointer;
+int number_of_items_written = 0;
+
+
+string_Pointer = (BYTE*)buffer;
+
+
+while (count)
+{
+
+for (size_count = 0; size_count < size; size_count++)
+{
+
+return_value = ffs_fgetc(file_pointer);
+
+if (return_value == -1)
+return(number_of_items_written);
+
+*string_Pointer++ = (BYTE)return_value;
+}
+number_of_items_written++;
+count--;
+}
+
+return(number_of_items_written);
+}
+
+# 1171
+int ffs_fflush (FFS_FILE *file_pointer)
+{
+BYTE *buffer_pointer;
+
+# 1180
+if (ffs_card_write_protected)
+return(1);
+
+
+
+if (file_pointer->flags.bits.file_is_open == 0)
+return(1);
+
+
+
+
+if (ffs_buffer_needs_writing_to_card)
+{
+if (ffs_buffer_contains_lba != 0xffffffff)
+ffs_write_sector_from_buffer(ffs_buffer_contains_lba);
+
+ffs_buffer_needs_writing_to_card = 0;
+}
+
+if (file_pointer->flags.bits.file_size_has_changed)
+{
+
+ffs_read_sector_to_buffer (file_pointer->directory_entry_sector);
+
+
+buffer_pointer = &ffs_general_buffer[0] + ((WORD)file_pointer->directory_entry_within_sector << 5) + 18;
+
+# 1214
+buffer_pointer++;
+buffer_pointer++;
+
+
+
+buffer_pointer += 2;
+
+# 1227
+buffer_pointer++;
+buffer_pointer++;
+
+# 1237
+buffer_pointer++;
+buffer_pointer++;
+
+
+
+buffer_pointer += 2;
+
+
+*buffer_pointer++ = (BYTE)(file_pointer->file_size & 0x000000ff);
+*buffer_pointer++ = (BYTE)((file_pointer->file_size & 0x0000ff00) >> 8);
+*buffer_pointer++ = (BYTE)((file_pointer->file_size & 0x00ff0000) >> 16);
+*buffer_pointer++ = (BYTE)((file_pointer->file_size & 0xff000000) >> 24);
+
+ffs_write_sector_from_buffer(file_pointer->directory_entry_sector);
+
+file_pointer->flags.bits.file_size_has_changed = 0;
+}
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+
+
+return(0);
+}
+
+# 1272
+int ffs_fclose (FFS_FILE *file_pointer)
+{
+
+if (file_pointer->flags.bits.file_is_open == 0)
+return(1);
+
+
+ffs_fflush(file_pointer);
+
+
+file_pointer->flags.bits.file_is_open = 0;
+
+# 1288
+(0 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+__asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop");
+while ((FIO0PIN & 0x00020000) == 0)
+ffs_read_byte();
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+
+return(0);
+}
+
+# 1309
+int ffs_remove (const char *filename)
+{
+BYTE temp;
+DWORD next_cluster;
+BYTE converted_file_name[8];
+BYTE converted_file_extension[3];
+DWORD read_file_size;
+DWORD read_cluster_number;
+BYTE attribute_byte;
+DWORD lowest_cluster_number_released = 0xffffffff;
+DWORD directory_entry_sector;
+BYTE directory_entry_within_sector;
+DWORD fat_entries_per_sector;
+DWORD dw_temp;
+BYTE *buffer_pointer;
+DWORD lba;
+BYTE fat_needs_storing = 0;
+BYTE count;
+DWORD current_cluster;
+DWORD cluster_to_modify;
+DWORD lba_last;
+
+# 1335
+if (ffs_card_ok == 0)
+return(1);
+
+
+if (ffs_card_write_protected)
+return(1);
+
+
+
+read_cluster_number = ffs_find_file(filename, &read_file_size, &attribute_byte, &directory_entry_sector, &directory_entry_within_sector, converted_file_name, converted_file_extension);
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+if (read_cluster_number == 0xffffffff)
+{
+
+return(1);
+}
+
+# 1360
+for (temp = 0; temp < 2; temp++)
+{
+if (ffs_file[temp].flags.bits.file_is_open)
+{
+if (
+(ffs_file[temp].directory_entry_sector == directory_entry_sector) &&
+(ffs_file[temp].directory_entry_within_sector == directory_entry_within_sector)
+)
+{
+return(1);
+}
+}
+}
+
+
+
+
+converted_file_name[0] = 0xe5;
+
+
+ffs_overwrite_last_directory_entry(converted_file_name, converted_file_extension, &attribute_byte, &read_file_size, &read_cluster_number, 0x00);
+
+
+if (disk_is_fat_32)
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 2);
+else
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 1);
+
+while(1)
+{
+
+ClrWdt;
+
+# 1402
+current_cluster = read_cluster_number;
+lba = fat1_start_sector;
+
+
+dw_temp = (current_cluster / fat_entries_per_sector);
+lba += dw_temp;
+current_cluster -= (dw_temp * fat_entries_per_sector);
+
+if (lba != ffs_buffer_contains_lba)
+{
+
+if (fat_needs_storing)
+{
+
+for (count = 0x01; count < 0x10; count <<= 1)
+{
+if (count & active_fat_table_flags)
+ffs_write_sector_from_buffer (lba_last);
+
+lba_last += sectors_per_fat;
+}
+fat_needs_storing = 0;
+}
+
+ffs_read_sector_to_buffer(lba);
+}
+lba_last = lba;
+
+
+if (disk_is_fat_32)
+{
+buffer_pointer = &ffs_general_buffer[0] + (current_cluster << 2);
+
+lba = (DWORD)*buffer_pointer++;
+lba |= ((DWORD)(*buffer_pointer++) << 8);
+lba |= ((DWORD)(*buffer_pointer++) << 16);
+lba |= ((DWORD)((*buffer_pointer++) & 0x0f) << 24);
+}
+else
+{
+buffer_pointer = &ffs_general_buffer[0] + (current_cluster << 1);
+
+lba = (DWORD)*buffer_pointer++;
+lba |= ((DWORD)(*buffer_pointer++) << 8);
+}
+next_cluster = lba;
+
+# 1453
+cluster_to_modify = read_cluster_number;
+
+
+lba = fat1_start_sector;
+
+
+dw_temp = (cluster_to_modify / fat_entries_per_sector);
+lba += dw_temp;
+cluster_to_modify -= (dw_temp * fat_entries_per_sector);
+
+
+if (disk_is_fat_32)
+buffer_pointer = &ffs_general_buffer[0] + (cluster_to_modify << 2);
+else
+buffer_pointer = &ffs_general_buffer[0] + (cluster_to_modify << 1);
+
+*buffer_pointer++ = (BYTE)(((DWORD)0x00000000) & 0x000000ff);
+*buffer_pointer++ = (BYTE)((((DWORD)0x00000000) & 0x0000ff00) >> 8);
+if (disk_is_fat_32)
+{
+*buffer_pointer++ = (BYTE)((((DWORD)0x00000000) & 0x00ff0000) >> 16);
+temp = (*buffer_pointer & 0xf0);
+*buffer_pointer++ = ((BYTE)((((DWORD)0x00000000) & 0x0f000000) >> 24) | temp);
+}
+fat_needs_storing = 1;
+
+
+
+read_cluster_number = next_cluster;
+
+
+
+
+if (disk_is_fat_32)
+{
+
+if ((next_cluster & 0x0fffffff) >= 0x0ffffff8)
+{
+
+break;
+}
+}
+else
+{
+
+if (next_cluster >= 0xfff8)
+{
+
+break;
+}
+}
+
+if (next_cluster < 2)
+{
+break;
+}
+
+read_cluster_number = next_cluster;
+if (read_cluster_number < lowest_cluster_number_released)
+lowest_cluster_number_released = read_cluster_number;
+}
+
+
+if (fat_needs_storing)
+{
+for (count = 0x01; count < 0x10; count <<= 1)
+{
+if (count & active_fat_table_flags)
+ffs_write_sector_from_buffer(lba_last);
+
+lba_last += sectors_per_fat;
+}
+}
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+
+
+if (last_found_free_cluster > lowest_cluster_number_released)
+last_found_free_cluster = lowest_cluster_number_released;
+
+
+
+
+__asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop");
+(0 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+__asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop");
+ffs_read_byte();
+while ((FIO0PIN & 0x00020000) == 0)
+ffs_read_byte();
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+
+return(0);
+}
+
+# 1562
+int ffs_change_file_size (const char *filename, DWORD new_file_size)
+{
+BYTE temp;
+DWORD next_cluster;
+BYTE converted_file_name[8];
+BYTE converted_file_extension[3];
+DWORD read_file_size;
+DWORD read_cluster_number;
+BYTE attribute_byte;
+DWORD lowest_cluster_number_released = 0xffffffff;
+DWORD directory_entry_sector;
+BYTE directory_entry_within_sector;
+DWORD fat_entries_per_sector;
+DWORD dw_temp;
+BYTE *buffer_pointer;
+DWORD lba;
+DWORD lba_last;
+DWORD bytes_per_cluster;
+BYTE fat_needs_storing = 0;
+BYTE count;
+DWORD next_free_cluster_number;
+
+
+
+if (ffs_card_ok == 0)
+return(1);
+
+
+if (ffs_card_write_protected)
+return(1);
+
+
+
+read_cluster_number = ffs_find_file(filename, &read_file_size, &attribute_byte, &directory_entry_sector, &directory_entry_within_sector, converted_file_name, converted_file_extension);
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+if (read_cluster_number == 0xffffffff)
+{
+
+return(1);
+}
+
+# 1610
+for (temp = 0; temp < 2; temp++)
+{
+if (ffs_file[temp].flags.bits.file_is_open)
+{
+if (
+(ffs_file[temp].directory_entry_sector == directory_entry_sector) &&
+(ffs_file[temp].directory_entry_within_sector == directory_entry_within_sector)
+)
+{
+return(1);
+}
+}
+}
+
+
+
+
+if (read_file_size == new_file_size)
+return(0);
+
+
+if (new_file_size == 0)
+return(1);
+
+
+bytes_per_cluster = (DWORD)sectors_per_cluster * 512;
+
+if (read_file_size > new_file_size)
+{
+
+# 1646
+read_file_size = new_file_size;
+ffs_overwrite_last_directory_entry(converted_file_name, converted_file_extension, &attribute_byte, &read_file_size, &read_cluster_number, 0x00);
+
+
+
+dw_temp = new_file_size;
+while (dw_temp > bytes_per_cluster)
+{
+dw_temp -= bytes_per_cluster;
+
+next_cluster = ffs_get_next_cluster_no(read_cluster_number);
+if (disk_is_fat_32)
+{
+
+if (next_cluster >= 0x0ffffff8)
+return(1);
+}
+else
+{
+
+if (next_cluster >= 0xfff8)
+return(1);
+}
+
+read_cluster_number = next_cluster;
+}
+
+
+next_cluster = ffs_get_next_cluster_no(read_cluster_number);
+if (disk_is_fat_32)
+{
+
+if (next_cluster >= 0x0ffffff8)
+return(0);
+}
+else
+{
+
+if (next_cluster >= 0xfff8)
+return(0);
+}
+
+
+
+ffs_modify_cluster_entry_in_fat(read_cluster_number, (DWORD) 0x0fffffff);
+read_cluster_number = next_cluster;
+
+
+
+while(1)
+{
+
+ClrWdt;
+
+
+
+next_cluster = ffs_get_next_cluster_no(read_cluster_number);
+
+# 1710
+lba = fat1_start_sector;
+
+if (disk_is_fat_32)
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 2);
+else
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 1);
+
+dw_temp = (read_cluster_number / fat_entries_per_sector);
+lba += dw_temp;
+lba_last = lba;
+
+if (lba == ffs_buffer_contains_lba)
+{
+
+fat_needs_storing = 1;
+read_cluster_number -= (dw_temp * fat_entries_per_sector);
+
+
+if (disk_is_fat_32)
+{
+buffer_pointer = &ffs_general_buffer[0] + (read_cluster_number << 2);
+
+*buffer_pointer++ = 0x00;
+*buffer_pointer++ = 0x00;
+*buffer_pointer++ = 0x00;
+*buffer_pointer++ &= 0xf0;
+}
+else
+{
+buffer_pointer = &ffs_general_buffer[0] + (read_cluster_number << 1);
+
+*buffer_pointer++ = 0x00;
+*buffer_pointer++ = 0x00;
+}
+}
+else
+{
+
+
+
+if (fat_needs_storing)
+{
+for (count = 0x01; count < 0x10; count <<= 1)
+{
+if (count & active_fat_table_flags)
+ffs_write_sector_from_buffer(lba_last);
+
+lba_last += sectors_per_fat;
+}
+fat_needs_storing = 0;
+}
+
+
+ffs_modify_cluster_entry_in_fat(read_cluster_number, (DWORD) 0x00000000);
+}
+
+
+if (disk_is_fat_32)
+{
+
+if ((next_cluster & 0x0fffffff) >= 0x0ffffff8)
+{
+
+break;
+}
+}
+else
+{
+
+if (next_cluster >= 0xfff8)
+{
+
+break;
+}
+}
+
+if (next_cluster < 2)
+{
+break;
+}
+
+read_cluster_number = next_cluster;
+if (read_cluster_number < lowest_cluster_number_released)
+lowest_cluster_number_released = read_cluster_number;
+}
+
+
+
+if (fat_needs_storing)
+{
+for (count = 0x01; count < 0x10; count <<= 1)
+{
+if (count & active_fat_table_flags)
+ffs_write_sector_from_buffer (lba_last);
+
+lba_last += sectors_per_fat;
+}
+}
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+}
+else
+{
+
+# 1820
+dw_temp = read_file_size;
+while (dw_temp > bytes_per_cluster)
+{
+dw_temp -= bytes_per_cluster;
+
+next_cluster = ffs_get_next_cluster_no(read_cluster_number);
+if (disk_is_fat_32)
+{
+
+if (next_cluster >= 0x0ffffff8)
+return(1);
+}
+else
+{
+
+if (next_cluster >= 0xfff8)
+return(1);
+}
+
+read_cluster_number = next_cluster;
+}
+
+
+
+dw_temp += (new_file_size - read_file_size);
+
+
+
+while (dw_temp > bytes_per_cluster)
+{
+dw_temp -= bytes_per_cluster;
+
+next_free_cluster_number = ffs_get_next_free_cluster();
+if (next_free_cluster_number == 0xffffffff)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(1);
+}
+
+
+ffs_modify_cluster_entry_in_fat (read_cluster_number, next_free_cluster_number);
+ffs_modify_cluster_entry_in_fat (next_free_cluster_number, 0x0fffffff);
+read_cluster_number = next_free_cluster_number;
+}
+
+
+ffs_modify_cluster_entry_in_fat (read_cluster_number, 0x0fffffff);
+
+
+
+
+read_cluster_number = ffs_find_file(filename, &read_file_size, &attribute_byte, &directory_entry_sector, &directory_entry_within_sector, converted_file_name, converted_file_extension);
+if (read_cluster_number == 0xffffffff)
+return(1);
+
+read_file_size = new_file_size;
+ffs_overwrite_last_directory_entry(converted_file_name, converted_file_extension, &attribute_byte, &read_file_size, &read_cluster_number, 0x00);
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+
+}
+
+
+if (last_found_free_cluster > lowest_cluster_number_released)
+last_found_free_cluster = lowest_cluster_number_released;
+
+
+
+
+__asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop");
+(0 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+__asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop"); __asm("nop");
+ffs_read_byte();
+while ((FIO0PIN & 0x00020000) == 0)
+ffs_read_byte();
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+
+return(0);
+}
+
+# 1911
+int ffs_rename (const char *old_filename, const char *new_filename)
+{
+BYTE converted_file_name[8];
+BYTE converted_file_extension[3];
+DWORD read_cluster_number = 0;
+DWORD read_file_size;
+BYTE attribute_byte;
+DWORD directory_entry_sector;
+BYTE directory_entry_within_sector;
+BYTE temp;
+
+
+
+if (ffs_card_ok == 0)
+return(1);
+
+
+if (ffs_card_write_protected)
+return(1);
+
+
+read_cluster_number = ffs_find_file(new_filename, &read_file_size, &attribute_byte, &directory_entry_sector, &directory_entry_within_sector, converted_file_name, converted_file_extension);
+if (read_cluster_number != 0xffffffff)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(1);
+}
+
+
+read_cluster_number = ffs_find_file(old_filename, &read_file_size, &attribute_byte, &directory_entry_sector, &directory_entry_within_sector, converted_file_name, converted_file_extension);
+if (read_cluster_number == 0xffffffff)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(1);
+}
+
+# 1954
+if (read_cluster_number != 0xffffffff)
+{
+for (temp = 0; temp < 2; temp++)
+{
+if (ffs_file[temp].flags.bits.file_is_open)
+{
+if (
+(ffs_file[temp].directory_entry_sector == directory_entry_sector) &&
+(ffs_file[temp].directory_entry_within_sector == directory_entry_within_sector)
+)
+{
+return(1);
+}
+}
+}
+}
+
+
+if (ffs_convert_filename_to_dos (new_filename, converted_file_name, converted_file_extension))
+return(1);
+
+
+ffs_overwrite_last_directory_entry(converted_file_name, converted_file_extension, &attribute_byte, &read_file_size, &read_cluster_number, 0x02);
+
+return(0);
+}
+
+# 1990
+void ffs_clearerr (FFS_FILE *file_pointer)
+{
+
+file_pointer->flags.bits.access_error = 0;
+file_pointer->flags.bits.end_of_file = 0;
+}
+
+# 2007
+int ffs_feof (FFS_FILE *file_pointer)
+{
+
+if (file_pointer->flags.bits.end_of_file)
+return(1);
+else
+return(0);
+}
+
+# 2026
+int ffs_ferror (FFS_FILE *file_pointer)
+{
+
+if (file_pointer->flags.bits.access_error)
+return(1);
+else
+return(0);
+}
+
+# 2047
+BYTE ffs_is_card_available (void)
+{
+return(ffs_card_ok);
+}
+
+# 2105
+DWORD ffs_find_file (const char *filename, DWORD *file_size, BYTE *attribute_byte, DWORD *directory_entry_sector,
+BYTE *directory_entry_within_sector, BYTE *read_file_name, BYTE *read_file_extension)
+{
+BYTE temp;
+BYTE this_is_the_file;
+BYTE this_is_first_read;
+BYTE converted_file_name[8];
+BYTE converted_file_extension[3];
+DWORD read_cluster_number;
+
+
+
+if(ffs_card_ok == 0)
+return((DWORD)0xffffffff);
+
+
+ffs_convert_filename_to_dos (filename, converted_file_name, converted_file_extension);
+
+this_is_first_read = 1;
+
+while (1)
+{
+
+ClrWdt;
+
+
+
+if (ffs_read_next_directory_entry (read_file_name, read_file_extension, attribute_byte, file_size,
+&read_cluster_number, this_is_first_read, directory_entry_sector,
+directory_entry_within_sector) == 0)
+{
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return((DWORD)0xffffffff);
+}
+this_is_first_read = 0;
+
+this_is_the_file = 1;
+
+
+if (*(read_file_name + 0) == 0x00)
+{
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return((DWORD)0xffffffff);
+}
+
+
+if (*(read_file_name + 0) == 0xe5)
+{
+this_is_the_file = 0;
+}
+
+
+for (temp = 0; temp < 8; temp++)
+{
+if ((converted_file_name[temp] != '?') && (*(read_file_name + temp) != converted_file_name[temp]))
+this_is_the_file = 0;
+}
+
+
+
+for (temp = 0; temp < 3; temp++)
+{
+if ((converted_file_extension[temp] != '?') && (*(read_file_extension + temp) != converted_file_extension[temp]))
+this_is_the_file = 0;
+}
+
+
+if (*attribute_byte & 0x08)
+this_is_the_file = 0;
+
+if (*attribute_byte & 0x10)
+this_is_the_file = 0;
+
+if (*attribute_byte & 0x02)
+this_is_the_file = 0;
+
+
+if (this_is_the_file)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(read_cluster_number);
+}
+}
+}
+
+# 2204
+BYTE ffs_convert_filename_to_dos (const char *source_filename, BYTE *dos_filename, BYTE *dos_extension)
+{
+BYTE temp;
+BYTE no_null_found_yet;
+BYTE wildcard_character_found = 0;
+BYTE asterix_wildcard_used;
+
+
+no_null_found_yet = 1;
+asterix_wildcard_used = 0;
+for (temp = 0; temp < 8; temp++)
+{
+
+if ((*source_filename == '?') || (*source_filename == '*'))
+wildcard_character_found = 1;
+
+
+if (*source_filename == '*')
+asterix_wildcard_used = 1;
+
+
+if (*source_filename == '.')
+no_null_found_yet = 0;
+
+
+if (asterix_wildcard_used)
+{
+
+*dos_filename++ = '?';
+if (no_null_found_yet)
+*source_filename++;
+}
+else if (no_null_found_yet)
+{
+
+*dos_filename++ = *source_filename++;
+}
+else
+{
+
+*dos_filename++ = 0x20;
+}
+}
+
+
+*source_filename++;
+
+
+no_null_found_yet = 1;
+asterix_wildcard_used = 0;
+for (temp = 0; temp < 3; temp++)
+{
+
+if ((*source_filename == '?') || (*source_filename == '*'))
+wildcard_character_found = 1;
+
+
+if (*source_filename == '*')
+asterix_wildcard_used = 1;
+
+
+if (*source_filename == 0x00)
+no_null_found_yet = 0;
+
+
+if (asterix_wildcard_used)
+{
+
+*dos_extension++ = '?';
+if (no_null_found_yet)
+*source_filename++;
+}
+else if (no_null_found_yet)
+{
+
+*dos_extension++ = *source_filename++;
+}
+else
+{
+
+*dos_extension++ = 0x20;
+}
+}
+
+
+
+dos_filename -= 8;
+dos_extension -= 3;
+
+for (temp = 0; temp < 8; temp++)
+{
+if ((dos_filename[temp] >= 0x61) && (dos_filename[temp] <= 0x7a))
+dos_filename[temp] -= 0x20;
+}
+for (temp = 0; temp < 3; temp++)
+{
+if ((dos_extension[temp] >= 0x61) && (dos_extension[temp] <= 0x7a))
+dos_extension[temp] -= 0x20;
+}
+
+return(wildcard_character_found);
+}
+
+# 2336
+BYTE ffs_read_next_directory_entry (BYTE *file_name, BYTE *file_extension, BYTE *attribute_byte,
+DWORD *file_size, DWORD *cluster_number, BYTE start_from_beginning,
+DWORD *directory_entry_sector, BYTE *directory_entry_within_sector)
+{
+BYTE b_temp;
+WORD w_temp;
+DWORD dw_temp;
+BYTE *buffer_pointer;
+static BYTE sectors_left_in_this_cluster;
+static DWORD current_cluster;
+
+
+if (start_from_beginning)
+{
+if (disk_is_fat_32)
+{
+
+read_write_directory_last_lba = (data_area_start_sector + ((root_directory_start_sector_cluster - 2) * sectors_per_cluster) - 1);
+current_cluster = root_directory_start_sector_cluster;
+sectors_left_in_this_cluster = sectors_per_cluster;
+}
+else
+{
+
+read_write_directory_last_lba = (root_directory_start_sector_cluster - 1);
+sectors_left_in_this_cluster = number_of_root_directory_sectors;
+}
+read_write_directory_last_entry = 0xffff;
+}
+
+
+if (read_write_directory_last_entry >= ((ffs_bytes_per_sector - 32) >> 5))
+{
+read_write_directory_last_lba++;
+
+
+if (sectors_left_in_this_cluster == 0)
+{
+
+if (disk_is_fat_32)
+{
+
+
+sectors_left_in_this_cluster = sectors_per_cluster - 1;
+
+dw_temp = ffs_get_next_cluster_no(current_cluster);
+
+if ((dw_temp & 0x0fffffff) >= 0x0ffffff8)
+{
+
+dw_temp = ffs_get_next_free_cluster();
+if (dw_temp == 0x0fffffff)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return (0);
+}
+ffs_modify_cluster_entry_in_fat(current_cluster, dw_temp);
+ffs_modify_cluster_entry_in_fat(dw_temp, 0x0fffffff);
+current_cluster = dw_temp;
+
+
+buffer_pointer = &ffs_general_buffer[0];
+for (w_temp = 0; w_temp < 512; w_temp++)
+*buffer_pointer++ = 0x00;
+
+for (b_temp = 0; b_temp < sectors_per_cluster; b_temp++)
+{
+ffs_write_sector_from_buffer(
+data_area_start_sector + ((current_cluster - 2) * sectors_per_cluster) + b_temp
+);
+}
+}
+else
+{
+current_cluster = dw_temp;
+}
+
+
+read_write_directory_last_lba = data_area_start_sector + ((current_cluster - 2) * sectors_per_cluster);
+}
+else
+{
+
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return (0);
+}
+}
+else
+{
+
+sectors_left_in_this_cluster--;
+}
+
+
+ffs_read_sector_to_buffer (read_write_directory_last_lba);
+
+read_write_directory_last_entry = 0xffff;
+}
+
+
+
+read_write_directory_last_entry++;
+
+
+buffer_pointer = &ffs_general_buffer[0] + (read_write_directory_last_entry << 5);
+
+
+file_name[0] = *buffer_pointer++;
+file_name[1] = *buffer_pointer++;
+file_name[2] = *buffer_pointer++;
+file_name[3] = *buffer_pointer++;
+file_name[4] = *buffer_pointer++;
+file_name[5] = *buffer_pointer++;
+file_name[6] = *buffer_pointer++;
+file_name[7] = *buffer_pointer++;
+
+
+for (b_temp = 0; b_temp < 8; b_temp++)
+{
+if ((file_name[b_temp] >= 0x61) && (file_name[b_temp] <= 0x7a))
+file_name[b_temp] -= 0x20;
+}
+
+
+file_extension[0] = *buffer_pointer++;
+file_extension[1] = *buffer_pointer++;
+file_extension[2] = *buffer_pointer++;
+
+
+for (b_temp = 0; b_temp < 3; b_temp++)
+{
+if ((file_extension[b_temp] >= 0x61) && (file_extension[b_temp] <= 0x7a))
+file_extension[b_temp] -= 0x20;
+}
+
+
+
+
+*attribute_byte = *buffer_pointer++;
+
+
+
+buffer_pointer++;
+
+
+
+buffer_pointer++;
+
+
+
+buffer_pointer++;
+buffer_pointer++;
+
+
+
+buffer_pointer++;
+buffer_pointer++;
+
+
+
+buffer_pointer++;
+buffer_pointer++;
+
+
+
+if (disk_is_fat_32)
+{
+*cluster_number = ((DWORD)*buffer_pointer++ << 16);
+*cluster_number += ((DWORD)*buffer_pointer++ << 24);
+}
+else
+{
+buffer_pointer++;
+buffer_pointer++;
+*cluster_number = 0;
+}
+
+
+
+buffer_pointer++;
+buffer_pointer++;
+
+
+
+buffer_pointer++;
+buffer_pointer++;
+
+
+*cluster_number += (DWORD)*buffer_pointer++;
+*cluster_number += ((DWORD)*buffer_pointer++ << 8);
+
+
+*file_size = (DWORD)*buffer_pointer++;
+*file_size += ((DWORD)*buffer_pointer++ << 8);
+*file_size += ((DWORD)*buffer_pointer++ << 16);
+*file_size += ((DWORD)*buffer_pointer++ << 24);
+
+
+*directory_entry_sector = read_write_directory_last_lba;
+*directory_entry_within_sector = read_write_directory_last_entry;
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(1);
+}
+
+# 2559
+void ffs_overwrite_last_directory_entry (BYTE *file_name, BYTE *file_extension, BYTE *attribute_byte,
+DWORD *file_size, DWORD *cluster_number, BYTE write_time_date)
+{
+BYTE *buffer_pointer;
+
+# 2569
+buffer_pointer = &ffs_general_buffer[0] + (read_write_directory_last_entry << 5);
+
+
+*buffer_pointer++ = file_name[0];
+*buffer_pointer++ = file_name[1];
+*buffer_pointer++ = file_name[2];
+*buffer_pointer++ = file_name[3];
+*buffer_pointer++ = file_name[4];
+*buffer_pointer++ = file_name[5];
+*buffer_pointer++ = file_name[6];
+*buffer_pointer++ = file_name[7];
+
+
+*buffer_pointer++ = file_extension[0];
+*buffer_pointer++ = file_extension[1];
+*buffer_pointer++ = file_extension[2];
+
+
+
+
+*buffer_pointer++ = *attribute_byte;
+
+
+*buffer_pointer++ = 0x00;
+
+
+if (write_time_date & 0x01)
+{
+
+
+
+*buffer_pointer++ = 0x00;
+
+}
+else
+{
+buffer_pointer++;
+}
+
+
+
+
+if (write_time_date & 0x01)
+{
+
+# 2618
+*buffer_pointer++ = 0x00;
+*buffer_pointer++ = 0x00;
+
+}
+else
+{
+buffer_pointer++;
+buffer_pointer++;
+}
+
+
+
+
+if (write_time_date & 0x01)
+{
+
+# 2638
+*buffer_pointer++ = 0x21;
+*buffer_pointer++ = 0x28;
+
+}
+else
+{
+buffer_pointer++;
+buffer_pointer++;
+}
+
+
+
+
+if (write_time_date & 0x02)
+{
+
+# 2658
+*buffer_pointer++ = 0x21;
+*buffer_pointer++ = 0x28;
+
+}
+else
+{
+buffer_pointer++;
+buffer_pointer++;
+}
+
+
+*buffer_pointer++ = (BYTE)(*cluster_number >> 16);
+*buffer_pointer++ = (BYTE)(*cluster_number >> 24);
+
+
+
+
+if (write_time_date & 0x04)
+{
+
+# 2682
+*buffer_pointer++ = 0x00;
+*buffer_pointer++ = 0x00;
+
+}
+else
+{
+buffer_pointer++;
+buffer_pointer++;
+}
+
+
+
+
+if (write_time_date & 0x04)
+{
+
+# 2702
+*buffer_pointer++ = 0x21;
+*buffer_pointer++ = 0x28;
+
+}
+else
+{
+buffer_pointer++;
+buffer_pointer++;
+}
+
+
+*buffer_pointer++ = (BYTE)*cluster_number;
+*buffer_pointer++ = (BYTE)(*cluster_number >> 8);
+
+
+*buffer_pointer++ = (BYTE)*file_size;
+*buffer_pointer++ = (BYTE)(*file_size >> 8);
+*buffer_pointer++ = (BYTE)(*file_size >> 16);
+*buffer_pointer++ = (BYTE)(*file_size >> 24);
+
+
+ffs_write_sector_from_buffer(read_write_directory_last_lba);
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+}
+
+# 2737
+DWORD get_file_start_cluster(FFS_FILE *file_pointer)
+{
+DWORD start_cluster;
+BYTE *buffer_pointer;
+
+
+
+
+if (file_pointer->flags.bits.file_is_open == 0)
+return(1);
+
+
+
+
+ffs_read_sector_to_buffer (file_pointer->directory_entry_sector);
+
+
+
+buffer_pointer = &ffs_general_buffer[0] + ((WORD)file_pointer->directory_entry_within_sector << 5) + 20;
+
+if (disk_is_fat_32)
+{
+start_cluster = (DWORD)*buffer_pointer++ << 16;
+start_cluster += (DWORD)*buffer_pointer++ << 24;
+buffer_pointer += 4;
+}
+else
+{
+start_cluster = 0;
+buffer_pointer += 6;
+}
+
+start_cluster += (DWORD)*buffer_pointer++;
+start_cluster += (DWORD)*buffer_pointer++ << 8;
+
+
+return(start_cluster);
+}
+
+# 2799
+BYTE ffs_create_new_file (const char *file_name, DWORD *write_file_start_cluster, DWORD *directory_entry_sector, BYTE *directory_entry_within_sector)
+{
+DWORD file_size;
+BYTE converted_file_name[8];
+BYTE converted_file_extension[3];
+BYTE read_file_name[8];
+BYTE read_file_extension[3];
+BYTE read_attribute_byte;
+DWORD read_file_size;
+DWORD read_cluster_number;
+BYTE attribute_byte;
+
+
+if(ffs_card_ok == 0)
+return(0);
+
+# 2820
+if (ffs_convert_filename_to_dos (file_name, converted_file_name, converted_file_extension))
+return(0);
+
+
+*write_file_start_cluster = ffs_get_next_free_cluster();
+if (*write_file_start_cluster == 0xffffffff)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(0);
+}
+
+
+
+if (ffs_read_next_directory_entry (&read_file_name[0], &read_file_extension[0], &read_attribute_byte, &file_size,
+&read_cluster_number, 1, directory_entry_sector, directory_entry_within_sector) == 0)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(0);
+}
+
+
+
+while ((read_file_name[0] != 0xe5) && (read_file_name[0] != 0x00))
+{
+
+if (ffs_read_next_directory_entry (&read_file_name[0], &read_file_extension[0], &read_attribute_byte, &file_size,
+&read_cluster_number, 0, directory_entry_sector, directory_entry_within_sector) == 0)
+{
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(0);
+}
+}
+
+
+read_file_size = 0;
+attribute_byte = 0;
+ffs_overwrite_last_directory_entry (converted_file_name, converted_file_extension, &attribute_byte, &read_file_size, write_file_start_cluster, 0x07);
+
+
+ffs_modify_cluster_entry_in_fat(*write_file_start_cluster, 0x0fffffff);
+
+
+
+(1 ? (FIO0SET = 0x40000000) : (FIO0CLR = 0x40000000));
+return(1);
+}
+
+# 2882
+DWORD ffs_get_next_free_cluster (void)
+{
+WORD w_data;
+DWORD dw_data;
+DWORD lba;
+DWORD dw_count;
+DWORD dw_count1;
+DWORD fat_entries_per_sector;
+DWORD next_free_cluster;
+BYTE *buffer_pointer;
+
+
+
+lba = fat1_start_sector;
+
+if (disk_is_fat_32)
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 2);
+else
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 1);
+
+
+
+dw_count = (last_found_free_cluster / fat_entries_per_sector);
+lba += dw_count;
+next_free_cluster = (dw_count * fat_entries_per_sector);
+
+
+
+
+for (dw_count = (lba - fat1_start_sector); dw_count < (sectors_per_fat - 1); dw_count++)
+{
+
+ClrWdt;
+
+
+
+ffs_read_sector_to_buffer(lba);
+buffer_pointer = &ffs_general_buffer[0];
+
+
+for (dw_count1 = 0; dw_count1 < fat_entries_per_sector; dw_count1++)
+{
+
+if (disk_is_fat_32)
+{
+dw_data = (DWORD)*buffer_pointer++;
+dw_data |= (DWORD)(*buffer_pointer++) << 8;
+dw_data |= (DWORD)(*buffer_pointer++) << 16;
+dw_data |= (DWORD)(*buffer_pointer++) << 24;
+dw_data &= 0x0fffffff;
+if (dw_data == 0)
+goto ffs_get_next_free_cluster_found;
+}
+else
+{
+w_data = (DWORD)*buffer_pointer++;
+w_data |= (DWORD)(*buffer_pointer++) << 8;
+if (w_data == 0)
+goto ffs_get_next_free_cluster_found;
+}
+next_free_cluster++;
+
+
+if (disk_is_fat_32)
+{
+if (next_free_cluster >= 0x0ffffff7)
+return(0xffffffff);
+}
+else
+{
+if (next_free_cluster >= 0x0000fff7)
+return(0xffffffff);
+}
+}
+lba++;
+}
+
+
+
+
+return(0xffffffff);
+
+
+ffs_get_next_free_cluster_found:
+
+
+
+last_found_free_cluster = next_free_cluster;
+
+return(next_free_cluster);
+}
+
+# 2985
+DWORD ffs_get_next_cluster_no (DWORD current_cluster)
+{
+DWORD fat_entries_per_sector;
+DWORD lba;
+DWORD dw_temp;
+BYTE *buffer_pointer;
+
+lba = fat1_start_sector;
+
+if (disk_is_fat_32)
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 2);
+else
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 1);
+
+
+
+dw_temp = (current_cluster / fat_entries_per_sector);
+lba += dw_temp;
+current_cluster -= (dw_temp * fat_entries_per_sector);
+
+ffs_read_sector_to_buffer(lba);
+
+
+
+if (disk_is_fat_32)
+{
+buffer_pointer = &ffs_general_buffer[0] + (current_cluster << 2);
+
+lba = (DWORD)*buffer_pointer++;
+lba |= ((DWORD)(*buffer_pointer++) << 8);
+lba |= ((DWORD)(*buffer_pointer++) << 16);
+lba |= ((DWORD)((*buffer_pointer++) & 0x0f) << 24);
+}
+else
+{
+buffer_pointer = &ffs_general_buffer[0] + (current_cluster << 1);
+
+lba = (DWORD)*buffer_pointer++;
+lba |= ((DWORD)(*buffer_pointer++) << 8);
+}
+return (lba);
+}
+
+# 3039
+void ffs_modify_cluster_entry_in_fat (DWORD cluster_to_modify, DWORD cluster_entry_new_value)
+{
+DWORD lba;
+BYTE *buffer_pointer;
+BYTE count;
+DWORD fat_entries_per_sector;
+BYTE temp;
+DWORD dw_temp;
+BYTE done_read_of_fat_sector = 0;
+
+
+
+lba = fat1_start_sector;
+
+if (disk_is_fat_32)
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 2);
+else
+fat_entries_per_sector = (DWORD)(ffs_bytes_per_sector >> 1);
+
+
+dw_temp = (cluster_to_modify / fat_entries_per_sector);
+lba += dw_temp;
+cluster_to_modify -= (dw_temp * fat_entries_per_sector);
+
+
+for (count = 0x01; count < 0x10; count <<= 1)
+{
+
+if (count & active_fat_table_flags)
+{
+if (done_read_of_fat_sector == 0)
+{
+done_read_of_fat_sector = 1;
+ffs_read_sector_to_buffer(lba);
+
+if (disk_is_fat_32)
+buffer_pointer = &ffs_general_buffer[0] + (cluster_to_modify << 2);
+else
+buffer_pointer = &ffs_general_buffer[0] + (cluster_to_modify << 1);
+
+*buffer_pointer++ = (BYTE)(cluster_entry_new_value & 0x000000ff);
+*buffer_pointer++ = (BYTE)((cluster_entry_new_value & 0x0000ff00) >> 8);
+if (disk_is_fat_32)
+{
+*buffer_pointer++ = (BYTE)((cluster_entry_new_value & 0x00ff0000) >> 16);
+temp = (*buffer_pointer & 0xf0);
+*buffer_pointer++ = ((BYTE)((cluster_entry_new_value & 0x0f000000) >> 24) | temp);
+}
+}
+ffs_write_sector_from_buffer (lba);
+}
+lba += sectors_per_fat;
+}
+
+
+}
+
