@@ -1,0 +1,673 @@
+[p LITE_MODE AUTOSTATIC LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"145 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\diskio.c
+[e E14 . `uc
+RES_OK 0
+RES_ERROR 1
+RES_NOTRDY 2
+RES_PARERR 3
+]
+"368 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\pff.c
+[e E73 . `uc
+RES_OK 0
+RES_ERROR 1
+RES_NOTRDY 2
+RES_PARERR 3
+]
+"440
+[e E43 . `uc
+FR_OK 0
+FR_DISK_ERR 1
+FR_NOT_READY 2
+FR_NO_FILE 3
+FR_NOT_OPENED 4
+FR_NOT_ENABLED 5
+FR_NO_FILESYSTEM 6
+]
+"40 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/adc.c
+[v _inicializa_adc inicializa_adc `(v  1 e 1 0 ]
+"54 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/hardware.c
+[v _init_hardware init_hardware `(v  1 e 1 0 ]
+"79
+[v _config_timer_zero config_timer_zero `(v  1 e 1 0 ]
+"94
+[v _init_interrupt init_interrupt `(v  1 e 1 0 ]
+"133
+[v _write_timer_zero write_timer_zero `(v  1 e 1 0 ]
+[v i2_write_timer_zero write_timer_zero `(v  1 e 1 0 ]
+"149
+[v _init_ports init_ports `(v  1 e 1 0 ]
+"166
+[v _init_oscilador init_oscilador `(v  1 e 1 0 ]
+"310 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/SDCard.c
+[v _response response `(uc  1 e 1 0 ]
+"320
+[v _dummy_clocks dummy_clocks `(v  1 e 1 0 ]
+"332
+[v _proceed proceed `(v  1 e 1 0 ]
+"341
+[v _command command `(v  1 e 1 0 ]
+"104 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/SPI.c
+[v _recebe_dado_SPI recebe_dado_SPI `(uc  1 e 1 0 ]
+"119
+[v _WriteSPI_ WriteSPI_ `(uc  1 e 1 0 ]
+"50 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/uart.c
+[v _configura_baudrate_uart configura_baudrate_uart `(uc  1 e 1 0 ]
+"83
+[v _envia_dado_uart envia_dado_uart `(v  1 e 1 0 ]
+"108
+[v _envia_string_uart envia_string_uart `(v  1 e 1 0 ]
+"138
+[v _recebe_dado_uart recebe_dado_uart `(uc  1 e 1 0 ]
+"206
+[v _inicializa_uart inicializa_uart `(v  1 e 1 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"20 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\itoa.c
+[v _itoa itoa `(*.39uc  1 e 2 0 ]
+"17
+[v _utoa utoa `(*.39uc  1 e 2 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 3 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 3 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 3 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 3 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"35 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\diskio.c
+[v _reset reset `(v  1 e 1 0 ]
+"58
+[v _disk_initialize disk_initialize `(uc  1 e 1 0 ]
+"139
+[v _disk_readp disk_readp `(E14  1 e 1 0 ]
+"269
+[v _disk_writep disk_writep `(E14  1 e 1 0 ]
+"108 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\main.c
+[v _isr isr `II(v  1 e 1 0 ]
+"169
+[v _inicializa_tarefas inicializa_tarefas `(v  1 e 1 0 ]
+"206
+[v _escalonador escalonador `(v  1 e 1 0 ]
+"230
+[v _main main `(v  1 e 1 0 ]
+"329 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\pff.c
+[v _mem_set mem_set `(v  1 s 1 mem_set ]
+"336
+[v _mem_cmp mem_cmp `(i  1 s 2 mem_cmp ]
+"350
+[v _get_fat get_fat `(ul  1 s 4 get_fat ]
+"400
+[v _clust2sect clust2sect `(ul  1 s 4 clust2sect ]
+"414
+[v _get_clust get_clust `(ul  1 s 4 get_clust ]
+"437
+[v _dir_rewind dir_rewind `(E43  1 s 1 dir_rewind ]
+"465
+[v _dir_next dir_next `(E43  1 s 1 dir_next ]
+"510
+[v _dir_find dir_find `(E43  1 s 1 dir_find ]
+"544
+[v _dir_read dir_read `(E43  1 s 1 dir_read ]
+"581
+[v _create_name create_name `(E43  1 s 1 create_name ]
+"638
+[v _get_fileinfo get_fileinfo `(v  1 s 1 get_fileinfo ]
+"680
+[v _follow_path follow_path `(E43  1 s 1 follow_path ]
+"722
+[v _check_fs check_fs `(uc  1 s 1 check_fs ]
+"356 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/SDCard.c
+[v _flag flag `i  1 e 2 0 ]
+"70 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
+[v _SPPCFG SPPCFG `VEuc  1 e 1 @3939 ]
+"221
+[v _SPPCON SPPCON `VEuc  1 e 1 @3941 ]
+[s S696 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"2481
+[s S705 . 1 `uc 1 INT0 1 0 :1:0 
+`uc 1 INT1 1 0 :1:1 
+`uc 1 INT2 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 PGM 1 0 :1:5 
+`uc 1 PGC 1 0 :1:6 
+`uc 1 PGD 1 0 :1:7 
+]
+[s S713 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CCP2_PA2 1 0 :1:3 
+]
+[u S716 . 1 `S696 1 . 1 0 `S705 1 . 1 0 `S713 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES716  1 e 1 @3969 ]
+"3071
+[v _LATB LATB `VEuc  1 e 1 @3978 ]
+[s S292 . 1 `uc 1 LATB0 1 0 :1:0 
+`uc 1 LATB1 1 0 :1:1 
+`uc 1 LATB2 1 0 :1:2 
+`uc 1 LATB3 1 0 :1:3 
+`uc 1 LATB4 1 0 :1:4 
+`uc 1 LATB5 1 0 :1:5 
+`uc 1 LATB6 1 0 :1:6 
+`uc 1 LATB7 1 0 :1:7 
+]
+"3098
+[s S301 . 1 `uc 1 LB0 1 0 :1:0 
+`uc 1 LB1 1 0 :1:1 
+`uc 1 LB2 1 0 :1:2 
+`uc 1 LB3 1 0 :1:3 
+`uc 1 LB4 1 0 :1:4 
+`uc 1 LB5 1 0 :1:5 
+`uc 1 LB6 1 0 :1:6 
+`uc 1 LB7 1 0 :1:7 
+]
+[u S310 . 1 `S292 1 . 1 0 `S301 1 . 1 0 ]
+[v _LATBbits LATBbits `VES310  1 e 1 @3978 ]
+"3425
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"3623
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"3845
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+[s S943 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"3873
+[s S950 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+[u S957 . 1 `S943 1 . 1 0 `S950 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES957  1 e 1 @3988 ]
+"3999
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"4221
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"4382
+[v _PIE1 PIE1 `VEuc  1 e 1 @3997 ]
+[s S22 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+`uc 1 SPPIE 1 0 :1:7 
+]
+"4406
+[s S31 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TX1IE 1 0 :1:4 
+`uc 1 RC1IE 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 PSPIE 1 0 :1:7 
+]
+[u S37 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES37  1 e 1 @3997 ]
+[s S56 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+`uc 1 SPPIF 1 0 :1:7 
+]
+"4490
+[s S65 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TX1IF 1 0 :1:4 
+`uc 1 RC1IF 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 PSPIF 1 0 :1:7 
+]
+[u S71 . 1 `S56 1 . 1 0 `S65 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES71  1 e 1 @3998 ]
+"4934
+[v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
+[s S999 . 1 `uc 1 RX9D 1 0 :1:0 
+`uc 1 OERR 1 0 :1:1 
+`uc 1 FERR 1 0 :1:2 
+`uc 1 ADDEN 1 0 :1:3 
+`uc 1 CREN 1 0 :1:4 
+`uc 1 SREN 1 0 :1:5 
+`uc 1 RX9 1 0 :1:6 
+`uc 1 SPEN 1 0 :1:7 
+]
+"4975
+[s S1008 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 ADEN 1 0 :1:3 
+]
+[s S1011 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 SRENA 1 0 :1:5 
+]
+[s S1014 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RC8_9 1 0 :1:6 
+]
+[s S1017 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RC9 1 0 :1:6 
+]
+[s S1020 . 1 `uc 1 RCD8 1 0 :1:0 
+]
+[u S1022 . 1 `S999 1 . 1 0 `S1008 1 . 1 0 `S1011 1 . 1 0 `S1014 1 . 1 0 `S1017 1 . 1 0 `S1020 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES1022  1 e 1 @4011 ]
+"5144
+[v _TXSTA TXSTA `VEuc  1 e 1 @4012 ]
+"5400
+[v _TXREG TXREG `VEuc  1 e 1 @4013 ]
+"5412
+[v _RCREG RCREG `VEuc  1 e 1 @4014 ]
+"5424
+[v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
+[s S816 . 1 `uc 1 ADCS 1 0 :3:0 
+`uc 1 ACQT 1 0 :3:3 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"6529
+[s S821 . 1 `uc 1 ADCS0 1 0 :1:0 
+`uc 1 ADCS1 1 0 :1:1 
+`uc 1 ADCS2 1 0 :1:2 
+`uc 1 ACQT0 1 0 :1:3 
+`uc 1 ACQT1 1 0 :1:4 
+`uc 1 ACQT2 1 0 :1:5 
+]
+[u S828 . 1 `S816 1 . 1 0 `S821 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES828  1 e 1 @4032 ]
+"6579
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+[s S781 . 1 `uc 1 PCFG 1 0 :4:0 
+`uc 1 VCFG 1 0 :2:4 
+]
+"6604
+[s S784 . 1 `uc 1 PCFG0 1 0 :1:0 
+`uc 1 PCFG1 1 0 :1:1 
+`uc 1 PCFG2 1 0 :1:2 
+`uc 1 PCFG3 1 0 :1:3 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+]
+[s S791 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CHSN3 1 0 :1:3 
+`uc 1 VCFG01 1 0 :1:4 
+`uc 1 VCFG11 1 0 :1:5 
+]
+[u S796 . 1 `S781 1 . 1 0 `S784 1 . 1 0 `S791 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES796  1 e 1 @4033 ]
+"6664
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+[s S844 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_NOT_DONE 1 0 :1:1 
+]
+"6708
+[s S847 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+]
+[s S851 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+]
+[s S858 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 DONE 1 0 :1:1 
+]
+[s S861 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[s S864 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_DONE 1 0 :1:1 
+]
+[s S867 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S870 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GODONE 1 0 :1:1 
+]
+[u S873 . 1 `S844 1 . 1 0 `S847 1 . 1 0 `S851 1 . 1 0 `S858 1 . 1 0 `S861 1 . 1 0 `S864 1 . 1 0 `S867 1 . 1 0 `S870 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES873  1 e 1 @4034 ]
+"6790
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"6797
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"6866
+[v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
+[s S357 . 1 `uc 1 SSPM 1 0 :4:0 
+`uc 1 CKP 1 0 :1:4 
+`uc 1 SSPEN 1 0 :1:5 
+`uc 1 SSPOV 1 0 :1:6 
+`uc 1 WCOL 1 0 :1:7 
+]
+"6886
+[s S363 . 1 `uc 1 SSPM0 1 0 :1:0 
+`uc 1 SSPM1 1 0 :1:1 
+`uc 1 SSPM2 1 0 :1:2 
+`uc 1 SSPM3 1 0 :1:3 
+]
+[u S368 . 1 `S357 1 . 1 0 `S363 1 . 1 0 ]
+[v _SSPCON1bits SSPCON1bits `VES368  1 e 1 @4038 ]
+[s S383 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_NOT_W 1 0 :1:2 
+]
+"7019
+[s S386 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 D_NOT_A 1 0 :1:5 
+]
+[s S389 . 1 `uc 1 BF 1 0 :1:0 
+`uc 1 UA 1 0 :1:1 
+`uc 1 R_nW 1 0 :1:2 
+`uc 1 S 1 0 :1:3 
+`uc 1 P 1 0 :1:4 
+`uc 1 D_nA 1 0 :1:5 
+`uc 1 CKE 1 0 :1:6 
+`uc 1 SMP 1 0 :1:7 
+]
+[s S398 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D_A 1 0 :1:5 
+]
+[s S403 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 I2C_READ 1 0 :1:2 
+`uc 1 I2C_START 1 0 :1:3 
+`uc 1 I2C_STOP 1 0 :1:4 
+`uc 1 I2C_DAT 1 0 :1:5 
+]
+[s S409 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nW 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nA 1 0 :1:5 
+]
+[s S414 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_WRITE 1 0 :1:2 
+]
+[s S417 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_ADDRESS 1 0 :1:5 
+]
+[s S420 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nWRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nADDRESS 1 0 :1:5 
+]
+[s S425 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 READ_WRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 DATA_ADDRESS 1 0 :1:5 
+]
+[s S430 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D 1 0 :1:5 
+]
+[s S435 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 RW 1 0 :1:2 
+`uc 1 START 1 0 :1:3 
+`uc 1 STOP 1 0 :1:4 
+`uc 1 DA 1 0 :1:5 
+]
+[s S441 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 NOT_A 1 0 :1:5 
+]
+[u S446 . 1 `S383 1 . 1 0 `S386 1 . 1 0 `S389 1 . 1 0 `S398 1 . 1 0 `S403 1 . 1 0 `S409 1 . 1 0 `S414 1 . 1 0 `S417 1 . 1 0 `S420 1 . 1 0 `S425 1 . 1 0 `S430 1 . 1 0 `S435 1 . 1 0 `S441 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES446  1 e 1 @4039 ]
+"7191
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
+"7198
+[v _T2CON T2CON `VEuc  1 e 1 @4042 ]
+"7296
+[v _PR2 PR2 `VEuc  1 e 1 @4043 ]
+"7406
+[v _TMR2 TMR2 `VEuc  1 e 1 @4044 ]
+[s S660 . 1 `uc 1 SCS 1 0 :2:0 
+`uc 1 IOFS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+`uc 1 IDLEN 1 0 :1:7 
+]
+"8007
+[s S666 . 1 `uc 1 SCS0 1 0 :1:0 
+`uc 1 SCS1 1 0 :1:1 
+`uc 1 FLTS 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S674 . 1 `S660 1 . 1 0 `S666 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES674  1 e 1 @4051 ]
+"8067
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+[s S625 . 1 `uc 1 T0PS 1 0 :3:0 
+`uc 1 PSA 1 0 :1:3 
+`uc 1 T0SE 1 0 :1:4 
+`uc 1 T0CS 1 0 :1:5 
+`uc 1 T08BIT 1 0 :1:6 
+`uc 1 TMR0ON 1 0 :1:7 
+]
+"8087
+[s S632 . 1 `uc 1 T0PS0 1 0 :1:0 
+`uc 1 T0PS1 1 0 :1:1 
+`uc 1 T0PS2 1 0 :1:2 
+]
+[u S636 . 1 `S625 1 . 1 0 `S632 1 . 1 0 ]
+[v _T0CONbits T0CONbits `VES636  1 e 1 @4053 ]
+"8144
+[v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
+"8151
+[v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
+"8411
+[v _INTCON3 INTCON3 `VEuc  1 e 1 @4080 ]
+"8503
+[v _INTCON2 INTCON2 `VEuc  1 e 1 @4081 ]
+"8580
+[v _INTCON INTCON `VEuc  1 e 1 @4082 ]
+[s S96 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"8612
+[s S105 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S114 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S118 . 1 `S96 1 . 1 0 `S105 1 . 1 0 `S114 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES118  1 e 1 @4082 ]
+"8771
+[v _PCL PCL `VEuc  1 e 1 @4089 ]
+"8778
+[v _PCLATH PCLATH `VEuc  1 e 1 @4090 ]
+"8979
+[v _BRGH BRGH `VEb  1 e 0 @32098 ]
+"9099
+[v _CREN CREN `VEb  1 e 0 @32092 ]
+"9515
+[v _INT0IE INT0IE `VEb  1 e 0 @32660 ]
+"9517
+[v _INT0IF INT0IF `VEb  1 e 0 @32657 ]
+"9927
+[v _RCIF RCIF `VEb  1 e 0 @31989 ]
+"10021
+[v _SPEN SPEN `VEb  1 e 0 @32095 ]
+"10105
+[v _SYNC SYNC `VEb  1 e 0 @32100 ]
+"10117
+[v _T0IF T0IF `VEb  1 e 0 @32658 ]
+"10175
+[v _TMR0IF TMR0IF `VEb  1 e 0 @32658 ]
+"10193
+[v _TMR2IF TMR2IF `VEb  1 e 0 @31985 ]
+"10281
+[v _TRMT TRMT `VEb  1 e 0 @32097 ]
+"10321
+[v _TXEN TXEN `VEb  1 e 0 @32101 ]
+"73 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\main.c
+[v _data_uart_recebe data_uart_recebe `uc  1 e 1 0 ]
+"76
+[v _p_tarefas p_tarefas `[4]*.37(v  1 e 8 0 ]
+"79
+[v _tempo_backup tempo_backup `[4]ui  1 e 8 0 ]
+"82
+[v _tempo_tarefa tempo_tarefa `[4]ui  1 e 8 0 ]
+"85
+[v _sinaliza_int_timer sinaliza_int_timer `uc  1 e 1 0 ]
+"88
+[v _tarefa_em_execucao tarefa_em_execucao `VEuc  1 e 1 0 ]
+"90
+[v _timeout_tarefa timeout_tarefa `ui  1 e 2 0 ]
+[s S1105 . 42 `uc 1 fs_type 1 0 `uc 1 flag 1 1 `uc 1 csize 1 2 `uc 1 pad1 1 3 `us 1 n_rootdir 2 4 `ul 1 n_fatent 4 6 `ul 1 fatbase 4 10 `ul 1 dirbase 4 14 `ul 1 database 4 18 `ul 1 fptr 4 22 `ul 1 fsize 4 26 `ul 1 org_clust 4 30 `ul 1 curr_clust 4 34 `ul 1 dsect 4 38 ]
+"324 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\pff.c
+[v _FatFs FatFs `*.2S1105  1 s 2 FatFs ]
+"230 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"253
+} 0
+"54 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/hardware.c
+[v _init_hardware init_hardware `(v  1 e 1 0 ]
+{
+"70
+} 0
+"149
+[v _init_ports init_ports `(v  1 e 1 0 ]
+{
+"158
+} 0
+"166
+[v _init_oscilador init_oscilador `(v  1 e 1 0 ]
+{
+"172
+} 0
+"94
+[v _init_interrupt init_interrupt `(v  1 e 1 0 ]
+{
+"100
+} 0
+"40 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/adc.c
+[v _inicializa_adc inicializa_adc `(v  1 e 1 0 ]
+{
+"60
+} 0
+"79 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/hardware.c
+[v _config_timer_zero config_timer_zero `(v  1 e 1 0 ]
+{
+"86
+} 0
+"133
+[v _write_timer_zero write_timer_zero `(v  1 e 1 0 ]
+{
+[u S651 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
+"135
+[v write_timer_zero@timer timer `S651  1 a 2 0 ]
+"133
+[v write_timer_zero@timer0 timer0 `ui  1 p 2 25 ]
+"141
+} 0
+"206 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/uart.c
+[v _inicializa_uart inicializa_uart `(v  1 e 1 0 ]
+{
+"215
+} 0
+"50
+[v _configura_baudrate_uart configura_baudrate_uart `(uc  1 e 1 0 ]
+{
+"52
+[v configura_baudrate_uart@x x `ui  1 a 2 25 ]
+"50
+[v configura_baudrate_uart@baudrate baudrate `Cl  1 p 4 14 ]
+"74
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+{
+"11
+[v ___aldiv@quotient quotient `l  1 a 4 10 ]
+"12
+[v ___aldiv@sign sign `uc  1 a 1 9 ]
+[v ___aldiv@counter counter `uc  1 a 1 8 ]
+"8
+[v ___aldiv@dividend dividend `l  1 p 4 0 ]
+[v ___aldiv@divisor divisor `l  1 p 4 4 ]
+"42
+} 0
+"169 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\main.c
+[v _inicializa_tarefas inicializa_tarefas `(v  1 e 1 0 ]
+{
+"193
+} 0
+"206
+[v _escalonador escalonador `(v  1 e 1 0 ]
+{
+"208
+[v escalonador@cont cont `uc  1 a 1 27 ]
+"221
+} 0
+"108
+[v _isr isr `II(v  1 e 1 0 ]
+{
+"110
+[v isr@cont cont `uc  1 a 1 24 ]
+"158
+} 0
+"133 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/hardware.c
+[v i2_write_timer_zero write_timer_zero `(v  1 e 1 0 ]
+{
+[u S651 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
+[v i2write_timer_zero@timer write_timer_zero `S651  1 a 2 2 ]
+[v i2write_timer_zero@timer0 timer0 `ui  1 p 2 0 ]
+"141
+} 0
+"138 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\OpenLab_SDC_PetitFS.X\bibliotecas/uart.c
+[v _recebe_dado_uart recebe_dado_uart `(uc  1 e 1 0 ]
+{
+"148
+} 0
