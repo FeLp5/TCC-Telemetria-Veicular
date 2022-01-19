@@ -1,1 +1,0 @@
- build/default/production/mem-mmcsd.d  build/default/production/mem-mmcsd.p1:  mem-mmcsd.c mem-ffs.h main.h mem-mmcsd.h

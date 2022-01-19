@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=spi_sdcard.X
+PROJECTNAME=SDCARD_interfacing
 
 # Active Configuration
 DEFAULTCONF=default

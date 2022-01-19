@@ -1,13 +1,13 @@
 /******************************************************************************
  * Nome do Arquivo 	: main.h
  *
- * Descrição      	: Implementa a função principal do projeto
+ * Descri??o      	: Implementa a fun??o principal do projeto
  *
- * Ambiente			: MPLAB, XC8 versão 1.45, PIC18F4550
+ * Ambiente			: MPLAB, XC8 vers?o 1.45, PIC18F4550
  *
- * ResponsÃ¡vel		: Torres, Weslley
+ * Responsável		: Torres, Weslley
  *
- * VersÃ£o/Data		: v00.01 - 16/08/2020 - versão inicial
+ * Versão/Data		: v00.01 - 16/08/2020 - vers?o inicial
  *					  
  *
  *****************************************************************************/
@@ -32,9 +32,19 @@
 #define DISABLE                    NO 
 
 #define NUM_CARACTERES				17
-#define NUMERO_TAREFAS              1
 
-#define TIME_500_MS                 2000
+#define NUMBER_OF_TASKS				2
+
+#define TIME_150_MS					150   //time unit: ms
+#define TIME_50_MS                  50
+#define TIME_100_MS                 100 
+#define TIME_200_MS					200   //time unit: ms
+#define TIME_500_MS					500   //time unit: ms
+#define TIME_1000_MS				1000   //time unit: ms
+#define TIME_2000_MS                2000   //time unit: ms
+
+
+#define TASK_TIMEOUT				20000  //time unit: ms
 
 #define BIT_0   0
 #define BIT_1   1
