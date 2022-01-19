@@ -40,7 +40,7 @@ void config_timer_dois(void);
 void timer_dois(void);
 /*****************************************************************************/
 
-#define _XTAL_FREQ                 20000000      //clock frequency: 48MHz
+#define _XTAL_FREQ                 48000000      //clock frequency: 48MHz
 
 typedef unsigned char uint8_t;
 typedef unsigned int  uint16_t;

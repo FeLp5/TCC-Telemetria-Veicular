@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F4000 `(v ~T0 @X0 0 tf ]
+[v F4002 `(v ~T0 @X0 0 tf ]
 "4388 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [s S170 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S170 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE SPPIE ]
@@ -67,8 +67,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _inicializa_shrc `(v ~T0 @X0 0 ef ]
 "99 main.c
 [v _mensagem_inicial `(v ~T0 @X0 0 ef ]
-"44 bibliotecas/SPI.h
-[v _inicializa_SPI `(v ~T0 @X0 0 ef1`uc ]
+"48 bibliotecas/SPI.h
+[v _inicializa_SPI `(v ~T0 @X0 0 ef3`uc`uc`uc ]
 "38 bibliotecas/SHRC.h
 [v _controle_shrc `(v ~T0 @X0 0 ef ]
 "236 bibliotecas/display/display_lcd.h
@@ -87,7 +87,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "40 pff.h
 [s S362 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 ]
 [n S362 . fs_type flag csize pad1 n_rootdir n_fatent fatbase dirbase database fptr fsize org_clust curr_clust dsect ]
-"110 bibliotecas/SDCard.h
+"114 bibliotecas/SDCard.h
 [v _proceed `(v ~T0 @X0 0 ef ]
 "100 pff.h
 [v _pf_mount `(E3838 ~T0 @X0 0 ef1`*S362 ]
@@ -3613,6 +3613,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
+"36 config.h
+[p x PLLDIV=5 ]
+"37
+[p x CPUDIV=OSC1_PLL2 ]
+"38
+[p x USBDIV=1 ]
+"40
+[p x FOSC=HS ]
+"41
+[p x FCMEN=OFF ]
+"42
+[p x IESO=OFF ]
+"44
+[p x PWRT=OFF ]
+"45
+[p x BOR=ON ]
+"46
+[p x BORV=3 ]
+"47
+[p x VREGEN=OFF ]
+"49
+[p x WDT=OFF ]
+"51
+[p x CCP2MX=OFF ]
+"52
+[p x PBADEN=OFF ]
+"53
+[p x LPT1OSC=OFF ]
+"54
+[p x MCLRE=ON ]
+"56
+[p x STVREN=ON ]
+"57
+[p x LVP=OFF ]
 [; ;delay.h: 14: void delay_ms(unsigned char t);
 [; ;delay.h: 24: void Delay_s(unsigned char t);
 [; ;delay.h: 32: void Delay_s_(void);
@@ -3721,19 +3755,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
 [; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 [; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
-[; ;SPI.h: 44: void inicializa_SPI(unsigned char SPI_mode);
-[; ;SPI.h: 46: unsigned char recebe_dado_SPI(void);
-[; ;SPI.h: 48: char WriteSPI_(unsigned char dado);
-[; ;SPI.h: 50: unsigned char verifica_buffer_SPI(void);
-[; ;SDCard.h: 102: void init_SDcard();
-[; ;SDCard.h: 103: void envia_CMD16(void);
-[; ;SDCard.h: 104: unsigned char envia_CMD8(void);
-[; ;SDCard.h: 105: void envia_CMD1(void);
-[; ;SDCard.h: 106: void envia_CMD0(void);
-[; ;SDCard.h: 109: BYTE response(void);
-[; ;SDCard.h: 110: void proceed(void);
-[; ;SDCard.h: 111: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 112: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SPI.h: 48: void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
+[; ;SPI.h: 50: unsigned char recebe_dado_SPI(void);
+[; ;SPI.h: 52: char WriteSPI_(unsigned char dado);
+[; ;SPI.h: 54: unsigned char verifica_buffer_SPI(void);
+[; ;SDCard.h: 106: void init_SDcard();
+[; ;SDCard.h: 107: void envia_CMD16(void);
+[; ;SDCard.h: 108: unsigned char envia_CMD8(void);
+[; ;SDCard.h: 109: void envia_CMD1(void);
+[; ;SDCard.h: 110: void envia_CMD0(void);
+[; ;SDCard.h: 113: BYTE response(void);
+[; ;SDCard.h: 114: void proceed(void);
+[; ;SDCard.h: 115: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 116: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 "45 main.c
 [v _rd `*uc ~T0 @X0 1 e ]
 [; ;main.c: 45: unsigned char *rd;
@@ -3782,7 +3816,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _data_uart_recebe `uc ~T0 @X0 1 e ]
 [; ;main.c: 74: unsigned char data_uart_recebe;
 "77
-[v _p_tarefas `*F4000 ~T0 @X0 -> 2 `i e ]
+[v _p_tarefas `*F4002 ~T0 @X0 -> 2 `i e ]
 [; ;main.c: 77: void (*p_tarefas[2])(void);
 "80
 [v _tempo_backup `ui ~T0 @X0 -> 2 `i e ]
@@ -3803,9 +3837,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 100: void SDCard(void);
 [; ;main.c: 104: void acende_led4(void);
 [v $root$_isr `(v ~T0 @X0 0 e ]
-[v F4015 `(v ~T0 @X0 1 tf ]
+[v F4017 `(v ~T0 @X0 1 tf ]
 "120
-[v _isr `IF4015 ~T0 @X0 1 e ]
+[v _isr `IF4017 ~T0 @X0 1 e ]
 "121
 {
 [; ;main.c: 120: void interrupt isr(void)
@@ -3977,7 +4011,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;main.c: 223: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
 "223
-[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F4000 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 380  ]
+[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F4002 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 380  ]
 [; ;main.c: 224: {
 "224
 {
@@ -4040,9 +4074,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 257: inicializa_tarefas();
 "257
 [e ( _inicializa_tarefas ..  ]
-[; ;main.c: 258: inicializa_SPI(0);
+[; ;main.c: 258: inicializa_SPI(0,3,1);
 "258
-[e ( _inicializa_SPI (1 -> -> 0 `i `uc ]
+[e ( _inicializa_SPI (3 , , -> -> 0 `i `uc -> -> 3 `i `uc -> -> 1 `i `uc ]
 [; ;main.c: 260: while(1)
 "260
 [e :U 383 ]
@@ -4087,8 +4121,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 283: {
 [e :U _mensagem_inicial ]
 [f ]
-[v F4027 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4027
+[v F4029 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4029
 :U ..
 -> 83 `c
 -> 68 `c
@@ -4110,9 +4144,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "284
 [v _msg_linha_um `Cuc ~T0 @X0 -> 17 `i a ]
 [; ;main.c: 284: const unsigned char msg_linha_um[17] = "SDCard Init   ";
-[e = _msg_linha_um F4027 ]
-[v F4029 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4029
+[e = _msg_linha_um F4029 ]
+[v F4031 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4031
 :U ..
 -> 32 `c
 -> 49 `c
@@ -4134,7 +4168,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "285
 [v _msg_dois `Cuc ~T0 @X0 -> 17 `i a ]
 [; ;main.c: 285: const unsigned char msg_dois[17] = " 18/01/2022   ";
-[e = _msg_dois F4029 ]
+[e = _msg_dois F4031 ]
 [; ;main.c: 287: posicao_cursor_lcd(1,0);
 "287
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
@@ -4147,9 +4181,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 291: escreve_frase_ram_lcd(msg_dois);
 "291
 [e ( _escreve_frase_ram_lcd (1 -> &U _msg_dois `*uc ]
-[; ;main.c: 293: _delay((unsigned long)((1000)*(20000000/4000.0)));
+[; ;main.c: 293: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "293
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;main.c: 294: escreve_cmd_lcd(0b00000001);
 "294
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
@@ -4388,17 +4422,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _acende_led4 ]
 [f ]
 "439
-[v F4036 `uc ~T0 @X0 1 s flag ]
-[i F4036
+[v F4038 `uc ~T0 @X0 1 s flag ]
+[i F4038
 -> -> 0 `i `uc
 ]
 [; ;main.c: 439: static unsigned char flag = 0;
 [; ;main.c: 440: flag = !flag;
 "440
-[e = F4036 -> -> ! != -> F4036 `i -> -> -> 0 `i `uc `i `i `uc ]
+[e = F4038 -> -> ! != -> F4038 `i -> -> -> 0 `i `uc `i `i `uc ]
 [; ;main.c: 441: if(!flag)
 "441
-[e $ ! ! != -> F4036 `i -> -> -> 0 `i `uc `i 419  ]
+[e $ ! ! != -> F4038 `i -> -> -> 0 `i `uc `i 419  ]
 [; ;main.c: 442: {
 "442
 {

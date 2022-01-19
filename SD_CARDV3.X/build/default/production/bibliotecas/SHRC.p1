@@ -3631,27 +3631,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SHRC.c: 77: data_to_shrc = data_to_shrc << 1;
 "77
 [e = _data_to_shrc -> << -> _data_to_shrc `i -> 1 `i `uc ]
-[; ;SHRC.c: 78: _delay((unsigned long)((30)*(20000000/4000000.0)));
+[; ;SHRC.c: 78: _delay((unsigned long)((30)*(48000000/4000000.0)));
 "78
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 79: LATBbits.LATB6 = 1;
 "79
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
-[; ;SHRC.c: 80: _delay((unsigned long)((30)*(20000000/4000000.0)));
+[; ;SHRC.c: 80: _delay((unsigned long)((30)*(48000000/4000000.0)));
 "80
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 81: LATBbits.LATB7 = 0;
 "81
 [e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;SHRC.c: 82: _delay((unsigned long)((30)*(20000000/4000000.0)));
+[; ;SHRC.c: 82: _delay((unsigned long)((30)*(48000000/4000000.0)));
 "82
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 83: LATBbits.LATB6 = 0;
 "83
 [e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
-[; ;SHRC.c: 84: _delay((unsigned long)((30)*(20000000/4000000.0)));
+[; ;SHRC.c: 84: _delay((unsigned long)((30)*(48000000/4000000.0)));
 "84
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 85: contador++;
 "85
 [e ++ _contador -> -> 1 `i `uc ]
@@ -3680,15 +3680,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SHRC.c: 99: LATBbits.LATB5 = 0;
 "99
 [e = . . _LATBbits 0 5 -> -> 0 `i `uc ]
-[; ;SHRC.c: 100: _delay((unsigned long)((30)*(20000000/4000000.0)));
+[; ;SHRC.c: 100: _delay((unsigned long)((30)*(48000000/4000000.0)));
 "100
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 101: LATBbits.LATB5 = 1;
 "101
 [e = . . _LATBbits 0 5 -> -> 1 `i `uc ]
-[; ;SHRC.c: 102: _delay((unsigned long)((60)*(20000000/4000000.0)));
+[; ;SHRC.c: 102: _delay((unsigned long)((60)*(48000000/4000000.0)));
 "102
-[e ( __delay (1 -> * -> -> 60 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 60 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 103: LATBbits.LATB5 = 0;
 "103
 [e = . . _LATBbits 0 5 -> -> 0 `i `uc ]

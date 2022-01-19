@@ -7,6 +7,7 @@ bibliotecas/uart.h  \
 bibliotecas/../pffconf.h  \
 bibliotecas/SDCard.h  \
 main.h  \
+config.h  \
 bibliotecas/SHRC.h  \
 bibliotecas/chaves.h  \
 bibliotecas/SPI.h  \

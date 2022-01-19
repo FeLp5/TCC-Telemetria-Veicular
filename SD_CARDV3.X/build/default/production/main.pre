@@ -4805,6 +4805,31 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
+
+# 36 "config.h"
+#pragma config PLLDIV = 5
+#pragma config CPUDIV = OSC1_PLL2
+#pragma config USBDIV = 1
+
+#pragma config FOSC = HS
+#pragma config FCMEN = OFF
+#pragma config IESO = OFF
+
+#pragma config PWRT = OFF
+#pragma config BOR = ON
+#pragma config BORV = 3
+#pragma config VREGEN = OFF
+
+#pragma config WDT = OFF
+
+#pragma config CCP2MX = OFF
+#pragma config PBADEN = OFF
+#pragma config LPT1OSC = OFF
+#pragma config MCLRE = ON
+
+#pragma config STVREN = ON
+#pragma config LVP = OFF
+
 # 14 "delay.h"
 void delay_ms(unsigned char t);
 
@@ -4992,8 +5017,8 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 44 "bibliotecas/SPI.h"
-void inicializa_SPI(unsigned char SPI_mode);
+# 48 "bibliotecas/SPI.h"
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
 unsigned char recebe_dado_SPI(void);
 
@@ -5001,7 +5026,7 @@ char WriteSPI_(unsigned char dado);
 
 unsigned char verifica_buffer_SPI(void);
 
-# 102 "bibliotecas/SDCard.h"
+# 106 "bibliotecas/SDCard.h"
 void init_SDcard();
 void envia_CMD16(void);
 unsigned char envia_CMD8(void);
@@ -5160,7 +5185,7 @@ inicializa_shrc();
 
 mensagem_inicial();
 inicializa_tarefas();
-inicializa_SPI(0);
+inicializa_SPI(0,3,1);
 
 while(1)
 {
@@ -5189,7 +5214,7 @@ escreve_frase_ram_lcd(msg_linha_um);
 posicao_cursor_lcd(2,0);
 escreve_frase_ram_lcd(msg_dois);
 
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 escreve_cmd_lcd(0b00000001);
 }
 

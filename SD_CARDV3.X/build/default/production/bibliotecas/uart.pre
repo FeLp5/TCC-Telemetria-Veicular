@@ -4916,10 +4916,10 @@ char configura_baudrate_uart(const long int baudrate)
 {
 unsigned int x;
 
-x = (20000000 - baudrate*64)/(baudrate*64);
+x = (48000000 - baudrate*64)/(baudrate*64);
 if(x > 255)
 {
-x = (20000000 - baudrate*16)/(baudrate*16);
+x = (48000000 - baudrate*16)/(baudrate*16);
 BRGH = 1;
 }
 if(x < 256)

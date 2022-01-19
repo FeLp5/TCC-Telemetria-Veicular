@@ -4852,8 +4852,8 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 44 "bibliotecas/SPI.h"
-void inicializa_SPI(unsigned char SPI_mode);
+# 48 "bibliotecas/SPI.h"
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
 unsigned char recebe_dado_SPI(void);
 
@@ -4876,60 +4876,58 @@ void shrc_recebe_byte(unsigned char dado_recebido);
 unsigned char estado = 0;
 
 # 49
-void inicializa_SPI(unsigned char SPI_mode)
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase)
 {
 SSPCON1bits.SSPEN = 0;
-switch(SPI_mode)
+SSPSTAT &= 0x3F;
+SSPCON1 = 0x00;
+SSPCON1 |= sync_mode<<7;
+SSPSTAT |= smp_phase;
+TRISBbits.RB4 = 0;
+switch(bus_mode)
 {
 case 0:
-SSPCON1bits.CKP = 0;
-SSPSTATbits.CKE = 0;
-break;
-
-case 1:
-SSPCON1bits.CKP = 1;
-SSPSTATbits.CKE = 0;
-break;
-
-case 2:
-SSPCON1bits.CKP = 0;
 SSPSTATbits.CKE = 1;
 break;
-
+case 2:
+SSPSTATbits.CKE = 1;
+SSPCON1bits.CKP = 1;
+break;
 case 3:
 SSPCON1bits.CKP = 1;
-SSPSTATbits.CKE = 1;
-
+break;
 default:
-SSPCON1bits.CKP = 0;
-SSPSTATbits.CKE = 0;
 break;
 }
 
+switch( sync_mode )
+{
+case 4:
+TRISBbits.RB1 = 1;
+TRISBbits.RB4 = 1;
+break;
+
+case 5:
+TRISBbits.RB1 = 1;
+break;
+
+default:
+TRISBbits.RB1 = 0;
+break;
+}
+
+# 106
+TRISBbits.RB0 = 1;
+TRISCbits.RC7 = 0;
 
 
-SSPCON1bits.WCOL = 0;
-SSPCON1bits.SSPOV = 0;
-
-
-
-SSPCON1bits.SSPM0 = 1;
-SSPCON1bits.SSPM1 = 1;
-SSPCON1bits.SSPM2 = 0;
-SSPCON1bits.SSPM3 = 0;
-
-
-
-SSPSTATbits.SMP = 0;
-
-
-SSPCON1bits.SSPEN = 1;
+SSPCON1 |= 0x20;
 posicao_cursor_lcd(1,1);
 escreve_frase_ram_lcd("SPI configurada!");
 escreve_cmd_lcd(0b00000001);
 }
 
-# 110
+# 124
 unsigned char recebe_dado_SPI(void)
 {
 PIR1bits.SSPIF = 0;
@@ -4943,15 +4941,15 @@ while(!PIR1bits.SSPIF);
 return (SSPBUF);
 }
 
-# 130
+# 144
 char WriteSPI_(unsigned char dado)
 {
 unsigned char TempVar;
 
 TempVar = SSPBUF;
-PIR1bits.SSPIF = 0;
-SSPCON1bits.WCOL = 0;
 
+SSPCON1bits.WCOL = 0;
+SSPSTATbits.BF = 0;
 SSPBUF = dado;
 if (SSPCON1 & 0x80 )
 {
@@ -4959,16 +4957,16 @@ return (-1);
 }
 else
 {
+while( !SSPSTATbits.BF ){
 
-while(!PIR1bits.SSPIF){
 
 shrc_seta_bit(2);
 controle_shrc();
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 
 }
-
-
+shrc_seta_bit(0);;
+controle_shrc();
 
 return (0);
 }

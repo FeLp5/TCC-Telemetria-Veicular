@@ -4888,8 +4888,8 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 44 "bibliotecas/SPI.h"
-void inicializa_SPI(unsigned char SPI_mode);
+# 48 "bibliotecas/SPI.h"
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
 unsigned char recebe_dado_SPI(void);
 
@@ -4897,7 +4897,7 @@ char WriteSPI_(unsigned char dado);
 
 unsigned char verifica_buffer_SPI(void);
 
-# 102 "bibliotecas/SDCard.h"
+# 106 "bibliotecas/SDCard.h"
 void init_SDcard();
 void envia_CMD16(void);
 unsigned char envia_CMD8(void);
@@ -4962,7 +4962,7 @@ DSTATUS stat;
 int i = 0, count1 = 0, count2 = 0;
 unsigned char buff;
 reset();
-_delay((unsigned long)((500)*(20000000/4000.0)));
+_delay((unsigned long)((500)*(48000000/4000.0)));
 dummy_clocks(8);
 command(0X41, 0X00000000, 0XFF);
 proceed();
@@ -4970,12 +4970,12 @@ do{
 buff = response();
 }while(buff!=0x01);
 
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 proceed();
 if (buff == 0x01)
 {
 
-_delay((unsigned long)((1)*(20000000/4000.0)));
+_delay((unsigned long)((1)*(48000000/4000.0)));
 count1 = 0;
 do{
 count2 = 0;
@@ -4988,7 +4988,7 @@ buff = response();
 count2++;
 }while((buff!=0X01)&&(count2<10));
 
-_delay((unsigned long)((1)*(20000000/4000.0)));
+_delay((unsigned long)((1)*(48000000/4000.0)));
 count2 = 0;
 dummy_clocks(8);
 
@@ -5007,13 +5007,13 @@ count2++;
 
 count1 = 0;
 
-_delay((unsigned long)((1)*(20000000/4000.0)));
+_delay((unsigned long)((1)*(48000000/4000.0)));
 stat = 0X00;
 
 escreve_cmd_lcd(0b00000001);
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("Cartão Aceito");
-_delay((unsigned long)((2000)*(20000000/4000.0)));
+_delay((unsigned long)((2000)*(48000000/4000.0)));
 }
 
 else if(buff == 0x05)
@@ -5024,9 +5024,9 @@ escreve_cmd_lcd(0b00000001);
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("Error!!!");
 
-_delay((unsigned long)((3000)*(20000000/4000.0)));
+_delay((unsigned long)((3000)*(48000000/4000.0)));
 }
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 
 dummy_clocks(8);
 command(0X50,0X00000200,0XFF);
@@ -5036,7 +5036,7 @@ buff = response();
 }while(buff!=0x00);
 
 
-_delay((unsigned long)((2000)*(20000000/4000.0)));
+_delay((unsigned long)((2000)*(48000000/4000.0)));
 
 return stat;
 }
@@ -5059,7 +5059,7 @@ if(offset == 0)
 {
 start_add = ((sector*512));
 
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 
 dummy_clocks(8);
 command(0X52,start_add,0X00);
@@ -5067,7 +5067,7 @@ proceed();
 do{
 buff = response();
 }while(buff!=0x00);
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 
 proceed();
 do{
@@ -5080,7 +5080,7 @@ arr[length] = response();
 length++;
 }
 
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 
 dummy_clocks(8);
 command(0X4C,0X00000000,0X00);
@@ -5111,7 +5111,7 @@ arr[length] = 0;
 length++;
 }
 
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 
 dummy_clocks(8);
 
@@ -5145,7 +5145,7 @@ arr[length] = response();
 length++;
 }
 }
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 
 # 264
 command(0X4C,0X00000000,0X00);
@@ -5166,7 +5166,7 @@ length++;
 else
 
 
-_delay((unsigned long)((2000)*(20000000/4000.0)));
+_delay((unsigned long)((2000)*(48000000/4000.0)));
 
 
 return RES_OK;
@@ -5197,7 +5197,7 @@ buff = response();
 }while(buff!=0x00);
 
 
-_delay((unsigned long)((2000)*(20000000/4000.0)));
+_delay((unsigned long)((2000)*(48000000/4000.0)));
 
 
 dummy_clocks(8);
@@ -5219,7 +5219,7 @@ WriteSPI_(0XFF);
 
 proceed();
 
-_delay((unsigned long)((1000)*(20000000/4000.0)));
+_delay((unsigned long)((1000)*(48000000/4000.0)));
 
 dummy_clocks(8);
 

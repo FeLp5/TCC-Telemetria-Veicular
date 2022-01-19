@@ -46,54 +46,68 @@ unsigned char estado = 0;
  * Saida:		Nenhuma (void)
  * Descricao:	Realiza a parametriza��o do m�dulo SPI
  *****************************************************************************/
-void inicializa_SPI(unsigned char SPI_mode)
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase)
 {
     SSPCON1bits.SSPEN = 0;
-    switch(SPI_mode)
+    SSPSTAT &= 0x3F;                // power on state
+    SSPCON1 = 0x00;                 // power on state
+    SSPCON1 |= sync_mode<<7;           // select serial mode       (0b00000010 - SPI Master mode, clock = Fosc/64)
+    SSPSTAT |= smp_phase;           // select data input sample phase
+    TRIS_CS = 0;
+    switch(bus_mode)
     {
-        case 0:
-            SSPCON1bits.CKP   = 0;              // Define o n�vel logico baixo como iddle (polaridade do clock)
-            SSPSTATbits.CKE   = 0;                //Define se ir� transmitir no n�vel logico zero ou um
-            break;
-           
-        case 1:
-            SSPCON1bits.CKP   = 1;              // Define o n�vel logico baixo como iddle (polaridade do clock)
-            SSPSTATbits.CKE   = 0;                //Define se ir� transmitir no n�vel logico zero ou um
-            break;
-        
-        case 2:
-            SSPCON1bits.CKP   = 0;              // Define o n�vel logico baixo como iddle (polaridade do clock)
-            SSPSTATbits.CKE   = 1;                //Define se ir� transmitir no n�vel logico zero ou um
-            break;
-        
-        case 3:
-            SSPCON1bits.CKP   = 1;              // Define o n�vel logico baixo como iddle (polaridade do clock)
-            SSPSTATbits.CKE   = 1;                //Define se ir� transmitir no n�vel logico zero ou um
-            
-         default:
-            SSPCON1bits.CKP   = 0;              // Define o n�vel logico baixo como iddle (polaridade do clock)
-            SSPSTATbits.CKE   = 0;                //Define se ir� transmitir no n�vel logico zero ou um
-            break;
+        case 0:                       // SPI bus mode 0,0
+          SSPSTATbits.CKE = 1;       // data transmitted on rising edge
+          break;    
+        case 2:                       // SPI bus mode 1,0
+          SSPSTATbits.CKE = 1;       // data transmitted on falling edge
+          SSPCON1bits.CKP = 1;       // clock idle state high
+          break;
+        case 3:                       // SPI bus mode 1,1
+          SSPCON1bits.CKP = 1;       // clock idle state high
+          break;
+        default:                      // default SPI bus mode 0,1
+          break;
     }
     
-    
-    //SSPCON
-    SSPCON1bits.WCOL  = 0;              //Define que n�o haver� colis�o
-    SSPCON1bits.SSPOV = 0;             
+    switch( sync_mode )
+    {
+    case 4:                         // slave mode w /SS enable
+          TRIS_SCK  = 1;            // define clock pin as input    
+          TRIS_CS  = 1;        // define /SS1 pin as input
+        break;
+
+    case 5:                   // slave mode w/o /SS enable
+        TRIS_SCK  = 1;        // define clock pin as input    
+        break;
+
+    default:                 // master mode, define clock pin as output
+        TRIS_SCK  = 0;       // define clock pin as output    
+         break;
+    }
 
     
-    
-    SSPCON1bits.SSPM0 = 1;              //Configura para usar o Timer 2
-    SSPCON1bits.SSPM1 = 1;
-    SSPCON1bits.SSPM2 = 0;
-    SSPCON1bits.SSPM3 = 0;
+//    //SSPCON;;
+//    SSPCON1bits.WCOL  = 0;              //Define que n�o haver� colis�o
+//    SSPCON1bits.SSPOV = 0;             
+//
+//    
+//    
+//    SSPCON1bits.SSPM0 = 1;              //Configura para usar o Timer 2
+//    SSPCON1bits.SSPM1 = 1;
+//    SSPCON1bits.SSPM2 = 0;
+//    SSPCON1bits.SSPM3 = 0;
      
+//    
+//    //STATUS
+//    SSPSTATbits.SMP = 0;             //define o momento de amostragem, se ocorre no meio ou no final, nesse caso no final
+//    
+//    
+    TRIS_SDI = 1;               // define SDI input
+    TRIS_SDO = 0;               //SD0 as outpu
     
-    //STATUS
-    SSPSTATbits.SMP = 0;             //define o momento de amostragem, se ocorre no meio ou no final, nesse caso no final
     
-    
-    SSPCON1bits.SSPEN = 1;              //Define como mestre 
+    SSPCON1 |= 0x20;          // enable synchronous serial port,  0b00100000  Enable serial port and configures SCK, SDO, SDI
     posicao_cursor_lcd(1,1);
     escreve_frase_ram_lcd("SPI configurada!");
     LIMPA_DISPLAY();
@@ -132,9 +146,9 @@ char WriteSPI_(unsigned char dado)
     unsigned char TempVar;
     
     TempVar = SSPBUF; //Clear de BF
-    PIR1bits.SSPIF = 0; // Clear interrupt flag
+//    PIR1bits.SSPIF = 0; // Clear interrupt flag
     SSPCON1bits.WCOL = 0;
-//    SSPSTATbits.BF = 0;
+    SSPSTATbits.BF = 0;
     SSPBUF = dado;
     if (SSPCON1 & 0x80 )        // test if write collision occurred;
     {
@@ -142,16 +156,16 @@ char WriteSPI_(unsigned char dado)
     }
     else
     {
-//         while( !SSPSTATbits.BF );  // wait until bus cycle complete 
-        while(!PIR1bits.SSPIF){
+         while( !SSPSTATbits.BF ){  // wait until bus cycle complete 
+//        while(!PIR1bits.SSPIF){
            
             shrc_seta_bit(2);   
             controle_shrc();
             __delay_ms(1000);
 //            PIR1bits.SSPIF = 1;
         }
-//        shrc_seta_bit(0);
-//        controle_shrc();
+        shrc_seta_bit(0);;
+        controle_shrc();
         // wait until bus cycle complete
         return (0);                // if WCOL bit is not set return non-negative#
     }

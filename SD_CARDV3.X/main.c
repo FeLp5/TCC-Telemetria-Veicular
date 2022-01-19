@@ -13,7 +13,7 @@
 //#include <spi.h>
 //#include <usart.h>
 //#include <sw_uart.h>
-//#include "config.h"
+#include "config.h"
 #include "delay.h"
 #include "pff.h"
 #include "diskio.h"
@@ -255,7 +255,7 @@ void main(void)
 //    inicializa_i2c();
 	mensagem_inicial();
     inicializa_tarefas();
-    inicializa_SPI(0);
+    inicializa_SPI(0,3,1);
 	
     while(1)
     {
@@ -329,7 +329,7 @@ void SDCard(void)
     escreve_frase_ram_lcd("mount file sys");
 
     LIMPA_DISPLAY();
-  
+    
     proceed();
 	if((FResult = pf_mount(&fs)) == FR_OK )
 	{

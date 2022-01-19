@@ -3729,9 +3729,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.c: 98: PORTDbits.RD4=1;
 "98
 [e = . . _PORTDbits 0 4 -> -> 1 `i `uc ]
-[; ;display_lcd.c: 103: _delay((unsigned long)((15)*(20000000/4000.0)));
+[; ;display_lcd.c: 103: _delay((unsigned long)((15)*(48000000/4000.0)));
 "103
-[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 15 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;display_lcd.c: 107: PORTDbits.RD0 = 1;
 "107
 [e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
@@ -3744,9 +3744,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.c: 110: delay();
 "110
 [e ( _delay ..  ]
-[; ;display_lcd.c: 115: _delay((unsigned long)((5)*(20000000/4000.0)));
+[; ;display_lcd.c: 115: _delay((unsigned long)((5)*(48000000/4000.0)));
 "115
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;display_lcd.c: 118: PORTDbits.RD0 = 1;
 "118
 [e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
@@ -3759,9 +3759,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.c: 121: delay();
 "121
 [e ( _delay ..  ]
-[; ;display_lcd.c: 126: _delay((unsigned long)((5)*(20000000/4000.0)));
+[; ;display_lcd.c: 126: _delay((unsigned long)((5)*(48000000/4000.0)));
 "126
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;display_lcd.c: 129: PORTDbits.RD0 = 1;
 "129
 [e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]

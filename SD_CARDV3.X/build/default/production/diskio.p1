@@ -3,13 +3,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
 "290
 [v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
-"111 bibliotecas/SDCard.h
+"115 bibliotecas/SDCard.h
 [v _dummy_clocks `(v ~T0 @X0 0 ef1`uc ]
-"112
+"116
 [v _command `(v ~T0 @X0 0 ef3`uc`ul`uc ]
-"110
+"114
 [v _proceed `(v ~T0 @X0 0 ef ]
-"109
+"113
 [v _response `(uc ~T0 @X0 0 ef ]
 [v F3812 `(v ~T0 @X0 1 tf1`ul ]
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
@@ -20,7 +20,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "161 diskio.c
 [c E14 0 1 2 3 .. ]
 [n E14 . RES_OK RES_ERROR RES_NOTRDY RES_PARERR  ]
-"48 bibliotecas/SPI.h
+"52 bibliotecas/SPI.h
 [v _WriteSPI_ `(uc ~T0 @X0 0 ef1`uc ]
 [; ;integer.h: 16: typedef int INT;
 [; ;integer.h: 17: typedef unsigned int UINT;
@@ -3573,19 +3573,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
 [; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 [; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
-[; ;SPI.h: 44: void inicializa_SPI(unsigned char SPI_mode);
-[; ;SPI.h: 46: unsigned char recebe_dado_SPI(void);
-[; ;SPI.h: 48: char WriteSPI_(unsigned char dado);
-[; ;SPI.h: 50: unsigned char verifica_buffer_SPI(void);
-[; ;SDCard.h: 102: void init_SDcard();
-[; ;SDCard.h: 103: void envia_CMD16(void);
-[; ;SDCard.h: 104: unsigned char envia_CMD8(void);
-[; ;SDCard.h: 105: void envia_CMD1(void);
-[; ;SDCard.h: 106: void envia_CMD0(void);
-[; ;SDCard.h: 109: BYTE response(void);
-[; ;SDCard.h: 110: void proceed(void);
-[; ;SDCard.h: 111: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 112: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SPI.h: 48: void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
+[; ;SPI.h: 50: unsigned char recebe_dado_SPI(void);
+[; ;SPI.h: 52: char WriteSPI_(unsigned char dado);
+[; ;SPI.h: 54: unsigned char verifica_buffer_SPI(void);
+[; ;SDCard.h: 106: void init_SDcard();
+[; ;SDCard.h: 107: void envia_CMD16(void);
+[; ;SDCard.h: 108: unsigned char envia_CMD8(void);
+[; ;SDCard.h: 109: void envia_CMD1(void);
+[; ;SDCard.h: 110: void envia_CMD0(void);
+[; ;SDCard.h: 113: BYTE response(void);
+[; ;SDCard.h: 114: void proceed(void);
+[; ;SDCard.h: 115: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 116: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 [; ;diskio.c: 17: extern BYTE ReadSPI_();
 [; ;diskio.c: 19: extern BYTE response();
 [; ;diskio.c: 21: extern void check();
@@ -3707,9 +3707,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 70: reset();
 "70
 [e ( _reset ..  ]
-[; ;diskio.c: 71: _delay((unsigned long)((500)*(20000000/4000.0)));
+[; ;diskio.c: 71: _delay((unsigned long)((500)*(48000000/4000.0)));
 "71
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 72: dummy_clocks(8);
 "72
 [e ( _dummy_clocks (1 -> -> 8 `i `uc ]
@@ -3731,9 +3731,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 77: }while(buff!=0x01);
 [e $ != -> _buff `i -> 1 `i 373  ]
 [e :U 372 ]
-[; ;diskio.c: 79: _delay((unsigned long)((1000)*(20000000/4000.0)));
+[; ;diskio.c: 79: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "79
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 80: proceed();
 "80
 [e ( _proceed ..  ]
@@ -3743,9 +3743,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 82: {
 "82
 {
-[; ;diskio.c: 84: _delay((unsigned long)((1)*(20000000/4000.0)));
+[; ;diskio.c: 84: _delay((unsigned long)((1)*(48000000/4000.0)));
 "84
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 85: count1 = 0;
 "85
 [e = _count1 -> 0 `i ]
@@ -3780,9 +3780,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 95: }while((buff!=0X01)&&(count2<10));
 [e $ && != -> _buff `i -> 1 `i < _count2 -> 10 `i 380  ]
 [e :U 379 ]
-[; ;diskio.c: 97: _delay((unsigned long)((1)*(20000000/4000.0)));
+[; ;diskio.c: 97: _delay((unsigned long)((1)*(48000000/4000.0)));
 "97
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 98: count2 = 0;
 "98
 [e = _count2 -> 0 `i ]
@@ -3821,9 +3821,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 114: count1 = 0;
 "114
 [e = _count1 -> 0 `i ]
-[; ;diskio.c: 116: _delay((unsigned long)((1)*(20000000/4000.0)));
+[; ;diskio.c: 116: _delay((unsigned long)((1)*(48000000/4000.0)));
 "116
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 117: stat = 0X00;
 "117
 [e = _stat -> -> 0 `i `uc ]
@@ -3836,9 +3836,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 121: escreve_frase_ram_lcd("Cartão Aceito");
 "121
 [e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
-[; ;diskio.c: 122: _delay((unsigned long)((2000)*(20000000/4000.0)));
+[; ;diskio.c: 122: _delay((unsigned long)((2000)*(48000000/4000.0)));
 "122
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 "123
 }
 [; ;diskio.c: 123: }
@@ -3862,17 +3862,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 131: escreve_frase_ram_lcd("Error!!!");
 "131
 [e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
-[; ;diskio.c: 133: _delay((unsigned long)((3000)*(20000000/4000.0)));
+[; ;diskio.c: 133: _delay((unsigned long)((3000)*(48000000/4000.0)));
 "133
-[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 "134
 }
 [e :U 385 ]
 "135
 [e :U 384 ]
 [; ;diskio.c: 134: }
-[; ;diskio.c: 135: _delay((unsigned long)((1000)*(20000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;diskio.c: 135: _delay((unsigned long)((1000)*(48000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 137: dummy_clocks(8);
 "137
 [e ( _dummy_clocks (1 -> -> 8 `i `uc ]
@@ -3894,9 +3894,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 142: }while(buff!=0x00);
 [e $ != -> _buff `i -> 0 `i 388  ]
 [e :U 387 ]
-[; ;diskio.c: 145: _delay((unsigned long)((2000)*(20000000/4000.0)));
+[; ;diskio.c: 145: _delay((unsigned long)((2000)*(48000000/4000.0)));
 "145
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 147: return stat;
 "147
 [e ) _stat ]
@@ -3938,7 +3938,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "164
 [v _start_add `ul ~T0 @X0 1 a ]
 "165
-[v F3918 `uc ~T0 @X0 -> 512 `i s arr ]
+[v F3920 `uc ~T0 @X0 -> 512 `i s arr ]
 "166
 [v _length `i ~T0 @X0 1 a ]
 [v _i `i ~T0 @X0 1 a ]
@@ -3954,9 +3954,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 170: start_add = ((sector*512));
 "170
 [e = _start_add * _sector -> -> -> 512 `i `l `ul ]
-[; ;diskio.c: 172: _delay((unsigned long)((1000)*(20000000/4000.0)));
+[; ;diskio.c: 172: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "172
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 174: dummy_clocks(8);
 "174
 [e ( _dummy_clocks (1 -> -> 8 `i `uc ]
@@ -3978,9 +3978,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 179: }while(buff!=0x00);
 [e $ != -> _buff `i -> 0 `i 393  ]
 [e :U 392 ]
-[; ;diskio.c: 180: _delay((unsigned long)((1000)*(20000000/4000.0)));
+[; ;diskio.c: 180: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "180
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 182: proceed();
 "182
 [e ( _proceed ..  ]
@@ -4008,7 +4008,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;diskio.c: 189: arr[length] = response();
 "189
-[e = *U + &U F3918 * -> -> _length `ui `ux -> -> # *U &U F3918 `ui `ux ( _response ..  ]
+[e = *U + &U F3920 * -> -> _length `ui `ux -> -> # *U &U F3920 `ui `ux ( _response ..  ]
 [; ;diskio.c: 190: length++;
 "190
 [e ++ _length -> 1 `i ]
@@ -4019,9 +4019,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < -> _length `ui _count 398  ]
 [e :U 399 ]
 [; ;diskio.c: 191: }
-[; ;diskio.c: 193: _delay((unsigned long)((1000)*(20000000/4000.0)));
+[; ;diskio.c: 193: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "193
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 195: dummy_clocks(8);
 "195
 [e ( _dummy_clocks (1 -> -> 8 `i `uc ]
@@ -4060,7 +4060,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 403 ]
 "204
-[e $ != -> *U + &U F3918 * -> -> _length `ui `ux -> -> # *U &U F3918 `ui `ux `ui -> 0 `ui 404  ]
+[e $ != -> *U + &U F3920 * -> -> _length `ui `ux -> -> # *U &U F3920 `ui `ux `ui -> 0 `ui 404  ]
 [e :U 405 ]
 [; ;diskio.c: 208: }
 [; ;diskio.c: 210: *rd = length;
@@ -4095,7 +4095,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;diskio.c: 220: arr[length] = 0;
 "220
-[e = *U + &U F3918 * -> -> _length `ui `ux -> -> # *U &U F3918 `ui `ux -> -> 0 `i `uc ]
+[e = *U + &U F3920 * -> -> _length `ui `ux -> -> # *U &U F3920 `ui `ux -> -> 0 `i `uc ]
 [; ;diskio.c: 221: length++;
 "221
 [e ++ _length -> 1 `i ]
@@ -4106,9 +4106,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _length -> 512 `i 408  ]
 [e :U 409 ]
 [; ;diskio.c: 222: }
-[; ;diskio.c: 224: _delay((unsigned long)((1000)*(20000000/4000.0)));
+[; ;diskio.c: 224: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "224
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 226: dummy_clocks(8);
 "226
 [e ( _dummy_clocks (1 -> -> 8 `i `uc ]
@@ -4161,7 +4161,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;diskio.c: 242: arr[length] = response();
 "242
-[e = *U + &U F3918 * -> -> _length `ui `ux -> -> # *U &U F3918 `ui `ux ( _response ..  ]
+[e = *U + &U F3920 * -> -> _length `ui `ux -> -> # *U &U F3920 `ui `ux ( _response ..  ]
 [; ;diskio.c: 243: length++;
 "243
 [e ++ _length -> 1 `i ]
@@ -4184,7 +4184,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U _rd ( _response ..  ]
 [; ;diskio.c: 248: arr[length] = *rd;
 "248
-[e = *U + &U F3918 * -> -> _length `ui `ux -> -> # *U &U F3918 `ui `ux *U _rd ]
+[e = *U + &U F3920 * -> -> _length `ui `ux -> -> # *U &U F3920 `ui `ux *U _rd ]
 [; ;diskio.c: 249: rd++;
 "249
 [e ++ _rd * -> -> 1 `i `x -> -> # *U _rd `i `x ]
@@ -4207,7 +4207,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;diskio.c: 254: arr[length] = response();
 "254
-[e = *U + &U F3918 * -> -> _length `ui `ux -> -> # *U &U F3918 `ui `ux ( _response ..  ]
+[e = *U + &U F3920 * -> -> _length `ui `ux -> -> # *U &U F3920 `ui `ux ( _response ..  ]
 [; ;diskio.c: 255: length++;
 "255
 [e ++ _length -> 1 `i ]
@@ -4225,9 +4225,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 418 ]
 [; ;diskio.c: 256: }
 [; ;diskio.c: 257: }
-[; ;diskio.c: 258: _delay((unsigned long)((1000)*(20000000/4000.0)));
+[; ;diskio.c: 258: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "258
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 264: command(0X4C,0X00000000,0X00);
 "264
 [e ( _command (3 , , -> -> 76 `i `uc -> -> -> 0 `i `l `ul -> -> 0 `i `uc ]
@@ -4267,7 +4267,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 432 ]
 "273
-[e $ != -> *U + &U F3918 * -> -> _length `ui `ux -> -> # *U &U F3918 `ui `ux `ui -> 0 `ui 433  ]
+[e $ != -> *U + &U F3920 * -> -> _length `ui `ux -> -> # *U &U F3920 `ui `ux `ui -> 0 `ui 433  ]
 [e :U 434 ]
 "278
 }
@@ -4277,9 +4277,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "279
 [e :U 431 ]
 [; ;diskio.c: 279: else
-[; ;diskio.c: 282: _delay((unsigned long)((2000)*(20000000/4000.0)));
+[; ;diskio.c: 282: _delay((unsigned long)((2000)*(48000000/4000.0)));
 "282
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [e :U 435 ]
 [; ;diskio.c: 285: return RES_OK;
 "285
@@ -4341,9 +4341,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 310: }while(buff!=0x00);
 [e $ != -> _buff `i -> 0 `i 439  ]
 [e :U 438 ]
-[; ;diskio.c: 313: _delay((unsigned long)((2000)*(20000000/4000.0)));
+[; ;diskio.c: 313: _delay((unsigned long)((2000)*(48000000/4000.0)));
 "313
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 316: dummy_clocks(8);
 "316
 [e ( _dummy_clocks (1 -> -> 8 `i `uc ]
@@ -4401,9 +4401,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 333: proceed();
 "333
 [e ( _proceed ..  ]
-[; ;diskio.c: 335: _delay((unsigned long)((1000)*(20000000/4000.0)));
+[; ;diskio.c: 335: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "335
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;diskio.c: 337: dummy_clocks(8);
 "337
 [e ( _dummy_clocks (1 -> -> 8 `i `uc ]

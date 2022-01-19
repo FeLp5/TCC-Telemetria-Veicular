@@ -3665,18 +3665,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 "52
 [v _x `ui ~T0 @X0 1 a ]
 [; ;uart.c: 52: unsigned int x;
-[; ;uart.c: 54: x = (20000000 - baudrate*64)/(baudrate*64);
+[; ;uart.c: 54: x = (48000000 - baudrate*64)/(baudrate*64);
 "54
-[e = _x -> / - -> 20000000 `l * _baudrate -> -> 64 `i `l * _baudrate -> -> 64 `i `l `ui ]
+[e = _x -> / - -> 48000000 `l * _baudrate -> -> 64 `i `l * _baudrate -> -> 64 `i `l `ui ]
 [; ;uart.c: 55: if(x > 255)
 "55
 [e $ ! > _x -> -> 255 `i `ui 367  ]
 [; ;uart.c: 56: {
 "56
 {
-[; ;uart.c: 57: x = (20000000 - baudrate*16)/(baudrate*16);
+[; ;uart.c: 57: x = (48000000 - baudrate*16)/(baudrate*16);
 "57
-[e = _x -> / - -> 20000000 `l * _baudrate -> -> 16 `i `l * _baudrate -> -> 16 `i `l `ui ]
+[e = _x -> / - -> 48000000 `l * _baudrate -> -> 16 `i `l * _baudrate -> -> 16 `i `l `ui ]
 [; ;uart.c: 58: BRGH = 1;
 "58
 [e = _BRGH -> -> 1 `i `b ]

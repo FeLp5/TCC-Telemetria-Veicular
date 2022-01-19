@@ -4863,13 +4863,13 @@ else
 LATBbits.LATB7 = 1;
 }
 data_to_shrc = data_to_shrc << 1;
-_delay((unsigned long)((30)*(20000000/4000000.0)));
+_delay((unsigned long)((30)*(48000000/4000000.0)));
 LATBbits.LATB6 = 1;
-_delay((unsigned long)((30)*(20000000/4000000.0)));
+_delay((unsigned long)((30)*(48000000/4000000.0)));
 LATBbits.LATB7 = 0;
-_delay((unsigned long)((30)*(20000000/4000000.0)));
+_delay((unsigned long)((30)*(48000000/4000000.0)));
 LATBbits.LATB6 = 0;
-_delay((unsigned long)((30)*(20000000/4000000.0)));
+_delay((unsigned long)((30)*(48000000/4000000.0)));
 contador++;
 }
 (INTCONbits.GIE = 1);
@@ -4880,9 +4880,9 @@ void ativa_latch_shrc ( void )
 {
 
 LATBbits.LATB5 = 0;
-_delay((unsigned long)((30)*(20000000/4000000.0)));
+_delay((unsigned long)((30)*(48000000/4000000.0)));
 LATBbits.LATB5 = 1;
-_delay((unsigned long)((60)*(20000000/4000000.0)));
+_delay((unsigned long)((60)*(48000000/4000000.0)));
 LATBbits.LATB5 = 0;
 }
 

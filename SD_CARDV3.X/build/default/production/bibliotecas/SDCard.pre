@@ -21,28 +21,6 @@ typedef long LONG;
 typedef unsigned long ULONG;
 typedef unsigned long DWORD;
 
-# 102 "bibliotecas/SDCard.h"
-void init_SDcard();
-void envia_CMD16(void);
-unsigned char envia_CMD8(void);
-void envia_CMD1(void);
-void envia_CMD0(void);
-
-
-BYTE response(void);
-void proceed(void);
-void dummy_clocks(unsigned char n);
-void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-
-# 44 "bibliotecas/SPI.h"
-void inicializa_SPI(unsigned char SPI_mode);
-
-unsigned char recebe_dado_SPI(void);
-
-char WriteSPI_(unsigned char dado);
-
-unsigned char verifica_buffer_SPI(void);
-
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -4861,6 +4839,28 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
+# 106 "bibliotecas/SDCard.h"
+void init_SDcard();
+void envia_CMD16(void);
+unsigned char envia_CMD8(void);
+void envia_CMD1(void);
+void envia_CMD0(void);
+
+
+BYTE response(void);
+void proceed(void);
+void dummy_clocks(unsigned char n);
+void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+
+# 48 "bibliotecas/SPI.h"
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
+
+unsigned char recebe_dado_SPI(void);
+
+char WriteSPI_(unsigned char dado);
+
+unsigned char verifica_buffer_SPI(void);
+
 # 199 "bibliotecas/display/display_lcd.h"
 extern void init_lcd(void);
 
@@ -4899,9 +4899,9 @@ BYTE response(void)
 {
 
 unsigned char buff;
-LATBbits.LATB4 = 0;
-buff= recebe_dado_SPI();
 LATBbits.LATB4 = 1;
+buff= recebe_dado_SPI();
+LATBbits.LATB4 = 0;
 return buff;
 }
 
@@ -4913,18 +4913,18 @@ escreve_frase_ram_lcd("AAAAAAAAAA");
 unsigned int i;
 for(i=0;i<n;i++)
 {
-LATBbits.LATB4 = 1;
-WriteSPI_(0XFF);
 LATBbits.LATB4 = 0;
+WriteSPI_(0XFF);
+LATBbits.LATB4 = 1;
 }
 }
 
 
 void proceed(void)
 {
-LATBbits.LATB4 = 0;
-WriteSPI_(0xFF);
 LATBbits.LATB4 = 1;
+WriteSPI_(0xFF);
+LATBbits.LATB4 = 0;
 }
 
 

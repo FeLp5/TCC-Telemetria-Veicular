@@ -38,8 +38,8 @@ extern "C" {
 
 #include "../pffconf.h"
 #include "../integer.h"
-
-
+#include <p18f4550.h>
+#include "hardware.h"
 /*---------------------------------------*/
 /* Prototypes for disk control functions */
 //typedef BYTE	DSTATUS;
@@ -60,6 +60,10 @@ extern "C" {
 //DRESULT disk_readp (BYTE* buff, DWORD sector, UINT offset, UINT count);
 //DRESULT disk_writep (const BYTE* buff, DWORD sc);
 
+    
+#define chip_select LATBbits.LATB4    
+    
+    
 
 #define STA_NOINIT		0x01	/* Drive not initialized */
 #define STA_NODISK		0x02	/* No medium in the drive */

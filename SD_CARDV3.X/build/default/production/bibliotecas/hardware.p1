@@ -3755,9 +3755,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 99: {
 [e :U _init_interrupt ]
 [f ]
-[; ;hardware.c: 100: INTCON = 0b01100000;
+[; ;hardware.c: 100: INTCON = 0b11100000;
 "100
-[e = _INTCON -> -> 96 `i `uc ]
+[e = _INTCON -> -> 224 `i `uc ]
 [; ;hardware.c: 101: INTCON2 = 0b00000000;
 "101
 [e = _INTCON2 -> -> 0 `i `uc ]
@@ -3773,12 +3773,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 107: PIE1bits.SSPIE = 1;
 "107
 [e = . . _PIE1bits 0 3 -> -> 1 `i `uc ]
-[; ;hardware.c: 108: IPR1bits.SSPIP = 0;
+[; ;hardware.c: 108: IPR1bits.SSPIP = 1;
 "108
-[e = . . _IPR1bits 0 3 -> -> 0 `i `uc ]
-[; ;hardware.c: 109: RCONbits.IPEN = 1;
+[e = . . _IPR1bits 0 3 -> -> 1 `i `uc ]
+[; ;hardware.c: 109: RCONbits.IPEN = 0;
 "109
-[e = . . _RCONbits 5 7 -> -> 1 `i `uc ]
+[e = . . _RCONbits 5 7 -> -> 0 `i `uc ]
 [; ;hardware.c: 110: }
 "110
 [e :UE 365 ]
@@ -3877,9 +3877,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 161: TRISB = 0b00000001;
 "161
 [e = _TRISB -> -> 1 `i `uc ]
-[; ;hardware.c: 162: LATB = 0x00;
+[; ;hardware.c: 162: LATB = 0xFF;
 "162
-[e = _LATB -> -> 0 `i `uc ]
+[e = _LATB -> -> 255 `i `uc ]
 [; ;hardware.c: 163: TRISD = 0x00;
 "163
 [e = _TRISD -> -> 0 `i `uc ]

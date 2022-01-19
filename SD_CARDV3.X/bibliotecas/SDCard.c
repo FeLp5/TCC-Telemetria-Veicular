@@ -312,9 +312,9 @@ BYTE response(void)
 {
     
     unsigned char buff;
-    chip_select = 0;//CS low   
+    chip_select = 1;//CS low   
     buff= recebe_dado_SPI();   //read buffer (R1) should be 0x01 = idle mode   
-    chip_select = 1;//CS high
+    chip_select = 0;//CS high
     return buff;
 }
 
@@ -326,18 +326,18 @@ void dummy_clocks(unsigned char n)
     unsigned int i;
     for(i=0;i<n;i++)
     {
-        chip_select = 1;
-        WriteSPI_(0XFF);
         chip_select = 0;
+        WriteSPI_(0XFF);
+        chip_select = 1;
     }
 }
 
 
 void proceed(void)
 {
-    chip_select = 0; //CS Low
+    chip_select = 1; //CS Low
     WriteSPI_(0xFF); // Give Time For SD_CARD To Proceed
-    chip_select = 1; //CS High
+    chip_select = 0; //CS High
 }
 
 //extern  void check();

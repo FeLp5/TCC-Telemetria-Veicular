@@ -97,7 +97,7 @@ void config_timer_zero(void)
  *****************************************************************************/
 void init_interrupt(void)
 {
-	INTCON  = 0b01100000;
+	INTCON  = 0b11100000;
     INTCON2 = 0b00000000;
     INTCON3 = 0b00000000;
     
@@ -105,8 +105,8 @@ void init_interrupt(void)
 
     PIR1bits.SSPIF = 0;
     PIE1bits.SSPIE = 1;
-    IPR1bits.SSPIP = 0;
-    RCONbits.IPEN = 1;
+    IPR1bits.SSPIP = 1;
+    RCONbits.IPEN = 0;
 }
 
  /******************************************************************************
@@ -159,7 +159,7 @@ void write_timer_zero(unsigned int timer0)
 void init_ports(void)
 {
     TRISB = 0b00000001;            
-	LATB  = 0x00;
+	LATB  = 0xFF;
     TRISD = 0x00;           
     TRISA = 0b00000111; 
     TRISC = 0x01111111;
