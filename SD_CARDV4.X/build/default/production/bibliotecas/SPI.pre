@@ -4933,7 +4933,7 @@ PIR1bits.SSPIF = 0;
 unsigned char temp_var;
 temp_var = SSPBUF;
 SSPBUF = 0x00;
-_delay((unsigned long)((500)*(48000000/4000.0)));
+_delay((unsigned long)((50)*(48000000/4000.0)));
 while(!PIR1bits.SSPIF);
 return (SSPBUF);
 }

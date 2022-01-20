@@ -3821,9 +3821,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SPI.c: 112: SSPBUF = 0x00;
 "112
 [e = _SSPBUF -> -> 0 `i `uc ]
-[; ;SPI.c: 113: _delay((unsigned long)((500)*(48000000/4000.0)));
+[; ;SPI.c: 113: _delay((unsigned long)((50)*(48000000/4000.0)));
 "113
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 [; ;SPI.c: 114: while(!PIR1bits.SSPIF);
 "114
 [e $U 375  ]

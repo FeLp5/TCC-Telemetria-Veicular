@@ -110,7 +110,7 @@ unsigned char recebe_dado_SPI(void)
     unsigned char temp_var;
     temp_var = SSPBUF;
     SSPBUF = 0x00;
-    __delay_ms(500);
+    __delay_ms(50);
     while(!PIR1bits.SSPIF);
     return (SSPBUF);
 }

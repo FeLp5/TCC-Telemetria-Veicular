@@ -20,25 +20,25 @@ text2 CODE 0 2376 2376 128 1
 text3 CODE 0 3008 3008 64 1
 text4 CODE 0 3240 3240 3C 1
 text5 CODE 0 2AD0 2AD0 9E 1
-text6 CODE 0 3426 3426 16 1
-text7 CODE 0 340E 340E 18 1
-text8 CODE 0 34D4 34D4 8 1
-text9 CODE 0 3450 3450 12 1
-text10 CODE 0 33DC 33DC 1A 1
-text11 CODE 0 3462 3462 12 1
-text12 CODE 0 34A6 34A6 C 1
-text13 CODE 0 3380 3380 22 1
+text6 CODE 0 3424 3424 16 1
+text7 CODE 0 340C 340C 18 1
+text8 CODE 0 34D2 34D2 8 1
+text9 CODE 0 344E 344E 12 1
+text10 CODE 0 33DA 33DA 1A 1
+text11 CODE 0 3460 3460 12 1
+text12 CODE 0 34A4 34A4 C 1
+text13 CODE 0 337E 337E 22 1
 text14 CODE 0 211A 211A 132 1
 text15 CODE 0 27D2 27D2 CC 1
 text16 CODE 0 327C 327C 38 1
-text17 CODE 0 34DC 34DC 8 1
+text17 CODE 0 34DA 34DA 8 1
 text18 CODE 0 2C7C 2C7C 7C 1
 text19 CODE 0 2A2C 2A2C A4 1
 text20 CODE 0 1A38 1A38 1B2 1
-text21 CODE 0 3338 3338 24 1
-text22 CODE 0 33C0 33C0 1C 1
-text23 CODE 0 33A2 33A2 1E 1
-text24 CODE 0 34CA 34CA A 1
+text21 CODE 0 3336 3336 24 1
+text22 CODE 0 33BE 33BE 1C 1
+text23 CODE 0 33A0 33A0 1E 1
+text24 CODE 0 34C8 34C8 A 1
 text25 CODE 0 646 646 4BE 1
 text26 CODE 0 1FDA 1FDA 140 1
 text27 CODE 0 EE8 EE8 390 1
@@ -59,24 +59,24 @@ text41 CODE 0 2D72 2D72 74 1
 text42 CODE 0 2B6E 2B6E 8C 1
 text43 CODE 0 1BEA 1BEA 15C 1
 text44 CODE 0 1278 1278 34A 1
-text45 CODE 0 3498 3498 E 1
-text46 CODE 0 330E 330E 2A 1
-text47 CODE 0 34B2 34B2 C 1
+text45 CODE 0 3496 3496 E 1
+text46 CODE 0 330E 330E 28 1
+text47 CODE 0 34B0 34B0 C 1
 text48 CODE 0 2EC8 2EC8 70 1
 text49 CODE 0 2F38 2F38 6A 1
 text50 CODE 0 311E 311E 52 1
 text51 CODE 0 2DE6 2DE6 72 1
-text52 CODE 0 335C 335C 24 1
+text52 CODE 0 335A 335A 24 1
 text53 CODE 0 32B4 32B4 2E 1
 text54 CODE 0 306C 306C 5C 1
 text55 CODE 0 3170 3170 4A 1
 text56 CODE 0 30C8 30C8 56 1
 text57 CODE 0 2BFA 2BFA 82 1
-text58 CODE 0 34BE 34BE C 1
+text58 CODE 0 34BC 34BC C 1
 text59 CODE 0 31BA 31BA 44 1
-text60 CODE 0 343C 343C 14 1
-text62 CODE 0 3474 3474 12 1
-text63 CODE 0 3486 3486 12 1
+text60 CODE 0 343A 343A 14 1
+text62 CODE 0 3472 3472 12 1
+text63 CODE 0 3484 3484 12 1
 cstackCOMRAM COMRAM 1 1 1 2C 1
 cstackBANK0 BANK0 1 60 60 75 1
 cstackBANK1 BANK1 1 191 191 3F 1
@@ -85,12 +85,12 @@ temp COMRAM 1 46 46 1 1
 bssBANK0 BANK0 1 D5 D5 8 1
 bssBANK1 BANK1 1 100 100 91 1
 intcode CODE 0 8 8 6 1
-idataBANK1 CODE 0 33F6 33F6 18 1
+idataBANK1 CODE 0 33F4 33F4 18 1
 dataBANK1 BANK1 1 1D0 1D0 18 1
 bssBIGRAM BIGRAM 1 22D 22D 200 1
 bssCOMRAM COMRAM 1 2D 2D 19 1
-mediumconst MEDIUMCONST 0 7E50 7E50 1B0 1
-$C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
+mediumconst MEDIUMCONST 0 60D0 60D0 1B0 1
+$C:\Users\Felipe\AppData\Local\Temp\s120.obj
 idloc IDLOC 0 200000 200000 8 1
 init CODE 0 E E 4 1
 reset_vec CODE 0 0 0 4 1
@@ -112,18 +112,18 @@ BANK5 500-5FF 1
 BANK6 600-6FF 1
 BANK7 700-7FF 1
 CONST 4-7 1
-CONST 34E4-7E4F 1
+CONST 34E2-60CF 1
 STACK 42D-7FF 1
-SMALLCONST 34E4-7E4F 1
+SMALLCONST 34E2-60CF 1
 CODE 4-7 1
-CODE 34E4-7E4F 1
+CODE 34E2-60CF 1
 BIGRAM 47-5F 1
 BIGRAM DD-FF 1
 BIGRAM 1E8-1FF 1
 BIGRAM 42D-7FF 1
 COMRAM 47-5F 1
 EEDATA F00000-F000FF 1
-MEDIUMCONST 34E4-7E4F 1
+MEDIUMCONST 34E2-60CF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -140,19 +140,19 @@ MEDIUMCONST 34E4-7E4F 1
 $dist/default/production\SD_CARDV4.X.production.obj
 8 intcode CODE >104:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 8 intcode CODE >110:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-3486 text63 CODE >138:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3486 text63 CODE >140:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-348A text63 CODE >141:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-348E text63 CODE >143:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3490 text63 CODE >144:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3492 text63 CODE >145:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3494 text63 CODE >146:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3494 text63 CODE >147:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3474 text62 CODE >138:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3474 text62 CODE >142:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-347C text62 CODE >144:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3480 text62 CODE >145:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3484 text62 CODE >146:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3484 text63 CODE >138:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3484 text63 CODE >140:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3488 text63 CODE >141:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+348C text63 CODE >143:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+348E text63 CODE >144:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3490 text63 CODE >145:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3492 text63 CODE >146:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3492 text63 CODE >147:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3472 text62 CODE >138:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3472 text62 CODE >142:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+347A text62 CODE >144:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+347E text62 CODE >145:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3482 text62 CODE >146:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
 249E intcode_body CODE >110:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 24E8 intcode_body CODE >115:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 24EE intcode_body CODE >117:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
@@ -177,13 +177,13 @@ $dist/default/production\SD_CARDV4.X.production.obj
 256E intcode_body CODE >153:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 2570 intcode_body CODE >155:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 2570 intcode_body CODE >156:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-343C text60 CODE >96:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-343C text60 CODE >99:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-343E text60 CODE >100:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-3444 text60 CODE >101:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-3446 text60 CODE >102:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-344C text60 CODE >103:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-344E text60 CODE >104:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+343A text60 CODE >96:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+343A text60 CODE >99:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+343C text60 CODE >100:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+3442 text60 CODE >101:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+3444 text60 CODE >102:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+344A text60 CODE >103:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+344C text60 CODE >104:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 31BA text59 CODE >62:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 31BC text59 CODE >64:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 31C0 text59 CODE >65:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
@@ -207,10 +207,10 @@ $dist/default/production\SD_CARDV4.X.production.obj
 31F4 text59 CODE >86:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 31FA text59 CODE >87:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 31FC text59 CODE >88:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-34BE text58 CODE >112:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-34BE text58 CODE >115:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-34C4 text58 CODE >116:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-34C8 text58 CODE >117:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34BC text58 CODE >112:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34BC text58 CODE >115:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34C2 text58 CODE >116:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34C6 text58 CODE >117:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 2BFA text57 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
 2BFA text57 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
 2C0A text57 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
@@ -273,15 +273,15 @@ $dist/default/production\SD_CARDV4.X.production.obj
 32C2 text53 CODE >336:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
 32C8 text53 CODE >337:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
 32CA text53 CODE >333:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-335C text52 CODE >45:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-335C text52 CODE >49:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-3368 text52 CODE >50:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-3368 text52 CODE >51:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-336A text52 CODE >52:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-3376 text52 CODE >53:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-3376 text52 CODE >54:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-3378 text52 CODE >52:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-337C text52 CODE >49:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+335A text52 CODE >45:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+335A text52 CODE >49:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+3366 text52 CODE >50:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+3366 text52 CODE >51:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+3368 text52 CODE >52:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+3374 text52 CODE >53:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+3374 text52 CODE >54:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+3376 text52 CODE >52:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
+337A text52 CODE >49:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
 2DE6 text51 CODE >323:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
 2DE8 text51 CODE >326:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
 2DEA text51 CODE >327:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
@@ -373,23 +373,23 @@ $dist/default/production\SD_CARDV4.X.production.obj
 2F30 text48 CODE >307:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
 2F32 text48 CODE >308:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
 2F32 text48 CODE >310:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
-34B2 text47 CODE >342:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-34B2 text47 CODE >344:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-34B4 text47 CODE >345:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-34BA text47 CODE >346:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-34BC text47 CODE >347:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+34B0 text47 CODE >342:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+34B0 text47 CODE >344:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+34B2 text47 CODE >345:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+34B8 text47 CODE >346:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+34BA text47 CODE >347:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
 330E text46 CODE >107:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
 330E text46 CODE >109:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
 3310 text46 CODE >111:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
 3314 text46 CODE >112:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
 3318 text46 CODE >113:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
-3330 text46 CODE >114:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
-3334 text46 CODE >115:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
-3498 text45 CODE >319:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-3498 text45 CODE >323:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-349A text45 CODE >324:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-34A0 text45 CODE >325:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
-34A2 text45 CODE >326:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+332E text46 CODE >114:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
+3332 text46 CODE >115:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
+3496 text45 CODE >319:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+3496 text45 CODE >323:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+3498 text45 CODE >324:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+349E text45 CODE >325:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
+34A0 text45 CODE >326:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SDCard.c
 1278 text44 CODE >146:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
 1278 text44 CODE >154:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
 127E text44 CODE >159:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
@@ -898,22 +898,22 @@ AE6 text25 CODE >973:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 AF8 text25 CODE >949:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 AF8 text25 CODE >974:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 B00 text25 CODE >977:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
-34CA text24 CODE >24:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
-34CA text24 CODE >26:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
-34D2 text24 CODE >27:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
-33A2 text23 CODE >124:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-33A4 text23 CODE >126:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-33BE text23 CODE >127:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-33C0 text22 CODE >119:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-33C2 text22 CODE >121:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-33DA text22 CODE >122:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-3338 text21 CODE >386:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-3338 text21 CODE >388:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-3346 text21 CODE >389:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-334C text21 CODE >391:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-3352 text21 CODE >392:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-3354 text21 CODE >393:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-3354 text21 CODE >395:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+34C8 text24 CODE >24:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
+34C8 text24 CODE >26:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
+34D0 text24 CODE >27:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/diskio.c
+33A0 text23 CODE >124:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+33A2 text23 CODE >126:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+33BC text23 CODE >127:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+33BE text22 CODE >119:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+33C0 text22 CODE >121:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+33D8 text22 CODE >122:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+3336 text21 CODE >386:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+3336 text21 CODE >388:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+3344 text21 CODE >389:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+334A text21 CODE >391:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+3350 text21 CODE >392:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+3352 text21 CODE >393:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+3352 text21 CODE >395:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 1A38 text20 CODE >269:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 1A38 text20 CODE >271:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 1A3A text20 CODE >276:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
@@ -1010,11 +1010,11 @@ B00 text25 CODE >977:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 2CE4 text18 CODE >95:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
 2CF0 text18 CODE >96:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
 2CF6 text18 CODE >97:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SPI.c
-34DC text17 CODE >47:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-34DC text17 CODE >49:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-34DE text17 CODE >50:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-34E0 text17 CODE >51:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-34E2 text17 CODE >53:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34DA text17 CODE >47:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34DA text17 CODE >49:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34DC text17 CODE >50:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34DE text17 CODE >51:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
+34E0 text17 CODE >53:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 327C text16 CODE >167:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 327C text16 CODE >170:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 3286 text16 CODE >171:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
@@ -1067,55 +1067,55 @@ B00 text25 CODE >977:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 2246 text14 CODE >67:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
 2248 text14 CODE >68:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
 224A text14 CODE >70:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3380 text13 CODE >206:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3380 text13 CODE >208:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3382 text13 CODE >209:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3384 text13 CODE >211:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-3398 text13 CODE >213:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-339C text13 CODE >214:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-33A0 text13 CODE >215:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
-34A6 text12 CODE >200:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34A6 text12 CODE >202:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34AA text12 CODE >203:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34AE text12 CODE >204:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34B0 text12 CODE >205:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3462 text11 CODE >138:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3462 text11 CODE >142:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-346A text11 CODE >144:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-346E text11 CODE >145:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3472 text11 CODE >146:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-33DC text10 CODE >83:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-33DC text10 CODE >85:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-33E0 text10 CODE >86:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-33E4 text10 CODE >87:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-33E8 text10 CODE >88:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-33F4 text10 CODE >90:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3450 text9 CODE >98:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3450 text9 CODE >100:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3454 text9 CODE >101:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3458 text9 CODE >102:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-345C text9 CODE >104:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3460 text9 CODE >105:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34D4 text8 CODE >171:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34D4 text8 CODE >174:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34D6 text8 CODE >175:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34D8 text8 CODE >176:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-34DA text8 CODE >177:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-340E text7 CODE >154:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-340E text7 CODE >156:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3412 text7 CODE >157:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3414 text7 CODE >158:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3418 text7 CODE >159:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-341C text7 CODE >160:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3420 text7 CODE >161:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3424 text7 CODE >163:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3426 text6 CODE >55:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3426 text6 CODE >58:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-342A text6 CODE >61:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-342E text6 CODE >64:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3432 text6 CODE >67:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-3436 text6 CODE >70:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
-343A text6 CODE >74:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+337E text13 CODE >206:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+337E text13 CODE >208:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3380 text13 CODE >209:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3382 text13 CODE >211:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+3396 text13 CODE >213:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+339A text13 CODE >214:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+339E text13 CODE >215:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/uart.c
+34A4 text12 CODE >200:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34A4 text12 CODE >202:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34A8 text12 CODE >203:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34AC text12 CODE >204:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34AE text12 CODE >205:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3460 text11 CODE >138:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3460 text11 CODE >142:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3468 text11 CODE >144:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+346C text11 CODE >145:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3470 text11 CODE >146:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+33DA text10 CODE >83:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+33DA text10 CODE >85:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+33DE text10 CODE >86:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+33E2 text10 CODE >87:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+33E6 text10 CODE >88:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+33F2 text10 CODE >90:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+344E text9 CODE >98:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+344E text9 CODE >100:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3452 text9 CODE >101:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3456 text9 CODE >102:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+345A text9 CODE >104:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+345E text9 CODE >105:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34D2 text8 CODE >171:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34D2 text8 CODE >174:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34D4 text8 CODE >175:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34D6 text8 CODE >176:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+34D8 text8 CODE >177:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+340C text7 CODE >154:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+340C text7 CODE >156:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3410 text7 CODE >157:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3412 text7 CODE >158:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3416 text7 CODE >159:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+341A text7 CODE >160:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+341E text7 CODE >161:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3422 text7 CODE >163:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3424 text6 CODE >55:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3424 text6 CODE >58:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3428 text6 CODE >61:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+342C text6 CODE >64:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3430 text6 CODE >67:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3434 text6 CODE >70:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
+3438 text6 CODE >74:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/hardware.c
 2AD0 text5 CODE >71:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
 2AD0 text5 CODE >74:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
 2AD2 text5 CODE >75:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/display_lcd.c
@@ -1221,57 +1221,57 @@ B00 text25 CODE >977:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 3236 text0 CODE >240:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 323A text0 CODE >241:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 323E text0 CODE >231:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2FA2 cinit CODE >4986:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FA2 cinit CODE >4988:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FA2 cinit CODE >4991:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FA2 cinit CODE >5100:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FA4 cinit CODE >5101:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FA6 cinit CODE >5102:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FA8 cinit CODE >5103:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FAA cinit CODE >5104:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FAC cinit CODE >5105:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FAE cinit CODE >5106:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FB2 cinit CODE >5107:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FB6 cinit CODE >5108:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FB6 cinit CODE >5109:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FB8 cinit CODE >5110:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FBC cinit CODE >5111:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FBE cinit CODE >5112:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FC0 cinit CODE >5113:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FC2 cinit CODE >5117:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FC6 cinit CODE >5118:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FCA cinit CODE >5119:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FCA cinit CODE >5120:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FCC cinit CODE >5121:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FCE cinit CODE >5122:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FD0 cinit CODE >5123:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FD2 cinit CODE >5124:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FD4 cinit CODE >5125:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FD6 cinit CODE >5128:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FDA cinit CODE >5129:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FDC cinit CODE >5130:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FDC cinit CODE >5131:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FDE cinit CODE >5132:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FE0 cinit CODE >5133:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FE2 cinit CODE >5136:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FE6 cinit CODE >5137:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FE8 cinit CODE >5138:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FE8 cinit CODE >5139:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FEA cinit CODE >5140:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FEC cinit CODE >5141:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FEE cinit CODE >5144:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FF2 cinit CODE >5145:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FF4 cinit CODE >5146:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FF4 cinit CODE >5147:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FF6 cinit CODE >5148:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FF8 cinit CODE >5149:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FFA cinit CODE >5155:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FFA cinit CODE >5157:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FFC cinit CODE >5158:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-2FFE cinit CODE >5160:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-3000 cinit CODE >5161:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-3002 cinit CODE >5162:C:\Users\Felipe\AppData\Local\Temp\s8h0.
-3004 cinit CODE >5163:C:\Users\Felipe\AppData\Local\Temp\s8h0.
+2FA2 cinit CODE >4986:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FA2 cinit CODE >4988:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FA2 cinit CODE >4991:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FA2 cinit CODE >5100:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FA4 cinit CODE >5101:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FA6 cinit CODE >5102:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FA8 cinit CODE >5103:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FAA cinit CODE >5104:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FAC cinit CODE >5105:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FAE cinit CODE >5106:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FB2 cinit CODE >5107:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FB6 cinit CODE >5108:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FB6 cinit CODE >5109:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FB8 cinit CODE >5110:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FBC cinit CODE >5111:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FBE cinit CODE >5112:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FC0 cinit CODE >5113:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FC2 cinit CODE >5117:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FC6 cinit CODE >5118:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FCA cinit CODE >5119:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FCA cinit CODE >5120:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FCC cinit CODE >5121:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FCE cinit CODE >5122:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FD0 cinit CODE >5123:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FD2 cinit CODE >5124:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FD4 cinit CODE >5125:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FD6 cinit CODE >5128:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FDA cinit CODE >5129:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FDC cinit CODE >5130:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FDC cinit CODE >5131:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FDE cinit CODE >5132:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FE0 cinit CODE >5133:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FE2 cinit CODE >5136:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FE6 cinit CODE >5137:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FE8 cinit CODE >5138:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FE8 cinit CODE >5139:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FEA cinit CODE >5140:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FEC cinit CODE >5141:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FEE cinit CODE >5144:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FF2 cinit CODE >5145:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FF4 cinit CODE >5146:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FF4 cinit CODE >5147:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FF6 cinit CODE >5148:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FF8 cinit CODE >5149:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FFA cinit CODE >5155:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FFA cinit CODE >5157:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FFC cinit CODE >5158:C:\Users\Felipe\AppData\Local\Temp\s120.
+2FFE cinit CODE >5160:C:\Users\Felipe\AppData\Local\Temp\s120.
+3000 cinit CODE >5161:C:\Users\Felipe\AppData\Local\Temp\s120.
+3002 cinit CODE >5162:C:\Users\Felipe\AppData\Local\Temp\s120.
+3004 cinit CODE >5163:C:\Users\Felipe\AppData\Local\Temp\s120.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -1287,7 +1287,7 @@ B00 text25 CODE >977:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 _s 41 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 escreve_inteiro_lcd@F3966 1E1 0 BANK1 1 dataBANK1 dist/default/production\SD_CARDV4.X.production.obj
 __LdataBANK1 0 0 ABS 0 dataBANK1 dist/default/production\SD_CARDV4.X.production.obj
-__Lmediumconst 7E50 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__Lmediumconst 60D0 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 __Hspace_0 30000E 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Hspace_1 42D 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Hspace_2 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1300,10 +1300,10 @@ isr@cont 19 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.producti
 __size_of_controle_shrc 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _escalonador 2A2C 0 CODE 0 text19 dist/default/production\SD_CARDV4.X.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\SD_CARDV4.X.production.obj
-_recebe_dado_uart 3486 0 CODE 0 text63 dist/default/production\SD_CARDV4.X.production.obj
+_recebe_dado_uart 3484 0 CODE 0 text63 dist/default/production\SD_CARDV4.X.production.obj
 follow_path@dir B5 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 follow_path@res B9 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-__mediumconst 7E50 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
+__mediumconst 60D0 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s120.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\SD_CARDV4.X.production.obj
 envia_dados_shrc@contador 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1311,10 +1311,10 @@ _rd 37 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __size_of_escreve_caractere_lcd 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_dir_rewind 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 disk_readp@start_add 6B 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-_write_timer_zero 3462 0 CODE 0 text11 dist/default/production\SD_CARDV4.X.production.obj
+_write_timer_zero 3460 0 CODE 0 text11 dist/default/production\SD_CARDV4.X.production.obj
 __Lsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production\SD_CARDV4.X.production.obj
-_inicializa_shrc 34DC 0 CODE 0 text17 dist/default/production\SD_CARDV4.X.production.obj
-_inicializa_uart 3380 0 CODE 0 text13 dist/default/production\SD_CARDV4.X.production.obj
+_inicializa_shrc 34DA 0 CODE 0 text17 dist/default/production\SD_CARDV4.X.production.obj
+_inicializa_uart 337E 0 CODE 0 text13 dist/default/production\SD_CARDV4.X.production.obj
 _valor_leitura_adc 130 0 BANK1 1 bssBANK1 dist/default/production\SD_CARDV4.X.production.obj
 _BRGH 7D62 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _CREN 7D5C 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1327,22 +1327,22 @@ _SYNC 7D64 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _TMR2 FCC 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _TRMT 7D61 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _TXEN 7D65 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
+___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s120.obj
 _dado 45 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _flag 3B 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _main 31FE 0 CODE 0 text0 dist/default/production\SD_CARDV4.X.production.obj
 btemp 46 0 COMRAM 1 temp dist/default/production\SD_CARDV4.X.production.obj
 ?_leitura_adc 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 WriteSPI_@dado 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-__end_ofcreate_name@cvt 7ED1 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__end_ofcreate_name@cvt 6151 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 __HbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\SD_CARDV4.X.production.obj
-start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
+start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s120.obj
 __size_of___aldiv 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of___lldiv 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-__end_ofmensagem_inicial@F4031 7EF3 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
-__end_ofmensagem_inicial@F4033 7EE2 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__end_ofmensagem_inicial@F4031 6173 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__end_ofmensagem_inicial@F4033 6162 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 _get_fat B04 0 CODE 0 text35 dist/default/production\SD_CARDV4.X.production.obj
 delay@contador_ext 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 delay@contador_int 1B 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1352,7 +1352,7 @@ _leitura_continua_adc 2376 0 CODE 0 text2 dist/default/production\SD_CARDV4.X.pr
 ?_get_clust 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 get_fat@clst 72 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 posicao_cursor_lcd@coluna 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-_acende_led4 3338 0 CODE 0 text21 dist/default/production\SD_CARDV4.X.production.obj
+_acende_led4 3336 0 CODE 0 text21 dist/default/production\SD_CARDV4.X.production.obj
 __LidataBANK1 0 0 ABS 0 idataBANK1 dist/default/production\SD_CARDV4.X.production.obj
 _dir_find 26D2 0 CODE 0 text31 dist/default/production\SD_CARDV4.X.production.obj
 _dir_next 187C 0 CODE 0 text34 dist/default/production\SD_CARDV4.X.production.obj
@@ -1360,7 +1360,7 @@ mem_set@cnt 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.produ
 mem_set@dst 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 mem_set@val 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __end_of_follow_path 26D2 0 CODE 0 text29 dist/default/production\SD_CARDV4.X.production.obj
-__end_of_controle_shrc 34CA 0 CODE 0 text58 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_controle_shrc 34C8 0 CODE 0 text58 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_disk_readp 15C2 0 CODE 0 text44 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_SDCard 1BEA 0 CODE 0 text20 dist/default/production\SD_CARDV4.X.production.obj
 _pf_mount 12 0 CODE 0 text39 dist/default/production\SD_CARDV4.X.production.obj
@@ -1375,24 +1375,24 @@ dummy_clocks@i 21 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.pr
 dummy_clocks@n 20 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _sinaliza_int_timer 3F 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __size_of_WriteSPI_ 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-__end_of_init_oscilador 34DC 0 CODE 0 text8 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_init_oscilador 34DA 0 CODE 0 text8 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_leitura_adc 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _T0CONbits FD5 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-mensagem_inicial@F4031 7EE2 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
-mensagem_inicial@F4033 7ED1 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+mensagem_inicial@F4031 6162 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+mensagem_inicial@F4033 6151 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 __LbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\SD_CARDV4.X.production.obj
 __end_of_dir_find 27D2 0 CODE 0 text31 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_dir_next 1A38 0 CODE 0 text34 dist/default/production\SD_CARDV4.X.production.obj
 posicao_cursor_lcd@endereco 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __end_of_pf_mount 646 0 CODE 0 text39 dist/default/production\SD_CARDV4.X.production.obj
 disk_readp@count 68 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
-intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
-intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
-intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
-intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
+__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s120.obj
+intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s120.obj
+intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s120.obj
+intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s120.obj
+intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s120.obj
 __end_of_pf_write B04 0 CODE 0 text25 dist/default/production\SD_CARDV4.X.production.obj
-_ativa_latch_shrc 343C 0 CODE 0 text60 dist/default/production\SD_CARDV4.X.production.obj
+_ativa_latch_shrc 343A 0 CODE 0 text60 dist/default/production\SD_CARDV4.X.production.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __CFG_USBDIV$1 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 WriteSPI_@TempVar 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1425,9 +1425,9 @@ pf_write@bw 9E 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.product
 pf_write@cs B6 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 pf_write@fs B9 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 pf_write@remain AE 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
-__end_of_recebe_dado_uart 3498 0 CODE 0 text63 dist/default/production\SD_CARDV4.X.production.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s120.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s120.obj
+__end_of_recebe_dado_uart 3496 0 CODE 0 text63 dist/default/production\SD_CARDV4.X.production.obj
 create_name@path 24 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _EECON1bits FA6 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 get_clust@clst 28 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1442,10 +1442,10 @@ _EECON2 FA7 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _EEDATA FA8 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 dir_rewind@clst 71 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\SD_CARDV4.X.production.obj
-__end_of_write_timer_zero 3474 0 CODE 0 text11 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_write_timer_zero 3472 0 CODE 0 text11 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_pf_open 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_pf_read 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-__Hmediumconst 8000 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__Hmediumconst 6280 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 __size_of_init_ports 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_inicializa_shrc 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_inicializa_uart 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1483,7 +1483,7 @@ disk_initialize@i 62 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.p
 ___lldiv@counter 26 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __Lintcodelo E 0 CODE 0 intcodelo dist/default/production\SD_CARDV4.X.production.obj
 __CFG_FCMEN$OFF 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-__end_of_ativa_latch_shrc 3450 0 CODE 0 text60 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_ativa_latch_shrc 344E 0 CODE 0 text60 dist/default/production\SD_CARDV4.X.production.obj
 start_initialization 2FA2 0 CODE 0 cinit dist/default/production\SD_CARDV4.X.production.obj
 __end_of_disk_initialize 187C 0 CODE 0 text40 dist/default/production\SD_CARDV4.X.production.obj
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1497,7 +1497,7 @@ __size_of_mem_cmp 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_mem_set 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 ___lldiv@dividend 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __size_of_ativa_latch_shrc 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-_shrc_seta_bit 33C0 0 CODE 0 text22 dist/default/production\SD_CARDV4.X.production.obj
+_shrc_seta_bit 33BE 0 CODE 0 text22 dist/default/production\SD_CARDV4.X.production.obj
 ___rparam_used 1 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_inicializa_tarefas 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_proceed 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1555,7 +1555,7 @@ __size_of_command 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\SD_CARDV4.X.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production\SD_CARDV4.X.production.obj
 __end_of_disk_writep 211A 0 CODE 0 text26 dist/default/production\SD_CARDV4.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s120.obj
 write_timer_zero@timer 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 mem_cmp@d 23 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 mem_cmp@r 27 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1652,7 +1652,7 @@ pf_open@dj 1C0 0 BANK1 1 cstackBANK1 dist/default/production\SD_CARDV4.X.product
 pf_open@fs 1BE 0 BANK1 1 cstackBANK1 dist/default/production\SD_CARDV4.X.production.obj
 pf_open@sp 191 0 BANK1 1 cstackBANK1 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_envia_dados_shrc 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-__end_of_acende_led4 335C 0 CODE 0 text21 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_acende_led4 335A 0 CODE 0 text21 dist/default/production\SD_CARDV4.X.production.obj
 disk_readp@offset 66 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_get_clust 2966 0 CODE 0 text30 dist/default/production\SD_CARDV4.X.production.obj
 __CFG_PLLDIV$5 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1660,7 +1660,7 @@ __size_of_get_clust 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.o
 __CFG_PBADEN$OFF 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __end_of_mem_cmp 2EC8 0 CODE 0 text32 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_mem_set 330E 0 CODE 0 text38 dist/default/production\SD_CARDV4.X.production.obj
-__end_of_recebe_dado_SPI 3338 0 CODE 0 text46 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_recebe_dado_SPI 3336 0 CODE 0 text46 dist/default/production\SD_CARDV4.X.production.obj
 i2write_timer_zero@timer0 1 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production\SD_CARDV4.X.production.obj
 _escreve_frase_ram_lcd 311E 0 CODE 0 text50 dist/default/production\SD_CARDV4.X.production.obj
@@ -1677,7 +1677,7 @@ escreve_frase_ram_lcd@buffer 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\
 __size_of_shrc_seta_bit 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_readover 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _folder 100 0 BANK1 1 bssBANK1 dist/default/production\SD_CARDV4.X.production.obj
-__end_of_proceed 34BE 0 CODE 0 text47 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_proceed 34BC 0 CODE 0 text47 dist/default/production\SD_CARDV4.X.production.obj
 pf_mount@bsect C0 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_isr 25BC 0 CODE 0 intcode_body dist/default/production\SD_CARDV4.X.production.obj
 pf_mount@fsize C4 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
@@ -1693,7 +1693,7 @@ shrc_apaga_bit@posicao_bit 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD
 __size_of_init_oscilador 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Lintentry 0 0 ABS 0 intentry dist/default/production\SD_CARDV4.X.production.obj
 ___lldiv@divisor 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-_shrc_apaga_bit 33A2 0 CODE 0 text23 dist/default/production\SD_CARDV4.X.production.obj
+_shrc_apaga_bit 33A0 0 CODE 0 text23 dist/default/production\SD_CARDV4.X.production.obj
 _get_clust 289E 0 CODE 0 text30 dist/default/production\SD_CARDV4.X.production.obj
 __Hramtop 800 0 RAM 0 ramtop dist/default/production\SD_CARDV4.X.production.obj
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production\SD_CARDV4.X.production.obj
@@ -1768,7 +1768,7 @@ __end_of_escreve_caractere_lcd 2E58 0 CODE 0 text51 dist/default/production\SD_C
 __end_of_create_name 1FDA 0 CODE 0 text37 dist/default/production\SD_CARDV4.X.production.obj
 pf_read@btr 9C 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 _RCSTAbits FAB 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-_init_hardware 3426 0 CODE 0 text6 dist/default/production\SD_CARDV4.X.production.obj
+_init_hardware 3424 0 CODE 0 text6 dist/default/production\SD_CARDV4.X.production.obj
 _PIE1bits F9D 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __end_of_dummy_clocks 32E2 0 CODE 0 text53 dist/default/production\SD_CARDV4.X.production.obj
 readover@a 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1779,21 +1779,21 @@ create_name@ni 63 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.prod
 create_name@si 64 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_command 30C8 0 CODE 0 text54 dist/default/production\SD_CARDV4.X.production.obj
 _dir_rewind 224C 0 CODE 0 text33 dist/default/production\SD_CARDV4.X.production.obj
-__ptext10 33DC 0 CODE 0 text10 dist/default/production\SD_CARDV4.X.production.obj
-__ptext11 3462 0 CODE 0 text11 dist/default/production\SD_CARDV4.X.production.obj
-__ptext12 34A6 0 CODE 0 text12 dist/default/production\SD_CARDV4.X.production.obj
-__ptext13 3380 0 CODE 0 text13 dist/default/production\SD_CARDV4.X.production.obj
+__ptext10 33DA 0 CODE 0 text10 dist/default/production\SD_CARDV4.X.production.obj
+__ptext11 3460 0 CODE 0 text11 dist/default/production\SD_CARDV4.X.production.obj
+__ptext12 34A4 0 CODE 0 text12 dist/default/production\SD_CARDV4.X.production.obj
+__ptext13 337E 0 CODE 0 text13 dist/default/production\SD_CARDV4.X.production.obj
 __ptext14 211A 0 CODE 0 text14 dist/default/production\SD_CARDV4.X.production.obj
 __ptext15 27D2 0 CODE 0 text15 dist/default/production\SD_CARDV4.X.production.obj
 __ptext16 327C 0 CODE 0 text16 dist/default/production\SD_CARDV4.X.production.obj
-__ptext17 34DC 0 CODE 0 text17 dist/default/production\SD_CARDV4.X.production.obj
+__ptext17 34DA 0 CODE 0 text17 dist/default/production\SD_CARDV4.X.production.obj
 __ptext18 2C7C 0 CODE 0 text18 dist/default/production\SD_CARDV4.X.production.obj
 __ptext19 2A2C 0 CODE 0 text19 dist/default/production\SD_CARDV4.X.production.obj
 __ptext20 1A38 0 CODE 0 text20 dist/default/production\SD_CARDV4.X.production.obj
-__ptext21 3338 0 CODE 0 text21 dist/default/production\SD_CARDV4.X.production.obj
-__ptext22 33C0 0 CODE 0 text22 dist/default/production\SD_CARDV4.X.production.obj
-__ptext23 33A2 0 CODE 0 text23 dist/default/production\SD_CARDV4.X.production.obj
-__ptext24 34CA 0 CODE 0 text24 dist/default/production\SD_CARDV4.X.production.obj
+__ptext21 3336 0 CODE 0 text21 dist/default/production\SD_CARDV4.X.production.obj
+__ptext22 33BE 0 CODE 0 text22 dist/default/production\SD_CARDV4.X.production.obj
+__ptext23 33A0 0 CODE 0 text23 dist/default/production\SD_CARDV4.X.production.obj
+__ptext24 34C8 0 CODE 0 text24 dist/default/production\SD_CARDV4.X.production.obj
 __ptext25 646 0 CODE 0 text25 dist/default/production\SD_CARDV4.X.production.obj
 __ptext26 1FDA 0 CODE 0 text26 dist/default/production\SD_CARDV4.X.production.obj
 __ptext27 EE8 0 CODE 0 text27 dist/default/production\SD_CARDV4.X.production.obj
@@ -1814,24 +1814,24 @@ __ptext41 2D72 0 CODE 0 text41 dist/default/production\SD_CARDV4.X.production.ob
 __ptext42 2B6E 0 CODE 0 text42 dist/default/production\SD_CARDV4.X.production.obj
 __ptext43 1BEA 0 CODE 0 text43 dist/default/production\SD_CARDV4.X.production.obj
 __ptext44 1278 0 CODE 0 text44 dist/default/production\SD_CARDV4.X.production.obj
-__ptext45 3498 0 CODE 0 text45 dist/default/production\SD_CARDV4.X.production.obj
+__ptext45 3496 0 CODE 0 text45 dist/default/production\SD_CARDV4.X.production.obj
 __ptext46 330E 0 CODE 0 text46 dist/default/production\SD_CARDV4.X.production.obj
-__ptext47 34B2 0 CODE 0 text47 dist/default/production\SD_CARDV4.X.production.obj
+__ptext47 34B0 0 CODE 0 text47 dist/default/production\SD_CARDV4.X.production.obj
 __ptext48 2EC8 0 CODE 0 text48 dist/default/production\SD_CARDV4.X.production.obj
 __ptext49 2F38 0 CODE 0 text49 dist/default/production\SD_CARDV4.X.production.obj
 __ptext50 311E 0 CODE 0 text50 dist/default/production\SD_CARDV4.X.production.obj
 __ptext51 2DE6 0 CODE 0 text51 dist/default/production\SD_CARDV4.X.production.obj
-__ptext52 335C 0 CODE 0 text52 dist/default/production\SD_CARDV4.X.production.obj
+__ptext52 335A 0 CODE 0 text52 dist/default/production\SD_CARDV4.X.production.obj
 __ptext53 32B4 0 CODE 0 text53 dist/default/production\SD_CARDV4.X.production.obj
 __ptext54 306C 0 CODE 0 text54 dist/default/production\SD_CARDV4.X.production.obj
 __ptext55 3170 0 CODE 0 text55 dist/default/production\SD_CARDV4.X.production.obj
 __ptext56 30C8 0 CODE 0 text56 dist/default/production\SD_CARDV4.X.production.obj
 __ptext57 2BFA 0 CODE 0 text57 dist/default/production\SD_CARDV4.X.production.obj
-__ptext58 34BE 0 CODE 0 text58 dist/default/production\SD_CARDV4.X.production.obj
+__ptext58 34BC 0 CODE 0 text58 dist/default/production\SD_CARDV4.X.production.obj
 __ptext59 31BA 0 CODE 0 text59 dist/default/production\SD_CARDV4.X.production.obj
-__ptext60 343C 0 CODE 0 text60 dist/default/production\SD_CARDV4.X.production.obj
-__ptext62 3474 0 CODE 0 text62 dist/default/production\SD_CARDV4.X.production.obj
-__ptext63 3486 0 CODE 0 text63 dist/default/production\SD_CARDV4.X.production.obj
+__ptext60 343A 0 CODE 0 text60 dist/default/production\SD_CARDV4.X.production.obj
+__ptext62 3472 0 CODE 0 text62 dist/default/production\SD_CARDV4.X.production.obj
+__ptext63 3484 0 CODE 0 text63 dist/default/production\SD_CARDV4.X.production.obj
 __ptext64 0 0 CODE 0 text64 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_leitura_continua_adc 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 ___aldiv 27D2 0 CODE 0 text15 dist/default/production\SD_CARDV4.X.production.obj
@@ -1839,7 +1839,7 @@ pf_write@buff 9A 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.produ
 pf_write@clst B2 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 _get_fat$1632 8C 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 pf_write@sect AA 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-__end_of_shrc_seta_bit 33DC 0 CODE 0 text22 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_shrc_seta_bit 33DA 0 CODE 0 text22 dist/default/production\SD_CARDV4.X.production.obj
 pf_write@wcnt B7 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __pintcode_body 249E 0 CODE 0 intcode_body dist/default/production\SD_CARDV4.X.production.obj
 ___lldiv 2BFA 0 CODE 0 text57 dist/default/production\SD_CARDV4.X.production.obj
@@ -1869,12 +1869,12 @@ __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\SD_CARDV4.X.production.obj
 pf_open@path BA 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_leitura_continua_adc 249E 0 CODE 0 text2 dist/default/production\SD_CARDV4.X.production.obj
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\SD_CARDV4.X.production.obj
-_readover 34CA 0 CODE 0 text24 dist/default/production\SD_CARDV4.X.production.obj
+_readover 34C8 0 CODE 0 text24 dist/default/production\SD_CARDV4.X.production.obj
 disk_readp@buff 6F 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-__end_of_shrc_apaga_bit 33C0 0 CODE 0 text23 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_shrc_apaga_bit 33BE 0 CODE 0 text23 dist/default/production\SD_CARDV4.X.production.obj
 escreve_cmd_lcd@comando 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
-stacklo 42D 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
+stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s120.obj
+stacklo 42D 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s120.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production\SD_CARDV4.X.production.obj
 __size_of_endereco_cursor_lcd 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Lintret 0 0 ABS 0 intret dist/default/production\SD_CARDV4.X.production.obj
@@ -1883,7 +1883,7 @@ _ADCON0bits FC2 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _ADCON1bits FC1 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _ADCON2bits FC0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_disk_writep 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-__end_of_readover 34D4 0 CODE 0 text24 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_readover 34D2 0 CODE 0 text24 dist/default/production\SD_CARDV4.X.production.obj
 __CFG_LVP$OFF 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __pbssBIGRAM 22D 0 BIGRAM 1 bssBIGRAM dist/default/production\SD_CARDV4.X.production.obj
 __size_of_escalonador 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1906,13 +1906,13 @@ inicializa_SPI@bus_mode 20 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CA
 __CFG_CPUDIV$OSC1_PLL2 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _data_uart_recebe 40 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 end_of_initialization 2FFA 0 CODE 0 cinit dist/default/production\SD_CARDV4.X.production.obj
-_init_interrupt 3450 0 CODE 0 text9 dist/default/production\SD_CARDV4.X.production.obj
+_init_interrupt 344E 0 CODE 0 text9 dist/default/production\SD_CARDV4.X.production.obj
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production\SD_CARDV4.X.production.obj
 __Hintentry 0 0 ABS 0 intentry dist/default/production\SD_CARDV4.X.production.obj
 __CFG_STVREN$ON 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __end_of_dir_rewind 2376 0 CODE 0 text33 dist/default/production\SD_CARDV4.X.production.obj
 _clust2sect 2966 0 CODE 0 text36 dist/default/production\SD_CARDV4.X.production.obj
-__end_ofi2_write_timer_zero 3486 0 CODE 0 text62 dist/default/production\SD_CARDV4.X.production.obj
+__end_ofi2_write_timer_zero 3484 0 CODE 0 text62 dist/default/production\SD_CARDV4.X.production.obj
 ?___aldiv 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _timeout_tarefa 35 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 ?___lldiv 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1920,9 +1920,9 @@ __Hreset_vec 4 0 CODE 0 reset_vec dist/default/production\SD_CARDV4.X.production
 _check_fs 1BEA 0 CODE 0 text43 dist/default/production\SD_CARDV4.X.production.obj
 __HbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __HbssBANK1 0 0 ABS 0 bssBANK1 dist/default/production\SD_CARDV4.X.production.obj
-__end_of_config_timer_dois 34B2 0 CODE 0 text12 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_config_timer_dois 34B0 0 CODE 0 text12 dist/default/production\SD_CARDV4.X.production.obj
 __Lramtop 800 0 RAM 0 ramtop dist/default/production\SD_CARDV4.X.production.obj
-__end_of_config_timer_zero 33F6 0 CODE 0 text10 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_config_timer_zero 33F4 0 CODE 0 text10 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_acende_led4 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production\SD_CARDV4.X.production.obj
 __pcinit 2FA2 0 CODE 0 cinit dist/default/production\SD_CARDV4.X.production.obj
@@ -1933,10 +1933,10 @@ __ptext2 2376 0 CODE 0 text2 dist/default/production\SD_CARDV4.X.production.obj
 __ptext3 3008 0 CODE 0 text3 dist/default/production\SD_CARDV4.X.production.obj
 __ptext4 3240 0 CODE 0 text4 dist/default/production\SD_CARDV4.X.production.obj
 __ptext5 2AD0 0 CODE 0 text5 dist/default/production\SD_CARDV4.X.production.obj
-__ptext6 3426 0 CODE 0 text6 dist/default/production\SD_CARDV4.X.production.obj
-__ptext7 340E 0 CODE 0 text7 dist/default/production\SD_CARDV4.X.production.obj
-__ptext8 34D4 0 CODE 0 text8 dist/default/production\SD_CARDV4.X.production.obj
-__ptext9 3450 0 CODE 0 text9 dist/default/production\SD_CARDV4.X.production.obj
+__ptext6 3424 0 CODE 0 text6 dist/default/production\SD_CARDV4.X.production.obj
+__ptext7 340C 0 CODE 0 text7 dist/default/production\SD_CARDV4.X.production.obj
+__ptext8 34D2 0 CODE 0 text8 dist/default/production\SD_CARDV4.X.production.obj
+__ptext9 344E 0 CODE 0 text9 dist/default/production\SD_CARDV4.X.production.obj
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\SD_CARDV4.X.production.obj
 __Ltext10 0 0 ABS 0 text10 dist/default/production\SD_CARDV4.X.production.obj
 __Ltext11 0 0 ABS 0 text11 dist/default/production\SD_CARDV4.X.production.obj
@@ -1994,7 +1994,7 @@ __Ltext63 0 0 ABS 0 text63 dist/default/production\SD_CARDV4.X.production.obj
 __Ltext64 0 0 ABS 0 text64 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_leitura_chaves_sistema 327C 0 CODE 0 text4 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_check_fs 1D46 0 CODE 0 text43 dist/default/production\SD_CARDV4.X.production.obj
-__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s8h0.obj
+__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s120.obj
 ___aldiv@dividend 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _pf_open 1D46 0 CODE 0 text28 dist/default/production\SD_CARDV4.X.production.obj
 _pf_read EE8 0 CODE 0 text27 dist/default/production\SD_CARDV4.X.production.obj
@@ -2002,7 +2002,7 @@ _endereco_cursor_lcd 2F38 0 CODE 0 text49 dist/default/production\SD_CARDV4.X.pr
 inicializa_SPI@sync_mode 22 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __size_of_init_hardware 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Lpowerup E 0 CODE 0 powerup dist/default/production\SD_CARDV4.X.production.obj
-_init_ports 340E 0 CODE 0 text7 dist/default/production\SD_CARDV4.X.production.obj
+_init_ports 340C 0 CODE 0 text7 dist/default/production\SD_CARDV4.X.production.obj
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\SD_CARDV4.X.production.obj
 __size_of_posicao_cursor_lcd 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 dir_next@clst A5 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
@@ -2011,10 +2011,10 @@ _data_buffer_32 171 0 BANK1 1 bssBANK1 dist/default/production\SD_CARDV4.X.produ
 disk_readp@rd 60 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 posicao_cursor_lcd@linha 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __size_of_recebe_dado_SPI 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-_controle_shrc 34BE 0 CODE 0 text58 dist/default/production\SD_CARDV4.X.production.obj
+_controle_shrc 34BC 0 CODE 0 text58 dist/default/production\SD_CARDV4.X.production.obj
 __CFG_FOSC$HS 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-i2_write_timer_zero 3474 0 CODE 0 text62 dist/default/production\SD_CARDV4.X.production.obj
-_response 3498 0 CODE 0 text45 dist/default/production\SD_CARDV4.X.production.obj
+i2_write_timer_zero 3472 0 CODE 0 text62 dist/default/production\SD_CARDV4.X.production.obj
+_response 3496 0 CODE 0 text45 dist/default/production\SD_CARDV4.X.production.obj
 ___param_bank 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __CFG_WDT$OFF 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 leitura_continua_adc@cont_int 27 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -2024,16 +2024,16 @@ _INTCON2 FF1 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _INTCON3 FF0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __end_of_leitura_adc 306C 0 CODE 0 text3 dist/default/production\SD_CARDV4.X.production.obj
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production\SD_CARDV4.X.production.obj
-__end_of_init_interrupt 3462 0 CODE 0 text9 dist/default/production\SD_CARDV4.X.production.obj
-__pidataBANK1 33F6 0 CODE 0 idataBANK1 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_init_interrupt 3460 0 CODE 0 text9 dist/default/production\SD_CARDV4.X.production.obj
+__pidataBANK1 33F4 0 CODE 0 idataBANK1 dist/default/production\SD_CARDV4.X.production.obj
 disk_initialize@buff 69 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 disk_initialize@stat 66 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_create_name 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-__end_of_response 34A6 0 CODE 0 text45 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_response 34A4 0 CODE 0 text45 dist/default/production\SD_CARDV4.X.production.obj
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production\SD_CARDV4.X.production.obj
 _tarefa_em_execucao 3E 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 ___lmul@product 22 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-__end_of_init_hardware 343C 0 CODE 0 text6 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_init_hardware 343A 0 CODE 0 text6 dist/default/production\SD_CARDV4.X.production.obj
 _configura_baudrate_uart 211A 0 CODE 0 text14 dist/default/production\SD_CARDV4.X.production.obj
 SDCard@FResult 200 0 BANK2 1 cstackBANK2 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_clust2sect 2A2C 0 CODE 0 text36 dist/default/production\SD_CARDV4.X.production.obj
@@ -2046,17 +2046,17 @@ _mem_cmp 2E58 0 CODE 0 text32 dist/default/production\SD_CARDV4.X.production.obj
 _mem_set 32E2 0 CODE 0 text38 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_configura_baudrate_uart 224C 0 CODE 0 text14 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_escreve_cmd_lcd 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-__pmediumconst 7E50 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__pmediumconst 60D0 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 _fileName 1D0 0 BANK1 1 dataBANK1 dist/default/production\SD_CARDV4.X.production.obj
 _fileSize 31 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _SSPCON1 FC6 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _SSPSTAT FC7 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _dir_rewind$1692 6B 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-__end_ofleitura_chave@F3838 7F26 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
-__end_ofleitura_chave@F3840 7F15 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
-__end_ofleitura_chave@F3842 7F04 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__end_ofleitura_chave@F3838 61A6 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__end_ofleitura_chave@F3840 6195 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+__end_ofleitura_chave@F3842 6184 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 ___aldiv@counter 22 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-_proceed 34B2 0 CODE 0 text47 dist/default/production\SD_CARDV4.X.production.obj
+_proceed 34B0 0 CODE 0 text47 dist/default/production\SD_CARDV4.X.production.obj
 escreve_inteiro_uart@F3956 1DA 0 BANK1 1 dataBANK1 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_main 3240 0 CODE 0 text0 dist/default/production\SD_CARDV4.X.production.obj
 __pintcode 8 0 CODE 0 intcode dist/default/production\SD_CARDV4.X.production.obj
@@ -2064,7 +2064,7 @@ __end_of_inicializa_tarefas 32B4 0 CODE 0 text16 dist/default/production\SD_CARD
 pf_write@p A8 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 _EEADR FA9 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _FatFs 39 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-__end_of_delay 3380 0 CODE 0 text52 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_delay 337E 0 CODE 0 text52 dist/default/production\SD_CARDV4.X.production.obj
 _RCREG FAE 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _RCSTA FAB 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _SPBRG FAF 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -2088,7 +2088,7 @@ __LRAM 1 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Lbss 0 0 RAM 1 bss dist/default/production\SD_CARDV4.X.production.obj
 __Lram 0 0 ABS 0 ram dist/default/production\SD_CARDV4.X.production.obj
 __Lsfr 0 0 ABS 0 sfr dist/default/production\SD_CARDV4.X.production.obj
-_delay 335C 0 CODE 0 text52 dist/default/production\SD_CARDV4.X.production.obj
+_delay 335A 0 CODE 0 text52 dist/default/production\SD_CARDV4.X.production.obj
 mensagem_inicial@msg_linha_um 60 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 endereco_cursor_lcd@endereco 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _reset 2D72 0 CODE 0 text41 dist/default/production\SD_CARDV4.X.production.obj
@@ -2096,17 +2096,17 @@ follow_path@path B7 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.pr
 dir_find@dir AD 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 dir_find@res B2 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 reset@count 2A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-__end_of_init_ports 3426 0 CODE 0 text7 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_init_ports 3424 0 CODE 0 text7 dist/default/production\SD_CARDV4.X.production.obj
 _SSPSTATbits FC7 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-__end_of_inicializa_shrc 34E4 0 CODE 0 text17 dist/default/production\SD_CARDV4.X.production.obj
-__end_of_inicializa_uart 33A2 0 CODE 0 text13 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_inicializa_shrc 34E2 0 CODE 0 text17 dist/default/production\SD_CARDV4.X.production.obj
+__end_of_inicializa_uart 33A0 0 CODE 0 text13 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_isr 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __HdataBANK1 0 0 ABS 0 dataBANK1 dist/default/production\SD_CARDV4.X.production.obj
 __size_of_escreve_frase_ram_lcd 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-create_name@cvt 7E51 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+create_name@cvt 60D1 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 create_name@sfn 65 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-_config_timer_dois 34A6 0 CODE 0 text12 dist/default/production\SD_CARDV4.X.production.obj
-_config_timer_zero 33DC 0 CODE 0 text10 dist/default/production\SD_CARDV4.X.production.obj
+_config_timer_dois 34A4 0 CODE 0 text12 dist/default/production\SD_CARDV4.X.production.obj
+_config_timer_zero 33DA 0 CODE 0 text10 dist/default/production\SD_CARDV4.X.production.obj
 write_timer_zero@timer0 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 escreve_caractere_lcd@data 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __initialization 2FA2 0 CODE 0 cinit dist/default/production\SD_CARDV4.X.production.obj
@@ -2124,9 +2124,9 @@ __size_of_dir_next 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.ob
 __size_of_inicializa_SPI 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Lifardata 0 0 CODE 0 ifardata dist/default/production\SD_CARDV4.X.production.obj
 __size_of_pf_mount 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-leitura_chave@F3838 7F15 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
-leitura_chave@F3840 7F04 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
-leitura_chave@F3842 7EF3 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+leitura_chave@F3838 6195 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+leitura_chave@F3840 6184 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
+leitura_chave@F3842 6173 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 __size_of_pf_write 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\SD_CARDV4.X.production.obj
 __end_of_endereco_cursor_lcd 2FA2 0 CODE 0 text49 dist/default/production\SD_CARDV4.X.production.obj
@@ -2135,7 +2135,7 @@ clust2sect@fs 2A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.pro
 disk_writep@sc 29 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 disk_writep@wr 26 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _inicializa_tarefas 327C 0 CODE 0 text16 dist/default/production\SD_CARDV4.X.production.obj
-_init_oscilador 34D4 0 CODE 0 text8 dist/default/production\SD_CARDV4.X.production.obj
+_init_oscilador 34D2 0 CODE 0 text8 dist/default/production\SD_CARDV4.X.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -2166,7 +2166,7 @@ cstackBANK0 1 60 60 7D 1
 cstackBANK2 1 200 200 2D 1
 reset_vec 0 0 0 4 1
 bssBANK1 1 100 100 E8 1
-intcode 0 8 8 34DC 1
+intcode 0 8 8 34DA 1
 bssBIGRAM 1 22D 22D 200 1
-mediumconst 0 7E50 7E50 1B0 1
+mediumconst 0 60D0 60D0 1B0 1
 config 0 300000 300000 E 1
