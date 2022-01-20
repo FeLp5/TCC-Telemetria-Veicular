@@ -52,7 +52,7 @@
 #ifndef __DISPLAYLCD_H
 #define __DISPLAYLCD_H
 
-#include "..\hardware.h"
+#include "hardware.h"
 /** I N C L U D E S **********************************************************/
 
 /** D E F I N E S ************************************************************/

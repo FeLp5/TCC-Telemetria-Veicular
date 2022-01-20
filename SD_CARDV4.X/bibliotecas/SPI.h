@@ -36,12 +36,16 @@
 #define modo_dois 2
 #define modo_tres 3
 
-#define chip_select LATBbits.LATB4
+#define TRIS_CS     TRISBbits.RB4
+#define TRIS_SCK    TRISBbits.RB1
+#define TRIS_SDI    TRISBbits.RB0
+#define TRIS_SDO    TRISCbits.RC7
+
 
 /******************************************************************************
 * Prototipos das funções
 ******************************************************************************/
-void inicializa_SPI(unsigned char SPI_mode);
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
 unsigned char recebe_dado_SPI(void);
 

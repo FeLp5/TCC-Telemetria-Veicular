@@ -5017,6 +5017,15 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
+# 34 "bibliotecas/adc.h"
+void inicializa_adc(void);
+
+unsigned int leitura_adc(unsigned char canal);
+
+void leitura_continua_adc(void);
+
+unsigned int valor_medio_adc(unsigned char canal);
+
 # 48 "bibliotecas/SPI.h"
 void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
@@ -5026,7 +5035,7 @@ char WriteSPI_(unsigned char dado);
 
 unsigned char verifica_buffer_SPI(void);
 
-# 106 "bibliotecas/SDCard.h"
+# 89 "bibliotecas/SDCard.h"
 void init_SDcard();
 void envia_CMD16(void);
 unsigned char envia_CMD8(void);
@@ -5039,10 +5048,9 @@ void proceed(void);
 void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 
-# 45 "main.c"
+# 55 "main.c"
 unsigned char *rd;
 unsigned char Result;
-
 BYTE s;
 DWORD fileSize;
 BYTE txt[20];
@@ -5050,13 +5058,10 @@ BYTE data_buffer_32[32];
 
 
 
-extern void readover(int);
-
-# 63
 BYTE fileName[10] = {"check.txt"};
 BYTE folder[48] = {""};
 
-# 74
+
 unsigned char data_uart_recebe;
 
 
@@ -5074,17 +5079,18 @@ unsigned char sinaliza_int_timer;
 
 volatile char tarefa_em_execucao;
 
+
 unsigned int timeout_tarefa;
 
-# 99
+# 94
 void mensagem_inicial(void);
 void SDCard(void);
-
-
-
 void acende_led4(void);
 
-# 120
+# 104
+extern void readover(int);
+
+# 112
 void interrupt isr(void)
 {
 unsigned char cont;
@@ -5126,7 +5132,6 @@ write_timer_zero(0x0083);
 
 }
 
-# 165
 if (INT0IF && INT0IE)
 {
 INT0IF = 0;
@@ -5134,28 +5139,26 @@ INT0IF = 0;
 }
 }
 
-# 181
+# 169
 void inicializa_tarefas(void)
 {
 
 p_tarefas[0] = acende_led4;
 p_tarefas[1] = SDCard;
 
-# 191
+# 177
 tempo_backup[0] = 1000;
 tempo_backup[1] = 2000;
 
-# 198
+# 182
 tempo_tarefa[0] = 1000;
 tempo_tarefa[1] = 2000;
-
-
 
 
 tarefa_em_execucao = 0;
 }
 
-# 218
+# 197
 void escalonador()
 {
 unsigned char cont;
@@ -5173,11 +5176,9 @@ tempo_tarefa[cont] = tempo_backup[cont];
 
 }
 
-# 242
+# 221
 void main(void)
 {
-
-# 251
 init_hardware();
 inicializa_uart();
 init_lcd();
@@ -5187,6 +5188,7 @@ mensagem_inicial();
 inicializa_tarefas();
 inicializa_SPI(0,3,1);
 
+
 while(1)
 {
 
@@ -5195,14 +5197,14 @@ if ((sinaliza_int_timer == 1) && (2))
 sinaliza_int_timer = 0;
 escalonador();
 }
-
+leitura_chaves_sistema();
 controle_shrc();
-
+leitura_continua_adc();
 
 }
 }
 
-# 282
+# 255
 void mensagem_inicial(void)
 {
 const unsigned char msg_linha_um[17] = "SDCard Init   ";
@@ -5221,25 +5223,24 @@ escreve_cmd_lcd(0b00000001);
 
 void SDCard(void)
 {
+T0CONbits.TMR0ON = 0;
 FRESULT FResult;
 FATFS fs;
 WORD br;
 
-# 324
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("Attempting to");
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("             ");
-posicao_cursor_lcd(1,0);
+posicao_cursor_lcd(2,0);
 escreve_frase_ram_lcd("mount file sys");
-
 escreve_cmd_lcd(0b00000001);
+
 
 proceed();
 if((FResult = pf_mount(&fs)) == FR_OK )
 {
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("syst inicialized");
+
 
 FResult = pf_open("check.txt" );
 
@@ -5256,15 +5257,15 @@ else
 escreve_cmd_lcd(0b00000001);
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("SDCard error");
-
-
 while( 1 );
 }
 escreve_cmd_lcd(0b00000001);
+
+
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("lendo arquivo");
 
-# 368
+
 do
 {
 readover(1);
@@ -5280,17 +5281,23 @@ break;
 else
 {
 
-# 388
+escreve_cmd_lcd(0b00000001);
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Erro tentando");
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("ler o arquivo");
+
 while( 1 );
 }
 } while( br == 31 );
 }
 else
 {
-
-
-
-
+escreve_cmd_lcd(0b00000001);
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Erro tentando");
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("abrir o arquivo");
 while( 1 );
 }
 }
@@ -5300,7 +5307,7 @@ else
 while( 1 );
 }
 
-# 423
+# 373
 if( FResult != FR_OK )
 {
 

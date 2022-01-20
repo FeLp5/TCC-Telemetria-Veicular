@@ -19,7 +19,7 @@
 ******************************************************************************/
 
 #include "hardware.h"
-#include "display/display_lcd.h"
+#include "display_lcd.h"
 #include "SPI.h"
 #include "SHRC.h"
 /*****************************************************************************/
@@ -86,23 +86,6 @@ void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned ch
          break;
     }
 
-    
-//    //SSPCON;;
-//    SSPCON1bits.WCOL  = 0;              //Define que n�o haver� colis�o
-//    SSPCON1bits.SSPOV = 0;             
-//
-//    
-//    
-//    SSPCON1bits.SSPM0 = 1;              //Configura para usar o Timer 2
-//    SSPCON1bits.SSPM1 = 1;
-//    SSPCON1bits.SSPM2 = 0;
-//    SSPCON1bits.SSPM3 = 0;
-     
-//    
-//    //STATUS
-//    SSPSTATbits.SMP = 0;             //define o momento de amostragem, se ocorre no meio ou no final, nesse caso no final
-//    
-//    
     TRIS_SDI = 1;               // define SDI input
     TRIS_SDO = 0;               //SD0 as outpu
     
@@ -126,10 +109,8 @@ unsigned char recebe_dado_SPI(void)
     PIR1bits.SSPIF = 0;
     unsigned char temp_var;
     temp_var = SSPBUF;
-
-//    SSPSTATbits.BF = 0;
     SSPBUF = 0x00;
-//    while(!SSPSTATbits.BF);
+    __delay_ms(500);
     while(!PIR1bits.SSPIF);
     return (SSPBUF);
 }
@@ -144,11 +125,12 @@ unsigned char recebe_dado_SPI(void)
 char WriteSPI_(unsigned char dado)
 {
     unsigned char TempVar;
-    
     TempVar = SSPBUF; //Clear de BF
-//    PIR1bits.SSPIF = 0; // Clear interrupt flag
+    PIR1bits.SSPIF = 0; // Clear interrupt flag
     SSPCON1bits.WCOL = 0;
     SSPSTATbits.BF = 0;
+    SSPBUF = 0x00;
+    __delay_ms(50);
     SSPBUF = dado;
     if (SSPCON1 & 0x80 )        // test if write collision occurred;
     {
@@ -156,16 +138,8 @@ char WriteSPI_(unsigned char dado)
     }
     else
     {
-         while( !SSPSTATbits.BF ){  // wait until bus cycle complete 
-//        while(!PIR1bits.SSPIF){
-           
-            shrc_seta_bit(2);   
-            controle_shrc();
-            __delay_ms(1000);
-//            PIR1bits.SSPIF = 1;
-        }
-        shrc_seta_bit(0);;
-        controle_shrc();
+        while(!PIR1bits.SSPIF);
+        __delay_ms(1000);
         // wait until bus cycle complete
         return (0);                // if WCOL bit is not set return non-negative#
     }

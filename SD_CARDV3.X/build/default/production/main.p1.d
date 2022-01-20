@@ -2,6 +2,7 @@
  build/default/production/main.p1:  \
  main.c  \
 diskio.h  \
+bibliotecas/adc.h  \
 pffconf.h  \
 bibliotecas/uart.h  \
 bibliotecas/../pffconf.h  \

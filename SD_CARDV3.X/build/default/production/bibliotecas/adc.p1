@@ -1,4 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"26 bibliotecas/adc.c
+[s S362 `uc 1 `ui -> 8 `i `ui 1 ]
+[n S362 . canal leituras media ]
 "6579 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
 "6585
@@ -3581,144 +3584,235 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.h: 46: typedef unsigned int uint16_t;
 [; ;adc.h: 34: void inicializa_adc(void);
 [; ;adc.h: 36: unsigned int leitura_adc(unsigned char canal);
-"40 bibliotecas/adc.c
+[; ;adc.h: 38: void leitura_continua_adc(void);
+[; ;adc.h: 40: unsigned int valor_medio_adc(unsigned char canal);
+[; ;adc.c: 25: typedef struct
+[; ;adc.c: 26: {
+[; ;adc.c: 27: unsigned char canal;
+[; ;adc.c: 28: unsigned int leituras[8];
+[; ;adc.c: 29: unsigned int media;
+[; ;adc.c: 30: }canal_ad;
+"32 bibliotecas/adc.c
+[v _valor_leitura_adc `S362 ~T0 @X0 -> 2 `i e ]
+[; ;adc.c: 32: canal_ad valor_leitura_adc[2];
+"47
 [v _inicializa_adc `(v ~T0 @X0 1 ef ]
-"41
+"48
 {
-[; ;adc.c: 40: void inicializa_adc(void)
-[; ;adc.c: 41: {
+[; ;adc.c: 47: void inicializa_adc(void)
+[; ;adc.c: 48: {
 [e :U _inicializa_adc ]
 [f ]
-[; ;adc.c: 43: ADCON1=0x0B;
-"43
-[e = _ADCON1 -> -> 11 `i `uc ]
-[; ;adc.c: 44: ADCON1bits.VCFG0 = 0;
-"44
-[e = . . _ADCON1bits 1 4 -> -> 0 `i `uc ]
-[; ;adc.c: 45: ADCON1bits.VCFG1 = 0;
-"45
-[e = . . _ADCON1bits 1 5 -> -> 0 `i `uc ]
-[; ;adc.c: 47: ADCON1bits.PCFG0 = 1;
-"47
-[e = . . _ADCON1bits 1 0 -> -> 1 `i `uc ]
-[; ;adc.c: 48: ADCON1bits.PCFG1 = 0;
-"48
-[e = . . _ADCON1bits 1 1 -> -> 0 `i `uc ]
-[; ;adc.c: 49: ADCON1bits.PCFG2 = 1;
-"49
-[e = . . _ADCON1bits 1 2 -> -> 1 `i `uc ]
-[; ;adc.c: 50: ADCON1bits.PCFG3 = 1;
+[; ;adc.c: 50: ADCON1=0x0B;
 "50
-[e = . . _ADCON1bits 1 3 -> -> 1 `i `uc ]
-[; ;adc.c: 52: ADCON2bits.ADFM = 1;
+[e = _ADCON1 -> -> 11 `i `uc ]
+[; ;adc.c: 51: ADCON1bits.VCFG0 = 0;
+"51
+[e = . . _ADCON1bits 1 4 -> -> 0 `i `uc ]
+[; ;adc.c: 52: ADCON1bits.VCFG1 = 0;
 "52
-[e = . . _ADCON2bits 0 3 -> -> 1 `i `uc ]
-[; ;adc.c: 53: ADCON2bits.ADCS0 = 0;
-"53
-[e = . . _ADCON2bits 1 0 -> -> 0 `i `uc ]
-[; ;adc.c: 54: ADCON2bits.ADCS1 = 1;
+[e = . . _ADCON1bits 1 5 -> -> 0 `i `uc ]
+[; ;adc.c: 54: ADCON1bits.PCFG0 = 1;
 "54
-[e = . . _ADCON2bits 1 1 -> -> 1 `i `uc ]
-[; ;adc.c: 55: ADCON2bits.ADCS2 = 1;
+[e = . . _ADCON1bits 1 0 -> -> 1 `i `uc ]
+[; ;adc.c: 55: ADCON1bits.PCFG1 = 0;
 "55
-[e = . . _ADCON2bits 1 2 -> -> 1 `i `uc ]
-[; ;adc.c: 56: ADCON2bits.ACQT0 = 1;
+[e = . . _ADCON1bits 1 1 -> -> 0 `i `uc ]
+[; ;adc.c: 56: ADCON1bits.PCFG2 = 1;
 "56
-[e = . . _ADCON2bits 1 3 -> -> 1 `i `uc ]
-[; ;adc.c: 57: ADCON2bits.ACQT1 = 0;
+[e = . . _ADCON1bits 1 2 -> -> 1 `i `uc ]
+[; ;adc.c: 57: ADCON1bits.PCFG3 = 1;
 "57
-[e = . . _ADCON2bits 1 4 -> -> 0 `i `uc ]
-[; ;adc.c: 58: ADCON2bits.ACQT2 = 0;
-"58
-[e = . . _ADCON2bits 1 5 -> -> 0 `i `uc ]
-[; ;adc.c: 59: ADCON0bits.ADON = 1;
+[e = . . _ADCON1bits 1 3 -> -> 1 `i `uc ]
+[; ;adc.c: 59: ADCON2bits.ADFM = 0;
 "59
-[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
-[; ;adc.c: 60: }
+[e = . . _ADCON2bits 0 3 -> -> 0 `i `uc ]
+[; ;adc.c: 60: ADCON2bits.ADCS0 = 1;
 "60
-[e :UE 362 ]
+[e = . . _ADCON2bits 1 0 -> -> 1 `i `uc ]
+[; ;adc.c: 61: ADCON2bits.ADCS1 = 0;
+"61
+[e = . . _ADCON2bits 1 1 -> -> 0 `i `uc ]
+[; ;adc.c: 62: ADCON2bits.ADCS2 = 0;
+"62
+[e = . . _ADCON2bits 1 2 -> -> 0 `i `uc ]
+[; ;adc.c: 63: ADCON2bits.ACQT0 = 0;
+"63
+[e = . . _ADCON2bits 1 3 -> -> 0 `i `uc ]
+[; ;adc.c: 64: ADCON2bits.ACQT1 = 0;
+"64
+[e = . . _ADCON2bits 1 4 -> -> 0 `i `uc ]
+[; ;adc.c: 65: ADCON2bits.ACQT2 = 0;
+"65
+[e = . . _ADCON2bits 1 5 -> -> 0 `i `uc ]
+[; ;adc.c: 67: ADCON0bits.ADON = 1;
+"67
+[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
+[; ;adc.c: 68: }
+"68
+[e :UE 363 ]
 }
-"68
-[v _leitura_adc `(ui ~T0 @X0 1 ef1`uc ]
-"69
-{
-[; ;adc.c: 68: unsigned int leitura_adc(unsigned char canal)
-[; ;adc.c: 69: {
-[e :U _leitura_adc ]
-"68
-[v _canal `uc ~T0 @X0 1 r1 ]
-"69
-[f ]
-[; ;adc.c: 70: switch(canal)
-"70
-[e $U 365  ]
-[; ;adc.c: 71: {
-"71
-{
-[; ;adc.c: 72: case 0:
-"72
-[e :U 366 ]
-[; ;adc.c: 73: ADCON0 = 0x01;
-"73
-[e = _ADCON0 -> -> 1 `i `uc ]
-[; ;adc.c: 74: break;
-"74
-[e $U 364  ]
-[; ;adc.c: 76: case 1:
 "76
-[e :U 367 ]
-[; ;adc.c: 77: ADCON0 = 0x05;
+[v _leitura_adc `(ui ~T0 @X0 1 ef1`uc ]
 "77
-[e = _ADCON0 -> -> 5 `i `uc ]
-[; ;adc.c: 78: break;
+{
+[; ;adc.c: 76: unsigned int leitura_adc(unsigned char canal)
+[; ;adc.c: 77: {
+[e :U _leitura_adc ]
+"76
+[v _canal `uc ~T0 @X0 1 r1 ]
+"77
+[f ]
+[; ;adc.c: 78: switch(canal)
 "78
-[e $U 364  ]
-[; ;adc.c: 80: case 2:
+[e $U 366  ]
+[; ;adc.c: 79: {
+"79
+{
+[; ;adc.c: 80: case 0:
 "80
-[e :U 368 ]
-[; ;adc.c: 81: ADCON0 = 0x09;
+[e :U 367 ]
+[; ;adc.c: 81: ADCON0 = 0x01;
 "81
-[e = _ADCON0 -> -> 9 `i `uc ]
+[e = _ADCON0 -> -> 1 `i `uc ]
 [; ;adc.c: 82: break;
 "82
-[e $U 364  ]
-[; ;adc.c: 84: case 3:
+[e $U 365  ]
+[; ;adc.c: 84: case 1:
 "84
-[e :U 369 ]
-[; ;adc.c: 85: ADCON0 = 0x0D;
+[e :U 368 ]
+[; ;adc.c: 85: ADCON0 = 0x05;
 "85
-[e = _ADCON0 -> -> 13 `i `uc ]
+[e = _ADCON0 -> -> 5 `i `uc ]
 [; ;adc.c: 86: break;
 "86
-[e $U 364  ]
+[e $U 365  ]
+[; ;adc.c: 88: case 2:
 "88
-}
-[; ;adc.c: 88: }
-[e $U 364  ]
-"70
-[e :U 365 ]
-[e [\ _canal , $ -> -> 0 `i `uc 366
- , $ -> -> 1 `i `uc 367
- , $ -> -> 2 `i `uc 368
- , $ -> -> 3 `i `uc 369
- 364 ]
-"88
-[e :U 364 ]
-[; ;adc.c: 89: ADCON0bits.GO=1;
+[e :U 369 ]
+[; ;adc.c: 89: ADCON0 = 0x09;
 "89
-[e = . . _ADCON0bits 4 1 -> -> 1 `i `uc ]
-[; ;adc.c: 90: while(ADCON0bits.GO == 1);
+[e = _ADCON0 -> -> 9 `i `uc ]
+[; ;adc.c: 90: break;
 "90
-[e $U 370  ]
-[e :U 371 ]
-[e :U 370 ]
-[e $ == -> . . _ADCON0bits 4 1 `i -> 1 `i 371  ]
-[e :U 372 ]
-[; ;adc.c: 92: return ((((unsigned int)ADRESH)<<2)|(ADRESL>>6));
+[e $U 365  ]
+[; ;adc.c: 92: case 3:
 "92
-[e ) | << -> _ADRESH `ui -> 2 `i -> >> -> _ADRESL `i -> 6 `i `ui ]
-[e $UE 363  ]
-[; ;adc.c: 93: }
+[e :U 370 ]
+[; ;adc.c: 93: ADCON0 = 0x0D;
 "93
-[e :UE 363 ]
+[e = _ADCON0 -> -> 13 `i `uc ]
+[; ;adc.c: 94: break;
+"94
+[e $U 365  ]
+"96
+}
+[; ;adc.c: 96: }
+[e $U 365  ]
+"78
+[e :U 366 ]
+[e [\ _canal , $ -> -> 0 `i `uc 367
+ , $ -> -> 1 `i `uc 368
+ , $ -> -> 2 `i `uc 369
+ , $ -> -> 3 `i `uc 370
+ 365 ]
+"96
+[e :U 365 ]
+[; ;adc.c: 97: ADCON0bits.GO=1;
+"97
+[e = . . _ADCON0bits 4 1 -> -> 1 `i `uc ]
+[; ;adc.c: 98: while(ADCON0bits.GO == 1);
+"98
+[e $U 371  ]
+[e :U 372 ]
+[e :U 371 ]
+[e $ == -> . . _ADCON0bits 4 1 `i -> 1 `i 372  ]
+[e :U 373 ]
+[; ;adc.c: 100: return ((((unsigned int)ADRESH)<<2)|(ADRESL>>6));
+"100
+[e ) | << -> _ADRESH `ui -> 2 `i -> >> -> _ADRESL `i -> 6 `i `ui ]
+[e $UE 364  ]
+[; ;adc.c: 101: }
+"101
+[e :UE 364 ]
+}
+"109
+[v _leitura_continua_adc `(v ~T0 @X0 1 ef ]
+"110
+{
+[; ;adc.c: 109: void leitura_continua_adc(void)
+[; ;adc.c: 110: {
+[e :U _leitura_continua_adc ]
+[f ]
+[; ;adc.c: 111: for(unsigned char cont = 0; cont < 2; cont++)
+"111
+{
+[v _cont `uc ~T0 @X0 1 a ]
+[e = _cont -> -> 0 `i `uc ]
+[e $ < -> _cont `i -> 2 `i 375  ]
+[e $U 376  ]
+"112
+[e :U 375 ]
+[; ;adc.c: 112: {
+{
+[; ;adc.c: 113: for(unsigned char cont_int = 0; cont_int < 8; cont_int++)
+"113
+{
+[v _cont_int `uc ~T0 @X0 1 a ]
+[e = _cont_int -> -> 0 `i `uc ]
+[e $ < -> _cont_int `i -> 8 `i 378  ]
+[e $U 379  ]
+"114
+[e :U 378 ]
+[; ;adc.c: 114: {
+{
+[; ;adc.c: 115: valor_leitura_adc[cont].leituras[cont_int] = leitura_adc(cont);
+"115
+[e = *U + &U . *U + &U _valor_leitura_adc * -> _cont `ux -> -> # *U &U _valor_leitura_adc `ui `ux 1 * -> _cont_int `ux -> -> # *U &U . *U + &U _valor_leitura_adc * -> _cont `ux -> -> # *U &U _valor_leitura_adc `ui `ux 1 `ui `ux ( _leitura_adc (1 _cont ]
+[; ;adc.c: 116: valor_leitura_adc[cont].media = valor_leitura_adc[cont].media + valor_leitura_adc[cont].leituras[cont_int];
+"116
+[e = . *U + &U _valor_leitura_adc * -> _cont `ux -> -> # *U &U _valor_leitura_adc `ui `ux 2 + . *U + &U _valor_leitura_adc * -> _cont `ux -> -> # *U &U _valor_leitura_adc `ui `ux 2 *U + &U . *U + &U _valor_leitura_adc * -> _cont `ux -> -> # *U &U _valor_leitura_adc `ui `ux 1 * -> _cont_int `ux -> -> # *U &U . *U + &U _valor_leitura_adc * -> _cont `ux -> -> # *U &U _valor_leitura_adc `ui `ux 1 `ui `ux ]
+"117
+}
+"113
+[e ++ _cont_int -> -> 1 `i `uc ]
+[e $ < -> _cont_int `i -> 8 `i 378  ]
+[e :U 379 ]
+"117
+}
+[; ;adc.c: 117: }
+[; ;adc.c: 118: valor_leitura_adc[cont].media = valor_leitura_adc[cont].media / 8;
+"118
+[e = . *U + &U _valor_leitura_adc * -> _cont `ux -> -> # *U &U _valor_leitura_adc `ui `ux 2 / . *U + &U _valor_leitura_adc * -> _cont `ux -> -> # *U &U _valor_leitura_adc `ui `ux 2 -> -> 8 `i `ui ]
+"119
+}
+"111
+[e ++ _cont -> -> 1 `i `uc ]
+[e $ < -> _cont `i -> 2 `i 375  ]
+[e :U 376 ]
+"119
+}
+[; ;adc.c: 119: }
+[; ;adc.c: 120: }
+"120
+[e :UE 374 ]
+}
+"128
+[v _valor_medio_adc `(ui ~T0 @X0 1 ef1`uc ]
+"129
+{
+[; ;adc.c: 128: unsigned int valor_medio_adc(unsigned char canal)
+[; ;adc.c: 129: {
+[e :U _valor_medio_adc ]
+"128
+[v _canal `uc ~T0 @X0 1 r1 ]
+"129
+[f ]
+[; ;adc.c: 130: return(valor_leitura_adc[canal].media);
+"130
+[e ) . *U + &U _valor_leitura_adc * -> _canal `ux -> -> # *U &U _valor_leitura_adc `ui `ux 2 ]
+[e $UE 381  ]
+[; ;adc.c: 131: }
+"131
+[e :UE 381 ]
 }

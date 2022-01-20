@@ -99,10 +99,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR1bits `VS172 ~T0 @X0 0 e@3998 ]
 "7191
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
-"42 bibliotecas/SHRC.h
-[v _shrc_seta_bit `(v ~T0 @X0 0 ef1`uc ]
-"38
-[v _controle_shrc `(v ~T0 @X0 0 ef ]
 [v F3783 `(v ~T0 @X0 1 tf1`ul ]
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
 [v __delay `JF3783 ~T0 @X0 0 e ]
@@ -3783,146 +3779,141 @@ Version 3.2 HI-TECH Software Intermediate Code
  373 ]
 "87
 [e :U 369 ]
-[; ;SPI.c: 106: TRISBbits.RB0 = 1;
-"106
+[; ;SPI.c: 89: TRISBbits.RB0 = 1;
+"89
 [e = . . _TRISBbits 1 0 -> -> 1 `i `uc ]
-[; ;SPI.c: 107: TRISCbits.RC7 = 0;
-"107
+[; ;SPI.c: 90: TRISCbits.RC7 = 0;
+"90
 [e = . . _TRISCbits 1 5 -> -> 0 `i `uc ]
-[; ;SPI.c: 110: SSPCON1 |= 0x20;
-"110
+[; ;SPI.c: 93: SSPCON1 |= 0x20;
+"93
 [e =| _SSPCON1 -> -> 32 `i `uc ]
-[; ;SPI.c: 111: posicao_cursor_lcd(1,1);
-"111
+[; ;SPI.c: 94: posicao_cursor_lcd(1,1);
+"94
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-[; ;SPI.c: 112: escreve_frase_ram_lcd("SPI configurada!");
-"112
+[; ;SPI.c: 95: escreve_frase_ram_lcd("SPI configurada!");
+"95
 [e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
-[; ;SPI.c: 113: escreve_cmd_lcd(0b00000001);
-"113
+[; ;SPI.c: 96: escreve_cmd_lcd(0b00000001);
+"96
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;SPI.c: 114: }
-"114
+[; ;SPI.c: 97: }
+"97
 [e :UE 362 ]
 }
-"124
+"107
 [v _recebe_dado_SPI `(uc ~T0 @X0 1 ef ]
-"125
+"108
 {
-[; ;SPI.c: 124: unsigned char recebe_dado_SPI(void)
-[; ;SPI.c: 125: {
+[; ;SPI.c: 107: unsigned char recebe_dado_SPI(void)
+[; ;SPI.c: 108: {
 [e :U _recebe_dado_SPI ]
 [f ]
-[; ;SPI.c: 126: PIR1bits.SSPIF = 0;
-"126
+[; ;SPI.c: 109: PIR1bits.SSPIF = 0;
+"109
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"127
+"110
 [v _temp_var `uc ~T0 @X0 1 a ]
-[; ;SPI.c: 127: unsigned char temp_var;
-[; ;SPI.c: 128: temp_var = SSPBUF;
-"128
+[; ;SPI.c: 110: unsigned char temp_var;
+[; ;SPI.c: 111: temp_var = SSPBUF;
+"111
 [e = _temp_var _SSPBUF ]
-[; ;SPI.c: 131: SSPBUF = 0x00;
-"131
+[; ;SPI.c: 112: SSPBUF = 0x00;
+"112
 [e = _SSPBUF -> -> 0 `i `uc ]
-[; ;SPI.c: 133: while(!PIR1bits.SSPIF);
-"133
+[; ;SPI.c: 113: _delay((unsigned long)((500)*(48000000/4000.0)));
+"113
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;SPI.c: 114: while(!PIR1bits.SSPIF);
+"114
 [e $U 375  ]
 [e :U 376 ]
 [e :U 375 ]
 [e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 376  ]
 [e :U 377 ]
-[; ;SPI.c: 134: return (SSPBUF);
-"134
+[; ;SPI.c: 115: return (SSPBUF);
+"115
 [e ) _SSPBUF ]
 [e $UE 374  ]
-[; ;SPI.c: 135: }
-"135
+[; ;SPI.c: 116: }
+"116
 [e :UE 374 ]
 }
-"144
+"125
 [v _WriteSPI_ `(uc ~T0 @X0 1 ef1`uc ]
-"145
+"126
 {
-[; ;SPI.c: 144: char WriteSPI_(unsigned char dado)
-[; ;SPI.c: 145: {
+[; ;SPI.c: 125: char WriteSPI_(unsigned char dado)
+[; ;SPI.c: 126: {
 [e :U _WriteSPI_ ]
-"144
+"125
 [v _dado `uc ~T0 @X0 1 r1 ]
-"145
+"126
 [f ]
-"146
+"127
 [v _TempVar `uc ~T0 @X0 1 a ]
-[; ;SPI.c: 146: unsigned char TempVar;
-[; ;SPI.c: 148: TempVar = SSPBUF;
-"148
+[; ;SPI.c: 127: unsigned char TempVar;
+[; ;SPI.c: 128: TempVar = SSPBUF;
+"128
 [e = _TempVar _SSPBUF ]
-[; ;SPI.c: 150: SSPCON1bits.WCOL = 0;
-"150
+[; ;SPI.c: 129: PIR1bits.SSPIF = 0;
+"129
+[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
+[; ;SPI.c: 130: SSPCON1bits.WCOL = 0;
+"130
 [e = . . _SSPCON1bits 0 4 -> -> 0 `i `uc ]
-[; ;SPI.c: 151: SSPSTATbits.BF = 0;
-"151
+[; ;SPI.c: 131: SSPSTATbits.BF = 0;
+"131
 [e = . . _SSPSTATbits 2 0 -> -> 0 `i `uc ]
-[; ;SPI.c: 152: SSPBUF = dado;
-"152
+[; ;SPI.c: 132: SSPBUF = 0x00;
+"132
+[e = _SSPBUF -> -> 0 `i `uc ]
+[; ;SPI.c: 133: _delay((unsigned long)((50)*(48000000/4000.0)));
+"133
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;SPI.c: 134: SSPBUF = dado;
+"134
 [e = _SSPBUF _dado ]
-[; ;SPI.c: 153: if (SSPCON1 & 0x80 )
-"153
+[; ;SPI.c: 135: if (SSPCON1 & 0x80 )
+"135
 [e $ ! != & -> _SSPCON1 `i -> 128 `i -> 0 `i 379  ]
-[; ;SPI.c: 154: {
-"154
+[; ;SPI.c: 136: {
+"136
 {
-[; ;SPI.c: 155: return (-1);
-"155
+[; ;SPI.c: 137: return (-1);
+"137
 [e ) -> -U -> 1 `i `uc ]
 [e $UE 378  ]
-"156
+"138
 }
-[; ;SPI.c: 156: }
+[; ;SPI.c: 138: }
 [e $U 380  ]
-"157
+"139
 [e :U 379 ]
-[; ;SPI.c: 157: else
-[; ;SPI.c: 158: {
-"158
+[; ;SPI.c: 139: else
+[; ;SPI.c: 140: {
+"140
 {
-[; ;SPI.c: 159: while( !SSPSTATbits.BF ){
-"159
+[; ;SPI.c: 141: while(!PIR1bits.SSPIF);
+"141
 [e $U 381  ]
 [e :U 382 ]
-{
-[; ;SPI.c: 162: shrc_seta_bit(2);
-"162
-[e ( _shrc_seta_bit (1 -> -> 2 `i `uc ]
-[; ;SPI.c: 163: controle_shrc();
-"163
-[e ( _controle_shrc ..  ]
-[; ;SPI.c: 164: _delay((unsigned long)((1000)*(48000000/4000.0)));
-"164
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-"166
-}
 [e :U 381 ]
-"159
-[e $ ! != -> . . _SSPSTATbits 2 0 `i -> -> -> 0 `i `Vuc `i 382  ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 382  ]
 [e :U 383 ]
-[; ;SPI.c: 166: }
-[; ;SPI.c: 167: shrc_seta_bit(0);;
-"167
-[e ( _shrc_seta_bit (1 -> -> 0 `i `uc ]
-[; ;SPI.c: 168: controle_shrc();
-"168
-[e ( _controle_shrc ..  ]
-[; ;SPI.c: 170: return (0);
-"170
+[; ;SPI.c: 142: _delay((unsigned long)((1000)*(48000000/4000.0)));
+"142
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;SPI.c: 144: return (0);
+"144
 [e ) -> -> 0 `i `uc ]
 [e $UE 378  ]
-"171
+"145
 }
 [e :U 380 ]
-[; ;SPI.c: 171: }
-[; ;SPI.c: 173: }
-"173
+[; ;SPI.c: 145: }
+[; ;SPI.c: 147: }
+"147
 [e :UE 378 ]
 }
 [a 1C 83 80 73 32 99 111 110 102 105 103 117 114 97 100 97 33 0 ]

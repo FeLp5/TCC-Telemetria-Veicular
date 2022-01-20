@@ -4824,7 +4824,21 @@ void inicializa_adc(void);
 
 unsigned int leitura_adc(unsigned char canal);
 
-# 40 "bibliotecas/adc.c"
+void leitura_continua_adc(void);
+
+unsigned int valor_medio_adc(unsigned char canal);
+
+# 25 "bibliotecas/adc.c"
+typedef struct
+{
+unsigned char canal;
+unsigned int leituras[8];
+unsigned int media;
+}canal_ad;
+
+canal_ad valor_leitura_adc[2];
+
+# 47
 void inicializa_adc(void)
 {
 
@@ -4837,17 +4851,18 @@ ADCON1bits.PCFG1 = 0;
 ADCON1bits.PCFG2 = 1;
 ADCON1bits.PCFG3 = 1;
 
-ADCON2bits.ADFM = 1;
-ADCON2bits.ADCS0 = 0;
-ADCON2bits.ADCS1 = 1;
-ADCON2bits.ADCS2 = 1;
-ADCON2bits.ACQT0 = 1;
+ADCON2bits.ADFM = 0;
+ADCON2bits.ADCS0 = 1;
+ADCON2bits.ADCS1 = 0;
+ADCON2bits.ADCS2 = 0;
+ADCON2bits.ACQT0 = 0;
 ADCON2bits.ACQT1 = 0;
 ADCON2bits.ACQT2 = 0;
+
 ADCON0bits.ADON = 1;
 }
 
-# 68
+# 76
 unsigned int leitura_adc(unsigned char canal)
 {
 switch(canal)
@@ -4873,4 +4888,24 @@ ADCON0bits.GO=1;
 while(ADCON0bits.GO == 1);
 
 return ((((unsigned int)ADRESH)<<2)|(ADRESL>>6));
+}
+
+# 109
+void leitura_continua_adc(void)
+{
+for(unsigned char cont = 0; cont < 2; cont++)
+{
+for(unsigned char cont_int = 0; cont_int < 8; cont_int++)
+{
+valor_leitura_adc[cont].leituras[cont_int] = leitura_adc(cont);
+valor_leitura_adc[cont].media = valor_leitura_adc[cont].media + valor_leitura_adc[cont].leituras[cont_int];
+}
+valor_leitura_adc[cont].media = valor_leitura_adc[cont].media / 8;
+}
+}
+
+# 128
+unsigned int valor_medio_adc(unsigned char canal)
+{
+return(valor_leitura_adc[canal].media);
 }

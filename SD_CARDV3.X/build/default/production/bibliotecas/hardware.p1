@@ -9,8 +9,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _config_timer_dois `(v ~T0 @X0 0 ef ]
 "43 bibliotecas/hardware.c
 [v _init_interrupt `(v ~T0 @X0 0 ef ]
-"34 bibliotecas/adc.h
-[v _inicializa_adc `(v ~T0 @X0 0 ef ]
 "8067 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [v _T0CON `Vuc ~T0 @X0 0 e@4053 ]
 "221
@@ -27,68 +25,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCON3 `Vuc ~T0 @X0 0 e@4080 ]
 "4382
 [v _PIE1 `Vuc ~T0 @X0 0 e@3997 ]
-"4472
-[s S173 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S173 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF SPPIF ]
-"4482
-[s S174 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S174 . . TX1IF RC1IF . PSPIF ]
-"4471
-[u S172 `S173 1 `S174 1 ]
-[n S172 . . . ]
-"4490
-[v _PIR1bits `VS172 ~T0 @X0 0 e@3998 ]
-"4388
-[s S170 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S170 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE SPPIE ]
-"4398
-[s S171 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S171 . . TX1IE RC1IE . PSPIE ]
-"4387
-[u S169 `S170 1 `S171 1 ]
-[n S169 . . . ]
-"4406
-[v _PIE1bits `VS169 ~T0 @X0 0 e@3997 ]
-"4556
-[s S176 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S176 . TMR1IP TMR2IP CCP1IP SSPIP TXIP RCIP ADIP SPPIP ]
-"4566
-[s S177 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S177 . . TX1IP RC1IP . PSPIP ]
-"4555
-[u S175 `S176 1 `S177 1 ]
-[n S175 . . . ]
-"4574
-[v _IPR1bits `VS175 ~T0 @X0 0 e@3999 ]
-"7543
-[s S317 :1 `uc 1 ]
-[n S317 . NOT_BOR ]
-"7546
-[s S318 :1 `uc 1 :1 `uc 1 ]
-[n S318 . . NOT_POR ]
-"7550
-[s S319 :2 `uc 1 :1 `uc 1 ]
-[n S319 . . NOT_PD ]
-"7554
-[s S320 :3 `uc 1 :1 `uc 1 ]
-[n S320 . . NOT_TO ]
-"7558
-[s S321 :4 `uc 1 :1 `uc 1 ]
-[n S321 . . NOT_RI ]
-"7562
-[s S322 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S322 . nBOR nPOR nPD nTO nRI . SBOREN IPEN ]
-"7572
-[s S323 :7 `uc 1 :1 `uc 1 ]
-[n S323 . . NOT_IPEN ]
-"7576
-[s S324 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S324 . BOR POR PD TO RI . nIPEN ]
-"7542
-[u S316 `S317 1 `S318 1 `S319 1 `S320 1 `S321 1 `S322 1 `S323 1 `S324 1 ]
-[n S316 . . . . . . . . . ]
-"7586
-[v _RCONbits `VS316 ~T0 @X0 0 e@4048 ]
 "8151
 [v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
 "8144
@@ -3678,6 +3614,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.h: 46: typedef unsigned int uint16_t;
 [; ;adc.h: 34: void inicializa_adc(void);
 [; ;adc.h: 36: unsigned int leitura_adc(unsigned char canal);
+[; ;adc.h: 38: void leitura_continua_adc(void);
+[; ;adc.h: 40: unsigned int valor_medio_adc(unsigned char canal);
 [; ;SHRC.h: 38: void controle_shrc (void);
 [; ;SHRC.h: 40: void inicializa_shrc(void);
 [; ;SHRC.h: 42: void shrc_seta_bit(unsigned char posicao_bit);
@@ -3716,9 +3654,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 70: init_interrupt();
 "70
 [e ( _init_interrupt ..  ]
-[; ;hardware.c: 73: inicializa_adc();
-"73
-[e ( _inicializa_adc ..  ]
 [; ;hardware.c: 74: }
 "74
 [e :UE 363 ]
@@ -3755,191 +3690,179 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 99: {
 [e :U _init_interrupt ]
 [f ]
-[; ;hardware.c: 100: INTCON = 0b11100000;
+[; ;hardware.c: 100: INTCON = 0b11110000;
 "100
-[e = _INTCON -> -> 224 `i `uc ]
+[e = _INTCON -> -> 240 `i `uc ]
 [; ;hardware.c: 101: INTCON2 = 0b00000000;
 "101
 [e = _INTCON2 -> -> 0 `i `uc ]
 [; ;hardware.c: 102: INTCON3 = 0b00000000;
 "102
 [e = _INTCON3 -> -> 0 `i `uc ]
-[; ;hardware.c: 104: PIE1 = 0b00101000;
+[; ;hardware.c: 104: PIE1 = 0b00100000;
 "104
-[e = _PIE1 -> -> 40 `i `uc ]
-[; ;hardware.c: 106: PIR1bits.SSPIF = 0;
-"106
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;hardware.c: 107: PIE1bits.SSPIE = 1;
-"107
-[e = . . _PIE1bits 0 3 -> -> 1 `i `uc ]
-[; ;hardware.c: 108: IPR1bits.SSPIP = 1;
-"108
-[e = . . _IPR1bits 0 3 -> -> 1 `i `uc ]
-[; ;hardware.c: 109: RCONbits.IPEN = 0;
-"109
-[e = . . _RCONbits 5 7 -> -> 0 `i `uc ]
-[; ;hardware.c: 110: }
-"110
+[e = _PIE1 -> -> 32 `i `uc ]
+[; ;hardware.c: 105: }
+"105
 [e :UE 365 ]
 }
-"118
+"113
 [v _open_timer0 `(v ~T0 @X0 1 ef1`uc ]
-"119
+"114
 {
-[; ;hardware.c: 118: void open_timer0(unsigned char config)
-[; ;hardware.c: 119: {
+[; ;hardware.c: 113: void open_timer0(unsigned char config)
+[; ;hardware.c: 114: {
 [e :U _open_timer0 ]
-"118
+"113
 [v _config `uc ~T0 @X0 1 r1 ]
-"119
+"114
 [f ]
-[; ;hardware.c: 120: T0CON = (0x7f & config);
-"120
+[; ;hardware.c: 115: T0CON = (0x7f & config);
+"115
 [e = _T0CON -> & -> 127 `i -> _config `i `uc ]
-[; ;hardware.c: 121: TMR0H = 0;
-"121
+[; ;hardware.c: 116: TMR0H = 0;
+"116
 [e = _TMR0H -> -> 0 `i `uc ]
-[; ;hardware.c: 122: TMR0L = 0;
-"122
+[; ;hardware.c: 117: TMR0L = 0;
+"117
 [e = _TMR0L -> -> 0 `i `uc ]
-[; ;hardware.c: 123: INTCONbits.TMR0IF = 0;
-"123
+[; ;hardware.c: 118: INTCONbits.TMR0IF = 0;
+"118
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;hardware.c: 125: if(config&0x80)
-"125
+[; ;hardware.c: 120: if(config&0x80)
+"120
 [e $ ! != & -> _config `i -> 128 `i -> 0 `i 367  ]
-[; ;hardware.c: 126: {
-"126
+[; ;hardware.c: 121: {
+"121
 {
-[; ;hardware.c: 127: INTCONbits.TMR0IE = 1;
-"127
+[; ;hardware.c: 122: INTCONbits.TMR0IE = 1;
+"122
 [e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
-"128
+"123
 }
-[; ;hardware.c: 128: }
+[; ;hardware.c: 123: }
 [e $U 368  ]
-"129
+"124
 [e :U 367 ]
-[; ;hardware.c: 129: else
-[; ;hardware.c: 130: {
-"130
+[; ;hardware.c: 124: else
+[; ;hardware.c: 125: {
+"125
 {
-[; ;hardware.c: 131: INTCONbits.TMR0IE = 0;
-"131
+[; ;hardware.c: 126: INTCONbits.TMR0IE = 0;
+"126
 [e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
-"132
+"127
 }
 [e :U 368 ]
-[; ;hardware.c: 132: }
-[; ;hardware.c: 134: T0CONbits.TMR0ON = 1;
-"134
+[; ;hardware.c: 127: }
+[; ;hardware.c: 129: T0CONbits.TMR0ON = 1;
+"129
 [e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-[; ;hardware.c: 135: }
-"135
+[; ;hardware.c: 130: }
+"130
 [e :UE 366 ]
 }
-"143
+"138
 [v _write_timer_zero `(v ~T0 @X0 1 ef1`ui ]
-"144
+"139
 {
-[; ;hardware.c: 143: void write_timer_zero(unsigned int timer0)
-[; ;hardware.c: 144: {
+[; ;hardware.c: 138: void write_timer_zero(unsigned int timer0)
+[; ;hardware.c: 139: {
 [e :U _write_timer_zero ]
-"143
+"138
 [v _timer0 `ui ~T0 @X0 1 r1 ]
-"144
+"139
 [f ]
-"145
+"140
 [v _timer `S362 ~T0 @X0 1 a ]
-[; ;hardware.c: 145: union Timers timer;
-[; ;hardware.c: 147: timer.lt = timer0;
-"147
+[; ;hardware.c: 140: union Timers timer;
+[; ;hardware.c: 142: timer.lt = timer0;
+"142
 [e = . _timer 0 _timer0 ]
-[; ;hardware.c: 149: TMR0H = timer.bt[1];
-"149
+[; ;hardware.c: 144: TMR0H = timer.bt[1];
+"144
 [e = _TMR0H *U + &U . _timer 1 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _timer 1 `ui `ux ]
-[; ;hardware.c: 150: TMR0L = timer.bt[0];
-"150
+[; ;hardware.c: 145: TMR0L = timer.bt[0];
+"145
 [e = _TMR0L *U + &U . _timer 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _timer 1 `ui `ux ]
-[; ;hardware.c: 151: }
-"151
+[; ;hardware.c: 146: }
+"146
 [e :UE 369 ]
 }
-"159
+"154
 [v _init_ports `(v ~T0 @X0 1 ef ]
-"160
+"155
 {
-[; ;hardware.c: 159: void init_ports(void)
-[; ;hardware.c: 160: {
+[; ;hardware.c: 154: void init_ports(void)
+[; ;hardware.c: 155: {
 [e :U _init_ports ]
 [f ]
-[; ;hardware.c: 161: TRISB = 0b00000001;
-"161
+[; ;hardware.c: 156: TRISB = 0b00000001;
+"156
 [e = _TRISB -> -> 1 `i `uc ]
-[; ;hardware.c: 162: LATB = 0xFF;
-"162
+[; ;hardware.c: 157: LATB = 0xFF;
+"157
 [e = _LATB -> -> 255 `i `uc ]
-[; ;hardware.c: 163: TRISD = 0x00;
-"163
+[; ;hardware.c: 158: TRISD = 0x00;
+"158
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;hardware.c: 164: TRISA = 0b00000111;
-"164
+[; ;hardware.c: 159: TRISA = 0b00000111;
+"159
 [e = _TRISA -> -> 7 `i `uc ]
-[; ;hardware.c: 165: TRISC = 0x01111111;
-"165
+[; ;hardware.c: 160: TRISC = 0x01111111;
+"160
 [e = _TRISC -> -> 17895697 `l `uc ]
-[; ;hardware.c: 166: TRISE = 0b00000011;
-"166
+[; ;hardware.c: 161: TRISE = 0b00000011;
+"161
 [e = _TRISE -> -> 3 `i `uc ]
-[; ;hardware.c: 168: }
-"168
+[; ;hardware.c: 163: }
+"163
 [e :UE 370 ]
 }
-"176
+"171
 [v _init_oscilador `(v ~T0 @X0 1 ef ]
-"177
+"172
 {
-[; ;hardware.c: 176: void init_oscilador(void)
-[; ;hardware.c: 177: {
+[; ;hardware.c: 171: void init_oscilador(void)
+[; ;hardware.c: 172: {
 [e :U _init_oscilador ]
 [f ]
-[; ;hardware.c: 179: OSCCONbits.IRCF0 = 1;
-"179
+[; ;hardware.c: 174: OSCCONbits.IRCF0 = 1;
+"174
 [e = . . _OSCCONbits 1 4 -> -> 1 `i `uc ]
-[; ;hardware.c: 180: OSCCONbits.IRCF1 = 1;
-"180
+[; ;hardware.c: 175: OSCCONbits.IRCF1 = 1;
+"175
 [e = . . _OSCCONbits 1 5 -> -> 1 `i `uc ]
-[; ;hardware.c: 181: OSCCONbits.IRCF2 = 1;
-"181
+[; ;hardware.c: 176: OSCCONbits.IRCF2 = 1;
+"176
 [e = . . _OSCCONbits 1 6 -> -> 1 `i `uc ]
-[; ;hardware.c: 182: }
-"182
+[; ;hardware.c: 177: }
+"177
 [e :UE 371 ]
 }
-"190
+"185
 [v _ms_delay `(v ~T0 @X0 1 ef1`ui ]
-"191
+"186
 {
-[; ;hardware.c: 190: void ms_delay(unsigned int val)
-[; ;hardware.c: 191: {
+[; ;hardware.c: 185: void ms_delay(unsigned int val)
+[; ;hardware.c: 186: {
 [e :U _ms_delay ]
-"190
+"185
 [v _val `ui ~T0 @X0 1 r1 ]
-"191
+"186
 [f ]
-"192
+"187
 [v _i `ui ~T0 @X0 1 a ]
 [v _j `ui ~T0 @X0 1 a ]
-[; ;hardware.c: 192: unsigned int i,j;
-[; ;hardware.c: 193: for(i=0;i<val;i++)
-"193
+[; ;hardware.c: 187: unsigned int i,j;
+[; ;hardware.c: 188: for(i=0;i<val;i++)
+"188
 {
 [e = _i -> -> 0 `i `ui ]
 [e $U 376  ]
-"194
+"189
 [e :U 373 ]
-[; ;hardware.c: 194: for(j=0;j<165;j++);
+[; ;hardware.c: 189: for(j=0;j<165;j++);
 {
 [e = _j -> -> 0 `i `ui ]
 [e $ < _j -> -> 165 `i `ui 377  ]
@@ -3949,104 +3872,104 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _j -> -> 165 `i `ui 377  ]
 [e :U 378 ]
 }
-"193
+"188
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 376 ]
 [e $ < _i _val 373  ]
 [e :U 374 ]
-"194
+"189
 }
-[; ;hardware.c: 195: }
-"195
+[; ;hardware.c: 190: }
+"190
 [e :UE 372 ]
 }
-"205
+"200
 [v _config_timer_dois `(v ~T0 @X0 1 ef ]
-"206
+"201
 {
-[; ;hardware.c: 205: void config_timer_dois(void)
-[; ;hardware.c: 206: {
+[; ;hardware.c: 200: void config_timer_dois(void)
+[; ;hardware.c: 201: {
 [e :U _config_timer_dois ]
 [f ]
-[; ;hardware.c: 207: T2CON = 0b00000100;
-"207
+[; ;hardware.c: 202: T2CON = 0b00000100;
+"202
 [e = _T2CON -> -> 4 `i `uc ]
-[; ;hardware.c: 208: TMR2 = 0;
-"208
+[; ;hardware.c: 203: TMR2 = 0;
+"203
 [e = _TMR2 -> -> 0 `i `uc ]
-[; ;hardware.c: 209: PR2 = 0xFF;
-"209
+[; ;hardware.c: 204: PR2 = 0xFF;
+"204
 [e = _PR2 -> -> 255 `i `uc ]
-[; ;hardware.c: 210: }
-"210
+[; ;hardware.c: 205: }
+"205
 [e :UE 380 ]
 }
-"218
+"213
 [v _timer_dois `(v ~T0 @X0 1 ef ]
-"219
+"214
 {
-[; ;hardware.c: 218: void timer_dois(void)
-[; ;hardware.c: 219: {
+[; ;hardware.c: 213: void timer_dois(void)
+[; ;hardware.c: 214: {
 [e :U _timer_dois ]
 [f ]
-[; ;hardware.c: 220: if(TMR2IF)
-"220
+[; ;hardware.c: 215: if(TMR2IF)
+"215
 [e $ ! _TMR2IF 382  ]
-[; ;hardware.c: 221: {
-"221
+[; ;hardware.c: 216: {
+"216
 {
-[; ;hardware.c: 222: TMR2IF = 0;
-"222
+[; ;hardware.c: 217: TMR2IF = 0;
+"217
 [e = _TMR2IF -> -> 0 `i `b ]
-[; ;hardware.c: 223: TMR2 = 0;
-"223
+[; ;hardware.c: 218: TMR2 = 0;
+"218
 [e = _TMR2 -> -> 0 `i `uc ]
-"226
-[v F3843 `uc ~T0 @X0 1 s flag ]
-[i F3843
+"221
+[v F3847 `uc ~T0 @X0 1 s flag ]
+[i F3847
 -> -> 0 `i `uc
 ]
-[; ;hardware.c: 226: static unsigned char flag = 0;
-[; ;hardware.c: 227: flag = !flag;
+[; ;hardware.c: 221: static unsigned char flag = 0;
+[; ;hardware.c: 222: flag = !flag;
+"222
+[e = F3847 -> -> ! != -> F3847 `i -> -> -> 0 `i `uc `i `i `uc ]
+[; ;hardware.c: 223: if(!flag)
+"223
+[e $ ! ! != -> F3847 `i -> -> -> 0 `i `uc `i 383  ]
+[; ;hardware.c: 224: {
+"224
+{
+[; ;hardware.c: 225: shrc_seta_bit(2);
+"225
+[e ( _shrc_seta_bit (1 -> -> 2 `i `uc ]
+[; ;hardware.c: 226: controle_shrc();
+"226
+[e ( _controle_shrc ..  ]
 "227
-[e = F3843 -> -> ! != -> F3843 `i -> -> -> 0 `i `uc `i `i `uc ]
-[; ;hardware.c: 228: if(!flag)
+}
+[; ;hardware.c: 227: }
+[e $U 384  ]
 "228
-[e $ ! ! != -> F3843 `i -> -> -> 0 `i `uc `i 383  ]
+[e :U 383 ]
+[; ;hardware.c: 228: else
 [; ;hardware.c: 229: {
 "229
 {
-[; ;hardware.c: 230: shrc_seta_bit(2);
+[; ;hardware.c: 230: shrc_apaga_bit(2);
 "230
-[e ( _shrc_seta_bit (1 -> -> 2 `i `uc ]
+[e ( _shrc_apaga_bit (1 -> -> 2 `i `uc ]
 [; ;hardware.c: 231: controle_shrc();
 "231
 [e ( _controle_shrc ..  ]
 "232
 }
-[; ;hardware.c: 232: }
-[e $U 384  ]
-"233
-[e :U 383 ]
-[; ;hardware.c: 233: else
-[; ;hardware.c: 234: {
-"234
-{
-[; ;hardware.c: 235: shrc_apaga_bit(2);
-"235
-[e ( _shrc_apaga_bit (1 -> -> 2 `i `uc ]
-[; ;hardware.c: 236: controle_shrc();
-"236
-[e ( _controle_shrc ..  ]
-"237
-}
 [e :U 384 ]
-"239
+"234
 }
 [e :U 382 ]
-[; ;hardware.c: 237: }
-[; ;hardware.c: 239: }
-[; ;hardware.c: 240: }
-"240
+[; ;hardware.c: 232: }
+[; ;hardware.c: 234: }
+[; ;hardware.c: 235: }
+"235
 [e :UE 381 ]
 }

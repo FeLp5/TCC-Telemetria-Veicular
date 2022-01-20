@@ -4916,7 +4916,6 @@ TRISBbits.RB1 = 0;
 break;
 }
 
-# 106
 TRISBbits.RB0 = 1;
 TRISCbits.RC7 = 0;
 
@@ -4927,29 +4926,28 @@ escreve_frase_ram_lcd("SPI configurada!");
 escreve_cmd_lcd(0b00000001);
 }
 
-# 124
+# 107
 unsigned char recebe_dado_SPI(void)
 {
 PIR1bits.SSPIF = 0;
 unsigned char temp_var;
 temp_var = SSPBUF;
-
-
 SSPBUF = 0x00;
-
+_delay((unsigned long)((500)*(48000000/4000.0)));
 while(!PIR1bits.SSPIF);
 return (SSPBUF);
 }
 
-# 144
+# 125
 char WriteSPI_(unsigned char dado)
 {
 unsigned char TempVar;
-
 TempVar = SSPBUF;
-
+PIR1bits.SSPIF = 0;
 SSPCON1bits.WCOL = 0;
 SSPSTATbits.BF = 0;
+SSPBUF = 0x00;
+_delay((unsigned long)((50)*(48000000/4000.0)));
 SSPBUF = dado;
 if (SSPCON1 & 0x80 )
 {
@@ -4957,16 +4955,8 @@ return (-1);
 }
 else
 {
-while( !SSPSTATbits.BF ){
-
-
-shrc_seta_bit(2);
-controle_shrc();
+while(!PIR1bits.SSPIF);
 _delay((unsigned long)((1000)*(48000000/4000.0)));
-
-}
-shrc_seta_bit(0);;
-controle_shrc();
 
 return (0);
 }

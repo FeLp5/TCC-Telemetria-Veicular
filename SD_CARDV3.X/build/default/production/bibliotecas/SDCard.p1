@@ -12,11 +12,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATBbits `VS124 ~T0 @X0 0 e@3978 ]
 "50 bibliotecas/SPI.h
 [v _recebe_dado_SPI `(uc ~T0 @X0 0 ef ]
-"236 bibliotecas/display/display_lcd.h
-[v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
-"290
-[v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
-"52 bibliotecas/SPI.h
+"52
 [v _WriteSPI_ `(uc ~T0 @X0 0 ef1`uc ]
 [; ;integer.h: 16: typedef int INT;
 [; ;integer.h: 17: typedef unsigned int UINT;
@@ -3548,15 +3544,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.h: 40: void timer_dois(void);
 [; ;hardware.h: 45: typedef unsigned char uint8_t;
 [; ;hardware.h: 46: typedef unsigned int uint16_t;
-[; ;SDCard.h: 106: void init_SDcard();
-[; ;SDCard.h: 107: void envia_CMD16(void);
-[; ;SDCard.h: 108: unsigned char envia_CMD8(void);
-[; ;SDCard.h: 109: void envia_CMD1(void);
-[; ;SDCard.h: 110: void envia_CMD0(void);
-[; ;SDCard.h: 113: BYTE response(void);
-[; ;SDCard.h: 114: void proceed(void);
-[; ;SDCard.h: 115: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 116: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SDCard.h: 89: void init_SDcard();
+[; ;SDCard.h: 90: void envia_CMD16(void);
+[; ;SDCard.h: 91: unsigned char envia_CMD8(void);
+[; ;SDCard.h: 92: void envia_CMD1(void);
+[; ;SDCard.h: 93: void envia_CMD0(void);
+[; ;SDCard.h: 96: BYTE response(void);
+[; ;SDCard.h: 97: void proceed(void);
+[; ;SDCard.h: 98: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 99: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 [; ;SPI.h: 48: void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 [; ;SPI.h: 50: unsigned char recebe_dado_SPI(void);
 [; ;SPI.h: 52: char WriteSPI_(unsigned char dado);
@@ -3572,166 +3568,152 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
 [; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 [; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
-"311 bibliotecas/SDCard.c
+"319 bibliotecas/SDCard.c
 [v _response `(uc ~T0 @X0 1 ef ]
-"312
+"320
 {
-[; ;SDCard.c: 311: BYTE response(void)
-[; ;SDCard.c: 312: {
+[; ;SDCard.c: 319: BYTE response(void)
+[; ;SDCard.c: 320: {
 [e :U _response ]
 [f ]
-"314
+"322
 [v _buff `uc ~T0 @X0 1 a ]
-[; ;SDCard.c: 314: unsigned char buff;
-[; ;SDCard.c: 315: LATBbits.LATB4 = 1;
-"315
+[; ;SDCard.c: 322: unsigned char buff;
+[; ;SDCard.c: 323: LATBbits.LATB4 = 1;
+"323
 [e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
-[; ;SDCard.c: 316: buff= recebe_dado_SPI();
-"316
+[; ;SDCard.c: 324: buff= recebe_dado_SPI();
+"324
 [e = _buff ( _recebe_dado_SPI ..  ]
-[; ;SDCard.c: 317: LATBbits.LATB4 = 0;
-"317
+[; ;SDCard.c: 325: LATBbits.LATB4 = 0;
+"325
 [e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;SDCard.c: 318: return buff;
-"318
+[; ;SDCard.c: 326: return buff;
+"326
 [e ) _buff ]
 [e $UE 362  ]
-[; ;SDCard.c: 319: }
-"319
+[; ;SDCard.c: 327: }
+"327
 [e :UE 362 ]
 }
-"322
+"330
 [v _dummy_clocks `(v ~T0 @X0 1 ef1`uc ]
-"323
+"331
 {
-[; ;SDCard.c: 322: void dummy_clocks(unsigned char n)
-[; ;SDCard.c: 323: {
+[; ;SDCard.c: 330: void dummy_clocks(unsigned char n)
+[; ;SDCard.c: 331: {
 [e :U _dummy_clocks ]
-"322
+"330
 [v _n `uc ~T0 @X0 1 r1 ]
-"323
+"331
 [f ]
-[; ;SDCard.c: 324: posicao_cursor_lcd(1,0);
-"324
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 325: escreve_frase_ram_lcd("AAAAAAAAAA");
-"325
-[e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
-"326
+"332
 [v _i `ui ~T0 @X0 1 a ]
-[; ;SDCard.c: 326: unsigned int i;
-[; ;SDCard.c: 327: for(i=0;i<n;i++)
-"327
+[; ;SDCard.c: 332: unsigned int i;
+[; ;SDCard.c: 333: for(i=0;i<n;i++)
+"333
 {
 [e = _i -> -> 0 `i `ui ]
 [e $U 367  ]
-"328
+"334
 [e :U 364 ]
-[; ;SDCard.c: 328: {
+[; ;SDCard.c: 334: {
 {
-[; ;SDCard.c: 329: LATBbits.LATB4 = 0;
-"329
+[; ;SDCard.c: 335: LATBbits.LATB4 = 0;
+"335
 [e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;SDCard.c: 330: WriteSPI_(0XFF);
-"330
+[; ;SDCard.c: 336: WriteSPI_(0XFF);
+"336
 [e ( _WriteSPI_ (1 -> -> 255 `i `uc ]
-[; ;SDCard.c: 331: LATBbits.LATB4 = 1;
-"331
+[; ;SDCard.c: 337: LATBbits.LATB4 = 1;
+"337
 [e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
-"332
+"338
 }
-"327
+"333
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 367 ]
 [e $ < _i -> _n `ui 364  ]
 [e :U 365 ]
-"332
+"338
 }
-[; ;SDCard.c: 332: }
-[; ;SDCard.c: 333: }
-"333
+[; ;SDCard.c: 338: }
+[; ;SDCard.c: 339: }
+"339
 [e :UE 363 ]
 }
-"336
+"342
 [v _proceed `(v ~T0 @X0 1 ef ]
-"337
+"343
 {
-[; ;SDCard.c: 336: void proceed(void)
-[; ;SDCard.c: 337: {
+[; ;SDCard.c: 342: void proceed(void)
+[; ;SDCard.c: 343: {
 [e :U _proceed ]
 [f ]
-[; ;SDCard.c: 338: LATBbits.LATB4 = 1;
-"338
+[; ;SDCard.c: 344: LATBbits.LATB4 = 1;
+"344
 [e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
-[; ;SDCard.c: 339: WriteSPI_(0xFF);
-"339
+[; ;SDCard.c: 345: WriteSPI_(0xFF);
+"345
 [e ( _WriteSPI_ (1 -> -> 255 `i `uc ]
-[; ;SDCard.c: 340: LATBbits.LATB4 = 0;
-"340
+[; ;SDCard.c: 346: LATBbits.LATB4 = 0;
+"346
 [e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;SDCard.c: 341: }
-"341
+[; ;SDCard.c: 347: }
+"347
 [e :UE 368 ]
 }
-"345
+"351
 [v _command `(v ~T0 @X0 1 ef3`uc`ul`uc ]
-"346
+"352
 {
-[; ;SDCard.c: 345: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
-[; ;SDCard.c: 346: {
+[; ;SDCard.c: 351: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
+[; ;SDCard.c: 352: {
 [e :U _command ]
-"345
+"351
 [v _CMD `uc ~T0 @X0 1 r1 ]
 [v _arg `ul ~T0 @X0 1 r2 ]
 [v _CRC `uc ~T0 @X0 1 r3 ]
-"346
-[f ]
-[; ;SDCard.c: 347: posicao_cursor_lcd(1,0);
-"347
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 348: escreve_frase_ram_lcd("OOOOOOOOO");
-"348
-[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
-"349
-[v _argument `uc ~T0 @X0 1 a ]
-[; ;SDCard.c: 349: unsigned char argument = arg>>24;
-[e = _argument -> >> _arg -> 24 `i `uc ]
-[; ;SDCard.c: 350: WriteSPI_(0xFF);
-"350
-[e ( _WriteSPI_ (1 -> -> 255 `i `uc ]
-[; ;SDCard.c: 351: WriteSPI_(CMD);
-"351
-[e ( _WriteSPI_ (1 _CMD ]
-[; ;SDCard.c: 352: WriteSPI_(argument);
 "352
-[e ( _WriteSPI_ (1 _argument ]
-[; ;SDCard.c: 353: argument = arg>>16;
+[f ]
+[; ;SDCard.c: 353: LATBbits.LATB3 = ~LATBbits.LATB3;
 "353
-[e = _argument -> >> _arg -> 16 `i `uc ]
-[; ;SDCard.c: 354: WriteSPI_(argument);
+[e = . . _LATBbits 0 3 -> ~ -> . . _LATBbits 0 3 `i `uc ]
 "354
-[e ( _WriteSPI_ (1 _argument ]
-[; ;SDCard.c: 355: argument = arg>>8;
+[v _argument `uc ~T0 @X0 1 a ]
+[; ;SDCard.c: 354: unsigned char argument = arg>>24;
+[e = _argument -> >> _arg -> 24 `i `uc ]
+[; ;SDCard.c: 355: WriteSPI_(0xFF);
 "355
-[e = _argument -> >> _arg -> 8 `i `uc ]
-[; ;SDCard.c: 356: WriteSPI_(argument);
+[e ( _WriteSPI_ (1 -> -> 255 `i `uc ]
+[; ;SDCard.c: 356: WriteSPI_(CMD);
 "356
-[e ( _WriteSPI_ (1 _argument ]
-[; ;SDCard.c: 357: argument = arg;
+[e ( _WriteSPI_ (1 _CMD ]
+[; ;SDCard.c: 357: WriteSPI_(argument);
 "357
-[e = _argument -> _arg `uc ]
-[; ;SDCard.c: 358: WriteSPI_(argument);
-"358
 [e ( _WriteSPI_ (1 _argument ]
-[; ;SDCard.c: 359: WriteSPI_(CRC);
+[; ;SDCard.c: 358: argument = arg>>16;
+"358
+[e = _argument -> >> _arg -> 16 `i `uc ]
+[; ;SDCard.c: 359: WriteSPI_(argument);
 "359
-[e ( _WriteSPI_ (1 _CRC ]
-[; ;SDCard.c: 360: }
+[e ( _WriteSPI_ (1 _argument ]
+[; ;SDCard.c: 360: argument = arg>>8;
 "360
+[e = _argument -> >> _arg -> 8 `i `uc ]
+[; ;SDCard.c: 361: WriteSPI_(argument);
+"361
+[e ( _WriteSPI_ (1 _argument ]
+[; ;SDCard.c: 362: argument = arg;
+"362
+[e = _argument -> _arg `uc ]
+[; ;SDCard.c: 363: WriteSPI_(argument);
+"363
+[e ( _WriteSPI_ (1 _argument ]
+[; ;SDCard.c: 364: WriteSPI_(CRC);
+"364
+[e ( _WriteSPI_ (1 _CRC ]
+[; ;SDCard.c: 365: }
+"365
 [e :UE 369 ]
 }
-"362
-[v _flag `i ~T0 @X0 1 e ]
-[; ;SDCard.c: 362: int flag;
-[a 2C 79 79 79 79 79 79 79 79 79 0 ]
-[a 1C 65 65 65 65 65 65 65 65 65 65 0 ]

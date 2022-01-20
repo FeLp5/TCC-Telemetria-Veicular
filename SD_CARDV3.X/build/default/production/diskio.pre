@@ -4897,7 +4897,7 @@ char WriteSPI_(unsigned char dado);
 
 unsigned char verifica_buffer_SPI(void);
 
-# 106 "bibliotecas/SDCard.h"
+# 89 "bibliotecas/SDCard.h"
 void init_SDcard();
 void envia_CMD16(void);
 unsigned char envia_CMD8(void);
@@ -4931,19 +4931,12 @@ void reset()
 {
 int i = 0, count = 0;
 unsigned char buff;
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("travou aqui");
 
 do{
 dummy_clocks(8);
 command(0X40, 0X00000000, 0X95);
 proceed();
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("travou aqui 2");
 do{
-buff = response();
-
-
 count++;
 }while((buff!=0X01) && (count<10) );
 count = 0;
@@ -4951,13 +4944,12 @@ count = 0;
 
 
 
-
+_delay((unsigned long)((2000)*(48000000/4000.0)));
 return;
 }
 
 DSTATUS disk_initialize (void)
 {
-
 DSTATUS stat;
 int i = 0, count1 = 0, count2 = 0;
 unsigned char buff;
@@ -4999,10 +4991,7 @@ proceed();
 do{
 buff = response();
 count2++;
-
-
 }while((buff!=0X00) && count2<10);
-
 }while(buff != 0X00);
 
 count1 = 0;
@@ -5015,7 +5004,6 @@ posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("Cartão Aceito");
 _delay((unsigned long)((2000)*(48000000/4000.0)));
 }
-
 else if(buff == 0x05)
 {
 stat = 0x01;
@@ -5035,13 +5023,19 @@ do{
 buff = response();
 }while(buff!=0x00);
 
-
+escreve_cmd_lcd(0b00000001);
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Bloco de 512");
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("Bytes criado!");
 _delay((unsigned long)((2000)*(48000000/4000.0)));
-
+escreve_cmd_lcd(0b00000001);
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Init OK");
 return stat;
 }
 
-# 155
+# 149
 DRESULT disk_readp (
 BYTE* rd,
 DWORD sector,
@@ -5147,7 +5141,7 @@ length++;
 }
 _delay((unsigned long)((1000)*(48000000/4000.0)));
 
-# 264
+# 258
 command(0X4C,0X00000000,0X00);
 proceed();
 do{
@@ -5155,7 +5149,6 @@ buff = response();
 }while(buff!=0xFF);
 
 length = 0;
-
 if(flag == 1){
 while(arr[length]!='\0')
 {
@@ -5164,14 +5157,14 @@ length++;
 }
 }
 else
-
-
+{
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("..");
+}
 _delay((unsigned long)((2000)*(48000000/4000.0)));
-
 
 return RES_OK;
 }
-
 }
 
 

@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F4002 `(v ~T0 @X0 0 tf ]
+[v F4008 `(v ~T0 @X0 0 tf ]
 "4388 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [s S170 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S170 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE SPPIE ]
@@ -52,9 +52,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INT0IF `Vb ~T0 @X0 0 e@32657 ]
 "9515
 [v _INT0IE `Vb ~T0 @X0 0 e@32660 ]
-"104 main.c
+"96 main.c
 [v _acende_led4 `(v ~T0 @X0 0 ef ]
-"100
+"95
 [v _SDCard `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "35 bibliotecas/hardware.h
@@ -65,12 +65,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _init_lcd `(v ~T0 @X0 0 ef ]
 "40 bibliotecas/SHRC.h
 [v _inicializa_shrc `(v ~T0 @X0 0 ef ]
-"99 main.c
+"94 main.c
 [v _mensagem_inicial `(v ~T0 @X0 0 ef ]
 "48 bibliotecas/SPI.h
 [v _inicializa_SPI `(v ~T0 @X0 0 ef3`uc`uc`uc ]
+"35 bibliotecas/chaves.h
+[v _leitura_chaves_sistema `(v ~T0 @X0 0 ef ]
 "38 bibliotecas/SHRC.h
 [v _controle_shrc `(v ~T0 @X0 0 ef ]
+"38 bibliotecas/adc.h
+[v _leitura_continua_adc `(v ~T0 @X0 0 ef ]
 "236 bibliotecas/display/display_lcd.h
 [v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
 "290
@@ -81,13 +85,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i __delay ]
 "208 bibliotecas/display/display_lcd.h
 [v _escreve_cmd_lcd `(v ~T0 @X0 0 ef1`uc ]
-"300 main.c
+"8073 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
+[s S342 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S342 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
+"8081
+[s S343 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S343 . T0PS0 T0PS1 T0PS2 ]
+"8072
+[u S341 `S342 1 `S343 1 ]
+[n S341 . . . ]
+"8087
+[v _T0CONbits `VS341 ~T0 @X0 0 e@4053 ]
+"274 main.c
 [c E3838 0 1 2 3 4 5 6 .. ]
 [n E3838 . FR_OK FR_DISK_ERR FR_NOT_READY FR_NO_FILE FR_NOT_OPENED FR_NOT_ENABLED FR_NO_FILESYSTEM  ]
 "40 pff.h
 [s S362 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 ]
 [n S362 . fs_type flag csize pad1 n_rootdir n_fatent fatbase dirbase database fptr fsize org_clust curr_clust dsect ]
-"114 bibliotecas/SDCard.h
+"97 bibliotecas/SDCard.h
 [v _proceed `(v ~T0 @X0 0 ef ]
 "100 pff.h
 [v _pf_mount `(E3838 ~T0 @X0 0 ef1`*S362 ]
@@ -95,7 +110,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _pf_open `(E3838 ~T0 @X0 0 ef1`*Cuc ]
 "103
 [v _pf_write `(E3838 ~T0 @X0 0 ef3`*Cv`ui`*ui ]
-"55 main.c
+"104 main.c
 [v _readover `(v ~T0 @X0 0 ef1`i ]
 "102 pff.h
 [v _pf_read `(E3838 ~T0 @X0 0 ef3`*v`ui`*ui ]
@@ -3755,39 +3770,42 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
 [; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 [; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
+[; ;adc.h: 34: void inicializa_adc(void);
+[; ;adc.h: 36: unsigned int leitura_adc(unsigned char canal);
+[; ;adc.h: 38: void leitura_continua_adc(void);
+[; ;adc.h: 40: unsigned int valor_medio_adc(unsigned char canal);
 [; ;SPI.h: 48: void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 [; ;SPI.h: 50: unsigned char recebe_dado_SPI(void);
 [; ;SPI.h: 52: char WriteSPI_(unsigned char dado);
 [; ;SPI.h: 54: unsigned char verifica_buffer_SPI(void);
-[; ;SDCard.h: 106: void init_SDcard();
-[; ;SDCard.h: 107: void envia_CMD16(void);
-[; ;SDCard.h: 108: unsigned char envia_CMD8(void);
-[; ;SDCard.h: 109: void envia_CMD1(void);
-[; ;SDCard.h: 110: void envia_CMD0(void);
-[; ;SDCard.h: 113: BYTE response(void);
-[; ;SDCard.h: 114: void proceed(void);
-[; ;SDCard.h: 115: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 116: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-"45 main.c
+[; ;SDCard.h: 89: void init_SDcard();
+[; ;SDCard.h: 90: void envia_CMD16(void);
+[; ;SDCard.h: 91: unsigned char envia_CMD8(void);
+[; ;SDCard.h: 92: void envia_CMD1(void);
+[; ;SDCard.h: 93: void envia_CMD0(void);
+[; ;SDCard.h: 96: BYTE response(void);
+[; ;SDCard.h: 97: void proceed(void);
+[; ;SDCard.h: 98: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 99: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+"55 main.c
 [v _rd `*uc ~T0 @X0 1 e ]
-[; ;main.c: 45: unsigned char *rd;
-"46
+[; ;main.c: 55: unsigned char *rd;
+"56
 [v _Result `uc ~T0 @X0 1 e ]
-[; ;main.c: 46: unsigned char Result;
-"48
+[; ;main.c: 56: unsigned char Result;
+"57
 [v _s `uc ~T0 @X0 1 e ]
-[; ;main.c: 48: BYTE s;
-"49
+[; ;main.c: 57: BYTE s;
+"58
 [v _fileSize `ul ~T0 @X0 1 e ]
-[; ;main.c: 49: DWORD fileSize;
-"50
+[; ;main.c: 58: DWORD fileSize;
+"59
 [v _txt `uc ~T0 @X0 -> 20 `i e ]
-[; ;main.c: 50: BYTE txt[20];
-"51
+[; ;main.c: 59: BYTE txt[20];
+"60
 [v _data_buffer_32 `uc ~T0 @X0 -> 32 `i e ]
-[; ;main.c: 51: BYTE data_buffer_32[32];
-[; ;main.c: 55: extern void readover(int);
-"63
+[; ;main.c: 60: BYTE data_buffer_32[32];
+"64
 [v _fileName `uc ~T0 @X0 -> 10 `i e ]
 [i _fileName
 :U ..
@@ -3803,326 +3821,333 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[; ;main.c: 63: BYTE fileName[10] = {"check.txt"};
-"64
+[; ;main.c: 64: BYTE fileName[10] = {"check.txt"};
+"65
 [v _folder `uc ~T0 @X0 -> 48 `i e ]
 [i _folder
 :U ..
 -> 0 `c
 ..
 ]
-[; ;main.c: 64: BYTE folder[48] = {""};
-"74
+[; ;main.c: 65: BYTE folder[48] = {""};
+"68
 [v _data_uart_recebe `uc ~T0 @X0 1 e ]
-[; ;main.c: 74: unsigned char data_uart_recebe;
-"77
-[v _p_tarefas `*F4002 ~T0 @X0 -> 2 `i e ]
-[; ;main.c: 77: void (*p_tarefas[2])(void);
-"80
+[; ;main.c: 68: unsigned char data_uart_recebe;
+"71
+[v _p_tarefas `*F4008 ~T0 @X0 -> 2 `i e ]
+[; ;main.c: 71: void (*p_tarefas[2])(void);
+"74
 [v _tempo_backup `ui ~T0 @X0 -> 2 `i e ]
-[; ;main.c: 80: unsigned int tempo_backup[2];
-"83
+[; ;main.c: 74: unsigned int tempo_backup[2];
+"77
 [v _tempo_tarefa `ui ~T0 @X0 -> 2 `i e ]
-[; ;main.c: 83: unsigned int tempo_tarefa[2];
-"86
+[; ;main.c: 77: unsigned int tempo_tarefa[2];
+"80
 [v _sinaliza_int_timer `uc ~T0 @X0 1 e ]
-[; ;main.c: 86: unsigned char sinaliza_int_timer;
-"89
+[; ;main.c: 80: unsigned char sinaliza_int_timer;
+"83
 [v _tarefa_em_execucao `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 89: volatile char tarefa_em_execucao;
-"91
+[; ;main.c: 83: volatile char tarefa_em_execucao;
+"86
 [v _timeout_tarefa `ui ~T0 @X0 1 e ]
-[; ;main.c: 91: unsigned int timeout_tarefa;
-[; ;main.c: 99: void mensagem_inicial(void);
-[; ;main.c: 100: void SDCard(void);
-[; ;main.c: 104: void acende_led4(void);
+[; ;main.c: 86: unsigned int timeout_tarefa;
+[; ;main.c: 94: void mensagem_inicial(void);
+[; ;main.c: 95: void SDCard(void);
+[; ;main.c: 96: void acende_led4(void);
+[; ;main.c: 104: extern void readover(int);
 [v $root$_isr `(v ~T0 @X0 0 e ]
-[v F4017 `(v ~T0 @X0 1 tf ]
-"120
-[v _isr `IF4017 ~T0 @X0 1 e ]
-"121
+[v F4025 `(v ~T0 @X0 1 tf ]
+"112
+[v _isr `IF4025 ~T0 @X0 1 e ]
+"113
 {
-[; ;main.c: 120: void interrupt isr(void)
-[; ;main.c: 121: {
+[; ;main.c: 112: void interrupt isr(void)
+[; ;main.c: 113: {
 [e :U _isr ]
 [f ]
-"122
+"114
 [v _cont `uc ~T0 @X0 1 a ]
-[; ;main.c: 122: unsigned char cont;
-[; ;main.c: 125: if (PIE1bits.RCIE && PIR1bits.RCIF)
-"125
+[; ;main.c: 114: unsigned char cont;
+[; ;main.c: 117: if (PIE1bits.RCIE && PIR1bits.RCIF)
+"117
 [e $ ! && != -> . . _PIE1bits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 366  ]
-[; ;main.c: 126: {
-"126
+[; ;main.c: 118: {
+"118
 {
-[; ;main.c: 127: data_uart_recebe = recebe_dado_uart();
-"127
+[; ;main.c: 119: data_uart_recebe = recebe_dado_uart();
+"119
 [e = _data_uart_recebe ( _recebe_dado_uart ..  ]
-[; ;main.c: 128: PIR1bits.RCIF = 0;
-"128
+[; ;main.c: 120: PIR1bits.RCIF = 0;
+"120
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-"129
+"121
 }
 [e :U 366 ]
-[; ;main.c: 129: }
-[; ;main.c: 132: unsigned char cont;
-[; ;main.c: 134: if (TMR0IF && T0IF)
-"134
+[; ;main.c: 121: }
+[; ;main.c: 124: unsigned char cont;
+[; ;main.c: 126: if (TMR0IF && T0IF)
+"126
 [e $ ! && _TMR0IF _T0IF 367  ]
-[; ;main.c: 135: {
-"135
+[; ;main.c: 127: {
+"127
 {
-[; ;main.c: 136: INTCONbits.TMR0IF = 0;
-"136
+[; ;main.c: 128: INTCONbits.TMR0IF = 0;
+"128
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 137: sinaliza_int_timer = 1;
-"137
+[; ;main.c: 129: sinaliza_int_timer = 1;
+"129
 [e = _sinaliza_int_timer -> -> 1 `i `uc ]
-[; ;main.c: 139: for(cont= 0; cont<2;cont++)
-"139
+[; ;main.c: 131: for(cont= 0; cont<2;cont++)
+"131
 {
 [e = _cont -> -> 0 `i `uc ]
 [e $ < -> _cont `i -> 2 `i 368  ]
 [e $U 369  ]
-"140
+"132
 [e :U 368 ]
-[; ;main.c: 140: {
+[; ;main.c: 132: {
 {
-[; ;main.c: 141: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
-"141
+[; ;main.c: 133: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
+"133
 [e $ ! > *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 371  ]
 [e -- *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1 `i `ui ]
 [e :U 371 ]
-"142
+"134
 }
-"139
+"131
 [e ++ _cont -> -> 1 `i `uc ]
 [e $ < -> _cont `i -> 2 `i 368  ]
 [e :U 369 ]
-"142
+"134
 }
-[; ;main.c: 142: }
-[; ;main.c: 145: if(tarefa_em_execucao == 1)
-"145
+[; ;main.c: 134: }
+[; ;main.c: 137: if(tarefa_em_execucao == 1)
+"137
 [e $ ! == -> _tarefa_em_execucao `i -> 1 `i 372  ]
-[; ;main.c: 146: {
-"146
+[; ;main.c: 138: {
+"138
 {
-[; ;main.c: 147: timeout_tarefa--;
-"147
+[; ;main.c: 139: timeout_tarefa--;
+"139
 [e -- _timeout_tarefa -> -> 1 `i `ui ]
-[; ;main.c: 148: if(!timeout_tarefa)
-"148
+[; ;main.c: 140: if(!timeout_tarefa)
+"140
 [e $ ! ! != _timeout_tarefa -> -> 0 `i `ui 373  ]
-[; ;main.c: 149: {
-"149
+[; ;main.c: 141: {
+"141
 {
-[; ;main.c: 151: PCLATH = 0;
-"151
+[; ;main.c: 143: PCLATH = 0;
+"143
 [e = _PCLATH -> -> 0 `i `uc ]
-[; ;main.c: 152: PCL = 0;
-"152
+[; ;main.c: 144: PCL = 0;
+"144
 [e = _PCL -> -> 0 `i `uc ]
-"153
+"145
 }
 [e :U 373 ]
-"154
+"146
 }
 [e :U 372 ]
-[; ;main.c: 153: }
-[; ;main.c: 154: }
-[; ;main.c: 157: write_timer_zero(0x0083);
-"157
+[; ;main.c: 145: }
+[; ;main.c: 146: }
+[; ;main.c: 149: write_timer_zero(0x0083);
+"149
 [e ( _write_timer_zero (1 -> -> 131 `i `ui ]
-"159
+"151
 }
 [e :U 367 ]
-[; ;main.c: 159: }
-[; ;main.c: 165: if (INT0IF && INT0IE)
-"165
+[; ;main.c: 151: }
+[; ;main.c: 153: if (INT0IF && INT0IE)
+"153
 [e $ ! && _INT0IF _INT0IE 374  ]
-[; ;main.c: 166: {
-"166
+[; ;main.c: 154: {
+"154
 {
-[; ;main.c: 167: INT0IF = 0;
-"167
+[; ;main.c: 155: INT0IF = 0;
+"155
 [e = _INT0IF -> -> 0 `i `b ]
-"169
+"157
 }
 [e :U 374 ]
-[; ;main.c: 169: }
-[; ;main.c: 170: }
-"170
+[; ;main.c: 157: }
+[; ;main.c: 158: }
+"158
 [e :UE 365 ]
 }
-"181
+"169
 [v _inicializa_tarefas `(v ~T0 @X0 1 ef ]
-"182
+"170
 {
-[; ;main.c: 181: void inicializa_tarefas(void)
-[; ;main.c: 182: {
+[; ;main.c: 169: void inicializa_tarefas(void)
+[; ;main.c: 170: {
 [e :U _inicializa_tarefas ]
 [f ]
-[; ;main.c: 184: p_tarefas[0] = acende_led4;
-"184
+[; ;main.c: 172: p_tarefas[0] = acende_led4;
+"172
 [e = *U + &U _p_tarefas * -> -> -> 0 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _acende_led4 ]
-[; ;main.c: 185: p_tarefas[1] = SDCard;
-"185
+[; ;main.c: 173: p_tarefas[1] = SDCard;
+"173
 [e = *U + &U _p_tarefas * -> -> -> 1 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _SDCard ]
-[; ;main.c: 191: tempo_backup[0] = 1000;
-"191
+[; ;main.c: 177: tempo_backup[0] = 1000;
+"177
 [e = *U + &U _tempo_backup * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 1000 `i `ui ]
-[; ;main.c: 192: tempo_backup[1] = 2000;
-"192
+[; ;main.c: 178: tempo_backup[1] = 2000;
+"178
 [e = *U + &U _tempo_backup * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 2000 `i `ui ]
-[; ;main.c: 198: tempo_tarefa[0] = 1000;
-"198
+[; ;main.c: 182: tempo_tarefa[0] = 1000;
+"182
 [e = *U + &U _tempo_tarefa * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1000 `i `ui ]
-[; ;main.c: 199: tempo_tarefa[1] = 2000;
-"199
+[; ;main.c: 183: tempo_tarefa[1] = 2000;
+"183
 [e = *U + &U _tempo_tarefa * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 2000 `i `ui ]
-[; ;main.c: 204: tarefa_em_execucao = 0;
-"204
+[; ;main.c: 186: tarefa_em_execucao = 0;
+"186
 [e = _tarefa_em_execucao -> -> 0 `i `uc ]
-[; ;main.c: 205: }
-"205
+[; ;main.c: 187: }
+"187
 [e :UE 375 ]
 }
-"218
+"197
 [v _escalonador `(v ~T0 @X0 1 ef ]
-"219
+"198
 {
-[; ;main.c: 218: void escalonador()
-[; ;main.c: 219: {
+[; ;main.c: 197: void escalonador()
+[; ;main.c: 198: {
 [e :U _escalonador ]
 [f ]
-"220
+"199
 [v _cont `uc ~T0 @X0 1 a ]
-[; ;main.c: 220: unsigned char cont;
-[; ;main.c: 221: for(cont = 0; cont<2;cont++)
-"221
+[; ;main.c: 199: unsigned char cont;
+[; ;main.c: 200: for(cont = 0; cont<2;cont++)
+"200
 {
 [e = _cont -> -> 0 `i `uc ]
 [e $ < -> _cont `i -> 2 `i 377  ]
 [e $U 378  ]
-"222
+"201
 [e :U 377 ]
-[; ;main.c: 222: {
+[; ;main.c: 201: {
 {
-[; ;main.c: 223: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
-"223
-[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F4002 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 380  ]
-[; ;main.c: 224: {
-"224
+[; ;main.c: 202: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
+"202
+[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F4008 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 380  ]
+[; ;main.c: 203: {
+"203
 {
-[; ;main.c: 225: tarefa_em_execucao = 1;
-"225
+[; ;main.c: 204: tarefa_em_execucao = 1;
+"204
 [e = _tarefa_em_execucao -> -> 1 `i `uc ]
-[; ;main.c: 226: timeout_tarefa = 65000;
-"226
+[; ;main.c: 205: timeout_tarefa = 65000;
+"205
 [e = _timeout_tarefa -> -> 65000 `l `ui ]
-[; ;main.c: 227: p_tarefas[cont]();
-"227
+[; ;main.c: 206: p_tarefas[cont]();
+"206
 [e ( *U *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux ..  ]
-[; ;main.c: 228: tarefa_em_execucao = 0;
-"228
+[; ;main.c: 207: tarefa_em_execucao = 0;
+"207
 [e = _tarefa_em_execucao -> -> 0 `i `uc ]
-[; ;main.c: 229: tempo_tarefa[cont] = tempo_backup[cont];
-"229
+[; ;main.c: 208: tempo_tarefa[cont] = tempo_backup[cont];
+"208
 [e = *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux *U + &U _tempo_backup * -> _cont `ux -> -> # *U &U _tempo_backup `ui `ux ]
-"230
+"209
 }
 [e :U 380 ]
-"231
+"210
 }
-"221
+"200
 [e ++ _cont -> -> 1 `i `uc ]
 [e $ < -> _cont `i -> 2 `i 377  ]
 [e :U 378 ]
-"231
+"210
 }
-[; ;main.c: 230: }
-[; ;main.c: 231: }
-[; ;main.c: 233: }
-"233
+[; ;main.c: 209: }
+[; ;main.c: 210: }
+[; ;main.c: 212: }
+"212
 [e :UE 376 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"242
+"221
 [v _main `(v ~T0 @X0 1 ef ]
-"243
+"222
 {
-[; ;main.c: 242: void main(void)
-[; ;main.c: 243: {
+[; ;main.c: 221: void main(void)
+[; ;main.c: 222: {
 [e :U _main ]
 [f ]
-[; ;main.c: 251: init_hardware();
-"251
+[; ;main.c: 223: init_hardware();
+"223
 [e ( _init_hardware ..  ]
-[; ;main.c: 252: inicializa_uart();
-"252
+[; ;main.c: 224: inicializa_uart();
+"224
 [e ( _inicializa_uart ..  ]
-[; ;main.c: 253: init_lcd();
-"253
+[; ;main.c: 225: init_lcd();
+"225
 [e ( _init_lcd ..  ]
-[; ;main.c: 254: inicializa_shrc();
-"254
+[; ;main.c: 226: inicializa_shrc();
+"226
 [e ( _inicializa_shrc ..  ]
-[; ;main.c: 256: mensagem_inicial();
-"256
+[; ;main.c: 228: mensagem_inicial();
+"228
 [e ( _mensagem_inicial ..  ]
-[; ;main.c: 257: inicializa_tarefas();
-"257
+[; ;main.c: 229: inicializa_tarefas();
+"229
 [e ( _inicializa_tarefas ..  ]
-[; ;main.c: 258: inicializa_SPI(0,3,1);
-"258
+[; ;main.c: 230: inicializa_SPI(0,3,1);
+"230
 [e ( _inicializa_SPI (3 , , -> -> 0 `i `uc -> -> 3 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 260: while(1)
-"260
+[; ;main.c: 233: while(1)
+"233
 [e :U 383 ]
-[; ;main.c: 261: {
-"261
+[; ;main.c: 234: {
+"234
 {
-[; ;main.c: 263: if ((sinaliza_int_timer == 1) && (2))
-"263
+[; ;main.c: 236: if ((sinaliza_int_timer == 1) && (2))
+"236
 [e $ ! && == -> _sinaliza_int_timer `i -> 1 `i != -> 2 `i -> 0 `i 385  ]
-[; ;main.c: 264: {
-"264
+[; ;main.c: 237: {
+"237
 {
-[; ;main.c: 265: sinaliza_int_timer = 0;
-"265
+[; ;main.c: 238: sinaliza_int_timer = 0;
+"238
 [e = _sinaliza_int_timer -> -> 0 `i `uc ]
-[; ;main.c: 266: escalonador();
-"266
+[; ;main.c: 239: escalonador();
+"239
 [e ( _escalonador ..  ]
-"267
+"240
 }
 [e :U 385 ]
-[; ;main.c: 267: }
-[; ;main.c: 269: controle_shrc();
-"269
+[; ;main.c: 240: }
+[; ;main.c: 241: leitura_chaves_sistema();
+"241
+[e ( _leitura_chaves_sistema ..  ]
+[; ;main.c: 242: controle_shrc();
+"242
 [e ( _controle_shrc ..  ]
-"272
+[; ;main.c: 243: leitura_continua_adc();
+"243
+[e ( _leitura_continua_adc ..  ]
+"245
 }
 [e :U 382 ]
-"260
+"233
 [e $U 383  ]
 [e :U 384 ]
-[; ;main.c: 272: }
-[; ;main.c: 273: }
-"273
+[; ;main.c: 245: }
+[; ;main.c: 246: }
+"246
 [e :UE 381 ]
 }
-"282
+"255
 [v _mensagem_inicial `(v ~T0 @X0 1 ef ]
-"283
+"256
 {
-[; ;main.c: 282: void mensagem_inicial(void)
-[; ;main.c: 283: {
+[; ;main.c: 255: void mensagem_inicial(void)
+[; ;main.c: 256: {
 [e :U _mensagem_inicial ]
 [f ]
-[v F4029 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4029
+[v F4037 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4037
 :U ..
 -> 83 `c
 -> 68 `c
@@ -4141,12 +4166,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"284
+"257
 [v _msg_linha_um `Cuc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 284: const unsigned char msg_linha_um[17] = "SDCard Init   ";
-[e = _msg_linha_um F4029 ]
-[v F4031 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4031
+[; ;main.c: 257: const unsigned char msg_linha_um[17] = "SDCard Init   ";
+[e = _msg_linha_um F4037 ]
+[v F4039 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4039
 :U ..
 -> 32 `c
 -> 49 `c
@@ -4165,307 +4190,337 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"285
+"258
 [v _msg_dois `Cuc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 285: const unsigned char msg_dois[17] = " 18/01/2022   ";
-[e = _msg_dois F4031 ]
-[; ;main.c: 287: posicao_cursor_lcd(1,0);
-"287
+[; ;main.c: 258: const unsigned char msg_dois[17] = " 18/01/2022   ";
+[e = _msg_dois F4039 ]
+[; ;main.c: 260: posicao_cursor_lcd(1,0);
+"260
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 288: escreve_frase_ram_lcd(msg_linha_um);
-"288
+[; ;main.c: 261: escreve_frase_ram_lcd(msg_linha_um);
+"261
 [e ( _escreve_frase_ram_lcd (1 -> &U _msg_linha_um `*uc ]
-[; ;main.c: 290: posicao_cursor_lcd(2,0);
-"290
+[; ;main.c: 263: posicao_cursor_lcd(2,0);
+"263
 [e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 291: escreve_frase_ram_lcd(msg_dois);
-"291
+[; ;main.c: 264: escreve_frase_ram_lcd(msg_dois);
+"264
 [e ( _escreve_frase_ram_lcd (1 -> &U _msg_dois `*uc ]
-[; ;main.c: 293: _delay((unsigned long)((1000)*(48000000/4000.0)));
-"293
+[; ;main.c: 266: _delay((unsigned long)((1000)*(48000000/4000.0)));
+"266
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;main.c: 294: escreve_cmd_lcd(0b00000001);
-"294
+[; ;main.c: 267: escreve_cmd_lcd(0b00000001);
+"267
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 295: }
-"295
+[; ;main.c: 268: }
+"268
 [e :UE 386 ]
 }
-"298
+"271
 [v _SDCard `(v ~T0 @X0 1 ef ]
-"299
+"272
 {
-[; ;main.c: 298: void SDCard(void)
-[; ;main.c: 299: {
+[; ;main.c: 271: void SDCard(void)
+[; ;main.c: 272: {
 [e :U _SDCard ]
 [f ]
-"300
+[; ;main.c: 273: T0CONbits.TMR0ON = 0;
+"273
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+"274
 [v _FResult `E3838 ~T0 @X0 1 a ]
-"301
+"275
 [v _fs `S362 ~T0 @X0 1 a ]
-"302
+"276
 [v _br `us ~T0 @X0 1 a ]
-[; ;main.c: 300: FRESULT FResult;
-[; ;main.c: 301: FATFS fs;
-[; ;main.c: 302: WORD br;
-[; ;main.c: 324: posicao_cursor_lcd(1,0);
-"324
+[; ;main.c: 274: FRESULT FResult;
+[; ;main.c: 275: FATFS fs;
+[; ;main.c: 276: WORD br;
+[; ;main.c: 278: posicao_cursor_lcd(1,0);
+"278
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 325: escreve_frase_ram_lcd("Attempting to");
-"325
+[; ;main.c: 279: escreve_frase_ram_lcd("Attempting to");
+"279
 [e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
-[; ;main.c: 326: posicao_cursor_lcd(1,0);
-"326
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 327: escreve_frase_ram_lcd("             ");
-"327
+[; ;main.c: 280: posicao_cursor_lcd(2,0);
+"280
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 281: escreve_frase_ram_lcd("mount file sys");
+"281
 [e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
-[; ;main.c: 328: posicao_cursor_lcd(1,0);
-"328
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 329: escreve_frase_ram_lcd("mount file sys");
-"329
-[e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
-[; ;main.c: 331: escreve_cmd_lcd(0b00000001);
-"331
+[; ;main.c: 282: escreve_cmd_lcd(0b00000001);
+"282
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 333: proceed();
-"333
+[; ;main.c: 285: proceed();
+"285
 [e ( _proceed ..  ]
-[; ;main.c: 334: if((FResult = pf_mount(&fs)) == FR_OK )
-"334
+[; ;main.c: 286: if((FResult = pf_mount(&fs)) == FR_OK )
+"286
 [e $ ! == -> = _FResult ( _pf_mount (1 &U _fs `i -> . `E3838 0 `i 388  ]
-[; ;main.c: 335: {
-"335
+[; ;main.c: 287: {
+"287
 {
-[; ;main.c: 336: posicao_cursor_lcd(1,0);
-"336
+[; ;main.c: 288: posicao_cursor_lcd(1,0);
+"288
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 337: escreve_frase_ram_lcd("syst inicialized");
-"337
-[e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
-[; ;main.c: 339: FResult = pf_open("check.txt" );
-"339
-[e = _FResult ( _pf_open (1 :s 5C ]
-[; ;main.c: 341: if( FResult == FR_OK )
-"341
+[; ;main.c: 289: escreve_frase_ram_lcd("syst inicialized");
+"289
+[e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
+[; ;main.c: 292: FResult = pf_open("check.txt" );
+"292
+[e = _FResult ( _pf_open (1 :s 4C ]
+[; ;main.c: 294: if( FResult == FR_OK )
+"294
 [e $ ! == -> _FResult `i -> . `E3838 0 `i 389  ]
-[; ;main.c: 342: {
-"342
+[; ;main.c: 295: {
+"295
 {
-[; ;main.c: 344: if( (FResult = pf_write("SD_Card", 5, &br)) == FR_OK )
-"344
-[e $ ! == -> = _FResult ( _pf_write (3 , , -> :s 6C `*Cv -> -> 5 `i `ui -> &U _br `*ui `i -> . `E3838 0 `i 390  ]
-[; ;main.c: 345: {
-"345
+[; ;main.c: 297: if( (FResult = pf_write("SD_Card", 5, &br)) == FR_OK )
+"297
+[e $ ! == -> = _FResult ( _pf_write (3 , , -> :s 5C `*Cv -> -> 5 `i `ui -> &U _br `*ui `i -> . `E3838 0 `i 390  ]
+[; ;main.c: 298: {
+"298
 {
-[; ;main.c: 346: posicao_cursor_lcd(1,0);
-"346
+[; ;main.c: 299: posicao_cursor_lcd(1,0);
+"299
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 347: escreve_frase_ram_lcd("syst inicialized");
-"347
-[e ( _escreve_frase_ram_lcd (1 -> :s 7C `*uc ]
-"348
+[; ;main.c: 300: escreve_frase_ram_lcd("syst inicialized");
+"300
+[e ( _escreve_frase_ram_lcd (1 -> :s 6C `*uc ]
+"301
 }
-[; ;main.c: 348: }
+[; ;main.c: 301: }
 [e $U 391  ]
-"349
+"302
 [e :U 390 ]
-[; ;main.c: 349: else
-[; ;main.c: 350: {
-"350
+[; ;main.c: 302: else
+[; ;main.c: 303: {
+"303
 {
-[; ;main.c: 351: escreve_cmd_lcd(0b00000001);
-"351
+[; ;main.c: 304: escreve_cmd_lcd(0b00000001);
+"304
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 352: posicao_cursor_lcd(1,0);
-"352
+[; ;main.c: 305: posicao_cursor_lcd(1,0);
+"305
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 353: escreve_frase_ram_lcd("SDCard error");
-"353
-[e ( _escreve_frase_ram_lcd (1 -> :s 8C `*uc ]
-[; ;main.c: 356: while( 1 );
-"356
+[; ;main.c: 306: escreve_frase_ram_lcd("SDCard error");
+"306
+[e ( _escreve_frase_ram_lcd (1 -> :s 7C `*uc ]
+[; ;main.c: 307: while( 1 );
+"307
 [e :U 393 ]
 [e :U 392 ]
 [e $U 393  ]
 [e :U 394 ]
-"357
+"308
 }
 [e :U 391 ]
-[; ;main.c: 357: }
-[; ;main.c: 358: escreve_cmd_lcd(0b00000001);
-"358
+[; ;main.c: 308: }
+[; ;main.c: 309: escreve_cmd_lcd(0b00000001);
+"309
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 359: posicao_cursor_lcd(1,0);
-"359
+[; ;main.c: 312: posicao_cursor_lcd(1,0);
+"312
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 360: escreve_frase_ram_lcd("lendo arquivo");
-"360
-[e ( _escreve_frase_ram_lcd (1 -> :s 9C `*uc ]
-[; ;main.c: 368: do
-"368
+[; ;main.c: 313: escreve_frase_ram_lcd("lendo arquivo");
+"313
+[e ( _escreve_frase_ram_lcd (1 -> :s 8C `*uc ]
+[; ;main.c: 316: do
+"316
 [e :U 397 ]
-[; ;main.c: 369: {
-"369
+[; ;main.c: 317: {
+"317
 {
-[; ;main.c: 370: readover(1);
-"370
+[; ;main.c: 318: readover(1);
+"318
 [e ( _readover (1 -> 1 `i ]
-[; ;main.c: 373: if( (FResult = pf_read(data_buffer_32, 31, &br)) == FR_OK )
-"373
+[; ;main.c: 321: if( (FResult = pf_read(data_buffer_32, 31, &br)) == FR_OK )
+"321
 [e $ ! == -> = _FResult ( _pf_read (3 , , -> &U _data_buffer_32 `*v -> -> 31 `i `ui -> &U _br `*ui `i -> . `E3838 0 `i 398  ]
-[; ;main.c: 374: {
-"374
+[; ;main.c: 322: {
+"322
 {
-[; ;main.c: 376: data_buffer_32[br] = 0;
-"376
+[; ;main.c: 324: data_buffer_32[br] = 0;
+"324
 [e = *U + &U _data_buffer_32 * -> _br `ux -> -> # *U &U _data_buffer_32 `ui `ux -> -> 0 `i `uc ]
-[; ;main.c: 377: break;
-"377
+[; ;main.c: 325: break;
+"325
 [e $U 396  ]
-"379
+"327
 }
-[; ;main.c: 379: }
+[; ;main.c: 327: }
 [e $U 399  ]
-"380
+"328
 [e :U 398 ]
-[; ;main.c: 380: else
-[; ;main.c: 381: {
-"381
+[; ;main.c: 328: else
+[; ;main.c: 329: {
+"329
 {
-[; ;main.c: 388: while( 1 );
-"388
+[; ;main.c: 331: escreve_cmd_lcd(0b00000001);
+"331
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 332: posicao_cursor_lcd(1,0);
+"332
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 333: escreve_frase_ram_lcd("Erro tentando");
+"333
+[e ( _escreve_frase_ram_lcd (1 -> :s 9C `*uc ]
+[; ;main.c: 334: posicao_cursor_lcd(2,0);
+"334
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 335: escreve_frase_ram_lcd("ler o arquivo");
+"335
+[e ( _escreve_frase_ram_lcd (1 -> :s 10C `*uc ]
+[; ;main.c: 337: while( 1 );
+"337
 [e :U 401 ]
 [e :U 400 ]
 [e $U 401  ]
 [e :U 402 ]
-"389
+"338
 }
 [e :U 399 ]
-"390
+"339
 }
-[; ;main.c: 389: }
-[; ;main.c: 390: } while( br == 31 );
+[; ;main.c: 338: }
+[; ;main.c: 339: } while( br == 31 );
 [e $ == -> _br `ui -> -> 31 `i `ui 397  ]
 [e :U 396 ]
-"391
+"340
 }
-[; ;main.c: 391: }
+[; ;main.c: 340: }
 [e $U 403  ]
-"392
+"341
 [e :U 389 ]
-[; ;main.c: 392: else
-[; ;main.c: 393: {
-"393
+[; ;main.c: 341: else
+[; ;main.c: 342: {
+"342
 {
-[; ;main.c: 398: while( 1 );
-"398
+[; ;main.c: 343: escreve_cmd_lcd(0b00000001);
+"343
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 344: posicao_cursor_lcd(1,0);
+"344
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 345: escreve_frase_ram_lcd("Erro tentando");
+"345
+[e ( _escreve_frase_ram_lcd (1 -> :s 11C `*uc ]
+[; ;main.c: 346: posicao_cursor_lcd(2,0);
+"346
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 347: escreve_frase_ram_lcd("abrir o arquivo");
+"347
+[e ( _escreve_frase_ram_lcd (1 -> :s 12C `*uc ]
+[; ;main.c: 348: while( 1 );
+"348
 [e :U 405 ]
 [e :U 404 ]
 [e $U 405  ]
 [e :U 406 ]
-"399
+"349
 }
 [e :U 403 ]
-"400
+"350
 }
-[; ;main.c: 399: }
-[; ;main.c: 400: }
+[; ;main.c: 349: }
+[; ;main.c: 350: }
 [e $U 407  ]
-"401
+"351
 [e :U 388 ]
-[; ;main.c: 401: else
-[; ;main.c: 402: {
-"402
+[; ;main.c: 351: else
+[; ;main.c: 352: {
+"352
 {
-[; ;main.c: 404: while( 1 );
-"404
+[; ;main.c: 354: while( 1 );
+"354
 [e :U 409 ]
 [e :U 408 ]
 [e $U 409  ]
 [e :U 410 ]
-"405
+"355
 }
 [e :U 407 ]
-[; ;main.c: 405: }
-[; ;main.c: 423: if( FResult != FR_OK )
-"423
+[; ;main.c: 355: }
+[; ;main.c: 373: if( FResult != FR_OK )
+"373
 [e $ ! != -> _FResult `i -> . `E3838 0 `i 411  ]
-[; ;main.c: 424: {
-"424
+[; ;main.c: 374: {
+"374
 {
-[; ;main.c: 429: while( 1 );
-"429
+[; ;main.c: 379: while( 1 );
+"379
 [e :U 413 ]
 [e :U 412 ]
 [e $U 413  ]
 [e :U 414 ]
-"430
+"380
 }
 [e :U 411 ]
-[; ;main.c: 430: }
-[; ;main.c: 433: while(1);
-"433
+[; ;main.c: 380: }
+[; ;main.c: 383: while(1);
+"383
 [e :U 416 ]
 [e :U 415 ]
 [e $U 416  ]
 [e :U 417 ]
-[; ;main.c: 435: }
-"435
+[; ;main.c: 385: }
+"385
 [e :UE 387 ]
 }
-"438
+"388
 [v _acende_led4 `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 438: void acende_led4(void){
+[; ;main.c: 388: void acende_led4(void){
 [e :U _acende_led4 ]
 [f ]
-"439
-[v F4038 `uc ~T0 @X0 1 s flag ]
-[i F4038
+"389
+[v F4046 `uc ~T0 @X0 1 s flag ]
+[i F4046
 -> -> 0 `i `uc
 ]
-[; ;main.c: 439: static unsigned char flag = 0;
-[; ;main.c: 440: flag = !flag;
-"440
-[e = F4038 -> -> ! != -> F4038 `i -> -> -> 0 `i `uc `i `i `uc ]
-[; ;main.c: 441: if(!flag)
-"441
-[e $ ! ! != -> F4038 `i -> -> -> 0 `i `uc `i 419  ]
-[; ;main.c: 442: {
-"442
+[; ;main.c: 389: static unsigned char flag = 0;
+[; ;main.c: 390: flag = !flag;
+"390
+[e = F4046 -> -> ! != -> F4046 `i -> -> -> 0 `i `uc `i `i `uc ]
+[; ;main.c: 391: if(!flag)
+"391
+[e $ ! ! != -> F4046 `i -> -> -> 0 `i `uc `i 419  ]
+[; ;main.c: 392: {
+"392
 {
-[; ;main.c: 443: shrc_seta_bit(0);
-"443
+[; ;main.c: 393: shrc_seta_bit(0);
+"393
 [e ( _shrc_seta_bit (1 -> -> 0 `i `uc ]
-"444
+"394
 }
-[; ;main.c: 444: }
+[; ;main.c: 394: }
 [e $U 420  ]
-"445
+"395
 [e :U 419 ]
-[; ;main.c: 445: else
-[; ;main.c: 446: {
-"446
+[; ;main.c: 395: else
+[; ;main.c: 396: {
+"396
 {
-[; ;main.c: 447: shrc_apaga_bit(0);
-"447
+[; ;main.c: 397: shrc_apaga_bit(0);
+"397
 [e ( _shrc_apaga_bit (1 -> -> 0 `i `uc ]
-"448
+"398
 }
 [e :U 420 ]
-[; ;main.c: 448: }
-[; ;main.c: 450: }
-"450
+[; ;main.c: 398: }
+[; ;main.c: 400: }
+"400
 [e :UE 418 ]
 }
-[a 5C 99 104 101 99 107 46 116 120 116 0 ]
-[a 3C 109 111 117 110 116 32 102 105 108 101 32 115 121 115 0 ]
-[a 8C 83 68 67 97 114 100 32 101 114 114 111 114 0 ]
-[a 9C 108 101 110 100 111 32 97 114 113 117 105 118 111 0 ]
+[a 4C 99 104 101 99 107 46 116 120 116 0 ]
+[a 2C 109 111 117 110 116 32 102 105 108 101 32 115 121 115 0 ]
+[a 7C 83 68 67 97 114 100 32 101 114 114 111 114 0 ]
+[a 8C 108 101 110 100 111 32 97 114 113 117 105 118 111 0 ]
+[a 12C 97 98 114 105 114 32 111 32 97 114 113 117 105 118 111 0 ]
+[a 10C 108 101 114 32 111 32 97 114 113 117 105 118 111 0 ]
 [a 1C 65 116 116 101 109 112 116 105 110 103 32 116 111 0 ]
-[a 6C 83 68 95 67 97 114 100 0 ]
-[a 4C 115 121 115 116 32 105 110 105 99 105 97 108 105 122 101 100 0 ]
-[a 7C 115 121 115 116 32 105 110 105 99 105 97 108 105 122 101 100 0 ]
-[a 2C 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 9C 69 114 114 111 32 116 101 110 116 97 110 100 111 0 ]
+[a 11C 69 114 114 111 32 116 101 110 116 97 110 100 111 0 ]
+[a 5C 83 68 95 67 97 114 100 0 ]
+[a 3C 115 121 115 116 32 105 110 105 99 105 97 108 105 122 101 100 0 ]
+[a 6C 115 121 115 116 32 105 110 105 99 105 97 108 105 122 101 100 0 ]

@@ -18,7 +18,7 @@
 /******************************************************************************
 * HEADER-FILES (Somente os arquivos necessários nesse arquivo)
 ******************************************************************************/
-#include "..\hardware.h"
+#include "hardware.h"
 #include <stdlib.h>
 #include "display_lcd.h"
 

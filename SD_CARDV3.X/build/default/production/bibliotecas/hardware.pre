@@ -4824,6 +4824,10 @@ void inicializa_adc(void);
 
 unsigned int leitura_adc(unsigned char canal);
 
+void leitura_continua_adc(void);
+
+unsigned int valor_medio_adc(unsigned char canal);
+
 # 38 "bibliotecas/SHRC.h"
 void controle_shrc (void);
 
@@ -4868,7 +4872,7 @@ config_timer_dois();
 init_interrupt();
 
 
-inicializa_adc();
+
 }
 
 # 83
@@ -4884,19 +4888,14 @@ write_timer_zero(0x0083);
 # 98
 void init_interrupt(void)
 {
-INTCON = 0b11100000;
+INTCON = 0b11110000;
 INTCON2 = 0b00000000;
 INTCON3 = 0b00000000;
 
-PIE1 = 0b00101000;
-
-PIR1bits.SSPIF = 0;
-PIE1bits.SSPIE = 1;
-IPR1bits.SSPIP = 1;
-RCONbits.IPEN = 0;
+PIE1 = 0b00100000;
 }
 
-# 118
+# 113
 void open_timer0(unsigned char config)
 {
 T0CON = (0x7f & config);
@@ -4916,7 +4915,7 @@ INTCONbits.TMR0IE = 0;
 T0CONbits.TMR0ON = 1;
 }
 
-# 143
+# 138
 void write_timer_zero(unsigned int timer0)
 {
 union Timers timer;
@@ -4927,7 +4926,7 @@ TMR0H = timer.bt[1];
 TMR0L = timer.bt[0];
 }
 
-# 159
+# 154
 void init_ports(void)
 {
 TRISB = 0b00000001;
@@ -4939,7 +4938,7 @@ TRISE = 0b00000011;
 
 }
 
-# 176
+# 171
 void init_oscilador(void)
 {
 
@@ -4948,7 +4947,7 @@ OSCCONbits.IRCF1 = 1;
 OSCCONbits.IRCF2 = 1;
 }
 
-# 190
+# 185
 void ms_delay(unsigned int val)
 {
 unsigned int i,j;
@@ -4956,7 +4955,7 @@ for(i=0;i<val;i++)
 for(j=0;j<165;j++);
 }
 
-# 205
+# 200
 void config_timer_dois(void)
 {
 T2CON = 0b00000100;
@@ -4964,7 +4963,7 @@ TMR2 = 0;
 PR2 = 0xFF;
 }
 
-# 218
+# 213
 void timer_dois(void)
 {
 if(TMR2IF)
