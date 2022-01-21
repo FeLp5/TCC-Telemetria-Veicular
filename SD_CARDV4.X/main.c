@@ -39,6 +39,7 @@
 //Nossas bibliotecas=-============================
 #include "bibliotecas/SPI.h"
 #include "bibliotecas/SDCard.h"
+#include "bibliotecas/GPS.h"
 //=-============================
 
 
@@ -116,6 +117,8 @@ void interrupt isr(void)
     {
         data_uart_recebe = recebe_dado_uart();
         PIR1bits.RCIF = 0;
+        tratamento_uart(data_uart_recebe);
+        		
     } //End if interrupt Recepcao UART
 	
     
@@ -396,3 +399,5 @@ void acende_led4(void){
     }
     
 }
+
+

@@ -1,15 +1,5 @@
 
-# 1 "main.c"
-
-# 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\xc8debug.h"
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
+# 1 "bibliotecas/GPS.c"
 
 # 50 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h"
 extern volatile unsigned char SPPDATA @ 0xF62;
@@ -4778,6 +4768,180 @@ extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\__size_t.h"
+typedef unsigned size_t;
+
+# 14 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 36
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 7 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdarg.h"
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+
+# 43 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h"
+struct __prbuf
+{
+char * ptr;
+void (* func)(char);
+};
+
+# 29 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\errno.h"
+extern int errno;
+
+# 12 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\conio.h"
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+# 23
+extern char * cgets(char *);
+extern void cputs(const char *);
+
+# 88 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h"
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+
+
+# 180
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+
+# 7 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h"
+typedef unsigned short wchar_t;
+
+# 15
+typedef struct {
+int rem;
+int quot;
+} div_t;
+typedef struct {
+unsigned rem;
+unsigned quot;
+} udiv_t;
+typedef struct {
+long quot;
+long rem;
+} ldiv_t;
+typedef struct {
+unsigned long quot;
+unsigned long rem;
+} uldiv_t;
+
+# 53
+extern double atof(const char *);
+extern double strtod(const char *, const char **);
+extern int atoi(const char *);
+extern unsigned xtoi(const char *);
+extern long atol(const char *);
+extern long strtol(const char *, char **, int);
+
+extern int rand(void);
+extern void srand(unsigned int);
+extern void * calloc(size_t, size_t);
+extern div_t div(int numer, int denom);
+extern udiv_t udiv(unsigned numer, unsigned denom);
+extern ldiv_t ldiv(long numer, long denom);
+extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+extern unsigned int _rotl(unsigned int value, unsigned int shift);
+extern unsigned int _rotr(unsigned int value, unsigned int shift);
+
+
+
+
+extern void * malloc(size_t);
+extern void free(void *);
+extern void * realloc(void *, size_t);
+
+
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\xc8debug.h"
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
+
+# 86 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h"
+extern int atexit(void (*)(void));
+extern char * getenv(const char *);
+extern char ** environ;
+extern int system(char *);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+extern int abs(int);
+extern long labs(long);
+
+extern char * itoa(char * buf, int val, int base);
+extern char * utoa(char * buf, unsigned val, int base);
+
+
+
+
+extern char * ltoa(char * buf, long val, int base);
+extern char * ultoa(char * buf, unsigned long val, int base);
+
+extern char * ftoa(float f, int * status);
+
+# 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
+
 # 18 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h"
 __attribute__((__unsupported__("The " "flash_write" " routine is no longer supported. Please use the MPLAB X MCC."))) void flash_write(const unsigned char *, unsigned int, __far unsigned char *);
 __attribute__((__unsupported__("The " "EraseFlash" " routine is no longer supported. Please use the MPLAB X MCC."))) void EraseFlash(unsigned long startaddr, unsigned long endaddr);
@@ -4805,532 +4969,172 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-
-# 36 "bibliotecas/config.h"
-#pragma config PLLDIV = 5
-#pragma config CPUDIV = OSC1_PLL2
-#pragma config USBDIV = 1
-
-#pragma config FOSC = HS
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-#pragma config PWRT = OFF
-#pragma config BOR = ON
-#pragma config BORV = 3
-#pragma config VREGEN = OFF
-
-#pragma config WDT = OFF
-
-#pragma config CCP2MX = OFF
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
-
-#pragma config STVREN = ON
-#pragma config LVP = OFF
-
-# 16 "bibliotecas/integer.h"
-typedef int INT;
-typedef unsigned int UINT;
-
-
-typedef char CHAR;
-typedef unsigned char UCHAR;
-typedef unsigned char BYTE;
-
-
-typedef short SHORT;
-typedef unsigned short USHORT;
-typedef unsigned short WORD;
-typedef unsigned short WCHAR;
-
-
-typedef long LONG;
-typedef unsigned long ULONG;
-typedef unsigned long DWORD;
-
-# 40 "bibliotecas/pff.h"
-typedef struct {
-BYTE fs_type;
-BYTE flag;
-BYTE csize;
-BYTE pad1;
-WORD n_rootdir;
-DWORD n_fatent;
-DWORD fatbase;
-DWORD dirbase;
-DWORD database;
-DWORD fptr;
-DWORD fsize;
-DWORD org_clust;
-DWORD curr_clust;
-DWORD dsect;
-} FATFS;
-
-# 61
-typedef struct {
-WORD index;
-BYTE* fn;
-DWORD sclust;
-DWORD clust;
-DWORD sect;
-} DIR_E;
-
-# 73
-typedef struct {
-DWORD fsize;
-WORD fdate;
-WORD ftime;
-BYTE fattrib;
-char fname[13];
-} FILINFO;
-
-# 85
-typedef enum {
-FR_OK = 0,
-FR_DISK_ERR,
-FR_NOT_READY,
-FR_NO_FILE,
-FR_NOT_OPENED,
-FR_NOT_ENABLED,
-FR_NO_FILESYSTEM
-} FRESULT;
-
-# 100
-FRESULT pf_mount (FATFS* fs);
-FRESULT pf_open (const char* path);
-FRESULT pf_read (void* buff, UINT btr, UINT* br);
-FRESULT pf_write (const void* buff, UINT btw, UINT* bw);
-FRESULT pf_lseek (DWORD ofs);
-FRESULT pf_opendir (DIR_E* dj, const char* path);
-FRESULT pf_readdir (DIR_E* dj, FILINFO* fno);
-
-# 16 "bibliotecas/diskio.h"
-typedef BYTE DSTATUS;
-
-
-typedef enum {
-RES_OK = 0,
-RES_ERROR,
-RES_NOTRDY,
-RES_PARERR
-} DRESULT;
-
-# 30
-DSTATUS disk_initialize (void);
-DRESULT disk_readp (BYTE* buff, DWORD sector, UINT offset, UINT count);
-DRESULT disk_writep (const BYTE* buff, DWORD sc);
-
-# 34 "bibliotecas/hardware.h"
-void init_hardware(void);
-void write_timer_zero(unsigned int timer0);
-void open_timer0(unsigned char config);
-void ms_delay(unsigned int val);
-void config_timer_dois(void);
-void timer_dois(void);
-
-
-
-
-typedef unsigned char uint8_t;
-typedef unsigned int uint16_t;
-
-# 40 "bibliotecas/uart.h"
-void envia_dado_uart(char data);
-
-unsigned char verifica_buffer_uart(void);
-
-void envia_string_uart(const char *string);
-
-char verifica_dado_disponivel_uart(void);
-
-char recebe_dado_uart(void);
-
-void recebe_string_uart(char *buffer, unsigned char length);
-
-void escreve_inteiro_uart(int valor);
-
-void inicializa_uart(void);
-
-# 33 "bibliotecas/chaves.h"
-void leitura_chave(void);
-
-void leitura_chaves_sistema(void);
-
-unsigned char chave_tres(void);
-
-unsigned char chave_quatro(void);
-
-unsigned char chave_zero(void);
-
-# 38 "bibliotecas/SHRC.h"
-void controle_shrc (void);
-
-void inicializa_shrc(void);
-
-void shrc_seta_bit(unsigned char posicao_bit);
-
-void shrc_apaga_bit(unsigned char posicao_bit);
-
-void shrc_recebe_byte(unsigned char dado_recebido);
-
-# 199 "bibliotecas/display_lcd.h"
-extern void init_lcd(void);
-
-# 208
-extern void escreve_cmd_lcd(unsigned char comando);
-
-# 220
-extern void endereco_cursor_lcd(unsigned char endereco);
-
-# 236
-extern void posicao_cursor_lcd(unsigned char linha, unsigned char coluna);
-
-# 247
-extern void escreve_caractere_lcd(char data);
-
-# 261
-extern void escreve_inteiro_lcd(int valor);
-
-# 276
-extern void escreve_float_lcd(float valor, char formatacao);
-
-# 290
-extern void escreve_frase_ram_lcd(char *buffer);
-
-# 304
-extern void escreve_frase_lcd(const char *buffer);
-
-# 322
-extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
-
-# 332
-void converte_inteiro_matriz(unsigned int val, char* str );
-
-# 34 "bibliotecas/adc.h"
-void inicializa_adc(void);
-
-unsigned int leitura_adc(unsigned char canal);
-
-void leitura_continua_adc(void);
-
-unsigned int valor_medio_adc(unsigned char canal);
-
-# 48 "bibliotecas/SPI.h"
-void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
-
-unsigned char recebe_dado_SPI(void);
-
-char WriteSPI_(unsigned char dado);
-
-unsigned char verifica_buffer_SPI(void);
-
-# 89 "bibliotecas/SDCard.h"
-void init_SDcard();
-void envia_CMD16(void);
-unsigned char envia_CMD8(void);
-void envia_CMD1(void);
-void envia_CMD0(void);
-
-
-BYTE response(void);
-void proceed(void);
-void dummy_clocks(unsigned char n);
-void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-
 # 51 "bibliotecas/GPS.h"
 void tratamento_uart(unsigned char received_char);
 void GPS(void);
 
-# 54 "main.c"
-unsigned char *rd;
-unsigned char Result;
-BYTE s;
-DWORD fileSize;
-BYTE txt[20];
-BYTE data_buffer_32[32];
+# 12 "bibliotecas/GPS.c"
+unsigned long int get_gpstime();
+float get_latitude(unsigned char);
+float get_longitude(unsigned char);
+float get_altitude(unsigned char);
+void convert_time_to_UTC(unsigned long int);
+float convert_to_degrees(float);
 
+char GGA_Buffer[80];
+char GGA_CODE[3];
 
+unsigned char N_S, E_W;
+unsigned char GGA_Pointers[20];
+char CommaCounter;
+char Data_Buffer[15];
+volatile unsigned int GGA_Index;
+volatile unsigned char IsItGGAString = 0;
 
-BYTE fileName[10] = {"check.txt"};
-BYTE folder[48] = {""};
-
-
-unsigned char data_uart_recebe;
-
-
-void (*p_tarefas[2])(void);
-
-
-unsigned int tempo_backup[2];
-
-
-unsigned int tempo_tarefa[2];
-
-
-unsigned char sinaliza_int_timer;
-
-
-volatile char tarefa_em_execucao;
-
-
-unsigned int timeout_tarefa;
-
-# 93
-void mensagem_inicial(void);
-void SDCard(void);
-void acende_led4(void);
-
-# 103
-extern void readover(int);
-
-# 111
-void interrupt isr(void)
+void GPS(void)
 {
-unsigned char cont;
+
+unsigned char data_out[34];
+unsigned long int Time;
+float Latitude, Longitude, Altitude;
+char GPS_Buffer[15];
+
+# 44
+memset(GPS_Buffer,0,15);
+Time = get_gpstime();
+convert_time_to_UTC(Time);
 
 
-if (PIE1bits.RCIE && PIR1bits.RCIF)
+
+
+Latitude = get_latitude(GGA_Pointers[0]);
+Latitude = convert_to_degrees(Latitude);
+sprintf(GPS_Buffer,"%.05f",Latitude);
+
+memset(GPS_Buffer,0,15);
+
+
+Longitude = get_longitude(GGA_Pointers[2]);
+Longitude = convert_to_degrees(Longitude);
+sprintf(GPS_Buffer,"%.05f",Longitude);
+
+memset(GPS_Buffer,0,15);
+
+# 73
+}
+
+unsigned long int get_gpstime(){
+unsigned char index;
+unsigned char Time_Buffer[15];
+unsigned long int _Time;
+
+
+for(index = 0;GGA_Buffer[index]!=','; index++){
+Time_Buffer[index] = GGA_Buffer[index];
+}
+_Time= atol(Time_Buffer);
+return _Time;
+}
+
+float get_latitude(char lat_pointer){
+unsigned char lat_index = lat_pointer+1;
+unsigned char index = 0;
+char Lat_Buffer[15];
+float _latitude;
+
+
+for(;GGA_Buffer[lat_index]!=',';lat_index++){
+Lat_Buffer[index]= GGA_Buffer[lat_index];
+index++;
+}
+lat_index++;
+N_S = GGA_Buffer[lat_index];
+_latitude = atof(Lat_Buffer);
+return _latitude;
+}
+
+float get_longitude(unsigned char long_pointer){
+unsigned char long_index;
+unsigned char index = long_pointer+1;
+char Long_Buffer[15];
+float _longitude;
+long_index=0;
+
+
+for( ; GGA_Buffer[index]!=','; index++){
+Long_Buffer[long_index]= GGA_Buffer[index];
+long_index++;
+}
+long_index++;
+E_W = GGA_Buffer[long_index];
+_longitude = atof(Long_Buffer);
+return _longitude;
+}
+
+float get_altitude(unsigned char alt_pointer){
+unsigned char alt_index;
+unsigned char index = alt_pointer+1;
+char Alt_Buffer[12];
+float _Altitude;
+alt_index=0;
+
+
+for( ; GGA_Buffer[index]!=','; index++){
+Alt_Buffer[alt_index]= GGA_Buffer[index];
+alt_index++;
+}
+_Altitude = atof(Alt_Buffer);
+return _Altitude;
+}
+
+void convert_time_to_UTC(unsigned long int UTC_Time)
 {
-data_uart_recebe = recebe_dado_uart();
-PIR1bits.RCIF = 0;
-tratamento_uart(data_uart_recebe);
+unsigned int hour, min, sec;
+
+hour = (UTC_Time / 10000);
+min = (UTC_Time % 10000) / 100;
+sec = (UTC_Time % 10000) % 100;
+
+sprintf(Data_Buffer, "%d:%d:%d", hour,min,sec);
 
 }
 
+float convert_to_degrees(float NMEA_lat_long){
 
-unsigned char cont;
 
-if (TMR0IF && T0IF)
+float minutes, dec_deg, decimal;
+
+int degrees;
+
+float position;
+
+degrees = (int)(NMEA_lat_long/100.00);
+minutes = NMEA_lat_long - degrees*100.00;
+dec_deg = minutes / 60.00;
+decimal = degrees + dec_deg;
+if (N_S == 'S' || E_W == 'W') {
+decimal *= -1;
+}
+
+return decimal;
+}
+
+void tratamento_uart(unsigned char received_char)
 {
-INTCONbits.TMR0IF = 0;
-sinaliza_int_timer = 1;
-
-for(cont= 0; cont<2;cont++)
-{
-if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
+if(received_char =='$'){
+GGA_Index = 0;
+IsItGGAString = 0;
+CommaCounter = 0;
 }
-
-
-if(tarefa_em_execucao == 1)
-{
-timeout_tarefa--;
-if(!timeout_tarefa)
-{
-
-PCLATH = 0;
-PCL = 0;
+else if(IsItGGAString == 1){
+if(received_char == ',' ) GGA_Pointers[CommaCounter++] = GGA_Index;
+GGA_Buffer[GGA_Index++] = received_char;
+}
+else if(GGA_CODE[0] == 'G' && GGA_CODE[1] == 'G' && GGA_CODE[2] == 'A'){
+IsItGGAString = 1;
+GGA_CODE[0] = 0; GGA_CODE[1] = 0; GGA_CODE[2] = 0;
+}
+else{
+GGA_CODE[0] = GGA_CODE[1]; GGA_CODE[1] = GGA_CODE[2]; GGA_CODE[2] = received_char;
 }
 }
-
-
-write_timer_zero(0x0083);
-
-}
-
-if (INT0IF && INT0IE)
-{
-INT0IF = 0;
-
-}
-}
-
-# 170
-void inicializa_tarefas(void)
-{
-
-p_tarefas[0] = acende_led4;
-p_tarefas[1] = SDCard;
-
-# 178
-tempo_backup[0] = 1000;
-tempo_backup[1] = 2000;
-
-# 183
-tempo_tarefa[0] = 1000;
-tempo_tarefa[1] = 2000;
-
-
-tarefa_em_execucao = 0;
-}
-
-# 198
-void escalonador()
-{
-unsigned char cont;
-for(cont = 0; cont<2;cont++)
-{
-if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
-{
-tarefa_em_execucao = 1;
-timeout_tarefa = 65000;
-p_tarefas[cont]();
-tarefa_em_execucao = 0;
-tempo_tarefa[cont] = tempo_backup[cont];
-}
-}
-
-}
-
-# 222
-void main(void)
-{
-init_hardware();
-inicializa_uart();
-init_lcd();
-inicializa_shrc();
-
-mensagem_inicial();
-inicializa_tarefas();
-inicializa_SPI(0,3,1);
-
-
-while(1)
-{
-
-if ((sinaliza_int_timer == 1) && (2))
-{
-sinaliza_int_timer = 0;
-escalonador();
-}
-leitura_chaves_sistema();
-controle_shrc();
-leitura_continua_adc();
-
-}
-}
-
-# 256
-void mensagem_inicial(void)
-{
-const unsigned char msg_linha_um[17] = "SDCard Init   ";
-const unsigned char msg_dois[17] = " 18/01/2022   ";
-
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd(msg_linha_um);
-
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd(msg_dois);
-
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-escreve_cmd_lcd(0b00000001);
-}
-
-
-void SDCard(void)
-{
-T0CONbits.TMR0ON = 0;
-FRESULT FResult;
-FATFS fs;
-WORD br;
-
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Attempting to");
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("mount file sys");
-escreve_cmd_lcd(0b00000001);
-
-
-proceed();
-if((FResult = pf_mount(&fs)) == FR_OK )
-{
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("syst inicialized");
-
-
-FResult = pf_open("check.txt" );
-
-if( FResult == FR_OK )
-{
-
-if( (FResult = pf_write("SD_Card", 5, &br)) == FR_OK )
-{
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("syst inicialized");
-}
-else
-{
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("SDCard error");
-while( 1 );
-}
-escreve_cmd_lcd(0b00000001);
-
-
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("lendo arquivo");
-
-
-do
-{
-readover(1);
-
-
-if( (FResult = pf_read(data_buffer_32, 31, &br)) == FR_OK )
-{
-
-data_buffer_32[br] = 0;
-break;
-
-}
-else
-{
-
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Erro tentando");
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("ler o arquivo");
-
-while( 1 );
-}
-} while( br == 31 );
-}
-else
-{
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Erro tentando");
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("abrir o arquivo");
-while( 1 );
-}
-}
-else
-{
-
-while( 1 );
-}
-
-# 374
-if( FResult != FR_OK )
-{
-
-
-
-
-while( 1 );
-}
-
-
-while(1);
-
-}
-
-
-void acende_led4(void){
-static unsigned char flag = 0;
-flag = !flag;
-if(!flag)
-{
-shrc_seta_bit(0);
-}
-else
-{
-shrc_apaga_bit(0);
-}
-
-}
-

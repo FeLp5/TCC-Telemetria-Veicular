@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=bibliotecas/I2C_SW.c bibliotecas/SDCard.c bibliotecas/SHRC.c bibliotecas/SPI.c bibliotecas/adc.c bibliotecas/chaves.c bibliotecas/diskio.c bibliotecas/display_lcd.c bibliotecas/hardware.c bibliotecas/int_eeprom.c bibliotecas/pff.c bibliotecas/uart.c main.c
+SOURCEFILES_QUOTED_IF_SPACED=bibliotecas/I2C_SW.c bibliotecas/SDCard.c bibliotecas/SHRC.c bibliotecas/SPI.c bibliotecas/adc.c bibliotecas/chaves.c bibliotecas/diskio.c bibliotecas/display_lcd.c bibliotecas/hardware.c bibliotecas/int_eeprom.c bibliotecas/pff.c bibliotecas/uart.c main.c bibliotecas/GPS.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/bibliotecas/I2C_SW.p1 ${OBJECTDIR}/bibliotecas/SDCard.p1 ${OBJECTDIR}/bibliotecas/SHRC.p1 ${OBJECTDIR}/bibliotecas/SPI.p1 ${OBJECTDIR}/bibliotecas/adc.p1 ${OBJECTDIR}/bibliotecas/chaves.p1 ${OBJECTDIR}/bibliotecas/diskio.p1 ${OBJECTDIR}/bibliotecas/display_lcd.p1 ${OBJECTDIR}/bibliotecas/hardware.p1 ${OBJECTDIR}/bibliotecas/int_eeprom.p1 ${OBJECTDIR}/bibliotecas/pff.p1 ${OBJECTDIR}/bibliotecas/uart.p1 ${OBJECTDIR}/main.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/bibliotecas/I2C_SW.p1.d ${OBJECTDIR}/bibliotecas/SDCard.p1.d ${OBJECTDIR}/bibliotecas/SHRC.p1.d ${OBJECTDIR}/bibliotecas/SPI.p1.d ${OBJECTDIR}/bibliotecas/adc.p1.d ${OBJECTDIR}/bibliotecas/chaves.p1.d ${OBJECTDIR}/bibliotecas/diskio.p1.d ${OBJECTDIR}/bibliotecas/display_lcd.p1.d ${OBJECTDIR}/bibliotecas/hardware.p1.d ${OBJECTDIR}/bibliotecas/int_eeprom.p1.d ${OBJECTDIR}/bibliotecas/pff.p1.d ${OBJECTDIR}/bibliotecas/uart.p1.d ${OBJECTDIR}/main.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/bibliotecas/I2C_SW.p1 ${OBJECTDIR}/bibliotecas/SDCard.p1 ${OBJECTDIR}/bibliotecas/SHRC.p1 ${OBJECTDIR}/bibliotecas/SPI.p1 ${OBJECTDIR}/bibliotecas/adc.p1 ${OBJECTDIR}/bibliotecas/chaves.p1 ${OBJECTDIR}/bibliotecas/diskio.p1 ${OBJECTDIR}/bibliotecas/display_lcd.p1 ${OBJECTDIR}/bibliotecas/hardware.p1 ${OBJECTDIR}/bibliotecas/int_eeprom.p1 ${OBJECTDIR}/bibliotecas/pff.p1 ${OBJECTDIR}/bibliotecas/uart.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/bibliotecas/GPS.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/bibliotecas/I2C_SW.p1.d ${OBJECTDIR}/bibliotecas/SDCard.p1.d ${OBJECTDIR}/bibliotecas/SHRC.p1.d ${OBJECTDIR}/bibliotecas/SPI.p1.d ${OBJECTDIR}/bibliotecas/adc.p1.d ${OBJECTDIR}/bibliotecas/chaves.p1.d ${OBJECTDIR}/bibliotecas/diskio.p1.d ${OBJECTDIR}/bibliotecas/display_lcd.p1.d ${OBJECTDIR}/bibliotecas/hardware.p1.d ${OBJECTDIR}/bibliotecas/int_eeprom.p1.d ${OBJECTDIR}/bibliotecas/pff.p1.d ${OBJECTDIR}/bibliotecas/uart.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/bibliotecas/GPS.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/bibliotecas/I2C_SW.p1 ${OBJECTDIR}/bibliotecas/SDCard.p1 ${OBJECTDIR}/bibliotecas/SHRC.p1 ${OBJECTDIR}/bibliotecas/SPI.p1 ${OBJECTDIR}/bibliotecas/adc.p1 ${OBJECTDIR}/bibliotecas/chaves.p1 ${OBJECTDIR}/bibliotecas/diskio.p1 ${OBJECTDIR}/bibliotecas/display_lcd.p1 ${OBJECTDIR}/bibliotecas/hardware.p1 ${OBJECTDIR}/bibliotecas/int_eeprom.p1 ${OBJECTDIR}/bibliotecas/pff.p1 ${OBJECTDIR}/bibliotecas/uart.p1 ${OBJECTDIR}/main.p1
+OBJECTFILES=${OBJECTDIR}/bibliotecas/I2C_SW.p1 ${OBJECTDIR}/bibliotecas/SDCard.p1 ${OBJECTDIR}/bibliotecas/SHRC.p1 ${OBJECTDIR}/bibliotecas/SPI.p1 ${OBJECTDIR}/bibliotecas/adc.p1 ${OBJECTDIR}/bibliotecas/chaves.p1 ${OBJECTDIR}/bibliotecas/diskio.p1 ${OBJECTDIR}/bibliotecas/display_lcd.p1 ${OBJECTDIR}/bibliotecas/hardware.p1 ${OBJECTDIR}/bibliotecas/int_eeprom.p1 ${OBJECTDIR}/bibliotecas/pff.p1 ${OBJECTDIR}/bibliotecas/uart.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/bibliotecas/GPS.p1
 
 # Source Files
-SOURCEFILES=bibliotecas/I2C_SW.c bibliotecas/SDCard.c bibliotecas/SHRC.c bibliotecas/SPI.c bibliotecas/adc.c bibliotecas/chaves.c bibliotecas/diskio.c bibliotecas/display_lcd.c bibliotecas/hardware.c bibliotecas/int_eeprom.c bibliotecas/pff.c bibliotecas/uart.c main.c
+SOURCEFILES=bibliotecas/I2C_SW.c bibliotecas/SDCard.c bibliotecas/SHRC.c bibliotecas/SPI.c bibliotecas/adc.c bibliotecas/chaves.c bibliotecas/diskio.c bibliotecas/display_lcd.c bibliotecas/hardware.c bibliotecas/int_eeprom.c bibliotecas/pff.c bibliotecas/uart.c main.c bibliotecas/GPS.c
 
 
 CFLAGS=
@@ -191,6 +191,14 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/bibliotecas/GPS.p1: bibliotecas/GPS.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
+	@${RM} ${OBJECTDIR}/bibliotecas/GPS.p1.d 
+	@${RM} ${OBJECTDIR}/bibliotecas/GPS.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/GPS.p1  bibliotecas/GPS.c 
+	@-${MV} ${OBJECTDIR}/bibliotecas/GPS.d ${OBJECTDIR}/bibliotecas/GPS.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/GPS.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/bibliotecas/I2C_SW.p1: bibliotecas/I2C_SW.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
@@ -295,6 +303,14 @@ ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
 	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/bibliotecas/GPS.p1: bibliotecas/GPS.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
+	@${RM} ${OBJECTDIR}/bibliotecas/GPS.p1.d 
+	@${RM} ${OBJECTDIR}/bibliotecas/GPS.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/GPS.p1  bibliotecas/GPS.c 
+	@-${MV} ${OBJECTDIR}/bibliotecas/GPS.d ${OBJECTDIR}/bibliotecas/GPS.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/GPS.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

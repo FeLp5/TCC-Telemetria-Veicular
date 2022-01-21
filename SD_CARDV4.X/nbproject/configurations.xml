@@ -20,6 +20,7 @@
       <itemPath>bibliotecas/pff.h</itemPath>
       <itemPath>bibliotecas/pffconf.h</itemPath>
       <itemPath>bibliotecas/uart.h</itemPath>
+      <itemPath>bibliotecas/GPS.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -41,6 +42,7 @@
       <itemPath>bibliotecas/pff.c</itemPath>
       <itemPath>bibliotecas/uart.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>bibliotecas/GPS.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

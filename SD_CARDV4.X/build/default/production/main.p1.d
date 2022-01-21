@@ -14,4 +14,5 @@ bibliotecas/config.h  \
 bibliotecas/SPI.h  \
 bibliotecas/display_lcd.h  \
 bibliotecas/pffconf.h  \
+bibliotecas/GPS.h  \
 bibliotecas/hardware.h 
