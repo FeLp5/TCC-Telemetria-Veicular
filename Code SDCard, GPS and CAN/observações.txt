@@ -1,0 +1,10 @@
+No arquivo pff.c, na função pf_open() -> há o nome do arquivo que é o caminho que está com um nome fixo 
+(é necessário mudar para path)
+
+
+
+
+
+GPS_LAT() --> LATITUDE
+GPS_LONG() --> LONGITUDE
+GPS_TIME() --> TIME

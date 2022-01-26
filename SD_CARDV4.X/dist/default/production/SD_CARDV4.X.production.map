@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.45\dat\en_msgs.txt -cs \
   -h+dist/default/production\SD_CARDV4.X.production.sym \
   --cmf=dist/default/production\SD_CARDV4.X.production.cmf -z -Q18F4550 \
-  -oC:\Users\Felipe\AppData\Local\Temp\sbjs.2 \
+  -oC:\Users\Felipe\AppData\Local\Temp\s17g.2 \
   -Mdist/default/production/SD_CARDV4.X.production.map -E1 -ver=XC8 \
   -ASTACK=04ADh-07ffh -pstack=STACK -ACODE=00h-0627Fh -ACONST=00h-0627Fh \
   -ASMALLCONST=0800h-08FFhx90,06200h-0627Fh -AMEDIUMCONST=0800h-0627Fh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Felipe\AppData\Local\Temp\sbjs.obj \
+  C:\Users\Felipe\AppData\Local\Temp\s17g.obj \
   dist/default/production\SD_CARDV4.X.production.obj 
 
 Object code version is 3.11
@@ -35,7 +35,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+C:\Users\Felipe\AppData\Local\Temp\s17g.obj
                 init                                  E        E        4        4       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
@@ -1179,7 +1179,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 222 in file "main.c"
+		line 221 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1218,7 +1218,7 @@ Total ram usage:        0 bytes
 
  *************** function _mensagem_inicial *****************
  Defined at:
-		line 256 in file "main.c"
+		line 255 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1805,7 +1805,7 @@ Total ram usage:        3 bytes
 
  *************** function _SDCard *****************
  Defined at:
-		line 272 in file "main.c"
+		line 271 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -1846,7 +1846,1654 @@ Total ram usage:       45 bytes
 
  *************** function _acende_led4 *****************
  Defined at:
-		line 389 in file "main.c"
+		line 388 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_shrc_apaga_bit
+		_shrc_seta_bit
+ This function is called by:
+		_inicializa_tarefas
+		_escalonador
+ This function uses a non-reentrant model
+
+
+ *************** function _shrc_seta_bit *****************
+ Defined at:
+		line 119 in file "bibliotecas/SHRC.c"
+ Parameters:    Size  Location     Type
+  posicao_bit     1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  posicao_bit     1   27[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_acende_led4
+		_timer_dois
+ This function uses a non-reentrant model
+
+
+ *************** function _shrc_apaga_bit *****************
+ Defined at:
+		line 124 in file "bibliotecas/SHRC.c"
+ Parameters:    Size  Location     Type
+  posicao_bit     1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  posicao_bit     1   27[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_acende_led4
+		_timer_dois
+ This function uses a non-reentrant model
+
+
+ *************** function _readover *****************
+ Defined at:
+		line 24 in file "bibliotecas/diskio.c"
+ Parameters:    Size  Location     Type
+  a               2   25[COMRAM] int 
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         2       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         2       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_SDCard
+ This function uses a non-reentrant model
+
+
+ *************** function _pf_write *****************
+ Defined at:
+		line 919 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  buff            2   54[BANK0 ] PTR const void 
+		 -> STR_14(8), 
+  btw             2   56[BANK0 ] unsigned int 
+  bw              2   58[BANK0 ] PTR unsigned int 
+		 -> SDCard@br(2), 
+ Auto vars:     Size  Location     Type
+  clst            4   78[BANK0 ] unsigned long 
+  remain          4   74[BANK0 ] unsigned long 
+  sect            4   70[BANK0 ] unsigned long 
+  fs              2   85[BANK0 ] PTR struct .
+		 -> SDCard@fs(42), NULL(0), 
+  wcnt            2   83[BANK0 ] unsigned int 
+  p               2   68[BANK0 ] PTR const unsigned char 
+		 -> STR_14(8), 
+  cs              1   82[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       6       0       0       0       0       0       0       0
+      Locals:         0      19       0       0       0       0       0       0       0
+      Temps:          0       8       0       0       0       0       0       0       0
+      Totals:         0      33       0       0       0       0       0       0       0
+Total ram usage:       33 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    7
+ This function calls:
+		_clust2sect
+		_disk_writep
+		_get_fat
+ This function is called by:
+		_SDCard
+ This function uses a non-reentrant model
+
+
+ *************** function _disk_writep *****************
+ Defined at:
+		line 283 in file "bibliotecas/diskio.c"
+ Parameters:    Size  Location     Type
+  wr              3   37[COMRAM] PTR const unsigned char 
+		 -> STR_14(8), ROM(32767), 
+  sc              4   40[COMRAM] unsigned long 
+ Auto vars:     Size  Location     Type
+  j               2    6[BANK0 ] int 
+  i               2    4[BANK0 ] int 
+  buff            1    8[BANK0 ] unsigned char 
+  res             1    0        enum E14
+ Return value:  Size  Location     Type
+                  1    wreg      enum E14
+ Registers used:
+		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         7       0       0       0       0       0       0       0       0
+      Locals:         0       5       0       0       0       0       0       0       0
+      Temps:          0       4       0       0       0       0       0       0       0
+      Totals:         7       9       0       0       0       0       0       0       0
+Total ram usage:       16 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    4
+ This function calls:
+		_WriteSPI_
+		_command
+		_dummy_clocks
+		_proceed
+		_response
+ This function is called by:
+		_pf_write
+ This function uses a non-reentrant model
+
+
+ *************** function _pf_read *****************
+ Defined at:
+		line 863 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  buff            2   54[BANK0 ] PTR void 
+		 -> data_buffer_32(32), 
+  btr             2   56[BANK0 ] unsigned int 
+  br              2   58[BANK0 ] PTR unsigned int 
+		 -> SDCard@br(2), 
+ Auto vars:     Size  Location     Type
+  clst            4   81[BANK0 ] unsigned long 
+  remain          4   77[BANK0 ] unsigned long 
+  sect            4   73[BANK0 ] unsigned long 
+  fs              2   88[BANK0 ] PTR struct .
+		 -> SDCard@fs(42), NULL(0), 
+  rcnt            2   86[BANK0 ] unsigned int 
+  rbuff           2   69[BANK0 ] PTR unsigned char 
+		 -> data_buffer_32(32), 
+  cs              1   85[BANK0 ] unsigned char 
+  dr              1   68[BANK0 ] enum E73
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       6       0       0       0       0       0       0       0
+      Locals:         0      22       0       0       0       0       0       0       0
+      Temps:          0       8       0       0       0       0       0       0       0
+      Totals:         0      36       0       0       0       0       0       0       0
+Total ram usage:       36 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    7
+ This function calls:
+		_clust2sect
+		_disk_readp
+		_get_fat
+ This function is called by:
+		_SDCard
+ This function uses a non-reentrant model
+
+
+ *************** function _pf_open *****************
+ Defined at:
+		line 829 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  path            2   86[BANK0 ] PTR const unsigned char 
+		 -> STR_13(10), 
+ Auto vars:     Size  Location     Type
+  dir            32   12[BANK1 ] unsigned char [32]
+  dj             16   47[BANK1 ] struct .
+  sp             12    0[BANK1 ] unsigned char [12]
+  fs              2   45[BANK1 ] PTR struct .
+		 -> SDCard@fs(42), NULL(0), 
+  res             1   44[BANK1 ] enum E43
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       2       0       0       0       0       0       0       0
+      Locals:         0       0      63       0       0       0       0       0       0
+      Temps:          0      22       0       0       0       0       0       0       0
+      Totals:         0      24      63       0       0       0       0       0       0
+Total ram usage:       87 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   10
+ This function calls:
+		_follow_path
+		_get_clust
+ This function is called by:
+		_SDCard
+ This function uses a non-reentrant model
+
+
+ *************** function _follow_path *****************
+ Defined at:
+		line 680 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  dj              2   79[BANK0 ] PTR struct .
+		 -> pf_open@dj(16), 
+  dir             2   81[BANK0 ] PTR unsigned char 
+		 -> pf_opendir@dir(32), pf_open@dir(32), 
+  path            2   83[BANK0 ] PTR const unsigned char 
+		 -> STR_8(10), 
+ Auto vars:     Size  Location     Type
+  res             1   85[BANK0 ] enum E43
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       6       0       0       0       0       0       0       0
+      Locals:         0       1       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       7       0       0       0       0       0       0       0
+Total ram usage:        7 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    9
+ This function calls:
+		_create_name
+		_dir_find
+		_dir_rewind
+		_get_clust
+ This function is called by:
+		_pf_open
+		_pf_opendir
+ This function uses a non-reentrant model
+
+
+ *************** function _get_clust *****************
+ Defined at:
+		line 414 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  dir             2   25[COMRAM] PTR unsigned char 
+		 -> pf_opendir@dir(32), pf_open@dir(32), 
+ Auto vars:     Size  Location     Type
+  clst            4   39[COMRAM] unsigned long 
+  fs              2   37[COMRAM] PTR struct .
+		 -> SDCard@fs(42), NULL(0), 
+ Return value:  Size  Location     Type
+                  4   25[COMRAM] unsigned long 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         4       0       0       0       0       0       0       0       0
+      Locals:         6       0       0       0       0       0       0       0       0
+      Temps:          8       0       0       0       0       0       0       0       0
+      Totals:        18       0       0       0       0       0       0       0       0
+Total ram usage:       18 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_follow_path
+		_pf_open
+		_pf_opendir
+ This function uses a non-reentrant model
+
+
+ *************** function _dir_find *****************
+ Defined at:
+		line 510 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  dj              2   71[BANK0 ] PTR struct .
+		 -> pf_open@dj(16), 
+  dir             2   73[BANK0 ] PTR unsigned char 
+		 -> pf_opendir@dir(32), pf_open@dir(32), 
+ Auto vars:     Size  Location     Type
+  res             1   78[BANK0 ] enum E43
+  c               1   77[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       4       0       0       0       0       0       0       0
+      Locals:         0       2       0       0       0       0       0       0       0
+      Temps:          0       2       0       0       0       0       0       0       0
+      Totals:         0       8       0       0       0       0       0       0       0
+Total ram usage:        8 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    8
+ This function calls:
+		_dir_next
+		_dir_rewind
+		_disk_readp
+		_mem_cmp
+ This function is called by:
+		_follow_path
+ This function uses a non-reentrant model
+
+
+ *************** function _mem_cmp *****************
+ Defined at:
+		line 336 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  dst             2   25[COMRAM] PTR const void 
+		 -> pf_opendir@dir(32), pf_open@dir(32), 
+  src             2   27[COMRAM] PTR const void 
+		 -> pf_readdir@sp(12), pf_opendir@sp(12), pf_open@sp(12), 
+  cnt             2   29[COMRAM] int 
+ Auto vars:     Size  Location     Type
+  r               2   38[COMRAM] int 
+  s               2   36[COMRAM] PTR const unsigned char 
+		 -> pf_readdir@sp(12), pf_opendir@sp(12), pf_open@sp(12), 
+  d               2   34[COMRAM] PTR const unsigned char 
+		 -> pf_opendir@dir(32), pf_open@dir(32), 
+ Return value:  Size  Location     Type
+                  2   25[COMRAM] int 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         6       0       0       0       0       0       0       0       0
+      Locals:         6       0       0       0       0       0       0       0       0
+      Temps:          3       0       0       0       0       0       0       0       0
+      Totals:        15       0       0       0       0       0       0       0       0
+Total ram usage:       15 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_dir_find
+ This function uses a non-reentrant model
+
+
+ *************** function _dir_rewind *****************
+ Defined at:
+		line 437 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  dj              2   43[COMRAM] PTR struct .
+		 -> pf_open@dj(16), 
+ Auto vars:     Size  Location     Type
+  clst            4   15[BANK0 ] unsigned long 
+  fs              2   13[BANK0 ] PTR struct .
+		 -> SDCard@fs(42), NULL(0), 
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         2       0       0       0       0       0       0       0       0
+      Locals:         0      10       0       0       0       0       0       0       0
+      Temps:          0       4       0       0       0       0       0       0       0
+      Totals:         2      14       0       0       0       0       0       0       0
+Total ram usage:       16 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    4
+ This function calls:
+		_clust2sect
+ This function is called by:
+		_dir_find
+		_follow_path
+		_pf_opendir
+		_pf_readdir
+ This function uses a non-reentrant model
+
+
+ *************** function _dir_next *****************
+ Defined at:
+		line 465 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  dj              2   54[BANK0 ] PTR struct .
+		 -> pf_open@dj(16), 
+ Auto vars:     Size  Location     Type
+  clst            4   65[BANK0 ] unsigned long 
+  i               2   69[BANK0 ] unsigned short 
+  fs              2   63[BANK0 ] PTR struct .
+		 -> SDCard@fs(42), NULL(0), 
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       2       0       0       0       0       0       0       0
+      Locals:         0       8       0       0       0       0       0       0       0
+      Temps:          0       7       0       0       0       0       0       0       0
+      Totals:         0      17       0       0       0       0       0       0       0
+Total ram usage:       17 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    7
+ This function calls:
+		_clust2sect
+		_get_fat
+ This function is called by:
+		_dir_find
+		_dir_read
+		_pf_readdir
+ This function uses a non-reentrant model
+
+
+ *************** function _get_fat *****************
+ Defined at:
+		line 350 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  clst            4   41[COMRAM] unsigned long 
+ Auto vars:     Size  Location     Type
+  bc              2   50[BANK0 ] unsigned int 
+  ofs             2   44[BANK0 ] unsigned int 
+  wc              2   42[BANK0 ] unsigned int 
+  buf             4   46[BANK0 ] unsigned char [4]
+  fs              2   52[BANK0 ] PTR struct .
+		 -> SDCard@fs(42), NULL(0), 
+ Return value:  Size  Location     Type
+                  4   41[COMRAM] unsigned long 
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         4       0       0       0       0       0       0       0       0
+      Locals:         0      14       0       0       0       0       0       0       0
+      Temps:          0      22       0       0       0       0       0       0       0
+      Totals:         4      36       0       0       0       0       0       0       0
+Total ram usage:       40 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    6
+ This function calls:
+		_disk_readp
+ This function is called by:
+		_dir_next
+		_pf_read
+		_pf_write
+		_pf_lseek
+ This function uses a non-reentrant model
+
+
+ *************** function _clust2sect *****************
+ Defined at:
+		line 400 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  clst            4   37[COMRAM] unsigned long 
+ Auto vars:     Size  Location     Type
+  fs              2   41[COMRAM] PTR struct .
+		 -> SDCard@fs(42), NULL(0), 
+ Return value:  Size  Location     Type
+                  4   37[COMRAM] unsigned long 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         4       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       5       0       0       0       0       0       0       0
+      Totals:         6       5       0       0       0       0       0       0       0
+Total ram usage:       11 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		___lmul
+ This function is called by:
+		_dir_rewind
+		_dir_next
+		_pf_read
+		_pf_write
+		_pf_lseek
+ This function uses a non-reentrant model
+
+
+ *************** function _create_name *****************
+ Defined at:
+		line 581 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  dj              2   33[COMRAM] PTR struct .
+		 -> pf_open@dj(16), 
+  path            2   35[COMRAM] PTR PTR const unsigned c
+		 -> follow_path@path(2), 
+ Auto vars:     Size  Location     Type
+  d               1    0[BANK0 ] unsigned char 
+  sfn             2    5[BANK0 ] PTR unsigned char 
+		 -> pf_readdir@sp(12), pf_opendir@sp(12), pf_open@sp(12), 
+  p               2    1[BANK0 ] PTR const unsigned char 
+		 -> STR_8(10), 
+  c               1    8[BANK0 ] unsigned char 
+  i               1    7[BANK0 ] unsigned char 
+  si              1    4[BANK0 ] unsigned char 
+  ni              1    3[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         4       0       0       0       0       0       0       0       0
+      Locals:         0       9       0       0       0       0       0       0       0
+      Temps:          7       0       0       0       0       0       0       0       0
+      Totals:        11       9       0       0       0       0       0       0       0
+Total ram usage:       20 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_mem_set
+ This function is called by:
+		_follow_path
+ This function uses a non-reentrant model
+
+
+ *************** function _mem_set *****************
+ Defined at:
+		line 329 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  dst             2   25[COMRAM] PTR void 
+		 -> pf_readdir@sp(12), pf_opendir@sp(12), pf_open@sp(12), 
+  val             2   27[COMRAM] int 
+  cnt             2   29[COMRAM] int 
+ Auto vars:     Size  Location     Type
+  d               2   31[COMRAM] PTR unsigned char 
+		 -> pf_readdir@sp(12), pf_opendir@sp(12), pf_open@sp(12), 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         6       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         8       0       0       0       0       0       0       0       0
+Total ram usage:        8 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_create_name
+ This function uses a non-reentrant model
+
+
+ *************** function _pf_mount *****************
+ Defined at:
+		line 755 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  fs              2   24[BANK0 ] PTR struct .
+		 -> SDCard@fs(42), 
+ Auto vars:     Size  Location     Type
+  buf            36   48[BANK0 ] unsigned char [36]
+  fsize           4   96[BANK0 ] unsigned long 
+  bsect           4   92[BANK0 ] unsigned long 
+  mclst           4   88[BANK0 ] unsigned long 
+  tsect           4   84[BANK0 ] unsigned long 
+  fmt             1  100[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      enum E43
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       2       0       0       0       0       0       0       0
+      Locals:         0      53       0       0       0       0       0       0       0
+      Temps:          0      22       0       0       0       0       0       0       0
+      Totals:         0      77       0       0       0       0       0       0       0
+Total ram usage:       77 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    7
+ This function calls:
+		___lldiv
+		___lmul
+		_check_fs
+		_disk_initialize
+		_disk_readp
+ This function is called by:
+		_SDCard
+ This function uses a non-reentrant model
+
+
+ *************** function _disk_initialize *****************
+ Defined at:
+		line 54 in file "bibliotecas/diskio.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  count2          2    7[BANK0 ] int 
+  count1          2    4[BANK0 ] int 
+  i               2    2[BANK0 ] int 
+  buff            1    9[BANK0 ] unsigned char 
+  stat            1    6[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, fsr0l, fsr0h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       8       0       0       0       0       0       0       0
+      Temps:          0       2       0       0       0       0       0       0       0
+      Totals:         0      10       0       0       0       0       0       0       0
+Total ram usage:       10 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    5
+ This function calls:
+		_command
+		_dummy_clocks
+		_escreve_cmd_lcd
+		_escreve_frase_ram_lcd
+		_posicao_cursor_lcd
+		_proceed
+		_reset
+		_response
+ This function is called by:
+		_pf_mount
+ This function uses a non-reentrant model
+
+
+ *************** function _reset *****************
+ Defined at:
+		line 33 in file "bibliotecas/diskio.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  count           2   41[COMRAM] int 
+  i               2   39[COMRAM] int 
+  buff            1   43[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         5       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         7       0       0       0       0       0       0       0       0
+Total ram usage:        7 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    4
+ This function calls:
+		_command
+		_dummy_clocks
+		_proceed
+ This function is called by:
+		_disk_initialize
+ This function uses a non-reentrant model
+
+
+ *************** function _escreve_cmd_lcd *****************
+ Defined at:
+		line 162 in file "bibliotecas/display_lcd.c"
+ Parameters:    Size  Location     Type
+  comando         1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  comando         1   27[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_delay
+ This function is called by:
+		_inicializa_SPI
+		_disk_initialize
+		_init_lcd
+		_mensagem_inicial
+		_SDCard
+		_leitura_chave
+		_cria_caractere_lcd
+ This function uses a non-reentrant model
+
+
+ *************** function _check_fs *****************
+ Defined at:
+		line 722 in file "bibliotecas/pff.c"
+ Parameters:    Size  Location     Type
+  buf             2   18[BANK0 ] PTR unsigned char 
+		 -> pf_mount@buf(36), 
+  sect            4   20[BANK0 ] unsigned long 
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       6       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          4       0       0       0       0       0       0       0       0
+      Totals:         4       6       0       0       0       0       0       0       0
+Total ram usage:       10 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    6
+ This function calls:
+		_disk_readp
+ This function is called by:
+		_pf_mount
+ This function uses a non-reentrant model
+
+
+ *************** function _disk_readp *****************
+ Defined at:
+		line 146 in file "bibliotecas/diskio.c"
+ Parameters:    Size  Location     Type
+  rd              2    0[BANK0 ] PTR unsigned char 
+		 -> data_buffer_32(32), pf_readdir@dir(32), pf_opendir@dir(32), pf_open@dir(32), 
+		 -> pf_mount@buf(36), NULL(0), get_fat@buf(4), 
+  sector          4    2[BANK0 ] unsigned long 
+  offset          2    6[BANK0 ] unsigned int 
+  count           2    8[BANK0 ] unsigned int 
+ Auto vars:     Size  Location     Type
+  start_add       4   11[BANK0 ] unsigned long 
+  length          2   16[BANK0 ] int 
+  i               2    0        int 
+  buff            1   15[BANK0 ] unsigned char 
+  ptr             1   10[BANK0 ] unsigned char 
+  res             1    0        enum E14
+ Return value:  Size  Location     Type
+                  1    wreg      enum E14
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0      10       0       0       0       0       0       0       0
+      Locals:         0       8       0       0       0       0       0       0       0
+      Temps:          4       0       0       0       0       0       0       0       0
+      Totals:         4      18       0       0       0       0       0       0       0
+Total ram usage:       22 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    5
+ This function calls:
+		_command
+		_dummy_clocks
+		_escreve_frase_ram_lcd
+		_posicao_cursor_lcd
+		_proceed
+		_response
+ This function is called by:
+		_get_fat
+		_dir_find
+		_check_fs
+		_pf_mount
+		_pf_read
+		_dir_read
+ This function uses a non-reentrant model
+
+
+ *************** function _response *****************
+ Defined at:
+		line 319 in file "bibliotecas/SDCard.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  buff            1   28[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_recebe_dado_SPI
+ This function is called by:
+		_disk_initialize
+		_disk_readp
+		_disk_writep
+ This function uses a non-reentrant model
+
+
+ *************** function _recebe_dado_SPI *****************
+ Defined at:
+		line 107 in file "bibliotecas/SPI.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  temp_var        1   27[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_response
+ This function uses a non-reentrant model
+
+
+ *************** function _proceed *****************
+ Defined at:
+		line 342 in file "bibliotecas/SDCard.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_WriteSPI_
+ This function is called by:
+		_reset
+		_disk_initialize
+		_disk_readp
+		_disk_writep
+		_SDCard
+ This f
+
+FUNCTION INFORMATION:
+
+ *************** function _main *****************
+ Defined at:
+		line 221 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, pclath, tosl, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels required when called:   13
+ This function calls:
+		_controle_shrc
+		_escalonador
+		_inicializa_SPI
+		_inicializa_shrc
+		_inicializa_tarefas
+		_inicializa_uart
+		_init_hardware
+		_init_lcd
+		_leitura_chaves_sistema
+		_leitura_continua_adc
+		_mensagem_inicial
+ This function is called by:
+		Startup code after reset
+ This function uses a non-reentrant model
+
+
+ *************** function _mensagem_inicial *****************
+ Defined at:
+		line 255 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  msg_dois       17   17[BANK0 ] const unsigned char [17]
+  msg_linha_um   17    0[BANK0 ] const unsigned char [17]
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0      34       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         2      34       0       0       0       0       0       0       0
+Total ram usage:       36 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    5
+ This function calls:
+		_escreve_cmd_lcd
+		_escreve_frase_ram_lcd
+		_posicao_cursor_lcd
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _leitura_continua_adc *****************
+ Defined at:
+		line 109 in file "bibliotecas/adc.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  cont_int        1   38[COMRAM] unsigned char 
+  cont            1   39[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          6       0       0       0       0       0       0       0       0
+      Totals:         8       0       0       0       0       0       0       0       0
+Total ram usage:        8 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_leitura_adc
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _leitura_adc *****************
+ Defined at:
+		line 76 in file "bibliotecas/adc.c"
+ Parameters:    Size  Location     Type
+  canal           1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  canal           1   31[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  2   25[COMRAM] unsigned int 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         2       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          4       0       0       0       0       0       0       0       0
+      Totals:         7       0       0       0       0       0       0       0       0
+Total ram usage:        7 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_leitura_continua_adc
+ This function uses a non-reentrant model
+
+
+ *************** function _leitura_chaves_sistema *****************
+ Defined at:
+		line 47 in file "bibliotecas/chaves.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _init_lcd *****************
+ Defined at:
+		line 71 in file "bibliotecas/display_lcd.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          1       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    4
+ This function calls:
+		_delay
+		_escreve_cmd_lcd
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _init_hardware *****************
+ Defined at:
+		line 55 in file "bibliotecas/hardware.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    4
+ This function calls:
+		_config_timer_dois
+		_config_timer_zero
+		_init_interrupt
+		_init_oscilador
+		_init_ports
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _init_ports *****************
+ Defined at:
+		line 154 in file "bibliotecas/hardware.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_init_hardware
+ This function uses a non-reentrant model
+
+
+ *************** function _init_oscilador *****************
+ Defined at:
+		line 171 in file "bibliotecas/hardware.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_init_hardware
+ This function uses a non-reentrant model
+
+
+ *************** function _init_interrupt *****************
+ Defined at:
+		line 98 in file "bibliotecas/hardware.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_init_hardware
+ This function uses a non-reentrant model
+
+
+ *************** function _config_timer_zero *****************
+ Defined at:
+		line 83 in file "bibliotecas/hardware.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_write_timer_zero
+ This function is called by:
+		_init_hardware
+ This function uses a non-reentrant model
+
+
+ *************** function _write_timer_zero *****************
+ Defined at:
+		line 138 in file "bibliotecas/hardware.c"
+ Parameters:    Size  Location     Type
+  timer0          2   25[COMRAM] unsigned int 
+ Auto vars:     Size  Location     Type
+  timer           2   27[COMRAM] struct Timers
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         2       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         4       0       0       0       0       0       0       0       0
+Total ram usage:        4 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_config_timer_zero
+ This function uses a non-reentrant model
+
+
+ *************** function _config_timer_dois *****************
+ Defined at:
+		line 200 in file "bibliotecas/hardware.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_init_hardware
+ This function uses a non-reentrant model
+
+
+ *************** function _inicializa_uart *****************
+ Defined at:
+		line 206 in file "bibliotecas/uart.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    4
+ This function calls:
+		_configura_baudrate_uart
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _configura_baudrate_uart *****************
+ Defined at:
+		line 50 in file "bibliotecas/uart.c"
+ Parameters:    Size  Location     Type
+  baudrate        4   39[COMRAM] const long 
+ Auto vars:     Size  Location     Type
+  x               2   43[COMRAM] unsigned int 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Punction uses a non-reentrant model
+
+
+ *************** function _posicao_cursor_lcd *****************
+ Defined at:
+		line 271 in file "bibliotecas/display_lcd.c"
+ Parameters:    Size  Location     Type
+  linha           1    wreg     unsigned char 
+  coluna          1   28[COMRAM] unsigned char 
+ Auto vars:     Size  Location     Type
+  linha           1   29[COMRAM] unsigned char 
+  endereco        1   30[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         1       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    4
+ This function calls:
+		_endereco_cursor_lcd
+ This function is called by:
+		_inicializa_SPI
+		_disk_initialize
+		_disk_readp
+		_mensagem_inicial
+		_SDCard
+		_leitura_chave
+ This function uses a non-reentrant model
+
+
+ *************** function _endereco_cursor_lcd *****************
+ Defined at:
+		line 218 in file "bibliotecas/display_lcd.c"
+ Parameters:    Size  Location     Type
+  endereco        1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  endereco        1   27[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_delay
+ This function is called by:
+		_posicao_cursor_lcd
+		_cria_caractere_lcd
+ This function uses a non-reentrant model
+
+
+ *************** function _escreve_frase_ram_lcd *****************
+ Defined at:
+		line 445 in file "bibliotecas/display_lcd.c"
+ Parameters:    Size  Location     Type
+  buffer          2   28[COMRAM] PTR unsigned char 
+		 -> STR_21(16), STR_20(14), STR_19(14), STR_18(14), 
+		 -> STR_17(14), STR_16(13), STR_15(17), STR_12(17), 
+		 -> STR_11(15), STR_10(14), mensagem_inicial@msg_dois(17), mensagem_inicial@msg_linha_um(17), 
+		 -> escreve_inteiro_lcd@texto(7), STR_7(3), STR_6(8), STR_5(14), 
+		 -> STR_4(13), STR_3(9), STR_2(14), leitura_chave@pos_ignicao_on(17), 
+		 -> leitura_chave@pos_ignicao_crank(17), leitura_chave@pos_ignicao_off(17), STR_1(17), 
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         2       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         2       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    4
+ This functioniotecas/SPI.c"
+ Parameters:    Size  Location     Type
+  sync_mode       1    wreg     unsigned char 
+  bus_mode        1   31[COMRAM] unsigned char 
+  smp_phase       1   32[COMRAM] unsigned char 
+ Auto vars:     Size  Location     Type
+  sync_mode       1   33[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         2       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    5
+ This function calls:
+		_escreve_cmd_lcd
+		_escreve_frase_ram_lcd
+		_posicao_cursor_lcd
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _escalonador *****************
+ Defined at:
+		line 198 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  cont            1  112[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, pclath, tosl, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       1       0       0       0       0       0       0       0
+      Temps:          0       2       0       0       0       0       0       0       0
+      Totals:         0       3       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   12
+ This function calls:
+		_SDCard
+		_acende_led4
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _SDCard *****************
+ Defined at:
+		line 271 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  fs             42    3[BANK2 ] struct .
+  br              2    1[BANK2 ] unsigned short 
+  FResult         1    0[BANK2 ] enum E3832
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0      45       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0      45       0       0       0       0       0
+Total ram usage:       45 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   11
+ This function calls:
+		_escreve_cmd_lcd
+		_escreve_frase_ram_lcd
+		_pf_mount
+		_pf_open
+		_pf_read
+		_pf_write
+		_posicao_cursor_lcd
+		_proceed
+		_readover
+ This function is called by:
+		_inicializa_tarefas
+		_escalonador
+ This function uses a non-reentrant model
+
+
+ *************** function _acende_led4 *****************
+ Defined at:
+		line 388 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2930,6 +4577,615 @@ Total ram usage:        2 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    4
  This function calls:
+		_escreve_caractere_lcd
+ This function is called by:
+		_inicializa_SPI
+		_disk_initialize
+		_disk_readp
+		_mensagem_inicial
+		_SDCard
+		_leitura_chave
+		_escreve_inteiro_lcd
+ This function uses a non-reentrant model
+
+
+ *************** function _escreve_caractere_lcd *****************
+ Defined at:
+		line 323 in file "bibliotecas/display_lcd.c"
+ Parameters:    Size  Location     Type
+  data            1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  data            1   27[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_delay
+ This function is called by:
+		_escreve_frase_ram_lcd
+		_escreve_float_lcd
+		_escreve_frase_lcd
+		_cria_caractere_lcd
+ This function uses a non-reentrant model
+
+
+ *************** function _delay *****************
+ Defined at:
+		line 45 in file "bibliotecas/display_lcd.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  contador_int    1   26[COMRAM] unsigned char 
+  contador_ext    1   25[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         2       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_init_lcd
+		_escreve_cmd_lcd
+		_endereco_cursor_lcd
+		_escreve_caractere_lcd
+ This function uses a non-reentrant model
+
+
+ *************** function _dummy_clocks *****************
+ Defined at:
+		line 330 in file "bibliotecas/SDCard.c"
+ Parameters:    Size  Location     Type
+  n               1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  n               1   31[COMRAM] unsigned char 
+  i               2   32[COMRAM] unsigned int 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         3       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         5       0       0       0       0       0       0       0       0
+Total ram usage:        5 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_WriteSPI_
+ This function is called by:
+		_reset
+		_disk_initialize
+		_disk_readp
+		_disk_writep
+ This function uses a non-reentrant model
+
+
+ *************** function _command *****************
+ Defined at:
+		line 351 in file "bibliotecas/SDCard.c"
+ Parameters:    Size  Location     Type
+  CMD             1    wreg     unsigned char 
+  arg             4   29[COMRAM] unsigned long 
+  CRC             1   33[COMRAM] unsigned char 
+ Auto vars:     Size  Location     Type
+  CMD             1   35[COMRAM] unsigned char 
+  argument        1   36[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         5       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          1       0       0       0       0       0       0       0       0
+      Totals:         8       0       0       0       0       0       0       0       0
+Total ram usage:        8 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_WriteSPI_
+ This function is called by:
+		_reset
+		_disk_initialize
+		_disk_readp
+		_disk_writep
+ This function uses a non-reentrant model
+
+
+ *************** function _WriteSPI_ *****************
+ Defined at:
+		line 125 in file "bibliotecas/SPI.c"
+ Parameters:    Size  Location     Type
+  dado            1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  dado            1   28[COMRAM] unsigned char 
+  TempVar         1   27[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0
+      Totals:         4       0       0       0       0       0       0       0       0
+Total ram usage:        4 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_dummy_clocks
+		_proceed
+		_command
+		_disk_writep
+ This function uses a non-reentrant model
+
+
+ *************** function ___lmul *****************
+ Defined at:
+		line 15 in file "C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul32.c"
+ Parameters:    Size  Location     Type
+  multiplier      4   25[COMRAM] unsigned long 
+  multiplicand    4   29[COMRAM] unsigned long 
+ Auto vars:     Size  Location     Type
+  product         4   33[COMRAM] unsigned long 
+ Return value:  Size  Location     Type
+                  4   25[COMRAM] unsigned long 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         8       0       0       0       0       0       0       0       0
+      Locals:         4       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:        12       0       0       0       0       0       0       0       0
+Total ram usage:       12 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_clust2sect
+		_pf_mount
+		_strtod
+		_atol
+ This function uses a non-reentrant model
+
+
+ *************** function ___lldiv *****************
+ Defined at:
+		line 8 in file "C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c"
+ Parameters:    Size  Location     Type
+  dividend        4   25[COMRAM] unsigned long 
+  divisor         4   29[COMRAM] unsigned long 
+ Auto vars:     Size  Location     Type
+  quotient        4   33[COMRAM] unsigned long 
+  counter         1   37[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  4   25[COMRAM] unsigned long 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         8       0       0       0       0       0       0       0       0
+      Locals:         5       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:        13       0       0       0       0       0       0       0       0
+Total ram usage:       13 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_pf_mount
+		_pf_lseek
+		_convert_time_to_UTC
+		_sprintf
+ This function uses a non-reentrant model
+
+
+ *************** function _controle_shrc *****************
+ Defined at:
+		line 112 in file "bibliotecas/SHRC.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		_ativa_latch_shrc
+		_envia_dados_shrc
+ This function is called by:
+		_main
+		_timer_dois
+ This function uses a non-reentrant model
+
+
+ *************** function _envia_dados_shrc *****************
+ Defined at:
+		line 62 in file "bibliotecas/SHRC.c"
+ Parameters:    Size  Location     Type
+  data_to_shrc    1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  data_to_shrc    1   26[COMRAM] unsigned char 
+  contador        1   25[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         2       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_controle_shrc
+ This function uses a non-reentrant model
+
+
+ *************** function _ativa_latch_shrc *****************
+ Defined at:
+		line 96 in file "bibliotecas/SHRC.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		Nothing
+ This function is called by:
+		_controle_shrc
+ This function uses a non-reentrant model
+
+
+ *************** function _isr *****************
+ Defined at:
+		line 111 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  cont            1   24[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:         20       0       0       0       0       0       0       0       0
+      Totals:        21       0       0       0       0       0       0       0       0
+Total ram usage:       21 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_recebe_dado_uart
+		_tratamento_uart
+		i2_write_timer_zero
+ This function is called by:
+		Interrupt level 2
+ This function uses a non-reentrant model
+
+
+ *************** function i2_write_timer_zero *****************
+ Defined at:
+		line 138 in file "bibliotecas/hardware.c"
+ Parameters:    Size  Location     Type
+  timer0          2    0[COMRAM] unsigned int 
+ Auto vars:     Size  Location     Type
+  write_timer_    2    2[COMRAM] struct Timers
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         2       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         4       0       0       0       0       0       0       0       0
+Total ram usage:        4 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_isr
+ This function uses a non-reentrant model
+
+
+ *************** function _tratamento_uart *****************
+ Defined at:
+		line 171 in file "bibliotecas/GPS.c"
+ Parameters:    Size  Location     Type
+  received_cha    1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  received_cha    1    0[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_isr
+ This function uses a non-reentrant model
+
+
+ *************** function _recebe_dado_uart *****************
+ Defined at:
+		line 138 in file "bibliotecas/uart.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_isr
+		_recebe_string_uart
+ This function uses a non-reentrant model
+
+
+
+MODULE INFORMATION
+
+Module		Function		Class		Link	Load	Size
+bibliotecas/uart.c
+		_configura_baudrate_uart		CODE           	211E	0000	305
+		_recebe_dado_uart		CODE           	3528	0000	19
+		_inicializa_uart		CODE           	3422	0000	35
+
+bibliotecas/uart.c estimated size: 359
+
+bibliotecas/chaves.c
+		_leitura_chaves_sistema		CODE           	32E2	0000	61
+
+bibliotecas/chaves.c estimated size: 61
+
+bibliotecas/SPI.c
+		_inicializa_SPI		CODE           	2D12	0000	125
+		_recebe_dado_SPI		CODE           	33B2	0000	41
+		_WriteSPI_     		CODE           	3212	0000	75
+
+bibliotecas/SPI.c estimated size: 241
+
+bibliotecas/diskio.c
+		_reset         		CODE           	2E08	0000	117
+		_disk_initialize		CODE           	15C6	0000	699
+		_disk_writep   		CODE           	1FDE	0000	321
+		_readover      		CODE           	356C	0000	11
+		_disk_readp    		CODE           	127C	0000	843
+
+bibliotecas/diskio.c estimated size: 1991
+
+bibliotecas/pff.c
+		_get_clust     		CODE           	28A6	0000	201
+		_get_fat       		CODE           	0B04	0000	1001
+		_pf_write      		CODE           	0646	0000	1215
+		_create_name   		CODE           	1E9A	0000	325
+		_check_fs      		CODE           	1BEE	0000	349
+		_mem_set       		CODE           	3386	0000	45
+		_clust2sect    		CODE           	296E	0000	199
+		_dir_next      		CODE           	1880	0000	445
+		_dir_rewind    		CODE           	2376	0000	297
+		_pf_open       		CODE           	1D4A	0000	337
+		_dir_find      		CODE           	26DA	0000	257
+		_mem_cmp       		CODE           	2F60	0000	113
+		_pf_read       		CODE           	0EEC	0000	913
+		_follow_path   		CODE           	25C4	0000	279
+		_pf_mount      		CODE           	0012	0000	1589
+
+bibliotecas/pff.c estimated size: 7565
+
+bibliotecas/SDCard.c
+		_response      		CODE           	353A	0000	15
+		_dummy_clocks  		CODE           	3358	0000	47
+		_command       		CODE           	310E	0000	93
+		_proceed       		CODE           	3554	0000	13
+
+bibliotecas/SDCard.c estimated size: 168
+
+C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul32.c
+		___lmul        		CODE           	316A	0000	87
+
+C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul32.c estimated size: 87
+
+bibliotecas/hardware.c
+		_init_hardware 		CODE           	34C8	0000	23
+		_config_timer_dois		CODE           	3548	0000	13
+		_config_timer_zero		CODE           	347E	0000	27
+		_init_ports    		CODE           	34B0	0000	25
+		_write_timer_zero		CODE           	3504	0000	19
+		_init_interrupt		CODE           	34F2	0000	19
+		_init_oscilador		CODE           	3576	0000	9
+
+bibliotecas/hardware.c estimated size: 135
+
+shared
+		mensagem_inicial@F4037		MEDIUMCONST    	6143	0000	18
+		leitura_chave@F3840		MEDIUMCONST    	6176	0000	18
+		leitura_chave@F3842		MEDIUMCONST    	6165	0000	18
+		__powers_      		MEDIUMCONST    	60F5	0000	40
+		leitura_chave@F3838		MEDIUMCONST    	6187	0000	18
+		_dpowers       		MEDIUMCONST    	60CD	0000	41
+		__npowers_     		MEDIUMCONST    	611C	0000	40
+		__initialization		CODE           	2E7C	0000	101
+		create_name@cvt		MEDIUMCONST    	604D	0000	129
+		mensagem_inicial@F4035		MEDIUMCONST    	6154	0000	18
+		i2_write_timer_zero		CODE           	3516	0000	19
+
+shared estimated size: 460
+
+bibliotecas/adc.c
+		_leitura_continua_adc		CODE           	224E	0000	297
+		_leitura_adc   		CODE           	30AA	0000	101
+
+bibliotecas/adc.c estimated size: 398
+
+C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
+		___lldiv       		CODE           	2C90	0000	131
+
+C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c estimated size: 131
+
+C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\aldiv.c
+		___aldiv       		CODE           	27DA	0000	205
+
+C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\aldiv.c estimated size: 205
+
+bibliotecas/display_lcd.c
+		_delay         		CODE           	33FE	0000	37
+		_init_lcd      		CODE           	2AD8	0000	159
+		_endereco_cursor_lcd		CODE           	3040	0000	107
+		_escreve_cmd_lcd		CODE           	2C04	0000	141
+		_posicao_cursor_lcd		CODE           	2FD0	0000	113
+		_escreve_caractere_lcd		CODE           	2EEE	0000	115
+		_escreve_frase_ram_lcd		CODE           	31C0	0000	83
+
+bibliotecas/display_lcd.c estimated size: 755
+
+main.c
+		_main          		CODE           	32A0	0000	67
+		_acende_led4   		CODE           	33DA	0000	37
+		_isr           		CODE           	0008	0000	301
+		_SDCard        		CODE           	1A3C	0000	435
+		_escalonador   		CODE           	2A34	0000	165
+		_mensagem_inicial		CODE           	2D8E	0000	123
+		_inicializa_tarefas		CODE           	331E	0000	59
+
+main.c estimated size: 1187
+
+bibliotecas/GPS.c
+		_tratamento_uart		CODE           	2B76	0000	143
+
+bibliotecas/GPS.c estimated size: 143
+
+bibliotecas/SHRC.c
+		_shrc_apaga_bit		CODE           	3444	0000	31
+		_ativa_latch_shrc		CODE           	34DE	0000	21
+		_controle_shrc 		CODE           	3560	0000	13
+		_shrc_seta_bit 		CODE           	3462	0000	29
+		_inicializa_shrc		CODE           	357E	0000	9
+		_envia_dados_shrc		CODE           	325C	0000	69
+
+bibliotecas/SHRC.c estimated size: 172
+
+ calls:
 		_escreve_caractere_lcd
  This function is called by:
 		_inicializa_SPI

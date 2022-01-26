@@ -27,7 +27,7 @@ FR_NOT_OPENED 4
 FR_NOT_ENABLED 5
 FR_NO_FILESYSTEM 6
 ]
-"275 E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+"274 E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 [e E3832 . `uc
 FR_OK 0
 FR_DISK_ERR 1
@@ -260,13 +260,13 @@ FR_NO_FILESYSTEM 6
 [v _inicializa_tarefas inicializa_tarefas `(v  1 e 1 0 ]
 "198
 [v _escalonador escalonador `(v  1 e 1 0 ]
-"222
+"221
 [v _main main `(v  1 e 1 0 ]
-"256
+"255
 [v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
-"272
+"271
 [v _SDCard SDCard `(v  1 e 1 0 ]
-"389
+"388
 [v _acende_led4 acende_led4 `(v  1 e 1 0 ]
 [s S669 . 19 `uc 1 canal 1 0 `[8]ui 1 leituras 16 1 `ui 1 media 2 17 ]
 "32 E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/adc.c
@@ -908,23 +908,23 @@ FR_NO_FILESYSTEM 6
 [v _tarefa_em_execucao tarefa_em_execucao `VEuc  1 e 1 0 ]
 "85
 [v _timeout_tarefa timeout_tarefa `ui  1 e 2 0 ]
-"222
+"221
 [v _main main `(v  1 e 1 0 ]
 {
-"247
+"246
 } 0
-"256
+"255
 [v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
 {
-"259
+"258
 [v mensagem_inicial@msg_dois msg_dois `C[17]uc  1 a 17 17 ]
-"258
-[v mensagem_inicial@msg_linha_um msg_linha_um `C[17]uc  1 a 17 0 ]
 "257
+[v mensagem_inicial@msg_linha_um msg_linha_um `C[17]uc  1 a 17 0 ]
+"256
 [v mensagem_inicial@F4035 F4035 `C[17]uc  1 s 17 F4035 ]
-"258
+"257
 [v mensagem_inicial@F4037 F4037 `C[17]uc  1 s 17 F4037 ]
-"269
+"268
 } 0
 "109 E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/adc.c
 [v _leitura_continua_adc leitura_continua_adc `(v  1 e 1 0 ]
@@ -1046,26 +1046,26 @@ FR_NO_FILESYSTEM 6
 {
 "200
 [v escalonador@cont cont `uc  1 a 1 112 ]
-"213
+"212
 } 0
-"272
+"271
 [v _SDCard SDCard `(v  1 e 1 0 ]
 {
 [s S1554 . 42 `uc 1 fs_type 1 0 `uc 1 flag 1 1 `uc 1 csize 1 2 `uc 1 pad1 1 3 `us 1 n_rootdir 2 4 `ul 1 n_fatent 4 6 `ul 1 fatbase 4 10 `ul 1 dirbase 4 14 `ul 1 database 4 18 `ul 1 fptr 4 22 `ul 1 fsize 4 26 `ul 1 org_clust 4 30 `ul 1 curr_clust 4 34 `ul 1 dsect 4 38 ]
-"276
-[v SDCard@fs fs `S1554  1 a 42 3 ]
-"277
-[v SDCard@br br `us  1 a 2 1 ]
 "275
+[v SDCard@fs fs `S1554  1 a 42 3 ]
+"276
+[v SDCard@br br `us  1 a 2 1 ]
+"274
 [v SDCard@FResult FResult `E3832  1 a 1 0 ]
-"386
+"385
 } 0
-"389
+"388
 [v _acende_led4 acende_led4 `(v  1 e 1 0 ]
 {
-"390
+"389
 [v acende_led4@flag flag `uc  1 s 1 flag ]
-"401
+"400
 } 0
 "119 E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 [v _shrc_seta_bit shrc_seta_bit `(v  1 e 1 0 ]

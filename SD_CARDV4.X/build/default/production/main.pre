@@ -5170,10 +5170,9 @@ tarefa_em_execucao = 0;
 tempo_tarefa[cont] = tempo_backup[cont];
 }
 }
-
 }
 
-# 222
+# 221
 void main(void)
 {
 init_hardware();
@@ -5201,7 +5200,7 @@ leitura_continua_adc();
 }
 }
 
-# 256
+# 255
 void mensagem_inicial(void)
 {
 const unsigned char msg_linha_um[17] = "SDCard Init   ";
@@ -5304,7 +5303,7 @@ else
 while( 1 );
 }
 
-# 374
+# 373
 if( FResult != FR_OK )
 {
 

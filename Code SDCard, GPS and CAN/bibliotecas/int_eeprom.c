@@ -89,7 +89,7 @@ void escreve_string_eeprom_interna(unsigned int address, unsigned char *data)
     /*Write Operation for String*/
     while(*data!=0)
     {
-        escreve_eeprom_interna(address,*data);
+        escreve_eeprom_imterna(address,*data);
         address++;
         *data++;
     }    

@@ -11,11 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
-idloc IDLOC 0 200000 200000 8 1
-init CODE 0 E E 4 1
-reset_vec CODE 0 0 0 4 1
-config CONFIG 0 300000 300000 E 1
 $dist/default/production\SD_CARDV4.X.production.obj
 cinit CODE 0 2E7C 2E7C 72 1
 intcode_body CODE 0 249E 249E 126 1
@@ -97,6 +92,11 @@ dataBANK1 BANK1 1 1CD 1CD 18 1
 bssBIGRAM BIGRAM 1 2AD 2AD 200 1
 bssCOMRAM COMRAM 1 2E 2E 18 1
 mediumconst MEDIUMCONST 0 604C 604C 234 1
+$C:\Users\Felipe\AppData\Local\Temp\s17g.obj
+idloc IDLOC 0 200000 200000 8 1
+init CODE 0 E E 4 1
+reset_vec CODE 0 0 0 4 1
+config CONFIG 0 300000 300000 E 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -927,61 +927,61 @@ B00 text25 CODE >977:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 3462 text22 CODE >119:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 3464 text22 CODE >121:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
 347C text22 CODE >122:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/SHRC.c
-33DA text21 CODE >389:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-33DA text21 CODE >391:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-33E8 text21 CODE >392:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-33EE text21 CODE >394:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-33F4 text21 CODE >395:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-33F6 text21 CODE >396:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-33F6 text21 CODE >398:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A3C text20 CODE >272:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A3C text20 CODE >274:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A3E text20 CODE >279:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A48 text20 CODE >280:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A54 text20 CODE >281:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A5E text20 CODE >282:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A6A text20 CODE >283:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A70 text20 CODE >286:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A74 text20 CODE >287:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A8C text20 CODE >289:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1A96 text20 CODE >290:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1AA2 text20 CODE >293:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1AB4 text20 CODE >295:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1ABA text20 CODE >298:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1AE2 text20 CODE >300:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1AEC text20 CODE >301:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1AF8 text20 CODE >302:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1AFA text20 CODE >303:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1AFA text20 CODE >305:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B00 text20 CODE >306:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B0A text20 CODE >307:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B16 text20 CODE >308:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B18 text20 CODE >310:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B1E text20 CODE >313:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B28 text20 CODE >314:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B34 text20 CODE >319:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B40 text20 CODE >322:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B68 text20 CODE >325:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B78 text20 CODE >326:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B7A text20 CODE >329:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B7A text20 CODE >332:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B80 text20 CODE >333:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B8A text20 CODE >334:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1B96 text20 CODE >335:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BA0 text20 CODE >336:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BAC text20 CODE >338:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BAE text20 CODE >342:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BAE text20 CODE >344:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BB4 text20 CODE >345:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BBE text20 CODE >346:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BCA text20 CODE >347:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BD4 text20 CODE >348:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BE0 text20 CODE >349:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BE2 text20 CODE >352:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BE2 text20 CODE >355:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BE4 text20 CODE >374:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BEA text20 CODE >380:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-1BEC text20 CODE >384:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+33DA text21 CODE >388:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+33DA text21 CODE >390:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+33E8 text21 CODE >391:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+33EE text21 CODE >393:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+33F4 text21 CODE >394:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+33F6 text21 CODE >395:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+33F6 text21 CODE >397:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A3C text20 CODE >271:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A3C text20 CODE >273:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A3E text20 CODE >278:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A48 text20 CODE >279:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A54 text20 CODE >280:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A5E text20 CODE >281:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A6A text20 CODE >282:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A70 text20 CODE >285:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A74 text20 CODE >286:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A8C text20 CODE >288:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1A96 text20 CODE >289:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1AA2 text20 CODE >292:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1AB4 text20 CODE >294:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1ABA text20 CODE >297:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1AE2 text20 CODE >299:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1AEC text20 CODE >300:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1AF8 text20 CODE >301:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1AFA text20 CODE >302:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1AFA text20 CODE >304:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B00 text20 CODE >305:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B0A text20 CODE >306:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B16 text20 CODE >307:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B18 text20 CODE >309:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B1E text20 CODE >312:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B28 text20 CODE >313:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B34 text20 CODE >318:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B40 text20 CODE >321:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B68 text20 CODE >324:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B78 text20 CODE >325:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B7A text20 CODE >328:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B7A text20 CODE >331:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B80 text20 CODE >332:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B8A text20 CODE >333:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1B96 text20 CODE >334:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BA0 text20 CODE >335:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BAC text20 CODE >337:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BAE text20 CODE >341:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BAE text20 CODE >343:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BB4 text20 CODE >344:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BBE text20 CODE >345:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BCA text20 CODE >346:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BD4 text20 CODE >347:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BE0 text20 CODE >348:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BE2 text20 CODE >351:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BE2 text20 CODE >354:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BE4 text20 CODE >373:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BEA text20 CODE >379:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+1BEC text20 CODE >383:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 2A34 text19 CODE >198:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 2A34 text19 CODE >201:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 2A42 text19 CODE >202:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
@@ -1214,90 +1214,90 @@ B00 text25 CODE >977:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/pff.c
 231C text2 CODE >113:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/adc.c
 2320 text2 CODE >118:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/adc.c
 2372 text2 CODE >111:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\bibliotecas/adc.c
-2D8E text1 CODE >256:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2D8E text1 CODE >258:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2DA6 text1 CODE >259:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2DBE text1 CODE >261:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2DC8 text1 CODE >262:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2DD4 text1 CODE >264:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2DDE text1 CODE >265:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2DEA text1 CODE >267:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2E00 text1 CODE >268:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2E06 text1 CODE >269:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32A0 text0 CODE >222:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32A0 text0 CODE >224:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32A4 text0 CODE >225:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32A8 text0 CODE >226:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32AC text0 CODE >227:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32B0 text0 CODE >229:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32B4 text0 CODE >230:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32B8 text0 CODE >231:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32C6 text0 CODE >234:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32C6 text0 CODE >237:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32CC text0 CODE >239:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32D0 text0 CODE >240:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2D8E text1 CODE >255:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2D8E text1 CODE >257:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2DA6 text1 CODE >258:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2DBE text1 CODE >260:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2DC8 text1 CODE >261:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2DD4 text1 CODE >263:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2DDE text1 CODE >264:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2DEA text1 CODE >266:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2E00 text1 CODE >267:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2E06 text1 CODE >268:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32A0 text0 CODE >221:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32A0 text0 CODE >223:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32A4 text0 CODE >224:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32A8 text0 CODE >225:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32AC text0 CODE >226:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32B0 text0 CODE >228:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32B4 text0 CODE >229:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32B8 text0 CODE >230:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32C6 text0 CODE >233:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32C6 text0 CODE >236:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32CC text0 CODE >238:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32D0 text0 CODE >239:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32D4 text0 CODE >240:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
 32D4 text0 CODE >241:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32D4 text0 CODE >242:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32D8 text0 CODE >243:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32DC text0 CODE >244:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-32E0 text0 CODE >234:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
-2E7C cinit CODE >5478:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E7C cinit CODE >5480:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E7C cinit CODE >5483:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E7C cinit CODE >5622:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E7E cinit CODE >5623:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E80 cinit CODE >5624:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E82 cinit CODE >5625:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E84 cinit CODE >5626:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E86 cinit CODE >5627:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E88 cinit CODE >5628:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E8C cinit CODE >5629:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E90 cinit CODE >5630:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E90 cinit CODE >5631:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E92 cinit CODE >5632:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E96 cinit CODE >5633:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E98 cinit CODE >5634:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E9A cinit CODE >5635:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2E9C cinit CODE >5639:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EA0 cinit CODE >5640:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EA4 cinit CODE >5641:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EA4 cinit CODE >5642:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EA6 cinit CODE >5643:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EA8 cinit CODE >5644:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EAA cinit CODE >5645:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EAC cinit CODE >5646:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EAE cinit CODE >5647:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EB0 cinit CODE >5650:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EB4 cinit CODE >5651:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EB6 cinit CODE >5652:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EB6 cinit CODE >5653:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EB8 cinit CODE >5654:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EBA cinit CODE >5655:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EBC cinit CODE >5658:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EC0 cinit CODE >5659:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EC2 cinit CODE >5660:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EC2 cinit CODE >5661:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EC4 cinit CODE >5662:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EC6 cinit CODE >5663:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EC8 cinit CODE >5666:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2ECC cinit CODE >5667:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2ECE cinit CODE >5668:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2ECE cinit CODE >5669:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2ED0 cinit CODE >5670:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2ED2 cinit CODE >5671:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2ED4 cinit CODE >5674:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2ED8 cinit CODE >5675:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EDA cinit CODE >5676:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EDA cinit CODE >5677:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EDC cinit CODE >5678:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EDE cinit CODE >5679:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EE0 cinit CODE >5685:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EE0 cinit CODE >5687:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EE2 cinit CODE >5688:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EE4 cinit CODE >5690:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EE6 cinit CODE >5691:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EE8 cinit CODE >5692:C:\Users\Felipe\AppData\Local\Temp\sbjs.
-2EEA cinit CODE >5693:C:\Users\Felipe\AppData\Local\Temp\sbjs.
+32D8 text0 CODE >242:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32DC text0 CODE >243:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+32E0 text0 CODE >233:E:\FATEC\Arquivos TCC\TCC\SD_CARDV4.X\main.c
+2E7C cinit CODE >5478:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E7C cinit CODE >5480:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E7C cinit CODE >5483:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E7C cinit CODE >5622:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E7E cinit CODE >5623:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E80 cinit CODE >5624:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E82 cinit CODE >5625:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E84 cinit CODE >5626:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E86 cinit CODE >5627:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E88 cinit CODE >5628:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E8C cinit CODE >5629:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E90 cinit CODE >5630:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E90 cinit CODE >5631:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E92 cinit CODE >5632:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E96 cinit CODE >5633:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E98 cinit CODE >5634:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E9A cinit CODE >5635:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2E9C cinit CODE >5639:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EA0 cinit CODE >5640:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EA4 cinit CODE >5641:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EA4 cinit CODE >5642:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EA6 cinit CODE >5643:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EA8 cinit CODE >5644:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EAA cinit CODE >5645:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EAC cinit CODE >5646:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EAE cinit CODE >5647:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EB0 cinit CODE >5650:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EB4 cinit CODE >5651:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EB6 cinit CODE >5652:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EB6 cinit CODE >5653:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EB8 cinit CODE >5654:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EBA cinit CODE >5655:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EBC cinit CODE >5658:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EC0 cinit CODE >5659:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EC2 cinit CODE >5660:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EC2 cinit CODE >5661:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EC4 cinit CODE >5662:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EC6 cinit CODE >5663:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EC8 cinit CODE >5666:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2ECC cinit CODE >5667:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2ECE cinit CODE >5668:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2ECE cinit CODE >5669:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2ED0 cinit CODE >5670:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2ED2 cinit CODE >5671:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2ED4 cinit CODE >5674:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2ED8 cinit CODE >5675:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EDA cinit CODE >5676:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EDA cinit CODE >5677:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EDC cinit CODE >5678:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EDE cinit CODE >5679:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EE0 cinit CODE >5685:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EE0 cinit CODE >5687:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EE2 cinit CODE >5688:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EE4 cinit CODE >5690:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EE6 cinit CODE >5691:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EE8 cinit CODE >5692:C:\Users\Felipe\AppData\Local\Temp\sak4.
+2EEA cinit CODE >5693:C:\Users\Felipe\AppData\Local\Temp\sak4.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -1330,7 +1330,7 @@ __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\SD_CARDV4.X.production.o
 _recebe_dado_uart 3528 0 CODE 0 text64 dist/default/production\SD_CARDV4.X.production.obj
 follow_path@dir B1 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 follow_path@res B5 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-__mediumconst 604C 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+__mediumconst 604C 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\sak4.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\SD_CARDV4.X.production.obj
 envia_dados_shrc@contador 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1354,7 +1354,7 @@ _SYNC 7D64 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _TMR2 FCC 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _TRMT 7D61 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 _TXEN 7D65 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\sak4.obj
 _dado 45 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _flag D7 0 BANK0 1 bssBANK0 dist/default/production\SD_CARDV4.X.production.obj
 _main 32A0 0 CODE 0 text0 dist/default/production\SD_CARDV4.X.production.obj
@@ -1363,7 +1363,7 @@ btemp 46 0 COMRAM 1 temp dist/default/production\SD_CARDV4.X.production.obj
 WriteSPI_@dado 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __end_ofcreate_name@cvt 60CD 0 MEDIUMCONST 0 mediumconst dist/default/production\SD_CARDV4.X.production.obj
 __HbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\SD_CARDV4.X.production.obj
-start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\sak4.obj
 __size_of___aldiv 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __size_of___lldiv 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1414,11 +1414,11 @@ __end_of_dir_next 1A3C 0 CODE 0 text34 dist/default/production\SD_CARDV4.X.produ
 posicao_cursor_lcd@endereco 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __end_of_pf_mount 646 0 CODE 0 text39 dist/default/production\SD_CARDV4.X.production.obj
 disk_readp@count 68 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
-intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
-intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
-intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
-intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\sak4.obj
+intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\sak4.obj
+intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\sak4.obj
+intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\sak4.obj
+intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\sak4.obj
 __end_of_pf_write B04 0 CODE 0 text25 dist/default/production\SD_CARDV4.X.production.obj
 _ativa_latch_shrc 34DE 0 CODE 0 text60 dist/default/production\SD_CARDV4.X.production.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1454,8 +1454,8 @@ pf_write@bw 9A 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.product
 pf_write@cs B2 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 pf_write@fs B5 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 pf_write@remain AA 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\sak4.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\sak4.obj
 __end_of_recebe_dado_uart 353A 0 CODE 0 text64 dist/default/production\SD_CARDV4.X.production.obj
 create_name@path 24 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _EECON1bits FA6 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -1585,7 +1585,7 @@ __size_of_command 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\SD_CARDV4.X.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production\SD_CARDV4.X.production.obj
 __end_of_disk_writep 211E 0 CODE 0 text26 dist/default/production\SD_CARDV4.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\sak4.obj
 write_timer_zero@timer 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 mem_cmp@d 23 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 mem_cmp@r 27 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
@@ -1915,8 +1915,8 @@ _GGA_CODE 32 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production
 disk_readp@buff 6F 0 BANK0 1 cstackBANK0 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_shrc_apaga_bit 3462 0 CODE 0 text23 dist/default/production\SD_CARDV4.X.production.obj
 escreve_cmd_lcd@comando 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
-stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
-stacklo 4AD 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\sak4.obj
+stacklo 4AD 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\sak4.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production\SD_CARDV4.X.production.obj
 _IsItGGAString 39 0 COMRAM 1 bssCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 __size_of_endereco_cursor_lcd 0 0 ABS 0 - dist/default/production\SD_CARDV4.X.production.obj
@@ -2040,7 +2040,7 @@ __Ltext64 0 0 ABS 0 text64 dist/default/production\SD_CARDV4.X.production.obj
 __Ltext65 0 0 ABS 0 text65 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_leitura_chaves_sistema 331E 0 CODE 0 text4 dist/default/production\SD_CARDV4.X.production.obj
 __end_of_check_fs 1D4A 0 CODE 0 text43 dist/default/production\SD_CARDV4.X.production.obj
-__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\sbjs.obj
+__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\sak4.obj
 ___aldiv@dividend 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\SD_CARDV4.X.production.obj
 _pf_open 1D4A 0 CODE 0 text28 dist/default/production\SD_CARDV4.X.production.obj
 _pf_read EEC 0 CODE 0 text27 dist/default/production\SD_CARDV4.X.production.obj
