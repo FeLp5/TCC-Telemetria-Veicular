@@ -26,7 +26,7 @@
 # - dir(<instance of a sizer>) for a list of methods
 # - print sizer.method.__doc__
 #
-
+# comnentário
 
 import os
 import sys
