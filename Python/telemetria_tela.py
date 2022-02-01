@@ -57,8 +57,6 @@ from pathlib import Path
 # plt.xlabel('Locais')
 # plot.show()
 
-
-
 # ###################################################################################
 
 
@@ -81,7 +79,6 @@ class Win1(wx.Window):
         wx.Window.__init__(self, parent, id, (-1, -1), (-1, -1), wx.BORDER_RAISED | wx.VSCROLL)
         self.SetBackgroundColour(BackColour)   
         
-
     def arquivos(self):
         count = 0
         pasta = './'
