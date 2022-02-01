@@ -62,6 +62,7 @@ from pathlib import Path
 # ###################################################################################
 
 
+
 class ColWin(wx.Window):
     """- A wx.Window with a coloured background
     - pos and size == (-1, -1) since sizers are used"""
@@ -80,7 +81,8 @@ class Win1(wx.Window):
         wx.Window.__init__(self, parent, id, (-1, -1), (-1, -1), wx.BORDER_RAISED | wx.VSCROLL)
         self.SetBackgroundColour(BackColour)   
         
-        
+
+    def arquivos(self):
         count = 0
         pasta = './'
         for diretorio, subpastas, arquivos in os.walk(pasta):
@@ -119,12 +121,13 @@ class MyPanel(wx.Panel):
         menuBar.Append(menu1, '&File')
         self.parent.SetMenuBar(menuBar)
         
-        cor = wx.NamedColour('yellow')
+        cor = wx.NamedColour('gray')
+        janela1 = Win1(self, -1, cor)
         
         wwhite = ColWin(self, -1, cor)
         wblue = ColWin(self, -1, cor)
         wgreen = ColWin(self, -1, cor)
-        wcyan = Win1(self, -1, cor)
+        janela1.arquivos()
         wblack = ColWin(self, -1, cor)
         wred = ColWin(self, -1, cor)
         wcoral = ColWin(self, -1, cor)
@@ -141,10 +144,10 @@ class MyPanel(wx.Panel):
         hsizer2 = wx.BoxSizer(wx.HORIZONTAL)
         b = 0
         minhe = 300
-        hsizer2.Add(wcyan, 3, wx.EXPAND | wx.RIGHT, b)
+        hsizer2.Add(janela1, 3, wx.EXPAND | wx.RIGHT, b)
         hsizer2.Add(wred, 3, wx.EXPAND | wx.RIGHT, b)
         hsizer2.Add(vsizer1, 3, wx.EXPAND, border=b)
-        hsizer2.SetItemMinSize(wcyan, (-1, minhe))
+        hsizer2.SetItemMinSize(janela1, (-1, minhe))
         hsizer2.SetItemMinSize(wred, (-1, minhe))
         hsizer2.SetItemMinSize(vsizer1, (-1, minhe))
         
