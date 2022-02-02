@@ -63,8 +63,13 @@ from pathlib import Path
 # plot.show()
 
 # ###################################################################################
+import wx.lib.scrolledpanel as scrolled
 
-size_window = (1024,768)
+global size_window
+size_window = ((wx.MAXIMIZE/4, wx.MAXIMIZE))
+# global larguraOld
+# global largura
+
 
 # class ColWin(wx.Window):
 #     """- A wx.Window with a coloured background
@@ -86,36 +91,141 @@ class janelas(wx.Window):
         self.SetBackgroundColour(BackColour)   
         
         largura_panel = wx.Window.GetSize(self)
-        print(largura_panel)
+        # print(largura_panel)
         
     def arquivos(self):
+    # def arquivos(scrolled.ScrolledPanel):
         count = 0
         pasta = './'
+        
+        
+        # def __init__(self, parent):
+    
+   #    #       # self.Bind(wx.EVT_SIZE, SizeChange)
+        #     scrolled.ScrolledPanel.__init__(self, parent, -1)
+    
+   #    #       vbox = wx.BoxSizer(wx.VERTICAL)
+            # botao = wx.Button()
+     
+            # desc = wx.StaticText(self, -1, text)
+    
+       #    #   desc.SetForegroundColour("Blue")
+
         for diretorio, subpastas, arquivos in os.walk(pasta):
             for arquivo in arquivos:
                 # print(os.path.join(diretorio, arquivo))
-                infos = str(os.stat(arquivo))
-                # tamanho = infos.rfind("st_size", 0, ",")
-                # print (tamanho)
 
-                try:
-                    found = re.search('st_size=(.+?),', infos).group(1)
-                    # print(found)
-                    # print(found)
-                except AttributeError:
-                    pass
+                pos = arquivo.rfind(".")
+                ext = ""
+                # ano = ""
+                # mes = ""
+                # dia = ""
+                # hora = ""
+                # min = ""
+                x = 0
+                cont = 0
+                cont = cont + 1
+                # pegando as extensoes dos arquivos
+                for x in range(len(arquivo)): 
+                    if( x > pos):  
+                        ext = ext + arquivo[x]
+                # print (ext)    
                 
-                count = count + 22
-                b1 = wx.Button(self, wx.NewId(), arquivo, (10, count), (160, 20))  
                 
+                # pegando apenas a extesnao desejada
+                extensao = "tlm"
+                if(ext == extensao ):
+                    # #pegando o ano
+                    # for x in range(len(arquivo)): 
+                    #     if( x < 4):  
+                    #         ano = ano + arquivo[x]
+                    # print (ano)   
+                    # #pegando o mes
+                    # for x in range(len(arquivo)): 
+                    #     if( x > 4 and x < 7):  
+                    #         mes = mes + arquivo[x]
+                    # print (mes)   
+                    # #pegando o dia
+                    # for x in range(len(arquivo)): 
+                    #     if( x > 7 and x < 10):  
+                    #         dia = dia + arquivo[x]
+                    # print (dia) 
+                    # #pegando o hora
+                    # for x in range(len(arquivo)): 
+                    #     if( x > 10 and x < 13):  
+                    #         hora = hora + arquivo[x]
+                    # print (hora)  
+                    # #pegando os minutos
+                    # for x in range(len(arquivo)): 
+                    #     if( x > 10 and x < 13):  
+                    #         min = min + arquivo[x]
+                    # print (min)      
+                    
+                    # informacao adicional dos arquivos 
+                    
+                    import datetime
+                    datacri = ""
+                    datamod = ""
+                    infos = str(os.stat(arquivo))
+                    
+                    
+                        # tamanho = infos.rfind("st_size", 0, ",")
+                        # print (tamanho)
+                        
+                    # print(infos)
+                    try:
+                        datam = re.search('st_mtime=(.+?),', infos).group(1)
+                        #datac = re.search('st_ctime=(.+?),', infos).group(1)
+                        datamod = datetime.datetime.fromtimestamp(float(datam)).strftime('%d/%m/%Y - %H:%M')
+                        #datacri = datetime.datetime.fromtimestamp(float(datac)).strftime(' - %H:%M')
+                        #'%Y-%m-%d-%H:%M'
+                        
+                        # print('timestamp', datahora)
+                        # print(found)
+                        # print(found)
+                    except AttributeError:
+                        pass
+                        
+                    # try:
+                    #     datac = re.search('st_ctime=(.+?),', infos).group(1)
+                    #     datacri = datetime.datetime.fromtimestamp(float(datac)).strftime('%Y-%m-%d-%H:%M')
+                    #     # print('timestamp', datahora)
+                    #     # print(found)
+                    #     # print(found)
+                    # except AttributeError:
+                    #     pass
+                    
+                    arquivo =  str(datamod)
+                    
+                
+            
+            
+                # abaixo se for necessario informacao adicional dos arquivos 
+                # try:
+                #     found = re.search('st_size=(.+?),', infos).group(1)
+                #     # print(found)
+                #     # print(found)
+                # except AttributeError:
+                #     pass
+                
+                    count = count + 22
+                    botao = wx.Button(self, wx.NewId(), arquivo, (10, count), (size_window[0]/14, 20))  
+                    #     vbox.Add(botao[cont], 0, wx.ALIGN_LEFT | wx.ALL, 5)
+                    #     # vbox.Add(wx.StaticLine(self, -1, size=(1024, -1)), 0, wx.ALL, 5)
+                    #     vbox.Add((20, 20))
+        
+           #        #   self.SetSizer(vbox)
+                    # self.SetupScrolling()
+                
+   #              
     def grafico(self):
         self.figure = Figure()
         
         self.axes = self.figure.add_subplot(111)
         self.canvas = FigureCanvas(self, -1, self.figure)
-        self.canvas.SetSize((size_window[0] / 2,440))
+        self.canvas.SetSize((size_window[0] / 4,440))
         
-        print("window", size_window[0])
+        # print("window", size_window[0])
         grupos = ['A', 'B', 'C' , 'D', 'E', 'F', 'G' , 'H', 'I', 'J', 'K', 'L' ]
         valores = [35, 77, 60, 43, 20, 36, 35, 38, 50, 51, 53, 35]
         # self.SetSizer(self.sizer)
@@ -139,25 +249,28 @@ class janelas(wx.Window):
 
     def mapa(self):
         
-        BASE_DIR = Path(__file__).absolute().parent
-        file = "teste.html"
-        final_path = BASE_DIR / file
-        final_path = "file://" + str(final_path) + "?dados=saoos"
-        
-        print(final_path)
+        # BASE_DIR = Path(__file__).absolute().parent
+        # file = "teste.html"
+        # final_path = BASE_DIR / file
+        # final_path = "file://" + str(final_path) + "?dados=saoos"
+        # 
+        # print(final_path)
+        # print(largura, " largura")
         #def __init__(self, parent, content='', *args, **kwargs):
 
-        
         self.browser = wx.html2.WebView.New(self)
-        self.browser.LoadURL(final_path)
+        url = "http://maps.google.com"
+        # url = ""
+        self.browser.LoadURL(url)
         #self.SetSizer() 
-        self.browser.SetSize((size_window[0] / 2, 400)) 
+        self.browser.SetSize((size_window[0] / 2, 400))
         # self.browser.SetPage(content,'')
-
+        
         #self.Center()
         #self.CenterOnScreen()
+        
         self.Show()
- 
+        
         
 # janela5 = janelas(null, -1, wx.NamedColour('gray'))
 
@@ -170,7 +283,7 @@ class MyPanel(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent, -1, wx.DefaultPosition, wx.DefaultSize)
         self.parent = parent
-
+        print(wx.DefaultSize)
         #a menu for the beauty of the demo
         menu1 = wx.Menu()
         menu1.Append(101, '&aaa')
@@ -262,9 +375,17 @@ def SizeChange(event):
     # width, height = event.GetSize()
     # print(width, height)
     size_window = event.GetSize()
-    print(size_window[0])
+    # print(size_window[0])
     # janela5.grafico()
-    frame.Show()
+    # frame.Show(False)
+    # from time import sleep
+    # sleep(1)
+    
+
+    largura = size_window[0] / 2
+    
+    # frame.Show(True)
+    print(largura , "largura")
 
 class MyApp(wx.App):
 
@@ -272,11 +393,11 @@ class MyApp(wx.App):
         
         global frame
         frame = wx.Frame(None, -1, __file__, (0, 0), size_window)
-        print ("size window")
-        print(size_window)
-
+        # print ("size window")
+        # print(size_window)
+        
         frame.panel = MyPanel(frame)
-        self.Bind(wx.EVT_SIZE, SizeChange)
+        
 
         # frame.Show(True)
         # self.SetTopWindow(frame)
@@ -292,6 +413,11 @@ def main():
     app.MainLoop()
     
 
-if __name__ == "__main__" :
+
+    # app.MainLoop()
     
+    
+
+if __name__ == "__main__" :
     main()
+
