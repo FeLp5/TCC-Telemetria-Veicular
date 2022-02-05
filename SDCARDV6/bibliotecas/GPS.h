@@ -47,6 +47,8 @@ extern "C" {
 
 #define RMC_BUFFER_SIZE  70
 #define RMC_POINTERS_SIZE 12
+    
+#define LOCAL -3
 
 /******************************************************************************
 * Prototipos das funÃ§Ãµes

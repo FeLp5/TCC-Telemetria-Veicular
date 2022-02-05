@@ -24,7 +24,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR1bits `VS172 ~T0 @X0 0 e@3998 ]
 "48 bibliotecas/uart.h
 [v _recebe_dado_uart `(uc ~T0 @X0 0 ef ]
-"54 bibliotecas/GPS.h
+"56 bibliotecas/GPS.h
 [v _tratamento_uart `(v ~T0 @X0 0 ef1`uc ]
 "3039 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4550.h
 [s S125 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -65,7 +65,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INT0IF `Vb ~T0 @X0 0 e@32657 ]
 "9362
 [v _INT0IE `Vb ~T0 @X0 0 e@32660 ]
-"55 bibliotecas/GPS.h
+"57 bibliotecas/GPS.h
 [v _gps `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "34 bibliotecas/hardware.h
@@ -3759,8 +3759,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 96: void proceed(void);
 [; ;SDCard.h: 97: void dummy_clocks(unsigned char n);
 [; ;SDCard.h: 98: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-[; ;GPS.h: 54: void tratamento_uart(unsigned char received_char);
-[; ;GPS.h: 55: void gps(void);
+[; ;GPS.h: 56: void tratamento_uart(unsigned char received_char);
+[; ;GPS.h: 57: void gps(void);
 "54 main.c
 [v _data_uart_recebe `uc ~T0 @X0 1 e ]
 [; ;main.c: 54: unsigned char data_uart_recebe;

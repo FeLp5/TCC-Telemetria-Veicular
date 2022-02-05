@@ -4970,7 +4970,7 @@ void proceed(void);
 void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 
-# 54 "bibliotecas/GPS.h"
+# 56 "bibliotecas/GPS.h"
 void tratamento_uart(unsigned char received_char);
 void gps(void);
 
