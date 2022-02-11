@@ -35,8 +35,8 @@
 #include "bibliotecas/chaves.h"
 #include "bibliotecas/SHRC.h"
 #include "bibliotecas/display_lcd.h"
-#include "bibliotecas/adc.h"
-#include "bibliotecas/SPI.h"
+//#include "bibliotecas/adc.h"
+//#include "bibliotecas/SPI.h"
 #include "bibliotecas/SDCard.h"
 #include "bibliotecas/GPS.h"
 //=-============================
@@ -103,7 +103,7 @@ void interrupt isr(void)
         data_uart_recebe = recebe_dado_uart();
         PIR1bits.RCIF = 0;
         tratamento_uart(data_uart_recebe);
-        LATBbits.LATB4 = ~LATBbits.LATB4;
+//        LATBbits.LATB4 = ~LATBbits.LATB4;
         
         		
     } //End if interrupt Recepcao UART
@@ -157,16 +157,19 @@ void interrupt isr(void)
 void inicializa_tarefas(void)
 {
 
-    p_tarefas[0] = gps;
+    p_tarefas[0] = SDCard;
+//    p_tarefas[1] = SDCard;
 
 	/*init temporization values of each task. 
 	These values do no change during execution*/
 	tempo_backup[0] = TIME_5000_MS;
+//    tempo_backup[1] = TIME_5000_MS;
 //    tempo_backup[1] = TIME_2000_MS;
 	
 	/*init recent temporization values of each task. 
 	They�re used to decide which task must be executed*/
 	tempo_tarefa[0] = TIME_5000_MS;
+//    tempo_tarefa[1] = TIME_5000_MS;
 //    tempo_tarefa[1] = TIME_2000_MS;
 
 	//It indicates that there�s no task executing
@@ -205,14 +208,14 @@ void escalonador()
 void main(void) 
 {  
     init_hardware();
-	inicializa_uart();
+//	inicializa_uart();
     init_lcd();
     inicializa_shrc();
 //    inicializa_i2c();
 	mensagem_inicial();
     inicializa_tarefas();
 //    inicializa_SPI(0,3,1);
-//    SDCard();
+    ADCON1 = 0X0F;
     while(1)
     {
         //Verification: check if there�s a task to be executed
@@ -222,8 +225,7 @@ void main(void)
             escalonador();			
         }
         leitura_chaves_sistema();   /*Driver*/
-        controle_shrc();            /*Driver*/
-        leitura_continua_adc();     /*Driver*/
+//        leitura_continua_adc();     /*Driver*/
         
     }
 }
@@ -247,10 +249,10 @@ void mensagem_inicial(void)
     LIMPA_DISPLAY();
     
     
-    posicao_cursor_lcd(1,0);
-	escreve_frase_ram_lcd("LAT:");
-    
-    posicao_cursor_lcd(2,0);
-	escreve_frase_ram_lcd("LONG:");
+//    posicao_cursor_lcd(1,0);
+//	escreve_frase_ram_lcd("LAT:");
+//    
+//    posicao_cursor_lcd(2,0);
+//	escreve_frase_ram_lcd("LONG:");
 }
 

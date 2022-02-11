@@ -153,11 +153,11 @@ void write_timer_zero(unsigned int timer0)
  *****************************************************************************/
 void init_ports(void)
 {
-    TRISB = 0b00000001;            
+    TRISB = 0b00100001;            
 	LATB  = 0xFF;
     TRISD = 0x00;           
     TRISA = 0b00000111; 
-    TRISC = 0x11111111;
+    TRISC = 0x01111111;
     TRISE = 0b00000011;
 
 }

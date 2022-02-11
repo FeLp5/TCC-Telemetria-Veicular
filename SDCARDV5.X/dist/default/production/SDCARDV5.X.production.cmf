@@ -68,7 +68,7 @@ dataBANK0 BANK0 1 DA DA 18 1
 bssBIGRAM BIGRAM 1 230 230 200 1
 bssCOMRAM COMRAM 1 37 37 28 1
 mediumconst MEDIUMCONST 0 60BE 60BE 1C2 1
-$C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+$C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 idloc IDLOC 0 200000 200000 8 1
 init CODE 0 E E 4 1
 reset_vec CODE 0 0 0 4 1
@@ -744,63 +744,63 @@ E90 text0 CODE >227:E:\FATEC\Arquivos TCC\TCC\SDCARDV5.X\main.c
 E94 text0 CODE >228:E:\FATEC\Arquivos TCC\TCC\SDCARDV5.X\main.c
 E98 text0 CODE >229:E:\FATEC\Arquivos TCC\TCC\SDCARDV5.X\main.c
 E9C text0 CODE >219:E:\FATEC\Arquivos TCC\TCC\SDCARDV5.X\main.c
-994 cinit CODE >5305:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-994 cinit CODE >5307:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-994 cinit CODE >5310:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-994 cinit CODE >5465:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-996 cinit CODE >5466:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-998 cinit CODE >5467:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-99A cinit CODE >5468:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-99C cinit CODE >5469:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-99E cinit CODE >5470:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9A0 cinit CODE >5471:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9A4 cinit CODE >5472:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9A8 cinit CODE >5473:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9A8 cinit CODE >5474:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9AA cinit CODE >5475:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9AE cinit CODE >5476:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9B0 cinit CODE >5477:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9B2 cinit CODE >5478:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9B4 cinit CODE >5482:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9B8 cinit CODE >5483:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9BC cinit CODE >5484:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9BC cinit CODE >5485:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9BE cinit CODE >5486:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9C0 cinit CODE >5487:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9C2 cinit CODE >5488:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9C4 cinit CODE >5489:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9C6 cinit CODE >5490:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9C8 cinit CODE >5493:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9CC cinit CODE >5494:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9CE cinit CODE >5495:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9CE cinit CODE >5496:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9D0 cinit CODE >5497:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9D2 cinit CODE >5498:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9D4 cinit CODE >5501:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9D8 cinit CODE >5502:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9DA cinit CODE >5503:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9DA cinit CODE >5504:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9DC cinit CODE >5505:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9DE cinit CODE >5506:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9E0 cinit CODE >5509:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9E4 cinit CODE >5510:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9E6 cinit CODE >5511:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9E6 cinit CODE >5512:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9E8 cinit CODE >5513:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9EA cinit CODE >5514:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9EC cinit CODE >5517:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9F0 cinit CODE >5518:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9F2 cinit CODE >5519:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9F2 cinit CODE >5520:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9F4 cinit CODE >5521:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9F6 cinit CODE >5522:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9F8 cinit CODE >5528:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9F8 cinit CODE >5530:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9FA cinit CODE >5531:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9FC cinit CODE >5533:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-9FE cinit CODE >5534:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-A00 cinit CODE >5535:C:\Users\Felipe\AppData\Local\Temp\s2d8.
-A02 cinit CODE >5536:C:\Users\Felipe\AppData\Local\Temp\s2d8.
+994 cinit CODE >5305:C:\Users\Felipe\AppData\Local\Temp\s16c.
+994 cinit CODE >5307:C:\Users\Felipe\AppData\Local\Temp\s16c.
+994 cinit CODE >5310:C:\Users\Felipe\AppData\Local\Temp\s16c.
+994 cinit CODE >5465:C:\Users\Felipe\AppData\Local\Temp\s16c.
+996 cinit CODE >5466:C:\Users\Felipe\AppData\Local\Temp\s16c.
+998 cinit CODE >5467:C:\Users\Felipe\AppData\Local\Temp\s16c.
+99A cinit CODE >5468:C:\Users\Felipe\AppData\Local\Temp\s16c.
+99C cinit CODE >5469:C:\Users\Felipe\AppData\Local\Temp\s16c.
+99E cinit CODE >5470:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9A0 cinit CODE >5471:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9A4 cinit CODE >5472:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9A8 cinit CODE >5473:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9A8 cinit CODE >5474:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9AA cinit CODE >5475:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9AE cinit CODE >5476:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9B0 cinit CODE >5477:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9B2 cinit CODE >5478:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9B4 cinit CODE >5482:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9B8 cinit CODE >5483:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9BC cinit CODE >5484:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9BC cinit CODE >5485:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9BE cinit CODE >5486:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9C0 cinit CODE >5487:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9C2 cinit CODE >5488:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9C4 cinit CODE >5489:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9C6 cinit CODE >5490:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9C8 cinit CODE >5493:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9CC cinit CODE >5494:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9CE cinit CODE >5495:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9CE cinit CODE >5496:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9D0 cinit CODE >5497:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9D2 cinit CODE >5498:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9D4 cinit CODE >5501:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9D8 cinit CODE >5502:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9DA cinit CODE >5503:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9DA cinit CODE >5504:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9DC cinit CODE >5505:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9DE cinit CODE >5506:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9E0 cinit CODE >5509:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9E4 cinit CODE >5510:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9E6 cinit CODE >5511:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9E6 cinit CODE >5512:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9E8 cinit CODE >5513:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9EA cinit CODE >5514:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9EC cinit CODE >5517:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9F0 cinit CODE >5518:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9F2 cinit CODE >5519:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9F2 cinit CODE >5520:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9F4 cinit CODE >5521:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9F6 cinit CODE >5522:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9F8 cinit CODE >5528:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9F8 cinit CODE >5530:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9FA cinit CODE >5531:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9FC cinit CODE >5533:C:\Users\Felipe\AppData\Local\Temp\s16c.
+9FE cinit CODE >5534:C:\Users\Felipe\AppData\Local\Temp\s16c.
+A00 cinit CODE >5535:C:\Users\Felipe\AppData\Local\Temp\s16c.
+A02 cinit CODE >5536:C:\Users\Felipe\AppData\Local\Temp\s16c.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -833,7 +833,7 @@ _escalonador 59E 0 CODE 0 text24 dist/default/production\SDCARDV5.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\SDCARDV5.X.production.obj
 _recebe_dado_uart FDC 0 CODE 0 text34 dist/default/production\SDCARDV5.X.production.obj
 i2escreve_frase_ram_lcd@buffer 4 0 COMRAM 1 cstackCOMRAM dist/default/production\SDCARDV5.X.production.obj
-__mediumconst 60BE 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+__mediumconst 60BE 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\SDCARDV5.X.production.obj
 envia_dados_shrc@contador B0 0 BANK0 1 cstackBANK0 dist/default/production\SDCARDV5.X.production.obj
 __size_ofi2_escreve_frase_ram_lcd 0 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
@@ -857,7 +857,7 @@ _SYNC 7D64 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 _TMR2 FCC 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 _TRMT 7D61 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 _TXEN 7D65 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 _dado 9F 0 BANK0 1 bssBANK0 dist/default/production\SDCARDV5.X.production.obj
 _flag 4A 0 COMRAM 1 bssCOMRAM dist/default/production\SDCARDV5.X.production.obj
 _itoa D6E 0 CODE 0 text39 dist/default/production\SDCARDV5.X.production.obj
@@ -867,7 +867,7 @@ btemp 5F 0 COMRAM 1 temp dist/default/production\SDCARDV5.X.production.obj
 ?_leitura_adc B0 0 BANK0 1 cstackBANK0 dist/default/production\SDCARDV5.X.production.obj
 __end_ofcreate_name@cvt 613F 0 MEDIUMCONST 0 mediumconst dist/default/production\SDCARDV5.X.production.obj
 __HbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\SDCARDV5.X.production.obj
-start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 __size_of___aldiv 0 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 __size_of_itoa 0 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
@@ -897,11 +897,11 @@ __LbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\SDCARDV5.X.production.o
 posicao_cursor_lcd@endereco B5 0 BANK0 1 cstackBANK0 dist/default/production\SDCARDV5.X.production.obj
 utoa@c 10 0 COMRAM 1 cstackCOMRAM dist/default/production\SDCARDV5.X.production.obj
 utoa@v E 0 COMRAM 1 cstackCOMRAM dist/default/production\SDCARDV5.X.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
-intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
-intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
-intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
-intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s16c.obj
+intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s16c.obj
+intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s16c.obj
+intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s16c.obj
+intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 _ativa_latch_shrc F92 0 CODE 0 text28 dist/default/production\SDCARDV5.X.production.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\SDCARDV5.X.production.obj
 __CFG_USBDIV$1 0 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
@@ -922,8 +922,8 @@ _ADCON0 FC2 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 _ADCON1 FC1 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 _ADRESH FC4 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 _ADRESL FC3 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s16c.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 __end_of_recebe_dado_uart FEE 0 CODE 0 text34 dist/default/production\SDCARDV5.X.production.obj
 _EECON1bits FA6 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\SDCARDV5.X.production.obj
@@ -1018,7 +1018,7 @@ ___lwdiv@counter 7 0 COMRAM 1 cstackCOMRAM dist/default/production\SDCARDV5.X.pr
 i2endereco_cursor_lcd@endereco 3 0 COMRAM 1 cstackCOMRAM dist/default/production\SDCARDV5.X.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\SDCARDV5.X.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production\SDCARDV5.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 write_timer_zero@timer B2 0 BANK0 1 cstackBANK0 dist/default/production\SDCARDV5.X.production.obj
 __end_of_escalonador 642 0 CODE 0 text24 dist/default/production\SDCARDV5.X.production.obj
 __end_of_tratamento_uart 4D0 0 CODE 0 text33 dist/default/production\SDCARDV5.X.production.obj
@@ -1229,8 +1229,8 @@ __end_ofi2_escreve_caractere_lcd A78 0 CODE 0 text37 dist/default/production\SDC
 _GGA_CODE 45 0 COMRAM 1 bssCOMRAM dist/default/production\SDCARDV5.X.production.obj
 itoa@cp 17 0 COMRAM 1 cstackCOMRAM dist/default/production\SDCARDV5.X.production.obj
 escreve_cmd_lcd@comando B2 0 BANK0 1 cstackBANK0 dist/default/production\SDCARDV5.X.production.obj
-stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
-stacklo 430 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s16c.obj
+stacklo 430 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production\SDCARDV5.X.production.obj
 _IsItGGAString 59 0 COMRAM 1 bssCOMRAM dist/default/production\SDCARDV5.X.production.obj
 __size_of_endereco_cursor_lcd 0 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj
@@ -1329,7 +1329,7 @@ __Ltext41 0 0 ABS 0 text41 dist/default/production\SDCARDV5.X.production.obj
 __Ltext42 0 0 ABS 0 text42 dist/default/production\SDCARDV5.X.production.obj
 __Ltext43 0 0 ABS 0 text43 dist/default/production\SDCARDV5.X.production.obj
 __end_of_leitura_chaves_sistema E68 0 CODE 0 text8 dist/default/production\SDCARDV5.X.production.obj
-__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s2d8.obj
+__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s16c.obj
 ___aldiv@dividend B0 0 BANK0 1 cstackBANK0 dist/default/production\SDCARDV5.X.production.obj
 _endereco_cursor_lcd A78 0 CODE 0 text3 dist/default/production\SDCARDV5.X.production.obj
 __size_of_init_hardware 0 0 ABS 0 - dist/default/production\SDCARDV5.X.production.obj

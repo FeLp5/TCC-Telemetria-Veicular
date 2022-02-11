@@ -17,6 +17,7 @@
 
 #include "hardware.h"
 #include "SHRC.h"
+#include "display_lcd.h"
 
 /*****************************************************************************/
 
@@ -46,10 +47,14 @@ void ativa_latch_shrc ( void );
  *****************************************************************************/
 void inicializa_shrc(void)
 {
-    SHIFT_LATCH = 0;
+//    PORT_CHIP_SELECT = 0;
+    PORT_CLOCK = 0;
+    PORT_DATA_IN = 1;
+    PORT_DATA_OUT = 0;
+    
+//    CHIP_SELECT = 0;
 	SHIFT_CLOCK = 0;
-	SHIFT_DATA  = 0;
-
+	SPI_DATA_OUT  = 0;
 }	
 
 /******************************************************************************
@@ -59,8 +64,9 @@ void inicializa_shrc(void)
  * Saída:		Nenhuma (void)
  * Descrição:	Envia dados para o CI 74HC595. 
  *****************************************************************************/
-void envia_dados_shrc(unsigned char data_to_shrc)
+void escreve_dado_SPI(unsigned char data_to_shrc)
 {
+    SPI_DATA_OUT = 0;
     unsigned char contador=0;
     di();
     
@@ -68,17 +74,17 @@ void envia_dados_shrc(unsigned char data_to_shrc)
 	{
 		if((data_to_shrc & 0x80) == 0)
 		{
-			SHIFT_DATA = 0;
+			SPI_DATA_OUT = 0;
 		}
 		else
 		{
-			SHIFT_DATA = 1;
+			SPI_DATA_OUT = 1;
 		}
 		data_to_shrc = data_to_shrc << 1;
 		__delay_us(30);
 		SHIFT_CLOCK = 1;
         __delay_us(30);
-		SHIFT_DATA  = 0;
+		SPI_DATA_OUT  = 0;
 		__delay_us(30);
 		SHIFT_CLOCK = 0;
         __delay_us(30);
@@ -93,15 +99,15 @@ void envia_dados_shrc(unsigned char data_to_shrc)
  * Saída:		Nenhuma (void)
  * Descrição:	Finaliza o processo de envio de dados para o CI 74HC595
  *****************************************************************************/
-void ativa_latch_shrc ( void )
-{
-    //Inicio da funcao.
-    SHIFT_LATCH = 0;
-    __delay_us(30);
-    SHIFT_LATCH = 1;
-    __delay_us(60);
-    SHIFT_LATCH = 0;
-}
+//void ativa_latch_shrc ( void )
+//{
+//    //Inicio da funcao.
+//    SHIFT_LATCH = 0;
+//    __delay_us(30);
+//    SHIFT_LATCH = 1;
+//    __delay_us(60);
+//    SHIFT_LATCH = 0;
+//}
 
 /******************************************************************************
  * Funcao:		void controle_shrc (void)
@@ -109,24 +115,51 @@ void ativa_latch_shrc ( void )
  * Saída:		Nenhuma (void)
  * Descrição:	Realiza a inicializacao das portas conectadas ao CI 74HC595
  *****************************************************************************/
-void controle_shrc (void)
-{    
+//void controle_shrc (void)
+//{    
+//
+//   envia_dados_shrc(dado);
+//   ativa_latch_shrc();
+//}
+//
+//void shrc_seta_bit(unsigned char posicao_bit)
+//{
+//	dado |= (1<<posicao_bit);
+//}
+//
+//void shrc_apaga_bit(unsigned char posicao_bit)
+//{
+//	dado &= ~(1<<posicao_bit);
+//}
 
-   envia_dados_shrc(dado);
-   ativa_latch_shrc();
-}
 
-void shrc_seta_bit(unsigned char posicao_bit)
+
+/******************************************************************************
+ * Funcao:		void controle_shrc (void)
+ * Entrada:		Nenhuma (void)
+ * Saída:		Nenhuma (void)
+ * Descrição:	Realiza a inicializacao das portas conectadas ao CI 74HC595
+ *****************************************************************************/
+unsigned char recebe_dado_SPI()
 {
-	dado |= (1<<posicao_bit);
-}
+    dado = 0;
+    
+    unsigned char contador=0;
+    
+    di();
+    
+	while(contador<=7)
+	{     
+        dado |= (SPI_DATA_IN << (7-contador));
 
-void shrc_apaga_bit(unsigned char posicao_bit)
-{
-	dado &= ~(1<<posicao_bit);
-}
-
-void shrc_recebe_byte(unsigned char dado_recebido)
-{
-	dado = dado_recebido;
+		__delay_us(30);
+		SHIFT_CLOCK = 1;
+        __delay_us(30);
+		__delay_us(30);
+		SHIFT_CLOCK = 0;
+        __delay_us(30);
+		contador++;
+	}
+    ei();
+	return dado;
 }

@@ -28,7 +28,7 @@
 
 #include "pff.h"		/* Petit FatFs configurations and declarations */
 #include "diskio.h"		/* Declarations of low level disk I/O functions */
-
+#include "display_lcd.h"
 
 /*--------------------------------------------------------------------------
 
@@ -839,7 +839,7 @@ FRESULT pf_open (
     
 	fs->flag = 0;
 	dj.fn = sp;
-	res = follow_path(&dj, dir, *path);	/* Follow the file path */
+	res = follow_path(&dj, dir, path);	/* Follow the file path */
 	if (res != FR_OK) return res;		/* Follow failed */
 	if (!dir[0] || (dir[DIR_Attr] & AM_DIR))	/* It is a directory */
 		return FR_NO_FILE;
@@ -873,11 +873,13 @@ FRESULT pf_read (
 	BYTE cs, *rbuff = buff;
 	FATFS *fs = FatFs;
 
-
+    posicao_cursor_lcd(1,0);
+    escreve_frase_ram_lcd("Syst FAT");
 	*br = 0;
 	if (!fs) return FR_NOT_ENABLED;		/* Check file system */
-	if (!(fs->flag & FA_OPENED))		/* Check if opened */
+	if (!(fs->flag & FA_OPENED))
 		return FR_NOT_OPENED;
+  	
 
 	remain = fs->fsize - fs->fptr;
 	if (btr > remain) btr = (UINT)remain;			/* Truncate btr by remaining bytes */
@@ -902,9 +904,11 @@ FRESULT pf_read (
 		dr = disk_readp(!buff ? 0 : rbuff, fs->dsect, (UINT)fs->fptr % 512, rcnt);
 		if (dr) ABORT(FR_DISK_ERR);
 		fs->fptr += rcnt; rbuff += rcnt;			/* Update pointers and counters */
-		btr -= rcnt; *br += rcnt;
+		btr -= rcnt;
+        *br += rcnt;
 	}
-
+    posicao_cursor_lcd(1,0);
+    escreve_frase_ram_lcd("Syst OK");
 	return FR_OK;
 }
 #endif
@@ -973,7 +977,8 @@ FRESULT pf_write (
 			fs->flag &= ~FA__WIP;
 		}
 	}
-
+    posicao_cursor_lcd(2,0);
+    escreve_frase_ram_lcd("escrita ok");
 	return FR_OK;
 }
 #endif

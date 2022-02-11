@@ -39,6 +39,7 @@ void leitura_continua_adc(void);
 
 unsigned int valor_medio_adc(unsigned char canal);
 
+
 /*****************************************************************************/
 
 #endif

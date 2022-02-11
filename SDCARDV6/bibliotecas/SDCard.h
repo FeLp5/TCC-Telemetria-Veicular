@@ -44,7 +44,7 @@ extern "C" {
 
 
 //Defines===========================    
-#define chip_select LATBbits.LATB4    
+#define CHIP_SELECT LATBbits.LATB4
 //==================================    
     
 
@@ -86,11 +86,11 @@ extern "C" {
 /******************************************************************************
 * Prototipos das funções
 ******************************************************************************/
-void init_SDcard();
-void envia_CMD16(void);
-unsigned char envia_CMD8(void);
-void envia_CMD1(void);
-void envia_CMD0(void);
+//void init_SDcard();
+//void envia_CMD16(void);
+//unsigned char envia_CMD8(void);
+//void envia_CMD1(void);
+//void envia_CMD0(void);
 void SDCard(void);
 BYTE response(void);
 void proceed(void);

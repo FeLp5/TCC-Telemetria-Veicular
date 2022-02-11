@@ -6,12 +6,13 @@
 #include "hardware.h"
 #include "display_lcd.h"
 //Nossas bibliotecas=-============================
-#include "SPI.h"
+//#include "SPI.h"
+#include "SHRC.h"
 #include "SDCard.h"
 //=-============================
 
-//extern  signed char WriteSPI_(unsigned char);
-extern  BYTE ReadSPI_();
+//extern  signed char escreve_dado_SPI(unsigned char);
+extern  BYTE recebe_dado_SPI();
 //extern  void dummy_clocks(int);
 extern  BYTE response();
 //extern  void proceed();
@@ -39,8 +40,10 @@ void reset()
         dummy_clocks(8);    
         command(0X40, 0X00000000, 0X95);    //CMD0
         proceed();
-        do{   
+        do{  
+            buff = response(); 
             count++;
+            
          }while((buff!=0X01) && (count<10) );
         count = 0;
     }while(buff!=0X01);
@@ -57,13 +60,18 @@ DSTATUS disk_initialize (void)
     int i = 0, count1 = 0, count2 = 0;
     unsigned char buff;
     reset(); //RESET THE SD CARD
+    posicao_cursor_lcd(1,0);
+    escreve_frase_ram_lcd("Cartao Aceito");
     __delay_ms(500);
     dummy_clocks(8);    
     command(0X41, 0X00000000, 0XFF);    //CMD1
     proceed();
+    buff =0XFF;
     do{
         buff = response();
     }while(buff!=0x01);
+    posicao_cursor_lcd(1,0);
+    escreve_frase_ram_lcd("Iniciando");
     /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
     __delay_ms(1000);
     proceed();
@@ -78,25 +86,30 @@ DSTATUS disk_initialize (void)
             command(0X77, 0X00000000, 0X95);    //CMD55
             buff = 0XFF;
             /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
+            proceed();
             do{
             buff = response();
             count2++;
             }while((buff!=0X01)&&(count2<10));
-
-            __delay_ms(1);
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd("Cartao");
+//            __delay_ms(1);
             count2 = 0;
             dummy_clocks(8);
 
             command(0X69,0X40000000,0X95);    //CMD41
             buff = 0XFF;
             /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
-            proceed();
+//            proceed();
             do{
                 buff = response();
                 count2++;
+//                posicao_cursor_lcd(2,0);
+//                escreve_inteiro_lcd(buff);
             }while((buff!=0X00) && count2<10);
         }while(buff != 0X00);
-
+        posicao_cursor_lcd(1,0);
+        escreve_frase_ram_lcd("SDCARD");
         count1 = 0;
         //Delay before sending command
         __delay_ms(1);
@@ -124,7 +137,7 @@ DSTATUS disk_initialize (void)
     proceed();
     do{   
         buff = response();
-    }while(buff!=0x00);
+    }while(buff!=0XFF);
     /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
     LIMPA_DISPLAY();
     posicao_cursor_lcd(1,0);
@@ -167,7 +180,7 @@ DRESULT disk_readp (
         proceed();
         do{   
             buff = response();
-        }while(buff!=0x00);
+        }while(buff!=0XFF);
         __delay_ms(1000);
     //      Delay_s(1);
           proceed();
@@ -220,7 +233,7 @@ DRESULT disk_readp (
         proceed();
         do{   
             buff = response();
-          }while(buff!=0x00);
+          }while(buff!=0XFF);
           do{   
             buff = response();
           }while(buff!=0xFE);
@@ -297,7 +310,7 @@ DRESULT disk_writep (
     proceed();
     do{   
         buff = response();
-      }while(buff!=0x00);
+      }while(buff!=0XFF);
     /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
 
       __delay_ms(2000);
@@ -305,20 +318,20 @@ DRESULT disk_writep (
 
       dummy_clocks(8);
 
-      WriteSPI_(0XFE); //START TOKEN
+      escreve_dado_SPI(0XFE); //START TOKEN
       
       for(j=0;j<512;j++) //DATA BLOCK
       {
           if(*wr!='\0')
           {
-              WriteSPI_(*wr);
+              escreve_dado_SPI(*wr);
               wr++;
           }
           else
-          WriteSPI_(0x00);
+          escreve_dado_SPI(0x00);
       }
-      WriteSPI_(0XFF); // CRC 2 BYTES
-      WriteSPI_(0XFF);
+      escreve_dado_SPI(0XFF); // CRC 2 BYTES
+      escreve_dado_SPI(0XFF);
 
       proceed();
 
@@ -330,7 +343,7 @@ DRESULT disk_writep (
       proceed();
       do{   
         buff = response();
-        }while(buff!=0x00);
+        }while(buff!=0XFF);
       
 	return RES_OK;
 }
