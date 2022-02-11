@@ -5088,10 +5088,69 @@ unsigned long int date;
 float latitude, longitude;
 char gps_buffer[15];
 
+<<<<<<< HEAD
 # 115
 }
 
 # 126
+=======
+
+
+time = get_gpstime();
+convert_time_to_utc(time);
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Hora:");
+posicao_cursor_lcd(1,7);
+escreve_frase_ram_lcd(data_buffer);
+
+
+date = get_dt(rmc_pointers[7]);
+
+
+
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("Data:");
+
+posicao_cursor_lcd(2,7);
+escreve_frase_ram_lcd(dado_buffer);
+
+
+_delay((unsigned long)((2000)*(48000000/4000.0)));
+escreve_cmd_lcd(0b00000001);
+
+
+latitude = get_latitude(gga_pointers[0]);
+latitude = convert_to_degrees(latitude);
+sprintf(gps_buffer,"%.07f",latitude);
+
+
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Lat:");
+posicao_cursor_lcd(1,5);
+escreve_frase_ram_lcd(gps_buffer);
+memset(gps_buffer,0,15);
+
+
+
+
+longitude = get_longitude(gga_pointers[2]);
+longitude = convert_to_degrees(longitude);
+sprintf(gps_buffer,"%.07f",longitude);
+
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("Lon:");
+posicao_cursor_lcd(2,5);
+escreve_frase_ram_lcd(gps_buffer);
+memset(gps_buffer,0,15);
+
+_delay((unsigned long)((2000)*(48000000/4000.0)));
+escreve_cmd_lcd(0b00000001);
+
+
+}
+
+# 124
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 unsigned long int get_gpstime()
 {
 unsigned char index;
@@ -5107,7 +5166,11 @@ _time= atol(time_buffer);
 return _time;
 }
 
+<<<<<<< HEAD
 # 149
+=======
+# 147
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 float get_latitude(char lat_pointer)
 {
 unsigned char lat_index = lat_pointer+1;
@@ -5126,7 +5189,11 @@ _latitude = atof(lat_buffer);
 return _latitude;
 }
 
+<<<<<<< HEAD
 # 175
+=======
+# 173
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 float get_longitude(unsigned char long_pointer)
 {
 unsigned char long_index;
@@ -5146,7 +5213,11 @@ _longitude = atof(long_buffer);
 return _longitude;
 }
 
+<<<<<<< HEAD
 # 201
+=======
+# 199
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 unsigned long int get_dt(unsigned char dt_pointer)
 {
 unsigned char dt_index = dt_pointer + 1;
@@ -5162,10 +5233,17 @@ index++;
 
 dado_buffer[strlen(dado_buffer) - 0] = '\0';
 
+<<<<<<< HEAD
 # 243
 }
 
 # 253
+=======
+# 241
+}
+
+# 251
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 void convert_time_to_utc(unsigned long int utc_time)
 {
 unsigned int hour, min, sec;
@@ -5178,7 +5256,11 @@ sprintf(data_buffer, "%d:%d:%d", hour,min,sec);
 unsigned char convert_to_date(unsigned char dt[])
 {
 
+<<<<<<< HEAD
 # 286
+=======
+# 284
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 }
 
 
@@ -5198,7 +5280,11 @@ decimal *= -1;
 return decimal;
 }
 
+<<<<<<< HEAD
 # 314
+=======
+# 312
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 void tratamento_uart(unsigned char received_char)
 {
 if(received_char =='$'){

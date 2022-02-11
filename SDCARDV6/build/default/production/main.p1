@@ -54,8 +54,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INT0IF `Vb ~T0 @X0 0 e@32657 ]
 "9515
 [v _INT0IE `Vb ~T0 @X0 0 e@32660 ]
+<<<<<<< HEAD
 "94 bibliotecas/SDCard.h
 [v _SDCard `(v ~T0 @X0 0 ef ]
+=======
+"57 bibliotecas/GPS.h
+[v _gps `(v ~T0 @X0 0 ef ]
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 [p mainexit ]
 "34 bibliotecas/hardware.h
 [v _init_hardware `(v ~T0 @X0 0 ef ]
@@ -3736,6 +3741,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 98: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 [; ;GPS.h: 56: void tratamento_uart(unsigned char received_char);
 [; ;GPS.h: 57: void gps(void);
+<<<<<<< HEAD
 [; ;GPS.h: 58: unsigned long int get_gpstime();
 [; ;GPS.h: 59: float get_latitude(unsigned char);
 [; ;GPS.h: 60: float get_longitude(unsigned char);
@@ -3743,6 +3749,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;GPS.h: 62: void convert_time_to_utc(unsigned long int);
 [; ;GPS.h: 63: unsigned char convert_to_date(unsigned char dt[]);
 [; ;GPS.h: 64: float convert_to_degrees(float);
+=======
+>>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 "54 main.c
 [v _data_uart_recebe `uc ~T0 @X0 1 e ]
 [; ;main.c: 54: unsigned char data_uart_recebe;
