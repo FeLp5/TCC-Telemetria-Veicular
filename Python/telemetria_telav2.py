@@ -67,7 +67,6 @@ class janelas(wx.Frame):
                 pos = arquivo.rfind(".")
                 ext = ""
                 
-                
                 x = 0
                 cont = 0
                 cont = cont + 1
@@ -75,7 +74,6 @@ class janelas(wx.Frame):
                 for x in range(len(arquivo)): 
                     if( x > pos):  
                         ext = ext + arquivo[x]
-
                 # pegando apenas a extesnao desejada
                 extensao = "tlm"
                 if(ext == extensao ):
@@ -90,6 +88,8 @@ class janelas(wx.Frame):
                         datam = re.search('st_mtime=(.+?),', infos).group(1)
                         #datac = re.search('st_ctime=(.+?),', infos).group(1)
                         datamod = datetime.datetime.fromtimestamp(float(datam)).strftime('%d/%m/%Y - %H:%M')
+                        print (datam)
+
                         #datacri = datetime.datetime.fromtimestamp(float(datac)).strftime(' - %H:%M')
                         #'%Y-%m-%d-%H:%M'
                         
@@ -162,8 +162,8 @@ class janelas(wx.Frame):
         print(v2)
         
         self.browser = wx.html2.WebView.New(self)
-        url = "http://maps.google.com"
-        #url = ""
+        #url = "http://maps.google.com"
+        url = ""
         self.browser.LoadURL(url)
         #self.SetSizer() 
         self.browser.SetSize((larg * 7, alt * 4))
