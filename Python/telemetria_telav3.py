@@ -185,12 +185,16 @@ class janelas(wx.Frame):
             pathname = fileDialog.GetPath()
             try:
                 with open(pathname, 'r') as file:
-                    self.doLoadDataOrWhatever(file)
+                    lines = file.readlines()
+                    print(lines)
+                    # print str(file)
+                    
+                    
             except IOError:
                 wx.LogError("Cannot open file '%s'." % newfile)
                 
-    
-            
+
+        
     def grafico(self):
         valor = self.GetSize()
         #print("grafico", valor)
