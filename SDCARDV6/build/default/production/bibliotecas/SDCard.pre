@@ -1,7 +1,17 @@
 
 # 1 "bibliotecas/SDCard.c"
 
-# 16 "bibliotecas/integer.h"
+# 17 "bibliotecas/integer.h"
+typedef struct{
+unsigned int hora;
+unsigned int min;
+unsigned int seg;
+unsigned char dia;
+unsigned char mes;
+unsigned char ano;
+}fat_time;
+
+
 typedef int INT;
 typedef unsigned int UINT;
 
@@ -20,6 +30,27 @@ typedef unsigned short WCHAR;
 typedef long LONG;
 typedef unsigned long ULONG;
 typedef unsigned long DWORD;
+
+# 14 "bibliotecas/diskio.h"
+typedef BYTE DSTATUS;
+
+
+typedef enum {
+RES_OK = 0,
+RES_ERROR,
+RES_WRPRT,
+RES_NOTRDY,
+RES_PARERR
+} DRESULT;
+
+# 29
+DSTATUS disk_initialize (BYTE);
+DSTATUS disk_status (BYTE);
+DRESULT disk_read (BYTE, BYTE*, DWORD, BYTE);
+
+DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
+
+DRESULT disk_ioctl (BYTE, BYTE, void*);
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4839,12 +4870,20 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 94 "bibliotecas/SDCard.h"
+# 95 "bibliotecas/SDCard.h"
 void SDCard(void);
 BYTE response(void);
 void proceed(void);
 void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+
+
+
+void sdc_reset(void);
+DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
+DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
+DSTATUS sdc_disk_initialize(void);
+DSTATUS sdc_disk_status(void);
 
 # 199 "bibliotecas/display_lcd.h"
 extern void init_lcd(void);
@@ -4879,77 +4918,125 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 40 "bibliotecas/pff.h"
+# 260 "bibliotecas/ff.h"
+typedef char TCHAR;
+
+# 286
 typedef struct {
 BYTE fs_type;
-BYTE flag;
+BYTE drv;
 BYTE csize;
-BYTE pad1;
+BYTE n_fats;
+BYTE wflag;
+BYTE fsi_flag;
+WORD id;
 WORD n_rootdir;
+
+# 302
+DWORD last_clust;
+DWORD free_clust;
+DWORD fsi_sector;
+
+# 309
 DWORD n_fatent;
+DWORD fsize;
 DWORD fatbase;
 DWORD dirbase;
 DWORD database;
+DWORD winsect;
+BYTE win[512];
+
+# 319
+} FATFS;
+
+# 325
+typedef struct {
+FATFS* fs;
+WORD id;
+BYTE flag;
+BYTE pad1;
 DWORD fptr;
 DWORD fsize;
 DWORD org_clust;
 DWORD curr_clust;
 DWORD dsect;
-} FATFS;
 
-# 61
+DWORD dir_sect;
+BYTE* dir_ptr;
+
+# 348
+} FIL;
+
+# 354
 typedef struct {
+FATFS* fs;
+WORD id;
 WORD index;
-BYTE* fn;
 DWORD sclust;
 DWORD clust;
 DWORD sect;
+BYTE* dir;
+BYTE* fn;
+
+# 367
 } DIR_E;
 
-# 73
+# 373
 typedef struct {
 DWORD fsize;
 WORD fdate;
 WORD ftime;
 BYTE fattrib;
-char fname[13];
+TCHAR fname[13];
+
+# 383
 } FILINFO;
 
-# 85
+# 389
 typedef enum {
 FR_OK = 0,
 FR_DISK_ERR,
+FR_INT_ERR,
 FR_NOT_READY,
 FR_NO_FILE,
-FR_NOT_OPENED,
+FR_NO_PATH,
+FR_INVALID_NAME,
+FR_DENIED,
+FR_EXIST,
+FR_INVALID_OBJECT,
+FR_WRITE_PROTECTED,
+FR_INVALID_DRIVE,
 FR_NOT_ENABLED,
-FR_NO_FILESYSTEM
+FR_NO_FILESYSTEM,
+FR_MKFS_ABORTED,
+FR_TIMEOUT,
+FR_LOCKED,
+FR_NOT_ENOUGH_CORE,
+FR_TOO_MANY_OPEN_FILES
 } FRESULT;
 
-# 100
-FRESULT pf_mount (FATFS* fs);
-FRESULT pf_open (const char* path);
-FRESULT pf_read (void* buff, UINT btr, UINT* br);
-FRESULT pf_write (const void* buff, UINT btw, UINT* bw);
-FRESULT pf_lseek (DWORD ofs);
-FRESULT pf_opendir (DIR_E* dj, const char* path);
-FRESULT pf_readdir (DIR_E* dj, FILINFO* fno);
+# 416
+FRESULT f_mount (BYTE, FATFS*);
+FRESULT f_open (FIL*, const TCHAR*, BYTE);
+FRESULT f_read (FIL*, void*, UINT, UINT*);
+FRESULT f_lseek (FIL*, DWORD);
+FRESULT f_close (FIL*);
+FRESULT f_opendir (DIR_E*, const TCHAR*);
+FRESULT f_readdir (DIR_E*, FILINFO*);
+FRESULT f_stat (const TCHAR*, FILINFO*);
 
-# 16 "bibliotecas/diskio.h"
-typedef BYTE DSTATUS;
+FRESULT f_write (FIL*, const void*, UINT, UINT*);
+FRESULT f_getfree (const TCHAR*, DWORD*, FATFS**);
+FRESULT f_truncate (FIL*);
+FRESULT f_sync (FIL*);
+FRESULT f_unlink (const TCHAR*);
+FRESULT f_mkdir (const TCHAR*);
+FRESULT f_chmod (const TCHAR*, BYTE, BYTE);
+FRESULT f_utime (const TCHAR*, const FILINFO*);
+FRESULT f_rename (const TCHAR*, const TCHAR*);
 
-
-typedef enum {
-RES_OK = 0,
-RES_ERROR,
-RES_NOTRDY,
-RES_PARERR
-} DRESULT;
-
-# 30
-DSTATUS disk_initialize (void);
-DRESULT disk_readp (BYTE* buff, DWORD sector, UINT offset, UINT count);
-DRESULT disk_writep (const BYTE* buff, DWORD sc);
+# 464
+DWORD get_fattime (void);
 
 # 45 "bibliotecas/SHRC.h"
 void controle_shrc (void);
@@ -4974,7 +5061,7 @@ BYTE data_buffer_32[32];
 
 
 
-BYTE fileName[15] = {"telemetria.txt"};
+BYTE fileName[15] = {"check.txt"};
 BYTE folder[48] = {""};
 
 
@@ -5029,123 +5116,307 @@ escreve_dado_SPI(argument);
 escreve_dado_SPI(CRC);
 }
 
-# 130
+# 129
+FATFS fs;
+WORD br;
 void SDCard(void)
 {
 T0CONbits.TMR0ON = 0;
 
 FRESULT FResult;
-FATFS fs;
-WORD br = ".";
+FIL fil;
 
-# 146
+# 148
 escreve_cmd_lcd(0b00000001);
 
 
 proceed();
-if((FResult = pf_mount(&fs)) == FR_OK )
+
+
+if((FResult = f_mount(1, &fs)) == FR_OK)
+{
+if((FResult = f_write(&fil,"Hello World", 11, br)) == FR_OK)
+{
+f_close(&fil);
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("File wrote!");
+}
+else
 {
 posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("syst initialized");
+escreve_frase_ram_lcd("ERROR open file");
+}
 
 
-FResult = pf_open(fileName );
+}
+else
+{
 posicao_cursor_lcd(1,0);
-escreve_inteiro_lcd(FResult);
+escreve_frase_ram_lcd("ERROR mount");
+}
+
+# 334
+}
+
+# 343
+void sdc_reset(void)
+{
+int i = 0, count = 0, count_nosd = 0;
+unsigned char buff;
+
+do{
+dummy_clocks(8);
+command(0X40, 0X00000000, 0X95);
+proceed();
+do{
+buff = response();
+count++;
+}while((buff!=0X01) && (count<10));
+count = 0;
+count_nosd++;
+if(count_nosd<=3)
+{
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("SEM SDCARD!!");
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("Insira o Cartao");
+count_nosd = 0;
+}
+}while(buff!=0X01);
+
+
+
 _delay((unsigned long)((2000)*(48000000/4000.0)));
+return;
+}
 
-if( FResult == FR_OK )
+# 382
+DSTATUS sdc_disk_initialize(void)
 {
+DSTATUS stat;
+int i = 0, count1 = 0, count2 = 0;
+unsigned char buff;
+
+sdc_reset();
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Cartao Aceito");
+_delay((unsigned long)((500)*(48000000/4000.0)));
+
+dummy_clocks(8);
+command(0X41, 0X00000000, 0XFF);
+proceed();
+buff =0XFF;
+do{
+buff = response();
+}while(buff!=0x01);
+
+
+
+_delay((unsigned long)((1000)*(48000000/4000.0)));
+proceed();
+
+
+
+if (buff == 0x01)
+{
+
+_delay((unsigned long)((1)*(48000000/4000.0)));
+count1 = 0;
+do{
+count2 = 0;
+dummy_clocks(8);
+command(0X77, 0X00000000, 0X95);
+buff = 0XFF;
+
+proceed();
+do{
+buff = response();
+count2++;
+}while((buff!=0X01)&&(count2<10));
+
+
+count2 = 0;
+
+dummy_clocks(8);
+command(0X69,0X40000000,0X95);
+buff = 0XFF;
+
+
+do{
+buff = response();
+count2++;
+}while((buff!=0X00) && count2<10);
+}while(buff != 0X00);
+count1 = 0;
+
+_delay((unsigned long)((1)*(48000000/4000.0)));
+stat = 0X00;
+
+_delay((unsigned long)((2000)*(48000000/4000.0)));
+}
+else if(buff == 0x05)
+{
+stat = 0x01;
+
+escreve_cmd_lcd(0b00000001);
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Error!!!");
+
+_delay((unsigned long)((3000)*(48000000/4000.0)));
+}
 _delay((unsigned long)((1000)*(48000000/4000.0)));
 
-if( (FResult = pf_write("SCard", 5, &br)) == FR_OK )
-{
+
+
+dummy_clocks(8);
+command(0X50,0X00000200,0XFF);
+proceed();
+do{
+buff = response();
+}while(buff!=0X00);
+
+
+escreve_cmd_lcd(0b00000001);
 posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Escrevendo");
+escreve_frase_ram_lcd("Bloco de 512");
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("Bytes criado!");
+
+
 _delay((unsigned long)((2000)*(48000000/4000.0)));
+return stat;
+}
+
+# 485
+DRESULT sdc_disk_read(
+BYTE *p_buff,
+DWORD sector,
+BYTE count
+)
+{
+
+DRESULT res;
+unsigned char ptr=0X00, buff;
+unsigned long int start_add;
+static unsigned char arr[512];
+int length,i;
+
+start_add = (sector*512);
+
+_delay((unsigned long)((1000)*(48000000/4000.0)));
+
+dummy_clocks(8);
+command(0X52,start_add,0X00);
+proceed();
+do{
+buff = response();
+}while(buff!=0XFF);
+_delay((unsigned long)((1000)*(48000000/4000.0)));
+proceed();
+do{
+buff = response();
+}while(buff!=0xFE);
+length = 0;
+while ( length < count )
+{
+arr[length] = response();
+length++;
+}
+_delay((unsigned long)((1000)*(48000000/4000.0)));
+dummy_clocks(8);
+command(0X4C,0X00000000,0X00);
+proceed();
+do{
+buff = response();
+}while(buff!=0xFF);
+length = 0;
+while(arr[length]!='\0')
+{
+
+length++;
+}
+*p_buff = length;
+return RES_OK;
+
+
+
+}
+
+# 545
+DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
+{
+DRESULT res;
+unsigned char buff;
+int i=0,j;
+
+
+
+dummy_clocks(8);
+command(0X58, sector*512, 0X00);
+proceed();
+do{
+buff = response();
+}while(buff!=0X00);
+
+_delay((unsigned long)((2000)*(48000000/4000.0)));
+
+
+dummy_clocks(8);
+
+escreve_dado_SPI(0XFE);
+
+for(j=0;j<512;j++)
+{
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd(*p_buff);
+if(*p_buff!='\0')
+{
+escreve_dado_SPI(*p_buff);
+p_buff++;
+}
+else
+escreve_dado_SPI(0x00);
+}
+escreve_dado_SPI(0XFF);
+escreve_dado_SPI(0XFF);
+
+proceed();
+
+_delay((unsigned long)((1000)*(48000000/4000.0)));
+
+dummy_clocks(8);
+
+command(0X4D,0X00000000,0XFF);
+proceed();
+do{
+buff = response();
+}while(buff!=0X00);
+
+return RES_OK;
+
+}
+
+# 605
+DSTATUS sdc_disk_status(void)
+{
+DSTATUS stat;
+unsigned char buff, cont;
+dummy_clocks(8);
+command(0x40, 0x00000000, 0x95);
+proceed;
+do{
+buff= response();
+}while(cont<10);
+if(buff==0x00)
+{
+return stat;
+}
+else if(0x01)
+{
+return stat;
 }
 else
 {
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("SDCard error");
-while( 1 );
-}
-escreve_cmd_lcd(0b00000001);
-
-
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("lendo arquivo");
-
-do
-{
-readover(1);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("To aqui");
-
-if( (FResult = pf_read(data_buffer_32, 31, &br)) == FR_OK )
-{
-
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("Sistema OK");
-data_buffer_32[br] = 0;
-break;
-
-}
-else
-{
-
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Erro tentando");
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("ler o arquivo");
-
-while( 1 );
-}
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Preso");
-} while( br == 31 );
-}
-else
-{
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Erro tentando");
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("abrir o arquivo");
-while( 1 );
+return 0x01;
 }
 }
-else
-{
-
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("ERRO!");
-while( 1 );
-T0CONbits.TMR0ON = 1;
-}
-
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Não to Preso");
-
-# 250
-if( FResult != FR_OK )
-{
-
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Erro filesyst");
-
-
-
-while( 1 );
-}
-
-
-while(1){
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("to Preso aq");
-}
-
-}
-

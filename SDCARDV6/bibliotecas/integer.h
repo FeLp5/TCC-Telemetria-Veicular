@@ -13,6 +13,17 @@
 #else			/* Embedded platform */
 
 /* These types must be 16-bit, 32-bit or larger integer */
+//struct for get_fattime()
+typedef struct{
+    unsigned int hora;
+    unsigned int min;
+    unsigned int seg;
+    unsigned char dia;
+    unsigned char mes;
+    unsigned char ano;  
+}fat_time;
+
+
 typedef int				INT;
 typedef unsigned int	UINT;
 

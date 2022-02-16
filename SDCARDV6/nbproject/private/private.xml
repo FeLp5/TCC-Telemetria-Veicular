@@ -3,16 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/diskio.c</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/SDCard.h</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/ff.c</file>
             <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/main.c</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/pff.c</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/pff.h</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/GPS.c</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/uart.h</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/integer.h</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/ff.h</file>
             <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/SDCard.c</file>
-=======
-            <file>file:/C:/Users/decso/MPLABXProjects/SDCARDV6/bibliotecas/GPS.h</file>
-            <file>file:/C:/Users/decso/MPLABXProjects/SDCARDV6/bibliotecas/GPS.c</file>
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/diskio.h</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/ffconf.h</file>
         </group>
     </open-files>
 </project-private>

@@ -4830,7 +4830,17 @@ extern __nonreentrant void _delay3(unsigned char);
 #pragma config STVREN = ON
 #pragma config LVP = OFF
 
-# 16 "bibliotecas/integer.h"
+# 17 "bibliotecas/integer.h"
+typedef struct{
+unsigned int hora;
+unsigned int min;
+unsigned int seg;
+unsigned char dia;
+unsigned char mes;
+unsigned char ano;
+}fat_time;
+
+
 typedef int INT;
 typedef unsigned int UINT;
 
@@ -4850,77 +4860,146 @@ typedef long LONG;
 typedef unsigned long ULONG;
 typedef unsigned long DWORD;
 
-# 40 "bibliotecas/pff.h"
+# 260 "bibliotecas/ff.h"
+typedef char TCHAR;
+
+# 286
 typedef struct {
 BYTE fs_type;
-BYTE flag;
+BYTE drv;
 BYTE csize;
-BYTE pad1;
+BYTE n_fats;
+BYTE wflag;
+BYTE fsi_flag;
+WORD id;
 WORD n_rootdir;
+
+# 302
+DWORD last_clust;
+DWORD free_clust;
+DWORD fsi_sector;
+
+# 309
 DWORD n_fatent;
+DWORD fsize;
 DWORD fatbase;
 DWORD dirbase;
 DWORD database;
+DWORD winsect;
+BYTE win[512];
+
+# 319
+} FATFS;
+
+# 325
+typedef struct {
+FATFS* fs;
+WORD id;
+BYTE flag;
+BYTE pad1;
 DWORD fptr;
 DWORD fsize;
 DWORD org_clust;
 DWORD curr_clust;
 DWORD dsect;
-} FATFS;
 
-# 61
+DWORD dir_sect;
+BYTE* dir_ptr;
+
+# 348
+} FIL;
+
+# 354
 typedef struct {
+FATFS* fs;
+WORD id;
 WORD index;
-BYTE* fn;
 DWORD sclust;
 DWORD clust;
 DWORD sect;
+BYTE* dir;
+BYTE* fn;
+
+# 367
 } DIR_E;
 
-# 73
+# 373
 typedef struct {
 DWORD fsize;
 WORD fdate;
 WORD ftime;
 BYTE fattrib;
-char fname[13];
+TCHAR fname[13];
+
+# 383
 } FILINFO;
 
-# 85
+# 389
 typedef enum {
 FR_OK = 0,
 FR_DISK_ERR,
+FR_INT_ERR,
 FR_NOT_READY,
 FR_NO_FILE,
-FR_NOT_OPENED,
+FR_NO_PATH,
+FR_INVALID_NAME,
+FR_DENIED,
+FR_EXIST,
+FR_INVALID_OBJECT,
+FR_WRITE_PROTECTED,
+FR_INVALID_DRIVE,
 FR_NOT_ENABLED,
-FR_NO_FILESYSTEM
+FR_NO_FILESYSTEM,
+FR_MKFS_ABORTED,
+FR_TIMEOUT,
+FR_LOCKED,
+FR_NOT_ENOUGH_CORE,
+FR_TOO_MANY_OPEN_FILES
 } FRESULT;
 
-# 100
-FRESULT pf_mount (FATFS* fs);
-FRESULT pf_open (const char* path);
-FRESULT pf_read (void* buff, UINT btr, UINT* br);
-FRESULT pf_write (const void* buff, UINT btw, UINT* bw);
-FRESULT pf_lseek (DWORD ofs);
-FRESULT pf_opendir (DIR_E* dj, const char* path);
-FRESULT pf_readdir (DIR_E* dj, FILINFO* fno);
+# 416
+FRESULT f_mount (BYTE, FATFS*);
+FRESULT f_open (FIL*, const TCHAR*, BYTE);
+FRESULT f_read (FIL*, void*, UINT, UINT*);
+FRESULT f_lseek (FIL*, DWORD);
+FRESULT f_close (FIL*);
+FRESULT f_opendir (DIR_E*, const TCHAR*);
+FRESULT f_readdir (DIR_E*, FILINFO*);
+FRESULT f_stat (const TCHAR*, FILINFO*);
 
-# 16 "bibliotecas/diskio.h"
+FRESULT f_write (FIL*, const void*, UINT, UINT*);
+FRESULT f_getfree (const TCHAR*, DWORD*, FATFS**);
+FRESULT f_truncate (FIL*);
+FRESULT f_sync (FIL*);
+FRESULT f_unlink (const TCHAR*);
+FRESULT f_mkdir (const TCHAR*);
+FRESULT f_chmod (const TCHAR*, BYTE, BYTE);
+FRESULT f_utime (const TCHAR*, const FILINFO*);
+FRESULT f_rename (const TCHAR*, const TCHAR*);
+
+# 464
+DWORD get_fattime (void);
+
+# 14 "bibliotecas/diskio.h"
 typedef BYTE DSTATUS;
 
 
 typedef enum {
 RES_OK = 0,
 RES_ERROR,
+RES_WRPRT,
 RES_NOTRDY,
 RES_PARERR
 } DRESULT;
 
-# 30
-DSTATUS disk_initialize (void);
-DRESULT disk_readp (BYTE* buff, DWORD sector, UINT offset, UINT count);
-DRESULT disk_writep (const BYTE* buff, DWORD sc);
+# 29
+DSTATUS disk_initialize (BYTE);
+DSTATUS disk_status (BYTE);
+DRESULT disk_read (BYTE, BYTE*, DWORD, BYTE);
+
+DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
+
+DRESULT disk_ioctl (BYTE, BYTE, void*);
 
 # 34 "bibliotecas/hardware.h"
 void init_hardware(void);
@@ -4952,17 +5031,6 @@ void recebe_string_uart(char *buffer, unsigned char length);
 void escreve_inteiro_uart(int valor);
 
 void inicializa_uart(void);
-
-# 33 "bibliotecas/chaves.h"
-void leitura_chave(void);
-
-void leitura_chaves_sistema(void);
-
-unsigned char chave_tres(void);
-
-unsigned char chave_quatro(void);
-
-unsigned char chave_zero(void);
 
 # 45 "bibliotecas/SHRC.h"
 void controle_shrc (void);
@@ -5010,12 +5078,20 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 94 "bibliotecas/SDCard.h"
+# 95 "bibliotecas/SDCard.h"
 void SDCard(void);
 BYTE response(void);
 void proceed(void);
 void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+
+
+
+void sdc_reset(void);
+DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
+DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
+DSTATUS sdc_disk_initialize(void);
+DSTATUS sdc_disk_status(void);
 
 # 56 "bibliotecas/GPS.h"
 void tratamento_uart(unsigned char received_char);
@@ -5062,7 +5138,7 @@ if (PIE1bits.RCIE && PIR1bits.RCIF)
 {
 data_uart_recebe = recebe_dado_uart();
 PIR1bits.RCIF = 0;
-tratamento_uart(data_uart_recebe);
+
 
 
 
@@ -5110,20 +5186,22 @@ void inicializa_tarefas(void)
 {
 
 p_tarefas[0] = SDCard;
+p_tarefas[1] = gps;
 
-# 165
+# 164
 tempo_backup[0] = 5000;
+tempo_backup[1] = 5000;
 
-# 171
+# 170
 tempo_tarefa[0] = 5000;
-
+tempo_tarefa[1] = 5000;
 
 
 
 tarefa_em_execucao = 0;
 }
 
-# 187
+# 186
 void escalonador()
 {
 unsigned char cont;
@@ -5140,7 +5218,7 @@ tempo_tarefa[cont] = tempo_backup[cont];
 }
 }
 
-# 208
+# 207
 void main(void)
 {
 init_hardware();
@@ -5148,8 +5226,8 @@ init_hardware();
 init_lcd();
 inicializa_shrc();
 
-mensagem_inicial();
-inicializa_tarefas();
+
+inicializa_tarefas();;
 
 ADCON1 = 0X0F;
 while(1)
@@ -5160,26 +5238,16 @@ if ((sinaliza_int_timer == 1) && (2))
 sinaliza_int_timer = 0;
 escalonador();
 }
-leitura_chaves_sistema();
+
 
 
 }
 }
 
-# 238
+# 237
 void mensagem_inicial(void)
 {
-const unsigned char msg_linha_um[17] = "SDCard Init   ";
-const unsigned char msg_dois[17] = " 18/01/2022   ";
 
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd(msg_linha_um);
-
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd(msg_dois);
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-escreve_cmd_lcd(0b00000001);
-
-# 257
+# 256
 }
 
