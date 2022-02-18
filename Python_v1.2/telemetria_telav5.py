@@ -2,6 +2,7 @@ import os
 import sys
 import wx
 import re
+import datetime
 from wx import html2 as webview
 
 
@@ -14,13 +15,6 @@ from matplotlib.figure import Figure
 from pathlib import Path
 
 import wx.lib.scrolledpanel as scrolled
-
-# para abrir a janela de selecao de arquivo
-
-
-# global size_window
-# size_window = ((wx.MAXIMIZE/4, wx.MAXIMIZE))
-# print ("tamanho da tela", size_window)
 
 #definicoes
 cor = wx.NamedColour('white')
@@ -60,15 +54,23 @@ class janelas(wx.Frame):
         cont = 0
         
         # from array import array
-        titulo_bt = [0] * 100
-        titulo_bt_od = [0] * 100
+        self.titulo_bt = [0] * 100
+        self.titulo_bt_od = [0] * 100
         self.botao_path = [""] * 100
-        #titulo_bt = [" "," "]
+        #self.titulo_bt = [" "," "]
         
        
         
-        statxt1 = wx.StaticText(self, -1, "Escolha um arquivo:" , (-1, -1), (-1, -1))
+        statxt1 = wx.StaticText(self, -1, "Selecione um arquivo:" , (16, 4), (-1, -1))
         statxt1.SetForegroundColour("black")
+        statxt2 = wx.StaticText(self, -1,  "Arquivo carregado: " , (220, 4), (-1, -1))
+        statxt2.SetForegroundColour("black")
+        self.statxt3 = wx.StaticText(self, -1,  "" , (220, 26), (-1, -1))
+        self.statxt3.SetForegroundColour("black")
+        self.statxt4 = wx.StaticText(self, -1,  "" , (220, 48), (-1, -1))
+        self.statxt4.SetForegroundColour("black")
+        self.statxt5 = wx.StaticText(self, -1,  "" , (220, 70), (-1, -1))
+        self.statxt5.SetForegroundColour("black")
         
         for diretorio, subpastas, arquivos in os.walk(pasta):
             for arquivo in arquivos:
@@ -88,7 +90,7 @@ class janelas(wx.Frame):
                 if(ext == extensao ):
                  # informacao adicional dos arquivos 
                     #print(arquivos)
-                    import datetime
+                    
                     
 
                     
@@ -125,14 +127,14 @@ class janelas(wx.Frame):
                     
                     
                     
-                    titulo_bt[cont] = int(datam)
-                    # if (titulo_bt[cont] < arquivo):
-                    #     titulo_bt[cont + 1] = titulo_bt[cont]
+                    self.titulo_bt[cont] = int(datam)
+                    # if (self.titulo_bt[cont] < arquivo):
+                    #     self.titulo_bt[cont + 1] = self.titulo_bt[cont]
                     #     
                     #     #print("cont", cont)
                     # else:
-                    #     #print("titulo", titulo_bt[cont], datamod)
-                    #     titulo_bt[cont + 1] = arquivo
+                    #     #print("self.titulo", self.titulo_bt[cont], datamod)
+                    #     self.titulo_bt[cont + 1] = arquivo
                     #     #print("cont", cont)
                     # for w in range(cont):
                     #     print("w", w)
@@ -151,11 +153,11 @@ class janelas(wx.Frame):
         # ordenando os arquivos
         for x in range(cont):
             for w in range(cont):
-                # print (titulo_bt[w])
-                if(titulo_bt[p] > titulo_bt[w]):
-                    temp = titulo_bt[p] 
-                    titulo_bt[p] = titulo_bt[w]
-                    titulo_bt[w] = temp
+                # print (self.titulo_bt[w])
+                if(self.titulo_bt[p] > self.titulo_bt[w]):
+                    temp = self.titulo_bt[p] 
+                    self.titulo_bt[p] = self.titulo_bt[w]
+                    self.titulo_bt[w] = temp
                     
                     temp_path = self.botao_path[p]
                     self.botao_path[p] = self.botao_path[w]
@@ -166,16 +168,17 @@ class janelas(wx.Frame):
             
         # faz a conversao
 
-        def convert_data(data):
-            data_convertida = datetime.datetime.fromtimestamp(float(data)).strftime('%d/%m/%Y - %H:%M')
-            return str(data_convertida)
+
+
+        
 
         
         #desenha os botoes
+        count = 2
         for x in range(cont):
             count = count + 22
             # globals()['strg%s' % n] = 'Hello'
-            globals()['botao%s' % x]  = wx.Button(self, wx.NewId(), convert_data((titulo_bt[x])), (10, count), (larg * 2, 20))  
+            globals()['botao%s' % x]  = wx.Button(self, wx.NewId(), self.convert_data((self.titulo_bt[x])), (10, count), (larg * 1.4, 20))  
             globals()['botao%s' % x].SetBackgroundColour(corBotoes)
             botoes = botoes + 1
             
@@ -185,20 +188,20 @@ class janelas(wx.Frame):
                 self.Bind(wx.EVT_BUTTON, self.abrir_arquivos, self.botao_mais)
                 break
         #desenha os botoes
-        # self.botao1 = wx.Button(self, wx.NewId(), convert_data((titulo_bt[0])), (10, 22), (larg * 2, 20))  
+        # self.botao1 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[0])), (10, 22), (larg * 2, 20))  
         # self.botao1.SetBackgroundColour(corBotoes)
         # 
         # 
-        # self.botao2 = wx.Button(self, wx.NewId(), convert_data((titulo_bt[1])), (10, 44), (larg * 2, 20))  
+        # self.botao2 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[1])), (10, 44), (larg * 2, 20))  
         # self.botao2.SetBackgroundColour(corBotoes)
         # 
-        # self.botao3 = wx.Button(self, wx.NewId(), convert_data((titulo_bt[2])), (10, 66), (larg * 2, 20))  
+        # self.botao3 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[2])), (10, 66), (larg * 2, 20))  
         # self.botao3.SetBackgroundColour(corBotoes)
         # 
-        # self.botao4 = wx.Button(self, wx.NewId(), convert_data((titulo_bt[3])), (10, 88), (larg * 2, 20))  
+        # self.botao4 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[3])), (10, 88), (larg * 2, 20))  
         # self.botao4.SetBackgroundColour(corBotoes)
         # 
-        # self.botao5 = wx.Button(self, wx.NewId(), convert_data((titulo_bt[4])), (10, 110), (larg * 2, 20))  
+        # self.botao5 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[4])), (10, 110), (larg * 2, 20))  
         # self.botao5.SetBackgroundColour(corBotoes)
         
             
@@ -210,54 +213,23 @@ class janelas(wx.Frame):
        
         # self.botao_mais.Bind(wx.EVT_BUTTON, abrir_arquivos(self, click))
         if botoes:
-            self.Bind(wx.EVT_BUTTON, self.abrir_recente, botao0)
-            if botao0.EventHandler:
-                nbotao = 0
-            
-        
+            self.Bind(wx.EVT_BUTTON, self.abrir_recente1, botao0)
         if botoes > 1:
-            self.Bind(wx.EVT_BUTTON, self.abrir_recente, botao1) 
-            if botao1.EventHandler == botao1:
-                nbotao = 1
-        
+            self.Bind(wx.EVT_BUTTON, self.abrir_recente2, botao1) 
         if botoes > 2: 
-            self.Bind(wx.EVT_BUTTON, self.abrir_recente, botao2) 
-            if botao2.EventHandler == botao2:
-                nbotao = 2
-                
+            self.Bind(wx.EVT_BUTTON, self.abrir_recente3, botao2) 
         if botoes > 3:
-            self.Bind(wx.EVT_BUTTON, self.abrir_recente, botao3) 
-            if botao3.EventHandler == botao3:
-                nbotao = 3
+            self.Bind(wx.EVT_BUTTON, self.abrir_recente4, botao3) 
         if botoes > 4:
-            self.Bind(wx.EVT_BUTTON, self.abrir_recente, botao4) 
-            print(self.botao.EventHandler)
-            if botao4.EventHandler == botao4:
-                nbotao = 4
-    #     
+            self.Bind(wx.EVT_BUTTON, self.abrir_recente5, botao4) 
 
-    #         
-    # def abrir_recente(self, event):
-    #     if self.botao1.EventHandler == self.botao1:
-    #         nbotao = 0
-    #     if self.botao2.EventHandler == self.botao2:
-    #         nbotao = 0
-    #     if self.botao3.EventHandler == self.botao3:
-    #         nbotao = 0
-    #     if self.botao4.EventHandler == self.botao4:
-    #         nbotao = 0
-    #     if self.botao5.EventHandler == self.botao5:
-    #         nbotao = 0
-        
-        
             
-    def abrir_recente(self, event):
+    def convert_data(self, data):
+        data_convertida = datetime.datetime.fromtimestamp(float(data)).strftime('%d/%m/%Y - %H:%M')
+        return str(data_convertida)
+            
+    def abrir_recentes(self, nbotao):
 
-
-
-
-
-     
         pathname = self.botao_path[nbotao]
         # Proceed loading the file chosen by the user
         print str(pathname)
@@ -267,10 +239,64 @@ class janelas(wx.Frame):
                 lines = file.readlines()
                 print(lines)
                 # print str(file)
-                
+                self.lines = lines
                 
         except IOError:
             wx.LogError("Cannot open file '%s'." % pathname)
+            
+    def abrir_recente1(self, event):
+            self.abrir_recentes(0)
+            self.statxt3.SetLabel(self.botao_path[0])
+            self.statxt4.SetLabel(self.convert_data(self.titulo_bt[0]))
+            self.statxt5.SetLabel(str(self.lines))
+            botao0.SetBackgroundColour("blue")
+            botao1.SetBackgroundColour(corBotoes)
+            botao2.SetBackgroundColour(corBotoes)
+            botao3.SetBackgroundColour(corBotoes)
+            botao4.SetBackgroundColour(corBotoes)
+               
+    def abrir_recente2(self, event):
+            self.abrir_recentes(1)
+            self.statxt3.SetLabel(self.botao_path[1])
+            self.statxt4.SetLabel(self.convert_data(self.titulo_bt[1]))
+            self.statxt5.SetLabel(str(self.lines))
+            botao0.SetBackgroundColour(corBotoes)
+            botao1.SetBackgroundColour("blue")
+            botao2.SetBackgroundColour(corBotoes)
+            botao3.SetBackgroundColour(corBotoes)
+            botao4.SetBackgroundColour(corBotoes)
+               
+    def abrir_recente3(self, event):
+            self.abrir_recentes(2)
+            self.statxt3.SetLabel(self.botao_path[2])
+            self.statxt4.SetLabel(self.convert_data(self.titulo_bt[2]))
+            self.statxt5.SetLabel(str(self.lines))
+            botao0.SetBackgroundColour(corBotoes)
+            botao1.SetBackgroundColour(corBotoes)
+            botao2.SetBackgroundColour("blue")
+            botao3.SetBackgroundColour(corBotoes)
+            botao4.SetBackgroundColour(corBotoes)
+            
+    def abrir_recente4(self, event):
+            self.abrir_recentes(3)
+            self.statxt3.SetLabel(self.botao_path[3])
+            self.statxt4.SetLabel(self.convert_data(self.titulo_bt[3]))
+            self.statxt5.SetLabel(str(self.lines))
+            botao0.SetBackgroundColour(corBotoes)
+            botao1.SetBackgroundColour(corBotoes)
+            botao2.SetBackgroundColour(corBotoes)
+            botao3.SetBackgroundColour("blue")
+            botao4.SetBackgroundColour(corBotoes)
+    def abrir_recente5(self, event):
+            self.abrir_recentes(4)
+            self.statxt3.SetLabel(self.botao_path[4])
+            self.statxt4.SetLabel(self.convert_data(self.titulo_bt[4]))
+            self.statxt5.SetLabel(str(self.lines))
+            botao0.SetBackgroundColour(corBotoes)
+            botao1.SetBackgroundColour(corBotoes)
+            botao2.SetBackgroundColour(corBotoes)
+            botao3.SetBackgroundColour(corBotoes)
+            botao4.SetBackgroundColour("blue")
     
     def abrir_arquivos(self, event):
         with wx.FileDialog(self, "Abrir arquivo de telemetria", wildcard="arquivos tlm  (*.tlm)|*.tlm",
@@ -287,10 +313,23 @@ class janelas(wx.Frame):
                     lines = file.readlines()
                     print(lines)
                     # print str(file)
+                    self.lines = lines
                     
                     
             except IOError:
                 wx.LogError("Cannot open file '%s'." % newfile)
+                
+        
+            self.statxt3.SetLabel(pathname)
+            self.statxt4.SetLabel("")
+            self.statxt5.SetLabel(str(self.lines))
+            botao0.SetBackgroundColour(corBotoes)
+            botao1.SetBackgroundColour(corBotoes)
+            botao2.SetBackgroundColour(corBotoes)
+            botao3.SetBackgroundColour(corBotoes)
+            botao4.SetBackgroundColour(corBotoes)
+                
+                
                 
 
         
@@ -385,9 +424,15 @@ class MyPanel(wx.Panel):
         #print(wx.DefaultSize)
         #a menu for the beauty of the demo
         menu1 = wx.Menu()
-        menu1.Append(101, '&aaa')
+        menu1.Append(101, '&Abrir arquivo de telemetria 3S')
+        menu1.Append(102, '&Fechar')
+        menu1.Append(103, '&Sair')
+        menu1.InsertSeparator(1)
+        menu2 = wx.Menu()
+        menu2.Append(201, '&Sobre')
         menuBar = wx.MenuBar()
-        menuBar.Append(menu1, '&File')
+        menuBar.Append(menu1, '&Arquivo')
+        menuBar.Append(menu2, '&Ajuda')
         self.parent.SetMenuBar(menuBar)
         
        
