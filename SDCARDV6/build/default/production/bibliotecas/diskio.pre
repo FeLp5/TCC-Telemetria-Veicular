@@ -1,7 +1,17 @@
 
 # 1 "bibliotecas/diskio.c"
 
-# 16 "bibliotecas/integer.h"
+# 17 "bibliotecas/integer.h"
+typedef struct{
+unsigned int hora;
+unsigned int min;
+unsigned int seg;
+unsigned char dia;
+unsigned char mes;
+unsigned char ano;
+}fat_time;
+
+
 typedef int INT;
 typedef unsigned int UINT;
 
@@ -21,21 +31,26 @@ typedef long LONG;
 typedef unsigned long ULONG;
 typedef unsigned long DWORD;
 
-# 16 "bibliotecas/diskio.h"
+# 14 "bibliotecas/diskio.h"
 typedef BYTE DSTATUS;
 
 
 typedef enum {
 RES_OK = 0,
 RES_ERROR,
+RES_WRPRT,
 RES_NOTRDY,
 RES_PARERR
 } DRESULT;
 
-# 30
-DSTATUS disk_initialize (void);
-DRESULT disk_readp (BYTE* buff, DWORD sector, UINT offset, UINT count);
-DRESULT disk_writep (const BYTE* buff, DWORD sc);
+# 29
+DSTATUS disk_initialize (BYTE);
+DSTATUS disk_status (BYTE);
+DRESULT disk_read (BYTE, BYTE*, DWORD, BYTE);
+
+DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
+
+DRESULT disk_ioctl (BYTE, BYTE, void*);
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4855,6 +4870,34 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
+# 45 "bibliotecas/SHRC.h"
+void controle_shrc (void);
+
+void inicializa_shrc(void);
+
+void escreve_dado_SPI(unsigned char data_to_shrc);
+
+void shrc_seta_bit(unsigned char posicao_bit);
+
+void shrc_apaga_bit(unsigned char posicao_bit);
+
+unsigned char recebe_dado_SPI();
+
+# 95 "bibliotecas/SDCard.h"
+void SDCard(void);
+BYTE response(void);
+void proceed(void);
+void dummy_clocks(unsigned char n);
+void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+
+
+
+void sdc_reset(void);
+DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
+DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
+DSTATUS sdc_disk_initialize(void);
+DSTATUS sdc_disk_status(void);
+
 # 199 "bibliotecas/display_lcd.h"
 extern void init_lcd(void);
 
@@ -4888,350 +4931,170 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 45 "bibliotecas/SHRC.h"
-void controle_shrc (void);
-
-void inicializa_shrc(void);
-
-void escreve_dado_SPI(unsigned char data_to_shrc);
-
-void shrc_seta_bit(unsigned char posicao_bit);
-
-void shrc_apaga_bit(unsigned char posicao_bit);
-
-unsigned char recebe_dado_SPI();
-
-# 94 "bibliotecas/SDCard.h"
-void SDCard(void);
-BYTE response(void);
-void proceed(void);
-void dummy_clocks(unsigned char n);
-void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-
-# 15 "bibliotecas/diskio.c"
-extern BYTE recebe_dado_SPI();
-
-extern BYTE response();
-
-extern void check();
-
-
-
-int flag;
-
-void readover(int a)
-{
-flag = a;
-}
-
-# 34
-void reset()
-{
-int i = 0, count = 0;
-unsigned char buff;
-
-do{
-dummy_clocks(8);
-command(0X40, 0X00000000, 0X95);
-proceed();
-do{
-buff = response();
-count++;
-
-}while((buff!=0X01) && (count<10) );
-count = 0;
-}while(buff!=0X01);
-
-
-
-_delay((unsigned long)((2000)*(48000000/4000.0)));
-return;
-}
-
-DSTATUS disk_initialize (void)
+# 27 "bibliotecas/diskio.c"
+DSTATUS disk_initialize (
+BYTE drv
+)
 {
 DSTATUS stat;
-int i = 0, count1 = 0, count2 = 0;
-unsigned char buff;
-reset();
+int result;
+
+switch (drv) {
+case 0 :
 posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Cartao Aceito");
-_delay((unsigned long)((500)*(48000000/4000.0)));
-dummy_clocks(8);
-command(0X41, 0X00000000, 0XFF);
-proceed();
-buff =0XFF;
-do{
-buff = response();
-}while(buff!=0x01);
+escreve_frase_ram_lcd("NO ATA DRIVE");
+while(1);
+
+
+
+return stat;
+
+case 1 :
+stat = sdc_disk_initialize();
+
+
+return stat;
+
+case 2 :
+
+
 posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Iniciando");
+escreve_frase_ram_lcd("NO USB DRIVE");
+while(1);
 
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-proceed();
-if (buff == 0x01)
-{
-
-_delay((unsigned long)((1)*(48000000/4000.0)));
-count1 = 0;
-do{
-count2 = 0;
-dummy_clocks(8);
-command(0X77, 0X00000000, 0X95);
-buff = 0XFF;
-
-proceed();
-do{
-buff = response();
-count2++;
-}while((buff!=0X01)&&(count2<10));
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Cartao");
-
-count2 = 0;
-dummy_clocks(8);
-
-command(0X69,0X40000000,0X95);
-buff = 0XFF;
-
-
-do{
-buff = response();
-count2++;
-
-
-}while((buff!=0X00) && count2<10);
-}while(buff != 0X00);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("SDCARD");
-count1 = 0;
-
-_delay((unsigned long)((1)*(48000000/4000.0)));
-stat = 0X00;
-
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Cartão Aceito");
-_delay((unsigned long)((2000)*(48000000/4000.0)));
-}
-else if(buff == 0x05)
-{
-stat = 0x01;
-
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Error!!!");
-
-_delay((unsigned long)((3000)*(48000000/4000.0)));
-}
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-
-dummy_clocks(8);
-command(0X50,0X00000200,0XFF);
-proceed();
-do{
-buff = response();
-}while(buff!=0XFF);
-
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Bloco de 512");
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("Bytes criado!");
-_delay((unsigned long)((2000)*(48000000/4000.0)));
-escreve_cmd_lcd(0b00000001);
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Init OK");
 return stat;
 }
+return 0x01;
+}
 
-# 159
-DRESULT disk_readp (
-BYTE* rd,
+# 68
+DSTATUS disk_status (
+BYTE drv
+)
+{
+DSTATUS stat;
+int result;
+
+switch (drv) {
+case 0 :
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("NO ATA DRIVE");
+while(1);
+
+
+
+return stat;
+
+case 1 :
+stat = sdc_disk_status();
+
+
+return stat;
+
+case 2 :
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("NO USB DRIVE");
+while(1);
+
+
+
+return stat;
+}
+return 0x01;
+}
+
+# 109
+DRESULT disk_read (
+BYTE drv,
+BYTE *buff,
 DWORD sector,
-UINT offset,
-UINT count
+BYTE count
 )
 {
 DRESULT res;
-unsigned char ptr=0X00,buff;
-unsigned long int start_add;
-static unsigned char arr[512];
-int length,i;
+int result;
 
-if(offset == 0)
-{
-start_add = ((sector*512));
+switch (drv) {
+case 0 :
 
-_delay((unsigned long)((1000)*(48000000/4000.0)));
 
-dummy_clocks(8);
-command(0X52,start_add,0X00);
-proceed();
-do{
-buff = response();
-}while(buff!=0XFF);
-_delay((unsigned long)((1000)*(48000000/4000.0)));
 
-proceed();
-do{
-buff = response();
-}while(buff!=0xFE);
-length = 0;
-while ( length < count )
-{
-arr[length] = response();
-length++;
+return res;
+
+case 1 :
+res = sdc_disk_read(buff, sector, count);
+
+
+return res;
+
+case 2 :
+
+
+
+return res;
+}
+return RES_PARERR;
 }
 
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-
-dummy_clocks(8);
-command(0X4C,0X00000000,0X00);
-proceed();
-do{
-buff = response();
-}while(buff!=0xFF);
-
-length = 0;
-
-while(arr[length]!='\0')
-{
-
-length++;
-}
-
-*rd = length;
-return RES_OK;
-}
-else
-{
-start_add = (sector*512);
-
-length = 0;
-while(length<512)
-{
-arr[length] = 0;
-length++;
-}
-
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-
-dummy_clocks(8);
-
-command(0X51,start_add,0X00);
-proceed();
-do{
-buff = response();
-}while(buff!=0XFF);
-do{
-buff = response();
-}while(buff!=0xFE);
-
-length = 0;
-while ( length < 512 )
-{
-while(offset--)
-{
-arr[length] = response();
-length++;
-}
-while(count--)
-{
-*rd = response();
-arr[length] = *rd;
-rd++;
-length++;
-}
-while(length<512)
-{
-arr[length] = response();
-length++;
-}
-}
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-
-# 268
-command(0X4C,0X00000000,0X00);
-proceed();
-do{
-buff = response();
-}while(buff!=0xFF);
-
-length = 0;
-if(flag == 1){
-while(arr[length]!='\0')
-{
-
-length++;
-}
-}
-else
-{
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("..");
-}
-_delay((unsigned long)((2000)*(48000000/4000.0)));
-
-return RES_OK;
-}
-}
-
-
-
-
-DRESULT disk_writep (
-const BYTE* wr,
-DWORD sc
+# 153
+DRESULT disk_write (
+BYTE drv,
+const BYTE *buff,
+DWORD sector,
+BYTE count
 )
 {
 DRESULT res;
+int result;
 
-unsigned char buff;
-int i=0,j;
-
-
-
-dummy_clocks(8);
-command(0X58, sc*512, 0X00);
-proceed();
-do{
-buff = response();
-}while(buff!=0XFF);
+switch (drv) {
+case 0 :
 
 
-_delay((unsigned long)((2000)*(48000000/4000.0)));
+
+return res;
+
+case 1 :
+res = sdc_disk_write(buff, sector, count);
 
 
-dummy_clocks(8);
+return res;
 
-escreve_dado_SPI(0XFE);
+case 2 :
 
-for(j=0;j<512;j++)
-{
-if(*wr!='\0')
-{
-escreve_dado_SPI(*wr);
-wr++;
+
+
+return res;
 }
-else
-escreve_dado_SPI(0x00);
+return RES_PARERR;
 }
-escreve_dado_SPI(0XFF);
-escreve_dado_SPI(0XFF);
 
-proceed();
+# 192
+DRESULT disk_ioctl (
+BYTE drv,
+BYTE ctrl,
+void *buff
+)
+{
+DRESULT res;
+int result;
 
-_delay((unsigned long)((1000)*(48000000/4000.0)));
+switch (drv) {
+case 0 :
 
-dummy_clocks(8);
+# 208
+return res;
 
-command(0X4D,0X00000000,0X00);
-proceed();
-do{
-buff = response();
-}while(buff!=0XFF);
+case 1 :
 
-return RES_OK;
+# 216
+return res;
+
+case 2 :
+
+# 224
+return res;
+}
+return RES_PARERR;
 }
 

@@ -62,6 +62,7 @@ unsigned long int get_dt(unsigned char);
 void convert_time_to_utc(unsigned long int);
 unsigned char convert_to_date(unsigned char dt[]);
 float convert_to_degrees(float);
+
 /*****************************************************************************/
 
 #ifdef __cplusplus

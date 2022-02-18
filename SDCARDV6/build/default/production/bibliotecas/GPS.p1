@@ -1,55 +1,44 @@
 Version 3.2 HI-TECH Software Intermediate Code
-<<<<<<< HEAD
-"54 bibliotecas/uart.h
-[v _inicializa_uart `(v ~T0 @X0 0 ef ]
+"17 bibliotecas/integer.h
+[s S367 `ui 1 `ui 1 `ui 1 `uc 1 `uc 1 `uc 1 ]
+[n S367 . hora min seg dia mes ano ]
+"58 bibliotecas/GPS.h
+[v _get_gpstime `(ul ~T0 @X0 0 ef ]
+"62
+[v _convert_time_to_utc `(v ~T0 @X0 0 ef1`ul ]
+"236 bibliotecas/display_lcd.h
+[v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
+"290
+[v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
+"61 bibliotecas/GPS.h
+[v _get_dt `(ul ~T0 @X0 0 ef1`uc ]
+[v F4048 `(v ~T0 @X0 1 tf1`ul ]
+"164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
+[v __delay `JF4048 ~T0 @X0 0 e ]
+[p i __delay ]
+"208 bibliotecas/display_lcd.h
+[v _escreve_cmd_lcd `(v ~T0 @X0 0 ef1`uc ]
+"59 bibliotecas/GPS.h
+[v _get_latitude `(f ~T0 @X0 0 ef1`uc ]
+"64
+[v _convert_to_degrees `(f ~T0 @X0 0 ef1`f ]
+"194 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"60 bibliotecas/GPS.h
+[v _get_longitude `(f ~T0 @X0 0 ef1`uc ]
+"16 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
+[v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
 "57 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
 [v _atol `(l ~T0 @X0 0 ef1`*Cuc ]
 "53
 [v _atof `(d ~T0 @X0 0 ef1`*Cuc ]
 "56 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
-"194 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"36
+[v _strcat `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 [; ;pic18f4550.h: 50: extern volatile unsigned char SPPDATA @ 0xF62;
 "52 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [; ;pic18f4550.h: 52: asm("SPPDATA equ 0F62h");
-=======
-"15 bibliotecas/GPS.c
-[v _get_gpstime `(ul ~T0 @X0 0 ef ]
-"19
-[v _convert_time_to_utc `(v ~T0 @X0 0 ef1`ul ]
-"236 bibliotecas/display_lcd.h
-[v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
-"290
-[v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
-"18 bibliotecas/GPS.c
-[v _get_dt `(ul ~T0 @X0 0 ef1`uc ]
-[v F4044 `(v ~T0 @X0 1 tf1`ul ]
-"161 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18.h
-[v __delay `JF4044 ~T0 @X0 0 e ]
-[p i __delay ]
-"208 bibliotecas/display_lcd.h
-[v _escreve_cmd_lcd `(v ~T0 @X0 0 ef1`uc ]
-"16 bibliotecas/GPS.c
-[v _get_latitude `(f ~T0 @X0 0 ef1`uc ]
-"21
-[v _convert_to_degrees `(f ~T0 @X0 0 ef1`f ]
-"194 C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"16 C:\Program Files (x86)\Microchip\xc8\v1.41\include\string.h
-[v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
-"17 bibliotecas/GPS.c
-[v _get_longitude `(f ~T0 @X0 0 ef1`uc ]
-"57 C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdlib.h
-[v _atol `(l ~T0 @X0 0 ef1`*Cuc ]
-"53
-[v _atof `(d ~T0 @X0 0 ef1`*Cuc ]
-"54 C:\Program Files (x86)\Microchip\xc8\v1.41\include\string.h
-[v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
-[; ;pic18f4550.h: 49: extern volatile unsigned char SPPDATA @ 0xF62;
-"51 C:\Program Files (x86)\Microchip\xc8\v1.41\include\pic18f4550.h
-[; ;pic18f4550.h: 51: asm("SPPDATA equ 0F62h");
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 [; <" SPPDATA equ 0F62h ;# ">
 [; ;pic18f4550.h: 55: typedef union {
 [; ;pic18f4550.h: 56: struct {
@@ -3658,7 +3647,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 135: __attribute__((__unsupported__("The " "Read_b_eep" " routine is no longer supported. Please use the MPLAB X MCC."))) unsigned char Read_b_eep(unsigned int badd);
 [; ;pic18.h: 136: __attribute__((__unsupported__("The " "Busy_eep" " routine is no longer supported. Please use the MPLAB X MCC."))) void Busy_eep(void);
 [; ;pic18.h: 137: __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer supported. Please use the MPLAB X MCC."))) void Write_b_eep(unsigned int badd, unsigned char bdat);
-<<<<<<< HEAD
 [; ;pic18.h: 155: unsigned char __t1rd16on(void);
 [; ;pic18.h: 156: unsigned char __t3rd16on(void);
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
@@ -3673,13 +3661,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;GPS.h: 62: void convert_time_to_utc(unsigned long int);
 [; ;GPS.h: 63: unsigned char convert_to_date(unsigned char dt[]);
 [; ;GPS.h: 64: float convert_to_degrees(float);
-=======
-[; ;pic18.h: 161: extern __nonreentrant void _delay(unsigned long);
-[; ;pic18.h: 163: extern __nonreentrant void _delaywdt(unsigned long);
-[; ;pic18.h: 165: extern __nonreentrant void _delay3(unsigned char);
-[; ;GPS.h: 56: void tratamento_uart(unsigned char received_char);
-[; ;GPS.h: 57: void gps(void);
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 [; ;hardware.h: 34: void init_hardware(void);
 [; ;hardware.h: 35: void write_timer_zero(unsigned int timer0);
 [; ;hardware.h: 36: void open_timer0(unsigned char config);
@@ -3699,7 +3680,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
 [; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 [; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
-<<<<<<< HEAD
 [; ;uart.h: 40: void envia_dado_uart(char data);
 [; ;uart.h: 42: unsigned char verifica_buffer_uart(void);
 [; ;uart.h: 44: void envia_string_uart(const char *string);
@@ -3708,1254 +3688,787 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;uart.h: 50: void recebe_string_uart(char *buffer, unsigned char length);
 [; ;uart.h: 52: void escreve_inteiro_uart(int valor);
 [; ;uart.h: 54: void inicializa_uart(void);
-[; ;GPS.c: 16: unsigned long int get_gpstime();
-[; ;GPS.c: 17: float get_latitude(unsigned char);
-[; ;GPS.c: 18: float get_longitude(unsigned char);
-[; ;GPS.c: 19: unsigned long int get_dt(unsigned char);
-[; ;GPS.c: 20: void convert_time_to_utc(unsigned long int);
-[; ;GPS.c: 21: unsigned char convert_to_date(unsigned char dt[]);
-[; ;GPS.c: 22: float convert_to_degrees(float);
-"28 bibliotecas/GPS.c
-=======
-[; ;GPS.c: 15: unsigned long int get_gpstime();
-[; ;GPS.c: 16: float get_latitude(unsigned char);
-[; ;GPS.c: 17: float get_longitude(unsigned char);
-[; ;GPS.c: 18: unsigned long int get_dt(unsigned char);
-[; ;GPS.c: 19: void convert_time_to_utc(unsigned long int);
-[; ;GPS.c: 20: unsigned char convert_to_date(unsigned char dt[]);
-[; ;GPS.c: 21: float convert_to_degrees(float);
-"27 bibliotecas/GPS.c
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
-[v _gga_buffer `uc ~T0 @X0 -> 80 `i e ]
-[; ;GPS.c: 28: char gga_buffer[80];
-"29
-[v _rmc_buffer `uc ~T0 @X0 -> 70 `i e ]
-[; ;GPS.c: 29: char rmc_buffer[70];
+[; ;integer.h: 17: typedef struct{
+[; ;integer.h: 18: unsigned int hora;
+[; ;integer.h: 19: unsigned int min;
+[; ;integer.h: 20: unsigned int seg;
+[; ;integer.h: 21: unsigned char dia;
+[; ;integer.h: 22: unsigned char mes;
+[; ;integer.h: 23: unsigned char ano;
+[; ;integer.h: 24: }fat_time;
+[; ;integer.h: 27: typedef int INT;
+[; ;integer.h: 28: typedef unsigned int UINT;
+[; ;integer.h: 31: typedef char CHAR;
+[; ;integer.h: 32: typedef unsigned char UCHAR;
+[; ;integer.h: 33: typedef unsigned char BYTE;
+[; ;integer.h: 36: typedef short SHORT;
+[; ;integer.h: 37: typedef unsigned short USHORT;
+[; ;integer.h: 38: typedef unsigned short WORD;
+[; ;integer.h: 39: typedef unsigned short WCHAR;
+[; ;integer.h: 42: typedef long LONG;
+[; ;integer.h: 43: typedef unsigned long ULONG;
+[; ;integer.h: 44: typedef unsigned long DWORD;
+"29 bibliotecas/GPS.c
+[v _f_time `S367 ~T0 @X0 1 e ]
+[; ;GPS.c: 29: fat_time f_time;
 "31
-[v _gga_code `uc ~T0 @X0 -> 3 `i e ]
-[; ;GPS.c: 31: char gga_code[3];
+[v _gga_buffer `uc ~T0 @X0 -> 80 `i e ]
+[; ;GPS.c: 31: char gga_buffer[80];
 "32
-[v _rmc_code `uc ~T0 @X0 -> 3 `i e ]
-[; ;GPS.c: 32: char rmc_code[3];
+[v _rmc_buffer `uc ~T0 @X0 -> 70 `i e ]
+[; ;GPS.c: 32: char rmc_buffer[70];
 "34
+[v _gga_code `uc ~T0 @X0 -> 3 `i e ]
+[; ;GPS.c: 34: char gga_code[3];
+"35
+[v _rmc_code `uc ~T0 @X0 -> 3 `i e ]
+[; ;GPS.c: 35: char rmc_code[3];
+"37
 [v _n_s `uc ~T0 @X0 1 e ]
 [v _E_W `uc ~T0 @X0 1 e ]
-[; ;GPS.c: 34: unsigned char n_s, E_W;
-"36
-[v _gga_pointers `uc ~T0 @X0 -> 20 `i e ]
-[; ;GPS.c: 36: unsigned char gga_pointers[20];
-"37
-[v _rmc_pointers `uc ~T0 @X0 -> 12 `i e ]
-[; ;GPS.c: 37: unsigned char rmc_pointers[12];
+[; ;GPS.c: 37: unsigned char n_s, E_W;
 "39
-[v _comma_counter_gga `uc ~T0 @X0 1 e ]
-[; ;GPS.c: 39: char comma_counter_gga;
+[v _gga_pointers `uc ~T0 @X0 -> 20 `i e ]
+[; ;GPS.c: 39: unsigned char gga_pointers[20];
 "40
-[v _comma_counter_rmc `uc ~T0 @X0 1 e ]
-<<<<<<< HEAD
-[; ;GPS.c: 40: char comma_counter_rmc;
+[v _rmc_pointers `uc ~T0 @X0 -> 12 `i e ]
+[; ;GPS.c: 40: unsigned char rmc_pointers[12];
 "42
-[v _data_buffer `uc ~T0 @X0 -> 15 `i e ]
-[; ;GPS.c: 42: char data_buffer[15];
-"44
-[v _dado_buffer `uc ~T0 @X0 -> 7 `i e ]
-[; ;GPS.c: 44: char dado_buffer[7];
-"47
-[v _gga_index `Vui ~T0 @X0 1 e ]
-[; ;GPS.c: 47: volatile unsigned int gga_index;
-"48
-[v _rmc_index `Vui ~T0 @X0 1 e ]
-[; ;GPS.c: 48: volatile unsigned int rmc_index;
-"50
-=======
-[; ;GPS.c: 39: char comma_counter_rmc;
-"41
-[v _data_buffer `uc ~T0 @X0 -> 15 `i e ]
-[; ;GPS.c: 41: char data_buffer[15];
+[v _comma_counter_gga `uc ~T0 @X0 1 e ]
+[; ;GPS.c: 42: char comma_counter_gga;
 "43
-[v _dado_buffer `uc ~T0 @X0 -> 7 `i e ]
-[; ;GPS.c: 43: char dado_buffer[7];
-"46
-[v _gga_index `Vui ~T0 @X0 1 e ]
-[; ;GPS.c: 46: volatile unsigned int gga_index;
+[v _comma_counter_rmc `uc ~T0 @X0 1 e ]
+[; ;GPS.c: 43: char comma_counter_rmc;
+"45
+[v _data_buffer `uc ~T0 @X0 -> 15 `i e ]
+[; ;GPS.c: 45: char data_buffer[15];
 "47
+[v _dado_buffer `uc ~T0 @X0 -> 7 `i e ]
+[; ;GPS.c: 47: char dado_buffer[7];
+"50
+[v _gga_index `Vui ~T0 @X0 1 e ]
+[; ;GPS.c: 50: volatile unsigned int gga_index;
+"51
 [v _rmc_index `Vui ~T0 @X0 1 e ]
-[; ;GPS.c: 47: volatile unsigned int rmc_index;
-"49
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+[; ;GPS.c: 51: volatile unsigned int rmc_index;
+"53
 [v _is_it_gga_string `Vuc ~T0 @X0 1 e ]
 [i _is_it_gga_string
 -> -> 0 `i `uc
 ]
-<<<<<<< HEAD
-[; ;GPS.c: 50: volatile unsigned char is_it_gga_string = 0;
-"51
-=======
-[; ;GPS.c: 49: volatile unsigned char is_it_gga_string = 0;
-"50
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+[; ;GPS.c: 53: volatile unsigned char is_it_gga_string = 0;
+"54
 [v _is_it_rmc_string `Vuc ~T0 @X0 1 e ]
 [i _is_it_rmc_string
 -> -> 0 `i `uc
 ]
-<<<<<<< HEAD
-[; ;GPS.c: 51: volatile unsigned char is_it_rmc_string = 0;
-"53
+[; ;GPS.c: 54: volatile unsigned char is_it_rmc_string = 0;
+"56
 [v _gps `(v ~T0 @X0 1 ef ]
-"54
+"57
 {
-[; ;GPS.c: 53: void gps(void)
-[; ;GPS.c: 54: {
+[; ;GPS.c: 56: void gps(void)
+[; ;GPS.c: 57: {
 [e :U _gps ]
 [f ]
-[; ;GPS.c: 55: inicializa_uart();
-"55
-[e ( _inicializa_uart ..  ]
-"56
-[v _data_out `uc ~T0 @X0 -> 34 `i a ]
-"57
-[v _time `ul ~T0 @X0 1 a ]
-"58
-[v _date `ul ~T0 @X0 1 a ]
 "59
-[v _latitude `f ~T0 @X0 1 a ]
-[v _longitude `f ~T0 @X0 1 a ]
-"60
-[v _gps_buffer `uc ~T0 @X0 -> 15 `i a ]
-[; ;GPS.c: 56: unsigned char data_out[34];
-[; ;GPS.c: 57: unsigned long int time;
-[; ;GPS.c: 58: unsigned long int date;
-[; ;GPS.c: 59: float latitude, longitude;
-[; ;GPS.c: 60: char gps_buffer[15];
-[; ;GPS.c: 115: }
-"115
-[e :UE 367 ]
-}
-"126
-[v _get_gpstime `(ul ~T0 @X0 1 ef ]
-"127
-{
-[; ;GPS.c: 126: unsigned long int get_gpstime()
-[; ;GPS.c: 127: {
-[e :U _get_gpstime ]
-[f ]
-"128
-[v _index `uc ~T0 @X0 1 a ]
-"129
-[v _time_buffer `uc ~T0 @X0 -> 15 `i a ]
-"130
-[v __time `ul ~T0 @X0 1 a ]
-[; ;GPS.c: 128: unsigned char index;
-[; ;GPS.c: 129: unsigned char time_buffer[15];
-[; ;GPS.c: 130: unsigned long int _time;
-[; ;GPS.c: 133: for(index = 0; gga_buffer[index]!=','; index++)
-"133
-{
-[e = _index -> -> 0 `i `uc ]
-[e $U 372  ]
-"134
-[e :U 369 ]
-[; ;GPS.c: 134: {
-{
-[; ;GPS.c: 135: time_buffer[index] = gga_buffer[index];
-"135
-[e = *U + &U _time_buffer * -> _index `ux -> -> # *U &U _time_buffer `ui `ux *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-"136
-}
-"133
-=======
-[; ;GPS.c: 50: volatile unsigned char is_it_rmc_string = 0;
-"52
-[v _gps `(v ~T0 @X0 1 ef ]
-"53
-{
-[; ;GPS.c: 52: void gps(void)
-[; ;GPS.c: 53: {
-[e :U _gps ]
-[f ]
-"54
 [v _data_out `uc ~T0 @X0 -> 34 `i a ]
-"55
+"60
 [v _time `ul ~T0 @X0 1 a ]
-"56
+"61
 [v _date `ul ~T0 @X0 1 a ]
-"57
+"62
 [v _latitude `f ~T0 @X0 1 a ]
 [v _longitude `f ~T0 @X0 1 a ]
-"58
-[v _gps_buffer `uc ~T0 @X0 -> 15 `i a ]
-[; ;GPS.c: 54: unsigned char data_out[34];
-[; ;GPS.c: 55: unsigned long int time;
-[; ;GPS.c: 56: unsigned long int date;
-[; ;GPS.c: 57: float latitude, longitude;
-[; ;GPS.c: 58: char gps_buffer[15];
-[; ;GPS.c: 62: time = get_gpstime();
-"62
-[e = _time ( _get_gpstime ..  ]
-[; ;GPS.c: 63: convert_time_to_utc(time);
 "63
+[v _gps_buffer `uc ~T0 @X0 -> 15 `i a ]
+[; ;GPS.c: 59: unsigned char data_out[34];
+[; ;GPS.c: 60: unsigned long int time;
+[; ;GPS.c: 61: unsigned long int date;
+[; ;GPS.c: 62: float latitude, longitude;
+[; ;GPS.c: 63: char gps_buffer[15];
+[; ;GPS.c: 116: time = get_gpstime();
+"116
+[e = _time ( _get_gpstime ..  ]
+[; ;GPS.c: 117: convert_time_to_utc(time);
+"117
 [e ( _convert_time_to_utc (1 _time ]
-[; ;GPS.c: 64: posicao_cursor_lcd(1,0);
-"64
+[; ;GPS.c: 118: posicao_cursor_lcd(1,0);
+"118
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;GPS.c: 65: escreve_frase_ram_lcd("Hora:");
-"65
+[; ;GPS.c: 119: escreve_frase_ram_lcd("Hora:");
+"119
 [e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
-[; ;GPS.c: 66: posicao_cursor_lcd(1,7);
-"66
+[; ;GPS.c: 120: posicao_cursor_lcd(1,7);
+"120
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
-[; ;GPS.c: 67: escreve_frase_ram_lcd(data_buffer);
-"67
+[; ;GPS.c: 121: escreve_frase_ram_lcd(data_buffer);
+"121
 [e ( _escreve_frase_ram_lcd (1 &U _data_buffer ]
-[; ;GPS.c: 70: date = get_dt(rmc_pointers[7]);
-"70
-[e = _date ( _get_dt (1 *U + &U _rmc_pointers * -> -> -> 7 `i `ui `ux -> -> # *U &U _rmc_pointers `ui `ux ]
-[; ;GPS.c: 74: posicao_cursor_lcd(2,0);
-"74
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;GPS.c: 75: escreve_frase_ram_lcd("Data:");
-"75
-[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
-[; ;GPS.c: 77: posicao_cursor_lcd(2,7);
-"77
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
-[; ;GPS.c: 78: escreve_frase_ram_lcd(dado_buffer);
-"78
-[e ( _escreve_frase_ram_lcd (1 &U _dado_buffer ]
-[; ;GPS.c: 81: _delay((unsigned long)((2000)*(48000000/4000.0)));
-"81
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;GPS.c: 82: escreve_cmd_lcd(0b00000001);
-"82
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;GPS.c: 85: latitude = get_latitude(gga_pointers[0]);
-"85
-[e = _latitude ( _get_latitude (1 *U + &U _gga_pointers * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_pointers `ui `ux ]
-[; ;GPS.c: 86: latitude = convert_to_degrees(latitude);
-"86
-[e = _latitude ( _convert_to_degrees (1 _latitude ]
-[; ;GPS.c: 87: sprintf(gps_buffer,"%.07f",latitude);
-"87
-[e ( _sprintf (1 , (. , &U _gps_buffer :s 3C -> _latitude `d ]
-[; ;GPS.c: 90: posicao_cursor_lcd(1,0);
-"90
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;GPS.c: 91: escreve_frase_ram_lcd("Lat:");
-"91
-[e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
-[; ;GPS.c: 92: posicao_cursor_lcd(1,5);
-"92
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 5 `i `uc ]
-[; ;GPS.c: 93: escreve_frase_ram_lcd(gps_buffer);
-"93
-[e ( _escreve_frase_ram_lcd (1 &U _gps_buffer ]
-[; ;GPS.c: 94: memset(gps_buffer,0,15);
-"94
-[e ( _memset (3 , , -> &U _gps_buffer `*v -> 0 `i -> -> 15 `i `ui ]
-[; ;GPS.c: 99: longitude = get_longitude(gga_pointers[2]);
-"99
-[e = _longitude ( _get_longitude (1 *U + &U _gga_pointers * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_pointers `ui `ux ]
-[; ;GPS.c: 100: longitude = convert_to_degrees(longitude);
-"100
-[e = _longitude ( _convert_to_degrees (1 _longitude ]
-[; ;GPS.c: 101: sprintf(gps_buffer,"%.07f",longitude);
-"101
-[e ( _sprintf (1 , (. , &U _gps_buffer :s 5C -> _longitude `d ]
-[; ;GPS.c: 103: posicao_cursor_lcd(2,0);
-"103
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;GPS.c: 104: escreve_frase_ram_lcd("Lon:");
-"104
-[e ( _escreve_frase_ram_lcd (1 -> :s 6C `*uc ]
-[; ;GPS.c: 105: posicao_cursor_lcd(2,5);
-"105
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 5 `i `uc ]
-[; ;GPS.c: 106: escreve_frase_ram_lcd(gps_buffer);
-"106
-[e ( _escreve_frase_ram_lcd (1 &U _gps_buffer ]
-[; ;GPS.c: 107: memset(gps_buffer,0,15);
-"107
-[e ( _memset (3 , , -> &U _gps_buffer `*v -> 0 `i -> -> 15 `i `ui ]
-[; ;GPS.c: 109: _delay((unsigned long)((2000)*(48000000/4000.0)));
-"109
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;GPS.c: 110: escreve_cmd_lcd(0b00000001);
-"110
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;GPS.c: 113: }
-"113
-[e :UE 367 ]
-}
+[; ;GPS.c: 124: date = get_dt(rmc_pointers[7]);
 "124
+[e = _date ( _get_dt (1 *U + &U _rmc_pointers * -> -> -> 7 `i `ui `ux -> -> # *U &U _rmc_pointers `ui `ux ]
+[; ;GPS.c: 128: posicao_cursor_lcd(2,0);
+"128
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;GPS.c: 129: escreve_frase_ram_lcd("Data:");
+"129
+[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
+[; ;GPS.c: 131: posicao_cursor_lcd(2,7);
+"131
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 7 `i `uc ]
+[; ;GPS.c: 132: escreve_frase_ram_lcd(dado_buffer);
+"132
+[e ( _escreve_frase_ram_lcd (1 &U _dado_buffer ]
+[; ;GPS.c: 135: _delay((unsigned long)((2000)*(48000000/4000.0)));
+"135
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;GPS.c: 136: escreve_cmd_lcd(0b00000001);
+"136
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;GPS.c: 139: latitude = get_latitude(gga_pointers[0]);
+"139
+[e = _latitude ( _get_latitude (1 *U + &U _gga_pointers * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_pointers `ui `ux ]
+[; ;GPS.c: 140: latitude = convert_to_degrees(latitude);
+"140
+[e = _latitude ( _convert_to_degrees (1 _latitude ]
+[; ;GPS.c: 141: sprintf(gps_buffer,"%.07f",latitude); ;
+"141
+[e ( _sprintf (1 , (. , &U _gps_buffer :s 3C -> _latitude `d ]
+[; ;GPS.c: 153: longitude = get_longitude(gga_pointers[2]);
+"153
+[e = _longitude ( _get_longitude (1 *U + &U _gga_pointers * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_pointers `ui `ux ]
+[; ;GPS.c: 154: longitude = convert_to_degrees(longitude);
+"154
+[e = _longitude ( _convert_to_degrees (1 _longitude ]
+[; ;GPS.c: 155: sprintf(gps_buffer,"%.07f",longitude);
+"155
+[e ( _sprintf (1 , (. , &U _gps_buffer :s 4C -> _longitude `d ]
+[; ;GPS.c: 157: posicao_cursor_lcd(2,0);
+"157
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;GPS.c: 158: escreve_frase_ram_lcd("Lon:");
+"158
+[e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
+[; ;GPS.c: 159: posicao_cursor_lcd(2,5);
+"159
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 5 `i `uc ]
+[; ;GPS.c: 160: escreve_frase_ram_lcd(gps_buffer);
+"160
+[e ( _escreve_frase_ram_lcd (1 &U _gps_buffer ]
+[; ;GPS.c: 161: memset(gps_buffer,0,15);
+"161
+[e ( _memset (3 , , -> &U _gps_buffer `*v -> 0 `i -> -> 15 `i `ui ]
+[; ;GPS.c: 163: _delay((unsigned long)((2000)*(48000000/4000.0)));
+"163
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;GPS.c: 164: escreve_cmd_lcd(0b00000001);
+"164
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;GPS.c: 167: }
+"167
+[e :UE 368 ]
+}
+"178
 [v _get_gpstime `(ul ~T0 @X0 1 ef ]
-"125
+"179
 {
-[; ;GPS.c: 124: unsigned long int get_gpstime()
-[; ;GPS.c: 125: {
+[; ;GPS.c: 178: unsigned long int get_gpstime()
+[; ;GPS.c: 179: {
 [e :U _get_gpstime ]
 [f ]
-"126
-[v _index `uc ~T0 @X0 1 a ]
-"127
-[v _time_buffer `uc ~T0 @X0 -> 15 `i a ]
-"128
-[v __time `ul ~T0 @X0 1 a ]
-[; ;GPS.c: 126: unsigned char index;
-[; ;GPS.c: 127: unsigned char time_buffer[15];
-[; ;GPS.c: 128: unsigned long int _time;
-[; ;GPS.c: 131: for(index = 0; gga_buffer[index]!=','; index++)
-"131
-{
-[e = _index -> -> 0 `i `uc ]
-[e $U 372  ]
-"132
-[e :U 369 ]
-[; ;GPS.c: 132: {
-{
-[; ;GPS.c: 133: time_buffer[index] = gga_buffer[index];
-"133
-[e = *U + &U _time_buffer * -> _index `ux -> -> # *U &U _time_buffer `ui `ux *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-"134
-}
-"131
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
-[e ++ _index -> -> 1 `i `uc ]
-[e :U 372 ]
-[e $ != -> *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux `ui -> 44 `ui 369  ]
-[e :U 370 ]
-<<<<<<< HEAD
-"136
-}
-[; ;GPS.c: 136: }
-[; ;GPS.c: 137: _time= atol(time_buffer);
-"137
-[e = __time -> ( _atol (1 -> &U _time_buffer `*Cuc `ul ]
-[; ;GPS.c: 138: return _time;
-"138
-[e ) __time ]
-[e $UE 368  ]
-[; ;GPS.c: 139: }
-"139
-[e :UE 368 ]
-}
-"149
-[v _get_latitude `(f ~T0 @X0 1 ef1`uc ]
-"150
-{
-[; ;GPS.c: 149: float get_latitude(char lat_pointer)
-[; ;GPS.c: 150: {
-[e :U _get_latitude ]
-"149
-[v _lat_pointer `uc ~T0 @X0 1 r1 ]
-"150
-[f ]
-"151
-[v _lat_index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 151: unsigned char lat_index = lat_pointer+1;
-[e = _lat_index -> + -> _lat_pointer `i -> 1 `i `uc ]
-"152
-[v _index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 152: unsigned char index = 0;
-[e = _index -> -> 0 `i `uc ]
-"153
-[v _lat_buffer `uc ~T0 @X0 -> 15 `i a ]
-"154
-[v __latitude `f ~T0 @X0 1 a ]
-[; ;GPS.c: 153: char lat_buffer[15];
-[; ;GPS.c: 154: float _latitude;
-[; ;GPS.c: 157: for(;gga_buffer[lat_index]!=',';lat_index++){
-"157
-=======
-"134
-}
-[; ;GPS.c: 134: }
-[; ;GPS.c: 135: _time= atol(time_buffer);
-"135
-[e = __time -> ( _atol (1 -> &U _time_buffer `*Cuc `ul ]
-[; ;GPS.c: 136: return _time;
-"136
-[e ) __time ]
-[e $UE 368  ]
-[; ;GPS.c: 137: }
-"137
-[e :UE 368 ]
-}
-"147
-[v _get_latitude `(f ~T0 @X0 1 ef1`uc ]
-"148
-{
-[; ;GPS.c: 147: float get_latitude(char lat_pointer)
-[; ;GPS.c: 148: {
-[e :U _get_latitude ]
-"147
-[v _lat_pointer `uc ~T0 @X0 1 r1 ]
-"148
-[f ]
-"149
-[v _lat_index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 149: unsigned char lat_index = lat_pointer+1;
-[e = _lat_index -> + -> _lat_pointer `i -> 1 `i `uc ]
-"150
-[v _index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 150: unsigned char index = 0;
-[e = _index -> -> 0 `i `uc ]
-"151
-[v _lat_buffer `uc ~T0 @X0 -> 15 `i a ]
-"152
-[v __latitude `f ~T0 @X0 1 a ]
-[; ;GPS.c: 151: char lat_buffer[15];
-[; ;GPS.c: 152: float _latitude;
-[; ;GPS.c: 155: for(;gga_buffer[lat_index]!=',';lat_index++){
-"155
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
-{
-[e $U 377  ]
-[e :U 374 ]
-{
-<<<<<<< HEAD
-[; ;GPS.c: 158: lat_buffer[index]= gga_buffer[lat_index];
-"158
-[e = *U + &U _lat_buffer * -> _index `ux -> -> # *U &U _lat_buffer `ui `ux *U + &U _gga_buffer * -> _lat_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-[; ;GPS.c: 159: index++;
-"159
-[e ++ _index -> -> 1 `i `uc ]
-"160
-}
-"157
-=======
-[; ;GPS.c: 156: lat_buffer[index]= gga_buffer[lat_index];
-"156
-[e = *U + &U _lat_buffer * -> _index `ux -> -> # *U &U _lat_buffer `ui `ux *U + &U _gga_buffer * -> _lat_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-[; ;GPS.c: 157: index++;
-"157
-[e ++ _index -> -> 1 `i `uc ]
-"158
-}
-"155
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
-[e ++ _lat_index -> -> 1 `i `uc ]
-[e :U 377 ]
-[e $ != -> *U + &U _gga_buffer * -> _lat_index `ux -> -> # *U &U _gga_buffer `ui `ux `ui -> 44 `ui 374  ]
-[e :U 375 ]
-<<<<<<< HEAD
-"160
-}
-[; ;GPS.c: 160: }
-[; ;GPS.c: 161: lat_index++;
-"161
-[e ++ _lat_index -> -> 1 `i `uc ]
-[; ;GPS.c: 162: n_s = gga_buffer[lat_index];
-"162
-[e = _n_s *U + &U _gga_buffer * -> _lat_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-[; ;GPS.c: 163: _latitude = atof(lat_buffer);
-"163
-[e = __latitude -> ( _atof (1 -> &U _lat_buffer `*Cuc `f ]
-[; ;GPS.c: 164: return _latitude;
-"164
-[e ) __latitude ]
-[e $UE 373  ]
-[; ;GPS.c: 165: }
-"165
-[e :UE 373 ]
-}
-"175
-[v _get_longitude `(f ~T0 @X0 1 ef1`uc ]
-"176
-{
-[; ;GPS.c: 175: float get_longitude(unsigned char long_pointer)
-[; ;GPS.c: 176: {
-[e :U _get_longitude ]
-"175
-[v _long_pointer `uc ~T0 @X0 1 r1 ]
-"176
-[f ]
-"177
-[v _long_index `uc ~T0 @X0 1 a ]
-"178
-[v _index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 177: unsigned char long_index;
-[; ;GPS.c: 178: unsigned char index = long_pointer+1;
-[e = _index -> + -> _long_pointer `i -> 1 `i `uc ]
-"179
-[v _long_buffer `uc ~T0 @X0 -> 15 `i a ]
 "180
-[v __longitude `f ~T0 @X0 1 a ]
-[; ;GPS.c: 179: char long_buffer[15];
-[; ;GPS.c: 180: float _longitude;
-[; ;GPS.c: 181: long_index=0;
+[v _index `uc ~T0 @X0 1 a ]
 "181
-[e = _long_index -> -> 0 `i `uc ]
-[; ;GPS.c: 184: for( ; gga_buffer[index]!=','; index++){
-"184
-=======
-"158
-}
-[; ;GPS.c: 158: }
-[; ;GPS.c: 159: lat_index++;
-"159
-[e ++ _lat_index -> -> 1 `i `uc ]
-[; ;GPS.c: 160: n_s = gga_buffer[lat_index];
-"160
-[e = _n_s *U + &U _gga_buffer * -> _lat_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-[; ;GPS.c: 161: _latitude = atof(lat_buffer);
-"161
-[e = __latitude -> ( _atof (1 -> &U _lat_buffer `*Cuc `f ]
-[; ;GPS.c: 162: return _latitude;
-"162
-[e ) __latitude ]
-[e $UE 373  ]
-[; ;GPS.c: 163: }
-"163
-[e :UE 373 ]
-}
-"173
-[v _get_longitude `(f ~T0 @X0 1 ef1`uc ]
-"174
-{
-[; ;GPS.c: 173: float get_longitude(unsigned char long_pointer)
-[; ;GPS.c: 174: {
-[e :U _get_longitude ]
-"173
-[v _long_pointer `uc ~T0 @X0 1 r1 ]
-"174
-[f ]
-"175
-[v _long_index `uc ~T0 @X0 1 a ]
-"176
-[v _index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 175: unsigned char long_index;
-[; ;GPS.c: 176: unsigned char index = long_pointer+1;
-[e = _index -> + -> _long_pointer `i -> 1 `i `uc ]
-"177
-[v _long_buffer `uc ~T0 @X0 -> 15 `i a ]
-"178
-[v __longitude `f ~T0 @X0 1 a ]
-[; ;GPS.c: 177: char long_buffer[15];
-[; ;GPS.c: 178: float _longitude;
-[; ;GPS.c: 179: long_index=0;
-"179
-[e = _long_index -> -> 0 `i `uc ]
-[; ;GPS.c: 182: for( ; gga_buffer[index]!=','; index++){
+[v _time_buffer `uc ~T0 @X0 -> 15 `i a ]
 "182
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
-{
-[e $U 382  ]
-[e :U 379 ]
-{
-<<<<<<< HEAD
-[; ;GPS.c: 185: long_buffer[long_index]= gga_buffer[index];
+[v __time `ul ~T0 @X0 1 a ]
+[; ;GPS.c: 180: unsigned char index;
+[; ;GPS.c: 181: unsigned char time_buffer[15];
+[; ;GPS.c: 182: unsigned long int _time;
+[; ;GPS.c: 185: for(index = 0; gga_buffer[index]!=','; index++)
 "185
-[e = *U + &U _long_buffer * -> _long_index `ux -> -> # *U &U _long_buffer `ui `ux *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-[; ;GPS.c: 186: long_index++;
+{
+[e = _index -> -> 0 `i `uc ]
+[e $U 373  ]
 "186
-[e ++ _long_index -> -> 1 `i `uc ]
+[e :U 370 ]
+[; ;GPS.c: 186: {
+{
+[; ;GPS.c: 187: time_buffer[index] = gga_buffer[index];
 "187
+[e = *U + &U _time_buffer * -> _index `ux -> -> # *U &U _time_buffer `ui `ux *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux ]
+"188
 }
-"184
-=======
-[; ;GPS.c: 183: long_buffer[long_index]= gga_buffer[index];
-"183
-[e = *U + &U _long_buffer * -> _long_index `ux -> -> # *U &U _long_buffer `ui `ux *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-[; ;GPS.c: 184: long_index++;
-"184
-[e ++ _long_index -> -> 1 `i `uc ]
 "185
-}
-"182
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
 [e ++ _index -> -> 1 `i `uc ]
-[e :U 382 ]
-[e $ != -> *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux `ui -> 44 `ui 379  ]
-[e :U 380 ]
-<<<<<<< HEAD
-"187
-}
-[; ;GPS.c: 187: }
-[; ;GPS.c: 188: long_index++;
+[e :U 373 ]
+[e $ != -> *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux `ui -> 44 `ui 370  ]
+[e :U 371 ]
 "188
-[e ++ _long_index -> -> 1 `i `uc ]
-[; ;GPS.c: 189: E_W = gga_buffer[long_index];
+}
+[; ;GPS.c: 188: }
+[; ;GPS.c: 189: _time= atol(time_buffer);
 "189
-[e = _E_W *U + &U _gga_buffer * -> _long_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-[; ;GPS.c: 190: _longitude = atof(long_buffer);
+[e = __time -> ( _atol (1 -> &U _time_buffer `*Cuc `ul ]
+[; ;GPS.c: 190: return _time;
 "190
-[e = __longitude -> ( _atof (1 -> &U _long_buffer `*Cuc `f ]
-[; ;GPS.c: 191: return _longitude;
+[e ) __time ]
+[e $UE 369  ]
+[; ;GPS.c: 191: }
 "191
-[e ) __longitude ]
-[e $UE 378  ]
-[; ;GPS.c: 192: }
-"192
-[e :UE 378 ]
+[e :UE 369 ]
 }
 "201
-[v _get_dt `(ul ~T0 @X0 1 ef1`uc ]
+[v _get_latitude `(f ~T0 @X0 1 ef1`uc ]
 "202
 {
-[; ;GPS.c: 201: unsigned long int get_dt(unsigned char dt_pointer)
+[; ;GPS.c: 201: float get_latitude(char lat_pointer)
 [; ;GPS.c: 202: {
-[e :U _get_dt ]
+[e :U _get_latitude ]
 "201
-[v _dt_pointer `uc ~T0 @X0 1 r1 ]
+[v _lat_pointer `uc ~T0 @X0 1 r1 ]
 "202
 [f ]
 "203
-[v _dt_index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 203: unsigned char dt_index = dt_pointer + 1;
-[e = _dt_index -> + -> _dt_pointer `i -> 1 `i `uc ]
+[v _lat_index `uc ~T0 @X0 1 a ]
+[; ;GPS.c: 203: unsigned char lat_index = lat_pointer+1;
+[e = _lat_index -> + -> _lat_pointer `i -> 1 `i `uc ]
 "204
-[v __dt `ul ~T0 @X0 1 a ]
+[v _index `uc ~T0 @X0 1 a ]
+[; ;GPS.c: 204: unsigned char index = 0;
+[e = _index -> -> 0 `i `uc ]
 "205
-[v _index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 204: unsigned long int _dt;
-[; ;GPS.c: 205: unsigned char index;
-[; ;GPS.c: 206: index = 0;
+[v _lat_buffer `uc ~T0 @X0 -> 15 `i a ]
 "206
-[e = _index -> -> 0 `i `uc ]
-[; ;GPS.c: 209: for(;rmc_buffer[dt_index]!=',';dt_index++){
+[v __latitude `f ~T0 @X0 1 a ]
+[; ;GPS.c: 205: char lat_buffer[15];
+[; ;GPS.c: 206: float _latitude;
+[; ;GPS.c: 209: for(;gga_buffer[lat_index]!=',';lat_index++){
 "209
-=======
-"185
-}
-[; ;GPS.c: 185: }
-[; ;GPS.c: 186: long_index++;
-"186
-[e ++ _long_index -> -> 1 `i `uc ]
-[; ;GPS.c: 187: E_W = gga_buffer[long_index];
-"187
-[e = _E_W *U + &U _gga_buffer * -> _long_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
-[; ;GPS.c: 188: _longitude = atof(long_buffer);
-"188
-[e = __longitude -> ( _atof (1 -> &U _long_buffer `*Cuc `f ]
-[; ;GPS.c: 189: return _longitude;
-"189
-[e ) __longitude ]
-[e $UE 378  ]
-[; ;GPS.c: 190: }
-"190
-[e :UE 378 ]
-}
-"199
-[v _get_dt `(ul ~T0 @X0 1 ef1`uc ]
-"200
 {
-[; ;GPS.c: 199: unsigned long int get_dt(unsigned char dt_pointer)
-[; ;GPS.c: 200: {
-[e :U _get_dt ]
-"199
-[v _dt_pointer `uc ~T0 @X0 1 r1 ]
-"200
-[f ]
-"201
-[v _dt_index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 201: unsigned char dt_index = dt_pointer + 1;
-[e = _dt_index -> + -> _dt_pointer `i -> 1 `i `uc ]
-"202
-[v __dt `ul ~T0 @X0 1 a ]
-"203
-[v _index `uc ~T0 @X0 1 a ]
-[; ;GPS.c: 202: unsigned long int _dt;
-[; ;GPS.c: 203: unsigned char index;
-[; ;GPS.c: 204: index = 0;
-"204
-[e = _index -> -> 0 `i `uc ]
-[; ;GPS.c: 207: for(;rmc_buffer[dt_index]!=',';dt_index++){
-"207
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+[e $U 378  ]
+[e :U 375 ]
 {
-[e $U 387  ]
-[e :U 384 ]
-{
-<<<<<<< HEAD
-[; ;GPS.c: 210: dado_buffer[index]= rmc_buffer[dt_index];
+[; ;GPS.c: 210: lat_buffer[index]= gga_buffer[lat_index];
 "210
-[e = *U + &U _dado_buffer * -> _index `ux -> -> # *U &U _dado_buffer `ui `ux *U + &U _rmc_buffer * -> _dt_index `ux -> -> # *U &U _rmc_buffer `ui `ux ]
+[e = *U + &U _lat_buffer * -> _index `ux -> -> # *U &U _lat_buffer `ui `ux *U + &U _gga_buffer * -> _lat_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
 [; ;GPS.c: 211: index++;
 "211
 [e ++ _index -> -> 1 `i `uc ]
 "212
 }
 "209
-=======
-[; ;GPS.c: 208: dado_buffer[index]= rmc_buffer[dt_index];
-"208
-[e = *U + &U _dado_buffer * -> _index `ux -> -> # *U &U _dado_buffer `ui `ux *U + &U _rmc_buffer * -> _dt_index `ux -> -> # *U &U _rmc_buffer `ui `ux ]
-[; ;GPS.c: 209: index++;
-"209
-[e ++ _index -> -> 1 `i `uc ]
-"210
-}
-"207
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
-[e ++ _dt_index -> -> 1 `i `uc ]
-[e :U 387 ]
-[e $ != -> *U + &U _rmc_buffer * -> _dt_index `ux -> -> # *U &U _rmc_buffer `ui `ux `ui -> 44 `ui 384  ]
-[e :U 385 ]
-<<<<<<< HEAD
+[e ++ _lat_index -> -> 1 `i `uc ]
+[e :U 378 ]
+[e $ != -> *U + &U _gga_buffer * -> _lat_index `ux -> -> # *U &U _gga_buffer `ui `ux `ui -> 44 `ui 375  ]
+[e :U 376 ]
 "212
 }
 [; ;GPS.c: 212: }
-[; ;GPS.c: 214: dado_buffer[strlen(dado_buffer) - 0] = '\0';
+[; ;GPS.c: 213: lat_index++;
+"213
+[e ++ _lat_index -> -> 1 `i `uc ]
+[; ;GPS.c: 214: n_s = gga_buffer[lat_index];
 "214
-[e = *U + &U _dado_buffer * -> - ( _strlen (1 -> &U _dado_buffer `*Cuc -> -> 0 `i `ui `ux -> -> # *U &U _dado_buffer `ui `ux -> -> 0 `ui `uc ]
-[; ;GPS.c: 243: }
-"243
-[e :UE 383 ]
+[e = _n_s *U + &U _gga_buffer * -> _lat_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
+[; ;GPS.c: 215: _latitude = atof(lat_buffer);
+"215
+[e = __latitude -> ( _atof (1 -> &U _lat_buffer `*Cuc `f ]
+[; ;GPS.c: 216: return _latitude;
+"216
+[e ) __latitude ]
+[e $UE 374  ]
+[; ;GPS.c: 217: }
+"217
+[e :UE 374 ]
 }
-"253
-[v _convert_time_to_utc `(v ~T0 @X0 1 ef1`ul ]
-"254
+"227
+[v _get_longitude `(f ~T0 @X0 1 ef1`uc ]
+"228
 {
-[; ;GPS.c: 253: void convert_time_to_utc(unsigned long int utc_time)
-[; ;GPS.c: 254: {
-[e :U _convert_time_to_utc ]
-"253
-[v _utc_time `ul ~T0 @X0 1 r1 ]
-"254
+[; ;GPS.c: 227: float get_longitude(unsigned char long_pointer)
+[; ;GPS.c: 228: {
+[e :U _get_longitude ]
+"227
+[v _long_pointer `uc ~T0 @X0 1 r1 ]
+"228
 [f ]
-"255
-[v _hour `ui ~T0 @X0 1 a ]
-[v _min `ui ~T0 @X0 1 a ]
-[v _sec `ui ~T0 @X0 1 a ]
-[; ;GPS.c: 255: unsigned int hour, min, sec;
-[; ;GPS.c: 256: hour = (utc_time / 10000) + -3;
-"256
-[e = _hour -> + / _utc_time -> -> -> 10000 `i `l `ul -> -> -U -> 3 `i `l `ul `ui ]
-[; ;GPS.c: 257: min = (utc_time % 10000) / 100;
-"257
-[e = _min -> / % _utc_time -> -> -> 10000 `i `l `ul -> -> -> 100 `i `l `ul `ui ]
-[; ;GPS.c: 258: sec = (utc_time % 10000) % 100;
-"258
-[e = _sec -> % % _utc_time -> -> -> 10000 `i `l `ul -> -> -> 100 `i `l `ul `ui ]
-[; ;GPS.c: 259: sprintf(data_buffer, "%d:%d:%d", hour,min,sec);
-"259
-[e ( _sprintf (1 , , , (. , &U _data_buffer :s 1C _hour _min _sec ]
-[; ;GPS.c: 260: }
-"260
-[e :UE 388 ]
-}
-"262
-[v _convert_to_date `(uc ~T0 @X0 1 ef1`*uc ]
-"263
+"229
+[v _long_index `uc ~T0 @X0 1 a ]
+"230
+[v _index `uc ~T0 @X0 1 a ]
+[; ;GPS.c: 229: unsigned char long_index;
+[; ;GPS.c: 230: unsigned char index = long_pointer+1;
+[e = _index -> + -> _long_pointer `i -> 1 `i `uc ]
+"231
+[v _long_buffer `uc ~T0 @X0 -> 15 `i a ]
+"232
+[v __longitude `f ~T0 @X0 1 a ]
+[; ;GPS.c: 231: char long_buffer[15];
+[; ;GPS.c: 232: float _longitude;
+[; ;GPS.c: 233: long_index=0;
+"233
+[e = _long_index -> -> 0 `i `uc ]
+[; ;GPS.c: 236: for( ; gga_buffer[index]!=','; index++){
+"236
 {
-[; ;GPS.c: 262: unsigned char convert_to_date(unsigned char dt[])
-[; ;GPS.c: 263: {
-[e :U _convert_to_date ]
-"262
-[v _dt `*uc ~T0 @X0 1 r1 ]
-"263
-[f ]
-[; ;GPS.c: 286: }
-"286
-[e :UE 389 ]
-}
-"290
-[v _convert_to_degrees `(f ~T0 @X0 1 ef1`f ]
+[e $U 383  ]
+[e :U 380 ]
 {
-[; ;GPS.c: 290: float convert_to_degrees(float nmea_lat_long){
-[e :U _convert_to_degrees ]
-[v _nmea_lat_long `f ~T0 @X0 1 r1 ]
-[f ]
-"291
-[v _minutes `f ~T0 @X0 1 a ]
-[v _dec_deg `f ~T0 @X0 1 a ]
-[v _decimal `f ~T0 @X0 1 a ]
-"292
-[v _degrees `i ~T0 @X0 1 a ]
-"293
-[v _position `f ~T0 @X0 1 a ]
-[; ;GPS.c: 291: float minutes, dec_deg, decimal;
-[; ;GPS.c: 292: int degrees;
-[; ;GPS.c: 293: float position;
-[; ;GPS.c: 294: degrees = (int)(nmea_lat_long/100.00);
-"294
-[e = _degrees -> / -> _nmea_lat_long `d .100.00 `i ]
-[; ;GPS.c: 295: minutes = nmea_lat_long - degrees*100.00;
-"295
-[e = _minutes -> - -> _nmea_lat_long `d * -> _degrees `d .100.00 `f ]
-[; ;GPS.c: 296: dec_deg = minutes / 60.00;
-"296
-[e = _dec_deg -> / -> _minutes `d .60.00 `f ]
-[; ;GPS.c: 297: decimal = degrees + dec_deg;
-"297
-[e = _decimal + -> _degrees `f _dec_deg ]
-[; ;GPS.c: 298: if (n_s == 'S' || E_W == 'W') {
-"298
-[e $ ! || == -> _n_s `ui -> 83 `ui == -> _E_W `ui -> 87 `ui 391  ]
-{
-[; ;GPS.c: 299: decimal *= -1;
-"299
-[e =* _decimal -> -U -> 1 `i `f ]
-"300
+[; ;GPS.c: 237: long_buffer[long_index]= gga_buffer[index];
+"237
+[e = *U + &U _long_buffer * -> _long_index `ux -> -> # *U &U _long_buffer `ui `ux *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux ]
+[; ;GPS.c: 238: long_index++;
+"238
+[e ++ _long_index -> -> 1 `i `uc ]
+"239
 }
-[e :U 391 ]
-[; ;GPS.c: 300: }
-[; ;GPS.c: 302: return decimal;
-"302
-[e ) _decimal ]
-[e $UE 390  ]
-[; ;GPS.c: 303: }
-"303
-[e :UE 390 ]
+"236
+[e ++ _index -> -> 1 `i `uc ]
+[e :U 383 ]
+[e $ != -> *U + &U _gga_buffer * -> _index `ux -> -> # *U &U _gga_buffer `ui `ux `ui -> 44 `ui 380  ]
+[e :U 381 ]
+"239
 }
-"314
-[v _tratamento_uart `(v ~T0 @X0 1 ef1`uc ]
-"315
-{
-[; ;GPS.c: 314: void tratamento_uart(unsigned char received_char)
-[; ;GPS.c: 315: {
-[e :U _tratamento_uart ]
-"314
-[v _received_char `uc ~T0 @X0 1 r1 ]
-"315
-[f ]
-[; ;GPS.c: 316: if(received_char =='$'){
-"316
-[e $ ! == -> _received_char `ui -> 36 `ui 393  ]
-{
-[; ;GPS.c: 317: gga_index = 0;
-"317
-[e = _gga_index -> -> 0 `i `ui ]
-[; ;GPS.c: 318: rmc_index = 0;
-"318
-[e = _rmc_index -> -> 0 `i `ui ]
-[; ;GPS.c: 319: is_it_gga_string = 0;
-"319
-[e = _is_it_gga_string -> -> 0 `i `uc ]
-[; ;GPS.c: 320: is_it_rmc_string = 0;
-"320
-[e = _is_it_rmc_string -> -> 0 `i `uc ]
-[; ;GPS.c: 321: comma_counter_gga = 0;
-"321
-[e = _comma_counter_gga -> -> 0 `i `uc ]
-[; ;GPS.c: 322: comma_counter_rmc = 0;
-"322
-[e = _comma_counter_rmc -> -> 0 `i `uc ]
-"323
-}
-[e :U 393 ]
-[; ;GPS.c: 323: }
-[; ;GPS.c: 325: if(is_it_gga_string == 1)
-"325
-[e $ ! == -> _is_it_gga_string `i -> 1 `i 394  ]
-[; ;GPS.c: 326: {
-"326
-{
-[; ;GPS.c: 327: if(received_char == ',' )
-"327
-[e $ ! == -> _received_char `ui -> 44 `ui 395  ]
-[; ;GPS.c: 328: {
-"328
-{
-[; ;GPS.c: 329: gga_pointers[comma_counter_gga++] = gga_index;
-"329
-[e = *U + &U _gga_pointers * -> ++ _comma_counter_gga -> -> 1 `i `uc `ux -> -> # *U &U _gga_pointers `ui `ux -> _gga_index `uc ]
-"330
-}
-[e :U 395 ]
-[; ;GPS.c: 330: }
-[; ;GPS.c: 331: gga_buffer[gga_index++] = received_char;
-"331
-[e = *U + &U _gga_buffer * -> ++ _gga_index -> -> 1 `i `ui `ux -> -> # *U &U _gga_buffer `ui `ux _received_char ]
-"332
-}
-[; ;GPS.c: 332: }
-[e $U 396  ]
-"333
-[e :U 394 ]
-[; ;GPS.c: 333: else if(gga_code[0] == 'G' && gga_code[1] == 'G' && gga_code[2] == 'A'){
-[e $ ! && && == -> *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 71 `ui == -> *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 71 `ui == -> *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 65 `ui 397  ]
-{
-[; ;GPS.c: 334: is_it_gga_string = 1;
-"334
-[e = _is_it_gga_string -> -> 1 `i `uc ]
-[; ;GPS.c: 335: gga_code[0] = 0;
-"335
-[e = *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
-[; ;GPS.c: 336: gga_code[1] = 0;
-"336
-[e = *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
-[; ;GPS.c: 337: gga_code[2] = 0;
-"337
-[e = *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
-"338
-}
-[; ;GPS.c: 338: }
-[e $U 398  ]
-"339
-[e :U 397 ]
-[; ;GPS.c: 339: else{
-{
-[; ;GPS.c: 340: gga_code[0] = gga_code[1];
-"340
-[e = *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux ]
-[; ;GPS.c: 341: gga_code[1] = gga_code[2];
-"341
-[e = *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux ]
-[; ;GPS.c: 342: gga_code[2] = received_char;
-"342
-[e = *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux _received_char ]
-"343
-}
-[e :U 398 ]
-[e :U 396 ]
-[; ;GPS.c: 343: }
-[; ;GPS.c: 345: if(is_it_rmc_string == 1)
-"345
-[e $ ! == -> _is_it_rmc_string `i -> 1 `i 399  ]
-[; ;GPS.c: 346: {
-"346
-{
-[; ;GPS.c: 347: if(received_char == ',' )
-"347
-[e $ ! == -> _received_char `ui -> 44 `ui 400  ]
-[; ;GPS.c: 348: {
-"348
-{
-[; ;GPS.c: 349: rmc_pointers[comma_counter_rmc++] = rmc_index;
-"349
-[e = *U + &U _rmc_pointers * -> ++ _comma_counter_rmc -> -> 1 `i `uc `ux -> -> # *U &U _rmc_pointers `ui `ux -> _rmc_index `uc ]
-"350
-}
-[e :U 400 ]
-[; ;GPS.c: 350: }
-[; ;GPS.c: 351: rmc_buffer[rmc_index++] = received_char;
-"351
-[e = *U + &U _rmc_buffer * -> ++ _rmc_index -> -> 1 `i `ui `ux -> -> # *U &U _rmc_buffer `ui `ux _received_char ]
-"352
-}
-[; ;GPS.c: 352: }
-[e $U 401  ]
-"353
-[e :U 399 ]
-[; ;GPS.c: 353: else if(rmc_code[0] == 'R' && rmc_code[1] == 'M' && rmc_code[2] == 'C'){
-[e $ ! && && == -> *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 82 `ui == -> *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 77 `ui == -> *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 67 `ui 402  ]
-{
-[; ;GPS.c: 354: is_it_rmc_string = 1;
-"354
-[e = _is_it_rmc_string -> -> 1 `i `uc ]
-[; ;GPS.c: 355: rmc_code[0] = 0;
-"355
-[e = *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
-[; ;GPS.c: 356: rmc_code[1] = 0;
-"356
-[e = *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
-[; ;GPS.c: 357: rmc_code[2] = 0;
-"357
-[e = *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
-"358
-}
-[; ;GPS.c: 358: }
-[e $U 403  ]
-"359
-[e :U 402 ]
-[; ;GPS.c: 359: else{
-{
-[; ;GPS.c: 360: rmc_code[0] = rmc_code[1];
-"360
-[e = *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux ]
-[; ;GPS.c: 361: rmc_code[1] = rmc_code[2];
-"361
-[e = *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux ]
-[; ;GPS.c: 362: rmc_code[2] = received_char;
-"362
-[e = *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux _received_char ]
-"363
-}
-[e :U 403 ]
-[e :U 401 ]
-[; ;GPS.c: 363: }
-[; ;GPS.c: 364: }
-"364
-[e :UE 392 ]
-}
-[p f _sprintf 8388736 ]
-[a 1C 37 100 58 37 100 58 37 100 0 ]
-
-=======
-"210
-}
-[; ;GPS.c: 210: }
-[; ;GPS.c: 212: dado_buffer[strlen(dado_buffer) - 0] = '\0';
-"212
-[e = *U + &U _dado_buffer * -> - ( _strlen (1 -> &U _dado_buffer `*Cuc -> -> 0 `i `ui `ux -> -> # *U &U _dado_buffer `ui `ux -> -> 0 `ui `uc ]
-[; ;GPS.c: 241: }
+[; ;GPS.c: 239: }
+[; ;GPS.c: 240: long_index++;
+"240
+[e ++ _long_index -> -> 1 `i `uc ]
+[; ;GPS.c: 241: E_W = gga_buffer[long_index];
 "241
-[e :UE 383 ]
+[e = _E_W *U + &U _gga_buffer * -> _long_index `ux -> -> # *U &U _gga_buffer `ui `ux ]
+[; ;GPS.c: 242: _longitude = atof(long_buffer);
+"242
+[e = __longitude -> ( _atof (1 -> &U _long_buffer `*Cuc `f ]
+[; ;GPS.c: 243: return _longitude;
+"243
+[e ) __longitude ]
+[e $UE 379  ]
+[; ;GPS.c: 244: }
+"244
+[e :UE 379 ]
 }
-"251
-[v _convert_time_to_utc `(v ~T0 @X0 1 ef1`ul ]
-"252
-{
-[; ;GPS.c: 251: void convert_time_to_utc(unsigned long int utc_time)
-[; ;GPS.c: 252: {
-[e :U _convert_time_to_utc ]
-"251
-[v _utc_time `ul ~T0 @X0 1 r1 ]
-"252
-[f ]
 "253
+[v _get_dt `(ul ~T0 @X0 1 ef1`uc ]
+"254
+{
+[; ;GPS.c: 253: unsigned long int get_dt(unsigned char dt_pointer)
+[; ;GPS.c: 254: {
+[e :U _get_dt ]
+"253
+[v _dt_pointer `uc ~T0 @X0 1 r1 ]
+"254
+[f ]
+"255
+[v _dt_index `uc ~T0 @X0 1 a ]
+[; ;GPS.c: 255: unsigned char dt_index = dt_pointer + 1;
+[e = _dt_index -> + -> _dt_pointer `i -> 1 `i `uc ]
+"256
+[v __dt `ul ~T0 @X0 1 a ]
+"257
+[v _index `uc ~T0 @X0 1 a ]
+"258
+[v _count `uc ~T0 @X0 1 a ]
+"259
+[v _dia `uc ~T0 @X0 1 a ]
+[; ;GPS.c: 256: unsigned long int _dt;
+[; ;GPS.c: 257: unsigned char index;
+[; ;GPS.c: 258: unsigned char count;
+[; ;GPS.c: 259: unsigned char dia = "|";
+[e = _dia -> :s 6C `uc ]
+"260
+[v _mes `uc ~T0 @X0 1 a ]
+[; ;GPS.c: 260: unsigned char mes = "|";
+[e = _mes -> :s 7C `uc ]
+"261
+[v _ano `uc ~T0 @X0 1 a ]
+[; ;GPS.c: 261: unsigned char ano = "|";
+[e = _ano -> :s 8C `uc ]
+[; ;GPS.c: 262: index = 0;
+"262
+[e = _index -> -> 0 `i `uc ]
+[; ;GPS.c: 265: for(;rmc_buffer[dt_index]!=',';dt_index++){
+"265
+{
+[e $U 388  ]
+[e :U 385 ]
+{
+[; ;GPS.c: 266: dado_buffer[index]= rmc_buffer[dt_index];
+"266
+[e = *U + &U _dado_buffer * -> _index `ux -> -> # *U &U _dado_buffer `ui `ux *U + &U _rmc_buffer * -> _dt_index `ux -> -> # *U &U _rmc_buffer `ui `ux ]
+[; ;GPS.c: 267: index++;
+"267
+[e ++ _index -> -> 1 `i `uc ]
+"268
+}
+"265
+[e ++ _dt_index -> -> 1 `i `uc ]
+[e :U 388 ]
+[e $ != -> *U + &U _rmc_buffer * -> _dt_index `ux -> -> # *U &U _rmc_buffer `ui `ux `ui -> 44 `ui 385  ]
+[e :U 386 ]
+"268
+}
+[; ;GPS.c: 268: }
+[; ;GPS.c: 270: dado_buffer[strlen(dado_buffer) - 0] = '\0';
+"270
+[e = *U + &U _dado_buffer * -> - ( _strlen (1 -> &U _dado_buffer `*Cuc -> -> 0 `i `ui `ux -> -> # *U &U _dado_buffer `ui `ux -> -> 0 `ui `uc ]
+[; ;GPS.c: 272: for(count = 0;count<=7; count++)
+"272
+{
+[e = _count -> -> 0 `i `uc ]
+[e $ <= -> _count `i -> 7 `i 389  ]
+[e $U 390  ]
+"273
+[e :U 389 ]
+[; ;GPS.c: 273: {
+{
+[; ;GPS.c: 274: if(count < 2)
+"274
+[e $ ! < -> _count `i -> 2 `i 392  ]
+[; ;GPS.c: 275: {
+"275
+{
+[; ;GPS.c: 276: strcat(dia, dado_buffer[count]);
+"276
+[e ( _strcat (2 , -> _dia `*uc -> *U + &U _dado_buffer * -> _count `ux -> -> # *U &U _dado_buffer `ui `ux `*Cuc ]
+"277
+}
+[; ;GPS.c: 277: }
+[e $U 393  ]
+"278
+[e :U 392 ]
+[; ;GPS.c: 278: else if(count>=2 && count<4)
+[e $ ! && >= -> _count `i -> 2 `i < -> _count `i -> 4 `i 394  ]
+[; ;GPS.c: 279: {
+"279
+{
+[; ;GPS.c: 280: strcat(mes, dado_buffer[count]);
+"280
+[e ( _strcat (2 , -> _mes `*uc -> *U + &U _dado_buffer * -> _count `ux -> -> # *U &U _dado_buffer `ui `ux `*Cuc ]
+"281
+}
+[; ;GPS.c: 281: }
+[e $U 395  ]
+"282
+[e :U 394 ]
+[; ;GPS.c: 282: else
+[; ;GPS.c: 283: {
+"283
+{
+[; ;GPS.c: 284: strcat(ano, dado_buffer[count]);
+"284
+[e ( _strcat (2 , -> _ano `*uc -> *U + &U _dado_buffer * -> _count `ux -> -> # *U &U _dado_buffer `ui `ux `*Cuc ]
+"285
+}
+[e :U 395 ]
+[e :U 393 ]
+"286
+}
+"272
+[e ++ _count -> -> 1 `i `uc ]
+[e $ <= -> _count `i -> 7 `i 389  ]
+[e :U 390 ]
+"286
+}
+[; ;GPS.c: 285: }
+[; ;GPS.c: 286: }
+[; ;GPS.c: 290: f_time.dia = dia;
+"290
+[e = . _f_time 3 _dia ]
+[; ;GPS.c: 291: f_time.mes = mes;
+"291
+[e = . _f_time 4 _mes ]
+[; ;GPS.c: 292: f_time.ano = ano;
+"292
+[e = . _f_time 5 _ano ]
+[; ;GPS.c: 294: }
+"294
+[e :UE 384 ]
+}
+"304
+[v _convert_time_to_utc `(v ~T0 @X0 1 ef1`ul ]
+"305
+{
+[; ;GPS.c: 304: void convert_time_to_utc(unsigned long int utc_time)
+[; ;GPS.c: 305: {
+[e :U _convert_time_to_utc ]
+"304
+[v _utc_time `ul ~T0 @X0 1 r1 ]
+"305
+[f ]
+"306
 [v _hour `ui ~T0 @X0 1 a ]
 [v _min `ui ~T0 @X0 1 a ]
 [v _sec `ui ~T0 @X0 1 a ]
-[; ;GPS.c: 253: unsigned int hour, min, sec;
-[; ;GPS.c: 254: hour = (utc_time / 10000) + -3;
-"254
+[; ;GPS.c: 306: unsigned int hour, min, sec;
+[; ;GPS.c: 308: hour = (utc_time / 10000) + -3;
+"308
 [e = _hour -> + / _utc_time -> -> -> 10000 `i `l `ul -> -> -U -> 3 `i `l `ul `ui ]
-[; ;GPS.c: 255: min = (utc_time % 10000) / 100;
-"255
+[; ;GPS.c: 309: min = (utc_time % 10000) / 100;
+"309
 [e = _min -> / % _utc_time -> -> -> 10000 `i `l `ul -> -> -> 100 `i `l `ul `ui ]
-[; ;GPS.c: 256: sec = (utc_time % 10000) % 100;
-"256
+[; ;GPS.c: 310: sec = (utc_time % 10000) % 100;
+"310
 [e = _sec -> % % _utc_time -> -> -> 10000 `i `l `ul -> -> -> 100 `i `l `ul `ui ]
-[; ;GPS.c: 257: sprintf(data_buffer, "%d:%d:%d", hour,min,sec);
-"257
-[e ( _sprintf (1 , , , (. , &U _data_buffer :s 7C _hour _min _sec ]
-[; ;GPS.c: 258: }
-"258
-[e :UE 388 ]
+[; ;GPS.c: 311: sprintf(data_buffer, "%d:%d:%d", hour,min,sec);
+"311
+[e ( _sprintf (1 , , , (. , &U _data_buffer :s 9C _hour _min _sec ]
+[; ;GPS.c: 313: f_time.hora = hour;
+"313
+[e = . _f_time 0 _hour ]
+[; ;GPS.c: 314: f_time.min = min;
+"314
+[e = . _f_time 1 _min ]
+[; ;GPS.c: 315: f_time.seg = sec;
+"315
+[e = . _f_time 2 _sec ]
+[; ;GPS.c: 316: }
+"316
+[e :UE 396 ]
 }
-"260
+"318
 [v _convert_to_date `(uc ~T0 @X0 1 ef1`*uc ]
-"261
+"319
 {
-[; ;GPS.c: 260: unsigned char convert_to_date(unsigned char dt[])
-[; ;GPS.c: 261: {
+[; ;GPS.c: 318: unsigned char convert_to_date(unsigned char dt[])
+[; ;GPS.c: 319: {
 [e :U _convert_to_date ]
-"260
+"318
 [v _dt `*uc ~T0 @X0 1 r1 ]
-"261
+"319
 [f ]
-[; ;GPS.c: 284: }
-"284
-[e :UE 389 ]
+[; ;GPS.c: 342: }
+"342
+[e :UE 397 ]
 }
-"288
+"346
 [v _convert_to_degrees `(f ~T0 @X0 1 ef1`f ]
 {
-[; ;GPS.c: 288: float convert_to_degrees(float nmea_lat_long){
+[; ;GPS.c: 346: float convert_to_degrees(float nmea_lat_long){
 [e :U _convert_to_degrees ]
 [v _nmea_lat_long `f ~T0 @X0 1 r1 ]
 [f ]
-"289
+"347
 [v _minutes `f ~T0 @X0 1 a ]
 [v _dec_deg `f ~T0 @X0 1 a ]
 [v _decimal `f ~T0 @X0 1 a ]
-"290
-[v _degrees `i ~T0 @X0 1 a ]
-"291
-[v _position `f ~T0 @X0 1 a ]
-[; ;GPS.c: 289: float minutes, dec_deg, decimal;
-[; ;GPS.c: 290: int degrees;
-[; ;GPS.c: 291: float position;
-[; ;GPS.c: 292: degrees = (int)(nmea_lat_long/100.00);
-"292
-[e = _degrees -> / -> _nmea_lat_long `d .100.00 `i ]
-[; ;GPS.c: 293: minutes = nmea_lat_long - degrees*100.00;
-"293
-[e = _minutes -> - -> _nmea_lat_long `d * -> _degrees `d .100.00 `f ]
-[; ;GPS.c: 294: dec_deg = minutes / 60.00;
-"294
-[e = _dec_deg -> / -> _minutes `d .60.00 `f ]
-[; ;GPS.c: 295: decimal = degrees + dec_deg;
-"295
-[e = _decimal + -> _degrees `f _dec_deg ]
-[; ;GPS.c: 296: if (n_s == 'S' || E_W == 'W') {
-"296
-[e $ ! || == -> _n_s `ui -> 83 `ui == -> _E_W `ui -> 87 `ui 391  ]
-{
-[; ;GPS.c: 297: decimal *= -1;
-"297
-[e =* _decimal -> -U -> 1 `i `f ]
-"298
-}
-[e :U 391 ]
-[; ;GPS.c: 298: }
-[; ;GPS.c: 300: return decimal;
-"300
-[e ) _decimal ]
-[e $UE 390  ]
-[; ;GPS.c: 301: }
-"301
-[e :UE 390 ]
-}
-"312
-[v _tratamento_uart `(v ~T0 @X0 1 ef1`uc ]
-"313
-{
-[; ;GPS.c: 312: void tratamento_uart(unsigned char received_char)
-[; ;GPS.c: 313: {
-[e :U _tratamento_uart ]
-"312
-[v _received_char `uc ~T0 @X0 1 r1 ]
-"313
-[f ]
-[; ;GPS.c: 314: if(received_char =='$'){
-"314
-[e $ ! == -> _received_char `ui -> 36 `ui 393  ]
-{
-[; ;GPS.c: 315: gga_index = 0;
-"315
-[e = _gga_index -> -> 0 `i `ui ]
-[; ;GPS.c: 316: rmc_index = 0;
-"316
-[e = _rmc_index -> -> 0 `i `ui ]
-[; ;GPS.c: 317: is_it_gga_string = 0;
-"317
-[e = _is_it_gga_string -> -> 0 `i `uc ]
-[; ;GPS.c: 318: is_it_rmc_string = 0;
-"318
-[e = _is_it_rmc_string -> -> 0 `i `uc ]
-[; ;GPS.c: 319: comma_counter_gga = 0;
-"319
-[e = _comma_counter_gga -> -> 0 `i `uc ]
-[; ;GPS.c: 320: comma_counter_rmc = 0;
-"320
-[e = _comma_counter_rmc -> -> 0 `i `uc ]
-"321
-}
-[e :U 393 ]
-[; ;GPS.c: 321: }
-[; ;GPS.c: 323: if(is_it_gga_string == 1)
-"323
-[e $ ! == -> _is_it_gga_string `i -> 1 `i 394  ]
-[; ;GPS.c: 324: {
-"324
-{
-[; ;GPS.c: 325: if(received_char == ',' )
-"325
-[e $ ! == -> _received_char `ui -> 44 `ui 395  ]
-[; ;GPS.c: 326: {
-"326
-{
-[; ;GPS.c: 327: gga_pointers[comma_counter_gga++] = gga_index;
-"327
-[e = *U + &U _gga_pointers * -> ++ _comma_counter_gga -> -> 1 `i `uc `ux -> -> # *U &U _gga_pointers `ui `ux -> _gga_index `uc ]
-"328
-}
-[e :U 395 ]
-[; ;GPS.c: 328: }
-[; ;GPS.c: 329: gga_buffer[gga_index++] = received_char;
-"329
-[e = *U + &U _gga_buffer * -> ++ _gga_index -> -> 1 `i `ui `ux -> -> # *U &U _gga_buffer `ui `ux _received_char ]
-"330
-}
-[; ;GPS.c: 330: }
-[e $U 396  ]
-"331
-[e :U 394 ]
-[; ;GPS.c: 331: else if(gga_code[0] == 'G' && gga_code[1] == 'G' && gga_code[2] == 'A'){
-[e $ ! && && == -> *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 71 `ui == -> *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 71 `ui == -> *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 65 `ui 397  ]
-{
-[; ;GPS.c: 332: is_it_gga_string = 1;
-"332
-[e = _is_it_gga_string -> -> 1 `i `uc ]
-[; ;GPS.c: 333: gga_code[0] = 0;
-"333
-[e = *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
-[; ;GPS.c: 334: gga_code[1] = 0;
-"334
-[e = *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
-[; ;GPS.c: 335: gga_code[2] = 0;
-"335
-[e = *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
-"336
-}
-[; ;GPS.c: 336: }
-[e $U 398  ]
-"337
-[e :U 397 ]
-[; ;GPS.c: 337: else{
-{
-[; ;GPS.c: 338: gga_code[0] = gga_code[1];
-"338
-[e = *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux ]
-[; ;GPS.c: 339: gga_code[1] = gga_code[2];
-"339
-[e = *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux ]
-[; ;GPS.c: 340: gga_code[2] = received_char;
-"340
-[e = *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux _received_char ]
-"341
-}
-[e :U 398 ]
-[e :U 396 ]
-[; ;GPS.c: 341: }
-[; ;GPS.c: 343: if(is_it_rmc_string == 1)
-"343
-[e $ ! == -> _is_it_rmc_string `i -> 1 `i 399  ]
-[; ;GPS.c: 344: {
-"344
-{
-[; ;GPS.c: 345: if(received_char == ',' )
-"345
-[e $ ! == -> _received_char `ui -> 44 `ui 400  ]
-[; ;GPS.c: 346: {
-"346
-{
-[; ;GPS.c: 347: rmc_pointers[comma_counter_rmc++] = rmc_index;
-"347
-[e = *U + &U _rmc_pointers * -> ++ _comma_counter_rmc -> -> 1 `i `uc `ux -> -> # *U &U _rmc_pointers `ui `ux -> _rmc_index `uc ]
 "348
-}
-[e :U 400 ]
-[; ;GPS.c: 348: }
-[; ;GPS.c: 349: rmc_buffer[rmc_index++] = received_char;
+[v _degrees `i ~T0 @X0 1 a ]
 "349
-[e = *U + &U _rmc_buffer * -> ++ _rmc_index -> -> 1 `i `ui `ux -> -> # *U &U _rmc_buffer `ui `ux _received_char ]
+[v _position `f ~T0 @X0 1 a ]
+[; ;GPS.c: 347: float minutes, dec_deg, decimal;
+[; ;GPS.c: 348: int degrees;
+[; ;GPS.c: 349: float position;
+[; ;GPS.c: 350: degrees = (int)(nmea_lat_long/100.00);
 "350
-}
-[; ;GPS.c: 350: }
-[e $U 401  ]
+[e = _degrees -> / -> _nmea_lat_long `d .100.00 `i ]
+[; ;GPS.c: 351: minutes = nmea_lat_long - degrees*100.00;
 "351
-[e :U 399 ]
-[; ;GPS.c: 351: else if(rmc_code[0] == 'R' && rmc_code[1] == 'M' && rmc_code[2] == 'C'){
-[e $ ! && && == -> *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 82 `ui == -> *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 77 `ui == -> *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 67 `ui 402  ]
-{
-[; ;GPS.c: 352: is_it_rmc_string = 1;
+[e = _minutes -> - -> _nmea_lat_long `d * -> _degrees `d .100.00 `f ]
+[; ;GPS.c: 352: dec_deg = minutes / 60.00;
 "352
-[e = _is_it_rmc_string -> -> 1 `i `uc ]
-[; ;GPS.c: 353: rmc_code[0] = 0;
+[e = _dec_deg -> / -> _minutes `d .60.00 `f ]
+[; ;GPS.c: 353: decimal = degrees + dec_deg;
 "353
-[e = *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
-[; ;GPS.c: 354: rmc_code[1] = 0;
+[e = _decimal + -> _degrees `f _dec_deg ]
+[; ;GPS.c: 354: if (n_s == 'S' || E_W == 'W') {
 "354
-[e = *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
-[; ;GPS.c: 355: rmc_code[2] = 0;
+[e $ ! || == -> _n_s `ui -> 83 `ui == -> _E_W `ui -> 87 `ui 399  ]
+{
+[; ;GPS.c: 355: decimal *= -1;
 "355
-[e = *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
+[e =* _decimal -> -U -> 1 `i `f ]
 "356
 }
+[e :U 399 ]
 [; ;GPS.c: 356: }
-[e $U 403  ]
-"357
-[e :U 402 ]
-[; ;GPS.c: 357: else{
-{
-[; ;GPS.c: 358: rmc_code[0] = rmc_code[1];
+[; ;GPS.c: 358: return decimal;
 "358
-[e = *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux ]
-[; ;GPS.c: 359: rmc_code[1] = rmc_code[2];
+[e ) _decimal ]
+[e $UE 398  ]
+[; ;GPS.c: 359: }
 "359
-[e = *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux ]
-[; ;GPS.c: 360: rmc_code[2] = received_char;
-"360
-[e = *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux _received_char ]
-"361
+[e :UE 398 ]
+}
+"370
+[v _tratamento_uart `(v ~T0 @X0 1 ef1`uc ]
+"371
+{
+[; ;GPS.c: 370: void tratamento_uart(unsigned char received_char)
+[; ;GPS.c: 371: {
+[e :U _tratamento_uart ]
+"370
+[v _received_char `uc ~T0 @X0 1 r1 ]
+"371
+[f ]
+[; ;GPS.c: 372: if(received_char =='$'){
+"372
+[e $ ! == -> _received_char `ui -> 36 `ui 401  ]
+{
+[; ;GPS.c: 373: gga_index = 0;
+"373
+[e = _gga_index -> -> 0 `i `ui ]
+[; ;GPS.c: 374: rmc_index = 0;
+"374
+[e = _rmc_index -> -> 0 `i `ui ]
+[; ;GPS.c: 375: is_it_gga_string = 0;
+"375
+[e = _is_it_gga_string -> -> 0 `i `uc ]
+[; ;GPS.c: 376: is_it_rmc_string = 0;
+"376
+[e = _is_it_rmc_string -> -> 0 `i `uc ]
+[; ;GPS.c: 377: comma_counter_gga = 0;
+"377
+[e = _comma_counter_gga -> -> 0 `i `uc ]
+[; ;GPS.c: 378: comma_counter_rmc = 0;
+"378
+[e = _comma_counter_rmc -> -> 0 `i `uc ]
+"379
+}
+[e :U 401 ]
+[; ;GPS.c: 379: }
+[; ;GPS.c: 381: if(is_it_gga_string == 1)
+"381
+[e $ ! == -> _is_it_gga_string `i -> 1 `i 402  ]
+[; ;GPS.c: 382: {
+"382
+{
+[; ;GPS.c: 383: if(received_char == ',' )
+"383
+[e $ ! == -> _received_char `ui -> 44 `ui 403  ]
+[; ;GPS.c: 384: {
+"384
+{
+[; ;GPS.c: 385: gga_pointers[comma_counter_gga++] = gga_index;
+"385
+[e = *U + &U _gga_pointers * -> ++ _comma_counter_gga -> -> 1 `i `uc `ux -> -> # *U &U _gga_pointers `ui `ux -> _gga_index `uc ]
+"386
 }
 [e :U 403 ]
-[e :U 401 ]
-[; ;GPS.c: 361: }
-[; ;GPS.c: 362: }
-"362
-[e :UE 392 ]
+[; ;GPS.c: 386: }
+[; ;GPS.c: 387: gga_buffer[gga_index++] = received_char;
+"387
+[e = *U + &U _gga_buffer * -> ++ _gga_index -> -> 1 `i `ui `ux -> -> # *U &U _gga_buffer `ui `ux _received_char ]
+"388
+}
+[; ;GPS.c: 388: }
+[e $U 404  ]
+"389
+[e :U 402 ]
+[; ;GPS.c: 389: else if(gga_code[0] == 'G' && gga_code[1] == 'G' && gga_code[2] == 'A'){
+[e $ ! && && == -> *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 71 `ui == -> *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 71 `ui == -> *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux `ui -> 65 `ui 405  ]
+{
+[; ;GPS.c: 390: is_it_gga_string = 1;
+"390
+[e = _is_it_gga_string -> -> 1 `i `uc ]
+[; ;GPS.c: 391: gga_code[0] = 0;
+"391
+[e = *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
+[; ;GPS.c: 392: gga_code[1] = 0;
+"392
+[e = *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
+[; ;GPS.c: 393: gga_code[2] = 0;
+"393
+[e = *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux -> -> 0 `i `uc ]
+"394
+}
+[; ;GPS.c: 394: }
+[e $U 406  ]
+"395
+[e :U 405 ]
+[; ;GPS.c: 395: else{
+{
+[; ;GPS.c: 396: gga_code[0] = gga_code[1];
+"396
+[e = *U + &U _gga_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _gga_code `ui `ux *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux ]
+[; ;GPS.c: 397: gga_code[1] = gga_code[2];
+"397
+[e = *U + &U _gga_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _gga_code `ui `ux *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux ]
+[; ;GPS.c: 398: gga_code[2] = received_char;
+"398
+[e = *U + &U _gga_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _gga_code `ui `ux _received_char ]
+"399
+}
+[e :U 406 ]
+[e :U 404 ]
+[; ;GPS.c: 399: }
+[; ;GPS.c: 401: if(is_it_rmc_string == 1)
+"401
+[e $ ! == -> _is_it_rmc_string `i -> 1 `i 407  ]
+[; ;GPS.c: 402: {
+"402
+{
+[; ;GPS.c: 403: if(received_char == ',' )
+"403
+[e $ ! == -> _received_char `ui -> 44 `ui 408  ]
+[; ;GPS.c: 404: {
+"404
+{
+[; ;GPS.c: 405: rmc_pointers[comma_counter_rmc++] = rmc_index;
+"405
+[e = *U + &U _rmc_pointers * -> ++ _comma_counter_rmc -> -> 1 `i `uc `ux -> -> # *U &U _rmc_pointers `ui `ux -> _rmc_index `uc ]
+"406
+}
+[e :U 408 ]
+[; ;GPS.c: 406: }
+[; ;GPS.c: 407: rmc_buffer[rmc_index++] = received_char;
+"407
+[e = *U + &U _rmc_buffer * -> ++ _rmc_index -> -> 1 `i `ui `ux -> -> # *U &U _rmc_buffer `ui `ux _received_char ]
+"408
+}
+[; ;GPS.c: 408: }
+[e $U 409  ]
+"409
+[e :U 407 ]
+[; ;GPS.c: 409: else if(rmc_code[0] == 'R' && rmc_code[1] == 'M' && rmc_code[2] == 'C'){
+[e $ ! && && == -> *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 82 `ui == -> *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 77 `ui == -> *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux `ui -> 67 `ui 410  ]
+{
+[; ;GPS.c: 410: is_it_rmc_string = 1;
+"410
+[e = _is_it_rmc_string -> -> 1 `i `uc ]
+[; ;GPS.c: 411: rmc_code[0] = 0;
+"411
+[e = *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
+[; ;GPS.c: 412: rmc_code[1] = 0;
+"412
+[e = *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
+[; ;GPS.c: 413: rmc_code[2] = 0;
+"413
+[e = *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux -> -> 0 `i `uc ]
+"414
+}
+[; ;GPS.c: 414: }
+[e $U 411  ]
+"415
+[e :U 410 ]
+[; ;GPS.c: 415: else{
+{
+[; ;GPS.c: 416: rmc_code[0] = rmc_code[1];
+"416
+[e = *U + &U _rmc_code * -> -> -> 0 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux ]
+[; ;GPS.c: 417: rmc_code[1] = rmc_code[2];
+"417
+[e = *U + &U _rmc_code * -> -> -> 1 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux ]
+[; ;GPS.c: 418: rmc_code[2] = received_char;
+"418
+[e = *U + &U _rmc_code * -> -> -> 2 `i `ui `ux -> -> # *U &U _rmc_code `ui `ux _received_char ]
+"419
+}
+[e :U 411 ]
+[e :U 409 ]
+[; ;GPS.c: 419: }
+[; ;GPS.c: 420: }
+"420
+[e :UE 400 ]
 }
 [p f _sprintf 8462464 ]
+[a 6C 124 0 ]
+[a 7C 124 0 ]
+[a 8C 124 0 ]
 [a 3C 37 46 48 55 102 0 ]
-[a 5C 37 46 48 55 102 0 ]
-[a 7C 37 100 58 37 100 58 37 100 0 ]
-[a 4C 76 97 116 58 0 ]
-[a 6C 76 111 110 58 0 ]
+[a 4C 37 46 48 55 102 0 ]
+[a 9C 37 100 58 37 100 58 37 100 0 ]
+[a 5C 76 111 110 58 0 ]
 [a 2C 68 97 116 97 58 0 ]
 [a 1C 72 111 114 97 58 0 ]
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05

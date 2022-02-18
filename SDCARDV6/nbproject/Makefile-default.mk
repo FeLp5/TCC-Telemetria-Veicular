@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c bibliotecas/GPS.c bibliotecas/I2C_SW.c bibliotecas/SDCard.c bibliotecas/SHRC.c bibliotecas/SPI.c bibliotecas/chaves.c bibliotecas/diskio.c bibliotecas/display_lcd.c bibliotecas/hardware.c bibliotecas/int_eeprom.c bibliotecas/pff.c bibliotecas/uart.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c bibliotecas/GPS.c bibliotecas/I2C_SW.c bibliotecas/SDCard.c bibliotecas/SHRC.c bibliotecas/SPI.c bibliotecas/chaves.c bibliotecas/display_lcd.c bibliotecas/hardware.c bibliotecas/int_eeprom.c bibliotecas/uart.c bibliotecas/diskio.c bibliotecas/ff.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/bibliotecas/GPS.p1 ${OBJECTDIR}/bibliotecas/I2C_SW.p1 ${OBJECTDIR}/bibliotecas/SDCard.p1 ${OBJECTDIR}/bibliotecas/SHRC.p1 ${OBJECTDIR}/bibliotecas/SPI.p1 ${OBJECTDIR}/bibliotecas/chaves.p1 ${OBJECTDIR}/bibliotecas/diskio.p1 ${OBJECTDIR}/bibliotecas/display_lcd.p1 ${OBJECTDIR}/bibliotecas/hardware.p1 ${OBJECTDIR}/bibliotecas/int_eeprom.p1 ${OBJECTDIR}/bibliotecas/pff.p1 ${OBJECTDIR}/bibliotecas/uart.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/bibliotecas/GPS.p1.d ${OBJECTDIR}/bibliotecas/I2C_SW.p1.d ${OBJECTDIR}/bibliotecas/SDCard.p1.d ${OBJECTDIR}/bibliotecas/SHRC.p1.d ${OBJECTDIR}/bibliotecas/SPI.p1.d ${OBJECTDIR}/bibliotecas/chaves.p1.d ${OBJECTDIR}/bibliotecas/diskio.p1.d ${OBJECTDIR}/bibliotecas/display_lcd.p1.d ${OBJECTDIR}/bibliotecas/hardware.p1.d ${OBJECTDIR}/bibliotecas/int_eeprom.p1.d ${OBJECTDIR}/bibliotecas/pff.p1.d ${OBJECTDIR}/bibliotecas/uart.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/bibliotecas/GPS.p1 ${OBJECTDIR}/bibliotecas/I2C_SW.p1 ${OBJECTDIR}/bibliotecas/SDCard.p1 ${OBJECTDIR}/bibliotecas/SHRC.p1 ${OBJECTDIR}/bibliotecas/SPI.p1 ${OBJECTDIR}/bibliotecas/chaves.p1 ${OBJECTDIR}/bibliotecas/display_lcd.p1 ${OBJECTDIR}/bibliotecas/hardware.p1 ${OBJECTDIR}/bibliotecas/int_eeprom.p1 ${OBJECTDIR}/bibliotecas/uart.p1 ${OBJECTDIR}/bibliotecas/diskio.p1 ${OBJECTDIR}/bibliotecas/ff.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/bibliotecas/GPS.p1.d ${OBJECTDIR}/bibliotecas/I2C_SW.p1.d ${OBJECTDIR}/bibliotecas/SDCard.p1.d ${OBJECTDIR}/bibliotecas/SHRC.p1.d ${OBJECTDIR}/bibliotecas/SPI.p1.d ${OBJECTDIR}/bibliotecas/chaves.p1.d ${OBJECTDIR}/bibliotecas/display_lcd.p1.d ${OBJECTDIR}/bibliotecas/hardware.p1.d ${OBJECTDIR}/bibliotecas/int_eeprom.p1.d ${OBJECTDIR}/bibliotecas/uart.p1.d ${OBJECTDIR}/bibliotecas/diskio.p1.d ${OBJECTDIR}/bibliotecas/ff.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/bibliotecas/GPS.p1 ${OBJECTDIR}/bibliotecas/I2C_SW.p1 ${OBJECTDIR}/bibliotecas/SDCard.p1 ${OBJECTDIR}/bibliotecas/SHRC.p1 ${OBJECTDIR}/bibliotecas/SPI.p1 ${OBJECTDIR}/bibliotecas/chaves.p1 ${OBJECTDIR}/bibliotecas/diskio.p1 ${OBJECTDIR}/bibliotecas/display_lcd.p1 ${OBJECTDIR}/bibliotecas/hardware.p1 ${OBJECTDIR}/bibliotecas/int_eeprom.p1 ${OBJECTDIR}/bibliotecas/pff.p1 ${OBJECTDIR}/bibliotecas/uart.p1
+OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/bibliotecas/GPS.p1 ${OBJECTDIR}/bibliotecas/I2C_SW.p1 ${OBJECTDIR}/bibliotecas/SDCard.p1 ${OBJECTDIR}/bibliotecas/SHRC.p1 ${OBJECTDIR}/bibliotecas/SPI.p1 ${OBJECTDIR}/bibliotecas/chaves.p1 ${OBJECTDIR}/bibliotecas/display_lcd.p1 ${OBJECTDIR}/bibliotecas/hardware.p1 ${OBJECTDIR}/bibliotecas/int_eeprom.p1 ${OBJECTDIR}/bibliotecas/uart.p1 ${OBJECTDIR}/bibliotecas/diskio.p1 ${OBJECTDIR}/bibliotecas/ff.p1
 
 # Source Files
-SOURCEFILES=main.c bibliotecas/GPS.c bibliotecas/I2C_SW.c bibliotecas/SDCard.c bibliotecas/SHRC.c bibliotecas/SPI.c bibliotecas/chaves.c bibliotecas/diskio.c bibliotecas/display_lcd.c bibliotecas/hardware.c bibliotecas/int_eeprom.c bibliotecas/pff.c bibliotecas/uart.c
+SOURCEFILES=main.c bibliotecas/GPS.c bibliotecas/I2C_SW.c bibliotecas/SDCard.c bibliotecas/SHRC.c bibliotecas/SPI.c bibliotecas/chaves.c bibliotecas/display_lcd.c bibliotecas/hardware.c bibliotecas/int_eeprom.c bibliotecas/uart.c bibliotecas/diskio.c bibliotecas/ff.c
 
 
 CFLAGS=
@@ -143,14 +143,6 @@ ${OBJECTDIR}/bibliotecas/chaves.p1: bibliotecas/chaves.c  nbproject/Makefile-${C
 	@-${MV} ${OBJECTDIR}/bibliotecas/chaves.d ${OBJECTDIR}/bibliotecas/chaves.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/chaves.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/bibliotecas/diskio.p1: bibliotecas/diskio.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
-	@${RM} ${OBJECTDIR}/bibliotecas/diskio.p1.d 
-	@${RM} ${OBJECTDIR}/bibliotecas/diskio.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/diskio.p1  bibliotecas/diskio.c 
-	@-${MV} ${OBJECTDIR}/bibliotecas/diskio.d ${OBJECTDIR}/bibliotecas/diskio.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/diskio.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/bibliotecas/display_lcd.p1: bibliotecas/display_lcd.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
 	@${RM} ${OBJECTDIR}/bibliotecas/display_lcd.p1.d 
@@ -175,14 +167,6 @@ ${OBJECTDIR}/bibliotecas/int_eeprom.p1: bibliotecas/int_eeprom.c  nbproject/Make
 	@-${MV} ${OBJECTDIR}/bibliotecas/int_eeprom.d ${OBJECTDIR}/bibliotecas/int_eeprom.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/int_eeprom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/bibliotecas/pff.p1: bibliotecas/pff.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
-	@${RM} ${OBJECTDIR}/bibliotecas/pff.p1.d 
-	@${RM} ${OBJECTDIR}/bibliotecas/pff.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/pff.p1  bibliotecas/pff.c 
-	@-${MV} ${OBJECTDIR}/bibliotecas/pff.d ${OBJECTDIR}/bibliotecas/pff.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/pff.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/bibliotecas/uart.p1: bibliotecas/uart.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
 	@${RM} ${OBJECTDIR}/bibliotecas/uart.p1.d 
@@ -190,6 +174,22 @@ ${OBJECTDIR}/bibliotecas/uart.p1: bibliotecas/uart.c  nbproject/Makefile-${CND_C
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/uart.p1  bibliotecas/uart.c 
 	@-${MV} ${OBJECTDIR}/bibliotecas/uart.d ${OBJECTDIR}/bibliotecas/uart.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/uart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/bibliotecas/diskio.p1: bibliotecas/diskio.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
+	@${RM} ${OBJECTDIR}/bibliotecas/diskio.p1.d 
+	@${RM} ${OBJECTDIR}/bibliotecas/diskio.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/diskio.p1  bibliotecas/diskio.c 
+	@-${MV} ${OBJECTDIR}/bibliotecas/diskio.d ${OBJECTDIR}/bibliotecas/diskio.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/diskio.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/bibliotecas/ff.p1: bibliotecas/ff.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
+	@${RM} ${OBJECTDIR}/bibliotecas/ff.p1.d 
+	@${RM} ${OBJECTDIR}/bibliotecas/ff.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/ff.p1  bibliotecas/ff.c 
+	@-${MV} ${OBJECTDIR}/bibliotecas/ff.d ${OBJECTDIR}/bibliotecas/ff.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/ff.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
@@ -248,14 +248,6 @@ ${OBJECTDIR}/bibliotecas/chaves.p1: bibliotecas/chaves.c  nbproject/Makefile-${C
 	@-${MV} ${OBJECTDIR}/bibliotecas/chaves.d ${OBJECTDIR}/bibliotecas/chaves.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/chaves.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/bibliotecas/diskio.p1: bibliotecas/diskio.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
-	@${RM} ${OBJECTDIR}/bibliotecas/diskio.p1.d 
-	@${RM} ${OBJECTDIR}/bibliotecas/diskio.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/diskio.p1  bibliotecas/diskio.c 
-	@-${MV} ${OBJECTDIR}/bibliotecas/diskio.d ${OBJECTDIR}/bibliotecas/diskio.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/diskio.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/bibliotecas/display_lcd.p1: bibliotecas/display_lcd.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
 	@${RM} ${OBJECTDIR}/bibliotecas/display_lcd.p1.d 
@@ -280,14 +272,6 @@ ${OBJECTDIR}/bibliotecas/int_eeprom.p1: bibliotecas/int_eeprom.c  nbproject/Make
 	@-${MV} ${OBJECTDIR}/bibliotecas/int_eeprom.d ${OBJECTDIR}/bibliotecas/int_eeprom.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/int_eeprom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/bibliotecas/pff.p1: bibliotecas/pff.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
-	@${RM} ${OBJECTDIR}/bibliotecas/pff.p1.d 
-	@${RM} ${OBJECTDIR}/bibliotecas/pff.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/pff.p1  bibliotecas/pff.c 
-	@-${MV} ${OBJECTDIR}/bibliotecas/pff.d ${OBJECTDIR}/bibliotecas/pff.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/pff.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/bibliotecas/uart.p1: bibliotecas/uart.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
 	@${RM} ${OBJECTDIR}/bibliotecas/uart.p1.d 
@@ -295,6 +279,22 @@ ${OBJECTDIR}/bibliotecas/uart.p1: bibliotecas/uart.c  nbproject/Makefile-${CND_C
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/uart.p1  bibliotecas/uart.c 
 	@-${MV} ${OBJECTDIR}/bibliotecas/uart.d ${OBJECTDIR}/bibliotecas/uart.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/uart.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/bibliotecas/diskio.p1: bibliotecas/diskio.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
+	@${RM} ${OBJECTDIR}/bibliotecas/diskio.p1.d 
+	@${RM} ${OBJECTDIR}/bibliotecas/diskio.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/diskio.p1  bibliotecas/diskio.c 
+	@-${MV} ${OBJECTDIR}/bibliotecas/diskio.d ${OBJECTDIR}/bibliotecas/diskio.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/diskio.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/bibliotecas/ff.p1: bibliotecas/ff.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bibliotecas" 
+	@${RM} ${OBJECTDIR}/bibliotecas/ff.p1.d 
+	@${RM} ${OBJECTDIR}/bibliotecas/ff.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --rom=default,-6280-7fff --opt=+asm,+asmfile,-speed,+space,-debug,-local --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist -DXPRJ_default=$(CND_CONF)  --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib $(COMPARISON_BUILD)  --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/bibliotecas/ff.p1  bibliotecas/ff.c 
+	@-${MV} ${OBJECTDIR}/bibliotecas/ff.d ${OBJECTDIR}/bibliotecas/ff.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/bibliotecas/ff.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

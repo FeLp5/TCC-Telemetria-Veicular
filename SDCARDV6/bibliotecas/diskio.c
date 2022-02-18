@@ -1,350 +1,232 @@
 /*-----------------------------------------------------------------------*/
-/* Low level disk I/O module skeleton for Petit FatFs (C)ChaN, 2014      */
+/* Low level disk I/O module skeleton for FatFs     (C)ChaN, 2007        */
+/*-----------------------------------------------------------------------*/
+/* This is a stub disk I/O module that acts as front end of the existing */
+/* disk I/O modules and attach it to FatFs module with common interface. */
 /*-----------------------------------------------------------------------*/
 
 #include "diskio.h"
-#include "hardware.h"
-#include "display_lcd.h"
-//Nossas bibliotecas=-============================
-//#include "SPI.h"
+#include <p18f4550.h>
 #include "SHRC.h"
 #include "SDCard.h"
-//=-============================
-
-//extern  signed char escreve_dado_SPI(unsigned char);
-extern  BYTE recebe_dado_SPI();
-//extern  void dummy_clocks(int);
-extern  BYTE response();
-//extern  void proceed();
-extern  void check();
-//extern  void command(char,unsigned long int, char);
-
-
-int flag;
-
-void readover(int a)    /*Set Global Variable, Flag when reading SD Card content*/
-{
-    flag = a;
-}
-
+#include "display_lcd.h"
 /*-----------------------------------------------------------------------*/
-/* Initialize Disk Drive                                                 */
+/* Correspondence between physical drive number and physical drive.      */
 /*-----------------------------------------------------------------------*/
 
-void reset()
-{
-    int i = 0, count = 0;
-    unsigned char buff;
-    /*SOFTWARE RESET COMMAND*/
-    do{
-        dummy_clocks(8);    
-        command(0X40, 0X00000000, 0X95);    //CMD0
-        proceed();
-        do{  
-            buff = response(); 
-            count++;
-            
-         }while((buff!=0X01) && (count<10) );
-        count = 0;
-    }while(buff!=0X01);
-    
-    /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
-//      putsUART("\n\rSD Card Inserted\n\r");
-    __delay_ms(2000);
-    return; //CHECK FOR A STA_NODISK return
-}
+#define ATA		0
+#define MMC		1
+#define USB		2
 
-DSTATUS disk_initialize (void)
+
+
+/*-----------------------------------------------------------------------*/
+/* Inidialize a Drive                                                    */
+/*-----------------------------------------------------------------------*/
+
+DSTATUS disk_initialize (
+	BYTE drv				/* Physical drive nmuber (0..) */
+)
 {
 	DSTATUS stat;
-    int i = 0, count1 = 0, count2 = 0;
-    unsigned char buff;
-    reset(); //RESET THE SD CARD
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("Cartao Aceito");
-    __delay_ms(500);
-    dummy_clocks(8);    
-    command(0X41, 0X00000000, 0XFF);    //CMD1
-    proceed();
-    buff =0XFF;
-    do{
-        buff = response();
-    }while(buff!=0x01);
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("Iniciando");
-    /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
-    __delay_ms(1000);
-    proceed();
-    if (buff == 0x01)
-    {                    
-        //SEND CMD55 + ACMD41     
-        __delay_ms(1);
-        count1 = 0;        
-        do{
-            count2 = 0;
-            dummy_clocks(8);
-            command(0X77, 0X00000000, 0X95);    //CMD55
-            buff = 0XFF;
-            /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
-            proceed();
-            do{
-            buff = response();
-            count2++;
-            }while((buff!=0X01)&&(count2<10));
-            posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("Cartao");
-//            __delay_ms(1);
-            count2 = 0;
-            dummy_clocks(8);
+	int result;
 
-            command(0X69,0X40000000,0X95);    //CMD41
-            buff = 0XFF;
-            /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
-//            proceed();
-            do{
-                buff = response();
-                count2++;
-//                posicao_cursor_lcd(2,0);
-//                escreve_inteiro_lcd(buff);
-            }while((buff!=0X00) && count2<10);
-        }while(buff != 0X00);
+	switch (drv) {
+	case ATA :
         posicao_cursor_lcd(1,0);
-        escreve_frase_ram_lcd("SDCARD");
-        count1 = 0;
-        //Delay before sending command
-        __delay_ms(1);
-        stat = 0X00;
+        escreve_frase_ram_lcd("NO ATA DRIVE");
+        while(1);
+//		result = ATA_disk_initialize();
+		// translate the reslut code here
 
-        LIMPA_DISPLAY();
+		return stat;
+
+	case MMC :
+		 stat = sdc_disk_initialize();
+		// translate the reslut code here
+
+		return stat;
+
+	case USB :
+//		result = USB_disk_initialize();
+		// translate the reslut code here
         posicao_cursor_lcd(1,0);
-        escreve_frase_ram_lcd("Cartão Aceito");
-        __delay_ms(2000);     
-    }
-    else if(buff == 0x05)
-    {
-        stat = STA_NOINIT;
-        //DISPLAY MESSAGE=================================================        
-        LIMPA_DISPLAY();
-        posicao_cursor_lcd(1,0);
-        escreve_frase_ram_lcd("Error!!!");
-        //DISPLAY MESSAGE=================================================
-        __delay_ms(3000);
-    }
-    __delay_ms(1000);
-/*SETTING BLOCK LENGTH TO 512 Bytes*/
-    dummy_clocks(8);    
-    command(0X50,0X00000200,0XFF);    //CMD16
-    proceed();
-    do{   
-        buff = response();
-    }while(buff!=0XFF);
-    /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
-    LIMPA_DISPLAY();
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("Bloco de 512");
-    posicao_cursor_lcd(2,0);
-    escreve_frase_ram_lcd("Bytes criado!");
-    __delay_ms(2000);
-    LIMPA_DISPLAY();
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("Init OK");
-	return stat;
+        escreve_frase_ram_lcd("NO USB DRIVE");
+        while(1);
+
+		return stat;
+	}
+	return STA_NOINIT;
 }
 
 
+
 /*-----------------------------------------------------------------------*/
-/* Read Partial Sector                                                   */
+/* Return Disk Status                                                    */
 /*-----------------------------------------------------------------------*/
 
-DRESULT disk_readp (
-	BYTE* rd,		/* Pointer to the destination object */
-	DWORD sector,	/* Sector number (LBA) */
-	UINT offset,	/* Offset in the sector */
-	UINT count		/* Byte count (bit15:destination) */
+DSTATUS disk_status (
+	BYTE drv		/* Physical drive nmuber (0..) */
+)
+{
+	DSTATUS stat;
+	int result;
+
+	switch (drv) {
+	case ATA :
+        posicao_cursor_lcd(1,0);
+        escreve_frase_ram_lcd("NO ATA DRIVE");
+        while(1);
+//		result = ATA_disk_status();
+		// translate the reslut code here
+
+		return stat;
+
+	case MMC :
+		stat = sdc_disk_status();
+		// translate the reslut code here
+
+		return stat;
+
+	case USB :
+        posicao_cursor_lcd(1,0);
+        escreve_frase_ram_lcd("NO USB DRIVE");
+        while(1);
+//		result = USB_disk_status();
+		// translate the reslut code here
+
+		return stat;
+	}
+	return STA_NOINIT;
+}
+
+
+
+/*-----------------------------------------------------------------------*/
+/* Read Sector(s)                                                        */
+/*-----------------------------------------------------------------------*/
+
+DRESULT disk_read (
+	BYTE drv,		/* Physical drive nmuber (0..) */
+	BYTE *buff,		/* Data buffer to store read data */
+	DWORD sector,	/* Sector address (LBA) */
+	BYTE count		/* Number of sectors to read (1..255) */
 )
 {
 	DRESULT res;
-    unsigned char ptr=0X00,buff;
-    unsigned long int start_add;
-    static unsigned char arr[512];
-    int length,i;
-    /*Read Sector*/
-    if(offset == 0)
-    {
-        start_add = ((sector*512));
+	int result;
 
-        __delay_ms(1000);
-    //    Delay_s(1);
-        dummy_clocks(8);    
-        command(0X52,start_add,0X00);    //CMD18
-        proceed();
-        do{   
-            buff = response();
-        }while(buff!=0XFF);
-        __delay_ms(1000);
-    //      Delay_s(1);
-          proceed();
-        do{
-            buff = response();
-        }while(buff!=0xFE);
-        length = 0;
-        while ( length < count )               
-        {
-            arr[length] = response();
-            length++;                   
-        }
+	switch (drv) {
+	case ATA :
+//		result = ATA_disk_read(buff, sector, count);
+		// translate the reslut code here
 
-          __delay_ms(1000);
-    //    Delay_s(1);
-        dummy_clocks(8);    
-        command(0X4C,0X00000000,0X00);    //CMD12
-        proceed();
-        do{   
-            buff = response();
-        }while(buff!=0xFF);
+		return res;
 
-        length = 0;
+	case MMC :
+		res = sdc_disk_read(buff, sector, count);
+		// translate the reslut code here
 
-        while(arr[length]!='\0')
-        {
-              //WriteUART(arr[length]);
-              length++;
-        }
+		return res;
 
-        *rd = length;
-	return RES_OK;
-    }
-    else
-    {
-        start_add = (sector*512);
+	case USB :
+//		result = USB_disk_read(buff, sector, count);
+		// translate the reslut code here
 
-        length = 0;
-        while(length<512)           //CLEAR ARRAY
-        {
-            arr[length] = 0;                
-            length++;
-        }
-
-        __delay_ms(1000);
-    //    Delay_s(1);
-        dummy_clocks(8);    
-        //SPI_cmd(sd_cmd17);
-        command(0X51,start_add,0X00);
-        proceed();
-        do{   
-            buff = response();
-          }while(buff!=0XFF);
-          do{   
-            buff = response();
-          }while(buff!=0xFE);
-
-              length = 0;
-                while ( length < 512 )               
-                {
-                    while(offset--)             //RUN DOWN TILL THE OFFSET VALUE
-                    {
-                    arr[length] = response();
-                    length++;
-                    }
-                    while(count--)              //RUN DOWN TILL THE COUNT VALUE
-                    {
-                    *rd = response();
-                    arr[length] = *rd;
-                    rd++;
-                    length++;
-                    }
-                    while(length<512)           //FOR THE TRAILING BYTES
-                    {
-                        arr[length] = response();                
-                        length++;
-                    }
-                }
-                __delay_ms(1000);
-
-    //            Delay_s(1);
-    //            dummy_clocks(8);   Commented??????? 
-                //SPI_cmd(sd_cmd12);
-
-                command(0X4C,0X00000000,0X00); //COMMAND12 MANDATORY
-                proceed();
-                do{   
-                    buff = response();
-                }while(buff!=0xFF);
-
-                length = 0;
-                if(flag == 1){
-                    while(arr[length]!='\0')
-                    {
-      //                WriteUART(arr[length]);
-                      length++;
-                    }
-                }
-                else
-                {
-                    posicao_cursor_lcd(2,0);
-                    escreve_frase_ram_lcd("..");
-                }
-        __delay_ms(2000);
-//      Delay_s(2);
-    return RES_OK;
-    }
+		return res;
+	}
+	return RES_PARERR;
 }
-/*-----------------------------------------------------------------------*/
-/* Write Partial Sector                                                  */
-/*-----------------------------------------------------------------------*/
 
-DRESULT disk_writep (
-    const BYTE* wr,		/* Pointer to the data to be written, NULL:Initiate/Finalize write operation */
-	DWORD sc		/* Sector number (LBA) or Number of bytes to send */
+
+
+/*-----------------------------------------------------------------------*/
+/* Write Sector(s)                                                       */
+/*-----------------------------------------------------------------------*/
+/* The FatFs module will issue multiple sector transfer request
+/  (count > 1) to the disk I/O layer. The disk function should process
+/  the multiple sector transfer properly Do. not translate it into
+/  multiple single sector transfers to the media, or the data read/write
+/  performance may be drasticaly decreased. */
+
+#if _READONLY == 0
+DRESULT disk_write (
+	BYTE drv,			/* Physical drive nmuber (0..) */
+	const BYTE *buff,	/* Data to be written */
+	DWORD sector,		/* Sector address (LBA) */
+	BYTE count			/* Number of sectors to write (1..255) */
 )
 {
 	DRESULT res;
-    
-    unsigned char buff; 
-    int i=0,j;
-    
-//    Delay_s(1);
-    
-    dummy_clocks(8);    
-    command(0X58, sc*512, 0X00); // CMD24
-    proceed();
-    do{   
-        buff = response();
-      }while(buff!=0XFF);
-    /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
+	int result;
 
-      __delay_ms(2000);
-//      Delay_s(2);
+	switch (drv) {
+	case ATA :
+//		result = ATA_disk_write(buff, sector, count);
+		// translate the reslut code here
 
-      dummy_clocks(8);
+		return res;
 
-      escreve_dado_SPI(0XFE); //START TOKEN
-      
-      for(j=0;j<512;j++) //DATA BLOCK
-      {
-          if(*wr!='\0')
-          {
-              escreve_dado_SPI(*wr);
-              wr++;
-          }
-          else
-          escreve_dado_SPI(0x00);
-      }
-      escreve_dado_SPI(0XFF); // CRC 2 BYTES
-      escreve_dado_SPI(0XFF);
+	case MMC :
+		res = sdc_disk_write(buff, sector, count);
+		// translate the reslut code here
 
-      proceed();
+		return res;
 
-      __delay_ms(1000);
-//      Delay_s(1);
-      dummy_clocks(8);    
+	case USB :
+//		result = USB_disk_write(buff, sector, count);
+		// translate the reslut code here
 
-      command(0X4D,0X00000000,0X00);    //CMD13
-      proceed();
-      do{   
-        buff = response();
-        }while(buff!=0XFF);
-      
-	return RES_OK;
+		return res;
+	}
+	return RES_PARERR;
 }
+#endif /* _READONLY */
+
+
+
+/*-----------------------------------------------------------------------*/
+/* Miscellaneous Functions                                               */
+/*-----------------------------------------------------------------------*/
+
+DRESULT disk_ioctl (
+	BYTE drv,		/* Physical drive nmuber (0..) */
+	BYTE ctrl,		/* Control code */
+	void *buff		/* Buffer to send/receive control data */
+)
+{
+	DRESULT res;
+	int result;
+
+	switch (drv) {
+	case ATA :
+		// pre-process here
+
+//		result = ATA_disk_ioctl(ctrl, buff);
+		// post-process here
+
+		return res;
+
+	case MMC :
+		// pre-process here
+
+//		result = MMC_disk_ioctl(ctrl, buff);
+		// post-process here
+
+		return res;
+
+	case USB :
+		// pre-process here
+
+//		result = USB_disk_ioctl(ctrl, buff);
+		// post-process here
+
+		return res;
+	}
+	return RES_PARERR;
+}
+
+
+
+
 

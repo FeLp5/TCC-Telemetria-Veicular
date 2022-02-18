@@ -5044,16 +5044,39 @@ void escreve_inteiro_uart(int valor);
 
 void inicializa_uart(void);
 
-# 16 "bibliotecas/GPS.c"
-unsigned long int get_gpstime();
-float get_latitude(unsigned char);
-float get_longitude(unsigned char);
-unsigned long int get_dt(unsigned char);
-void convert_time_to_utc(unsigned long int);
-unsigned char convert_to_date(unsigned char dt[]);
-float convert_to_degrees(float);
+# 17 "bibliotecas/integer.h"
+typedef struct{
+unsigned int hora;
+unsigned int min;
+unsigned int seg;
+unsigned char dia;
+unsigned char mes;
+unsigned char ano;
+}fat_time;
 
-# 28
+
+typedef int INT;
+typedef unsigned int UINT;
+
+
+typedef char CHAR;
+typedef unsigned char UCHAR;
+typedef unsigned char BYTE;
+
+
+typedef short SHORT;
+typedef unsigned short USHORT;
+typedef unsigned short WORD;
+typedef unsigned short WCHAR;
+
+
+typedef long LONG;
+typedef unsigned long ULONG;
+typedef unsigned long DWORD;
+
+# 29 "bibliotecas/GPS.c"
+fat_time f_time;
+
 char gga_buffer[80];
 char rmc_buffer[70];
 
@@ -5081,21 +5104,14 @@ volatile unsigned char is_it_rmc_string = 0;
 
 void gps(void)
 {
-inicializa_uart();
+
 unsigned char data_out[34];
 unsigned long int time;
 unsigned long int date;
 float latitude, longitude;
 char gps_buffer[15];
 
-<<<<<<< HEAD
-# 115
-}
-
-# 126
-=======
-
-
+# 116
 time = get_gpstime();
 convert_time_to_utc(time);
 posicao_cursor_lcd(1,0);
@@ -5121,18 +5137,9 @@ escreve_cmd_lcd(0b00000001);
 
 latitude = get_latitude(gga_pointers[0]);
 latitude = convert_to_degrees(latitude);
-sprintf(gps_buffer,"%.07f",latitude);
+sprintf(gps_buffer,"%.07f",latitude); ;
 
-
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("Lat:");
-posicao_cursor_lcd(1,5);
-escreve_frase_ram_lcd(gps_buffer);
-memset(gps_buffer,0,15);
-
-
-
-
+# 153
 longitude = get_longitude(gga_pointers[2]);
 longitude = convert_to_degrees(longitude);
 sprintf(gps_buffer,"%.07f",longitude);
@@ -5149,8 +5156,7 @@ escreve_cmd_lcd(0b00000001);
 
 }
 
-# 124
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+# 178
 unsigned long int get_gpstime()
 {
 unsigned char index;
@@ -5166,11 +5172,7 @@ _time= atol(time_buffer);
 return _time;
 }
 
-<<<<<<< HEAD
-# 149
-=======
-# 147
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+# 201
 float get_latitude(char lat_pointer)
 {
 unsigned char lat_index = lat_pointer+1;
@@ -5189,11 +5191,7 @@ _latitude = atof(lat_buffer);
 return _latitude;
 }
 
-<<<<<<< HEAD
-# 175
-=======
-# 173
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+# 227
 float get_longitude(unsigned char long_pointer)
 {
 unsigned char long_index;
@@ -5213,16 +5211,16 @@ _longitude = atof(long_buffer);
 return _longitude;
 }
 
-<<<<<<< HEAD
-# 201
-=======
-# 199
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+# 253
 unsigned long int get_dt(unsigned char dt_pointer)
 {
 unsigned char dt_index = dt_pointer + 1;
 unsigned long int _dt;
 unsigned char index;
+unsigned char count;
+unsigned char dia = "|";
+unsigned char mes = "|";
+unsigned char ano = "|";
 index = 0;
 
 
@@ -5233,34 +5231,49 @@ index++;
 
 dado_buffer[strlen(dado_buffer) - 0] = '\0';
 
-<<<<<<< HEAD
-# 243
+for(count = 0;count<=7; count++)
+{
+if(count < 2)
+{
+strcat(dia, dado_buffer[count]);
+}
+else if(count>=2 && count<4)
+{
+strcat(mes, dado_buffer[count]);
+}
+else
+{
+strcat(ano, dado_buffer[count]);
+}
 }
 
-# 253
-=======
-# 241
+
+
+f_time.dia = dia;
+f_time.mes = mes;
+f_time.ano = ano;
+
 }
 
-# 251
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+# 304
 void convert_time_to_utc(unsigned long int utc_time)
 {
 unsigned int hour, min, sec;
+
 hour = (utc_time / 10000) + -3;
 min = (utc_time % 10000) / 100;
 sec = (utc_time % 10000) % 100;
 sprintf(data_buffer, "%d:%d:%d", hour,min,sec);
+
+f_time.hora = hour;
+f_time.min = min;
+f_time.seg = sec;
 }
 
 unsigned char convert_to_date(unsigned char dt[])
 {
 
-<<<<<<< HEAD
-# 286
-=======
-# 284
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+# 342
 }
 
 
@@ -5280,11 +5293,7 @@ decimal *= -1;
 return decimal;
 }
 
-<<<<<<< HEAD
-# 314
-=======
-# 312
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+# 370
 void tratamento_uart(unsigned char received_char)
 {
 if(received_char =='$'){

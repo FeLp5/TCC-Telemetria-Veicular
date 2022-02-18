@@ -36,8 +36,9 @@
 extern "C" {
 #endif
 
-#include "pffconf.h"
+#include "ffconf.h"
 #include "integer.h"
+#include "diskio.h"
 #include <p18f4550.h>
 #include "hardware.h"
 /*---------------------------------------*/
@@ -96,6 +97,14 @@ BYTE response(void);
 void proceed(void);
 void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+
+
+//disk management
+void sdc_reset(void);
+DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
+DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
+DSTATUS sdc_disk_initialize(void);
+DSTATUS sdc_disk_status(void);
 /*****************************************************************************/
 
 #ifdef __cplusplus

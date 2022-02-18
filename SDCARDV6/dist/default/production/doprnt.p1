@@ -1,20 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
-<<<<<<< HEAD
-"10 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdarg.h
-=======
-"388 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+"388 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
 [v __npowers_ `Cd ~T0 @X0 -> 0 `x e ]
 [v __powers_ `Cd ~T0 @X0 -> 0 `x e ]
-"10 C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdarg.h
->>>>>>> 969fc55ee749bc16c616bb420574f9eb58aa4f05
+"10 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdarg.h
 [v ___va_start `(*v ~T0 @X0 0 ef ]
 [p i ___va_start ]
-"7 C:\Program Files (x86)\Microchip\xc8\v1.41\include\ctype.h
+"7 C:\Program Files (x86)\Microchip\xc8\v1.45\include\ctype.h
 [v _isdigit `(b ~T0 @X0 0 ef1`uc ]
-"13 C:\Program Files (x86)\Microchip\xc8\v1.41\include\stdarg.h
+"13 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdarg.h
 [v ___va_arg `(*v ~T0 @X0 0 ev`*v ]
 [p i ___va_arg ]
-"394 C:\Program Files (x86)\Microchip\xc8\v1.41\sources\common\doprnt.c
+"394 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
 [v __tdiv_to_l_ `(ul ~T0 @X0 0 ef2`f`f ]
 "392
 [v __div_to_l_ `(ul ~T0 @X0 0 ef2`d`d ]
