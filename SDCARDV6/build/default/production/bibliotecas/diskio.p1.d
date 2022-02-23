@@ -3,6 +3,7 @@
  bibliotecas/diskio.c  \
 bibliotecas/diskio.h  \
 bibliotecas/SDCard.h  \
+bibliotecas/tff.h  \
 bibliotecas/integer.h  \
 bibliotecas/SHRC.h  \
 bibliotecas/ffconf.h  \

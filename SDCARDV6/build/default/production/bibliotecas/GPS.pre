@@ -5044,7 +5044,7 @@ void escreve_inteiro_uart(int valor);
 
 void inicializa_uart(void);
 
-# 17 "bibliotecas/integer.h"
+# 8 "bibliotecas/integer.h"
 typedef struct{
 unsigned int hora;
 unsigned int min;
@@ -5054,12 +5054,11 @@ unsigned char mes;
 unsigned char ano;
 }fat_time;
 
-
 typedef int INT;
 typedef unsigned int UINT;
 
 
-typedef char CHAR;
+typedef signed char CHAR;
 typedef unsigned char UCHAR;
 typedef unsigned char BYTE;
 
@@ -5067,12 +5066,14 @@ typedef unsigned char BYTE;
 typedef short SHORT;
 typedef unsigned short USHORT;
 typedef unsigned short WORD;
-typedef unsigned short WCHAR;
 
 
 typedef long LONG;
 typedef unsigned long ULONG;
 typedef unsigned long DWORD;
+
+
+typedef enum { FALSE = 0, TRUE } BOOL;
 
 # 29 "bibliotecas/GPS.c"
 fat_time f_time;

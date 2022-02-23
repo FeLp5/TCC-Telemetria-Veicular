@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"17 bibliotecas/integer.h
+"8 bibliotecas/integer.h
 [s S367 `ui 1 `ui 1 `ui 1 `uc 1 `uc 1 `uc 1 ]
 [n S367 . hora min seg dia mes ano ]
 "58 bibliotecas/GPS.h
@@ -3688,26 +3688,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;uart.h: 50: void recebe_string_uart(char *buffer, unsigned char length);
 [; ;uart.h: 52: void escreve_inteiro_uart(int valor);
 [; ;uart.h: 54: void inicializa_uart(void);
-[; ;integer.h: 17: typedef struct{
-[; ;integer.h: 18: unsigned int hora;
-[; ;integer.h: 19: unsigned int min;
-[; ;integer.h: 20: unsigned int seg;
-[; ;integer.h: 21: unsigned char dia;
-[; ;integer.h: 22: unsigned char mes;
-[; ;integer.h: 23: unsigned char ano;
-[; ;integer.h: 24: }fat_time;
-[; ;integer.h: 27: typedef int INT;
-[; ;integer.h: 28: typedef unsigned int UINT;
-[; ;integer.h: 31: typedef char CHAR;
-[; ;integer.h: 32: typedef unsigned char UCHAR;
-[; ;integer.h: 33: typedef unsigned char BYTE;
-[; ;integer.h: 36: typedef short SHORT;
-[; ;integer.h: 37: typedef unsigned short USHORT;
-[; ;integer.h: 38: typedef unsigned short WORD;
-[; ;integer.h: 39: typedef unsigned short WCHAR;
-[; ;integer.h: 42: typedef long LONG;
-[; ;integer.h: 43: typedef unsigned long ULONG;
-[; ;integer.h: 44: typedef unsigned long DWORD;
+[; ;integer.h: 8: typedef struct{
+[; ;integer.h: 9: unsigned int hora;
+[; ;integer.h: 10: unsigned int min;
+[; ;integer.h: 11: unsigned int seg;
+[; ;integer.h: 12: unsigned char dia;
+[; ;integer.h: 13: unsigned char mes;
+[; ;integer.h: 14: unsigned char ano;
+[; ;integer.h: 15: }fat_time;
+[; ;integer.h: 17: typedef int INT;
+[; ;integer.h: 18: typedef unsigned int UINT;
+[; ;integer.h: 21: typedef signed char CHAR;
+[; ;integer.h: 22: typedef unsigned char UCHAR;
+[; ;integer.h: 23: typedef unsigned char BYTE;
+[; ;integer.h: 26: typedef short SHORT;
+[; ;integer.h: 27: typedef unsigned short USHORT;
+[; ;integer.h: 28: typedef unsigned short WORD;
+[; ;integer.h: 31: typedef long LONG;
+[; ;integer.h: 32: typedef unsigned long ULONG;
+[; ;integer.h: 33: typedef unsigned long DWORD;
+[; ;integer.h: 36: typedef enum { FALSE = 0, TRUE } BOOL;
 "29 bibliotecas/GPS.c
 [v _f_time `S367 ~T0 @X0 1 e ]
 [; ;GPS.c: 29: fat_time f_time;

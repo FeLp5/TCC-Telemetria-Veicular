@@ -3,8 +3,8 @@
 [d edition pro ]
 [d chip 18F4550 ]
 [d frameptr 4065 ]
-"135 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
-[e E3953 . `uc
+"156 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
+[e E3962 . `uc
 FR_OK 0
 FR_DISK_ERR 1
 FR_INT_ERR 2
@@ -24,25 +24,35 @@ FR_TIMEOUT 15
 FR_LOCKED 16
 FR_NOT_ENOUGH_CORE 17
 FR_TOO_MANY_OPEN_FILES 18
+FR_INVALID_PARAMETER 19
 ]
-"490
-[e E22 . `uc
+"154 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
+[e E25 . `uc
 RES_OK 0
 RES_ERROR 1
 RES_WRPRT 2
 RES_NOTRDY 3
 RES_PARERR 4
 ]
-"115 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
-[e E22 . `uc
-RES_OK 0
-RES_ERROR 1
-RES_WRPRT 2
-RES_NOTRDY 3
-RES_PARERR 4
+"695
+[e E3964 . `uc
+FR_OK 0
+FR_NOT_READY 1
+FR_NO_FILE 2
+FR_NO_PATH 3
+FR_INVALID_NAME 4
+FR_INVALID_DRIVE 5
+FR_DENIED 6
+FR_EXIST 7
+FR_RW_ERROR 8
+FR_WRITE_PROTECTED 9
+FR_NOT_ENABLED 10
+FR_NO_FILESYSTEM 11
+FR_INVALID_OBJECT 12
+FR_MKFS_ABORTED 13
 ]
-"413 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
-[e E72 . `uc
+"872 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[e E79 . `uc
 FR_OK 0
 FR_DISK_ERR 1
 FR_INT_ERR 2
@@ -62,25 +72,36 @@ FR_TIMEOUT 15
 FR_LOCKED 16
 FR_NOT_ENOUGH_CORE 17
 FR_TOO_MANY_OPEN_FILES 18
+FR_INVALID_PARAMETER 19
 ]
-"421
-[e E149 . `uc
+"877
+[e E218 . `uc
 RES_OK 0
 RES_ERROR 1
 RES_WRPRT 2
 RES_NOTRDY 3
 RES_PARERR 4
 ]
-"27 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
-[v _disk_initialize disk_initialize `(uc  1 e 1 0 ]
-"68
+"72 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
 [v _disk_status disk_status `(uc  1 e 1 0 ]
-"109
-[v _disk_read disk_read `(E22  1 e 1 0 ]
-"153
-[v _disk_write disk_write `(E22  1 e 1 0 ]
-"192
-[v _disk_ioctl disk_ioctl `(E22  1 e 1 0 ]
+"110
+[v _disk_initialize disk_initialize `(uc  1 e 1 0 ]
+"148
+[v _disk_read disk_read `(E25  1 e 1 0 ]
+"201
+[v _disk_write disk_write `(E25  1 e 1 0 ]
+"249
+[v _disk_ioctl disk_ioctl `(E25  1 e 1 0 ]
+"288
+[v _sdc_reset sdc_reset `(v  1 e 1 0 ]
+"331
+[v _sdc_disk_initialize sdc_disk_initialize `(uc  1 e 1 0 ]
+"523
+[v _sdc_disk_read sdc_disk_read `(E25  1 e 1 0 ]
+"608
+[v _sdc_disk_write sdc_disk_write `(E25  1 e 1 0 ]
+"688
+[v _sdc_disk_status sdc_disk_status `(uc  1 e 1 0 ]
 "45 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/display_lcd.c
 [v _delay delay `(v  1 e 1 0 ]
 "71
@@ -97,63 +118,89 @@ RES_PARERR 4
 [v _escreve_inteiro_lcd escreve_inteiro_lcd `(v  1 e 1 0 ]
 "445
 [v _escreve_frase_ram_lcd escreve_frase_ram_lcd `(v  1 e 1 0 ]
-"232 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+"548 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[v _ld_word ld_word `(us  1 s 2 ld_word ]
+"558
+[v _ld_dword ld_dword `(ul  1 s 4 ld_dword ]
+"589
+[v _st_word st_word `(v  1 s 1 st_word ]
+"596
+[v _st_dword st_dword `(v  1 s 1 st_dword ]
+"628
 [v _mem_cpy mem_cpy `(v  1 s 1 mem_cpy ]
-"249
+"643
 [v _mem_set mem_set `(v  1 s 1 mem_set ]
-"258
+"655
 [v _mem_cmp mem_cmp `(i  1 s 2 mem_cmp ]
-"268
+"670
 [v _chk_chr chk_chr `(i  1 s 2 chk_chr ]
-"409
-[v _move_window move_window `(E72  1 s 1 move_window ]
-"451
-[v _sync sync `(E72  1 s 1 sync ]
-"489
-[v _get_fat get_fat `(ul  1 e 4 0 ]
-"532
-[v _put_fat put_fat `(E72  1 e 1 0 ]
-"595
-[v _remove_chain remove_chain `(E72  1 s 1 remove_chain ]
-"636
+"679
+[v _dbc_1st dbc_1st `(i  1 s 2 dbc_1st ]
+"700
+[v _dbc_2nd dbc_2nd `(i  1 s 2 dbc_2nd ]
+"869
+[v _sync_window sync_window `(E79  1 s 1 sync_window ]
+"892
+[v _move_window move_window `(E79  1 s 1 move_window ]
+"924
+[v _sync_fs sync_fs `(E79  1 s 1 sync_fs ]
+"962
+[v _clst2sect clst2sect `(ul  1 s 4 clst2sect ]
+"980
+[v _get_fat get_fat `(ul  1 s 4 get_fat ]
+"1058
+[v _put_fat put_fat `(E79  1 s 1 put_fat ]
+"1252
+[v _remove_chain remove_chain `(E79  1 s 1 remove_chain ]
+"1347
 [v _create_chain create_chain `(ul  1 s 4 create_chain ]
-"694
-[v _clust2sect clust2sect `(ul  1 e 4 0 ]
-"712
-[v _dir_sdi dir_sdi `(E72  1 s 1 dir_sdi ]
-"760
-[v _dir_next dir_next `(E72  1 s 1 dir_next ]
-"999
-[v _dir_find dir_find `(E72  1 s 1 dir_find ]
-"1060
-[v _dir_read dir_read `(E72  1 s 1 dir_read ]
-"1117
-[v _dir_register dir_register `(E72  1 s 1 dir_register ]
-"1268
-[v _create_name create_name `(E72  1 s 1 create_name ]
 "1482
+[v _dir_clear dir_clear `(E79  1 s 1 dir_clear ]
+"1522
+[v _dir_sdi dir_sdi `(E79  1 s 1 dir_sdi ]
+"1571
+[v _dir_next dir_next `(E79  1 s 1 dir_next ]
+"1632
+[v _dir_alloc dir_alloc `(E79  1 s 1 dir_alloc ]
+"1675
+[v _ld_clust ld_clust `(ul  1 s 4 ld_clust ]
+"1693
+[v _st_clust st_clust `(v  1 s 1 st_clust ]
+"2161
+[v _dir_read dir_read `(E79  1 s 1 dir_read ]
+"2240
+[v _dir_find dir_find `(E79  1 s 1 dir_find ]
+"2322
+[v _dir_register dir_register `(E79  1 s 1 dir_register ]
+"2429
+[v _dir_remove dir_remove `(E79  1 s 1 dir_remove ]
+"2477
 [v _get_fileinfo get_fileinfo `(v  1 s 1 get_fileinfo ]
-"1564
-[v _follow_path follow_path `(E72  1 s 1 follow_path ]
-"1627
+"2654
+[v _create_name create_name `(E79  1 s 1 create_name ]
+"2860
+[v _follow_path follow_path `(E79  1 s 1 follow_path ]
+"2950
+[v _get_ldnumber get_ldnumber `(i  1 s 2 get_ldnumber ]
+"3011
 [v _check_fs check_fs `(uc  1 s 1 check_fs ]
-"1653
-[v _chk_mounted chk_mounted `(E72  1 s 1 chk_mounted ]
-"1818
-[v _validate validate `(E72  1 s 1 validate ]
-"1849
-[v _f_mount f_mount `(E3953  1 e 1 0 ]
-"1883
+"3041
+[v _find_volume find_volume `(E79  1 s 1 find_volume ]
+"3273
+[v _validate validate `(E79  1 s 1 validate ]
+"3317
+[v _f_mount f_mount `(E3962  1 e 1 0 ]
+"3359
 [v _get_fattime get_fattime `(ul  1 e 4 0 ]
-"2125
-[v _f_write f_write `(E3953  1 e 1 0 ]
-"2239
-[v _f_sync f_sync `(E72  1 e 1 0 ]
-"2287
-[v _f_close f_close `(E3953  1 e 1 0 ]
-"56 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
-[v _gps gps `(v  1 e 1 0 ]
-"178
+"3375
+[v _f_open f_open `(E3962  1 e 1 0 ]
+"3671
+[v _f_write f_write `(E3962  1 e 1 0 ]
+"3792
+[v _f_sync f_sync `(E79  1 e 1 0 ]
+"3873
+[v _f_close f_close `(E3962  1 e 1 0 ]
+"178 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
 [v _get_gpstime get_gpstime `(ul  1 e 4 0 ]
 "201
 [v _get_latitude get_latitude `(f  1 e 3 0 ]
@@ -192,26 +239,16 @@ RES_PARERR 4
 [v _leitura_i2c leitura_i2c `(uc  1 e 1 0 ]
 "169
 [v _leitura_byte_eeprom leitura_byte_eeprom `(uc  1 e 1 0 ]
-"48 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
+"60 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
 [v _response response `(uc  1 e 1 0 ]
-"66
+"77
 [v _dummy_clocks dummy_clocks `(v  1 e 1 0 ]
-"87
+"98
 [v _proceed proceed `(v  1 e 1 0 ]
-"104
+"115
 [v _command command `(v  1 e 1 0 ]
-"131
+"151
 [v _SDCard SDCard `(v  1 e 1 0 ]
-"343
-[v _sdc_reset sdc_reset `(v  1 e 1 0 ]
-"382
-[v _sdc_disk_initialize sdc_disk_initialize `(uc  1 e 1 0 ]
-"485
-[v _sdc_disk_read sdc_disk_read `(E22  1 e 1 0 ]
-"545
-[v _sdc_disk_write sdc_disk_write `(E22  1 e 1 0 ]
-"605
-[v _sdc_disk_status sdc_disk_status `(uc  1 e 1 0 ]
 "48 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SHRC.c
 [v _inicializa_shrc inicializa_shrc `(v  1 e 1 0 ]
 "67
@@ -314,16 +351,22 @@ RES_PARERR 4
 [v _escalonador escalonador `(v  1 e 1 0 ]
 "207
 [v _main main `(v  1 e 1 0 ]
+"237
+[v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
 "29 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/chaves.c
 [v _info_chaves info_chaves `[7]uc  1 e 7 0 ]
-"179 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+"67 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
+[v _data_buff data_buff `*.2uc  1 e 2 0 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"427 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[v _FatFs FatFs `[1]*.39S603  1 s 2 FatFs ]
+"428
 [v _Fsid Fsid `us  1 s 2 Fsid ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"181
-[v _FatFs FatFs `[1]*.39S594  1 s 2 FatFs ]
-[s S229 . 9 `ui 1 hora 2 0 `ui 1 min 2 2 `ui 1 seg 2 4 `uc 1 dia 1 6 `uc 1 mes 1 7 `uc 1 ano 1 8 ]
+"529
+[v _DbcTbl DbcTbl `C[10]uc  1 s 10 DbcTbl ]
+[s S255 . 9 `ui 1 hora 2 0 `ui 1 min 2 2 `ui 1 seg 2 4 `uc 1 dia 1 6 `uc 1 mes 1 7 `uc 1 ano 1 8 ]
 "29 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
-[v _f_time f_time `S229  1 e 9 0 ]
+[v _f_time f_time `S255  1 e 9 0 ]
 "31
 [v _gga_buffer gga_buffer `[80]uc  1 e 80 0 ]
 "32
@@ -355,18 +398,16 @@ RES_PARERR 4
 [v _is_it_gga_string is_it_gga_string `VEuc  1 e 1 0 ]
 "54
 [v _is_it_rmc_string is_it_rmc_string `VEuc  1 e 1 0 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"129 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
-[v _fs fs `S594  1 e 558 0 ]
-"130
-[v _br br `us  1 e 2 0 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"146 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
+[v _fs fs `S603  1 e 559 0 ]
 "28 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SHRC.c
 [v _dado dado `uc  1 e 1 0 ]
 "70 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [v _SPPCFG SPPCFG `VEuc  1 e 1 @3939 ]
 "221
 [v _SPPCON SPPCON `VEuc  1 e 1 @3941 ]
-[s S411 . 1 `uc 1 RA0 1 0 :1:0 
+[s S420 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -375,7 +416,7 @@ RES_PARERR 4
 `uc 1 RA6 1 0 :1:6 
 ]
 "2351
-[s S447 . 1 `uc 1 AN0 1 0 :1:0 
+[s S456 . 1 `uc 1 AN0 1 0 :1:0 
 `uc 1 AN1 1 0 :1:1 
 `uc 1 AN2 1 0 :1:2 
 `uc 1 AN3 1 0 :1:3 
@@ -383,20 +424,20 @@ RES_PARERR 4
 `uc 1 AN4 1 0 :1:5 
 `uc 1 OSC2 1 0 :1:6 
 ]
-[s S455 . 1 `uc 1 . 1 0 :2:0 
+[s S464 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 VREFM 1 0 :1:2 
 `uc 1 VREFP 1 0 :1:3 
 `uc 1 . 1 0 :1:4 
 `uc 1 LVDIN 1 0 :1:5 
 ]
-[s S461 . 1 `uc 1 . 1 0 :5:0 
+[s S470 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 HLVDIN 1 0 :1:5 
 ]
-[s S464 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S473 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 ]
-[u S466 . 1 `S411 1 . 1 0 `S447 1 . 1 0 `S455 1 . 1 0 `S461 1 . 1 0 `S464 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES466  1 e 1 @3968 ]
-[s S824 . 1 `uc 1 RB0 1 0 :1:0 
+[u S475 . 1 `S420 1 . 1 0 `S456 1 . 1 0 `S464 1 . 1 0 `S470 1 . 1 0 `S473 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES475  1 e 1 @3968 ]
+[s S805 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -406,7 +447,7 @@ RES_PARERR 4
 `uc 1 RB7 1 0 :1:7 
 ]
 "2481
-[s S915 . 1 `uc 1 INT0 1 0 :1:0 
+[s S896 . 1 `uc 1 INT0 1 0 :1:0 
 `uc 1 INT1 1 0 :1:1 
 `uc 1 INT2 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -414,12 +455,12 @@ RES_PARERR 4
 `uc 1 PGC 1 0 :1:6 
 `uc 1 PGD 1 0 :1:7 
 ]
-[s S923 . 1 `uc 1 . 1 0 :3:0 
+[s S904 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2_PA2 1 0 :1:3 
 ]
-[u S926 . 1 `S824 1 . 1 0 `S915 1 . 1 0 `S923 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES926  1 e 1 @3969 ]
-[s S1265 . 1 `uc 1 RC0 1 0 :1:0 
+[u S907 . 1 `S805 1 . 1 0 `S896 1 . 1 0 `S904 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES907  1 e 1 @3969 ]
+[s S1242 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -429,30 +470,30 @@ RES_PARERR 4
 `uc 1 RC7 1 0 :1:7 
 ]
 "2603
-[s S1274 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S1251 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 CCP1 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 TX 1 0 :1:6 
 `uc 1 RX 1 0 :1:7 
 ]
-[s S1281 . 1 `uc 1 T13CKI 1 0 :1:0 
+[s S1258 . 1 `uc 1 T13CKI 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 P1A 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 CK 1 0 :1:6 
 `uc 1 DT 1 0 :1:7 
 ]
-[s S1288 . 1 `uc 1 . 1 0 :1:0 
+[s S1265 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 `uc 1 PA1 1 0 :1:2 
 ]
-[s S1292 . 1 `uc 1 . 1 0 :1:0 
+[s S1269 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 ]
-[u S1295 . 1 `S1265 1 . 1 0 `S1274 1 . 1 0 `S1281 1 . 1 0 `S1288 1 . 1 0 `S1292 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES1295  1 e 1 @3970 ]
-[s S1477 . 1 `uc 1 RD0 1 0 :1:0 
+[u S1272 . 1 `S1242 1 . 1 0 `S1251 1 . 1 0 `S1258 1 . 1 0 `S1265 1 . 1 0 `S1269 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES1272  1 e 1 @3970 ]
+[s S1454 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -462,7 +503,7 @@ RES_PARERR 4
 `uc 1 RD7 1 0 :1:7 
 ]
 "2734
-[s S1517 . 1 `uc 1 SPP0 1 0 :1:0 
+[s S1494 . 1 `uc 1 SPP0 1 0 :1:0 
 `uc 1 SPP1 1 0 :1:1 
 `uc 1 SPP2 1 0 :1:2 
 `uc 1 SPP3 1 0 :1:3 
@@ -471,12 +512,12 @@ RES_PARERR 4
 `uc 1 SPP6 1 0 :1:6 
 `uc 1 SPP7 1 0 :1:7 
 ]
-[s S1526 . 1 `uc 1 . 1 0 :7:0 
+[s S1503 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 SS2 1 0 :1:7 
 ]
-[u S1529 . 1 `S1477 1 . 1 0 `S1517 1 . 1 0 `S1526 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES1529  1 e 1 @3971 ]
-[s S1366 . 1 `uc 1 RE0 1 0 :1:0 
+[u S1506 . 1 `S1454 1 . 1 0 `S1494 1 . 1 0 `S1503 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES1506  1 e 1 @3971 ]
+[s S1343 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
@@ -484,34 +525,34 @@ RES_PARERR 4
 `uc 1 RDPU 1 0 :1:7 
 ]
 "2866
-[s S1373 . 1 `uc 1 CK1SPP 1 0 :1:0 
+[s S1350 . 1 `uc 1 CK1SPP 1 0 :1:0 
 `uc 1 CK2SPP 1 0 :1:1 
 `uc 1 OESPP 1 0 :1:2 
 ]
-[s S1377 . 1 `uc 1 PD2 1 0 :1:0 
+[s S1354 . 1 `uc 1 PD2 1 0 :1:0 
 `uc 1 PC2 1 0 :1:1 
 `uc 1 CCP10 1 0 :1:2 
 `uc 1 CCP9E 1 0 :1:3 
 `uc 1 . 1 0 :3:4 
 `uc 1 CCP2E 1 0 :1:7 
 ]
-[s S1384 . 1 `uc 1 RDE 1 0 :1:0 
+[s S1361 . 1 `uc 1 RDE 1 0 :1:0 
 `uc 1 WRE 1 0 :1:1 
 `uc 1 CS 1 0 :1:2 
 `uc 1 PC3E 1 0 :1:3 
 `uc 1 . 1 0 :3:4 
 `uc 1 PA2E 1 0 :1:7 
 ]
-[s S1391 . 1 `uc 1 . 1 0 :2:0 
+[s S1368 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 PB2 1 0 :1:2 
 `uc 1 . 1 0 :4:3 
 `uc 1 RE7 1 0 :1:7 
 ]
-[u S1396 . 1 `S1366 1 . 1 0 `S1373 1 . 1 0 `S1377 1 . 1 0 `S1384 1 . 1 0 `S1391 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES1396  1 e 1 @3972 ]
+[u S1373 . 1 `S1343 1 . 1 0 `S1350 1 . 1 0 `S1354 1 . 1 0 `S1361 1 . 1 0 `S1368 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES1373  1 e 1 @3972 ]
 "3071
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S543 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S552 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -521,7 +562,7 @@ RES_PARERR 4
 `uc 1 LATB7 1 0 :1:7 
 ]
 "3098
-[s S552 . 1 `uc 1 LB0 1 0 :1:0 
+[s S561 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -530,11 +571,11 @@ RES_PARERR 4
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S561 . 1 `S543 1 . 1 0 `S552 1 . 1 0 ]
-[v _LATBbits LATBbits `VES561  1 e 1 @3978 ]
+[u S570 . 1 `S552 1 . 1 0 `S561 1 . 1 0 ]
+[v _LATBbits LATBbits `VES570  1 e 1 @3978 ]
 "3425
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
-[s S403 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S412 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -543,11 +584,11 @@ RES_PARERR 4
 `uc 1 TRISA6 1 0 :1:6 
 ]
 "3455
-[u S419 . 1 `S403 1 . 1 0 `S411 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES419  1 e 1 @3986 ]
+[u S428 . 1 `S412 1 . 1 0 `S420 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES428  1 e 1 @3986 ]
 "3623
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
-[s S815 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S796 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -557,11 +598,11 @@ RES_PARERR 4
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "3655
-[u S833 . 1 `S815 1 . 1 0 `S824 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES833  1 e 1 @3987 ]
+[u S814 . 1 `S796 1 . 1 0 `S805 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES814  1 e 1 @3987 ]
 "3845
 [v _TRISC TRISC `VEuc  1 e 1 @3988 ]
-[s S1173 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S1154 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
@@ -569,18 +610,18 @@ RES_PARERR 4
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "3873
-[s S1180 . 1 `uc 1 RC0 1 0 :1:0 
+[s S1161 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[u S1187 . 1 `S1173 1 . 1 0 `S1180 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES1187  1 e 1 @3988 ]
+[u S1168 . 1 `S1154 1 . 1 0 `S1161 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES1168  1 e 1 @3988 ]
 "3999
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
-[s S1468 . 1 `uc 1 TRISD0 1 0 :1:0 
+[s S1445 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
 `uc 1 TRISD3 1 0 :1:3 
@@ -590,8 +631,8 @@ RES_PARERR 4
 `uc 1 TRISD7 1 0 :1:7 
 ]
 "4031
-[u S1486 . 1 `S1468 1 . 1 0 `S1477 1 . 1 0 ]
-[v _TRISDbits TRISDbits `VES1486  1 e 1 @3989 ]
+[u S1463 . 1 `S1445 1 . 1 0 `S1454 1 . 1 0 ]
+[v _TRISDbits TRISDbits `VES1463  1 e 1 @3989 ]
 "4221
 [v _TRISE TRISE `VEuc  1 e 1 @3990 ]
 "4382
@@ -632,7 +673,7 @@ RES_PARERR 4
 ]
 [u S71 . 1 `S56 1 . 1 0 `S65 1 . 1 0 ]
 [v _PIR1bits PIR1bits `VES71  1 e 1 @3998 ]
-[s S1841 . 1 `uc 1 CCP2IF 1 0 :1:0 
+[s S1818 . 1 `uc 1 CCP2IF 1 0 :1:0 
 `uc 1 TMR3IF 1 0 :1:1 
 `uc 1 HLVDIF 1 0 :1:2 
 `uc 1 BCLIF 1 0 :1:3 
@@ -642,12 +683,12 @@ RES_PARERR 4
 `uc 1 OSCFIF 1 0 :1:7 
 ]
 "4726
-[s S1850 . 1 `uc 1 . 1 0 :2:0 
+[s S1827 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 LVDIF 1 0 :1:2 
 ]
-[u S1853 . 1 `S1841 1 . 1 0 `S1850 1 . 1 0 ]
-[v _PIR2bits PIR2bits `VES1853  1 e 1 @4001 ]
-[s S1785 . 1 `uc 1 RD 1 0 :1:0 
+[u S1830 . 1 `S1818 1 . 1 0 `S1827 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES1830  1 e 1 @4001 ]
+[s S1762 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -657,11 +698,11 @@ RES_PARERR 4
 `uc 1 EEPGD 1 0 :1:7 
 ]
 "4868
-[s S1794 . 1 `uc 1 . 1 0 :6:0 
+[s S1771 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 EEFS 1 0 :1:6 
 ]
-[u S1797 . 1 `S1785 1 . 1 0 `S1794 1 . 1 0 ]
-[v _EECON1bits EECON1bits `VES1797  1 e 1 @4006 ]
+[u S1774 . 1 `S1762 1 . 1 0 `S1771 1 . 1 0 ]
+[v _EECON1bits EECON1bits `VES1774  1 e 1 @4006 ]
 "4913
 [v _EECON2 EECON2 `VEuc  1 e 1 @4007 ]
 "4920
@@ -670,7 +711,7 @@ RES_PARERR 4
 [v _EEADR EEADR `VEuc  1 e 1 @4009 ]
 "4934
 [v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
-[s S1943 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S1920 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -680,22 +721,22 @@ RES_PARERR 4
 `uc 1 SPEN 1 0 :1:7 
 ]
 "4975
-[s S1952 . 1 `uc 1 . 1 0 :3:0 
+[s S1929 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 ADEN 1 0 :1:3 
 ]
-[s S1955 . 1 `uc 1 . 1 0 :5:0 
+[s S1932 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 SRENA 1 0 :1:5 
 ]
-[s S1958 . 1 `uc 1 . 1 0 :6:0 
+[s S1935 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[s S1961 . 1 `uc 1 . 1 0 :6:0 
+[s S1938 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S1964 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S1941 . 1 `uc 1 RCD8 1 0 :1:0 
 ]
-[u S1966 . 1 `S1943 1 . 1 0 `S1952 1 . 1 0 `S1955 1 . 1 0 `S1958 1 . 1 0 `S1961 1 . 1 0 `S1964 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES1966  1 e 1 @4011 ]
+[u S1943 . 1 `S1920 1 . 1 0 `S1929 1 . 1 0 `S1932 1 . 1 0 `S1935 1 . 1 0 `S1938 1 . 1 0 `S1941 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES1943  1 e 1 @4011 ]
 "5144
 [v _TXSTA TXSTA `VEuc  1 e 1 @4012 ]
 "5400
@@ -708,30 +749,30 @@ RES_PARERR 4
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "6866
 [v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
-[s S982 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S963 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "6886
-[s S988 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S969 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S993 . 1 `S982 1 . 1 0 `S988 1 . 1 0 ]
-[v _SSPCON1bits SSPCON1bits `VES993  1 e 1 @4038 ]
+[u S974 . 1 `S963 1 . 1 0 `S969 1 . 1 0 ]
+[v _SSPCON1bits SSPCON1bits `VES974  1 e 1 @4038 ]
 "6936
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
-[s S1032 . 1 `uc 1 . 1 0 :2:0 
+[s S1013 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
 "7019
-[s S1035 . 1 `uc 1 . 1 0 :5:0 
+[s S1016 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S1038 . 1 `uc 1 BF 1 0 :1:0 
+[s S1019 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -740,56 +781,56 @@ RES_PARERR 4
 `uc 1 CKE 1 0 :1:6 
 `uc 1 SMP 1 0 :1:7 
 ]
-[s S1047 . 1 `uc 1 . 1 0 :2:0 
+[s S1028 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S1052 . 1 `uc 1 . 1 0 :2:0 
+[s S1033 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
-[s S1058 . 1 `uc 1 . 1 0 :2:0 
+[s S1039 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S1063 . 1 `uc 1 . 1 0 :2:0 
+[s S1044 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
-[s S1066 . 1 `uc 1 . 1 0 :5:0 
+[s S1047 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
-[s S1069 . 1 `uc 1 . 1 0 :2:0 
+[s S1050 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S1074 . 1 `uc 1 . 1 0 :2:0 
+[s S1055 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[s S1079 . 1 `uc 1 . 1 0 :2:0 
+[s S1060 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S1084 . 1 `uc 1 . 1 0 :2:0 
+[s S1065 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 `uc 1 START 1 0 :1:3 
 `uc 1 STOP 1 0 :1:4 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S1090 . 1 `uc 1 . 1 0 :2:0 
+[s S1071 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 NOT_A 1 0 :1:5 
 ]
-[u S1095 . 1 `S1032 1 . 1 0 `S1035 1 . 1 0 `S1038 1 . 1 0 `S1047 1 . 1 0 `S1052 1 . 1 0 `S1058 1 . 1 0 `S1063 1 . 1 0 `S1066 1 . 1 0 `S1069 1 . 1 0 `S1074 1 . 1 0 `S1079 1 . 1 0 `S1084 1 . 1 0 `S1090 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES1095  1 e 1 @4039 ]
+[u S1076 . 1 `S1013 1 . 1 0 `S1016 1 . 1 0 `S1019 1 . 1 0 `S1028 1 . 1 0 `S1033 1 . 1 0 `S1039 1 . 1 0 `S1044 1 . 1 0 `S1047 1 . 1 0 `S1050 1 . 1 0 `S1055 1 . 1 0 `S1060 1 . 1 0 `S1065 1 . 1 0 `S1071 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES1076  1 e 1 @4039 ]
 "7191
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
 "7198
@@ -798,14 +839,14 @@ RES_PARERR 4
 [v _PR2 PR2 `VEuc  1 e 1 @4043 ]
 "7406
 [v _TMR2 TMR2 `VEuc  1 e 1 @4044 ]
-[s S1707 . 1 `uc 1 SCS 1 0 :2:0 
+[s S1684 . 1 `uc 1 SCS 1 0 :2:0 
 `uc 1 IOFS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 `uc 1 IDLEN 1 0 :1:7 
 ]
 "8007
-[s S1713 . 1 `uc 1 SCS0 1 0 :1:0 
+[s S1690 . 1 `uc 1 SCS0 1 0 :1:0 
 `uc 1 SCS1 1 0 :1:1 
 `uc 1 FLTS 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -813,11 +854,11 @@ RES_PARERR 4
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S1721 . 1 `S1707 1 . 1 0 `S1713 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES1721  1 e 1 @4051 ]
+[u S1698 . 1 `S1684 1 . 1 0 `S1690 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES1698  1 e 1 @4051 ]
 "8067
 [v _T0CON T0CON `VEuc  1 e 1 @4053 ]
-[s S613 . 1 `uc 1 T0PS 1 0 :3:0 
+[s S622 . 1 `uc 1 T0PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -825,12 +866,12 @@ RES_PARERR 4
 `uc 1 TMR0ON 1 0 :1:7 
 ]
 "8087
-[s S620 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S629 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 ]
-[u S624 . 1 `S613 1 . 1 0 `S620 1 . 1 0 ]
-[v _T0CONbits T0CONbits `VES624  1 e 1 @4053 ]
+[u S633 . 1 `S622 1 . 1 0 `S629 1 . 1 0 ]
+[v _T0CONbits T0CONbits `VES633  1 e 1 @4053 ]
 "8144
 [v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
 "8151
@@ -919,6 +960,19 @@ RES_PARERR 4
 {
 "230
 } 0
+"237
+[v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
+{
+"240
+[v mensagem_inicial@msg_dois msg_dois `C[17]uc  1 a 17 17 ]
+"239
+[v mensagem_inicial@msg_linha_um msg_linha_um `C[17]uc  1 a 17 0 ]
+"238
+[v mensagem_inicial@F4169 F4169 `C[17]uc  1 s 17 F4169 ]
+"239
+[v mensagem_inicial@F4171 F4171 `C[17]uc  1 s 17 F4171 ]
+"256
+} 0
 "71 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/display_lcd.c
 [v _init_lcd init_lcd `(v  1 e 1 0 ]
 {
@@ -952,9 +1006,9 @@ RES_PARERR 4
 "138
 [v _write_timer_zero write_timer_zero `(v  1 e 1 0 ]
 {
-[u S1698 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
+[u S1675 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
 "140
-[v write_timer_zero@timer timer `S1698  1 a 2 27 ]
+[v write_timer_zero@timer timer `S1675  1 a 2 27 ]
 "138
 [v write_timer_zero@timer0 timer0 `ui  1 p 2 25 ]
 "146
@@ -978,539 +1032,518 @@ RES_PARERR 4
 [v _escalonador escalonador `(v  1 e 1 0 ]
 {
 "188
-[v escalonador@cont cont `uc  1 a 1 129 ]
+[v escalonador@cont cont `uc  1 a 1 92 ]
 "200
 } 0
-"131 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
+"151 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
 [v _SDCard SDCard `(v  1 e 1 0 ]
 {
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"136
-[s S659 . 32 `*.2S594 1 fs 2 0 `us 1 id 2 2 `uc 1 flag 1 4 `uc 1 pad1 1 5 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `ul 1 org_clust 4 14 `ul 1 curr_clust 4 18 `ul 1 dsect 4 22 `ul 1 dir_sect 4 26 `*.2uc 1 dir_ptr 2 30 ]
-[v SDCard@fil fil `S659  1 a 32 1 ]
-"135
-[v SDCard@FResult FResult `E3953  1 a 1 0 ]
-"334
-} 0
-"56 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
-[v _gps gps `(v  1 e 1 0 ]
-{
-"63
-[v gps@gps_buffer gps_buffer `[15]uc  1 a 15 102 ]
-"60
-[v gps@time time `ul  1 a 4 117 ]
-"61
-[v gps@date date `ul  1 a 4 98 ]
-"62
-[v gps@longitude longitude `f  1 a 3 124 ]
-[v gps@latitude latitude `f  1 a 3 121 ]
-"167
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\memset.c
-[v _memset memset `(*.39v  1 e 2 0 ]
-{
-"15
-[v memset@p p `*.39uc  1 a 2 31 ]
-"8
-[v memset@p1 p1 `*.39v  1 p 2 25 ]
-[v memset@c c `i  1 p 2 27 ]
-[v memset@n n `ui  1 p 2 29 ]
-"22
-} 0
-"227 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
-[v _get_longitude get_longitude `(f  1 e 3 0 ]
-{
-[v get_longitude@long_pointer long_pointer `uc  1 a 1 wreg ]
-"231
-[v get_longitude@long_buffer long_buffer `[15]uc  1 a 15 37 ]
-"232
-[v get_longitude@_longitude _longitude `f  1 a 3 52 ]
-"229
-[v get_longitude@long_index long_index `uc  1 a 1 57 ]
-"230
-[v get_longitude@index index `uc  1 a 1 56 ]
-"227
-[v get_longitude@long_pointer long_pointer `uc  1 a 1 wreg ]
-"230
-[v get_longitude@long_pointer long_pointer `uc  1 a 1 55 ]
-"244
-} 0
-"201
-[v _get_latitude get_latitude `(f  1 e 3 0 ]
-{
-[v get_latitude@lat_pointer lat_pointer `uc  1 a 1 wreg ]
-"205
-[v get_latitude@lat_buffer lat_buffer `[15]uc  1 a 15 37 ]
-"206
-[v get_latitude@_latitude _latitude `f  1 a 3 52 ]
-"203
-[v get_latitude@lat_index lat_index `uc  1 a 1 57 ]
-"204
-[v get_latitude@index index `uc  1 a 1 56 ]
-"201
-[v get_latitude@lat_pointer lat_pointer `uc  1 a 1 wreg ]
-"203
-[v get_latitude@lat_pointer lat_pointer `uc  1 a 1 55 ]
-"217
-} 0
-"200 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\atof.c
-[v _atof atof `(d  1 e 3 0 ]
-{
-[v atof@s s `*.39Cuc  1 p 2 30 ]
-"203
-} 0
-"35
-[v _strtod strtod `(d  1 e 3 0 ]
-{
-[u S3210 . 4 `d 1 _l 3 0 `l 1 _v 4 0 ]
-"62
-[v strtod@_u _u `S3210  1 a 4 26 ]
-"48
-[v strtod@expon expon `c  1 a 1 25 ]
-"37
-[v strtod@flags flags `uc  1 a 1 24 ]
-"49
-[v strtod@eexp eexp `c  1 a 1 23 ]
-"35
-[v strtod@s s `*.39Cuc  1 p 2 18 ]
-[v strtod@res res `*.2*.39Cuc  1 p 2 20 ]
-"197
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\isspace.c
-[v _isspace isspace `(b  1 e 0 0 ]
-{
-[v isspace@c c `uc  1 a 1 wreg ]
-[v isspace@c c `uc  1 a 1 wreg ]
-"14
-[v isspace@c c `uc  1 a 1 27 ]
-"15
-} 0
-"42 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\altoft.c
-[v ___altoft __altoft `(f  1 e 3 0 ]
-{
-"44
-[v ___altoft@sign sign `uc  1 a 1 42 ]
-[v ___altoft@exp exp `uc  1 a 1 41 ]
-"42
-[v ___altoft@c c `l  1 p 4 33 ]
-"57
-} 0
-"178 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
-[v _get_gpstime get_gpstime `(ul  1 e 4 0 ]
-{
-"181
-[v get_gpstime@time_buffer time_buffer `[15]uc  1 a 15 11 ]
-"182
-[v get_gpstime@_time _time `ul  1 a 4 26 ]
-"180
-[v get_gpstime@index index `uc  1 a 1 30 ]
-"191
-} 0
-"5 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\atol.c
-[v _atol atol `(l  1 e 4 0 ]
-{
-"7
-[v atol@a a `l  1 a 4 1 ]
-"8
-[v atol@c c `uc  1 a 1 5 ]
-[v atol@sign sign `uc  1 a 1 0 ]
-"5
-[v atol@s s `*.39Cuc  1 p 2 37 ]
-"27
-} 0
-"253 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
-[v _get_dt get_dt `(ul  1 e 4 0 ]
-{
-[v get_dt@dt_pointer dt_pointer `uc  1 a 1 wreg ]
-"258
-[v get_dt@count count `uc  1 a 1 6 ]
-"255
-[v get_dt@dt_index dt_index `uc  1 a 1 5 ]
-"261
-[v get_dt@ano ano `uc  1 a 1 4 ]
-"260
-[v get_dt@mes mes `uc  1 a 1 3 ]
-"259
-[v get_dt@dia dia `uc  1 a 1 2 ]
-"257
-[v get_dt@index index `uc  1 a 1 1 ]
-"253
-[v get_dt@dt_pointer dt_pointer `uc  1 a 1 wreg ]
-"255
-[v get_dt@dt_pointer dt_pointer `uc  1 a 1 0 ]
-"294
-} 0
-"4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strlen.c
-[v _strlen strlen `(ui  1 e 2 0 ]
-{
-"6
-[v strlen@cp cp `*.39Cuc  1 a 2 29 ]
-"4
-[v strlen@s s `*.39Cuc  1 p 2 25 ]
-"13
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcat.c
-[v _strcat strcat `(*.39uc  1 e 2 0 ]
-{
-"15
-[v strcat@cp cp `*.39uc  1 a 2 30 ]
-"8
-[v strcat@to to `*.39uc  1 p 2 25 ]
-[v strcat@from from `*.33Cuc  1 p 3 27 ]
-"26
-} 0
-"346 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
-[v _convert_to_degrees convert_to_degrees `(f  1 e 3 0 ]
-{
-"347
-[v convert_to_degrees@decimal decimal `f  1 a 3 48 ]
-[v convert_to_degrees@dec_deg dec_deg `f  1 a 3 43 ]
-[v convert_to_degrees@minutes minutes `f  1 a 3 40 ]
-"348
-[v convert_to_degrees@degrees degrees `i  1 a 2 46 ]
-"346
-[v convert_to_degrees@nmea_lat_long nmea_lat_long `f  1 p 3 37 ]
-"359
-} 0
-"54 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftdiv.c
-[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-{
-"60
-[v ___ftdiv@f3 f3 `f  1 a 3 1 ]
-"59
-[v ___ftdiv@sign sign `uc  1 a 1 5 ]
-[v ___ftdiv@exp exp `uc  1 a 1 4 ]
-[v ___ftdiv@cntr cntr `uc  1 a 1 0 ]
-"54
-[v ___ftdiv@f1 f1 `f  1 p 3 33 ]
-[v ___ftdiv@f2 f2 `f  1 p 3 36 ]
-"86
-} 0
-"32 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\awtoft.c
-[v ___awtoft __awtoft `(f  1 e 3 0 ]
-{
-"34
-[v ___awtoft@sign sign `uc  1 a 1 36 ]
-"32
-[v ___awtoft@c c `i  1 p 2 33 ]
-"42
-} 0
-"304 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/GPS.c
-[v _convert_time_to_utc convert_time_to_utc `(v  1 e 1 0 ]
-{
-"306
-[v convert_time_to_utc@sec sec `ui  1 a 2 94 ]
-[v convert_time_to_utc@min min `ui  1 a 2 92 ]
-[v convert_time_to_utc@hour hour `ui  1 a 2 90 ]
-"304
-[v convert_time_to_utc@utc_time utc_time `ul  1 p 4 82 ]
-"316
-} 0
-"492 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
-[v _sprintf sprintf `(i  1 e 2 0 ]
-{
-"528
-[v sprintf@val val `ul  1 a 4 72 ]
-[u S3043 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
-"526
-[v sprintf@tmpval tmpval `S3043  1 a 4 68 ]
-"516
-[v sprintf@fval fval `d  1 a 3 78 ]
-"504
-[v sprintf@prec prec `i  1 a 2 76 ]
-"516
-[v sprintf@exp exp `i  1 a 2 66 ]
-"508
-[v sprintf@flag flag `us  1 a 2 64 ]
-"494
-[v sprintf@ap ap `[1]*.39v  1 a 2 62 ]
-"499
-[v sprintf@c c `c  1 a 1 81 ]
-"492
-[v sprintf@sp sp `*.39uc  1 p 2 43 ]
-[v sprintf@f f `*.25Cuc  1 p 2 45 ]
-"1541
-} 0
-"425
-[v _scale scale `(d  1 s 3 scale ]
-{
-[v scale@scl scl `c  1 a 1 wreg ]
-[v scale@scl scl `c  1 a 1 wreg ]
-"428
-[v scale@scl scl `c  1 a 1 21 ]
-"441
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\isdigit.c
-[v _isdigit isdigit `(b  1 e 0 0 ]
-{
-[v isdigit@c c `uc  1 a 1 wreg ]
-[v isdigit@c c `uc  1 a 1 wreg ]
-"14
-[v isdigit@c c `uc  1 a 1 27 ]
-"15
-} 0
-"409 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
-[v _fround fround `(d  1 s 3 fround ]
-{
-[v fround@prec prec `uc  1 a 1 wreg ]
-[v fround@prec prec `uc  1 a 1 wreg ]
-"413
-[v fround@prec prec `uc  1 a 1 24 ]
-"418
-} 0
-"15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul16.c
-[v ___wmul __wmul `(ui  1 e 2 0 ]
-{
-"17
-[v ___wmul@product product `ui  1 a 2 43 ]
-"15
-[v ___wmul@multiplier multiplier `ui  1 p 2 39 ]
-[v ___wmul@multiplicand multiplicand `ui  1 p 2 41 ]
-"53
-} 0
-"62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftmul.c
-[v ___ftmul __ftmul `(f  1 e 3 0 ]
-{
-"65
-[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 10 ]
-"64
-[v ___ftmul@sign sign `uc  1 a 1 14 ]
-[v ___ftmul@cntr cntr `uc  1 a 1 13 ]
-[v ___ftmul@exp exp `uc  1 a 1 9 ]
-"62
-[v ___ftmul@f1 f1 `f  1 p 3 0 ]
-[v ___ftmul@f2 f2 `f  1 p 3 3 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
 "157
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S676 . 34 `S669 1 obj 14 0 `uc 1 flag 1 14 `uc 1 err 1 15 `ul 1 fptr 4 16 `ul 1 clust 4 20 `ul 1 sect 4 24 `ul 1 dir_sect 4 28 `*.39uc 1 dir_ptr 2 32 ]
+[v SDCard@fil fil `S676  1 a 34 3 ]
+"158
+[v SDCard@br br `us  1 a 2 0 ]
+"156
+[v SDCard@FResult FResult `E3962  1 a 1 2 ]
+"211
 } 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\awmod.c
-[v ___awmod __awmod `(i  1 e 2 0 ]
+"3671 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[v _f_write f_write `(E3962  1 e 1 0 ]
 {
-"11
-[v ___awmod@sign sign `uc  1 a 1 30 ]
-[v ___awmod@counter counter `uc  1 a 1 29 ]
-"8
-[v ___awmod@dividend dividend `i  1 p 2 25 ]
-[v ___awmod@divisor divisor `i  1 p 2 27 ]
-"35
+"3680
+[v f_write@clst clst `ul  1 a 4 15 ]
+[v f_write@sect sect `ul  1 a 4 11 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"3679
+[v f_write@fs fs `*.39S603  1 a 2 21 ]
+"3681
+[v f_write@wcnt wcnt `ui  1 a 2 19 ]
+[v f_write@cc cc `ui  1 a 2 9 ]
+[v f_write@csect csect `ui  1 a 2 7 ]
+"3682
+[v f_write@wbuff wbuff `*.25Cuc  1 a 2 5 ]
+"3678
+[v f_write@res res `E79  1 a 1 4 ]
+"3672
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S676 . 34 `S669 1 obj 14 0 `uc 1 flag 1 14 `uc 1 err 1 15 `ul 1 fptr 4 16 `ul 1 clust 4 20 `ul 1 sect 4 24 `ul 1 dir_sect 4 28 `*.39uc 1 dir_ptr 2 32 ]
+[v f_write@fp fp `*.39S676  1 p 2 108 ]
+"3673
+[v f_write@buff buff `*.25Cv  1 p 2 110 ]
+"3674
+[v f_write@btw btw `ui  1 p 2 112 ]
+"3675
+[v f_write@bw bw `*.39ui  1 p 2 114 ]
+"3783
 } 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\awdiv.c
-[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"3375
+[v _f_open f_open `(E3962  1 e 1 0 ]
 {
-"11
-[v ___awdiv@quotient quotient `i  1 a 2 37 ]
-"12
-[v ___awdiv@sign sign `uc  1 a 1 36 ]
-[v ___awdiv@counter counter `uc  1 a 1 35 ]
-"8
-[v ___awdiv@dividend dividend `i  1 p 2 31 ]
-[v ___awdiv@divisor divisor `i  1 p 2 33 ]
-"42
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"3382
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S2228 . 40 `S669 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
+[v f_open@dj dj `S2228  1 a 40 50 ]
+"3385
+[v f_open@clst clst `ul  1 a 4 43 ]
+"3386
+[v f_open@ofs ofs `ul  1 a 4 39 ]
+"3385
+[v f_open@cl cl `ul  1 a 4 35 ]
+[v f_open@bcs bcs `ul  1 a 4 31 ]
+[v f_open@sc sc `ul  1 a 4 25 ]
+[v f_open@dw dw `ul  1 a 4 21 ]
+"3383
+[v f_open@fs fs `*.39S603  1 a 2 47 ]
+"3381
+[v f_open@res res `E79  1 a 1 49 ]
+"3376
+[s S676 . 34 `S669 1 obj 14 0 `uc 1 flag 1 14 `uc 1 err 1 15 `ul 1 fptr 4 16 `ul 1 clust 4 20 `ul 1 sect 4 24 `ul 1 dir_sect 4 28 `*.39uc 1 dir_ptr 2 32 ]
+[v f_open@fp fp `*.39S676  1 p 2 8 ]
+"3377
+[v f_open@path path `*.25Cuc  1 p 2 10 ]
+"3378
+[v f_open@mode mode `uc  1 p 1 12 ]
+"3562
 } 0
-"60 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftdivl.c
-[v __tdiv_to_l_ _tdiv_to_l_ `(ul  1 e 4 0 ]
+"1252
+[v _remove_chain remove_chain `(E79  1 s 1 remove_chain ]
 {
-"63
-[v __tdiv_to_l_@quot quot `ul  1 a 4 34 ]
-"62
-[v __tdiv_to_l_@exp1 exp1 `uc  1 a 1 39 ]
-[v __tdiv_to_l_@cntr cntr `uc  1 a 1 38 ]
-"60
-[v __tdiv_to_l_@f1 f1 `f  1 p 3 25 ]
-[v __tdiv_to_l_@f2 f2 `f  1 p 3 28 ]
-"101
+"1259
+[v remove_chain@nxt nxt `ul  1 a 4 97 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1260
+[v remove_chain@fs fs `*.39S603  1 a 2 102 ]
+"1258
+[v remove_chain@res res `E79  1 a 1 101 ]
+"1253
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[v remove_chain@obj obj `*.39S669  1 p 2 79 ]
+"1254
+[v remove_chain@clst clst `ul  1 p 4 81 ]
+"1255
+[v remove_chain@pclst pclst `ul  1 p 4 85 ]
+"1338
 } 0
-"60 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\fldivl.c
-[v __div_to_l_ _div_to_l_ `(ul  1 e 4 0 ]
+"2860
+[v _follow_path follow_path `(E79  1 s 1 follow_path ]
 {
-"63
-[v __div_to_l_@quot quot `ul  1 a 4 31 ]
-"62
-[v __div_to_l_@exp1 exp1 `uc  1 a 1 36 ]
-[v __div_to_l_@cntr cntr `uc  1 a 1 35 ]
-"60
-[v __div_to_l_@f1 f1 `d  1 p 3 25 ]
-[v __div_to_l_@f2 f2 `d  1 p 3 28 ]
-"101
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"2867
+[v follow_path@fs fs `*.39S603  1 a 2 4 ]
+"2865
+[v follow_path@res res `E79  1 a 1 7 ]
+"2866
+[v follow_path@ns ns `uc  1 a 1 6 ]
+"2861
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S2228 . 40 `S669 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
+[v follow_path@dp dp `*.39S2228  1 p 2 146 ]
+"2862
+[v follow_path@path path `*.25Cuc  1 p 2 148 ]
+"2940
 } 0
-"35 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lltoft.c
-[v ___lltoft __lltoft `(f  1 e 3 0 ]
+"1675
+[v _ld_clust ld_clust `(ul  1 s 4 ld_clust ]
 {
-"37
-[v ___lltoft@exp exp `uc  1 a 1 41 ]
-"35
-[v ___lltoft@c c `ul  1 p 4 33 ]
-"46
+"1680
+[v ld_clust@cl cl `ul  1 a 4 40 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1676
+[v ld_clust@fs fs `*.39S603  1 p 2 32 ]
+"1677
+[v ld_clust@dir dir `*.39Cuc  1 p 2 34 ]
+"1688
 } 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\llmod.c
-[v ___llmod __llmod `(ul  1 e 4 0 ]
+"2240
+[v _dir_find dir_find `(E79  1 s 1 dir_find ]
 {
-"11
-[v ___llmod@counter counter `uc  1 a 1 33 ]
-"8
-[v ___llmod@dividend dividend `ul  1 p 4 25 ]
-[v ___llmod@divisor divisor `ul  1 p 4 29 ]
-"26
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"2245
+[v dir_find@fs fs `*.39S603  1 a 2 142 ]
+"2244
+[v dir_find@res res `E79  1 a 1 145 ]
+"2246
+[v dir_find@c c `uc  1 a 1 144 ]
+"2241
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S2228 . 40 `S669 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
+[v dir_find@dp dp `*.39S2228  1 p 2 138 ]
+"2311
 } 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
-[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"2654
+[v _create_name create_name `(E79  1 s 1 create_name ]
 {
-"11
-[v ___lldiv@quotient quotient `ul  1 a 4 0 ]
-"12
-[v ___lldiv@counter counter `uc  1 a 1 4 ]
-"8
-[v ___lldiv@dividend dividend `ul  1 p 4 34 ]
-[v ___lldiv@divisor divisor `ul  1 p 4 38 ]
-"31
+"2790
+[v create_name@i i `ui  1 a 2 11 ]
+"2789
+[v create_name@sfn sfn `*.39uc  1 a 2 9 ]
+"2790
+[v create_name@si si `ui  1 a 2 7 ]
+"2791
+[v create_name@p p `*.25Cuc  1 a 2 5 ]
+"2790
+[v create_name@ni ni `ui  1 a 2 3 ]
+"2789
+[v create_name@c c `uc  1 a 1 13 ]
+[v create_name@d d `uc  1 a 1 2 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"2655
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S2228 . 40 `S669 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
+[v create_name@dp dp `*.39S2228  1 p 2 33 ]
+"2656
+[v create_name@path path `*.39*.25Cuc  1 p 2 35 ]
+"2850
 } 0
-"44 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\fttol.c
-[v ___fttol __fttol `(l  1 e 4 0 ]
+"700
+[v _dbc_2nd dbc_2nd `(i  1 s 2 dbc_2nd ]
 {
-"47
-[v ___fttol@lval lval `ul  1 a 4 32 ]
-"46
-[v ___fttol@exp1 exp1 `uc  1 a 1 36 ]
-[v ___fttol@sign1 sign1 `uc  1 a 1 31 ]
-"44
-[v ___fttol@f1 f1 `f  1 p 3 22 ]
-"73
+[v dbc_2nd@c c `uc  1 a 1 wreg ]
+[v dbc_2nd@c c `uc  1 a 1 wreg ]
+"709
+[v dbc_2nd@c c `uc  1 a 1 27 ]
+"718
 } 0
-"20 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftsub.c
-[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"679
+[v _dbc_1st dbc_1st `(i  1 s 2 dbc_1st ]
 {
-[v ___ftsub@f1 f1 `f  1 p 3 37 ]
-[v ___ftsub@f2 f2 `f  1 p 3 40 ]
-"27
+[v dbc_1st@c c `uc  1 a 1 wreg ]
+[v dbc_1st@c c `uc  1 a 1 wreg ]
+"687
+[v dbc_1st@c c `uc  1 a 1 27 ]
+"695
 } 0
-"86 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftadd.c
-[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"670
+[v _chk_chr chk_chr `(i  1 s 2 chk_chr ]
 {
-"88
-[v ___ftadd@exp1 exp1 `uc  1 a 1 36 ]
-[v ___ftadd@exp2 exp2 `uc  1 a 1 35 ]
-[v ___ftadd@sign sign `uc  1 a 1 34 ]
-"86
-[v ___ftadd@f1 f1 `f  1 p 3 25 ]
-[v ___ftadd@f2 f2 `f  1 p 3 28 ]
-"148
+[v chk_chr@str str `*.25Cuc  1 p 2 25 ]
+[v chk_chr@chr chr `i  1 p 2 27 ]
+"674
 } 0
-"62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\float.c
-[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"2322
+[v _dir_register dir_register `(E79  1 s 1 dir_register ]
 {
-[v ___ftpack@arg arg `um  1 p 3 25 ]
-[v ___ftpack@exp exp `uc  1 p 1 28 ]
-[v ___ftpack@sign sign `uc  1 p 1 29 ]
-"86
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"2327
+[v dir_register@fs fs `*.39S603  1 a 2 0 ]
+"2326
+[v dir_register@res res `E79  1 a 1 2 ]
+"2323
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S2228 . 40 `S669 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
+[v dir_register@dp dp `*.39S2228  1 p 2 150 ]
+"2417
 } 0
-"15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftneg.c
-[v ___ftneg __ftneg `(f  1 e 3 0 ]
-{
-[v ___ftneg@f1 f1 `f  1 p 3 15 ]
-"20
-} 0
-"4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftge.c
-[v ___ftge __ftge `(b  1 e 0 0 ]
-{
-[v ___ftge@ff1 ff1 `f  1 p 3 25 ]
-[v ___ftge@ff2 ff2 `f  1 p 3 28 ]
-"13
-} 0
-"2125 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
-[v _f_write f_write `(E3953  1 e 1 0 ]
-{
-"2133
-[v f_write@sect sect `ul  1 a 4 26 ]
-[v f_write@clst clst `ul  1 a 4 22 ]
-"2134
-[v f_write@wcnt wcnt `ui  1 a 2 30 ]
-[v f_write@cc cc `ui  1 a 2 20 ]
-"2135
-[v f_write@wbuff wbuff `*.25Cuc  1 a 2 17 ]
-"2136
-[v f_write@csect csect `uc  1 a 1 19 ]
-"2132
-[v f_write@res res `E72  1 a 1 16 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"2126
-[s S659 . 32 `*.2S594 1 fs 2 0 `us 1 id 2 2 `uc 1 flag 1 4 `uc 1 pad1 1 5 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `ul 1 org_clust 4 14 `ul 1 curr_clust 4 18 `ul 1 dsect 4 22 `ul 1 dir_sect 4 26 `*.2uc 1 dir_ptr 2 30 ]
-[v f_write@fp fp `*.39S659  1 p 2 111 ]
-"2127
-[v f_write@buff buff `*.25Cv  1 p 2 113 ]
-"2128
-[v f_write@btw btw `ui  1 p 2 115 ]
-"2129
-[v f_write@bw bw `*.39ui  1 p 2 117 ]
-"2230
-} 0
-"232
+"628
 [v _mem_cpy mem_cpy `(v  1 s 1 mem_cpy ]
 {
-"234
+"631
 [v mem_cpy@s s `*.35Cuc  1 a 2 33 ]
-"233
-[v mem_cpy@d d `*.2uc  1 a 2 31 ]
-"232
-[v mem_cpy@dst dst `*.2v  1 p 2 25 ]
+"630
+[v mem_cpy@d d `*.39uc  1 a 2 31 ]
+"628
+[v mem_cpy@dst dst `*.39v  1 p 2 25 ]
 [v mem_cpy@src src `*.35Cv  1 p 2 27 ]
-[v mem_cpy@cnt cnt `i  1 p 2 29 ]
-"245
+[v mem_cpy@cnt cnt `ui  1 p 2 29 ]
+"638
 } 0
-"636
+"1632
+[v _dir_alloc dir_alloc `(E79  1 s 1 dir_alloc ]
+{
+"1638
+[v dir_alloc@n n `ui  1 a 2 147 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1639
+[v dir_alloc@fs fs `*.39S603  1 a 2 145 ]
+"1637
+[v dir_alloc@res res `E79  1 a 1 149 ]
+"1633
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S2228 . 40 `S669 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
+[v dir_alloc@dp dp `*.39S2228  1 p 2 138 ]
+"1634
+[v dir_alloc@nent nent `ui  1 p 2 140 ]
+"1663
+} 0
+"1522
+[v _dir_sdi dir_sdi `(E79  1 s 1 dir_sdi ]
+{
+"1527
+[v dir_sdi@clst clst `ul  1 a 4 98 ]
+[v dir_sdi@csz csz `ul  1 a 4 94 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1528
+[v dir_sdi@fs fs `*.39S603  1 a 2 102 ]
+"1523
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S2228 . 40 `S669 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
+[v dir_sdi@dp dp `*.39S2228  1 p 2 74 ]
+"1524
+[v dir_sdi@ofs ofs `ul  1 p 4 76 ]
+"1561
+} 0
+"1571
+[v _dir_next dir_next `(E79  1 s 1 dir_next ]
+{
+"1576
+[v dir_next@clst clst `ul  1 a 4 134 ]
+[v dir_next@ofs ofs `ul  1 a 4 128 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1577
+[v dir_next@fs fs `*.39S603  1 a 2 132 ]
+"1572
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S2228 . 40 `S669 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
+[v dir_next@dp dp `*.39S2228  1 p 2 108 ]
+"1573
+[v dir_next@stretch stretch `i  1 p 2 110 ]
+"1621
+} 0
+"1482
+[v _dir_clear dir_clear `(E79  1 s 1 dir_clear ]
+{
+"1487
+[v dir_clear@sect sect `ul  1 a 4 47 ]
+"1488
+[v dir_clear@n n `ui  1 a 2 53 ]
+[v dir_clear@szb szb `ui  1 a 2 51 ]
+"1489
+[v dir_clear@ibuf ibuf `*.39uc  1 a 2 45 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1483
+[v dir_clear@fs fs `*.39S603  1 p 2 37 ]
+"1484
+[v dir_clear@clst clst `ul  1 p 4 39 ]
+"1511
+} 0
+"962
+[v _clst2sect clst2sect `(ul  1 s 4 clst2sect ]
+{
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"963
+[v clst2sect@fs fs `*.39S603  1 p 2 37 ]
+"964
+[v clst2sect@clst clst `ul  1 p 4 39 ]
+"970
+} 0
+"1347
 [v _create_chain create_chain `(ul  1 s 4 create_chain ]
 {
-"641
-[v create_chain@ncl ncl `ul  1 a 4 107 ]
-[v create_chain@cs cs `ul  1 a 4 103 ]
-[v create_chain@scl scl `ul  1 a 4 99 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"637
-[v create_chain@fs fs `*.2S594  1 p 2 89 ]
-"638
-[v create_chain@clst clst `ul  1 p 4 91 ]
-"683
+"1352
+[v create_chain@cs cs `ul  1 a 4 104 ]
+[v create_chain@ncl ncl `ul  1 a 4 98 ]
+[v create_chain@scl scl `ul  1 a 4 94 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1354
+[v create_chain@fs fs `*.39S603  1 a 2 102 ]
+"1353
+[v create_chain@res res `E79  1 a 1 93 ]
+"1348
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[v create_chain@obj obj `*.39S669  1 p 2 79 ]
+"1349
+[v create_chain@clst clst `ul  1 p 4 81 ]
+"1438
 } 0
-"532
-[v _put_fat put_fat `(E72  1 e 1 0 ]
+"1058
+[v _put_fat put_fat `(E79  1 s 1 put_fat ]
 {
-"539
-[v put_fat@p p `*.2uc  1 a 2 87 ]
-"538
-[v put_fat@bc bc `ui  1 a 2 84 ]
-"540
-[v put_fat@res res `E72  1 a 1 86 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"533
-[v put_fat@fs fs `*.2S594  1 p 2 40 ]
-"534
-[v put_fat@clst clst `ul  1 p 4 42 ]
-"535
-[v put_fat@val val `ul  1 p 4 46 ]
-"584
+"1064
+[v put_fat@bc bc `ui  1 a 2 76 ]
+"1065
+[v put_fat@p p `*.39uc  1 a 2 74 ]
+"1066
+[v put_fat@res res `E79  1 a 1 78 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1059
+[v put_fat@fs fs `*.39S603  1 p 2 48 ]
+"1060
+[v put_fat@clst clst `ul  1 p 4 50 ]
+"1061
+[v put_fat@val val `ul  1 p 4 54 ]
+"1107
 } 0
-"489
-[v _get_fat get_fat `(ul  1 e 4 0 ]
+"980
+[v _get_fat get_fat `(ul  1 s 4 get_fat ]
 {
-"495
-[v get_fat@p p `*.2uc  1 a 2 78 ]
-"494
-[v get_fat@bc bc `ui  1 a 2 76 ]
-[v get_fat@wc wc `ui  1 a 2 74 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"490
-[v get_fat@fs fs `*.2S594  1 p 2 40 ]
-"491
-[v get_fat@clst clst `ul  1 p 4 42 ]
-"522
+"986
+[v get_fat@val val `ul  1 a 4 66 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"987
+[v get_fat@fs fs `*.39S603  1 a 2 72 ]
+"985
+[v get_fat@bc bc `ui  1 a 2 70 ]
+[v get_fat@wc wc `ui  1 a 2 64 ]
+"981
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[v get_fat@obj obj `*.39S669  1 p 2 48 ]
+"982
+[v get_fat@clst clst `ul  1 p 4 50 ]
+"1047
 } 0
-"694
-[v _clust2sect clust2sect `(ul  1 e 4 0 ]
+"3317
+[v _f_mount f_mount `(E3962  1 e 1 0 ]
 {
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"695
-[v clust2sect@fs fs `*.2S594  1 p 2 37 ]
-"696
-[v clust2sect@clst clst `ul  1 p 4 39 ]
-"702
+"3326
+[v f_mount@rp rp `*.25Cuc  1 a 2 136 ]
+"3324
+[v f_mount@vol vol `i  1 a 2 134 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"3323
+[v f_mount@cfs cfs `*.39S603  1 a 2 132 ]
+"3325
+[v f_mount@res res `E79  1 a 1 131 ]
+"3318
+[v f_mount@fs fs `*.39S603  1 p 2 126 ]
+"3319
+[v f_mount@path path `*.25Cuc  1 p 2 128 ]
+"3320
+[v f_mount@opt opt `uc  1 p 1 130 ]
+"3356
+} 0
+"3041
+[v _find_volume find_volume `(E79  1 s 1 find_volume ]
+{
+"3050
+[v find_volume@br br `[4]ul  1 a 16 68 ]
+[v find_volume@bsect bsect `ul  1 a 4 117 ]
+[v find_volume@fasize fasize `ul  1 a 4 113 ]
+[v find_volume@nclst nclst `ul  1 a 4 109 ]
+[v find_volume@tsect tsect `ul  1 a 4 104 ]
+[v find_volume@sysect sysect `ul  1 a 4 96 ]
+[v find_volume@szbfat szbfat `ul  1 a 4 90 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"3052
+[v find_volume@fs fs `*.39S603  1 a 2 124 ]
+"3053
+[v find_volume@i i `ui  1 a 2 121 ]
+"3051
+[v find_volume@nrsv nrsv `us  1 a 2 102 ]
+"3048
+[v find_volume@vol vol `i  1 a 2 100 ]
+"3047
+[v find_volume@pt pt `*.39uc  1 a 2 94 ]
+[v find_volume@fmt fmt `uc  1 a 1 123 ]
+"3049
+[v find_volume@stat stat `uc  1 a 1 108 ]
+"3042
+[v find_volume@path path `*.39*.25Cuc  1 p 2 55 ]
+"3043
+[v find_volume@rfs rfs `*.39*.39S603  1 p 2 57 ]
+"3044
+[v find_volume@mode mode `uc  1 p 1 59 ]
+"3263
+} 0
+"558
+[v _ld_dword ld_dword `(ul  1 s 4 ld_dword ]
+{
+"560
+[v ld_dword@rv rv `ul  1 a 4 34 ]
+"558
+[v ld_dword@ptr ptr `*.39Cuc  1 p 2 25 ]
+"567
+} 0
+"2950
+[v _get_ldnumber get_ldnumber `(i  1 s 2 get_ldnumber ]
+{
+"2955
+[v get_ldnumber@i i `ui  1 a 2 41 ]
+"2954
+[v get_ldnumber@tt tt `*.25Cuc  1 a 2 39 ]
+[v get_ldnumber@tp tp `*.25Cuc  1 a 2 37 ]
+"2956
+[v get_ldnumber@vol vol `i  1 a 2 33 ]
+"2959
+[v get_ldnumber@sp sp `*.25Cuc  1 a 2 29 ]
+"2961
+[v get_ldnumber@tc tc `uc  1 a 1 36 ]
+"2960
+[v get_ldnumber@c c `uc  1 a 1 35 ]
+"2951
+[v get_ldnumber@path path `*.39*.25Cuc  1 p 2 25 ]
+"2958
+[v get_ldnumber@volid volid `C[8]*.25Cuc  1 s 16 volid ]
+"3001
+} 0
+"110 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
+[v _disk_initialize disk_initialize `(uc  1 e 1 0 ]
+{
+"111
+[v disk_initialize@pdrv pdrv `uc  1 a 1 wreg ]
+"114
+[v disk_initialize@stat stat `uc  1 a 1 35 ]
+"111
+[v disk_initialize@pdrv pdrv `uc  1 a 1 wreg ]
+"110
+[v disk_initialize@pdrv pdrv `uc  1 a 1 34 ]
+"140
+} 0
+"331
+[v _sdc_disk_initialize sdc_disk_initialize `(uc  1 e 1 0 ]
+{
+"335
+[v sdc_disk_initialize@count2 count2 `i  1 a 2 31 ]
+"338
+[v sdc_disk_initialize@crc_number crc_number `i  1 a 2 27 ]
+"335
+[v sdc_disk_initialize@count1 count1 `i  1 a 2 25 ]
+[v sdc_disk_initialize@i i `i  1 a 2 22 ]
+"336
+[v sdc_disk_initialize@buff buff `uc  1 a 1 33 ]
+"333
+[v sdc_disk_initialize@ocr ocr `uc  1 a 1 30 ]
+"337
+[v sdc_disk_initialize@buff_i buff_i `uc  1 a 1 29 ]
+"334
+[v sdc_disk_initialize@stat stat `uc  1 a 1 24 ]
+"514
+} 0
+"288
+[v _sdc_reset sdc_reset `(v  1 e 1 0 ]
+{
+"290
+[v sdc_reset@count count `i  1 a 2 17 ]
+[v sdc_reset@count_nosd count_nosd `i  1 a 2 15 ]
+[v sdc_reset@i i `i  1 a 2 13 ]
+"291
+[v sdc_reset@buff buff `uc  1 a 1 19 ]
+"321
+} 0
+"3011 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[v _check_fs check_fs `(uc  1 s 1 check_fs ]
+{
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"3012
+[v check_fs@fs fs `*.39S603  1 p 2 48 ]
+"3013
+[v check_fs@sect sect `ul  1 p 4 50 ]
+"3031
+} 0
+"655
+[v _mem_cmp mem_cmp `(i  1 s 2 mem_cmp ]
+{
+"658
+[v mem_cmp@r r `i  1 a 2 38 ]
+"657
+[v mem_cmp@s s `*.35Cuc  1 a 2 36 ]
+[v mem_cmp@d d `*.39Cuc  1 a 2 34 ]
+"655
+[v mem_cmp@dst dst `*.39Cv  1 p 2 25 ]
+[v mem_cmp@src src `*.35Cv  1 p 2 27 ]
+[v mem_cmp@cnt cnt `ui  1 p 2 29 ]
+"665
+} 0
+"548
+[v _ld_word ld_word `(us  1 s 2 ld_word ]
+{
+"550
+[v ld_word@rv rv `us  1 a 2 30 ]
+"548
+[v ld_word@ptr ptr `*.39Cuc  1 p 2 25 ]
+"555
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
@@ -1522,137 +1555,276 @@ RES_PARERR 4
 [v ___lmul@multiplicand multiplicand `ul  1 p 4 29 ]
 "129
 } 0
-"1849 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
-[v _f_mount f_mount `(E3953  1 e 1 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
-"1850
-[v f_mount@vol vol `uc  1 a 1 wreg ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"1854
-[v f_mount@rfs rfs `*.39S594  1 a 2 27 ]
-"1850
-[v f_mount@vol vol `uc  1 a 1 wreg ]
-"1851
-[v f_mount@fs fs `*.39S594  1 p 2 25 ]
-"1857
-[v f_mount@vol vol `uc  1 a 1 29 ]
-"1877
+"11
+[v ___lldiv@quotient quotient `ul  1 a 4 33 ]
+"12
+[v ___lldiv@counter counter `uc  1 a 1 37 ]
+"8
+[v ___lldiv@dividend dividend `ul  1 p 4 25 ]
+[v ___lldiv@divisor divisor `ul  1 p 4 29 ]
+"31
 } 0
-"2287
-[v _f_close f_close `(E3953  1 e 1 0 ]
+"3873 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[v _f_close f_close `(E3962  1 e 1 0 ]
 {
-"2291
-[v f_close@res res `E72  1 a 1 62 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"2288
-[s S659 . 32 `*.2S594 1 fs 2 0 `us 1 id 2 2 `uc 1 flag 1 4 `uc 1 pad1 1 5 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `ul 1 org_clust 4 14 `ul 1 curr_clust 4 18 `ul 1 dsect 4 22 `ul 1 dir_sect 4 26 `*.2uc 1 dir_ptr 2 30 ]
-[v f_close@fp fp `*.39S659  1 p 2 60 ]
-"2317
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"3878
+[v f_close@fs fs `*.39S603  1 a 2 68 ]
+"3877
+[v f_close@res res `E79  1 a 1 70 ]
+"3874
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S676 . 34 `S669 1 obj 14 0 `uc 1 flag 1 14 `uc 1 err 1 15 `ul 1 fptr 4 16 `ul 1 clust 4 20 `ul 1 sect 4 24 `ul 1 dir_sect 4 28 `*.39uc 1 dir_ptr 2 32 ]
+[v f_close@fp fp `*.39S676  1 p 2 66 ]
+"3900
 } 0
-"2239
-[v _f_sync f_sync `(E72  1 e 1 0 ]
+"3792
+[v _f_sync f_sync `(E79  1 e 1 0 ]
 {
-"2244
-[v f_sync@tim tim `ul  1 a 4 54 ]
-"2245
-[v f_sync@dir dir `*.2uc  1 a 2 58 ]
-"2243
-[v f_sync@res res `E72  1 a 1 53 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"2240
-[s S659 . 32 `*.2S594 1 fs 2 0 `us 1 id 2 2 `uc 1 flag 1 4 `uc 1 pad1 1 5 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `ul 1 org_clust 4 14 `ul 1 curr_clust 4 18 `ul 1 dsect 4 22 `ul 1 dir_sect 4 26 `*.2uc 1 dir_ptr 2 30 ]
-[v f_sync@fp fp `*.39S659  1 p 2 47 ]
-"2276
+"3798
+[v f_sync@tm tm `ul  1 a 4 57 ]
+"3799
+[v f_sync@dir dir `*.39uc  1 a 2 64 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"3797
+[v f_sync@fs fs `*.39S603  1 a 2 62 ]
+"3796
+[v f_sync@res res `E79  1 a 1 61 ]
+"3793
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[s S676 . 34 `S669 1 obj 14 0 `uc 1 flag 1 14 `uc 1 err 1 15 `ul 1 fptr 4 16 `ul 1 clust 4 20 `ul 1 sect 4 24 `ul 1 dir_sect 4 28 `*.39uc 1 dir_ptr 2 32 ]
+[v f_sync@fp fp `*.39S676  1 p 2 55 ]
+"3862
 } 0
-"1818
-[v _validate validate `(E72  1 s 1 validate ]
+"3273
+[v _validate validate `(E79  1 s 1 validate ]
 {
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"1819
-[v validate@fs fs `*.2S594  1 p 2 39 ]
-"1820
-[v validate@id id `us  1 p 2 41 ]
-"1832
+"3278
+[v validate@res res `E79  1 a 1 42 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"3274
+[s S669 . 14 `*.39S603 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
+[v validate@obj obj `*.39S669  1 p 2 32 ]
+"3275
+[v validate@rfs rfs `*.39*.39S603  1 p 2 34 ]
+"3300
 } 0
-"68 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
+"72 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
 [v _disk_status disk_status `(uc  1 e 1 0 ]
 {
-"69
-[v disk_status@drv drv `uc  1 a 1 wreg ]
+"73
+[v disk_status@pdrv pdrv `uc  1 a 1 wreg ]
+"77
+[v disk_status@result result `i  1 a 2 28 ]
+"76
+[v disk_status@stat stat `uc  1 a 1 31 ]
+"73
+[v disk_status@pdrv pdrv `uc  1 a 1 wreg ]
 "72
-[v disk_status@stat stat `uc  1 a 1 38 ]
-"69
-[v disk_status@drv drv `uc  1 a 1 wreg ]
-"68
-[v disk_status@drv drv `uc  1 a 1 37 ]
-"101
+[v disk_status@pdrv pdrv `uc  1 a 1 30 ]
+"102
 } 0
-"605 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
+"688
 [v _sdc_disk_status sdc_disk_status `(uc  1 e 1 0 ]
 {
-"607
-[v sdc_disk_status@stat stat `uc  1 a 1 36 ]
+[v sdc_disk_status@pdrv pdrv `uc  1 a 1 wreg ]
+"690
+[v sdc_disk_status@stat stat `uc  1 a 1 25 ]
+"688
+[v sdc_disk_status@pdrv pdrv `uc  1 a 1 wreg ]
+"690
+[v sdc_disk_status@pdrv pdrv `uc  1 a 1 26 ]
+"697
+} 0
+"924 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[v _sync_fs sync_fs `(E79  1 s 1 sync_fs ]
+{
+"928
+[v sync_fs@res res `E79  1 a 1 54 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"925
+[v sync_fs@fs fs `*.39S603  1 p 2 44 ]
+"951
+} 0
+"596
+[v _st_dword st_dword `(v  1 s 1 st_dword ]
+{
+[v st_dword@ptr ptr `*.39uc  1 p 2 38 ]
+[v st_dword@val val `ul  1 p 4 40 ]
+"602
+} 0
+"643
+[v _mem_set mem_set `(v  1 s 1 mem_set ]
+{
+"645
+[v mem_set@d d `*.39uc  1 a 2 31 ]
+"643
+[v mem_set@dst dst `*.39v  1 p 2 25 ]
+[v mem_set@val val `i  1 p 2 27 ]
+[v mem_set@cnt cnt `ui  1 p 2 29 ]
+"650
+} 0
+"249 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
+[v _disk_ioctl disk_ioctl `(E25  1 e 1 0 ]
+{
+"250
+[v disk_ioctl@pdrv pdrv `uc  1 a 1 wreg ]
+"255
+[v disk_ioctl@res res `E25  1 a 1 29 ]
+"250
+[v disk_ioctl@pdrv pdrv `uc  1 a 1 wreg ]
+"251
+[v disk_ioctl@cmd cmd `uc  1 p 1 25 ]
+"252
+[v disk_ioctl@buff buff `*.2v  1 p 2 26 ]
+"249
+[v disk_ioctl@pdrv pdrv `uc  1 a 1 28 ]
+"279
+} 0
+"1693 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[v _st_clust st_clust `(v  1 s 1 st_clust ]
+{
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"1694
+[v st_clust@fs fs `*.39S603  1 p 2 29 ]
+"1695
+[v st_clust@dir dir `*.39uc  1 p 2 31 ]
+"1696
+[v st_clust@cl cl `ul  1 p 4 33 ]
+"1703
+} 0
+"589
+[v _st_word st_word `(v  1 s 1 st_word ]
+{
+[v st_word@ptr ptr `*.39uc  1 p 2 25 ]
+[v st_word@val val `us  1 p 2 27 ]
+"593
+} 0
+"892
+[v _move_window move_window `(E79  1 s 1 move_window ]
+{
+"897
+[v move_window@res res `E79  1 a 1 47 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"893
+[v move_window@fs fs `*.39S603  1 p 2 37 ]
+"894
+[v move_window@sector sector `ul  1 p 4 39 ]
+"913
+} 0
+"869
+[v _sync_window sync_window `(E79  1 s 1 sync_window ]
+{
+"873
+[v sync_window@res res `E79  1 a 1 44 ]
+[s S603 . 559 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 n_fats 1 2 `uc 1 wflag 1 3 `uc 1 fsi_flag 1 4 `us 1 id 2 5 `us 1 n_rootdir 2 7 `us 1 csize 2 9 `ul 1 last_clst 4 11 `ul 1 free_clst 4 15 `ul 1 n_fatent 4 19 `ul 1 fsize 4 23 `ul 1 volbase 4 27 `ul 1 fatbase 4 31 `ul 1 dirbase 4 35 `ul 1 database 4 39 `ul 1 winsect 4 43 `[512]uc 1 win 512 47 ]
+"870
+[v sync_window@fs fs `*.39S603  1 p 2 19 ]
+"887
+} 0
+"201 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
+[v _disk_write disk_write `(E25  1 e 1 0 ]
+{
+"202
+[v disk_write@pdrv pdrv `uc  1 a 1 wreg ]
+"209
+[v disk_write@result result `i  1 a 2 16 ]
+"208
+[v disk_write@res res `E25  1 a 1 18 ]
+"202
+[v disk_write@pdrv pdrv `uc  1 a 1 wreg ]
+"203
+[v disk_write@buff buff `*.35Cuc  1 p 2 8 ]
+"204
+[v disk_write@sector sector `ul  1 p 4 10 ]
+"205
+[v disk_write@count count `uc  1 p 1 14 ]
+"201
+[v disk_write@pdrv pdrv `uc  1 a 1 15 ]
+"241
+} 0
 "608
-[v sdc_disk_status@buff buff `uc  1 a 1 35 ]
-[v sdc_disk_status@cont cont `uc  1 a 1 34 ]
-"627
-} 0
-"451 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
-[v _sync sync `(E72  1 s 1 sync ]
+[v _sdc_disk_write sdc_disk_write `(E25  1 e 1 0 ]
 {
-"455
-[v sync@res res `E72  1 a 1 46 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"452
-[v sync@fs fs `*.2S594  1 p 2 40 ]
-"478
-} 0
-"409
-[v _move_window move_window `(E72  1 s 1 move_window ]
-{
-"425
-[v move_window@nf nf `uc  1 a 1 35 ]
-"414
-[v move_window@wsect wsect `ul  1 a 4 36 ]
-[s S594 . 558 `uc 1 fs_type 1 0 `uc 1 drv 1 1 `uc 1 csize 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `ul 1 last_clust 4 10 `ul 1 free_clust 4 14 `ul 1 fsi_sector 4 18 `ul 1 n_fatent 4 22 `ul 1 fsize 4 26 `ul 1 fatbase 4 30 `ul 1 dirbase 4 34 `ul 1 database 4 38 `ul 1 winsect 4 42 `[512]uc 1 win 512 46 ]
-"410
-[v move_window@fs fs `*.2S594  1 p 2 17 ]
-"411
-[v move_window@sector sector `ul  1 p 4 19 ]
-"441
-} 0
-"153 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
-[v _disk_write disk_write `(E22  1 e 1 0 ]
-{
-"154
-[v disk_write@drv drv `uc  1 a 1 wreg ]
-"160
-[v disk_write@res res `E22  1 a 1 13 ]
-"154
-[v disk_write@drv drv `uc  1 a 1 wreg ]
-"155
-[v disk_write@buff buff `*.25Cuc  1 p 2 5 ]
-"156
-[v disk_write@sector sector `ul  1 p 4 7 ]
-"157
-[v disk_write@count count `uc  1 p 1 11 ]
-"153
-[v disk_write@drv drv `uc  1 a 1 12 ]
-"183
-} 0
-"545 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
-[v _sdc_disk_write sdc_disk_write `(E22  1 e 1 0 ]
-{
-"549
-[v sdc_disk_write@j j `i  1 a 2 2 ]
+"612
+[v sdc_disk_write@j j `i  1 a 2 5 ]
+[v sdc_disk_write@count1 count1 `i  1 a 2 2 ]
 [v sdc_disk_write@i i `i  1 a 2 0 ]
-"548
-[v sdc_disk_write@buff buff `uc  1 a 1 4 ]
-"545
-[v sdc_disk_write@p_buff p_buff `*.25Cuc  1 p 2 34 ]
+"611
+[v sdc_disk_write@buff buff `uc  1 a 1 7 ]
+"610
+[v sdc_disk_write@res res `E25  1 a 1 4 ]
+"608
+[v sdc_disk_write@p_buff p_buff `*.35Cuc  1 p 2 34 ]
 [v sdc_disk_write@sector sector `ul  1 p 4 36 ]
 [v sdc_disk_write@count count `uc  1 p 1 40 ]
-"596
+"679
+} 0
+"148
+[v _disk_read disk_read `(E25  1 e 1 0 ]
+{
+"149
+[v disk_read@pdrv pdrv `uc  1 a 1 wreg ]
+"156
+[v disk_read@result result `i  1 a 2 23 ]
+"155
+[v disk_read@res res `E25  1 a 1 25 ]
+"149
+[v disk_read@pdrv pdrv `uc  1 a 1 wreg ]
+"150
+[v disk_read@buff buff `*.39uc  1 p 2 13 ]
+"151
+[v disk_read@sector sector `ul  1 p 4 15 ]
+"152
+[v disk_read@count count `uc  1 p 1 19 ]
+"148
+[v disk_read@pdrv pdrv `uc  1 a 1 22 ]
+"193
+} 0
+"523
+[v _sdc_disk_read sdc_disk_read `(E25  1 e 1 0 ]
+{
+"532
+[v sdc_disk_read@start_add start_add `ul  1 a 4 1 ]
+"534
+[v sdc_disk_read@length length `i  1 a 2 7 ]
+"531
+[v sdc_disk_read@buff buff `uc  1 a 1 6 ]
+"530
+[v sdc_disk_read@res res `E25  1 a 1 5 ]
+"531
+[v sdc_disk_read@ptr ptr `uc  1 a 1 0 ]
+"524
+[v sdc_disk_read@p_buff p_buff `*.39uc  1 p 2 34 ]
+"525
+[v sdc_disk_read@sector sector `ul  1 p 4 36 ]
+"526
+[v sdc_disk_read@count count `uc  1 p 1 40 ]
+"533
+[v sdc_disk_read@arr arr `[512]uc  1 s 512 arr ]
+"600
+} 0
+"60 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
+[v _response response `(uc  1 e 1 0 ]
+{
+"62
+[v response@buff buff `uc  1 a 1 28 ]
+"67
+} 0
+"143 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SHRC.c
+[v _recebe_dado_SPI recebe_dado_SPI `(uc  1 e 1 0 ]
+{
+"146
+[v recebe_dado_SPI@contador contador `uc  1 a 1 27 ]
+"164
+} 0
+"98 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
+[v _proceed proceed `(v  1 e 1 0 ]
+{
+"103
 } 0
 "271 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/display_lcd.c
 [v _posicao_cursor_lcd posicao_cursor_lcd `(v  1 e 1 0 ]
@@ -1676,7 +1848,111 @@ RES_PARERR 4
 [v endereco_cursor_lcd@endereco endereco `uc  1 a 1 27 ]
 "255
 } 0
-"445
+"162
+[v _escreve_cmd_lcd escreve_cmd_lcd `(v  1 e 1 0 ]
+{
+[v escreve_cmd_lcd@comando comando `uc  1 a 1 wreg ]
+[v escreve_cmd_lcd@comando comando `uc  1 a 1 wreg ]
+"165
+[v escreve_cmd_lcd@comando comando `uc  1 a 1 27 ]
+"206
+} 0
+"77 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
+[v _dummy_clocks dummy_clocks `(v  1 e 1 0 ]
+{
+[v dummy_clocks@n n `uc  1 a 1 wreg ]
+"79
+[v dummy_clocks@i i `ui  1 a 2 30 ]
+"77
+[v dummy_clocks@n n `uc  1 a 1 wreg ]
+"80
+[v dummy_clocks@n n `uc  1 a 1 29 ]
+"88
+} 0
+"115
+[v _command command `(v  1 e 1 0 ]
+{
+[v command@CMD CMD `uc  1 a 1 wreg ]
+"117
+[v command@argument argument `uc  1 a 1 33 ]
+"115
+[v command@CMD CMD `uc  1 a 1 wreg ]
+[v command@arg arg `ul  1 p 4 27 ]
+[v command@CRC CRC `uc  1 p 1 31 ]
+"119
+[v command@CMD CMD `uc  1 a 1 32 ]
+"135
+} 0
+"67 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SHRC.c
+[v _escreve_dado_SPI escreve_dado_SPI `(v  1 e 1 0 ]
+{
+[v escreve_dado_SPI@data_to_shrc data_to_shrc `uc  1 a 1 wreg ]
+"70
+[v escreve_dado_SPI@contador contador `uc  1 a 1 25 ]
+"67
+[v escreve_dado_SPI@data_to_shrc data_to_shrc `uc  1 a 1 wreg ]
+"69
+[v escreve_dado_SPI@data_to_shrc data_to_shrc `uc  1 a 1 26 ]
+"94
+} 0
+"376 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/display_lcd.c
+[v _escreve_inteiro_lcd escreve_inteiro_lcd `(v  1 e 1 0 ]
+{
+"378
+[v escreve_inteiro_lcd@texto texto `[7]uc  1 a 7 6 ]
+"376
+[v escreve_inteiro_lcd@valor valor `i  1 p 2 43 ]
+"377
+[v escreve_inteiro_lcd@F3966 F3966 `[7]uc  1 s 7 F3966 ]
+"381
+} 0
+"4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\itoa.c
+[v _itoa itoa `(*.39uc  1 e 2 0 ]
+{
+"6
+[v itoa@cp cp `*.39uc  1 a 2 41 ]
+"4
+[v itoa@buf buf `*.39uc  1 p 2 0 ]
+[v itoa@val val `i  1 p 2 2 ]
+[v itoa@base base `i  1 p 2 4 ]
+"14
+} 0
+"17
+[v _utoa utoa `(*.39uc  1 e 2 0 ]
+{
+"19
+[v utoa@v v `ui  1 a 2 38 ]
+"20
+[v utoa@c c `uc  1 a 1 40 ]
+"17
+[v utoa@buf buf `*.39uc  1 p 2 32 ]
+[v utoa@val val `ui  1 p 2 34 ]
+[v utoa@base base `i  1 p 2 36 ]
+"37
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwmod@counter counter `uc  1 a 1 29 ]
+"8
+[v ___lwmod@dividend dividend `ui  1 p 2 25 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 27 ]
+"26
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwdiv@quotient quotient `ui  1 a 2 30 ]
+"12
+[v ___lwdiv@counter counter `uc  1 a 1 29 ]
+"8
+[v ___lwdiv@dividend dividend `ui  1 p 2 25 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 27 ]
+"31
+} 0
+"445 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/display_lcd.c
 [v _escreve_frase_ram_lcd escreve_frase_ram_lcd `(v  1 e 1 0 ]
 {
 [v escreve_frase_ram_lcd@buffer buffer `*.35uc  1 p 2 28 ]
@@ -1691,147 +1967,6 @@ RES_PARERR 4
 [v escreve_caractere_lcd@data data `uc  1 a 1 27 ]
 "362
 } 0
-"109 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
-[v _disk_read disk_read `(E22  1 e 1 0 ]
-{
-"110
-[v disk_read@drv drv `uc  1 a 1 wreg ]
-"116
-[v disk_read@res res `E22  1 a 1 16 ]
-"110
-[v disk_read@drv drv `uc  1 a 1 wreg ]
-"111
-[v disk_read@buff buff `*.39uc  1 p 2 8 ]
-"112
-[v disk_read@sector sector `ul  1 p 4 10 ]
-"113
-[v disk_read@count count `uc  1 p 1 14 ]
-"109
-[v disk_read@drv drv `uc  1 a 1 15 ]
-"139
-} 0
-"485 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
-[v _sdc_disk_read sdc_disk_read `(E22  1 e 1 0 ]
-{
-"494
-[v sdc_disk_read@start_add start_add `ul  1 a 4 1 ]
-"496
-[v sdc_disk_read@length length `i  1 a 2 6 ]
-"493
-[v sdc_disk_read@buff buff `uc  1 a 1 5 ]
-[v sdc_disk_read@ptr ptr `uc  1 a 1 0 ]
-"486
-[v sdc_disk_read@p_buff p_buff `*.39uc  1 p 2 34 ]
-"487
-[v sdc_disk_read@sector sector `ul  1 p 4 36 ]
-"488
-[v sdc_disk_read@count count `uc  1 p 1 40 ]
-"495
-[v sdc_disk_read@arr arr `[512]uc  1 s 512 arr ]
-"537
-} 0
-"48
-[v _response response `(uc  1 e 1 0 ]
-{
-"51
-[v response@buff buff `uc  1 a 1 28 ]
-"56
-} 0
-"143 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SHRC.c
-[v _recebe_dado_SPI recebe_dado_SPI `(uc  1 e 1 0 ]
-{
-"147
-[v recebe_dado_SPI@contador contador `uc  1 a 1 27 ]
-"165
-} 0
-"87 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SDCard.c
-[v _proceed proceed `(v  1 e 1 0 ]
-{
-"92
-} 0
-"66
-[v _dummy_clocks dummy_clocks `(v  1 e 1 0 ]
-{
-[v dummy_clocks@n n `uc  1 a 1 wreg ]
-"68
-[v dummy_clocks@i i `ui  1 a 2 30 ]
-"66
-[v dummy_clocks@n n `uc  1 a 1 wreg ]
-"69
-[v dummy_clocks@n n `uc  1 a 1 29 ]
-"77
-} 0
-"104
-[v _command command `(v  1 e 1 0 ]
-{
-[v command@CMD CMD `uc  1 a 1 wreg ]
-"106
-[v command@argument argument `uc  1 a 1 33 ]
-"104
-[v command@CMD CMD `uc  1 a 1 wreg ]
-[v command@arg arg `ul  1 p 4 27 ]
-[v command@CRC CRC `uc  1 p 1 31 ]
-"107
-[v command@CMD CMD `uc  1 a 1 32 ]
-"118
-} 0
-"67 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/SHRC.c
-[v _escreve_dado_SPI escreve_dado_SPI `(v  1 e 1 0 ]
-{
-[v escreve_dado_SPI@data_to_shrc data_to_shrc `uc  1 a 1 wreg ]
-"70
-[v escreve_dado_SPI@contador contador `uc  1 a 1 25 ]
-"67
-[v escreve_dado_SPI@data_to_shrc data_to_shrc `uc  1 a 1 wreg ]
-"69
-[v escreve_dado_SPI@data_to_shrc data_to_shrc `uc  1 a 1 26 ]
-"94
-} 0
-"249 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
-[v _mem_set mem_set `(v  1 s 1 mem_set ]
-{
-"250
-[v mem_set@d d `*.39uc  1 a 2 31 ]
-"249
-[v mem_set@dst dst `*.39v  1 p 2 25 ]
-[v mem_set@val val `i  1 p 2 27 ]
-[v mem_set@cnt cnt `i  1 p 2 29 ]
-"254
-} 0
-"192 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/diskio.c
-[v _disk_ioctl disk_ioctl `(E22  1 e 1 0 ]
-{
-"193
-[v disk_ioctl@drv drv `uc  1 a 1 wreg ]
-"198
-[v disk_ioctl@res res `E22  1 a 1 29 ]
-"193
-[v disk_ioctl@drv drv `uc  1 a 1 wreg ]
-"194
-[v disk_ioctl@ctrl ctrl `uc  1 p 1 25 ]
-"195
-[v disk_ioctl@buff buff `*.2v  1 p 2 26 ]
-"192
-[v disk_ioctl@drv drv `uc  1 a 1 28 ]
-"227
-} 0
-"1883 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
-[v _get_fattime get_fattime `(ul  1 e 4 0 ]
-{
-[s S229 . 9 `ui 1 hora 2 0 `ui 1 min 2 2 `ui 1 seg 2 4 `uc 1 dia 1 6 `uc 1 mes 1 7 `uc 1 ano 1 8 ]
-"1885
-[v get_fattime@f_time f_time `S229  1 a 9 29 ]
-"1893
-} 0
-"162 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/display_lcd.c
-[v _escreve_cmd_lcd escreve_cmd_lcd `(v  1 e 1 0 ]
-{
-[v escreve_cmd_lcd@comando comando `uc  1 a 1 wreg ]
-[v escreve_cmd_lcd@comando comando `uc  1 a 1 wreg ]
-"165
-[v escreve_cmd_lcd@comando comando `uc  1 a 1 27 ]
-"206
-} 0
 "45
 [v _delay delay `(v  1 e 1 0 ]
 {
@@ -1839,6 +1974,14 @@ RES_PARERR 4
 [v delay@contador_int contador_int `uc  1 a 1 26 ]
 [v delay@contador_ext contador_ext `uc  1 a 1 25 ]
 "57
+} 0
+"3359 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/ff.c
+[v _get_fattime get_fattime `(ul  1 e 4 0 ]
+{
+[s S255 . 9 `ui 1 hora 2 0 `ui 1 min 2 2 `ui 1 seg 2 4 `uc 1 dia 1 6 `uc 1 mes 1 7 `uc 1 ano 1 8 ]
+"3361
+[v get_fattime@f_time f_time `S255  1 a 9 29 ]
+"3369
 } 0
 "96 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\main.c
 [v _isr isr `II(v  1 e 1 0 ]
@@ -1850,8 +1993,8 @@ RES_PARERR 4
 "138 E:\FATEC\Arquivos TCC\TCC\SDCARDV6\bibliotecas/hardware.c
 [v i2_write_timer_zero write_timer_zero `(v  1 e 1 0 ]
 {
-[u S1698 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
-[v i2write_timer_zero@timer write_timer_zero `S1698  1 a 2 2 ]
+[u S1675 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
+[v i2write_timer_zero@timer write_timer_zero `S1675  1 a 2 2 ]
 [v i2write_timer_zero@timer0 timer0 `ui  1 p 2 0 ]
 "146
 } 0

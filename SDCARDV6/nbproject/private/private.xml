@@ -4,16 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/diskio.c</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/SDCard.h</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/ff.c</file>
             <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/main.c</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/GPS.c</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/uart.h</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/integer.h</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/ff.c</file>
+            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/SHRC.c</file>
             <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/ff.h</file>
             <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/SDCard.c</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/diskio.h</file>
-            <file>file:/E:/FATEC/Arquivos%20TCC/TCC/SDCARDV6/bibliotecas/ffconf.h</file>
         </group>
     </open-files>
 </project-private>

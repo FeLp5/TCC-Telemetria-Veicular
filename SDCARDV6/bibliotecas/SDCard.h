@@ -104,7 +104,7 @@ void sdc_reset(void);
 DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
 DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
 DSTATUS sdc_disk_initialize(void);
-DSTATUS sdc_disk_status(void);
+DSTATUS sdc_disk_status(BYTE pdrv);
 /*****************************************************************************/
 
 #ifdef __cplusplus

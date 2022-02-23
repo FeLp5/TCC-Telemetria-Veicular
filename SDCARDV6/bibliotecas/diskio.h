@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------
-/  Low level disk interface modlue include file  R0.07   (C)ChaN, 2009
+/  Low level disk interface modlue include file  R0.06   (C)ChaN, 2007
 /-----------------------------------------------------------------------*/
 
 #ifndef _DISKIO
@@ -26,13 +26,15 @@ typedef enum {
 /*---------------------------------------*/
 /* Prototypes for disk control functions */
 
-DSTATUS disk_initialize (BYTE);
-DSTATUS disk_status (BYTE);
-DRESULT disk_read (BYTE, BYTE*, DWORD, BYTE);
+DSTATUS disk_initialize (BYTE pdrv);
+DSTATUS disk_status (BYTE pdrv);
+DRESULT disk_read (BYTE pdrv, BYTE* buff, DWORD sector, BYTE count);
 #if	_READONLY == 0
 DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
 #endif
 DRESULT disk_ioctl (BYTE, BYTE, void*);
+void	disk_timerproc (void);
+
 
 
 
@@ -46,9 +48,9 @@ DRESULT disk_ioctl (BYTE, BYTE, void*);
 /* Command code for disk_ioctrl() */
 
 /* Generic command */
-#define CTRL_SYNC			0	/* Mandatory for write functions */
+#define CTRL_SYNC			0	/* Mandatory for read/write configuration */
 #define GET_SECTOR_COUNT	1	/* Mandatory for only f_mkfs() */
-#define GET_SECTOR_SIZE		2	/* Mandatory for multiple sector size cfg */
+#define GET_SECTOR_SIZE		2
 #define GET_BLOCK_SIZE		3	/* Mandatory for only f_mkfs() */
 #define CTRL_POWER			4
 #define CTRL_LOCK			5

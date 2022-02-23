@@ -158,7 +158,7 @@ void inicializa_tarefas(void)
 {
 
     p_tarefas[0] = SDCard;
-    p_tarefas[1] = gps;
+//    p_tarefas[1] = gps;
 	/*init temporization values of each task. 
 	These values do no change during execution*/
 	tempo_backup[0] = TIME_5000_MS;
@@ -211,7 +211,7 @@ void main(void)
     init_lcd();
     inicializa_shrc();
 //    inicializa_i2c();
-//	mensagem_inicial();
+	mensagem_inicial();
     inicializa_tarefas();;
 //    inicializa_SPI(0,3,1);
     ADCON1 = 0X0F;
@@ -236,22 +236,22 @@ void main(void)
  *****************************************************************************/
 void mensagem_inicial(void)
 {
-//    const unsigned char msg_linha_um[NUM_CARACTERES]      = "SDCard Init   ";
-//	const unsigned char msg_dois[NUM_CARACTERES]          = " 18/01/2022   ";
-//	
-//	posicao_cursor_lcd(1,0);
-//	escreve_frase_ram_lcd(msg_linha_um);
-//	
+    const unsigned char msg_linha_um[NUM_CARACTERES]      = "SDCard Init   ";
+	const unsigned char msg_dois[NUM_CARACTERES]          = " 18/01/2022   ";
+	
+	posicao_cursor_lcd(1,0);
+	escreve_frase_ram_lcd(msg_linha_um);
+	
+    posicao_cursor_lcd(2,0);
+	escreve_frase_ram_lcd(msg_dois);
+    __delay_ms(1000);
+    LIMPA_DISPLAY();
+    
+    
+//    posicao_cursor_lcd(1,0);
+//	escreve_frase_ram_lcd("LAT:");
+//    
 //    posicao_cursor_lcd(2,0);
-//	escreve_frase_ram_lcd(msg_dois);
-//    __delay_ms(1000);
-//    LIMPA_DISPLAY();
-//    
-//    
-////    posicao_cursor_lcd(1,0);
-////	escreve_frase_ram_lcd("LAT:");
-////    
-////    posicao_cursor_lcd(2,0);
-////	escreve_frase_ram_lcd("LONG:");
+//	escreve_frase_ram_lcd("LONG:");
 }
 

@@ -81,13 +81,13 @@ void escreve_dado_SPI(unsigned char data_to_shrc)
 			SPI_DATA_OUT = 1;
 		}
 		data_to_shrc = data_to_shrc << 1;
-		__delay_us(30);
+		__delay_us(2.5);
 		SHIFT_CLOCK = 1;
-        __delay_us(30);
+        __delay_us(2.5);
 		SPI_DATA_OUT  = 0;
-		__delay_us(30);
+		__delay_us(2.5);
 		SHIFT_CLOCK = 0;
-        __delay_us(30);
+        __delay_us(2.5);
 		contador++;
 	}
     ei();
@@ -103,7 +103,7 @@ void escreve_dado_SPI(unsigned char data_to_shrc)
 //{
 //    //Inicio da funcao.
 //    SHIFT_LATCH = 0;
-//    __delay_us(30);
+//    __delay_us(2.5);
 //    SHIFT_LATCH = 1;
 //    __delay_us(60);
 //    SHIFT_LATCH = 0;
@@ -143,21 +143,20 @@ void escreve_dado_SPI(unsigned char data_to_shrc)
 unsigned char recebe_dado_SPI()
 {
     dado = 0;
-    
     unsigned char contador=0;
     
     di();
-    
+    CHIP_SELECT = 0;
 	while(contador<=7)
 	{     
         dado |= (SPI_DATA_IN << (7-contador));
 
-		__delay_us(30);
+		__delay_us(2.5);
 		SHIFT_CLOCK = 1;
-        __delay_us(30);
-		__delay_us(30);
+        __delay_us(2.5);
+		__delay_us(2.5);
 		SHIFT_CLOCK = 0;
-        __delay_us(30);
+        __delay_us(2.5);
 		contador++;
 	}
     ei();

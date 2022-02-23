@@ -3677,27 +3677,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SHRC.c: 83: data_to_shrc = data_to_shrc << 1;
 "83
 [e = _data_to_shrc -> << -> _data_to_shrc `i -> 1 `i `uc ]
-[; ;SHRC.c: 84: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[; ;SHRC.c: 84: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "84
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 85: LATBbits.LATB6 = 1;
 "85
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
-[; ;SHRC.c: 86: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[; ;SHRC.c: 86: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "86
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 87: LATBbits.LATB7 = 0;
 "87
 [e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;SHRC.c: 88: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[; ;SHRC.c: 88: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "88
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 89: LATBbits.LATB6 = 0;
 "89
 [e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
-[; ;SHRC.c: 90: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[; ;SHRC.c: 90: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "90
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
 [; ;SHRC.c: 91: contador++;
 "91
 [e ++ _contador -> -> 1 `i `uc ]
@@ -3726,59 +3726,62 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SHRC.c: 145: dado = 0;
 "145
 [e = _dado -> -> 0 `i `uc ]
-"147
+"146
 [v _contador `uc ~T0 @X0 1 a ]
-[; ;SHRC.c: 147: unsigned char contador=0;
+[; ;SHRC.c: 146: unsigned char contador=0;
 [e = _contador -> -> 0 `i `uc ]
-[; ;SHRC.c: 149: (INTCONbits.GIE = 0);
-"149
+[; ;SHRC.c: 148: (INTCONbits.GIE = 0);
+"148
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[; ;SHRC.c: 151: while(contador<=7)
-"151
+[; ;SHRC.c: 149: LATBbits.LATB4 = 0;
+"149
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[; ;SHRC.c: 150: while(contador<=7)
+"150
 [e $U 370  ]
 [e :U 371 ]
-[; ;SHRC.c: 152: {
-"152
+[; ;SHRC.c: 151: {
+"151
 {
-[; ;SHRC.c: 153: dado |= (PORTBbits.RB5 << (7-contador));
-"153
+[; ;SHRC.c: 152: dado |= (PORTBbits.RB5 << (7-contador));
+"152
 [e =| _dado -> << -> . . _PORTBbits 0 5 `i - -> 7 `i -> _contador `i `uc ]
-[; ;SHRC.c: 155: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[; ;SHRC.c: 154: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
+"154
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 155: LATBbits.LATB6 = 1;
 "155
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 156: LATBbits.LATB6 = 1;
-"156
 [e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
-[; ;SHRC.c: 157: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[; ;SHRC.c: 156: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
+"156
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 157: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "157
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 158: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 158: LATBbits.LATB6 = 0;
 "158
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 159: LATBbits.LATB6 = 0;
-"159
 [e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
-[; ;SHRC.c: 160: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[; ;SHRC.c: 159: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
+"159
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 160: contador++;
 "160
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 161: contador++;
-"161
 [e ++ _contador -> -> 1 `i `uc ]
-"162
+"161
 }
 [e :U 370 ]
-"151
+"150
 [e $ <= -> _contador `i -> 7 `i 371  ]
 [e :U 372 ]
-[; ;SHRC.c: 162: }
-[; ;SHRC.c: 163: (INTCONbits.GIE = 1);
-"163
+[; ;SHRC.c: 161: }
+[; ;SHRC.c: 162: (INTCONbits.GIE = 1);
+"162
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;SHRC.c: 164: return dado;
-"164
+[; ;SHRC.c: 163: return dado;
+"163
 [e ) _dado ]
 [e $UE 369  ]
-[; ;SHRC.c: 165: }
-"165
+[; ;SHRC.c: 164: }
+"164
 [e :UE 369 ]
 }

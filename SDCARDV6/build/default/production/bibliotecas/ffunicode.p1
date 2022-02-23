@@ -1,0 +1,133 @@
+Version 3.2 HI-TECH Software Intermediate Code
+[; ;integer.h: 8: typedef struct{
+[; ;integer.h: 9: unsigned int hora;
+[; ;integer.h: 10: unsigned int min;
+[; ;integer.h: 11: unsigned int seg;
+[; ;integer.h: 12: unsigned char dia;
+[; ;integer.h: 13: unsigned char mes;
+[; ;integer.h: 14: unsigned char ano;
+[; ;integer.h: 15: }fat_time;
+[; ;integer.h: 17: typedef int INT;
+[; ;integer.h: 18: typedef unsigned int UINT;
+[; ;integer.h: 21: typedef signed char CHAR;
+[; ;integer.h: 22: typedef unsigned char UCHAR;
+[; ;integer.h: 23: typedef unsigned char BYTE;
+[; ;integer.h: 26: typedef short SHORT;
+[; ;integer.h: 27: typedef unsigned short USHORT;
+[; ;integer.h: 28: typedef unsigned short WORD;
+[; ;integer.h: 31: typedef long LONG;
+[; ;integer.h: 32: typedef unsigned long ULONG;
+[; ;integer.h: 33: typedef unsigned long DWORD;
+[; ;integer.h: 36: typedef enum { FALSE = 0, TRUE } BOOL;
+[; ;ff.h: 61: typedef char TCHAR;
+[; ;ff.h: 78: typedef DWORD FSIZE_t;
+[; ;ff.h: 85: typedef struct {
+[; ;ff.h: 86: BYTE fs_type;
+[; ;ff.h: 87: BYTE pdrv;
+[; ;ff.h: 88: BYTE n_fats;
+[; ;ff.h: 89: BYTE wflag;
+[; ;ff.h: 90: BYTE fsi_flag;
+[; ;ff.h: 91: WORD id;
+[; ;ff.h: 92: WORD n_rootdir;
+[; ;ff.h: 93: WORD csize;
+[; ;ff.h: 107: DWORD last_clst;
+[; ;ff.h: 108: DWORD free_clst;
+[; ;ff.h: 118: DWORD n_fatent;
+[; ;ff.h: 119: DWORD fsize;
+[; ;ff.h: 120: DWORD volbase;
+[; ;ff.h: 121: DWORD fatbase;
+[; ;ff.h: 122: DWORD dirbase;
+[; ;ff.h: 123: DWORD database;
+[; ;ff.h: 124: DWORD winsect;
+[; ;ff.h: 125: BYTE win[512];
+[; ;ff.h: 126: } FATFS;
+[; ;ff.h: 132: typedef struct {
+[; ;ff.h: 133: FATFS* fs;
+[; ;ff.h: 134: WORD id;
+[; ;ff.h: 135: BYTE attr;
+[; ;ff.h: 136: BYTE stat;
+[; ;ff.h: 137: DWORD sclust;
+[; ;ff.h: 138: FSIZE_t objsize;
+[; ;ff.h: 149: } FFOBJID;
+[; ;ff.h: 155: typedef struct {
+[; ;ff.h: 156: FFOBJID obj;
+[; ;ff.h: 157: BYTE flag;
+[; ;ff.h: 158: BYTE err;
+[; ;ff.h: 159: FSIZE_t fptr;
+[; ;ff.h: 160: DWORD clust;
+[; ;ff.h: 161: DWORD sect;
+[; ;ff.h: 163: DWORD dir_sect;
+[; ;ff.h: 164: BYTE* dir_ptr;
+[; ;ff.h: 172: } FIL;
+[; ;ff.h: 178: typedef struct {
+[; ;ff.h: 179: FFOBJID obj;
+[; ;ff.h: 180: DWORD dptr;
+[; ;ff.h: 181: DWORD clust;
+[; ;ff.h: 182: DWORD sect;
+[; ;ff.h: 183: BYTE* dir;
+[; ;ff.h: 184: BYTE fn[12];
+[; ;ff.h: 191: } DIR_E;
+[; ;ff.h: 197: typedef struct {
+[; ;ff.h: 198: FSIZE_t fsize;
+[; ;ff.h: 199: WORD fdate;
+[; ;ff.h: 200: WORD ftime;
+[; ;ff.h: 201: BYTE fattrib;
+[; ;ff.h: 206: TCHAR fname[13];
+[; ;ff.h: 208: } FILINFO;
+[; ;ff.h: 214: typedef enum {
+[; ;ff.h: 215: FR_OK = 0,
+[; ;ff.h: 216: FR_DISK_ERR,
+[; ;ff.h: 217: FR_INT_ERR,
+[; ;ff.h: 218: FR_NOT_READY,
+[; ;ff.h: 219: FR_NO_FILE,
+[; ;ff.h: 220: FR_NO_PATH,
+[; ;ff.h: 221: FR_INVALID_NAME,
+[; ;ff.h: 222: FR_DENIED,
+[; ;ff.h: 223: FR_EXIST,
+[; ;ff.h: 224: FR_INVALID_OBJECT,
+[; ;ff.h: 225: FR_WRITE_PROTECTED,
+[; ;ff.h: 226: FR_INVALID_DRIVE,
+[; ;ff.h: 227: FR_NOT_ENABLED,
+[; ;ff.h: 228: FR_NO_FILESYSTEM,
+[; ;ff.h: 229: FR_MKFS_ABORTED,
+[; ;ff.h: 230: FR_TIMEOUT,
+[; ;ff.h: 231: FR_LOCKED,
+[; ;ff.h: 232: FR_NOT_ENOUGH_CORE,
+[; ;ff.h: 233: FR_TOO_MANY_OPEN_FILES,
+[; ;ff.h: 234: FR_INVALID_PARAMETER
+[; ;ff.h: 235: } FRESULT;
+[; ;ff.h: 242: FRESULT f_open (FIL* fp, const TCHAR* path, BYTE mode);
+[; ;ff.h: 243: FRESULT f_close (FIL* fp);
+[; ;ff.h: 244: FRESULT f_read (FIL* fp, void* buff, UINT btr, UINT* br);
+[; ;ff.h: 245: FRESULT f_write (FIL* fp, const void* buff, UINT btw, UINT* bw);
+[; ;ff.h: 246: FRESULT f_lseek (FIL* fp, FSIZE_t ofs);
+[; ;ff.h: 247: FRESULT f_truncate (FIL* fp);
+[; ;ff.h: 248: FRESULT f_sync (FIL* fp);
+[; ;ff.h: 249: FRESULT f_opendir (DIR_E* dp, const TCHAR* path);
+[; ;ff.h: 250: FRESULT f_closedir (DIR_E* dp);
+[; ;ff.h: 251: FRESULT f_readdir (DIR_E* dp, FILINFO* fno);
+[; ;ff.h: 252: FRESULT f_findfirst (DIR_E* dp, FILINFO* fno, const TCHAR* path, const TCHAR* pattern);
+[; ;ff.h: 253: FRESULT f_findnext (DIR_E* dp, FILINFO* fno);
+[; ;ff.h: 254: FRESULT f_mkdir (const TCHAR* path);
+[; ;ff.h: 255: FRESULT f_unlink (const TCHAR* path);
+[; ;ff.h: 256: FRESULT f_rename (const TCHAR* path_old, const TCHAR* path_new);
+[; ;ff.h: 257: FRESULT f_stat (const TCHAR* path, FILINFO* fno);
+[; ;ff.h: 258: FRESULT f_chmod (const TCHAR* path, BYTE attr, BYTE mask);
+[; ;ff.h: 259: FRESULT f_utime (const TCHAR* path, const FILINFO* fno);
+[; ;ff.h: 260: FRESULT f_chdir (const TCHAR* path);
+[; ;ff.h: 261: FRESULT f_chdrive (const TCHAR* path);
+[; ;ff.h: 262: FRESULT f_getcwd (TCHAR* buff, UINT len);
+[; ;ff.h: 263: FRESULT f_getfree (const TCHAR* path, DWORD* nclst, FATFS** fatfs);
+[; ;ff.h: 264: FRESULT f_getlabel (const TCHAR* path, TCHAR* label, DWORD* vsn);
+[; ;ff.h: 265: FRESULT f_setlabel (const TCHAR* label);
+[; ;ff.h: 266: FRESULT f_forward (FIL* fp, UINT(*func)(const BYTE*,UINT), UINT btf, UINT* bf);
+[; ;ff.h: 267: FRESULT f_expand (FIL* fp, FSIZE_t szf, BYTE opt);
+[; ;ff.h: 268: FRESULT f_mount (FATFS* fs, const TCHAR* path, BYTE opt);
+[; ;ff.h: 269: FRESULT f_mkfs (const TCHAR* path, BYTE opt, DWORD au, void* work, UINT len);
+[; ;ff.h: 270: FRESULT f_fdisk (BYTE pdrv, const DWORD* szt, void* work);
+[; ;ff.h: 271: FRESULT f_setcp (WORD cp);
+[; ;ff.h: 272: int f_putc (TCHAR c, FIL* fp);
+[; ;ff.h: 273: int f_puts (const TCHAR* str, FIL* cp);
+[; ;ff.h: 274: int f_printf (FIL* fp, const TCHAR* str, ...);
+[; ;ff.h: 275: TCHAR* f_gets (TCHAR* buff, int len, FIL* fp);
+[; ;ff.h: 298: DWORD get_fattime (void);

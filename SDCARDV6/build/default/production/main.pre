@@ -4830,7 +4830,7 @@ extern __nonreentrant void _delay3(unsigned char);
 #pragma config STVREN = ON
 #pragma config LVP = OFF
 
-# 17 "bibliotecas/integer.h"
+# 8 "bibliotecas/integer.h"
 typedef struct{
 unsigned int hora;
 unsigned int min;
@@ -4840,12 +4840,11 @@ unsigned char mes;
 unsigned char ano;
 }fat_time;
 
-
 typedef int INT;
 typedef unsigned int UINT;
 
 
-typedef char CHAR;
+typedef signed char CHAR;
 typedef unsigned char UCHAR;
 typedef unsigned char BYTE;
 
@@ -4853,88 +4852,101 @@ typedef unsigned char BYTE;
 typedef short SHORT;
 typedef unsigned short USHORT;
 typedef unsigned short WORD;
-typedef unsigned short WCHAR;
 
 
 typedef long LONG;
 typedef unsigned long ULONG;
 typedef unsigned long DWORD;
 
-# 260 "bibliotecas/ff.h"
+
+typedef enum { FALSE = 0, TRUE } BOOL;
+
+# 61 "bibliotecas/ff.h"
 typedef char TCHAR;
 
-# 286
+# 78
+typedef DWORD FSIZE_t;
+
+# 85
 typedef struct {
 BYTE fs_type;
-BYTE drv;
-BYTE csize;
+BYTE pdrv;
 BYTE n_fats;
 BYTE wflag;
 BYTE fsi_flag;
 WORD id;
 WORD n_rootdir;
+WORD csize;
 
-# 302
-DWORD last_clust;
-DWORD free_clust;
-DWORD fsi_sector;
+# 107
+DWORD last_clst;
+DWORD free_clst;
 
-# 309
+# 118
 DWORD n_fatent;
 DWORD fsize;
+DWORD volbase;
 DWORD fatbase;
 DWORD dirbase;
 DWORD database;
 DWORD winsect;
 BYTE win[512];
-
-# 319
 } FATFS;
 
-# 325
+# 132
 typedef struct {
 FATFS* fs;
 WORD id;
+BYTE attr;
+BYTE stat;
+DWORD sclust;
+FSIZE_t objsize;
+
+# 149
+} FFOBJID;
+
+# 155
+typedef struct {
+FFOBJID obj;
 BYTE flag;
-BYTE pad1;
-DWORD fptr;
-DWORD fsize;
-DWORD org_clust;
-DWORD curr_clust;
-DWORD dsect;
+BYTE err;
+FSIZE_t fptr;
+DWORD clust;
+DWORD sect;
 
 DWORD dir_sect;
 BYTE* dir_ptr;
 
-# 348
+# 172
 } FIL;
 
-# 354
+# 178
 typedef struct {
-FATFS* fs;
-WORD id;
-WORD index;
-DWORD sclust;
+FFOBJID obj;
+DWORD dptr;
 DWORD clust;
 DWORD sect;
 BYTE* dir;
-BYTE* fn;
+BYTE fn[12];
 
-# 367
+# 191
 } DIR_E;
 
-# 373
+# 197
 typedef struct {
-DWORD fsize;
+FSIZE_t fsize;
 WORD fdate;
 WORD ftime;
 BYTE fattrib;
+
+
+
+
 TCHAR fname[13];
 
-# 383
 } FILINFO;
 
-# 389
+# 214
 typedef enum {
 FR_OK = 0,
 FR_DISK_ERR,
@@ -4954,30 +4966,47 @@ FR_MKFS_ABORTED,
 FR_TIMEOUT,
 FR_LOCKED,
 FR_NOT_ENOUGH_CORE,
-FR_TOO_MANY_OPEN_FILES
+FR_TOO_MANY_OPEN_FILES,
+FR_INVALID_PARAMETER
 } FRESULT;
 
-# 416
-FRESULT f_mount (BYTE, FATFS*);
-FRESULT f_open (FIL*, const TCHAR*, BYTE);
-FRESULT f_read (FIL*, void*, UINT, UINT*);
-FRESULT f_lseek (FIL*, DWORD);
-FRESULT f_close (FIL*);
-FRESULT f_opendir (DIR_E*, const TCHAR*);
-FRESULT f_readdir (DIR_E*, FILINFO*);
-FRESULT f_stat (const TCHAR*, FILINFO*);
+# 242
+FRESULT f_open (FIL* fp, const TCHAR* path, BYTE mode);
+FRESULT f_close (FIL* fp);
+FRESULT f_read (FIL* fp, void* buff, UINT btr, UINT* br);
+FRESULT f_write (FIL* fp, const void* buff, UINT btw, UINT* bw);
+FRESULT f_lseek (FIL* fp, FSIZE_t ofs);
+FRESULT f_truncate (FIL* fp);
+FRESULT f_sync (FIL* fp);
+FRESULT f_opendir (DIR_E* dp, const TCHAR* path);
+FRESULT f_closedir (DIR_E* dp);
+FRESULT f_readdir (DIR_E* dp, FILINFO* fno);
+FRESULT f_findfirst (DIR_E* dp, FILINFO* fno, const TCHAR* path, const TCHAR* pattern);
+FRESULT f_findnext (DIR_E* dp, FILINFO* fno);
+FRESULT f_mkdir (const TCHAR* path);
+FRESULT f_unlink (const TCHAR* path);
+FRESULT f_rename (const TCHAR* path_old, const TCHAR* path_new);
+FRESULT f_stat (const TCHAR* path, FILINFO* fno);
+FRESULT f_chmod (const TCHAR* path, BYTE attr, BYTE mask);
+FRESULT f_utime (const TCHAR* path, const FILINFO* fno);
+FRESULT f_chdir (const TCHAR* path);
+FRESULT f_chdrive (const TCHAR* path);
+FRESULT f_getcwd (TCHAR* buff, UINT len);
+FRESULT f_getfree (const TCHAR* path, DWORD* nclst, FATFS** fatfs);
+FRESULT f_getlabel (const TCHAR* path, TCHAR* label, DWORD* vsn);
+FRESULT f_setlabel (const TCHAR* label);
+FRESULT f_forward (FIL* fp, UINT(*func)(const BYTE*,UINT), UINT btf, UINT* bf);
+FRESULT f_expand (FIL* fp, FSIZE_t szf, BYTE opt);
+FRESULT f_mount (FATFS* fs, const TCHAR* path, BYTE opt);
+FRESULT f_mkfs (const TCHAR* path, BYTE opt, DWORD au, void* work, UINT len);
+FRESULT f_fdisk (BYTE pdrv, const DWORD* szt, void* work);
+FRESULT f_setcp (WORD cp);
+int f_putc (TCHAR c, FIL* fp);
+int f_puts (const TCHAR* str, FIL* cp);
+int f_printf (FIL* fp, const TCHAR* str, ...);
+TCHAR* f_gets (TCHAR* buff, int len, FIL* fp);
 
-FRESULT f_write (FIL*, const void*, UINT, UINT*);
-FRESULT f_getfree (const TCHAR*, DWORD*, FATFS**);
-FRESULT f_truncate (FIL*);
-FRESULT f_sync (FIL*);
-FRESULT f_unlink (const TCHAR*);
-FRESULT f_mkdir (const TCHAR*);
-FRESULT f_chmod (const TCHAR*, BYTE, BYTE);
-FRESULT f_utime (const TCHAR*, const FILINFO*);
-FRESULT f_rename (const TCHAR*, const TCHAR*);
-
-# 464
+# 298
 DWORD get_fattime (void);
 
 # 14 "bibliotecas/diskio.h"
@@ -4993,13 +5022,14 @@ RES_PARERR
 } DRESULT;
 
 # 29
-DSTATUS disk_initialize (BYTE);
-DSTATUS disk_status (BYTE);
-DRESULT disk_read (BYTE, BYTE*, DWORD, BYTE);
+DSTATUS disk_initialize (BYTE pdrv);
+DSTATUS disk_status (BYTE pdrv);
+DRESULT disk_read (BYTE pdrv, BYTE* buff, DWORD sector, BYTE count);
 
 DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
 
 DRESULT disk_ioctl (BYTE, BYTE, void*);
+void disk_timerproc (void);
 
 # 34 "bibliotecas/hardware.h"
 void init_hardware(void);
@@ -5091,7 +5121,7 @@ void sdc_reset(void);
 DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
 DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
 DSTATUS sdc_disk_initialize(void);
-DSTATUS sdc_disk_status(void);
+DSTATUS sdc_disk_status(BYTE pdrv);
 
 # 56 "bibliotecas/GPS.h"
 void tratamento_uart(unsigned char received_char);
@@ -5186,7 +5216,6 @@ void inicializa_tarefas(void)
 {
 
 p_tarefas[0] = SDCard;
-p_tarefas[1] = gps;
 
 # 164
 tempo_backup[0] = 5000;
@@ -5226,7 +5255,7 @@ init_hardware();
 init_lcd();
 inicializa_shrc();
 
-
+mensagem_inicial();
 inicializa_tarefas();;
 
 ADCON1 = 0X0F;
@@ -5247,6 +5276,16 @@ escalonador();
 # 237
 void mensagem_inicial(void)
 {
+const unsigned char msg_linha_um[17] = "SDCard Init   ";
+const unsigned char msg_dois[17] = " 18/01/2022   ";
+
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd(msg_linha_um);
+
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd(msg_dois);
+_delay((unsigned long)((1000)*(48000000/4000.0)));
+escreve_cmd_lcd(0b00000001);
 
 # 256
 }
