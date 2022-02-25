@@ -4920,13 +4920,21 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 61 "bibliotecas/ff.h"
+# 58 "bibliotecas/ff.h"
+typedef unsigned int UINT;
+typedef unsigned char BYTE;
+typedef unsigned short WORD;
+typedef unsigned long DWORD;
+typedef WORD WCHAR;
+
+# 82
+typedef DWORD FSIZE_t;
+typedef DWORD LBA_t;
+
+# 105
 typedef char TCHAR;
 
-# 78
-typedef DWORD FSIZE_t;
-
-# 85
+# 132
 typedef struct {
 BYTE fs_type;
 BYTE pdrv;
@@ -4937,22 +4945,24 @@ WORD id;
 WORD n_rootdir;
 WORD csize;
 
-# 107
+# 154
 DWORD last_clst;
 DWORD free_clst;
 
-# 118
+# 165
 DWORD n_fatent;
 DWORD fsize;
-DWORD volbase;
-DWORD fatbase;
-DWORD dirbase;
-DWORD database;
-DWORD winsect;
+LBA_t volbase;
+LBA_t fatbase;
+LBA_t dirbase;
+LBA_t database;
+
+# 174
+LBA_t winsect;
 BYTE win[512];
 } FATFS;
 
-# 132
+# 182
 typedef struct {
 FATFS* fs;
 WORD id;
@@ -4961,37 +4971,37 @@ BYTE stat;
 DWORD sclust;
 FSIZE_t objsize;
 
-# 149
+# 199
 } FFOBJID;
 
-# 155
+# 205
 typedef struct {
 FFOBJID obj;
 BYTE flag;
 BYTE err;
 FSIZE_t fptr;
 DWORD clust;
-DWORD sect;
+LBA_t sect;
 
-DWORD dir_sect;
+LBA_t dir_sect;
 BYTE* dir_ptr;
 
-# 172
+# 222
 } FIL;
 
-# 178
+# 228
 typedef struct {
 FFOBJID obj;
 DWORD dptr;
 DWORD clust;
-DWORD sect;
+LBA_t sect;
 BYTE* dir;
 BYTE fn[12];
 
-# 191
+# 241
 } DIR_E;
 
-# 197
+# 247
 typedef struct {
 FSIZE_t fsize;
 WORD fdate;
@@ -5001,11 +5011,20 @@ BYTE fattrib;
 
 
 
-TCHAR fname[13];
+TCHAR fname[12 + 1];
 
 } FILINFO;
 
-# 214
+# 264
+typedef struct {
+BYTE fmt;
+BYTE n_fat;
+UINT align;
+UINT n_root;
+DWORD au_size;
+} MKFS_PARM;
+
+# 276
 typedef enum {
 FR_OK = 0,
 FR_DISK_ERR,
@@ -5029,7 +5048,7 @@ FR_TOO_MANY_OPEN_FILES,
 FR_INVALID_PARAMETER
 } FRESULT;
 
-# 242
+# 304
 FRESULT f_open (FIL* fp, const TCHAR* path, BYTE mode);
 FRESULT f_close (FIL* fp);
 FRESULT f_read (FIL* fp, void* buff, UINT btr, UINT* br);
@@ -5055,17 +5074,17 @@ FRESULT f_getfree (const TCHAR* path, DWORD* nclst, FATFS** fatfs);
 FRESULT f_getlabel (const TCHAR* path, TCHAR* label, DWORD* vsn);
 FRESULT f_setlabel (const TCHAR* label);
 FRESULT f_forward (FIL* fp, UINT(*func)(const BYTE*,UINT), UINT btf, UINT* bf);
-FRESULT f_expand (FIL* fp, FSIZE_t szf, BYTE opt);
+FRESULT f_expand (FIL* fp, FSIZE_t fsz, BYTE opt);
 FRESULT f_mount (FATFS* fs, const TCHAR* path, BYTE opt);
-FRESULT f_mkfs (const TCHAR* path, BYTE opt, DWORD au, void* work, UINT len);
-FRESULT f_fdisk (BYTE pdrv, const DWORD* szt, void* work);
+FRESULT f_mkfs (const TCHAR* path, const MKFS_PARM* opt, void* work, UINT len);
+FRESULT f_fdisk (BYTE pdrv, const LBA_t ptbl[], void* work);
 FRESULT f_setcp (WORD cp);
 int f_putc (TCHAR c, FIL* fp);
 int f_puts (const TCHAR* str, FIL* cp);
 int f_printf (FIL* fp, const TCHAR* str, ...);
 TCHAR* f_gets (TCHAR* buff, int len, FIL* fp);
 
-# 298
+# 356
 DWORD get_fattime (void);
 
 # 45 "bibliotecas/SHRC.h"
@@ -5102,11 +5121,10 @@ BYTE response(void)
 unsigned char buff;
 LATBbits.LATB4 = 0;
 buff= recebe_dado_SPI();
-LATBbits.LATB4 = 1;
 return buff;
 }
 
-# 77
+# 76
 void dummy_clocks(unsigned char n)
 {
 unsigned int i;
@@ -5120,7 +5138,7 @@ LATBbits.LATB4 = 0;
 }
 }
 
-# 98
+# 97
 void proceed(void)
 {
 LATBbits.LATB4 = 0;
@@ -5128,7 +5146,7 @@ escreve_dado_SPI(0xFF);
 LATBbits.LATB4 = 1;
 }
 
-# 115
+# 114
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
 {
 unsigned char argument;
@@ -5144,10 +5162,10 @@ argument = arg;
 escreve_dado_SPI(argument);
 escreve_dado_SPI(CRC);
 
-# 135
+# 134
 }
 
-# 146
+# 145
 FATFS fs;
 
 
@@ -5160,43 +5178,59 @@ T0CONbits.TMR0ON = 0;
 
 FRESULT FResult;
 FIL fil;
-WORD br;
+WORD bw;
+UINT br;
 
 
 
 
 proceed();
 
-FResult = f_mount(&fs, "SD", 1);
-
-
-
-if((FResult = f_open(&fil,"teste1.txt",0x04)) == FR_OK)
+_delay((unsigned long)((1)*(48000000/4000.0)));
+FResult = f_mount(&fs, "", 1);
+if(FResult == FR_OK)
 {
+
+
 posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("escrevendo");
-if((FResult = f_write(&fil, "f", 6, br)) ==FR_OK)
+escreve_frase_ram_lcd("Abrindo arquivo");
+FResult = f_open(&fil,"te.bin", 0x02 | 0x08);
+if(FResult == FR_OK)
 {
+
+
+
+
+FResult = f_write(&fil, "teste", br, &bw);
+if(FResult == FR_OK)
+{
+
+
 posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("fechando");
+escreve_frase_ram_lcd(buff);
 f_close(&fil);
 
-
-
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("Arquivo renomeado");
+_delay((unsigned long)((2000)*(48000000/4000.0)));
 }
 else
 {
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("FILE NOT CREATED");
 posicao_cursor_lcd(1,0);
 escreve_inteiro_lcd(FResult);
 T0CONbits.TMR0ON = 1;
 }
 
-# 204
+# 217
 }
 else{
 posicao_cursor_lcd(1,0);
 escreve_inteiro_lcd(FResult);
 T0CONbits.TMR0ON = 1;
+}
+
 }
 return;
 }

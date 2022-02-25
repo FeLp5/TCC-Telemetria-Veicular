@@ -146,7 +146,8 @@ unsigned char recebe_dado_SPI()
     unsigned char contador=0;
     
     di();
-    CHIP_SELECT = 0;
+//    SPI_DATA_OUT = 0;
+//    CHIP_SELECT = 0;
 	while(contador<=7)
 	{     
         dado |= (SPI_DATA_IN << (7-contador));

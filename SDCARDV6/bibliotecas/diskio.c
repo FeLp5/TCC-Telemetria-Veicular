@@ -294,16 +294,17 @@ void sdc_reset(void)
     /*SOFTWARE RESET COMMAND*/
     do{
 //        SPI_DATA_OUT = 1;
-        CHIP_SELECT = 0;
-        dummy_clocks(10);    
+        
+        dummy_clocks(10); 
+        CHIP_SELECT = 0; 
         command(0X40, 0X00000000, 0X95);    //CMD0
         proceed();
         CHIP_SELECT = 1;
         do{  
             buff = response(); 
             count++;
-            posicao_cursor_lcd(1,0);
-            escreve_inteiro_lcd(buff);
+//            posicao_cursor_lcd(1,0);
+//            escreve_inteiro_lcd(buff);
         }while((buff!=0X01) && count<300);
         count = 0;
         if(buff != 0x01)
@@ -312,6 +313,11 @@ void sdc_reset(void)
             escreve_frase_ram_lcd("Sem Cartao");
             posicao_cursor_lcd(2,0);
             escreve_frase_ram_lcd("Insira o Cartao");
+        }
+        else
+        {
+           posicao_cursor_lcd(1,0);
+           escreve_frase_ram_lcd("Cartao Inserido");
         }
 
     }while(buff!=0X01);
@@ -341,7 +347,8 @@ DSTATUS sdc_disk_initialize(void)
     sdc_reset(); //RESET THE SD CARD 
     
     CHIP_SELECT = 0;
-    dummy_clocks(10);    
+    SPI_DATA_OUT = 0;
+    dummy_clocks(1);  
 //    command(0X41, 0x00000000, 0xFF);    //CMD8
     command(0X48, 0x000001AA, 0x87);    //CMD8
     proceed();
@@ -367,10 +374,7 @@ DSTATUS sdc_disk_initialize(void)
         
     }while(crc_number != 0x1AA && count1<1000); //MATCH? From fluxogram process
     /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
-    LIMPA_DISPLAY();
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("certo");
-    __delay_ms(1000);
+
     if (crc_number == 0x1AA)
     {                      
         count1 = 0;      
@@ -379,9 +383,11 @@ DSTATUS sdc_disk_initialize(void)
             buff = 0XFF;
               //ACMD41 - CRC doesnt need be correct
             /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
-            __delay_ms(1000);
+//            __delay_ms(1000);
             
-            dummy_clocks(8);
+            CHIP_SELECT = 0;
+            SPI_DATA_OUT = 0;
+            dummy_clocks(1);
             command(0X41, 0X00000000, 0XFF);    //CMD55
             buff = 0XFF;
             /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
@@ -392,7 +398,10 @@ DSTATUS sdc_disk_initialize(void)
             }while((buff!=0X01)&&(count2<10));
             
             
-            dummy_clocks(8);
+            dummy_clocks(1);
+            CHIP_SELECT = 0;
+            SPI_DATA_OUT = 0;
+            escreve_dado_SPI(0xFF); //dummy BYTE
             command(0X77, 0X00000000, 0X95);    //CMD55
             buff = 0XFF;
             /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
@@ -405,31 +414,29 @@ DSTATUS sdc_disk_initialize(void)
             count2 = 0;
             
             
+           
             CHIP_SELECT = 0;
-            dummy_clocks(10);
-            command(0X69, 0X20000000, 0x95);        
+            SPI_DATA_OUT = 0;
+            dummy_clocks(1);
+            command(0X69, 0X40000000, 0x95);        
             proceed();
             CHIP_SELECT = 1;
-            posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("ACMD41");
             do{
                 
                 buff = response();
                 count2++;;
-                posicao_cursor_lcd(1,0);
-                escreve_inteiro_lcd(buff);
             }while(buff!=0X00);
             
             buff = 0xFF;
-            dummy_clocks(10);
+            dummy_clocks(1);
             command(0X7A, 0X00000000, 0XFF);    //CMD58;
             proceed();
             do{
                 buff = response();
                 ocr = (buff << 1) & 0b10000000;
-                posicao_cursor_lcd(1,0);
-                escreve_inteiro_lcd(ocr);
-                __delay_ms(1000);
+//                posicao_cursor_lcd(1,0);
+//                escreve_inteiro_lcd(ocr);
+//                __delay_ms(1000);
                 count2++;
             }while(ocr!=0X00 && ocr != 0x01 && count2<10);
         }while(ocr != 0X00 && ocr !=0x01);
@@ -438,14 +445,13 @@ DSTATUS sdc_disk_initialize(void)
         
         count1 = 0;
         //Delay before sending command
-        __delay_ms(1);
+//        __delay_ms(1);
         stat = 0X00;
         /*SETTING BLOCK LENGTH TO 512 Bytes*/
         if(!ocr)
         {
-            LIMPA_DISPLAY();
-            posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("comando 16");
+            CHIP_SELECT = 0;
+            SPI_DATA_OUT = 0;
             dummy_clocks(10);    
             command(0X50,0X00000200,0XFF);    //CMD16
             proceed();
@@ -456,14 +462,14 @@ DSTATUS sdc_disk_initialize(void)
             }while(buff!=0X00);  
         }
         
-        __delay_ms(2000); 
+//        __delay_ms(2000); 
     }
     else
     {
 
         count2 = 0;
         buff = 0XFF;
-        dummy_clocks(10);
+        dummy_clocks(1);
         command(0X69, 0X00000000, 0XFF);    //ACMD41 - CRC doesnt need be correct
         proceed();
         do{
@@ -506,7 +512,7 @@ DSTATUS sdc_disk_initialize(void)
             buff = response();
         }while(buff!=0X00); 
        
-        }
+    }
 
     
 //    __delay_ms(2000);
@@ -530,8 +536,8 @@ DRESULT sdc_disk_read(
     DRESULT res;
     unsigned char ptr=0X00, buff;
     unsigned long int start_add;
-    static unsigned char arr[512];
-    int length,i;
+//    static unsigned char arr[512];
+    int length,i, count1;
     
     start_add = sector*512;
 //    proceed();
@@ -542,12 +548,8 @@ DRESULT sdc_disk_read(
 //        
 //    }
 //    
-    
-    
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("CMD18");
-    __delay_ms(1000);
-    SPI_DATA_OUT = 1;
+
+    SPI_DATA_OUT = 0;
     CHIP_SELECT = 0;
     dummy_clocks(10);
     command(0X52,start_add,0X00);    //CMD18
@@ -556,26 +558,29 @@ DRESULT sdc_disk_read(
         buff = response();
     }while(buff!=0X00);
     proceed();
-    do{
-       buff = response();
-    }while(buff!=0xFE);
+
     
+    while(buff!=0xFE)
+    {
+        buff = response();
+        posicao_cursor_lcd(1,0);
+        escreve_inteiro_lcd(buff);
+    }
+//    __delay_ms(90);
+
     length = 0;
     while ( length < 512 )               
     {
         p_buff[length] = response();
-        posicao_cursor_lcd(1,0);
-        escreve_frase_ram_lcd(p_buff[length]);
-       __delay_ms(50);
+//        posicao_cursor_lcd(1,0);
+//        escreve_frase_ram_lcd(p_buff[length]);
         length++;                   
     }
 
 //    p_buff = arr;
     __delay_ms(1000);
-    SPI_DATA_OUT = 1;
+    SPI_DATA_OUT = 0;
     length = 0;
-
-
     CHIP_SELECT = 0;
     dummy_clocks(10);    
     command(0X4C,0X00000000,0X00);    //CMD12
@@ -585,13 +590,13 @@ DRESULT sdc_disk_read(
     }while(buff!=0xFF);
     
     length = 0;
-    while(arr[length]!='\0')
-    {
-            LIMPA_DISPLAY();
-            posicao_cursor_lcd(2,14);
-            escreve_frase_ram_lcd(arr);
-            length++;
-    }
+//    while(p_buff[length]!='\0')
+//    {
+////            LIMPA_DISPLAY();
+////            posicao_cursor_lcd(2,14);
+////            escreve_frase_ram_lcd(p_buff);
+//            length++;
+//    }
 //    *p_buff = length; // pointer to the pointer got in
 	return res;  
     
@@ -611,34 +616,26 @@ DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
     unsigned char buff; 
     int i=0,j, count1 = 0;
     
-//    Delay_s(1);
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd("COMANDO 24");
 
+
+    SPI_DATA_OUT = 0;
     CHIP_SELECT = 0;
     dummy_clocks(10);    
     command(0X58, 0X00000000, 0X00); // CMD24
-    CHIP_SELECT = 1;
     proceed();
     do{   
         buff = response();
     }while(buff!=0X00);
 
-    __delay_ms(2000);
-//      Delay_s(2);
+//    __delay_ms(2000);
     CHIP_SELECT = 0;
-    dummy_clocks(10);
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd("TOKEN");
+    SPI_DATA_OUT = 0;
+    dummy_clocks(1);
     escreve_dado_SPI(0XFE); //START TOKEN SINGLE BLOCK WRITE
       
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd("escrevendo");
     
     for(j=0;j<512;j++) //DATA BLOCK
     {
-        posicao_cursor_lcd(1,5);
-        escreve_frase_ram_lcd(*p_buff);
         escreve_dado_SPI(*p_buff);
         p_buff++;
         
@@ -647,22 +644,17 @@ DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
 
     escreve_dado_SPI(0XFF); // CRC 2 BYTES
     escreve_dado_SPI(0XFF);
-    CHIP_SELECT = 1;
 //    proceed();
 
-//    __delay_ms(1000);
+    __delay_ms(1000);
 //      Delay_s(1);
         
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd("COMANDO 13");
     CHIP_SELECT = 0;
+    SPI_DATA_OUT = 0;
     dummy_clocks(10);
-//    escreve_dado_SPI(0x4D);
     command(0X4D,0X00000000,0XFF);    //CMD13
-    CHIP_SELECT = 0;
     proceed();
     do{ 
-        CHIP_SELECT = 1;
         buff = response(); 
 //        count++;
 //        posicao_cursor_lcd(1,0);
@@ -671,9 +663,9 @@ DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
         
     }while(buff!=0X00 /*&& count<10*/);
 //      
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("OK");
-    __delay_ms(4000);
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd("OK");
+//    __delay_ms(4000);
 	return res;
     
 }

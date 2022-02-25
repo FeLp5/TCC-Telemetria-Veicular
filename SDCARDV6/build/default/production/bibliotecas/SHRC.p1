@@ -3733,55 +3733,52 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SHRC.c: 148: (INTCONbits.GIE = 0);
 "148
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[; ;SHRC.c: 149: LATBbits.LATB4 = 0;
-"149
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;SHRC.c: 150: while(contador<=7)
-"150
+[; ;SHRC.c: 151: while(contador<=7)
+"151
 [e $U 370  ]
 [e :U 371 ]
-[; ;SHRC.c: 151: {
-"151
-{
-[; ;SHRC.c: 152: dado |= (PORTBbits.RB5 << (7-contador));
+[; ;SHRC.c: 152: {
 "152
+{
+[; ;SHRC.c: 153: dado |= (PORTBbits.RB5 << (7-contador));
+"153
 [e =| _dado -> << -> . . _PORTBbits 0 5 `i - -> 7 `i -> _contador `i `uc ]
-[; ;SHRC.c: 154: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
-"154
-[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 155: LATBbits.LATB6 = 1;
+[; ;SHRC.c: 155: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "155
-[e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
-[; ;SHRC.c: 156: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
-"156
 [e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 156: LATBbits.LATB6 = 1;
+"156
+[e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
 [; ;SHRC.c: 157: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "157
 [e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 158: LATBbits.LATB6 = 0;
+[; ;SHRC.c: 158: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "158
-[e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
-[; ;SHRC.c: 159: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
-"159
 [e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 160: contador++;
+[; ;SHRC.c: 159: LATBbits.LATB6 = 0;
+"159
+[e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
+[; ;SHRC.c: 160: _delay((unsigned long)((2.5)*(48000000/4000000.0)));
 "160
-[e ++ _contador -> -> 1 `i `uc ]
+[e ( __delay (1 -> * .2.5 / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 161: contador++;
 "161
+[e ++ _contador -> -> 1 `i `uc ]
+"162
 }
 [e :U 370 ]
-"150
+"151
 [e $ <= -> _contador `i -> 7 `i 371  ]
 [e :U 372 ]
-[; ;SHRC.c: 161: }
-[; ;SHRC.c: 162: (INTCONbits.GIE = 1);
-"162
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;SHRC.c: 163: return dado;
+[; ;SHRC.c: 162: }
+[; ;SHRC.c: 163: (INTCONbits.GIE = 1);
 "163
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;SHRC.c: 164: return dado;
+"164
 [e ) _dado ]
 [e $UE 369  ]
-[; ;SHRC.c: 164: }
-"164
+[; ;SHRC.c: 165: }
+"165
 [e :UE 369 ]
 }

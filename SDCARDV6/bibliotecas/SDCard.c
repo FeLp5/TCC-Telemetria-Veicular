@@ -62,7 +62,6 @@ BYTE response(void)
     unsigned char buff;
     CHIP_SELECT = 0;//CS low   
     buff= recebe_dado_SPI();   //read buffer (R1) should be 0x01 = idle mode   
-    CHIP_SELECT = 1;//CS high
     return buff;
 }
 
@@ -155,32 +154,46 @@ void SDCard(void)
 //    inicializa_SPI(0,3,1);
     FRESULT FResult;
     FIL fil;
-    WORD br;
+    WORD bw;
+    UINT br;
     
 //   
     
     /*READ FUNCTION=============================================================*/
     proceed();
     
-    FResult = f_mount(&fs, "SD", 1);
-
-//        posicao_cursor_lcd(1,0);
-//        escreve_frase_ram_lcd("Abrindo arquivo");
-        if((FResult = f_open(&fil,"teste1.txt",FA_CREATE_NEW)) == FR_OK)
+    __delay_ms(1);
+    FResult = f_mount(&fs, "", 1);
+    if(FResult == FR_OK)
+    {
+        
+    
+        posicao_cursor_lcd(1,0);
+        escreve_frase_ram_lcd("Abrindo arquivo");
+        FResult = f_open(&fil,"te.bin", FA_WRITE | FA_CREATE_ALWAYS);
+        if(FResult == FR_OK)
         {
-            posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("escrevendo");
-            if((FResult = f_write(&fil, "f", 6, br)) ==FR_OK)
+            
+//            f_close(&fil);
+//            posicao_cursor_lcd(1,0);
+//            escreve_frase_ram_lcd("arquivo criado");
+            FResult = f_write(&fil, "teste", br, &bw);
+            if(FResult == FR_OK)
             {
+//                FResult = f_read(&fil, buff, br, &bw);;
+//                FResult = f_printf(&fil, "%d", 1234);
                 posicao_cursor_lcd(2,0);
-                escreve_frase_ram_lcd("fechando");
+                escreve_frase_ram_lcd(buff);
                 f_close(&fil);
-//                posicao_cursor_lcd(2,0);
-//                escreve_frase_ram_lcd("Arquivo criado");
-//                __delay_ms(2000);
+ 
+                posicao_cursor_lcd(2,0);
+                escreve_frase_ram_lcd("Arquivo renomeado");
+                __delay_ms(2000);
             }
             else
             {
+                posicao_cursor_lcd(2,0);
+                escreve_frase_ram_lcd("FILE NOT CREATED");
                 posicao_cursor_lcd(1,0);
                 escreve_inteiro_lcd(FResult);
                 T0CONbits.TMR0ON = 1;
@@ -207,5 +220,7 @@ void SDCard(void)
             escreve_inteiro_lcd(FResult);
             T0CONbits.TMR0ON = 1;
         }
+   
+    }
     return;
 }

@@ -4922,7 +4922,8 @@ dado = 0;
 unsigned char contador=0;
 
 (INTCONbits.GIE = 0);
-LATBbits.LATB4 = 0;
+
+
 while(contador<=7)
 {
 dado |= (PORTBbits.RB5 << (7-contador));
