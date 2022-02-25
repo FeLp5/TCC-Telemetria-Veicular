@@ -32,6 +32,8 @@ largura_display = size_window[0]- 6
 altura_display = size_window[1] - 6
 larg = (largura_display / 10) 
 alt = (altura_display / 6)
+
+info = ""
 print ( largura_display , altura_display, larg, alt)
 
 class arquivos(wx.Window):
@@ -166,6 +168,7 @@ class arquivos(wx.Window):
                 print(lines)
                 # print str(file)
                 self.lines = lines
+                info = lines
                 
         except IOError:
             wx.LogError("Cannot open file '%s'." % pathname)
@@ -219,12 +222,13 @@ class arquivos(wx.Window):
             self.statxt3.SetLabel(self.botao_path[4])
             self.statxt4.SetLabel(self.convert_data(self.titulo_bt[4]))
             self.statxt5.SetLabel(str(self.lines))
+            show_infos.statxt_info.SetLabel(str(self.lines)) # Felipe, verifique, não está chamando o objeto
             botao0.SetBackgroundColour(corBotoes)
             botao1.SetBackgroundColour(corBotoes)
             botao2.SetBackgroundColour(corBotoes)
             botao3.SetBackgroundColour(corBotoes)
             botao4.SetBackgroundColour("blue")
-    
+        
     def abrir_arquivos(self, event):
         with wx.FileDialog(self, "Abrir arquivo de telemetria", wildcard="arquivos tlm  (*.tlm)|*.tlm",
                             style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
@@ -275,8 +279,8 @@ class mapa(wx.Window):
         print(v2)
         
         self.browser = wx.html2.WebView.New(self)
-        url = "https://www.google.com/maps/@-23.6022347,-46.5409388,17.05z"
-        # url = ""
+        # url = "https://www.google.com/maps/@-23.6022347,-46.5409388,17.05z"
+        url = ""
         self.browser.LoadURL(url)
 
         self.browser.SetSize((larg * 7, alt * 4))
@@ -348,7 +352,8 @@ class show_infos(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
        
-        statxt1 = wx.StaticText(self, -1, "Selecione um arquivo:" , (16, 4), (-1, -1))
+        self.statxt_info = wx.StaticText(self, -1,  "" , (220, 26), (-1, -1))
+        self.statxt_info.SetForegroundColour("black")
         
         self.botao_grafico = wx.Button(self, wx.NewId(), "Ver informacoes", (10, 32), (size_window[0]/14, 24))
             
