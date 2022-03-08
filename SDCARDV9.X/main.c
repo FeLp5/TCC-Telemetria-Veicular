@@ -168,17 +168,17 @@ void interrupt isr(void)
 void inicializa_tarefas(void)
 {
 
-//    p_tarefas[0] = SDCard;
+    p_tarefas[0] = escrita_sdcard;
 //    p_tarefas[1] = gps;
 	/*init temporization values of each task. 
 	These values do no change during execution*/
-	tempo_backup[0] = TIME_5000_MS;
+	tempo_backup[0] = TIME_100_MS;
     tempo_backup[1] = TIME_5000_MS;
 //    tempo_backup[1] = TIME_2000_MS;
 	
 	/*init recent temporization values of each task. 
 	They�re used to decide which task must be executed*/
-	tempo_tarefa[0] = TIME_5000_MS;
+	tempo_tarefa[0] = TIME_100_MS;
     tempo_tarefa[1] = TIME_5000_MS;
 //    tempo_tarefa[1] = TIME_2000_MS;
 
@@ -225,9 +225,7 @@ void main(void)
 	mensagem_inicial();
     inicializa_tarefas();
     inicializa_SPI(0,3,1);
-    ADCON1 = 0X0F;
-//     CMCON |= 7;
-    SDCard();
+    sdcard_init();
     while(1)
     {
         //Verification: check if there�s a task to be executed

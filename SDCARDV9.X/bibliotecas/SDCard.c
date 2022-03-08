@@ -51,7 +51,7 @@
 
 
 // File to read================================================================= 
-BYTE filename[15] = "check.txt"; //USE SMALLER ARRAY SIZE /testmapp/testtext 
+BYTE filename[15] = "tel.txt"; //USE SMALLER ARRAY SIZE /testmapp/testtext 
 //BYTE folder[48] = {""}; 
 //==============================================================================
 
@@ -168,70 +168,29 @@ void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
  * e fecha o arquivo
  *****************************************************************************/
 FATFS fs;
- FIL fil;
+FIL fil;
 //FIL fil;
-char buff[10] = "felipe\n";
+char buff[45] = "LONG: -1.303930933 , LAT: -2.3309330933\n";
 
-void SDCard(void) 
+void sdcard_init(void) 
 {
-    T0CONbits.TMR0ON = 0;
-    
-//    inicializa_SPI(0,3,1);
+//    T0CONbits.TMR0ON = 0;
     FRESULT FResult;
    
     WORD bw;
     UINT br;
+    DWORD tete;
     int i = 0;
-//   
-    
-    /*READ FUNCTION=============================================================*/
+    /*Mount FUNCTION=============================================================*/
     proceed();
+    f_mount(&fs, "", 0); //Mount FileSystem
+    f_open(&fil, filename, FA_OPEN_ALWAYS);
+    FResult = f_expand(&fil, 32, 0);
+    f_close(&fil);
     
-    	if (f_mount(&fs, "", 1) == FR_OK) {	/* Mount SD */
-//    while(i<2){
-		if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_READ | FA_WRITE) == FR_OK) {	/* Open or create a file */
-
-//			if ((fil.fsize != 0) && (f_lseek(&fil, fil.fsize) != FR_OK)) goto endSD;	/* Jump to the end of the file */
-//            f_write(&fil, "FELIPE É LINDO DMS!", 20, &bw);	/* Write data to the file */
-//            f_close(&fil);if ((fil.fsize != 0) && (f_lseek(&fil, fil.fsize) != FR_OK)) goto endSD;	/* Jump to the end of the file */
-            open_append(&fil, filename);
-			f_write(&fil, "felipe!", 20, &bw);	/* Write data to the file */
-
-//			endSD: f_close(&fil);								/* Close the file */
-            f_close(&fil);	
-            posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("Escrita OK");
-		}
-//        i++;
-//	}
-       
-  }  
-//    __delay_ms(1);
-//    FResult = f_mount(&fs, "", 1);
-//    if(FResult == FR_OK)
-//    {
-//    
-//                posicao_cursor_lcd(1,0);
-//                escreve_frase_ram_lcd("esc arquivo");
-////                f_open(&fil, filename, FA_CREATE_NEW);
-//                f_close(&fil);
-//                posicao_cursor_lcd(2,0);
-//                escreve_frase_ram_lcd("Adicionando");
-////                open_append(&fil, filename);
-//                f_write(&fil, buff, 6, &bw);
-//                f_close(&fil);
-//                posicao_cursor_lcd(2,0);
-//                escreve_frase_ram_lcd("OK");
-//            
-//        
-
-   
-//    }
-//    else
-//    {
-//        posicao_cursor_lcd(1,0);
-//        escreve_inteiro_lcd(FResult);
-//    }
+    posicao_cursor_lcd(1,0);
+    escreve_inteiro_lcd(FResult);
+    __delay_ms(2000);
     return;
 }
 
@@ -251,4 +210,18 @@ FRESULT open_append (
             f_close(fp);
     }
     return fr;
+}
+
+void escrita_sdcard(void) 
+{
+    static unsigned char count;
+     f_mount(&fs, "", 0);
+   	if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_READ | FA_WRITE | FA_OPEN_APPEND) == FR_OK) 
+    {	/* Open or create a file */
+        posicao_cursor_lcd(2,11);
+        escreve_inteiro_lcd(f_size(&fil));
+        f_puts(buff, &fil);	/* Write data to the file */							/* Close the file */
+        f_close(&fil);	
+    } 
+
 }

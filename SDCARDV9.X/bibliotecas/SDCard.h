@@ -86,12 +86,8 @@ extern "C" {
 /******************************************************************************
 * Prototipos das funções
 ******************************************************************************/
-//void init_SDcard();
-//void envia_CMD16(void);
-//unsigned char envia_CMD8(void);
-//void envia_CMD1(void);
-//void envia_CMD0(void);
-void SDCard(void);
+void sdcard_init(void);
+void escrita_sdcard(void) ;
 BYTE response(void);
 void proceed(void);
 void dummy_clocks(unsigned char n);

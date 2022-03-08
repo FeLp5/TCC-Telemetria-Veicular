@@ -66,10 +66,7 @@ void gps(void)
     //hora
 //    time = get_gpstime();            /* Extract Time */
 //    convert_time_to_utc(time);       /* convert time to UTC */
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd("Hora:");
-//    posicao_cursor_lcd(1,7);
-//    escreve_frase_ram_lcd(data_buffer);
+    
 //    
 //    //data
 //    date = get_dt(rmc_pointers[7]);/* Extract Latitude */
@@ -113,33 +110,33 @@ void gps(void)
 //
 //    __delay_ms(2000);
 //    LIMPA_DISPLAY();
-    time = get_gpstime();            /* Extract Time */
-    convert_time_to_utc(time);       /* convert time to UTC */
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("Hora:");
-    posicao_cursor_lcd(1,7);
-    escreve_frase_ram_lcd(data_buffer);
-    
-    //data
-    date = get_dt(rmc_pointers[7]);/* Extract Latitude */
-//    unsigned long int dt = "000000";
-//    dt = convert_to_date(date);
-    //sprintf(gps_buffer,"%%",date);		/* convert float value to string */
-    posicao_cursor_lcd(2,0);
-    escreve_frase_ram_lcd("Data:");
-    
-    posicao_cursor_lcd(2,7);
-    escreve_frase_ram_lcd(dado_buffer);
-
-    
-    __delay_ms(2000);
-    LIMPA_DISPLAY();
-    
-    //latidude
-    latitude = get_latitude(gga_pointers[0]); /* Extract Latitude */
-    latitude = convert_to_degrees(latitude);  /* convert raw latitude in degree decimal*/
-    sprintf(gps_buffer,"%.07f",latitude);			/* convert float value to string */;
-    // LCD_String(gps_buffer);  
+//    time = get_gpstime();            /* Extract Time */
+//    convert_time_to_utc(time);       /* convert time to UTC */
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd("Hora:");
+//    posicao_cursor_lcd(1,7);
+//    escreve_frase_ram_lcd(data_buffer);
+//    
+//    //data
+//    date = get_dt(rmc_pointers[7]);/* Extract Latitude */
+////    unsigned long int dt = "000000";
+////    dt = convert_to_date(date);
+//    //sprintf(gps_buffer,"%%",date);		/* convert float value to string */
+//    posicao_cursor_lcd(2,0);
+//    escreve_frase_ram_lcd("Data:");
+//    
+//    posicao_cursor_lcd(2,7);
+//    escreve_frase_ram_lcd(dado_buffer);
+//
+//    
+//    __delay_ms(2000);
+//    LIMPA_DISPLAY();
+//    
+//    //latidude
+//    latitude = get_latitude(gga_pointers[0]); /* Extract Latitude */
+//    latitude = convert_to_degrees(latitude);  /* convert raw latitude in degree decimal*/
+//    sprintf(gps_buffer,"%.07f",latitude);			/* convert float value to string */;
+//    // LCD_String(gps_buffer);  
     
 //    posicao_cursor_lcd(1,0);
 //    escreve_frase_ram_lcd("Lat:");/* display latitude in degree */    
@@ -150,18 +147,18 @@ void gps(void)
 
     
     // LCD_String_xy(3,0,"Long: ");
-    longitude = get_longitude(gga_pointers[2]);/* Extract Latitude */
-    longitude = convert_to_degrees(longitude);/* convert raw longitude in degree decimal*/
-    sprintf(gps_buffer,"%.07f",longitude);		/* convert float value to string */
-    // LCD_String(gps_buffer);            				/* display latitude in degree */
-    posicao_cursor_lcd(2,0);
-    escreve_frase_ram_lcd("Lon:");/* display latitude in degree */ 
-    posicao_cursor_lcd(2,5);
-    escreve_frase_ram_lcd(gps_buffer);       
-    memset(gps_buffer,0,15);
+//    longitude = get_longitude(gga_pointers[2]);/* Extract Latitude */
+//    longitude = convert_to_degrees(longitude);/* convert raw longitude in degree decimal*/
+//    sprintf(gps_buffer,"%.07f",longitude);		/* convert float value to string */
+//    // LCD_String(gps_buffer);            				/* display latitude in degree */
+//    posicao_cursor_lcd(2,0);
+//    escreve_frase_ram_lcd("Lon:");/* display latitude in degree */ 
+//    posicao_cursor_lcd(2,5);
+//    escreve_frase_ram_lcd(gps_buffer);       
+//    memset(gps_buffer,0,15);
 
-    __delay_ms(2000);
-    LIMPA_DISPLAY();
+//    __delay_ms(2000);
+//    LIMPA_DISPLAY();
 
  
 }
@@ -305,11 +302,11 @@ void convert_time_to_utc(unsigned long int utc_time)
 {
     unsigned int hour, min, sec;
 //    DWORD data_time; //new for return to the get_fattime
-	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
-	min = (utc_time % 10000) / 100;             /* extract minute from integer */
-	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
-	sprintf(data_buffer, "%d:%d:%d", hour,min,sec); /* store UTC time in buffer */
-    
+//	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
+//	min = (utc_time % 10000) / 100;             /* extract minute from integer */
+//	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
+//	sprintf(data_buffer, "%d:%d:%d", hour,min,sec); /* store UTC time in buffer */
+//    
     f_time.hora = hour;
     f_time.min = min;      
     f_time.seg = sec;

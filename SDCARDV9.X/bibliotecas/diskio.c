@@ -626,6 +626,8 @@ DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
       
     for(j=0;j<512;j++) //DATA BLOCK
     {
+       
+        
 
         WriteSPI_(*p_buff);
         p_buff++;

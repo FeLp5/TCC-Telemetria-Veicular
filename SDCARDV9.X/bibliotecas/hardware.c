@@ -153,6 +153,7 @@ void write_timer_zero(unsigned int timer0)
  *****************************************************************************/
 void init_ports(void)
 {
+    ADCON1 = 0X0F;
     TRISB = 0b00100001;            
 	LATB  = 0xFF;
     TRISD = 0x00;           
