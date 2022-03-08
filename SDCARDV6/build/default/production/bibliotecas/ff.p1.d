@@ -4,4 +4,6 @@
 bibliotecas/diskio.h  \
 bibliotecas/integer.h  \
 bibliotecas/ffconf.h  \
+bibliotecas/display_lcd.h  \
+bibliotecas/hardware.h  \
 bibliotecas/ff.h 

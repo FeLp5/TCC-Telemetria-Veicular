@@ -1,84 +1,76 @@
-/*
- * File:   main.c
- * Author: Etiq Lab Desktop
+/******************************************************************************
+ * Nome do Arquivo 	: main.c
  *
- * Created on January 27, 2017, 4:44 PM
- */
-
+ * Descricao       	: 
+ *
+ * Ambiente			    : MPLAB, XC8 versao 1.45, PIC18F4550
+ *
+ * Responsavel		: Souza, Deivide Conceiï¿½ao de
+                      Silva, Felipe Alves da
+                      Souza, Ricardo de
+			  
+ * Contribuiï¿½ï¿½o: Os codigos para comunicaï¿½ï¿½o com o SDCard (SDCard.h)
+ * foram retiradas do site OPENLAB (https://openlabpro.com/guide/raw-sd-readwrite-using-pic-18f4550/)
+ * E os demais cï¿½digos para inicializaï¿½ï¿½o do SDCard e todo o protocolo do sistema FAT 
+ * Low level disk I/O module skeleton for Petit FatFs (C)ChaN, 2014 retirado em
+ * (https://github.com/etiq/OpenLab-PIC18F4550-SDCard-Examples)
+ * 
+ * 
+ * 
+ * Versao/Data		: v00.01 - 26/09/2021 - versao inicial l
+ *
+ *****************************************************************************/
 
 #include <xc.h>
-//#include "pic_18f4550.h"
 #include <p18f4550.h>
-//#include <pic18f4550.h>
-//#include <spi.h>
-//#include <usart.h>
-//#include <sw_uart.h>
-//#include "config.h"
-//#include "delay.h"
-#include "pff.h"
-#include "diskio.h"
+
+//Bibliotecas do OPENLAB================
+//#include "bibliotecas/config.h"
+#include "bibliotecas/tff.h"
+#include "bibliotecas/diskio.h"
+//======================================
 #include "main.h"
 #include "bibliotecas/hardware.h"
 #include "bibliotecas/uart.h"
-
-//Nossas bibliotecas=-============================
+//#include "bibliotecas/chaves.h"
+//#include "bibliotecas/SHRC.h"
+#include "bibliotecas/display_lcd.h"
+//#include "bibliotecas/adc.h"
 #include "bibliotecas/SPI.h"
 #include "bibliotecas/SDCard.h"
+#include "bibliotecas/GPS.h"
 //=-============================
 
-#define FOSC 20000000
+#define _XTAL_FREQ 48000000
 
-
-//#define Baud 9600;
-//#define spbrg ((FOSC/Baud)/64)-1                                 /*
-//                                      ((FOSC/Desired Baud Rate)/64) ? 1
-//                                       = ((16000000/9600)/64) ? 1        */
-//                                       /*void Open1USART ( unsigned char config,  unsigned int spbrg);*/
-
-
-
-//++++++++++++++++++++++++++um dos principais causadores de perda de memória+++++++++++++++++++
-
-
-//BYTE sector_buffer[512];
-unsigned char *rd;
-unsigned char Result;
-//static unsigned char str[512];
-BYTE s;
-DWORD fileSize;
-BYTE txt[20];
-BYTE data_buffer_32[32];
-
-
-
-extern void readover(int);
-
-
-
-
-
-
-// File to read================================================================= 
-BYTE fileName[10] = {"check.txt"}; //USE SMALLER ARRAY SIZE /testmapp/testtext 
-BYTE folder[48] = {""}; 
-//==============================================================================
-
-
-
+//#pragma config FOSC     = HSPLL_HS
+//#pragma config PLLDIV   = 5				// (20 MHz crystal on PICDEM FS USB board)
+//#pragma config CPUDIV   = OSC1_PLL2		// Clock source from 96MHz PLL/2
+//
+//#pragma config PWRT = ON
+//#pragma config BOR = ON
+//#pragma config BORV = 2
+//#pragma config WDT = OFF
+//#pragma config DEBUG = OFF
+//#pragma config LVP = OFF
 
 /******************************************************************************
 * Variaveis Globais
 ******************************************************************************/
+//++++++++++++++++++++++++++um dos principais causadores de perda de memï¿½ria+++++++++++++++++++
+////static unsigned char str[512];
+//BYTE sector_buffer[512];
+//============================
 
 unsigned char data_uart_recebe;
 
 /*Store function pointers of Task.*/
 void (*p_tarefas[NUMBER_OF_TASKS])(void);  
 
-/*Store task´s times (time period to execute)*/
+/*Store taskï¿½s times (time period to execute)*/
 unsigned int tempo_backup[NUMBER_OF_TASKS];       
  
-/*Stores recent task´s times ("time to execute" each task) */
+/*Stores recent taskï¿½s times ("time to execute" each task) */
 unsigned int tempo_tarefa[NUMBER_OF_TASKS];  
 
 /*Tells if TImer0 interrupt has been generated*/
@@ -87,6 +79,7 @@ unsigned char sinaliza_int_timer;
 /* Tells if a task in executing (used to check task timeout validation)*/
 volatile char tarefa_em_execucao;                  
 
+//variable for check timeout
 unsigned int timeout_tarefa;
 
 
@@ -95,15 +88,21 @@ unsigned int timeout_tarefa;
 /******************************************************************************
 * Prototipos das funcoes
 ******************************************************************************/
-void inicializa_tarefas(void);
+void mensagem_inicial(void);
 
 
 
+
+
+
+
+
+/*****************************************************************************/
 /******************************************************************************
  * Funcao:		void interrupt isr(void)
  * Entrada:		Nenhuma (void)
- * Saída:		Nenhuma (void)
- * Descrição:	Implementa a rotina de interrupcao
+ * Saï¿½da:		Nenhuma (void)
+ * Descriï¿½ï¿½o:	Implementa a rotina de interrupcao
  *****************************************************************************/
 void interrupt isr(void)
 {
@@ -114,6 +113,10 @@ void interrupt isr(void)
     {
         data_uart_recebe = recebe_dado_uart();
         PIR1bits.RCIF = 0;
+//        tratamento_uart(data_uart_recebe);
+//        LATBbits.LATB4 = ~LATBbits.LATB4;
+        
+        		
     } //End if interrupt Recepcao UART
 	
     
@@ -146,10 +149,6 @@ void interrupt isr(void)
     
     }
 
-    
-
-    
-    
 	if (INT0IF && INT0IE)   
     {
         INT0IF = 0;
@@ -163,37 +162,29 @@ void interrupt isr(void)
  * Funcao:		void inicializa_tarefas(void)
  * Entrada:		Nenhuma (void)
  * Saida:		Nenhuma (void)
- * Descricao:	Inicializa o ponteiro de função e as temporizações de cada umas
+ * Descricao:	Inicializa o ponteiro de funï¿½ï¿½o e as temporizaï¿½ï¿½es de cada umas
 				das tarefas.
  *****************************************************************************/ 
 void inicializa_tarefas(void)
 {
 
-//	p_tarefas[0] = task_system_alive;
-//    p_tarefas[1] = task_controla_led_dez;
-//    p_tarefas[2] = task_controla_led_vinte;
-//    p_tarefas[3] = task_gerencia_canal_um;
-//
-//	/*init temporization values of each task. 
-//	These values do no change during execution*/
-//	tempo_backup[0] = TIME_1000_MS;
-//    tempo_backup[1] = TIME_100_MS;
-//    tempo_backup[2] = TIME_50_MS;
-//    tempo_backup[3] = TIME_100_MS;
-//	
-//	/*init recent temporization values of each task. 
-//	They´re used to decide which task must be executed*/
-//	tempo_tarefa[0] = TIME_1000_MS;
-//    tempo_tarefa[1] = TIME_100_MS;
-//    tempo_tarefa[2] = TIME_50_MS;
-//    tempo_tarefa[3] = TIME_100_MS;
+//    p_tarefas[0] = SDCard;
+//    p_tarefas[1] = gps;
+	/*init temporization values of each task. 
+	These values do no change during execution*/
+	tempo_backup[0] = TIME_5000_MS;
+    tempo_backup[1] = TIME_5000_MS;
+//    tempo_backup[1] = TIME_2000_MS;
+	
+	/*init recent temporization values of each task. 
+	Theyï¿½re used to decide which task must be executed*/
+	tempo_tarefa[0] = TIME_5000_MS;
+    tempo_tarefa[1] = TIME_5000_MS;
+//    tempo_tarefa[1] = TIME_2000_MS;
 
-	//It indicates that there´s no task executing
+	//It indicates that thereï¿½s no task executing
     tarefa_em_execucao = NO;
 }
-
-
-
 
 
 
@@ -217,10 +208,7 @@ void escalonador()
             tempo_tarefa[cont] = tempo_backup[cont];
         }
     }
-    
 }
-
-
 /******************************************************************************
  * Funcao:		void main(void)
  * Entrada:		Nenhuma (void)
@@ -228,168 +216,54 @@ void escalonador()
  * Descricao:	Funcao principal
  *****************************************************************************/
 void main(void) 
-{
-
+{  
     init_hardware();
-	inicializa_uart();
-//    init_lcd();
+//	inicializa_uart();
+    init_lcd();
 //    inicializa_shrc();
 //    inicializa_i2c();
-//	mensagem_inicial();
+	mensagem_inicial();
     inicializa_tarefas();
-	
+    inicializa_SPI(0,3,1);
+    ADCON1 = 0X0F;
+//     CMCON |= 7;
+    SDCard();
     while(1)
     {
-        //Verification: check if there´s a task to be executed
+        //Verification: check if thereï¿½s a task to be executed
         if ((sinaliza_int_timer == YES)  && (NUMBER_OF_TASKS)) 
         {
             sinaliza_int_timer = NO;  
             escalonador();			
         }
 //        leitura_chaves_sistema();   /*Driver*/
-//        controle_shrc();            /*Driver*/
-//        leitura_continua_adc();     /*Driver*/
+//        leitura_continua_adc();     /*Driver*/ 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//main==================================================================================================
-//void main(void) 
-//{
-//    FRESULT FResult;
-//    FATFS fs;
-//    WORD br;
+/******************************************************************************
+ * Funcao:		void mensagem_inicial(void)
+ * Entrada:		Nenhuma (void)
+ * Saida:		Nenhuma (void)
+ * Descricao:	Funcao principal
+ *****************************************************************************/
+void mensagem_inicial(void)
+{
+    const unsigned char msg_linha_um[NUM_CARACTERES]      = "SDCard Init   ";
+	const unsigned char msg_dois[NUM_CARACTERES]          = " 18/01/2022   ";
+	
+	posicao_cursor_lcd(1,0);
+	escreve_frase_ram_lcd(msg_linha_um);
+	
+    posicao_cursor_lcd(2,0);
+	escreve_frase_ram_lcd(msg_dois);
+    __delay_ms(1000);
+    LIMPA_DISPLAY();
+    
+    
+//    posicao_cursor_lcd(1,0);
+//	escreve_frase_ram_lcd("LAT:");
 //    
-//    
-//    
-////    soft_hard_init(); // SOFTWARE AND HARWARE INITIALISE FUNCTION
-////    OpenUART();       // SOFTWARE UART INITIALIZATION
-//
-//    
-//    /*READ FUNCTION=============================================================*/
-//    
-////    putsUART("\r\nAttempting to mount file system.\r\n");
-//    
-//    
-//    proceed();
-//    
-//	if((FResult = pf_mount(&fs)) == FR_OK )
-//	{
-//		// open file=======================================
-//		FResult = pf_open("check.txt"/*fileName*/);
-//        //=================================================
-//		if( FResult == FR_OK )
-//		{
-//			// Read 31 bytes from the file                        
-//            if( (FResult = pf_write("SD_Card", 5, &br)) == FR_OK )
-//			{
-//					//write on the display if it is initialized
-//			} 
-//			else
-//			{
-//                
-//                //write on the screen if Sd is not working or can't be readed
-//                
-////					WriteUART(FResult + 0x30);????????????????????
-//				while( 1 );//lock the program
-//			}
-//
-////            putsUART("\r\n\r\nStarting to read the file.\r\n"); says that its workin'
-//				
-//            
-//            
-//            
-//            
-//            
-//            //Starts to read the file for writing
-//            
-//            
-//            
-//			// read file and print it until it ends
-//			do
-//			{
-//                readover(1); //Set Flag=1 in diskio.c before reading Card Data
-//                
-//                
-//                
-//                
-//				// Read 31 bytes from the file
-//				if( (FResult = pf_read(data_buffer_32, 31, &br)) == FR_OK )
-//				{
-//					// putsUSART needs a C-string (NULL terminated)
-//					data_buffer_32[br] = 0;
-//                    break;
-//					//putsUART(data_buffer_32);
-//				}
-//				else
-//				{
-//                    //write on the screen if it got an error
-//                    
-////					putsUART("\r\nError trying to read file; ");
-////					WriteUART(FResult + 0x30);
-////					putsUART(".\r\n");
-//					
-//					while( 1 );
-//				}
-//			} while( br == 31 );	// if the pf_Read reads less then 31 bytes the file has ended
-//		}
-//		else 
-//		{
-////			putsUART("\r\nError trying to open file; ");
-////			WriteUART(FResult + 0x30);
-////			putsUART(".\r\n");
-//			
-//			while( 1 );
-//		}
-//	}
-//	else
-//	{
-//    //Write a error message if the file wasnt oppened    
-//		while( 1 );
-//	}
-//
-//    
-//    
-//  	// do a directory listing and list all files on the SD-card ========
-//
-//    
-//    
-////============================================================================
-//	//scan_files(folder);????????????????? function depreciated ?
-//		
-//	// unmount drive
-////	putsUART("\r\nAttempting to UNmount file system.\r\n");
-//	
-//	//FResult = pf_mount(NULL); ??????????????????????????????
-//	
-////============================================================================  
-//    
-//	if( FResult != FR_OK )
-//	{
-//    //write on the screen it wanst possible to create     
-////		putsUART("\r\nError trying to UNmount filesystem; ");
-////		WriteUART(FResult + 0x30);
-////		putsUART(".\r\n");
-//		while( 1 );
-//	}	
-//
-////	putsUART("\rFile system succesfully unmounted.\r\n");
-//	while(1);
-///*WRITE FUNCTION*/
-//}		
+//    posicao_cursor_lcd(2,0);
+//	escreve_frase_ram_lcd("LONG:");
+}
+

@@ -4872,7 +4872,7 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 95 "bibliotecas/SDCard.h"
+# 94 "bibliotecas/SDCard.h"
 void SDCard(void);
 BYTE response(void);
 void proceed(void);
@@ -4920,18 +4920,12 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 45 "bibliotecas/SHRC.h"
-void controle_shrc (void);
+# 50 "bibliotecas/SPI.h"
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
-void inicializa_shrc(void);
+unsigned char ReadSPI_(void);
 
-void escreve_dado_SPI(unsigned char data_to_shrc);
-
-void shrc_seta_bit(unsigned char posicao_bit);
-
-void shrc_apaga_bit(unsigned char posicao_bit);
-
-unsigned char recebe_dado_SPI();
+void WriteSPI_(unsigned char dado);
 
 # 67 "bibliotecas/tff.h"
 typedef WORD CLUST;
@@ -5094,7 +5088,7 @@ SD_CMD_ERASE_BLOCK_END = 33,
 SD_CMD_ERASE = 38
 } SD_CMD;
 
-# 67
+# 66
 BYTE *data_buff;
 
 
@@ -5132,7 +5126,7 @@ return stat;
 return 0x01;
 }
 
-# 110
+# 109
 DSTATUS disk_initialize (
 BYTE pdrv
 )
@@ -5165,7 +5159,7 @@ return stat;
 return 0x01;
 }
 
-# 148
+# 147
 DRESULT disk_read (
 BYTE pdrv,
 BYTE *buff,
@@ -5202,14 +5196,14 @@ return res;
 
 case 2 :
 
-# 189
+# 188
 return res;
 }
 
 return RES_PARERR;
 }
 
-# 201
+# 200
 DRESULT disk_write (
 BYTE pdrv,
 const BYTE *buff,
@@ -5234,21 +5228,21 @@ case 1 :
 
 
 result = sdc_disk_write(buff, sector, count);
-
+res = result;
 
 
 return res;
 
 case 2 :
 
-# 237
+# 236
 return res;
 }
 
 return RES_PARERR;
 }
 
-# 249
+# 248
 DRESULT disk_ioctl (
 BYTE pdrv,
 BYTE cmd,
@@ -5289,20 +5283,22 @@ unsigned char buff, teste[10];
 DSTATUS stat;
 unsigned int receive;
 
+
+
 do{
 
 
-dummy_clocks(10);
-LATBbits.LATB4 = 0;
+
 command(0X40, 0X00000000, 0X95);
 proceed();
-LATBbits.LATB4 = 1;
 do{
+
 buff = response();
 count++;
+posicao_cursor_lcd(1,0);
+escreve_inteiro_lcd(buff);
+}while(buff!=0X01 && count<10);
 
-
-}while((buff!=0X01) && count<300);
 count = 0;
 if(buff != 0x01)
 {
@@ -5323,7 +5319,7 @@ escreve_frase_ram_lcd("Cartao Inserido");
 return;
 }
 
-# 337
+# 339
 DSTATUS sdc_disk_initialize(void)
 {
 BYTE ocr;
@@ -5332,22 +5328,17 @@ int i = 0, count1 = 0, count2 = 0;
 BYTE buff = 0;
 BYTE buff_i;
 int crc_number;
-
 _delay((unsigned long)((1)*(48000000/4000.0)));
+dummy_clocks(100);
+
+
 sdc_reset();
-
-LATBbits.LATB4 = 0;
-LATBbits.LATB7 = 0;
-dummy_clocks(1);
-
 command(0X48, 0x000001AA, 0x87);
 proceed();
-LATBbits.LATB4 = 1;
 do{
 buff_i = response();
-
-
-
+posicao_cursor_lcd(1,0);
+escreve_inteiro_lcd(buff_i);
 if(buff_i == 1)
 {
 crc_number = buff_i<<8;
@@ -5357,9 +5348,9 @@ else if(buff_i==0xAA)
 crc_number |= buff_i;
 }
 count1++;
-
-# 375
 }while(crc_number != 0x1AA && count1<1000);
+
+
 
 
 if (crc_number == 0x1AA)
@@ -5369,12 +5360,8 @@ do{
 count2 = 0;
 buff = 0XFF;
 
-
-
-
-LATBbits.LATB4 = 0;
-LATBbits.LATB7 = 0;
-dummy_clocks(1);
+# 392
+do{
 command(0X41, 0X00000000, 0XFF);
 buff = 0XFF;
 
@@ -5382,14 +5369,9 @@ proceed();
 do{
 buff = response();
 count2++;
-}while((buff!=0X01)&&(count2<10));
-
-
-dummy_clocks(1);
-LATBbits.LATB4 = 0;
-LATBbits.LATB7 = 0;
-escreve_dado_SPI(0xFF);
-command(0X77, 0X00000000, 0X95);
+}while((buff!=0X01) && count2<10);
+dummy_clocks(10);
+command(0X77, 0X00000000, 0X00);
 buff = 0XFF;
 
 proceed();
@@ -5397,48 +5379,46 @@ do{
 buff = response();
 count2++;
 }while((buff!=0X01)&&(count2<10));
-
 count2 = 0;
 
 
 
-LATBbits.LATB4 = 0;
-LATBbits.LATB7 = 0;
-dummy_clocks(1);
-command(0X69, 0X40000000, 0x95);
-proceed();
-LATBbits.LATB4 = 1;
-do{
+dummy_clocks(10);
 
+command(0X69, 0X40000000, 0x00);
+proceed();
 buff = response();
-count2++;;
+count2++;
+posicao_cursor_lcd(2,5);
+escreve_inteiro_lcd(buff);
 }while(buff!=0X00);
 
 buff = 0xFF;
-dummy_clocks(1);
+
+
+dummy_clocks(10);
 command(0X7A, 0X00000000, 0XFF);
 proceed();
 do{
 buff = response();
 ocr = (buff << 1) & 0b10000000;
-
-
-
+posicao_cursor_lcd(2,0);
+escreve_inteiro_lcd(ocr);
 count2++;
 }while(ocr!=0X00 && ocr != 0x01 && count2<10);
 }while(ocr != 0X00 && ocr !=0x01);
 
-
-
+escreve_cmd_lcd(0b00000001);
+posicao_cursor_lcd(1,0);
+escreve_inteiro_lcd(ocr);
 count1 = 0;
 
-
+_delay((unsigned long)((1)*(48000000/4000.0)));
 stat = 0X00;
 
 if(!ocr)
 {
-LATBbits.LATB4 = 0;
-LATBbits.LATB7 = 0;
+
 dummy_clocks(10);
 command(0X50,0X00000200,0XFF);
 proceed();
@@ -5447,8 +5427,8 @@ buff = 0xFF;
 do{
 buff = response();
 }while(buff!=0X00);
-}
 
+}
 
 }
 else
@@ -5506,7 +5486,7 @@ buff = response();
 return stat;
 }
 
-# 529
+# 528
 DRESULT sdc_disk_read(
 BYTE *p_buff,
 DWORD sector,
@@ -5522,16 +5502,32 @@ int length,i, count1;
 
 start_add = sector*512;
 
-# 552
-LATBbits.LATB7 = 0;
-LATBbits.LATB4 = 0;
+
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("LENDO SD");
+
+
+if(sector != 1)
+{
 dummy_clocks(10);
-command(0X52,start_add,0X00);
+command(0X52,start_add ,0X00);
 proceed();
 do{
 buff = response();
 }while(buff!=0X00);
 proceed();
+}
+else
+{
+dummy_clocks(10);
+command(0X51,sector ,0X00);
+proceed();
+do{
+buff = response();
+}while(buff!=0X00);
+proceed();
+}
+
 
 
 while(buff!=0xFE)
@@ -5539,40 +5535,49 @@ while(buff!=0xFE)
 buff = response();
 posicao_cursor_lcd(1,0);
 escreve_inteiro_lcd(buff);
-}
 
+}
 
 length = 0;
 while ( length < 512 )
 {
 p_buff[length] = response();
-
-
 length++;
 }
 
 
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-LATBbits.LATB7 = 0;
+
+
 length = 0;
-LATBbits.LATB4 = 0;
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("comando 4C");
 dummy_clocks(10);
+
 command(0X4C,0X00000000,0X00);
 proceed();
 do{
 buff = response();
+posicao_cursor_lcd(2,0);
+escreve_inteiro_lcd(buff);
 }while(buff!=0xFF);
 
 length = 0;
 
-# 601
-return res;
+
+escreve_cmd_lcd(0b00000001);
+posicao_cursor_lcd(2,10);
+escreve_frase_ram_lcd("saindo");
+
+
+
+return RES_OK;
+
 
 
 
 }
 
-# 613
+# 624
 DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
 {
 DRESULT res;
@@ -5581,46 +5586,54 @@ int i=0,j, count1 = 0;
 
 
 
-LATBbits.LATB7 = 0;
+LATCbits.LATC7 = 0;
 LATBbits.LATB4 = 0;
 dummy_clocks(10);
-command(0X58, 0X00000000, 0X00);
+command(0X58, sector*512, 0X00);
 proceed();
 do{
 buff = response();
 }while(buff!=0X00);
 
-
 LATBbits.LATB4 = 0;
-LATBbits.LATB7 = 0;
+LATCbits.LATC7 = 0;
 dummy_clocks(1);
-escreve_dado_SPI(0XFE);
+WriteSPI_(0XFE);
 
 
 for(j=0;j<512;j++)
 {
-escreve_dado_SPI(*p_buff);
+WriteSPI_(*p_buff);
 p_buff++;
 
 }
 
 
-escreve_dado_SPI(0XFF);
-escreve_dado_SPI(0XFF);
-
-
+ReadSPI_();
+ReadSPI_();
+proceed();
+buff = response();
 _delay((unsigned long)((1000)*(48000000/4000.0)));
 
 
+if((buff & 0x1F) != 0x05)
+{
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("ERRO ESCRITA");
+_delay((unsigned long)((4000)*(48000000/4000.0)));
+}
 LATBbits.LATB4 = 0;
-LATBbits.LATB7 = 0;
-dummy_clocks(10);
-command(0X4D,0X00000000,0XFF);
+LATCbits.LATC7 = 0;
+dummy_clocks(1);
+command(0X4D,0X00000000,0X00);
 proceed();
 do{
 buff = response();
 
-# 664
+posicao_cursor_lcd(1,0);
+escreve_inteiro_lcd(buff);
+_delay((unsigned long)((30)*(48000000/4000000.0)));
+
 }while(buff!=0X00 );
 
 
@@ -5630,7 +5643,7 @@ return res;
 
 }
 
-# 680
+# 696
 DSTATUS sdc_disk_status(BYTE pdrv)
 {
 DSTATUS stat = 0;

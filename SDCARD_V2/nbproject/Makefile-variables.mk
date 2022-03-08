@@ -6,8 +6,8 @@
 CND_BASEDIR=`pwd`
 # default configuration
 CND_ARTIFACT_DIR_default=dist/default/production
-CND_ARTIFACT_NAME_default=OpenLab_SDC_PetitFS.X.production.hex
-CND_ARTIFACT_PATH_default=dist/default/production/OpenLab_SDC_PetitFS.X.production.hex
+CND_ARTIFACT_NAME_default=SDCARD_V2.production.hex
+CND_ARTIFACT_PATH_default=dist/default/production/SDCARD_V2.production.hex
 CND_PACKAGE_DIR_default=${CND_DISTDIR}/default/package
-CND_PACKAGE_NAME_default=openlabsdcpetitfs.x.tar
-CND_PACKAGE_PATH_default=${CND_DISTDIR}/default/package/openlabsdcpetitfs.x.tar
+CND_PACKAGE_NAME_default=sdcardv2.tar
+CND_PACKAGE_PATH_default=${CND_DISTDIR}/default/package/sdcardv2.tar

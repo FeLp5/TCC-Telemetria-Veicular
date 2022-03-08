@@ -4890,11 +4890,11 @@ write_timer_zero(0x0083);
 # 98
 void init_interrupt(void)
 {
-INTCON = 0b11110000;
+INTCON = 0b10110000;
 INTCON2 = 0b00000000;
 INTCON3 = 0b00000000;
 
-PIE1 = 0b00100000;
+PIE1 = 0b00001000;
 }
 
 # 113
@@ -4962,7 +4962,7 @@ void config_timer_dois(void)
 {
 T2CON = 0b00000100;
 TMR2 = 0;
-PR2 = 0xFF;
+PR2 = 0x01;
 }
 
 # 213

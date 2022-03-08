@@ -5,11 +5,10 @@ bibliotecas/uart.h  \
 bibliotecas/diskio.h  \
 bibliotecas/SDCard.h  \
 main.h  \
+bibliotecas/tff.h  \
 bibliotecas/integer.h  \
-bibliotecas/SHRC.h  \
 bibliotecas/ffconf.h  \
-bibliotecas/config.h  \
+bibliotecas/SPI.h  \
 bibliotecas/display_lcd.h  \
 bibliotecas/GPS.h  \
-bibliotecas/hardware.h  \
-bibliotecas/ff.h 
+bibliotecas/hardware.h 

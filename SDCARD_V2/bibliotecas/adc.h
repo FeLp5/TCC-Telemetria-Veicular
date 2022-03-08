@@ -1,20 +1,20 @@
 /******************************************************************************
  * Nome do Arquivo 	: adc.h
  *
- * Descrição       	: Implementa a controle do conversor AD
+ * Descri??o       	: Implementa a controle do conversor AD
  *
  * Ambiente			: MPLAB, XC8 versao 1.45, PIC18F4550
  *
- * Responsável		: Torres, Weslley
+ * Respons?vel		: Torres, Weslley
  *
- * Versão/Data		: v00.01 - 20/08/2020 - versao inicial
+ * Vers?o/Data		: v00.01 - 20/08/2020 - versao inicial
  *
  *****************************************************************************/
 #ifndef __ADC_H
 #define __ADC_H
 
 /******************************************************************************
-* HEADER-FILES (Somente os arquivos necessários nesse arquivo)
+* HEADER-FILES (Somente os arquivos necess?rios nesse arquivo)
 ******************************************************************************/
 
 
@@ -28,12 +28,17 @@
 /*****************************************************************************/
 
 /******************************************************************************
-* Prototipos das funções
+* Prototipos das fun??es
 ******************************************************************************/
 
 void inicializa_adc(void);
 
 unsigned int leitura_adc(unsigned char canal);
+
+void leitura_continua_adc(void);
+
+unsigned int valor_medio_adc(unsigned char canal);
+
 
 /*****************************************************************************/
 

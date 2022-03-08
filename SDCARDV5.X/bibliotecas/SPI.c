@@ -21,7 +21,7 @@
 #include "hardware.h"
 #include "display_lcd.h"
 #include "SPI.h"
-#include "SHRC.h"
+//#include "SHRC.h"
 /*****************************************************************************/
 
 
@@ -90,7 +90,8 @@ void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned ch
     TRIS_SDO = 0;               //SD0 as outpu
     
     
-    SSPCON1 |= 0x20;          // enable synchronous serial port,  0b00100000  Enable serial port and configures SCK, SDO, SDI
+//    SSPCON1 |= 0x20;          // enable synchronous serial port,  0b00100000  Enable serial port and configures SCK, SDO, SDI
+    SSPCON1bits.SSPEN = 1;
     posicao_cursor_lcd(1,1);
     escreve_frase_ram_lcd("SPI configurada!");
     LIMPA_DISPLAY();
@@ -104,14 +105,17 @@ void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned ch
  * Saida:		unsigned char
  * Descricao:	Realiza a leitura do buffer do SPI
  *****************************************************************************/
-unsigned char recebe_dado_SPI(void)
+unsigned char ReadSPI_(void)
 {
     PIR1bits.SSPIF = 0;
     unsigned char temp_var;
     temp_var = SSPBUF;
+    
     SSPBUF = 0x00;
-    __delay_ms(50);
+//    __delay_ms(50);
     while(!PIR1bits.SSPIF);
+    posicao_cursor_lcd(2,5);
+    escreve_inteiro_lcd(SSPBUF);
     return (SSPBUF);
 }
 
@@ -128,9 +132,9 @@ char WriteSPI_(unsigned char dado)
     TempVar = SSPBUF; //Clear de BF
     PIR1bits.SSPIF = 0; // Clear interrupt flag
     SSPCON1bits.WCOL = 0;
-    SSPSTATbits.BF = 0;
-    SSPBUF = 0x00;
-    __delay_ms(50);
+//    SSPSTATbits.BF = 0;
+//    SSPBUF = 0x00;
+//    __delay_ms(50);
     SSPBUF = dado;
     if (SSPCON1 & 0x80 )        // test if write collision occurred;
     {
@@ -140,6 +144,15 @@ char WriteSPI_(unsigned char dado)
     {
         while(!PIR1bits.SSPIF);
         __delay_ms(1000);
+//        if(PORTBbits.RB2)
+//        {
+//            LATBbits.LATB3 = 1;
+//            __delay_ms(1000);
+//        }
+//        else
+//        {
+//            LATBbits.LATB3 = 0;
+//        }
         // wait until bus cycle complete
         return (0);                // if WCOL bit is not set return non-negative#
     }

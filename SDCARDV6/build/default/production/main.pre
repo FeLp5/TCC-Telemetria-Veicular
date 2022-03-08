@@ -4805,198 +4805,6 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-
-# 36 "bibliotecas/config.h"
-#pragma config PLLDIV = 5
-#pragma config CPUDIV = OSC1_PLL2
-#pragma config USBDIV = 1
-
-#pragma config FOSC = HS
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-#pragma config PWRT = OFF
-#pragma config BOR = ON
-#pragma config BORV = 3
-#pragma config VREGEN = OFF
-
-#pragma config WDT = OFF
-
-#pragma config CCP2MX = OFF
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
-
-#pragma config STVREN = ON
-#pragma config LVP = OFF
-
-# 58 "bibliotecas/ff.h"
-typedef unsigned int UINT;
-typedef unsigned char BYTE;
-typedef unsigned short WORD;
-typedef unsigned long DWORD;
-typedef WORD WCHAR;
-
-# 82
-typedef DWORD FSIZE_t;
-typedef DWORD LBA_t;
-
-# 105
-typedef char TCHAR;
-
-# 132
-typedef struct {
-BYTE fs_type;
-BYTE pdrv;
-BYTE n_fats;
-BYTE wflag;
-BYTE fsi_flag;
-WORD id;
-WORD n_rootdir;
-WORD csize;
-
-# 154
-DWORD last_clst;
-DWORD free_clst;
-
-# 165
-DWORD n_fatent;
-DWORD fsize;
-LBA_t volbase;
-LBA_t fatbase;
-LBA_t dirbase;
-LBA_t database;
-
-# 174
-LBA_t winsect;
-BYTE win[512];
-} FATFS;
-
-# 182
-typedef struct {
-FATFS* fs;
-WORD id;
-BYTE attr;
-BYTE stat;
-DWORD sclust;
-FSIZE_t objsize;
-
-# 199
-} FFOBJID;
-
-# 205
-typedef struct {
-FFOBJID obj;
-BYTE flag;
-BYTE err;
-FSIZE_t fptr;
-DWORD clust;
-LBA_t sect;
-
-LBA_t dir_sect;
-BYTE* dir_ptr;
-
-# 222
-} FIL;
-
-# 228
-typedef struct {
-FFOBJID obj;
-DWORD dptr;
-DWORD clust;
-LBA_t sect;
-BYTE* dir;
-BYTE fn[12];
-
-# 241
-} DIR_E;
-
-# 247
-typedef struct {
-FSIZE_t fsize;
-WORD fdate;
-WORD ftime;
-BYTE fattrib;
-
-
-
-
-TCHAR fname[12 + 1];
-
-} FILINFO;
-
-# 264
-typedef struct {
-BYTE fmt;
-BYTE n_fat;
-UINT align;
-UINT n_root;
-DWORD au_size;
-} MKFS_PARM;
-
-# 276
-typedef enum {
-FR_OK = 0,
-FR_DISK_ERR,
-FR_INT_ERR,
-FR_NOT_READY,
-FR_NO_FILE,
-FR_NO_PATH,
-FR_INVALID_NAME,
-FR_DENIED,
-FR_EXIST,
-FR_INVALID_OBJECT,
-FR_WRITE_PROTECTED,
-FR_INVALID_DRIVE,
-FR_NOT_ENABLED,
-FR_NO_FILESYSTEM,
-FR_MKFS_ABORTED,
-FR_TIMEOUT,
-FR_LOCKED,
-FR_NOT_ENOUGH_CORE,
-FR_TOO_MANY_OPEN_FILES,
-FR_INVALID_PARAMETER
-} FRESULT;
-
-# 304
-FRESULT f_open (FIL* fp, const TCHAR* path, BYTE mode);
-FRESULT f_close (FIL* fp);
-FRESULT f_read (FIL* fp, void* buff, UINT btr, UINT* br);
-FRESULT f_write (FIL* fp, const void* buff, UINT btw, UINT* bw);
-FRESULT f_lseek (FIL* fp, FSIZE_t ofs);
-FRESULT f_truncate (FIL* fp);
-FRESULT f_sync (FIL* fp);
-FRESULT f_opendir (DIR_E* dp, const TCHAR* path);
-FRESULT f_closedir (DIR_E* dp);
-FRESULT f_readdir (DIR_E* dp, FILINFO* fno);
-FRESULT f_findfirst (DIR_E* dp, FILINFO* fno, const TCHAR* path, const TCHAR* pattern);
-FRESULT f_findnext (DIR_E* dp, FILINFO* fno);
-FRESULT f_mkdir (const TCHAR* path);
-FRESULT f_unlink (const TCHAR* path);
-FRESULT f_rename (const TCHAR* path_old, const TCHAR* path_new);
-FRESULT f_stat (const TCHAR* path, FILINFO* fno);
-FRESULT f_chmod (const TCHAR* path, BYTE attr, BYTE mask);
-FRESULT f_utime (const TCHAR* path, const FILINFO* fno);
-FRESULT f_chdir (const TCHAR* path);
-FRESULT f_chdrive (const TCHAR* path);
-FRESULT f_getcwd (TCHAR* buff, UINT len);
-FRESULT f_getfree (const TCHAR* path, DWORD* nclst, FATFS** fatfs);
-FRESULT f_getlabel (const TCHAR* path, TCHAR* label, DWORD* vsn);
-FRESULT f_setlabel (const TCHAR* label);
-FRESULT f_forward (FIL* fp, UINT(*func)(const BYTE*,UINT), UINT btf, UINT* bf);
-FRESULT f_expand (FIL* fp, FSIZE_t fsz, BYTE opt);
-FRESULT f_mount (FATFS* fs, const TCHAR* path, BYTE opt);
-FRESULT f_mkfs (const TCHAR* path, const MKFS_PARM* opt, void* work, UINT len);
-FRESULT f_fdisk (BYTE pdrv, const LBA_t ptbl[], void* work);
-FRESULT f_setcp (WORD cp);
-int f_putc (TCHAR c, FIL* fp);
-int f_puts (const TCHAR* str, FIL* cp);
-int f_printf (FIL* fp, const TCHAR* str, ...);
-TCHAR* f_gets (TCHAR* buff, int len, FIL* fp);
-
-# 356
-DWORD get_fattime (void);
-
 # 8 "bibliotecas/integer.h"
 typedef struct{
 unsigned int hora;
@@ -5027,6 +4835,113 @@ typedef unsigned long DWORD;
 
 
 typedef enum { FALSE = 0, TRUE } BOOL;
+
+# 67 "bibliotecas/tff.h"
+typedef WORD CLUST;
+
+# 74
+typedef struct _FATFS {
+WORD id;
+WORD n_rootdir;
+DWORD winsect;
+DWORD fatbase;
+DWORD dirbase;
+DWORD database;
+CLUST sects_fat;
+CLUST max_clust;
+
+CLUST last_clust;
+CLUST free_clust;
+
+# 92
+BYTE fs_type;
+BYTE csize;
+BYTE n_fats;
+BYTE winflag;
+BYTE win[512];
+} FATFS;
+
+
+
+typedef struct _DIR_E {
+WORD id;
+WORD index;
+FATFS* fs;
+CLUST sclust;
+CLUST clust;
+DWORD sect;
+} DIR_E;
+
+
+
+typedef struct _FIL {
+WORD id;
+BYTE flag;
+BYTE csect;
+FATFS* fs;
+DWORD fptr;
+DWORD fsize;
+CLUST org_clust;
+CLUST curr_clust;
+DWORD curr_sect;
+
+DWORD dir_sect;
+BYTE* dir_ptr;
+
+} FIL;
+
+
+
+typedef struct _FILINFO {
+DWORD fsize;
+WORD fdate;
+WORD ftime;
+BYTE fattrib;
+char fname[8+1+3+1];
+} FILINFO;
+
+
+
+
+typedef enum {
+FR_OK = 0,
+FR_NOT_READY,
+FR_NO_FILE,
+FR_NO_PATH,
+FR_INVALID_NAME,
+FR_INVALID_DRIVE,
+FR_DENIED,
+FR_EXIST,
+FR_RW_ERROR,
+FR_WRITE_PROTECTED,
+FR_NOT_ENABLED,
+FR_NO_FILESYSTEM,
+FR_INVALID_OBJECT,
+FR_MKFS_ABORTED
+} FRESULT;
+
+# 163
+FRESULT f_mount (BYTE, FATFS*);
+FRESULT f_open (FIL*, const char*, BYTE);
+FRESULT f_read (FIL*, void*, UINT, UINT*);
+FRESULT f_write (FIL*, const void*, UINT, UINT*);
+FRESULT f_lseek (FIL*, DWORD);
+FRESULT f_close (FIL*);
+FRESULT f_opendir (DIR_E*, const char*);
+FRESULT f_readdir (DIR_E*, FILINFO*);
+FRESULT f_stat (const char*, FILINFO*);
+FRESULT f_getfree (const char*, DWORD*, FATFS**);
+FRESULT f_truncate (FIL*);
+FRESULT f_sync (FIL*);
+FRESULT f_unlink (const char*);
+FRESULT f_mkdir (const char*);
+FRESULT f_chmod (const char*, BYTE, BYTE);
+FRESULT f_utime (const char*, const FILINFO*);
+FRESULT f_rename (const char*, const char*);
+FRESULT f_forward (FIL*, UINT(*)(const BYTE*,UINT), UINT, UINT*);
+
+# 193
+DWORD get_fattime (void);
 
 # 14 "bibliotecas/diskio.h"
 typedef BYTE DSTATUS;
@@ -5081,19 +4996,6 @@ void escreve_inteiro_uart(int valor);
 
 void inicializa_uart(void);
 
-# 45 "bibliotecas/SHRC.h"
-void controle_shrc (void);
-
-void inicializa_shrc(void);
-
-void escreve_dado_SPI(unsigned char data_to_shrc);
-
-void shrc_seta_bit(unsigned char posicao_bit);
-
-void shrc_apaga_bit(unsigned char posicao_bit);
-
-unsigned char recebe_dado_SPI();
-
 # 199 "bibliotecas/display_lcd.h"
 extern void init_lcd(void);
 
@@ -5127,7 +5029,14 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 95 "bibliotecas/SDCard.h"
+# 50 "bibliotecas/SPI.h"
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
+
+unsigned char ReadSPI_(void);
+
+void WriteSPI_(unsigned char dado);
+
+# 94 "bibliotecas/SDCard.h"
 void SDCard(void);
 BYTE response(void);
 void proceed(void);
@@ -5153,7 +5062,7 @@ void convert_time_to_utc(unsigned long int);
 unsigned char convert_to_date(unsigned char dt[]);
 float convert_to_degrees(float);
 
-# 54 "main.c"
+# 65 "main.c"
 unsigned char data_uart_recebe;
 
 
@@ -5174,10 +5083,10 @@ volatile char tarefa_em_execucao;
 
 unsigned int timeout_tarefa;
 
-# 80
+# 91
 void mensagem_inicial(void);
 
-# 96
+# 107
 void interrupt isr(void)
 {
 unsigned char cont;
@@ -5230,17 +5139,15 @@ INT0IF = 0;
 }
 }
 
-# 157
+# 168
 void inicializa_tarefas(void)
 {
 
-p_tarefas[0] = SDCard;
-
-# 164
+# 175
 tempo_backup[0] = 5000;
 tempo_backup[1] = 5000;
 
-# 170
+# 181
 tempo_tarefa[0] = 5000;
 tempo_tarefa[1] = 5000;
 
@@ -5249,7 +5156,7 @@ tempo_tarefa[1] = 5000;
 tarefa_em_execucao = 0;
 }
 
-# 186
+# 197
 void escalonador()
 {
 unsigned char cont;
@@ -5266,18 +5173,20 @@ tempo_tarefa[cont] = tempo_backup[cont];
 }
 }
 
-# 207
+# 218
 void main(void)
 {
 init_hardware();
 
 init_lcd();
-inicializa_shrc();
+
 
 mensagem_inicial();
-inicializa_tarefas();;
-
+inicializa_tarefas();
+inicializa_SPI(0,3,1);
 ADCON1 = 0X0F;
+
+SDCard();
 while(1)
 {
 
@@ -5288,11 +5197,10 @@ escalonador();
 }
 
 
-
 }
 }
 
-# 237
+# 249
 void mensagem_inicial(void)
 {
 const unsigned char msg_linha_um[17] = "SDCard Init   ";
@@ -5306,6 +5214,6 @@ escreve_frase_ram_lcd(msg_dois);
 _delay((unsigned long)((1000)*(48000000/4000.0)));
 escreve_cmd_lcd(0b00000001);
 
-# 256
+# 268
 }
 

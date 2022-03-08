@@ -4855,22 +4855,9 @@ void converte_inteiro_matriz(unsigned int val, char* str );
 # 48 "bibliotecas/SPI.h"
 void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
-unsigned char recebe_dado_SPI(void);
+unsigned char ReadSPI_(void);
 
 char WriteSPI_(unsigned char dado);
-
-unsigned char verifica_buffer_SPI(void);
-
-# 38 "bibliotecas/SHRC.h"
-void controle_shrc (void);
-
-void inicializa_shrc(void);
-
-void shrc_seta_bit(unsigned char posicao_bit);
-
-void shrc_apaga_bit(unsigned char posicao_bit);
-
-void shrc_recebe_byte(unsigned char dado_recebido);
 
 # 31 "bibliotecas/SPI.c"
 unsigned char estado = 0;
@@ -4920,34 +4907,38 @@ TRISBbits.RB0 = 1;
 TRISCbits.RC7 = 0;
 
 
-SSPCON1 |= 0x20;
+
+SSPCON1bits.SSPEN = 1;
 posicao_cursor_lcd(1,1);
 escreve_frase_ram_lcd("SPI configurada!");
 escreve_cmd_lcd(0b00000001);
 }
 
-# 107
-unsigned char recebe_dado_SPI(void)
+# 108
+unsigned char ReadSPI_(void)
 {
 PIR1bits.SSPIF = 0;
 unsigned char temp_var;
 temp_var = SSPBUF;
+
 SSPBUF = 0x00;
-_delay((unsigned long)((50)*(48000000/4000.0)));
+
 while(!PIR1bits.SSPIF);
+posicao_cursor_lcd(2,5);
+escreve_inteiro_lcd(SSPBUF);
 return (SSPBUF);
 }
 
-# 125
+# 129
 char WriteSPI_(unsigned char dado)
 {
 unsigned char TempVar;
 TempVar = SSPBUF;
 PIR1bits.SSPIF = 0;
 SSPCON1bits.WCOL = 0;
-SSPSTATbits.BF = 0;
-SSPBUF = 0x00;
-_delay((unsigned long)((50)*(48000000/4000.0)));
+
+
+
 SSPBUF = dado;
 if (SSPCON1 & 0x80 )
 {
@@ -4958,6 +4949,7 @@ else
 while(!PIR1bits.SSPIF);
 _delay((unsigned long)((1000)*(48000000/4000.0)));
 
+# 157
 return (0);
 }
 

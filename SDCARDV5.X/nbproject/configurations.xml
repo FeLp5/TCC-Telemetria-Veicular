@@ -13,14 +13,14 @@
       <itemPath>bibliotecas/adc.h</itemPath>
       <itemPath>bibliotecas/chaves.h</itemPath>
       <itemPath>bibliotecas/config.h</itemPath>
-      <itemPath>bibliotecas/diskio.h</itemPath>
       <itemPath>bibliotecas/display_lcd.h</itemPath>
       <itemPath>bibliotecas/hardware.h</itemPath>
       <itemPath>bibliotecas/int_eeprom.h</itemPath>
       <itemPath>bibliotecas/integer.h</itemPath>
-      <itemPath>bibliotecas/pff.h</itemPath>
-      <itemPath>bibliotecas/pffconf.h</itemPath>
       <itemPath>bibliotecas/uart.h</itemPath>
+      <itemPath>bibliotecas/diskio.h</itemPath>
+      <itemPath>bibliotecas/ffconf.h</itemPath>
+      <itemPath>bibliotecas/ff.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -37,12 +37,12 @@
       <itemPath>bibliotecas/SPI.c</itemPath>
       <itemPath>bibliotecas/adc.c</itemPath>
       <itemPath>bibliotecas/chaves.c</itemPath>
-      <itemPath>bibliotecas/diskio.c</itemPath>
       <itemPath>bibliotecas/display_lcd.c</itemPath>
       <itemPath>bibliotecas/hardware.c</itemPath>
       <itemPath>bibliotecas/int_eeprom.c</itemPath>
-      <itemPath>bibliotecas/pff.c</itemPath>
       <itemPath>bibliotecas/uart.c</itemPath>
+      <itemPath>bibliotecas/diskio.c</itemPath>
+      <itemPath>bibliotecas/ff.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

@@ -4872,7 +4872,7 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 95 "bibliotecas/SDCard.h"
+# 94 "bibliotecas/SDCard.h"
 void SDCard(void);
 BYTE response(void);
 void proceed(void);
@@ -4886,6 +4886,13 @@ DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
 DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
 DSTATUS sdc_disk_initialize(void);
 DSTATUS sdc_disk_status(BYTE pdrv);
+
+# 50 "bibliotecas/SPI.h"
+void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
+
+unsigned char ReadSPI_(void);
+
+void WriteSPI_(unsigned char dado);
 
 # 199 "bibliotecas/display_lcd.h"
 extern void init_lcd(void);
@@ -4920,171 +4927,111 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 58 "bibliotecas/ff.h"
-typedef unsigned int UINT;
-typedef unsigned char BYTE;
-typedef unsigned short WORD;
-typedef unsigned long DWORD;
-typedef WORD WCHAR;
+# 67 "bibliotecas/tff.h"
+typedef WORD CLUST;
 
-# 82
-typedef DWORD FSIZE_t;
-typedef DWORD LBA_t;
-
-# 105
-typedef char TCHAR;
-
-# 132
-typedef struct {
-BYTE fs_type;
-BYTE pdrv;
-BYTE n_fats;
-BYTE wflag;
-BYTE fsi_flag;
+# 74
+typedef struct _FATFS {
 WORD id;
 WORD n_rootdir;
-WORD csize;
+DWORD winsect;
+DWORD fatbase;
+DWORD dirbase;
+DWORD database;
+CLUST sects_fat;
+CLUST max_clust;
 
-# 154
-DWORD last_clst;
-DWORD free_clst;
+CLUST last_clust;
+CLUST free_clust;
 
-# 165
-DWORD n_fatent;
-DWORD fsize;
-LBA_t volbase;
-LBA_t fatbase;
-LBA_t dirbase;
-LBA_t database;
-
-# 174
-LBA_t winsect;
+# 92
+BYTE fs_type;
+BYTE csize;
+BYTE n_fats;
+BYTE winflag;
 BYTE win[512];
 } FATFS;
 
-# 182
-typedef struct {
-FATFS* fs;
+
+
+typedef struct _DIR_E {
 WORD id;
-BYTE attr;
-BYTE stat;
-DWORD sclust;
-FSIZE_t objsize;
-
-# 199
-} FFOBJID;
-
-# 205
-typedef struct {
-FFOBJID obj;
-BYTE flag;
-BYTE err;
-FSIZE_t fptr;
-DWORD clust;
-LBA_t sect;
-
-LBA_t dir_sect;
-BYTE* dir_ptr;
-
-# 222
-} FIL;
-
-# 228
-typedef struct {
-FFOBJID obj;
-DWORD dptr;
-DWORD clust;
-LBA_t sect;
-BYTE* dir;
-BYTE fn[12];
-
-# 241
+WORD index;
+FATFS* fs;
+CLUST sclust;
+CLUST clust;
+DWORD sect;
 } DIR_E;
 
-# 247
-typedef struct {
-FSIZE_t fsize;
+
+
+typedef struct _FIL {
+WORD id;
+BYTE flag;
+BYTE csect;
+FATFS* fs;
+DWORD fptr;
+DWORD fsize;
+CLUST org_clust;
+CLUST curr_clust;
+DWORD curr_sect;
+
+DWORD dir_sect;
+BYTE* dir_ptr;
+
+} FIL;
+
+
+
+typedef struct _FILINFO {
+DWORD fsize;
 WORD fdate;
 WORD ftime;
 BYTE fattrib;
-
-
-
-
-TCHAR fname[12 + 1];
-
+char fname[8+1+3+1];
 } FILINFO;
 
-# 264
-typedef struct {
-BYTE fmt;
-BYTE n_fat;
-UINT align;
-UINT n_root;
-DWORD au_size;
-} MKFS_PARM;
 
-# 276
+
+
 typedef enum {
 FR_OK = 0,
-FR_DISK_ERR,
-FR_INT_ERR,
 FR_NOT_READY,
 FR_NO_FILE,
 FR_NO_PATH,
 FR_INVALID_NAME,
+FR_INVALID_DRIVE,
 FR_DENIED,
 FR_EXIST,
-FR_INVALID_OBJECT,
+FR_RW_ERROR,
 FR_WRITE_PROTECTED,
-FR_INVALID_DRIVE,
 FR_NOT_ENABLED,
 FR_NO_FILESYSTEM,
-FR_MKFS_ABORTED,
-FR_TIMEOUT,
-FR_LOCKED,
-FR_NOT_ENOUGH_CORE,
-FR_TOO_MANY_OPEN_FILES,
-FR_INVALID_PARAMETER
+FR_INVALID_OBJECT,
+FR_MKFS_ABORTED
 } FRESULT;
 
-# 304
-FRESULT f_open (FIL* fp, const TCHAR* path, BYTE mode);
-FRESULT f_close (FIL* fp);
-FRESULT f_read (FIL* fp, void* buff, UINT btr, UINT* br);
-FRESULT f_write (FIL* fp, const void* buff, UINT btw, UINT* bw);
-FRESULT f_lseek (FIL* fp, FSIZE_t ofs);
-FRESULT f_truncate (FIL* fp);
-FRESULT f_sync (FIL* fp);
-FRESULT f_opendir (DIR_E* dp, const TCHAR* path);
-FRESULT f_closedir (DIR_E* dp);
-FRESULT f_readdir (DIR_E* dp, FILINFO* fno);
-FRESULT f_findfirst (DIR_E* dp, FILINFO* fno, const TCHAR* path, const TCHAR* pattern);
-FRESULT f_findnext (DIR_E* dp, FILINFO* fno);
-FRESULT f_mkdir (const TCHAR* path);
-FRESULT f_unlink (const TCHAR* path);
-FRESULT f_rename (const TCHAR* path_old, const TCHAR* path_new);
-FRESULT f_stat (const TCHAR* path, FILINFO* fno);
-FRESULT f_chmod (const TCHAR* path, BYTE attr, BYTE mask);
-FRESULT f_utime (const TCHAR* path, const FILINFO* fno);
-FRESULT f_chdir (const TCHAR* path);
-FRESULT f_chdrive (const TCHAR* path);
-FRESULT f_getcwd (TCHAR* buff, UINT len);
-FRESULT f_getfree (const TCHAR* path, DWORD* nclst, FATFS** fatfs);
-FRESULT f_getlabel (const TCHAR* path, TCHAR* label, DWORD* vsn);
-FRESULT f_setlabel (const TCHAR* label);
-FRESULT f_forward (FIL* fp, UINT(*func)(const BYTE*,UINT), UINT btf, UINT* bf);
-FRESULT f_expand (FIL* fp, FSIZE_t fsz, BYTE opt);
-FRESULT f_mount (FATFS* fs, const TCHAR* path, BYTE opt);
-FRESULT f_mkfs (const TCHAR* path, const MKFS_PARM* opt, void* work, UINT len);
-FRESULT f_fdisk (BYTE pdrv, const LBA_t ptbl[], void* work);
-FRESULT f_setcp (WORD cp);
-int f_putc (TCHAR c, FIL* fp);
-int f_puts (const TCHAR* str, FIL* cp);
-int f_printf (FIL* fp, const TCHAR* str, ...);
-TCHAR* f_gets (TCHAR* buff, int len, FIL* fp);
+# 163
+FRESULT f_mount (BYTE, FATFS*);
+FRESULT f_open (FIL*, const char*, BYTE);
+FRESULT f_read (FIL*, void*, UINT, UINT*);
+FRESULT f_write (FIL*, const void*, UINT, UINT*);
+FRESULT f_lseek (FIL*, DWORD);
+FRESULT f_close (FIL*);
+FRESULT f_opendir (DIR_E*, const char*);
+FRESULT f_readdir (DIR_E*, FILINFO*);
+FRESULT f_stat (const char*, FILINFO*);
+FRESULT f_getfree (const char*, DWORD*, FATFS**);
+FRESULT f_truncate (FIL*);
+FRESULT f_sync (FIL*);
+FRESULT f_unlink (const char*);
+FRESULT f_mkdir (const char*);
+FRESULT f_chmod (const char*, BYTE, BYTE);
+FRESULT f_utime (const char*, const FILINFO*);
+FRESULT f_rename (const char*, const char*);
+FRESULT f_forward (FIL*, UINT(*)(const BYTE*,UINT), UINT, UINT*);
 
-# 356
+# 193
 DWORD get_fattime (void);
 
 # 45 "bibliotecas/SHRC.h"
@@ -5115,16 +5062,17 @@ BYTE folder[48] = {""};
 
 
 extern void readover(int);
+void sdc_wait_ready(void);
 
 BYTE response(void)
 {
 unsigned char buff;
 LATBbits.LATB4 = 0;
-buff= recebe_dado_SPI();
+buff= ReadSPI_();
 return buff;
 }
 
-# 76
+# 77
 void dummy_clocks(unsigned char n)
 {
 unsigned int i;
@@ -5133,39 +5081,63 @@ _delay((unsigned long)((1)*(48000000/4000.0)));
 for(i=0;i<n;i++)
 {
 LATBbits.LATB4 = 1;
-escreve_dado_SPI(0XFF);
+ReadSPI_();
 LATBbits.LATB4 = 0;
 }
 }
 
-# 97
+# 98
 void proceed(void)
 {
 LATBbits.LATB4 = 0;
-escreve_dado_SPI(0xFF);
+WriteSPI_(0xFF);
 LATBbits.LATB4 = 1;
 }
 
-# 114
+
+
+
+static
+BYTE wait_ready (void)
+{
+BYTE res;
+DWORD timeout = 0x7FFF;
+char msg[10];
+
+do
+res = ReadSPI_();
+while ((res != 0xFF) && (--timeout));
+
+return res;
+}
+
+# 128
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
 {
 unsigned char argument;
 
-escreve_dado_SPI(CMD);
-argument = arg>>24;
-escreve_dado_SPI(argument);
-argument = arg>>16;
-escreve_dado_SPI(argument);
-argument = arg>>8;
-escreve_dado_SPI(argument);
-argument = arg;
-escreve_dado_SPI(argument);
-escreve_dado_SPI(CRC);
-
-# 134
+if (wait_ready() != 0xFF)
+{
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Nao ta pronto");
 }
 
-# 145
+WriteSPI_(0xFF);
+WriteSPI_(CMD);
+argument = arg>>24;
+WriteSPI_(argument);
+argument = arg>>16;
+WriteSPI_(argument);
+argument = arg>>8;
+WriteSPI_(argument);
+argument = arg;
+WriteSPI_(argument);
+WriteSPI_(CRC);
+
+# 155
+}
+
+# 166
 FATFS fs;
 
 
@@ -5187,27 +5159,27 @@ UINT br;
 proceed();
 
 _delay((unsigned long)((1)*(48000000/4000.0)));
-FResult = f_mount(&fs, "", 1);
+FResult = f_mount(0, &fs);
 if(FResult == FR_OK)
 {
 
 
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("Abrindo arquivo");
-FResult = f_open(&fil,"te.bin", 0x02 | 0x08);
+FResult = f_open(&fil,"teste.txt", 0x02 | 0x00 | 0x04 );
 if(FResult == FR_OK)
 {
 
 
 
 
-FResult = f_write(&fil, "teste", br, &bw);
+FResult = f_write(&fil, "yrds", 6, &bw);
 if(FResult == FR_OK)
 {
 
 
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd(buff);
+
+
 f_close(&fil);
 
 posicao_cursor_lcd(2,0);
@@ -5217,13 +5189,13 @@ _delay((unsigned long)((2000)*(48000000/4000.0)));
 else
 {
 posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("FILE NOT CREATED");
+escreve_frase_ram_lcd("MAS QUE MERDA");
 posicao_cursor_lcd(1,0);
 escreve_inteiro_lcd(FResult);
 T0CONbits.TMR0ON = 1;
 }
 
-# 217
+# 238
 }
 else{
 posicao_cursor_lcd(1,0);
@@ -5231,6 +5203,11 @@ escreve_inteiro_lcd(FResult);
 T0CONbits.TMR0ON = 1;
 }
 
+}
+else
+{
+posicao_cursor_lcd(1,0);
+escreve_inteiro_lcd(FResult);
 }
 return;
 }

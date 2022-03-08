@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F4000 `(v ~T0 @X0 0 tf ]
+[v F4127 `(v ~T0 @X0 0 tf ]
 "4388 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [s S170 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S170 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE SPPIE ]
@@ -24,26 +24,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR1bits `VS172 ~T0 @X0 0 e@3998 ]
 "48 bibliotecas/uart.h
 [v _recebe_dado_uart `(uc ~T0 @X0 0 ef ]
-"54 bibliotecas/GPS.h
+"56 bibliotecas/GPS.h
 [v _tratamento_uart `(v ~T0 @X0 0 ef1`uc ]
-"3077 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
-[s S125 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S125 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
-"3087
-[s S126 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S126 . LB0 LB1 LB2 LB3 LB4 LB5 LB6 LB7 ]
-"3076
-[u S124 `S125 1 `S126 1 ]
-[n S124 . . . ]
-"3098
-[v _LATBbits `VS124 ~T0 @X0 0 e@3978 ]
-"236 bibliotecas/display_lcd.h
-[v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
-"261
-[v _escreve_inteiro_lcd `(v ~T0 @X0 0 ef1`i ]
-"5412 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
-[v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
-"10175
+"10175 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [v _TMR0IF `Vb ~T0 @X0 0 e@32658 ]
 "10117
 [v _T0IF `Vb ~T0 @X0 0 e@32658 ]
@@ -71,26 +54,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INT0IF `Vb ~T0 @X0 0 e@32657 ]
 "9515
 [v _INT0IE `Vb ~T0 @X0 0 e@32660 ]
-"55 bibliotecas/GPS.h
-[v _GPS `(v ~T0 @X0 0 ef ]
+"94 bibliotecas/SDCard.h
+[v _SDCard `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "34 bibliotecas/hardware.h
 [v _init_hardware `(v ~T0 @X0 0 ef ]
-"54 bibliotecas/uart.h
-[v _inicializa_uart `(v ~T0 @X0 0 ef ]
 "199 bibliotecas/display_lcd.h
 [v _init_lcd `(v ~T0 @X0 0 ef ]
-"40 bibliotecas/SHRC.h
+"47 bibliotecas/SHRC.h
 [v _inicializa_shrc `(v ~T0 @X0 0 ef ]
 "80 main.c
 [v _mensagem_inicial `(v ~T0 @X0 0 ef ]
+"6579 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
+[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
 "35 bibliotecas/chaves.h
 [v _leitura_chaves_sistema `(v ~T0 @X0 0 ef ]
-"38 bibliotecas/SHRC.h
-[v _controle_shrc `(v ~T0 @X0 0 ef ]
-"38 bibliotecas/adc.h
-[v _leitura_continua_adc `(v ~T0 @X0 0 ef ]
-"290 bibliotecas/display_lcd.h
+"236 bibliotecas/display_lcd.h
+[v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
+"290
 [v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
 [v F3783 `(v ~T0 @X0 1 tf1`ul ]
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
@@ -3642,74 +3623,144 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x STVREN=ON ]
 "57
 [p x LVP=OFF ]
-[; ;integer.h: 16: typedef int INT;
-[; ;integer.h: 17: typedef unsigned int UINT;
-[; ;integer.h: 20: typedef char CHAR;
-[; ;integer.h: 21: typedef unsigned char UCHAR;
-[; ;integer.h: 22: typedef unsigned char BYTE;
-[; ;integer.h: 25: typedef short SHORT;
-[; ;integer.h: 26: typedef unsigned short USHORT;
-[; ;integer.h: 27: typedef unsigned short WORD;
-[; ;integer.h: 28: typedef unsigned short WCHAR;
+[; ;integer.h: 8: typedef struct{
+[; ;integer.h: 9: unsigned int hora;
+[; ;integer.h: 10: unsigned int min;
+[; ;integer.h: 11: unsigned int seg;
+[; ;integer.h: 12: unsigned char dia;
+[; ;integer.h: 13: unsigned char mes;
+[; ;integer.h: 14: unsigned char ano;
+[; ;integer.h: 15: }fat_time;
+[; ;integer.h: 17: typedef int INT;
+[; ;integer.h: 18: typedef unsigned int UINT;
+[; ;integer.h: 21: typedef signed char CHAR;
+[; ;integer.h: 22: typedef unsigned char UCHAR;
+[; ;integer.h: 23: typedef unsigned char BYTE;
+[; ;integer.h: 26: typedef short SHORT;
+[; ;integer.h: 27: typedef unsigned short USHORT;
+[; ;integer.h: 28: typedef unsigned short WORD;
 [; ;integer.h: 31: typedef long LONG;
 [; ;integer.h: 32: typedef unsigned long ULONG;
 [; ;integer.h: 33: typedef unsigned long DWORD;
-[; ;pff.h: 40: typedef struct {
-[; ;pff.h: 41: BYTE fs_type;
-[; ;pff.h: 42: BYTE flag;
-[; ;pff.h: 43: BYTE csize;
-[; ;pff.h: 44: BYTE pad1;
-[; ;pff.h: 45: WORD n_rootdir;
-[; ;pff.h: 46: DWORD n_fatent;
-[; ;pff.h: 47: DWORD fatbase;
-[; ;pff.h: 48: DWORD dirbase;
-[; ;pff.h: 49: DWORD database;
-[; ;pff.h: 50: DWORD fptr;
-[; ;pff.h: 51: DWORD fsize;
-[; ;pff.h: 52: DWORD org_clust;
-[; ;pff.h: 53: DWORD curr_clust;
-[; ;pff.h: 54: DWORD dsect;
-[; ;pff.h: 55: } FATFS;
-[; ;pff.h: 61: typedef struct {
-[; ;pff.h: 62: WORD index;
-[; ;pff.h: 63: BYTE* fn;
-[; ;pff.h: 64: DWORD sclust;
-[; ;pff.h: 65: DWORD clust;
-[; ;pff.h: 66: DWORD sect;
-[; ;pff.h: 67: } DIR_E;
-[; ;pff.h: 73: typedef struct {
-[; ;pff.h: 74: DWORD fsize;
-[; ;pff.h: 75: WORD fdate;
-[; ;pff.h: 76: WORD ftime;
-[; ;pff.h: 77: BYTE fattrib;
-[; ;pff.h: 78: char fname[13];
-[; ;pff.h: 79: } FILINFO;
-[; ;pff.h: 85: typedef enum {
-[; ;pff.h: 86: FR_OK = 0,
-[; ;pff.h: 87: FR_DISK_ERR,
-[; ;pff.h: 88: FR_NOT_READY,
-[; ;pff.h: 89: FR_NO_FILE,
-[; ;pff.h: 90: FR_NOT_OPENED,
-[; ;pff.h: 91: FR_NOT_ENABLED,
-[; ;pff.h: 92: FR_NO_FILESYSTEM
-[; ;pff.h: 93: } FRESULT;
-[; ;pff.h: 100: FRESULT pf_mount (FATFS* fs);
-[; ;pff.h: 101: FRESULT pf_open (const char* path);
-[; ;pff.h: 102: FRESULT pf_read (void* buff, UINT btr, UINT* br);
-[; ;pff.h: 103: FRESULT pf_write (const void* buff, UINT btw, UINT* bw);
-[; ;pff.h: 104: FRESULT pf_lseek (DWORD ofs);
-[; ;pff.h: 105: FRESULT pf_opendir (DIR_E* dj, const char* path);
-[; ;pff.h: 106: FRESULT pf_readdir (DIR_E* dj, FILINFO* fno);
-[; ;diskio.h: 16: typedef BYTE DSTATUS;
-[; ;diskio.h: 19: typedef enum {
-[; ;diskio.h: 20: RES_OK = 0,
-[; ;diskio.h: 21: RES_ERROR,
-[; ;diskio.h: 22: RES_NOTRDY,
-[; ;diskio.h: 23: RES_PARERR
-[; ;diskio.h: 24: } DRESULT;
-[; ;diskio.h: 30: DSTATUS disk_initialize (void);
-[; ;diskio.h: 31: DRESULT disk_readp (BYTE* buff, DWORD sector, UINT offset, UINT count);
-[; ;diskio.h: 32: DRESULT disk_writep (const BYTE* buff, DWORD sc);
+[; ;integer.h: 36: typedef enum { FALSE = 0, TRUE } BOOL;
+[; ;ff.h: 67: typedef char TCHAR;
+[; ;ff.h: 78: typedef struct {
+[; ;ff.h: 79: BYTE fs_type;
+[; ;ff.h: 80: BYTE drv;
+[; ;ff.h: 81: BYTE csize;
+[; ;ff.h: 82: BYTE n_fats;
+[; ;ff.h: 83: BYTE wflag;
+[; ;ff.h: 84: BYTE fsi_flag;
+[; ;ff.h: 85: WORD id;
+[; ;ff.h: 86: WORD n_rootdir;
+[; ;ff.h: 94: DWORD last_clust;
+[; ;ff.h: 95: DWORD free_clust;
+[; ;ff.h: 100: DWORD n_fatent;
+[; ;ff.h: 101: DWORD fsize;
+[; ;ff.h: 102: DWORD volbase;
+[; ;ff.h: 103: DWORD fatbase;
+[; ;ff.h: 104: DWORD dirbase;
+[; ;ff.h: 105: DWORD database;
+[; ;ff.h: 106: DWORD winsect;
+[; ;ff.h: 107: BYTE win[512];
+[; ;ff.h: 108: } FATFS;
+[; ;ff.h: 114: typedef struct {
+[; ;ff.h: 115: FATFS* fs;
+[; ;ff.h: 116: WORD id;
+[; ;ff.h: 117: BYTE flag;
+[; ;ff.h: 118: BYTE err;
+[; ;ff.h: 119: DWORD fptr;
+[; ;ff.h: 120: DWORD fsize;
+[; ;ff.h: 121: DWORD sclust;
+[; ;ff.h: 122: DWORD clust;
+[; ;ff.h: 123: DWORD dsect;
+[; ;ff.h: 125: DWORD dir_sect;
+[; ;ff.h: 126: BYTE* dir_ptr;
+[; ;ff.h: 137: } FIL;
+[; ;ff.h: 143: typedef struct {
+[; ;ff.h: 144: FATFS* fs;
+[; ;ff.h: 145: WORD id;
+[; ;ff.h: 146: WORD index;
+[; ;ff.h: 147: DWORD sclust;
+[; ;ff.h: 148: DWORD clust;
+[; ;ff.h: 149: DWORD sect;
+[; ;ff.h: 150: BYTE* dir;
+[; ;ff.h: 151: BYTE* fn;
+[; ;ff.h: 162: } DIR_E;
+[; ;ff.h: 168: typedef struct {
+[; ;ff.h: 169: DWORD fsize;
+[; ;ff.h: 170: WORD fdate;
+[; ;ff.h: 171: WORD ftime;
+[; ;ff.h: 172: BYTE fattrib;
+[; ;ff.h: 173: TCHAR fname[13];
+[; ;ff.h: 178: } FILINFO;
+[; ;ff.h: 184: typedef enum {
+[; ;ff.h: 185: FR_OK = 0,
+[; ;ff.h: 186: FR_DISK_ERR,
+[; ;ff.h: 187: FR_INT_ERR,
+[; ;ff.h: 188: FR_NOT_READY,
+[; ;ff.h: 189: FR_NO_FILE,
+[; ;ff.h: 190: FR_NO_PATH,
+[; ;ff.h: 191: FR_INVALID_NAME,
+[; ;ff.h: 192: FR_DENIED,
+[; ;ff.h: 193: FR_EXIST,
+[; ;ff.h: 194: FR_INVALID_OBJECT,
+[; ;ff.h: 195: FR_WRITE_PROTECTED,
+[; ;ff.h: 196: FR_INVALID_DRIVE,
+[; ;ff.h: 197: FR_NOT_ENABLED,
+[; ;ff.h: 198: FR_NO_FILESYSTEM,
+[; ;ff.h: 199: FR_MKFS_ABORTED,
+[; ;ff.h: 200: FR_TIMEOUT,
+[; ;ff.h: 201: FR_LOCKED,
+[; ;ff.h: 202: FR_NOT_ENOUGH_CORE,
+[; ;ff.h: 203: FR_TOO_MANY_OPEN_FILES,
+[; ;ff.h: 204: FR_INVALID_PARAMETER
+[; ;ff.h: 205: } FRESULT;
+[; ;ff.h: 212: FRESULT f_open (FIL* fp, const TCHAR* path, BYTE mode);
+[; ;ff.h: 213: FRESULT f_close (FIL* fp);
+[; ;ff.h: 214: FRESULT f_read (FIL* fp, void* buff, UINT btr, UINT* br);
+[; ;ff.h: 215: FRESULT f_write (FIL* fp, const void* buff, UINT btw, UINT* bw);
+[; ;ff.h: 216: FRESULT f_forward (FIL* fp, UINT(*func)(const BYTE*,UINT), UINT btf, UINT* bf);
+[; ;ff.h: 217: FRESULT f_lseek (FIL* fp, DWORD ofs);
+[; ;ff.h: 218: FRESULT f_truncate (FIL* fp);
+[; ;ff.h: 219: FRESULT f_sync (FIL* fp);
+[; ;ff.h: 220: FRESULT f_opendir (DIR_E* dp, const TCHAR* path);
+[; ;ff.h: 221: FRESULT f_closedir (DIR_E* dp);
+[; ;ff.h: 222: FRESULT f_readdir (DIR_E* dp, FILINFO* fno);
+[; ;ff.h: 223: FRESULT f_findfirst (DIR_E* dp, FILINFO* fno, const TCHAR* path, const TCHAR* pattern);
+[; ;ff.h: 224: FRESULT f_findnext (DIR_E* dp, FILINFO* fno);
+[; ;ff.h: 225: FRESULT f_mkdir (const TCHAR* path);
+[; ;ff.h: 226: FRESULT f_unlink (const TCHAR* path);
+[; ;ff.h: 227: FRESULT f_rename (const TCHAR* path_old, const TCHAR* path_new);
+[; ;ff.h: 228: FRESULT f_stat (const TCHAR* path, FILINFO* fno);
+[; ;ff.h: 229: FRESULT f_chmod (const TCHAR* path, BYTE attr, BYTE mask);
+[; ;ff.h: 230: FRESULT f_utime (const TCHAR* path, const FILINFO* fno);
+[; ;ff.h: 231: FRESULT f_chdir (const TCHAR* path);
+[; ;ff.h: 232: FRESULT f_chdrive (const TCHAR* path);
+[; ;ff.h: 233: FRESULT f_getcwd (TCHAR* buff, UINT len);
+[; ;ff.h: 234: FRESULT f_getfree (const TCHAR* path, DWORD* nclst, FATFS** fatfs);
+[; ;ff.h: 235: FRESULT f_getlabel (const TCHAR* path, TCHAR* label, DWORD* vsn);
+[; ;ff.h: 236: FRESULT f_setlabel (const TCHAR* label);
+[; ;ff.h: 237: FRESULT f_mount (FATFS* fs, const TCHAR* path, BYTE opt);
+[; ;ff.h: 238: FRESULT f_mkfs (const TCHAR* path, BYTE sfd, UINT au);
+[; ;ff.h: 239: FRESULT f_fdisk (BYTE pdrv, const DWORD szt[], void* work);
+[; ;ff.h: 240: int f_putc (TCHAR c, FIL* fp);
+[; ;ff.h: 241: int f_puts (const TCHAR* str, FIL* cp);
+[; ;ff.h: 242: int f_printf (FIL* fp, const TCHAR* str, ...);
+[; ;ff.h: 243: TCHAR* f_gets (TCHAR* buff, int len, FIL* fp);
+[; ;diskio.h: 26: typedef BYTE DSTATUS;
+[; ;diskio.h: 29: typedef enum {
+[; ;diskio.h: 30: RES_OK = 0,
+[; ;diskio.h: 31: RES_ERROR,
+[; ;diskio.h: 32: RES_WRPRT,
+[; ;diskio.h: 33: RES_NOTRDY,
+[; ;diskio.h: 34: RES_PARERR
+[; ;diskio.h: 35: } DRESULT;
+[; ;diskio.h: 42: DSTATUS disk_initialize (BYTE pdrv);
+[; ;diskio.h: 43: DSTATUS disk_status (BYTE pdrv);
+[; ;diskio.h: 44: DRESULT disk_read (BYTE pdrv, BYTE* buff, DWORD sector, UINT count);
+[; ;diskio.h: 45: DRESULT disk_write (BYTE pdrv, const BYTE* buff, DWORD sector, UINT count);
+[; ;diskio.h: 46: DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
 [; ;hardware.h: 34: void init_hardware(void);
 [; ;hardware.h: 35: void write_timer_zero(unsigned int timer0);
 [; ;hardware.h: 36: void open_timer0(unsigned char config);
@@ -3731,11 +3782,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;chaves.h: 37: unsigned char chave_tres(void);
 [; ;chaves.h: 39: unsigned char chave_quatro(void);
 [; ;chaves.h: 41: unsigned char chave_zero(void);
-[; ;SHRC.h: 38: void controle_shrc (void);
-[; ;SHRC.h: 40: void inicializa_shrc(void);
-[; ;SHRC.h: 42: void shrc_seta_bit(unsigned char posicao_bit);
-[; ;SHRC.h: 44: void shrc_apaga_bit(unsigned char posicao_bit);
-[; ;SHRC.h: 46: void shrc_recebe_byte(unsigned char dado_recebido);
+[; ;SHRC.h: 45: void controle_shrc (void);
+[; ;SHRC.h: 47: void inicializa_shrc(void);
+[; ;SHRC.h: 49: void escreve_dado_SPI(unsigned char data_to_shrc);
+[; ;SHRC.h: 51: void shrc_seta_bit(unsigned char posicao_bit);
+[; ;SHRC.h: 53: void shrc_apaga_bit(unsigned char posicao_bit);
+[; ;SHRC.h: 55: unsigned char recebe_dado_SPI();
 [; ;display_lcd.h: 199: extern void init_lcd(void);
 [; ;display_lcd.h: 208: extern void escreve_cmd_lcd(unsigned char comando);
 [; ;display_lcd.h: 220: extern void endereco_cursor_lcd(unsigned char endereco);
@@ -3747,31 +3799,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
 [; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 [; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
-[; ;adc.h: 34: void inicializa_adc(void);
-[; ;adc.h: 36: unsigned int leitura_adc(unsigned char canal);
-[; ;adc.h: 38: void leitura_continua_adc(void);
-[; ;adc.h: 40: unsigned int valor_medio_adc(unsigned char canal);
-[; ;SPI.h: 48: void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
-[; ;SPI.h: 50: unsigned char recebe_dado_SPI(void);
-[; ;SPI.h: 52: char WriteSPI_(unsigned char dado);
-[; ;SPI.h: 54: unsigned char verifica_buffer_SPI(void);
-[; ;SDCard.h: 89: void init_SDcard();
-[; ;SDCard.h: 90: void envia_CMD16(void);
-[; ;SDCard.h: 91: unsigned char envia_CMD8(void);
-[; ;SDCard.h: 92: void envia_CMD1(void);
-[; ;SDCard.h: 93: void envia_CMD0(void);
 [; ;SDCard.h: 94: void SDCard(void);
 [; ;SDCard.h: 95: BYTE response(void);
 [; ;SDCard.h: 96: void proceed(void);
 [; ;SDCard.h: 97: void dummy_clocks(unsigned char n);
 [; ;SDCard.h: 98: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-[; ;GPS.h: 54: void tratamento_uart(unsigned char received_char);
-[; ;GPS.h: 55: void GPS(void);
+[; ;GPS.h: 56: void tratamento_uart(unsigned char received_char);
+[; ;GPS.h: 57: void gps(void);
+[; ;GPS.h: 58: unsigned long int get_gpstime();
+[; ;GPS.h: 59: float get_latitude(unsigned char);
+[; ;GPS.h: 60: float get_longitude(unsigned char);
+[; ;GPS.h: 61: unsigned long int get_dt(unsigned char);
+[; ;GPS.h: 62: void convert_time_to_utc(unsigned long int);
+[; ;GPS.h: 63: unsigned char convert_to_date(unsigned char dt[]);
+[; ;GPS.h: 64: float convert_to_degrees(float);
 "54 main.c
 [v _data_uart_recebe `uc ~T0 @X0 1 e ]
 [; ;main.c: 54: unsigned char data_uart_recebe;
 "57
-[v _p_tarefas `*F4000 ~T0 @X0 -> 2 `i e ]
+[v _p_tarefas `*F4127 ~T0 @X0 -> 2 `i e ]
 [; ;main.c: 57: void (*p_tarefas[2])(void);
 "60
 [v _tempo_backup `ui ~T0 @X0 -> 2 `i e ]
@@ -3790,9 +3836,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 72: unsigned int timeout_tarefa;
 [; ;main.c: 80: void mensagem_inicial(void);
 [v $root$_isr `(v ~T0 @X0 0 e ]
-[v F4011 `(v ~T0 @X0 1 tf ]
+[v F4138 `(v ~T0 @X0 1 tf ]
 "96
-[v _isr `IF4011 ~T0 @X0 1 e ]
+[v _isr `IF4138 ~T0 @X0 1 e ]
 "97
 {
 [; ;main.c: 96: void interrupt isr(void)
@@ -3804,7 +3850,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 98: unsigned char cont;
 [; ;main.c: 101: if (PIE1bits.RCIE && PIR1bits.RCIF)
 "101
-[e $ ! && != -> . . _PIE1bits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 366  ]
+[e $ ! && != -> . . _PIE1bits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 368  ]
 [; ;main.c: 102: {
 "102
 {
@@ -3817,228 +3863,219 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 105: tratamento_uart(data_uart_recebe);
 "105
 [e ( _tratamento_uart (1 _data_uart_recebe ]
-[; ;main.c: 106: LATBbits.LATB4 = ~LATBbits.LATB4;
-"106
-[e = . . _LATBbits 0 4 -> ~ -> . . _LATBbits 0 4 `i `uc ]
-[; ;main.c: 108: posicao_cursor_lcd(1,1);
-"108
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-[; ;main.c: 109: escreve_inteiro_lcd(RCREG);
 "109
-[e ( _escreve_inteiro_lcd (1 -> _RCREG `i ]
-"111
 }
-[e :U 366 ]
-[; ;main.c: 111: }
-[; ;main.c: 114: unsigned char cont;
-[; ;main.c: 116: if (TMR0IF && T0IF)
-"116
-[e $ ! && _TMR0IF _T0IF 367  ]
-[; ;main.c: 117: {
-"117
+[e :U 368 ]
+[; ;main.c: 109: }
+[; ;main.c: 112: unsigned char cont;
+[; ;main.c: 114: if (TMR0IF && T0IF)
+"114
+[e $ ! && _TMR0IF _T0IF 369  ]
+[; ;main.c: 115: {
+"115
 {
-[; ;main.c: 118: INTCONbits.TMR0IF = 0;
-"118
+[; ;main.c: 116: INTCONbits.TMR0IF = 0;
+"116
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 119: sinaliza_int_timer = 1;
-"119
+[; ;main.c: 117: sinaliza_int_timer = 1;
+"117
 [e = _sinaliza_int_timer -> -> 1 `i `uc ]
-[; ;main.c: 121: for(cont= 0; cont<2;cont++)
-"121
+[; ;main.c: 119: for(cont= 0; cont<2;cont++)
+"119
 {
 [e = _cont -> -> 0 `i `uc ]
-[e $ < -> _cont `i -> 2 `i 368  ]
-[e $U 369  ]
-"122
-[e :U 368 ]
-[; ;main.c: 122: {
+[e $ < -> _cont `i -> 2 `i 370  ]
+[e $U 371  ]
+"120
+[e :U 370 ]
+[; ;main.c: 120: {
 {
-[; ;main.c: 123: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
-"123
-[e $ ! > *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 371  ]
-[e -- *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1 `i `ui ]
-[e :U 371 ]
-"124
-}
+[; ;main.c: 121: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
 "121
-[e ++ _cont -> -> 1 `i `uc ]
-[e $ < -> _cont `i -> 2 `i 368  ]
-[e :U 369 ]
-"124
-}
-[; ;main.c: 124: }
-[; ;main.c: 127: if(tarefa_em_execucao == 1)
-"127
-[e $ ! == -> _tarefa_em_execucao `i -> 1 `i 372  ]
-[; ;main.c: 128: {
-"128
-{
-[; ;main.c: 129: timeout_tarefa--;
-"129
-[e -- _timeout_tarefa -> -> 1 `i `ui ]
-[; ;main.c: 130: if(!timeout_tarefa)
-"130
-[e $ ! ! != _timeout_tarefa -> -> 0 `i `ui 373  ]
-[; ;main.c: 131: {
-"131
-{
-[; ;main.c: 133: PCLATH = 0;
-"133
-[e = _PCLATH -> -> 0 `i `uc ]
-[; ;main.c: 134: PCL = 0;
-"134
-[e = _PCL -> -> 0 `i `uc ]
-"135
-}
+[e $ ! > *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 373  ]
+[e -- *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1 `i `ui ]
 [e :U 373 ]
-"136
+"122
 }
-[e :U 372 ]
-[; ;main.c: 135: }
-[; ;main.c: 136: }
-[; ;main.c: 139: write_timer_zero(0x0083);
-"139
-[e ( _write_timer_zero (1 -> -> 131 `i `ui ]
-"141
+"119
+[e ++ _cont -> -> 1 `i `uc ]
+[e $ < -> _cont `i -> 2 `i 370  ]
+[e :U 371 ]
+"122
 }
-[e :U 367 ]
-[; ;main.c: 141: }
-[; ;main.c: 143: if (INT0IF && INT0IE)
-"143
-[e $ ! && _INT0IF _INT0IE 374  ]
-[; ;main.c: 144: {
-"144
+[; ;main.c: 122: }
+[; ;main.c: 125: if(tarefa_em_execucao == 1)
+"125
+[e $ ! == -> _tarefa_em_execucao `i -> 1 `i 374  ]
+[; ;main.c: 126: {
+"126
 {
-[; ;main.c: 145: INT0IF = 0;
-"145
-[e = _INT0IF -> -> 0 `i `b ]
-"147
+[; ;main.c: 127: timeout_tarefa--;
+"127
+[e -- _timeout_tarefa -> -> 1 `i `ui ]
+[; ;main.c: 128: if(!timeout_tarefa)
+"128
+[e $ ! ! != _timeout_tarefa -> -> 0 `i `ui 375  ]
+[; ;main.c: 129: {
+"129
+{
+[; ;main.c: 131: PCLATH = 0;
+"131
+[e = _PCLATH -> -> 0 `i `uc ]
+[; ;main.c: 132: PCL = 0;
+"132
+[e = _PCL -> -> 0 `i `uc ]
+"133
+}
+[e :U 375 ]
+"134
 }
 [e :U 374 ]
-[; ;main.c: 147: }
-[; ;main.c: 148: }
-"148
-[e :UE 365 ]
+[; ;main.c: 133: }
+[; ;main.c: 134: }
+[; ;main.c: 137: write_timer_zero(0x0083);
+"137
+[e ( _write_timer_zero (1 -> -> 131 `i `ui ]
+"139
 }
-"159
-[v _inicializa_tarefas `(v ~T0 @X0 1 ef ]
-"160
+[e :U 369 ]
+[; ;main.c: 139: }
+[; ;main.c: 141: if (INT0IF && INT0IE)
+"141
+[e $ ! && _INT0IF _INT0IE 376  ]
+[; ;main.c: 142: {
+"142
 {
-[; ;main.c: 159: void inicializa_tarefas(void)
-[; ;main.c: 160: {
+[; ;main.c: 143: INT0IF = 0;
+"143
+[e = _INT0IF -> -> 0 `i `b ]
+"145
+}
+[e :U 376 ]
+[; ;main.c: 145: }
+[; ;main.c: 146: }
+"146
+[e :UE 367 ]
+}
+"157
+[v _inicializa_tarefas `(v ~T0 @X0 1 ef ]
+"158
+{
+[; ;main.c: 157: void inicializa_tarefas(void)
+[; ;main.c: 158: {
 [e :U _inicializa_tarefas ]
 [f ]
-[; ;main.c: 162: p_tarefas[0] = GPS;
-"162
-[e = *U + &U _p_tarefas * -> -> -> 0 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _GPS ]
-[; ;main.c: 166: tempo_backup[0] = 5000;
-"166
+[; ;main.c: 160: p_tarefas[0] = SDCard;
+"160
+[e = *U + &U _p_tarefas * -> -> -> 0 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _SDCard ]
+[; ;main.c: 165: tempo_backup[0] = 5000;
+"165
 [e = *U + &U _tempo_backup * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 5000 `i `ui ]
 [; ;main.c: 171: tempo_tarefa[0] = 5000;
 "171
 [e = *U + &U _tempo_tarefa * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 5000 `i `ui ]
-[; ;main.c: 175: tarefa_em_execucao = 0;
-"175
-[e = _tarefa_em_execucao -> -> 0 `i `uc ]
-[; ;main.c: 176: }
+[; ;main.c: 176: tarefa_em_execucao = 0;
 "176
-[e :UE 375 ]
+[e = _tarefa_em_execucao -> -> 0 `i `uc ]
+[; ;main.c: 177: }
+"177
+[e :UE 377 ]
 }
-"186
-[v _escalonador `(v ~T0 @X0 1 ef ]
 "187
+[v _escalonador `(v ~T0 @X0 1 ef ]
+"188
 {
-[; ;main.c: 186: void escalonador()
-[; ;main.c: 187: {
+[; ;main.c: 187: void escalonador()
+[; ;main.c: 188: {
 [e :U _escalonador ]
 [f ]
-"188
-[v _cont `uc ~T0 @X0 1 a ]
-[; ;main.c: 188: unsigned char cont;
-[; ;main.c: 189: for(cont = 0; cont<2;cont++)
 "189
+[v _cont `uc ~T0 @X0 1 a ]
+[; ;main.c: 189: unsigned char cont;
+[; ;main.c: 190: for(cont = 0; cont<2;cont++)
+"190
 {
 [e = _cont -> -> 0 `i `uc ]
-[e $ < -> _cont `i -> 2 `i 377  ]
-[e $U 378  ]
-"190
-[e :U 377 ]
-[; ;main.c: 190: {
-{
-[; ;main.c: 191: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
+[e $ < -> _cont `i -> 2 `i 379  ]
+[e $U 380  ]
 "191
-[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F4000 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 380  ]
-[; ;main.c: 192: {
-"192
+[e :U 379 ]
+[; ;main.c: 191: {
 {
-[; ;main.c: 193: tarefa_em_execucao = 1;
+[; ;main.c: 192: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
+"192
+[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F4127 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 382  ]
+[; ;main.c: 193: {
 "193
-[e = _tarefa_em_execucao -> -> 1 `i `uc ]
-[; ;main.c: 194: timeout_tarefa = 65000;
+{
+[; ;main.c: 194: tarefa_em_execucao = 1;
 "194
-[e = _timeout_tarefa -> -> 65000 `l `ui ]
-[; ;main.c: 195: p_tarefas[cont]();
+[e = _tarefa_em_execucao -> -> 1 `i `uc ]
+[; ;main.c: 195: timeout_tarefa = 65000;
 "195
-[e ( *U *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux ..  ]
-[; ;main.c: 196: tarefa_em_execucao = 0;
+[e = _timeout_tarefa -> -> 65000 `l `ui ]
+[; ;main.c: 196: p_tarefas[cont]();
 "196
-[e = _tarefa_em_execucao -> -> 0 `i `uc ]
-[; ;main.c: 197: tempo_tarefa[cont] = tempo_backup[cont];
+[e ( *U *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux ..  ]
+[; ;main.c: 197: tarefa_em_execucao = 0;
 "197
-[e = *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux *U + &U _tempo_backup * -> _cont `ux -> -> # *U &U _tempo_backup `ui `ux ]
+[e = _tarefa_em_execucao -> -> 0 `i `uc ]
+[; ;main.c: 198: tempo_tarefa[cont] = tempo_backup[cont];
 "198
-}
-[e :U 380 ]
+[e = *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux *U + &U _tempo_backup * -> _cont `ux -> -> # *U &U _tempo_backup `ui `ux ]
 "199
 }
-"189
+[e :U 382 ]
+"200
+}
+"190
 [e ++ _cont -> -> 1 `i `uc ]
-[e $ < -> _cont `i -> 2 `i 377  ]
-[e :U 378 ]
-"199
+[e $ < -> _cont `i -> 2 `i 379  ]
+[e :U 380 ]
+"200
 }
-[; ;main.c: 198: }
 [; ;main.c: 199: }
 [; ;main.c: 200: }
-"200
-[e :UE 376 ]
+[; ;main.c: 201: }
+"201
+[e :UE 378 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"207
-[v _main `(v ~T0 @X0 1 ef ]
 "208
+[v _main `(v ~T0 @X0 1 ef ]
+"209
 {
-[; ;main.c: 207: void main(void)
-[; ;main.c: 208: {
+[; ;main.c: 208: void main(void)
+[; ;main.c: 209: {
 [e :U _main ]
 [f ]
-[; ;main.c: 209: init_hardware();
-"209
-[e ( _init_hardware ..  ]
-[; ;main.c: 210: inicializa_uart();
+[; ;main.c: 210: init_hardware();
 "210
-[e ( _inicializa_uart ..  ]
-[; ;main.c: 211: init_lcd();
-"211
-[e ( _init_lcd ..  ]
-[; ;main.c: 212: inicializa_shrc();
+[e ( _init_hardware ..  ]
+[; ;main.c: 212: init_lcd();
 "212
+[e ( _init_lcd ..  ]
+[; ;main.c: 213: inicializa_shrc();
+"213
 [e ( _inicializa_shrc ..  ]
-[; ;main.c: 214: mensagem_inicial();
-"214
-[e ( _mensagem_inicial ..  ]
-[; ;main.c: 215: inicializa_tarefas();
+[; ;main.c: 215: mensagem_inicial();
 "215
+[e ( _mensagem_inicial ..  ]
+[; ;main.c: 216: inicializa_tarefas();
+"216
 [e ( _inicializa_tarefas ..  ]
+[; ;main.c: 218: ADCON1 = 0X0F;
+"218
+[e = _ADCON1 -> -> 15 `i `uc ]
 [; ;main.c: 219: while(1)
 "219
-[e :U 383 ]
+[e :U 385 ]
 [; ;main.c: 220: {
 "220
 {
 [; ;main.c: 222: if ((sinaliza_int_timer == 1) && (2))
 "222
-[e $ ! && == -> _sinaliza_int_timer `i -> 1 `i != -> 2 `i -> 0 `i 385  ]
+[e $ ! && == -> _sinaliza_int_timer `i -> 1 `i != -> 2 `i -> 0 `i 387  ]
 [; ;main.c: 223: {
 "223
 {
@@ -4050,38 +4087,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _escalonador ..  ]
 "226
 }
-[e :U 385 ]
+[e :U 387 ]
 [; ;main.c: 226: }
 [; ;main.c: 227: leitura_chaves_sistema();
 "227
 [e ( _leitura_chaves_sistema ..  ]
-[; ;main.c: 228: controle_shrc();
-"228
-[e ( _controle_shrc ..  ]
-[; ;main.c: 229: leitura_continua_adc();
-"229
-[e ( _leitura_continua_adc ..  ]
-"231
+"230
 }
-[e :U 382 ]
-"219
-[e $U 383  ]
 [e :U 384 ]
+"219
+[e $U 385  ]
+[e :U 386 ]
+[; ;main.c: 230: }
 [; ;main.c: 231: }
-[; ;main.c: 232: }
-"232
-[e :UE 381 ]
+"231
+[e :UE 383 ]
 }
-"239
+"238
 [v _mensagem_inicial `(v ~T0 @X0 1 ef ]
-"240
+"239
 {
-[; ;main.c: 239: void mensagem_inicial(void)
-[; ;main.c: 240: {
+[; ;main.c: 238: void mensagem_inicial(void)
+[; ;main.c: 239: {
 [e :U _mensagem_inicial ]
 [f ]
-[v F4022 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4022
+[v F4149 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4149
 :U ..
 -> 83 `c
 -> 68 `c
@@ -4100,12 +4131,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"241
+"240
 [v _msg_linha_um `Cuc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 241: const unsigned char msg_linha_um[17] = "SDCard Init   ";
-[e = _msg_linha_um F4022 ]
-[v F4024 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4024
+[; ;main.c: 240: const unsigned char msg_linha_um[17] = "SDCard Init   ";
+[e = _msg_linha_um F4149 ]
+[v F4151 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4151
 :U ..
 -> 32 `c
 -> 49 `c
@@ -4124,29 +4155,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"242
+"241
 [v _msg_dois `Cuc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 242: const unsigned char msg_dois[17] = " 18/01/2022   ";
-[e = _msg_dois F4024 ]
-[; ;main.c: 244: posicao_cursor_lcd(1,0);
-"244
+[; ;main.c: 241: const unsigned char msg_dois[17] = " 18/01/2022   ";
+[e = _msg_dois F4151 ]
+[; ;main.c: 243: posicao_cursor_lcd(1,0);
+"243
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 245: escreve_frase_ram_lcd(msg_linha_um);
-"245
+[; ;main.c: 244: escreve_frase_ram_lcd(msg_linha_um);
+"244
 [e ( _escreve_frase_ram_lcd (1 -> &U _msg_linha_um `*uc ]
-[; ;main.c: 247: posicao_cursor_lcd(2,0);
-"247
+[; ;main.c: 246: posicao_cursor_lcd(2,0);
+"246
 [e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 248: escreve_frase_ram_lcd(msg_dois);
-"248
+[; ;main.c: 247: escreve_frase_ram_lcd(msg_dois);
+"247
 [e ( _escreve_frase_ram_lcd (1 -> &U _msg_dois `*uc ]
-[; ;main.c: 250: _delay((unsigned long)((1000)*(48000000/4000.0)));
-"250
+[; ;main.c: 248: _delay((unsigned long)((1000)*(48000000/4000.0)));
+"248
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;main.c: 251: escreve_cmd_lcd(0b00000001);
-"251
+[; ;main.c: 249: escreve_cmd_lcd(0b00000001);
+"249
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 252: }
-"252
-[e :UE 386 ]
+[; ;main.c: 257: }
+"257
+[e :UE 388 ]
 }

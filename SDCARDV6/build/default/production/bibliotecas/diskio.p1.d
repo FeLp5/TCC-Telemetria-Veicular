@@ -5,7 +5,7 @@ bibliotecas/diskio.h  \
 bibliotecas/SDCard.h  \
 bibliotecas/tff.h  \
 bibliotecas/integer.h  \
-bibliotecas/SHRC.h  \
 bibliotecas/ffconf.h  \
+bibliotecas/SPI.h  \
 bibliotecas/display_lcd.h  \
 bibliotecas/hardware.h 

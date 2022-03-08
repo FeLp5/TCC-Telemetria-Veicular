@@ -4828,16 +4828,18 @@ void leitura_continua_adc(void);
 
 unsigned int valor_medio_adc(unsigned char canal);
 
-# 38 "bibliotecas/SHRC.h"
+# 45 "bibliotecas/SHRC.h"
 void controle_shrc (void);
 
 void inicializa_shrc(void);
+
+void escreve_dado_SPI(unsigned char data_to_shrc);
 
 void shrc_seta_bit(unsigned char posicao_bit);
 
 void shrc_apaga_bit(unsigned char posicao_bit);
 
-void shrc_recebe_byte(unsigned char dado_recebido);
+unsigned char recebe_dado_SPI();
 
 # 30 "bibliotecas/hardware.c"
 union Timers
@@ -4929,11 +4931,11 @@ TMR0L = timer.bt[0];
 # 154
 void init_ports(void)
 {
-TRISB = 0b00000001;
+TRISB = 0b00100001;
 LATB = 0xFF;
 TRISD = 0x00;
 TRISA = 0b00000111;
-TRISC = 0x11111111;
+TRISC = 0x01111111;
 TRISE = 0b00000011;
 
 }

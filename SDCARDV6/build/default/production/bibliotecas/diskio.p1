@@ -1,12 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"107 bibliotecas/SDCard.h
+"106 bibliotecas/SDCard.h
 [v _sdc_disk_status `(uc ~T0 @X0 0 ef1`uc ]
-"106
+"105
 [v _sdc_disk_initialize `(uc ~T0 @X0 0 ef ]
-"154 bibliotecas/diskio.c
+"153 bibliotecas/diskio.c
 [c E25 0 1 2 3 4 .. ]
 [n E25 . RES_OK RES_ERROR RES_WRPRT RES_NOTRDY RES_PARERR  ]
-"104 bibliotecas/SDCard.h
+"103 bibliotecas/SDCard.h
 [v _sdc_disk_read `(E25 ~T0 @X0 0 ef3`*uc`ul`uc ]
 "236 bibliotecas/display_lcd.h
 [v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
@@ -16,11 +16,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
 [v __delay `JF3834 ~T0 @X0 0 e ]
 [p i __delay ]
-"105 bibliotecas/SDCard.h
+"104 bibliotecas/SDCard.h
 [v _sdc_disk_write `(E25 ~T0 @X0 0 ef3`*Cuc`ul`uc ]
 "98
+[v _command `(v ~T0 @X0 0 ef3`uc`ul`uc ]
+"96
+[v _proceed `(v ~T0 @X0 0 ef ]
+"95
+[v _response `(uc ~T0 @X0 0 ef ]
+"290 bibliotecas/display_lcd.h
+[v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
+"97 bibliotecas/SDCard.h
 [v _dummy_clocks `(v ~T0 @X0 0 ef1`uc ]
-"3077 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
+"208 bibliotecas/display_lcd.h
+[v _escreve_cmd_lcd `(v ~T0 @X0 0 ef1`uc ]
+"3189 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
+[s S129 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S129 . LATC0 LATC1 LATC2 . LATC6 LATC7 ]
+"3197
+[s S130 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S130 . LC0 LC1 LC2 . LC6 LC7 ]
+"3188
+[u S128 `S129 1 `S130 1 ]
+[n S128 . . . ]
+"3206
+[v _LATCbits `VS128 ~T0 @X0 0 e@3979 ]
+"3077
 [s S126 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S126 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
 "3087
@@ -31,19 +52,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S125 . . . ]
 "3098
 [v _LATBbits `VS125 ~T0 @X0 0 e@3978 ]
-"99 bibliotecas/SDCard.h
-[v _command `(v ~T0 @X0 0 ef3`uc`ul`uc ]
-"97
-[v _proceed `(v ~T0 @X0 0 ef ]
-"96
-[v _response `(uc ~T0 @X0 0 ef ]
-"290 bibliotecas/display_lcd.h
-[v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
-"49 bibliotecas/SHRC.h
-[v _escreve_dado_SPI `(v ~T0 @X0 0 ef1`uc ]
-"687 bibliotecas/diskio.c
-[c E3964 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
-[n E3964 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
+"54 bibliotecas/SPI.h
+[v _WriteSPI_ `(v ~T0 @X0 0 ef1`uc ]
+"52
+[v _ReadSPI_ `(uc ~T0 @X0 0 ef ]
+"703 bibliotecas/diskio.c
+[c E3961 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
+[n E3961 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
 [; ;integer.h: 8: typedef struct{
 [; ;integer.h: 9: unsigned int hora;
 [; ;integer.h: 10: unsigned int min;
@@ -3596,16 +3611,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.h: 39: void timer_dois(void);
 [; ;hardware.h: 44: typedef unsigned char uint8_t;
 [; ;hardware.h: 45: typedef unsigned int uint16_t;
-[; ;SDCard.h: 95: void SDCard(void);
-[; ;SDCard.h: 96: BYTE response(void);
-[; ;SDCard.h: 97: void proceed(void);
-[; ;SDCard.h: 98: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 99: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-[; ;SDCard.h: 103: void sdc_reset(void);
-[; ;SDCard.h: 104: DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
-[; ;SDCard.h: 105: DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
-[; ;SDCard.h: 106: DSTATUS sdc_disk_initialize(void);
-[; ;SDCard.h: 107: DSTATUS sdc_disk_status(BYTE pdrv);
+[; ;SDCard.h: 94: void SDCard(void);
+[; ;SDCard.h: 95: BYTE response(void);
+[; ;SDCard.h: 96: void proceed(void);
+[; ;SDCard.h: 97: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 98: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SDCard.h: 102: void sdc_reset(void);
+[; ;SDCard.h: 103: DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
+[; ;SDCard.h: 104: DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
+[; ;SDCard.h: 105: DSTATUS sdc_disk_initialize(void);
+[; ;SDCard.h: 106: DSTATUS sdc_disk_status(BYTE pdrv);
 [; ;display_lcd.h: 199: extern void init_lcd(void);
 [; ;display_lcd.h: 208: extern void escreve_cmd_lcd(unsigned char comando);
 [; ;display_lcd.h: 220: extern void endereco_cursor_lcd(unsigned char endereco);
@@ -3617,12 +3632,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
 [; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 [; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
-[; ;SHRC.h: 45: void controle_shrc (void);
-[; ;SHRC.h: 47: void inicializa_shrc(void);
-[; ;SHRC.h: 49: void escreve_dado_SPI(unsigned char data_to_shrc);
-[; ;SHRC.h: 51: void shrc_seta_bit(unsigned char posicao_bit);
-[; ;SHRC.h: 53: void shrc_apaga_bit(unsigned char posicao_bit);
-[; ;SHRC.h: 55: unsigned char recebe_dado_SPI();
+[; ;SPI.h: 50: void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
+[; ;SPI.h: 52: unsigned char ReadSPI_(void);
+[; ;SPI.h: 54: void WriteSPI_(unsigned char dado);
 [; ;tff.h: 67: typedef WORD CLUST;
 [; ;tff.h: 74: typedef struct _FATFS {
 [; ;tff.h: 75: WORD id;
@@ -3749,396 +3761,399 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 52: SD_CMD_ERASE_BLOCK_END = 33,
 [; ;diskio.c: 53: SD_CMD_ERASE = 38
 [; ;diskio.c: 54: } SD_CMD;
-"67 bibliotecas/diskio.c
+"66 bibliotecas/diskio.c
 [v _data_buff `*uc ~T0 @X0 1 e ]
-[; ;diskio.c: 67: BYTE *data_buff;
-"72
+[; ;diskio.c: 66: BYTE *data_buff;
+"71
 [v _disk_status `(uc ~T0 @X0 1 ef1`uc ]
-"75
+"74
 {
-[; ;diskio.c: 72: DSTATUS disk_status (
-[; ;diskio.c: 73: BYTE pdrv
-[; ;diskio.c: 74: )
-[; ;diskio.c: 75: {
+[; ;diskio.c: 71: DSTATUS disk_status (
+[; ;diskio.c: 72: BYTE pdrv
+[; ;diskio.c: 73: )
+[; ;diskio.c: 74: {
 [e :U _disk_status ]
-"73
+"72
 [v _pdrv `uc ~T0 @X0 1 r1 ]
-"75
+"74
 [f ]
-"76
+"75
 [v _stat `uc ~T0 @X0 1 a ]
-"77
+"76
 [v _result `i ~T0 @X0 1 a ]
-[; ;diskio.c: 76: DSTATUS stat;
-[; ;diskio.c: 77: int result;
-[; ;diskio.c: 79: switch (pdrv) {
-"79
+[; ;diskio.c: 75: DSTATUS stat;
+[; ;diskio.c: 76: int result;
+[; ;diskio.c: 78: switch (pdrv) {
+"78
 [e $U 369  ]
 {
-[; ;diskio.c: 80: case 0 :
-"80
-[e :U 370 ]
-[; ;diskio.c: 81: stat = sdc_disk_status(pdrv);
-"81
-[e = _stat ( _sdc_disk_status (1 _pdrv ]
-[; ;diskio.c: 85: return stat;
-"85
-[e ) _stat ]
-[e $UE 367  ]
-[; ;diskio.c: 87: case 1 :
-"87
-[e :U 371 ]
-[; ;diskio.c: 88: result = sdc_disk_status(pdrv);
-"88
-[e = _result -> ( _sdc_disk_status (1 _pdrv `i ]
-[; ;diskio.c: 92: return stat;
-"92
-[e ) _stat ]
-[e $UE 367  ]
-[; ;diskio.c: 94: case 2 :
-"94
-[e :U 372 ]
-[; ;diskio.c: 99: return stat;
-"99
-[e ) _stat ]
-[e $UE 367  ]
-"100
-}
-[; ;diskio.c: 100: }
-[e $U 368  ]
+[; ;diskio.c: 79: case 0 :
 "79
+[e :U 370 ]
+[; ;diskio.c: 80: stat = sdc_disk_status(pdrv);
+"80
+[e = _stat ( _sdc_disk_status (1 _pdrv ]
+[; ;diskio.c: 84: return stat;
+"84
+[e ) _stat ]
+[e $UE 367  ]
+[; ;diskio.c: 86: case 1 :
+"86
+[e :U 371 ]
+[; ;diskio.c: 87: result = sdc_disk_status(pdrv);
+"87
+[e = _result -> ( _sdc_disk_status (1 _pdrv `i ]
+[; ;diskio.c: 91: return stat;
+"91
+[e ) _stat ]
+[e $UE 367  ]
+[; ;diskio.c: 93: case 2 :
+"93
+[e :U 372 ]
+[; ;diskio.c: 98: return stat;
+"98
+[e ) _stat ]
+[e $UE 367  ]
+"99
+}
+[; ;diskio.c: 99: }
+[e $U 368  ]
+"78
 [e :U 369 ]
 [e [\ _pdrv , $ -> -> 0 `i `uc 370
  , $ -> -> 1 `i `uc 371
  , $ -> -> 2 `i `uc 372
  368 ]
-"100
+"99
 [e :U 368 ]
-[; ;diskio.c: 101: return 0x01;
-"101
+[; ;diskio.c: 100: return 0x01;
+"100
 [e ) -> -> 1 `i `uc ]
 [e $UE 367  ]
-[; ;diskio.c: 102: }
-"102
+[; ;diskio.c: 101: }
+"101
 [e :UE 367 ]
 }
-"110
+"109
 [v _disk_initialize `(uc ~T0 @X0 1 ef1`uc ]
-"113
+"112
 {
-[; ;diskio.c: 110: DSTATUS disk_initialize (
-[; ;diskio.c: 111: BYTE pdrv
-[; ;diskio.c: 112: )
-[; ;diskio.c: 113: {
+[; ;diskio.c: 109: DSTATUS disk_initialize (
+[; ;diskio.c: 110: BYTE pdrv
+[; ;diskio.c: 111: )
+[; ;diskio.c: 112: {
 [e :U _disk_initialize ]
-"111
+"110
 [v _pdrv `uc ~T0 @X0 1 r1 ]
-"113
+"112
 [f ]
-"114
+"113
 [v _stat `uc ~T0 @X0 1 a ]
-"115
+"114
 [v _result `i ~T0 @X0 1 a ]
-[; ;diskio.c: 114: DSTATUS stat;
-[; ;diskio.c: 115: int result;
-[; ;diskio.c: 117: switch (pdrv) {
-"117
+[; ;diskio.c: 113: DSTATUS stat;
+[; ;diskio.c: 114: int result;
+[; ;diskio.c: 116: switch (pdrv) {
+"116
 [e $U 375  ]
 {
-[; ;diskio.c: 118: case 0 :
-"118
-[e :U 376 ]
-[; ;diskio.c: 119: stat = sdc_disk_initialize();
-"119
-[e = _stat ( _sdc_disk_initialize ..  ]
-[; ;diskio.c: 123: return stat;
-"123
-[e ) _stat ]
-[e $UE 373  ]
-[; ;diskio.c: 125: case 1 :
-"125
-[e :U 377 ]
-[; ;diskio.c: 126: stat = sdc_disk_initialize();
-"126
-[e = _stat ( _sdc_disk_initialize ..  ]
-[; ;diskio.c: 130: return stat;
-"130
-[e ) _stat ]
-[e $UE 373  ]
-[; ;diskio.c: 132: case 2 :
-"132
-[e :U 378 ]
-[; ;diskio.c: 137: return stat;
-"137
-[e ) _stat ]
-[e $UE 373  ]
-"138
-}
-[; ;diskio.c: 138: }
-[e $U 374  ]
+[; ;diskio.c: 117: case 0 :
 "117
+[e :U 376 ]
+[; ;diskio.c: 118: stat = sdc_disk_initialize();
+"118
+[e = _stat ( _sdc_disk_initialize ..  ]
+[; ;diskio.c: 122: return stat;
+"122
+[e ) _stat ]
+[e $UE 373  ]
+[; ;diskio.c: 124: case 1 :
+"124
+[e :U 377 ]
+[; ;diskio.c: 125: stat = sdc_disk_initialize();
+"125
+[e = _stat ( _sdc_disk_initialize ..  ]
+[; ;diskio.c: 129: return stat;
+"129
+[e ) _stat ]
+[e $UE 373  ]
+[; ;diskio.c: 131: case 2 :
+"131
+[e :U 378 ]
+[; ;diskio.c: 136: return stat;
+"136
+[e ) _stat ]
+[e $UE 373  ]
+"137
+}
+[; ;diskio.c: 137: }
+[e $U 374  ]
+"116
 [e :U 375 ]
 [e [\ _pdrv , $ -> -> 0 `i `uc 376
  , $ -> -> 1 `i `uc 377
  , $ -> -> 2 `i `uc 378
  374 ]
-"138
+"137
 [e :U 374 ]
-[; ;diskio.c: 139: return 0x01;
-"139
+[; ;diskio.c: 138: return 0x01;
+"138
 [e ) -> -> 1 `i `uc ]
 [e $UE 373  ]
-[; ;diskio.c: 140: }
-"140
+[; ;diskio.c: 139: }
+"139
 [e :UE 373 ]
 }
-"148
+"147
 [v _disk_read `(E25 ~T0 @X0 1 ef4`uc`*uc`ul`uc ]
-"154
+"153
 {
-[; ;diskio.c: 148: DRESULT disk_read (
-[; ;diskio.c: 149: BYTE pdrv,
-[; ;diskio.c: 150: BYTE *buff,
-[; ;diskio.c: 151: DWORD sector,
-[; ;diskio.c: 152: BYTE count
-[; ;diskio.c: 153: )
-[; ;diskio.c: 154: {
+[; ;diskio.c: 147: DRESULT disk_read (
+[; ;diskio.c: 148: BYTE pdrv,
+[; ;diskio.c: 149: BYTE *buff,
+[; ;diskio.c: 150: DWORD sector,
+[; ;diskio.c: 151: BYTE count
+[; ;diskio.c: 152: )
+[; ;diskio.c: 153: {
 [e :U _disk_read ]
-"149
+"148
 [v _pdrv `uc ~T0 @X0 1 r1 ]
-"150
+"149
 [v _buff `*uc ~T0 @X0 1 r2 ]
-"151
+"150
 [v _sector `ul ~T0 @X0 1 r3 ]
-"152
+"151
 [v _count `uc ~T0 @X0 1 r4 ]
-"154
+"153
 [f ]
-"155
+"154
 [v _res `E25 ~T0 @X0 1 a ]
-"156
+"155
 [v _result `i ~T0 @X0 1 a ]
-[; ;diskio.c: 155: DRESULT res;
-[; ;diskio.c: 156: int result;
-[; ;diskio.c: 158: switch (pdrv) {
-"158
+[; ;diskio.c: 154: DRESULT res;
+[; ;diskio.c: 155: int result;
+[; ;diskio.c: 157: switch (pdrv) {
+"157
 [e $U 381  ]
 {
-[; ;diskio.c: 159: case 0 :
-"159
-[e :U 382 ]
-[; ;diskio.c: 162: result = sdc_disk_read(buff, sector, count);
-"162
-[e = _result -> ( _sdc_disk_read (3 , , _buff _sector _count `i ]
-[; ;diskio.c: 166: res = result;
-"166
-[e = _res -> _result `E25 ]
-[; ;diskio.c: 168: return res;
-"168
-[e ) _res ]
-[e $UE 379  ]
-[; ;diskio.c: 170: case 1 :
-"170
-[e :U 383 ]
-[; ;diskio.c: 173: result = sdc_disk_read(buff, sector, count);
-"173
-[e = _result -> ( _sdc_disk_read (3 , , _buff _sector _count `i ]
-[; ;diskio.c: 174: posicao_cursor_lcd(1,0);
-"174
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;diskio.c: 175: escreve_inteiro_lcd(result);
-"175
-[e ( _escreve_inteiro_lcd (1 _result ]
-[; ;diskio.c: 176: _delay((unsigned long)((2000)*(48000000/4000.0)));
-"176
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;diskio.c: 177: res = result;
-"177
-[e = _res -> _result `E25 ]
-[; ;diskio.c: 179: buff = data_buff;
-"179
-[e = _buff _data_buff ]
-[; ;diskio.c: 180: return res;
-"180
-[e ) _res ]
-[e $UE 379  ]
-[; ;diskio.c: 182: case 2 :
-"182
-[e :U 384 ]
-[; ;diskio.c: 189: return res;
-"189
-[e ) _res ]
-[e $UE 379  ]
-"190
-}
-[; ;diskio.c: 190: }
-[e $U 380  ]
+[; ;diskio.c: 158: case 0 :
 "158
+[e :U 382 ]
+[; ;diskio.c: 161: result = sdc_disk_read(buff, sector, count);
+"161
+[e = _result -> ( _sdc_disk_read (3 , , _buff _sector _count `i ]
+[; ;diskio.c: 165: res = result;
+"165
+[e = _res -> _result `E25 ]
+[; ;diskio.c: 167: return res;
+"167
+[e ) _res ]
+[e $UE 379  ]
+[; ;diskio.c: 169: case 1 :
+"169
+[e :U 383 ]
+[; ;diskio.c: 172: result = sdc_disk_read(buff, sector, count);
+"172
+[e = _result -> ( _sdc_disk_read (3 , , _buff _sector _count `i ]
+[; ;diskio.c: 173: posicao_cursor_lcd(1,0);
+"173
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 174: escreve_inteiro_lcd(result);
+"174
+[e ( _escreve_inteiro_lcd (1 _result ]
+[; ;diskio.c: 175: _delay((unsigned long)((2000)*(48000000/4000.0)));
+"175
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;diskio.c: 176: res = result;
+"176
+[e = _res -> _result `E25 ]
+[; ;diskio.c: 178: buff = data_buff;
+"178
+[e = _buff _data_buff ]
+[; ;diskio.c: 179: return res;
+"179
+[e ) _res ]
+[e $UE 379  ]
+[; ;diskio.c: 181: case 2 :
+"181
+[e :U 384 ]
+[; ;diskio.c: 188: return res;
+"188
+[e ) _res ]
+[e $UE 379  ]
+"189
+}
+[; ;diskio.c: 189: }
+[e $U 380  ]
+"157
 [e :U 381 ]
 [e [\ _pdrv , $ -> -> 0 `i `uc 382
  , $ -> -> 1 `i `uc 383
  , $ -> -> 2 `i `uc 384
  380 ]
-"190
+"189
 [e :U 380 ]
-[; ;diskio.c: 192: return RES_PARERR;
-"192
+[; ;diskio.c: 191: return RES_PARERR;
+"191
 [e ) . `E25 4 ]
 [e $UE 379  ]
-[; ;diskio.c: 193: }
-"193
+[; ;diskio.c: 192: }
+"192
 [e :UE 379 ]
 }
-"201
+"200
 [v _disk_write `(E25 ~T0 @X0 1 ef4`uc`*Cuc`ul`uc ]
-"207
+"206
 {
-[; ;diskio.c: 201: DRESULT disk_write (
-[; ;diskio.c: 202: BYTE pdrv,
-[; ;diskio.c: 203: const BYTE *buff,
-[; ;diskio.c: 204: DWORD sector,
-[; ;diskio.c: 205: BYTE count
-[; ;diskio.c: 206: )
-[; ;diskio.c: 207: {
+[; ;diskio.c: 200: DRESULT disk_write (
+[; ;diskio.c: 201: BYTE pdrv,
+[; ;diskio.c: 202: const BYTE *buff,
+[; ;diskio.c: 203: DWORD sector,
+[; ;diskio.c: 204: BYTE count
+[; ;diskio.c: 205: )
+[; ;diskio.c: 206: {
 [e :U _disk_write ]
-"202
+"201
 [v _pdrv `uc ~T0 @X0 1 r1 ]
-"203
+"202
 [v _buff `*Cuc ~T0 @X0 1 r2 ]
-"204
+"203
 [v _sector `ul ~T0 @X0 1 r3 ]
-"205
+"204
 [v _count `uc ~T0 @X0 1 r4 ]
-"207
+"206
 [f ]
-"208
+"207
 [v _res `E25 ~T0 @X0 1 a ]
-"209
+"208
 [v _result `i ~T0 @X0 1 a ]
-[; ;diskio.c: 208: DRESULT res;
-[; ;diskio.c: 209: int result;
-[; ;diskio.c: 211: switch (pdrv) {
-"211
+[; ;diskio.c: 207: DRESULT res;
+[; ;diskio.c: 208: int result;
+[; ;diskio.c: 210: switch (pdrv) {
+"210
 [e $U 387  ]
 {
-[; ;diskio.c: 212: case 0 :
-"212
-[e :U 388 ]
-[; ;diskio.c: 214: result = sdc_disk_write(buff, sector, count);
-"214
-[e = _result -> ( _sdc_disk_write (3 , , _buff _sector _count `i ]
-[; ;diskio.c: 216: res = result;
-"216
-[e = _res -> _result `E25 ]
-[; ;diskio.c: 219: return res;
-"219
-[e ) _res ]
-[e $UE 385  ]
-[; ;diskio.c: 221: case 1 :
-"221
-[e :U 389 ]
-[; ;diskio.c: 224: result = sdc_disk_write(buff, sector, count);
-"224
-[e = _result -> ( _sdc_disk_write (3 , , _buff _sector _count `i ]
-[; ;diskio.c: 228: return res;
-"228
-[e ) _res ]
-[e $UE 385  ]
-[; ;diskio.c: 230: case 2 :
-"230
-[e :U 390 ]
-[; ;diskio.c: 237: return res;
-"237
-[e ) _res ]
-[e $UE 385  ]
-"238
-}
-[; ;diskio.c: 238: }
-[e $U 386  ]
+[; ;diskio.c: 211: case 0 :
 "211
+[e :U 388 ]
+[; ;diskio.c: 213: result = sdc_disk_write(buff, sector, count);
+"213
+[e = _result -> ( _sdc_disk_write (3 , , _buff _sector _count `i ]
+[; ;diskio.c: 215: res = result;
+"215
+[e = _res -> _result `E25 ]
+[; ;diskio.c: 218: return res;
+"218
+[e ) _res ]
+[e $UE 385  ]
+[; ;diskio.c: 220: case 1 :
+"220
+[e :U 389 ]
+[; ;diskio.c: 223: result = sdc_disk_write(buff, sector, count);
+"223
+[e = _result -> ( _sdc_disk_write (3 , , _buff _sector _count `i ]
+[; ;diskio.c: 224: res = result;
+"224
+[e = _res -> _result `E25 ]
+[; ;diskio.c: 227: return res;
+"227
+[e ) _res ]
+[e $UE 385  ]
+[; ;diskio.c: 229: case 2 :
+"229
+[e :U 390 ]
+[; ;diskio.c: 236: return res;
+"236
+[e ) _res ]
+[e $UE 385  ]
+"237
+}
+[; ;diskio.c: 237: }
+[e $U 386  ]
+"210
 [e :U 387 ]
 [e [\ _pdrv , $ -> -> 0 `i `uc 388
  , $ -> -> 1 `i `uc 389
  , $ -> -> 2 `i `uc 390
  386 ]
-"238
+"237
 [e :U 386 ]
-[; ;diskio.c: 240: return RES_PARERR;
-"240
+[; ;diskio.c: 239: return RES_PARERR;
+"239
 [e ) . `E25 4 ]
 [e $UE 385  ]
-[; ;diskio.c: 241: }
-"241
+[; ;diskio.c: 240: }
+"240
 [e :UE 385 ]
 }
-"249
+"248
 [v _disk_ioctl `(E25 ~T0 @X0 1 ef3`uc`uc`*v ]
-"254
+"253
 {
-[; ;diskio.c: 249: DRESULT disk_ioctl (
-[; ;diskio.c: 250: BYTE pdrv,
-[; ;diskio.c: 251: BYTE cmd,
-[; ;diskio.c: 252: void *buff
-[; ;diskio.c: 253: )
-[; ;diskio.c: 254: {
+[; ;diskio.c: 248: DRESULT disk_ioctl (
+[; ;diskio.c: 249: BYTE pdrv,
+[; ;diskio.c: 250: BYTE cmd,
+[; ;diskio.c: 251: void *buff
+[; ;diskio.c: 252: )
+[; ;diskio.c: 253: {
 [e :U _disk_ioctl ]
-"250
+"249
 [v _pdrv `uc ~T0 @X0 1 r1 ]
-"251
+"250
 [v _cmd `uc ~T0 @X0 1 r2 ]
-"252
+"251
 [v _buff `*v ~T0 @X0 1 r3 ]
-"254
+"253
 [f ]
-"255
+"254
 [v _res `E25 ~T0 @X0 1 a ]
-"256
+"255
 [v _result `i ~T0 @X0 1 a ]
-[; ;diskio.c: 255: DRESULT res;
-[; ;diskio.c: 256: int result;
-[; ;diskio.c: 258: switch (pdrv) {
-"258
+[; ;diskio.c: 254: DRESULT res;
+[; ;diskio.c: 255: int result;
+[; ;diskio.c: 257: switch (pdrv) {
+"257
 [e $U 393  ]
 {
-[; ;diskio.c: 259: case 0 :
-"259
-[e :U 394 ]
-[; ;diskio.c: 263: return res;
-"263
-[e ) _res ]
-[e $UE 391  ]
-[; ;diskio.c: 265: case 1 :
-"265
-[e :U 395 ]
-[; ;diskio.c: 269: return res;
-"269
-[e ) _res ]
-[e $UE 391  ]
-[; ;diskio.c: 271: case 2 :
-"271
-[e :U 396 ]
-[; ;diskio.c: 275: return res;
-"275
-[e ) _res ]
-[e $UE 391  ]
-"276
-}
-[; ;diskio.c: 276: }
-[e $U 392  ]
+[; ;diskio.c: 258: case 0 :
 "258
+[e :U 394 ]
+[; ;diskio.c: 262: return res;
+"262
+[e ) _res ]
+[e $UE 391  ]
+[; ;diskio.c: 264: case 1 :
+"264
+[e :U 395 ]
+[; ;diskio.c: 268: return res;
+"268
+[e ) _res ]
+[e $UE 391  ]
+[; ;diskio.c: 270: case 2 :
+"270
+[e :U 396 ]
+[; ;diskio.c: 274: return res;
+"274
+[e ) _res ]
+[e $UE 391  ]
+"275
+}
+[; ;diskio.c: 275: }
+[e $U 392  ]
+"257
 [e :U 393 ]
 [e [\ _pdrv , $ -> -> 0 `i `uc 394
  , $ -> -> 1 `i `uc 395
  , $ -> -> 2 `i `uc 396
  392 ]
-"276
+"275
 [e :U 392 ]
-[; ;diskio.c: 278: return RES_PARERR;
-"278
+[; ;diskio.c: 277: return RES_PARERR;
+"277
 [e ) . `E25 4 ]
 [e $UE 391  ]
-[; ;diskio.c: 279: }
-"279
+[; ;diskio.c: 278: }
+"278
 [e :UE 391 ]
 }
 "288
@@ -4167,875 +4182,954 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.c: 291: unsigned char buff, teste[10];
 [; ;diskio.c: 292: DSTATUS stat;
 [; ;diskio.c: 293: unsigned int receive;
-[; ;diskio.c: 295: do{
-"295
+[; ;diskio.c: 297: do{
+"297
 [e :U 400 ]
 {
-[; ;diskio.c: 298: dummy_clocks(10);
-"298
-[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
-[; ;diskio.c: 299: LATBbits.LATB4 = 0;
-"299
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 300: command(0X40, 0X00000000, 0X95);
-"300
-[e ( _command (3 , , -> -> 64 `i `uc -> -> -> 0 `i `l `ul -> -> 149 `i `uc ]
-[; ;diskio.c: 301: proceed();
+[; ;diskio.c: 301: command(0X40, 0X00000000, 0X95);
 "301
-[e ( _proceed ..  ]
-[; ;diskio.c: 302: LATBbits.LATB4 = 1;
+[e ( _command (3 , , -> -> 64 `i `uc -> -> -> 0 `i `l `ul -> -> 149 `i `uc ]
+[; ;diskio.c: 302: proceed();
 "302
-[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
+[e ( _proceed ..  ]
 [; ;diskio.c: 303: do{
 "303
 [e :U 403 ]
 {
-[; ;diskio.c: 304: buff = response();
-"304
-[e = _buff ( _response ..  ]
-[; ;diskio.c: 305: count++;
+[; ;diskio.c: 305: buff = response();
 "305
+[e = _buff ( _response ..  ]
+[; ;diskio.c: 306: count++;
+"306
 [e ++ _count -> 1 `i ]
+[; ;diskio.c: 307: posicao_cursor_lcd(1,0);
+"307
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 308: escreve_inteiro_lcd(buff);
 "308
-}
-[; ;diskio.c: 308: }while((buff!=0X01) && count<300);
-[e $ && != -> _buff `i -> 1 `i < _count -> 300 `i 403  ]
-[e :U 402 ]
-[; ;diskio.c: 309: count = 0;
+[e ( _escreve_inteiro_lcd (1 -> _buff `i ]
 "309
-[e = _count -> 0 `i ]
-[; ;diskio.c: 310: if(buff != 0x01)
-"310
-[e $ ! != -> _buff `i -> 1 `i 404  ]
-[; ;diskio.c: 311: {
+}
+[; ;diskio.c: 309: }while(buff!=0X01 && count<10);
+[e $ && != -> _buff `i -> 1 `i < _count -> 10 `i 403  ]
+[e :U 402 ]
+[; ;diskio.c: 311: count = 0;
 "311
-{
-[; ;diskio.c: 312: posicao_cursor_lcd(1,0);
+[e = _count -> 0 `i ]
+[; ;diskio.c: 312: if(buff != 0x01)
 "312
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;diskio.c: 313: escreve_frase_ram_lcd("Sem Cartao");
+[e $ ! != -> _buff `i -> 1 `i 404  ]
+[; ;diskio.c: 313: {
 "313
-[e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
-[; ;diskio.c: 314: posicao_cursor_lcd(2,0);
-"314
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;diskio.c: 315: escreve_frase_ram_lcd("Insira o Cartao");
-"315
-[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
-"316
-}
-[; ;diskio.c: 316: }
-[e $U 405  ]
-"317
-[e :U 404 ]
-[; ;diskio.c: 317: else
-[; ;diskio.c: 318: {
-"318
 {
-[; ;diskio.c: 319: posicao_cursor_lcd(1,0);
-"319
+[; ;diskio.c: 314: posicao_cursor_lcd(1,0);
+"314
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;diskio.c: 320: escreve_frase_ram_lcd("Cartao Inserido");
-"320
-[e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
-"321
+[; ;diskio.c: 315: escreve_frase_ram_lcd("Sem Cartao");
+"315
+[e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
+[; ;diskio.c: 316: posicao_cursor_lcd(2,0);
+"316
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 317: escreve_frase_ram_lcd("Insira o Cartao");
+"317
+[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
+"318
 }
-[e :U 405 ]
+[; ;diskio.c: 318: }
+[e $U 405  ]
+"319
+[e :U 404 ]
+[; ;diskio.c: 319: else
+[; ;diskio.c: 320: {
+"320
+{
+[; ;diskio.c: 321: posicao_cursor_lcd(1,0);
+"321
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 322: escreve_frase_ram_lcd("Cartao Inserido");
+"322
+[e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
 "323
 }
-[; ;diskio.c: 321: }
-[; ;diskio.c: 323: }while(buff!=0X01);
+[e :U 405 ]
+"325
+}
+[; ;diskio.c: 323: }
+[; ;diskio.c: 325: }while(buff!=0X01);
 [e $ != -> _buff `i -> 1 `i 400  ]
 [e :U 399 ]
-[; ;diskio.c: 326: return;
-"326
+[; ;diskio.c: 328: return;
+"328
 [e $UE 397  ]
-[; ;diskio.c: 327: }
-"327
+[; ;diskio.c: 329: }
+"329
 [e :UE 397 ]
 }
-"337
+"339
 [v _sdc_disk_initialize `(uc ~T0 @X0 1 ef ]
-"338
+"340
 {
-[; ;diskio.c: 337: DSTATUS sdc_disk_initialize(void)
-[; ;diskio.c: 338: {
+[; ;diskio.c: 339: DSTATUS sdc_disk_initialize(void)
+[; ;diskio.c: 340: {
 [e :U _sdc_disk_initialize ]
 [f ]
-"339
-[v _ocr `uc ~T0 @X0 1 a ]
-"340
-[v _stat `uc ~T0 @X0 1 a ]
 "341
+[v _ocr `uc ~T0 @X0 1 a ]
+"342
+[v _stat `uc ~T0 @X0 1 a ]
+"343
 [v _i `i ~T0 @X0 1 a ]
-[; ;diskio.c: 339: BYTE ocr;
-[; ;diskio.c: 340: DSTATUS stat;
-[; ;diskio.c: 341: int i = 0, count1 = 0, count2 = 0;
+[; ;diskio.c: 341: BYTE ocr;
+[; ;diskio.c: 342: DSTATUS stat;
+[; ;diskio.c: 343: int i = 0, count1 = 0, count2 = 0;
 [e = _i -> 0 `i ]
 [v _count1 `i ~T0 @X0 1 a ]
 [e = _count1 -> 0 `i ]
 [v _count2 `i ~T0 @X0 1 a ]
 [e = _count2 -> 0 `i ]
-"342
-[v _buff `uc ~T0 @X0 1 a ]
-[; ;diskio.c: 342: BYTE buff = 0;
-[e = _buff -> -> 0 `i `uc ]
-"343
-[v _buff_i `uc ~T0 @X0 1 a ]
 "344
-[v _crc_number `i ~T0 @X0 1 a ]
-[; ;diskio.c: 343: BYTE buff_i;
-[; ;diskio.c: 344: int crc_number;
-[; ;diskio.c: 346: _delay((unsigned long)((1)*(48000000/4000.0)));
+[v _buff `uc ~T0 @X0 1 a ]
+[; ;diskio.c: 344: BYTE buff = 0;
+[e = _buff -> -> 0 `i `uc ]
+"345
+[v _buff_i `uc ~T0 @X0 1 a ]
 "346
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;diskio.c: 347: sdc_reset();
+[v _crc_number `i ~T0 @X0 1 a ]
+[; ;diskio.c: 345: BYTE buff_i;
+[; ;diskio.c: 346: int crc_number;
+[; ;diskio.c: 347: _delay((unsigned long)((1)*(48000000/4000.0)));
 "347
-[e ( _sdc_reset ..  ]
-[; ;diskio.c: 349: LATBbits.LATB4 = 0;
-"349
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 350: LATBbits.LATB7 = 0;
-"350
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 351: dummy_clocks(1);
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;diskio.c: 348: dummy_clocks(100);
+"348
+[e ( _dummy_clocks (1 -> -> 100 `i `uc ]
+[; ;diskio.c: 351: sdc_reset();
 "351
-[e ( _dummy_clocks (1 -> -> 1 `i `uc ]
-[; ;diskio.c: 353: command(0X48, 0x000001AA, 0x87);
-"353
+[e ( _sdc_reset ..  ]
+[; ;diskio.c: 352: command(0X48, 0x000001AA, 0x87);
+"352
 [e ( _command (3 , , -> -> 72 `i `uc -> -> -> 426 `i `l `ul -> -> 135 `i `uc ]
-[; ;diskio.c: 354: proceed();
-"354
+[; ;diskio.c: 353: proceed();
+"353
 [e ( _proceed ..  ]
-[; ;diskio.c: 355: LATBbits.LATB4 = 1;
-"355
-[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
-[; ;diskio.c: 356: do{
-"356
+[; ;diskio.c: 354: do{
+"354
 [e :U 409 ]
 {
-[; ;diskio.c: 357: buff_i = response();
-"357
+[; ;diskio.c: 355: buff_i = response();
+"355
 [e = _buff_i ( _response ..  ]
-[; ;diskio.c: 361: if(buff_i == 1)
-"361
+[; ;diskio.c: 356: posicao_cursor_lcd(1,0);
+"356
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 357: escreve_inteiro_lcd(buff_i);
+"357
+[e ( _escreve_inteiro_lcd (1 -> _buff_i `i ]
+[; ;diskio.c: 358: if(buff_i == 1)
+"358
 [e $ ! == -> _buff_i `i -> 1 `i 410  ]
-[; ;diskio.c: 362: {
-"362
+[; ;diskio.c: 359: {
+"359
 {
-[; ;diskio.c: 363: crc_number = buff_i<<8;
-"363
+[; ;diskio.c: 360: crc_number = buff_i<<8;
+"360
 [e = _crc_number << -> _buff_i `i -> 8 `i ]
-"364
+"361
 }
-[; ;diskio.c: 364: }
+[; ;diskio.c: 361: }
 [e $U 411  ]
-"365
+"362
 [e :U 410 ]
-[; ;diskio.c: 365: else if(buff_i==0xAA)
+[; ;diskio.c: 362: else if(buff_i==0xAA)
 [e $ ! == -> _buff_i `i -> 170 `i 412  ]
-[; ;diskio.c: 366: {
-"366
+[; ;diskio.c: 363: {
+"363
 {
-[; ;diskio.c: 367: crc_number |= buff_i;
-"367
+[; ;diskio.c: 364: crc_number |= buff_i;
+"364
 [e =| _crc_number -> _buff_i `i ]
-"368
+"365
 }
 [e :U 412 ]
-"369
+"366
 [e :U 411 ]
-[; ;diskio.c: 368: }
-[; ;diskio.c: 369: count1++;
+[; ;diskio.c: 365: }
+[; ;diskio.c: 366: count1++;
 [e ++ _count1 -> 1 `i ]
-"375
+"367
 }
-[; ;diskio.c: 375: }while(crc_number != 0x1AA && count1<1000);
+[; ;diskio.c: 367: }while(crc_number != 0x1AA && count1<1000);
 [e $ && != _crc_number -> 426 `i < _count1 -> 1000 `i 409  ]
 [e :U 408 ]
-[; ;diskio.c: 378: if (crc_number == 0x1AA)
-"378
+[; ;diskio.c: 372: if (crc_number == 0x1AA)
+"372
 [e $ ! == _crc_number -> 426 `i 413  ]
-[; ;diskio.c: 379: {
-"379
+[; ;diskio.c: 373: {
+"373
 {
-[; ;diskio.c: 380: count1 = 0;
-"380
+[; ;diskio.c: 374: count1 = 0;
+"374
 [e = _count1 -> 0 `i ]
-[; ;diskio.c: 381: do{
-"381
+[; ;diskio.c: 375: do{
+"375
 [e :U 416 ]
 {
-[; ;diskio.c: 382: count2 = 0;
-"382
+[; ;diskio.c: 376: count2 = 0;
+"376
 [e = _count2 -> 0 `i ]
-[; ;diskio.c: 383: buff = 0XFF;
-"383
+[; ;diskio.c: 377: buff = 0XFF;
+"377
 [e = _buff -> -> 255 `i `uc ]
-[; ;diskio.c: 388: LATBbits.LATB4 = 0;
-"388
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 389: LATBbits.LATB7 = 0;
-"389
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 390: dummy_clocks(1);
-"390
-[e ( _dummy_clocks (1 -> -> 1 `i `uc ]
-[; ;diskio.c: 391: command(0X41, 0X00000000, 0XFF);
-"391
-[e ( _command (3 , , -> -> 65 `i `uc -> -> -> 0 `i `l `ul -> -> 255 `i `uc ]
-[; ;diskio.c: 392: buff = 0XFF;
+[; ;diskio.c: 392: do{
 "392
-[e = _buff -> -> 255 `i `uc ]
-[; ;diskio.c: 394: proceed();
-"394
-[e ( _proceed ..  ]
-[; ;diskio.c: 395: do{
-"395
 [e :U 419 ]
 {
-[; ;diskio.c: 396: buff = response();
-"396
-[e = _buff ( _response ..  ]
-[; ;diskio.c: 397: count2++;
-"397
-[e ++ _count2 -> 1 `i ]
-"398
-}
-[; ;diskio.c: 398: }while((buff!=0X01)&&(count2<10));
-[e $ && != -> _buff `i -> 1 `i < _count2 -> 10 `i 419  ]
-[e :U 418 ]
-[; ;diskio.c: 401: dummy_clocks(1);
-"401
-[e ( _dummy_clocks (1 -> -> 1 `i `uc ]
-[; ;diskio.c: 402: LATBbits.LATB4 = 0;
-"402
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 403: LATBbits.LATB7 = 0;
-"403
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 404: escreve_dado_SPI(0xFF);
-"404
-[e ( _escreve_dado_SPI (1 -> -> 255 `i `uc ]
-[; ;diskio.c: 405: command(0X77, 0X00000000, 0X95);
-"405
-[e ( _command (3 , , -> -> 119 `i `uc -> -> -> 0 `i `l `ul -> -> 149 `i `uc ]
-[; ;diskio.c: 406: buff = 0XFF;
-"406
+[; ;diskio.c: 393: command(0X41, 0X00000000, 0XFF);
+"393
+[e ( _command (3 , , -> -> 65 `i `uc -> -> -> 0 `i `l `ul -> -> 255 `i `uc ]
+[; ;diskio.c: 394: buff = 0XFF;
+"394
 [e = _buff -> -> 255 `i `uc ]
-[; ;diskio.c: 408: proceed();
-"408
+[; ;diskio.c: 396: proceed();
+"396
 [e ( _proceed ..  ]
-[; ;diskio.c: 409: do{
-"409
+[; ;diskio.c: 397: do{
+"397
 [e :U 422 ]
 {
-[; ;diskio.c: 410: buff = response();
-"410
+[; ;diskio.c: 398: buff = response();
+"398
 [e = _buff ( _response ..  ]
-[; ;diskio.c: 411: count2++;
-"411
+[; ;diskio.c: 399: count2++;
+"399
 [e ++ _count2 -> 1 `i ]
-"412
+"400
 }
-[; ;diskio.c: 412: }while((buff!=0X01)&&(count2<10));
+[; ;diskio.c: 400: }while((buff!=0X01) && count2<10);
 [e $ && != -> _buff `i -> 1 `i < _count2 -> 10 `i 422  ]
 [e :U 421 ]
-[; ;diskio.c: 414: count2 = 0;
-"414
-[e = _count2 -> 0 `i ]
-[; ;diskio.c: 418: LATBbits.LATB4 = 0;
-"418
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 419: LATBbits.LATB7 = 0;
-"419
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 420: dummy_clocks(1);
-"420
-[e ( _dummy_clocks (1 -> -> 1 `i `uc ]
-[; ;diskio.c: 421: command(0X69, 0X40000000, 0x95);
-"421
-[e ( _command (3 , , -> -> 105 `i `uc -> -> 1073741824 `l `ul -> -> 149 `i `uc ]
-[; ;diskio.c: 422: proceed();
-"422
+[; ;diskio.c: 401: dummy_clocks(10);
+"401
+[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
+[; ;diskio.c: 402: command(0X77, 0X00000000, 0X00);
+"402
+[e ( _command (3 , , -> -> 119 `i `uc -> -> -> 0 `i `l `ul -> -> 0 `i `uc ]
+[; ;diskio.c: 403: buff = 0XFF;
+"403
+[e = _buff -> -> 255 `i `uc ]
+[; ;diskio.c: 405: proceed();
+"405
 [e ( _proceed ..  ]
-[; ;diskio.c: 423: LATBbits.LATB4 = 1;
-"423
-[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
-[; ;diskio.c: 424: do{
-"424
+[; ;diskio.c: 406: do{
+"406
 [e :U 425 ]
 {
-[; ;diskio.c: 426: buff = response();
-"426
+[; ;diskio.c: 407: buff = response();
+"407
 [e = _buff ( _response ..  ]
-[; ;diskio.c: 427: count2++;;
-"427
+[; ;diskio.c: 408: count2++;
+"408
 [e ++ _count2 -> 1 `i ]
-"428
+"409
 }
-[; ;diskio.c: 428: }while(buff!=0X00);
-[e $ != -> _buff `i -> 0 `i 425  ]
+[; ;diskio.c: 409: }while((buff!=0X01)&&(count2<10));
+[e $ && != -> _buff `i -> 1 `i < _count2 -> 10 `i 425  ]
 [e :U 424 ]
-[; ;diskio.c: 430: buff = 0xFF;
-"430
-[e = _buff -> -> 255 `i `uc ]
-[; ;diskio.c: 431: dummy_clocks(1);
-"431
-[e ( _dummy_clocks (1 -> -> 1 `i `uc ]
-[; ;diskio.c: 432: command(0X7A, 0X00000000, 0XFF);
-"432
-[e ( _command (3 , , -> -> 122 `i `uc -> -> -> 0 `i `l `ul -> -> 255 `i `uc ]
-[; ;diskio.c: 433: proceed();
-"433
+[; ;diskio.c: 410: count2 = 0;
+"410
+[e = _count2 -> 0 `i ]
+[; ;diskio.c: 414: dummy_clocks(10);
+"414
+[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
+[; ;diskio.c: 416: command(0X69, 0X40000000, 0x00);
+"416
+[e ( _command (3 , , -> -> 105 `i `uc -> -> 1073741824 `l `ul -> -> 0 `i `uc ]
+[; ;diskio.c: 417: proceed();
+"417
 [e ( _proceed ..  ]
-[; ;diskio.c: 434: do{
-"434
+[; ;diskio.c: 418: buff = response();
+"418
+[e = _buff ( _response ..  ]
+[; ;diskio.c: 419: count2++;
+"419
+[e ++ _count2 -> 1 `i ]
+[; ;diskio.c: 420: posicao_cursor_lcd(2,5);
+"420
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 5 `i `uc ]
+[; ;diskio.c: 421: escreve_inteiro_lcd(buff);
+"421
+[e ( _escreve_inteiro_lcd (1 -> _buff `i ]
+"422
+}
+[; ;diskio.c: 422: }while(buff!=0X00);
+[e $ != -> _buff `i -> 0 `i 419  ]
+[e :U 418 ]
+[; ;diskio.c: 424: buff = 0xFF;
+"424
+[e = _buff -> -> 255 `i `uc ]
+[; ;diskio.c: 427: dummy_clocks(10);
+"427
+[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
+[; ;diskio.c: 428: command(0X7A, 0X00000000, 0XFF);
+"428
+[e ( _command (3 , , -> -> 122 `i `uc -> -> -> 0 `i `l `ul -> -> 255 `i `uc ]
+[; ;diskio.c: 429: proceed();
+"429
+[e ( _proceed ..  ]
+[; ;diskio.c: 430: do{
+"430
 [e :U 428 ]
 {
-[; ;diskio.c: 435: buff = response();
-"435
+[; ;diskio.c: 431: buff = response();
+"431
 [e = _buff ( _response ..  ]
-[; ;diskio.c: 436: ocr = (buff << 1) & 0b10000000;
-"436
+[; ;diskio.c: 432: ocr = (buff << 1) & 0b10000000;
+"432
 [e = _ocr -> & << -> _buff `i -> 1 `i -> 128 `i `uc ]
-[; ;diskio.c: 440: count2++;
-"440
+[; ;diskio.c: 433: posicao_cursor_lcd(2,0);
+"433
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 434: escreve_inteiro_lcd(ocr);
+"434
+[e ( _escreve_inteiro_lcd (1 -> _ocr `i ]
+[; ;diskio.c: 435: count2++;
+"435
 [e ++ _count2 -> 1 `i ]
-"441
+"436
 }
-[; ;diskio.c: 441: }while(ocr!=0X00 && ocr != 0x01 && count2<10);
+[; ;diskio.c: 436: }while(ocr!=0X00 && ocr != 0x01 && count2<10);
 [e $ && && != -> _ocr `i -> 0 `i != -> _ocr `i -> 1 `i < _count2 -> 10 `i 428  ]
 [e :U 427 ]
-"442
+"437
 }
-[; ;diskio.c: 442: }while(ocr != 0X00 && ocr !=0x01);
+[; ;diskio.c: 437: }while(ocr != 0X00 && ocr !=0x01);
 [e $ && != -> _ocr `i -> 0 `i != -> _ocr `i -> 1 `i 416  ]
 [e :U 415 ]
-[; ;diskio.c: 446: count1 = 0;
-"446
+[; ;diskio.c: 439: escreve_cmd_lcd(0b00000001);
+"439
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;diskio.c: 440: posicao_cursor_lcd(1,0);
+"440
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 441: escreve_inteiro_lcd(ocr);
+"441
+[e ( _escreve_inteiro_lcd (1 -> _ocr `i ]
+[; ;diskio.c: 442: count1 = 0;
+"442
 [e = _count1 -> 0 `i ]
-[; ;diskio.c: 449: stat = 0X00;
-"449
+[; ;diskio.c: 444: _delay((unsigned long)((1)*(48000000/4000.0)));
+"444
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;diskio.c: 445: stat = 0X00;
+"445
 [e = _stat -> -> 0 `i `uc ]
-[; ;diskio.c: 451: if(!ocr)
-"451
+[; ;diskio.c: 447: if(!ocr)
+"447
 [e $ ! ! != -> _ocr `i -> -> -> 0 `i `uc `i 429  ]
-[; ;diskio.c: 452: {
-"452
+[; ;diskio.c: 448: {
+"448
 {
-[; ;diskio.c: 453: LATBbits.LATB4 = 0;
-"453
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 454: LATBbits.LATB7 = 0;
-"454
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 455: dummy_clocks(10);
-"455
+[; ;diskio.c: 450: dummy_clocks(10);
+"450
 [e ( _dummy_clocks (1 -> -> 10 `i `uc ]
-[; ;diskio.c: 456: command(0X50,0X00000200,0XFF);
-"456
+[; ;diskio.c: 451: command(0X50,0X00000200,0XFF);
+"451
 [e ( _command (3 , , -> -> 80 `i `uc -> -> -> 512 `i `l `ul -> -> 255 `i `uc ]
-[; ;diskio.c: 457: proceed();
-"457
+[; ;diskio.c: 452: proceed();
+"452
 [e ( _proceed ..  ]
-[; ;diskio.c: 459: buff = 0xFF;
-"459
+[; ;diskio.c: 454: buff = 0xFF;
+"454
 [e = _buff -> -> 255 `i `uc ]
-[; ;diskio.c: 460: do{
-"460
+[; ;diskio.c: 455: do{
+"455
 [e :U 432 ]
 {
-[; ;diskio.c: 461: buff = response();
-"461
+[; ;diskio.c: 456: buff = response();
+"456
 [e = _buff ( _response ..  ]
-"462
+"457
 }
-[; ;diskio.c: 462: }while(buff!=0X00);
+[; ;diskio.c: 457: }while(buff!=0X00);
 [e $ != -> _buff `i -> 0 `i 432  ]
 [e :U 431 ]
-"463
+"459
 }
 [e :U 429 ]
-"466
+"461
 }
-[; ;diskio.c: 463: }
-[; ;diskio.c: 466: }
+[; ;diskio.c: 459: }
+[; ;diskio.c: 461: }
 [e $U 433  ]
-"467
+"462
 [e :U 413 ]
-[; ;diskio.c: 467: else
-[; ;diskio.c: 468: {
-"468
+[; ;diskio.c: 462: else
+[; ;diskio.c: 463: {
+"463
 {
-[; ;diskio.c: 470: count2 = 0;
-"470
+[; ;diskio.c: 465: count2 = 0;
+"465
 [e = _count2 -> 0 `i ]
-[; ;diskio.c: 471: buff = 0XFF;
-"471
+[; ;diskio.c: 466: buff = 0XFF;
+"466
 [e = _buff -> -> 255 `i `uc ]
-[; ;diskio.c: 472: dummy_clocks(1);
-"472
+[; ;diskio.c: 467: dummy_clocks(1);
+"467
 [e ( _dummy_clocks (1 -> -> 1 `i `uc ]
-[; ;diskio.c: 473: command(0X69, 0X00000000, 0XFF);
-"473
+[; ;diskio.c: 468: command(0X69, 0X00000000, 0XFF);
+"468
 [e ( _command (3 , , -> -> 105 `i `uc -> -> -> 0 `i `l `ul -> -> 255 `i `uc ]
-[; ;diskio.c: 474: proceed();
-"474
+[; ;diskio.c: 469: proceed();
+"469
 [e ( _proceed ..  ]
-[; ;diskio.c: 475: do{
-"475
+[; ;diskio.c: 470: do{
+"470
 [e :U 436 ]
 {
-[; ;diskio.c: 476: buff = response();
-"476
+[; ;diskio.c: 471: buff = response();
+"471
 [e = _buff ( _response ..  ]
-[; ;diskio.c: 477: count2++;
-"477
+[; ;diskio.c: 472: count2++;
+"472
 [e ++ _count2 -> 1 `i ]
-[; ;diskio.c: 478: if(buff==0x00)
-"478
+[; ;diskio.c: 473: if(buff==0x00)
+"473
 [e $ ! == -> _buff `i -> 0 `i 437  ]
-[; ;diskio.c: 479: {
-"479
+[; ;diskio.c: 474: {
+"474
 {
-[; ;diskio.c: 480: posicao_cursor_lcd(1,0);
-"480
+[; ;diskio.c: 475: posicao_cursor_lcd(1,0);
+"475
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;diskio.c: 481: escreve_frase_ram_lcd("SD VER. 1");
-"481
+[; ;diskio.c: 476: escreve_frase_ram_lcd("SD VER. 1");
+"476
 [e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
-"482
+"477
 }
 [e :U 437 ]
-[; ;diskio.c: 482: }
-[; ;diskio.c: 483: _delay((unsigned long)((1)*(48000000/4000.0)));
-"483
+[; ;diskio.c: 477: }
+[; ;diskio.c: 478: _delay((unsigned long)((1)*(48000000/4000.0)));
+"478
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-"484
+"479
 }
-[; ;diskio.c: 484: }while(buff!=0X00 && count2<10000);
+[; ;diskio.c: 479: }while(buff!=0X00 && count2<10000);
 [e $ && != -> _buff `i -> 0 `i < _count2 -> 10000 `i 436  ]
 [e :U 435 ]
-[; ;diskio.c: 486: buff = 0xFF;
-"486
+[; ;diskio.c: 481: buff = 0xFF;
+"481
 [e = _buff -> -> 255 `i `uc ]
-[; ;diskio.c: 487: if(count2==10)
-"487
+[; ;diskio.c: 482: if(count2==10)
+"482
 [e $ ! == _count2 -> 10 `i 438  ]
-[; ;diskio.c: 488: {
-"488
+[; ;diskio.c: 483: {
+"483
 {
-[; ;diskio.c: 489: count2 = 0;
-"489
+[; ;diskio.c: 484: count2 = 0;
+"484
 [e = _count2 -> 0 `i ]
-[; ;diskio.c: 490: dummy_clocks(10);
-"490
+[; ;diskio.c: 485: dummy_clocks(10);
+"485
 [e ( _dummy_clocks (1 -> -> 10 `i `uc ]
-[; ;diskio.c: 491: command(0X41, 0X00000000, 0XFF);
-"491
+[; ;diskio.c: 486: command(0X41, 0X00000000, 0XFF);
+"486
 [e ( _command (3 , , -> -> 65 `i `uc -> -> -> 0 `i `l `ul -> -> 255 `i `uc ]
-[; ;diskio.c: 492: proceed();
-"492
+[; ;diskio.c: 487: proceed();
+"487
 [e ( _proceed ..  ]
-[; ;diskio.c: 493: do{
-"493
+[; ;diskio.c: 488: do{
+"488
 [e :U 441 ]
 {
-[; ;diskio.c: 494: buff = response();
-"494
+[; ;diskio.c: 489: buff = response();
+"489
 [e = _buff ( _response ..  ]
-[; ;diskio.c: 495: count2++;
-"495
+[; ;diskio.c: 490: count2++;
+"490
 [e ++ _count2 -> 1 `i ]
-[; ;diskio.c: 496: if(buff==0x00)
-"496
+[; ;diskio.c: 491: if(buff==0x00)
+"491
 [e $ ! == -> _buff `i -> 0 `i 442  ]
-[; ;diskio.c: 497: {
-"497
+[; ;diskio.c: 492: {
+"492
 {
-[; ;diskio.c: 498: posicao_cursor_lcd(1,0);
-"498
+[; ;diskio.c: 493: posicao_cursor_lcd(1,0);
+"493
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;diskio.c: 499: escreve_frase_ram_lcd("MMC Ver. 3");
-"499
+[; ;diskio.c: 494: escreve_frase_ram_lcd("MMC Ver. 3");
+"494
 [e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
-"500
+"495
 }
 [e :U 442 ]
-"502
+"497
 }
-[; ;diskio.c: 500: }
-[; ;diskio.c: 502: }while(buff!=0X00 && count2<10000);
+[; ;diskio.c: 495: }
+[; ;diskio.c: 497: }while(buff!=0X00 && count2<10000);
 [e $ && != -> _buff `i -> 0 `i < _count2 -> 10000 `i 441  ]
 [e :U 440 ]
-"503
+"498
 }
 [e :U 438 ]
-[; ;diskio.c: 503: }
-[; ;diskio.c: 506: dummy_clocks(10);
-"506
+[; ;diskio.c: 498: }
+[; ;diskio.c: 501: dummy_clocks(10);
+"501
 [e ( _dummy_clocks (1 -> -> 10 `i `uc ]
-[; ;diskio.c: 507: command(0X50,0X00000200,0XFF);
-"507
+[; ;diskio.c: 502: command(0X50,0X00000200,0XFF);
+"502
 [e ( _command (3 , , -> -> 80 `i `uc -> -> -> 512 `i `l `ul -> -> 255 `i `uc ]
-[; ;diskio.c: 508: proceed();
-"508
+[; ;diskio.c: 503: proceed();
+"503
 [e ( _proceed ..  ]
-[; ;diskio.c: 510: buff = 0xFF;
-"510
+[; ;diskio.c: 505: buff = 0xFF;
+"505
 [e = _buff -> -> 255 `i `uc ]
-[; ;diskio.c: 511: do{
-"511
+[; ;diskio.c: 506: do{
+"506
 [e :U 445 ]
 {
-[; ;diskio.c: 512: buff = response();
-"512
+[; ;diskio.c: 507: buff = response();
+"507
 [e = _buff ( _response ..  ]
-"513
+"508
 }
-[; ;diskio.c: 513: }while(buff!=0X00);
+[; ;diskio.c: 508: }while(buff!=0X00);
 [e $ != -> _buff `i -> 0 `i 445  ]
 [e :U 444 ]
-"515
+"510
 }
 [e :U 433 ]
-[; ;diskio.c: 515: }
-[; ;diskio.c: 519: return stat;
-"519
+[; ;diskio.c: 510: }
+[; ;diskio.c: 514: return stat;
+"514
 [e ) _stat ]
 [e $UE 406  ]
-[; ;diskio.c: 520: }
-"520
+[; ;diskio.c: 515: }
+"515
 [e :UE 406 ]
 }
-"529
+"528
 [v _sdc_disk_read `(E25 ~T0 @X0 1 ef3`*uc`ul`uc ]
-"534
+"533
 {
-[; ;diskio.c: 529: DRESULT sdc_disk_read(
-[; ;diskio.c: 530: BYTE *p_buff,
-[; ;diskio.c: 531: DWORD sector,
-[; ;diskio.c: 532: BYTE count
-[; ;diskio.c: 533: )
-[; ;diskio.c: 534: {
+[; ;diskio.c: 528: DRESULT sdc_disk_read(
+[; ;diskio.c: 529: BYTE *p_buff,
+[; ;diskio.c: 530: DWORD sector,
+[; ;diskio.c: 531: BYTE count
+[; ;diskio.c: 532: )
+[; ;diskio.c: 533: {
 [e :U _sdc_disk_read ]
-"530
+"529
 [v _p_buff `*uc ~T0 @X0 1 r1 ]
-"531
+"530
 [v _sector `ul ~T0 @X0 1 r2 ]
-"532
+"531
 [v _count `uc ~T0 @X0 1 r3 ]
-"534
+"533
 [f ]
-"536
+"535
 [v _res `E25 ~T0 @X0 1 a ]
-"537
+"536
 [v _ptr `uc ~T0 @X0 1 a ]
-[; ;diskio.c: 536: DRESULT res;
-[; ;diskio.c: 537: unsigned char ptr=0X00, buff;
+[; ;diskio.c: 535: DRESULT res;
+[; ;diskio.c: 536: unsigned char ptr=0X00, buff;
 [e = _ptr -> -> 0 `i `uc ]
 [v _buff `uc ~T0 @X0 1 a ]
-"538
+"537
 [v _start_add `ul ~T0 @X0 1 a ]
-"540
+"539
 [v _length `i ~T0 @X0 1 a ]
 [v _i `i ~T0 @X0 1 a ]
 [v _count1 `i ~T0 @X0 1 a ]
-[; ;diskio.c: 538: unsigned long int start_add;
-[; ;diskio.c: 540: int length,i, count1;
-[; ;diskio.c: 542: start_add = sector*512;
-"542
+[; ;diskio.c: 537: unsigned long int start_add;
+[; ;diskio.c: 539: int length,i, count1;
+[; ;diskio.c: 541: start_add = sector*512;
+"541
 [e = _start_add * _sector -> -> -> 512 `i `l `ul ]
-[; ;diskio.c: 552: LATBbits.LATB7 = 0;
-"552
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 553: LATBbits.LATB4 = 0;
-"553
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 554: dummy_clocks(10);
-"554
+[; ;diskio.c: 544: posicao_cursor_lcd(1,0);
+"544
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 545: escreve_frase_ram_lcd("LENDO SD");
+"545
+[e ( _escreve_frase_ram_lcd (1 -> :s 6C `*uc ]
+[; ;diskio.c: 548: if(sector != 1)
+"548
+[e $ ! != _sector -> -> -> 1 `i `l `ul 447  ]
+[; ;diskio.c: 549: {
+"549
+{
+[; ;diskio.c: 550: dummy_clocks(10);
+"550
 [e ( _dummy_clocks (1 -> -> 10 `i `uc ]
-[; ;diskio.c: 555: command(0X52,start_add,0X00);
-"555
+[; ;diskio.c: 551: command(0X52,start_add ,0X00);
+"551
 [e ( _command (3 , , -> -> 82 `i `uc _start_add -> -> 0 `i `uc ]
+[; ;diskio.c: 552: proceed();
+"552
+[e ( _proceed ..  ]
+[; ;diskio.c: 553: do{
+"553
+[e :U 450 ]
+{
+[; ;diskio.c: 554: buff = response();
+"554
+[e = _buff ( _response ..  ]
+"555
+}
+[; ;diskio.c: 555: }while(buff!=0X00);
+[e $ != -> _buff `i -> 0 `i 450  ]
+[e :U 449 ]
 [; ;diskio.c: 556: proceed();
 "556
 [e ( _proceed ..  ]
-[; ;diskio.c: 557: do{
 "557
-[e :U 449 ]
-{
-[; ;diskio.c: 558: buff = response();
+}
+[; ;diskio.c: 557: }
+[e $U 451  ]
 "558
-[e = _buff ( _response ..  ]
+[e :U 447 ]
+[; ;diskio.c: 558: else
+[; ;diskio.c: 559: {
 "559
-}
-[; ;diskio.c: 559: }while(buff!=0X00);
-[e $ != -> _buff `i -> 0 `i 449  ]
-[e :U 448 ]
-[; ;diskio.c: 560: proceed();
+{
+[; ;diskio.c: 560: dummy_clocks(10);
 "560
-[e ( _proceed ..  ]
-[; ;diskio.c: 563: while(buff!=0xFE)
-"563
-[e $U 450  ]
-[e :U 451 ]
-[; ;diskio.c: 564: {
-"564
-{
-[; ;diskio.c: 565: buff = response();
-"565
-[e = _buff ( _response ..  ]
-[; ;diskio.c: 566: posicao_cursor_lcd(1,0);
-"566
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;diskio.c: 567: escreve_inteiro_lcd(buff);
-"567
-[e ( _escreve_inteiro_lcd (1 -> _buff `i ]
-"568
-}
-[e :U 450 ]
-"563
-[e $ != -> _buff `i -> 254 `i 451  ]
-[e :U 452 ]
-[; ;diskio.c: 568: }
-[; ;diskio.c: 571: length = 0;
-"571
-[e = _length -> 0 `i ]
-[; ;diskio.c: 572: while ( length < 512 )
-"572
-[e $U 453  ]
-[e :U 454 ]
-[; ;diskio.c: 573: {
-"573
-{
-[; ;diskio.c: 574: p_buff[length] = response();
-"574
-[e = *U + _p_buff * -> _length `x -> -> # *U _p_buff `i `x ( _response ..  ]
-[; ;diskio.c: 577: length++;
-"577
-[e ++ _length -> 1 `i ]
-"578
-}
-[e :U 453 ]
-"572
-[e $ < _length -> 512 `i 454  ]
-[e :U 455 ]
-[; ;diskio.c: 578: }
-[; ;diskio.c: 581: _delay((unsigned long)((1000)*(48000000/4000.0)));
-"581
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;diskio.c: 582: LATBbits.LATB7 = 0;
-"582
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 583: length = 0;
-"583
-[e = _length -> 0 `i ]
-[; ;diskio.c: 584: LATBbits.LATB4 = 0;
-"584
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 585: dummy_clocks(10);
-"585
 [e ( _dummy_clocks (1 -> -> 10 `i `uc ]
-[; ;diskio.c: 586: command(0X4C,0X00000000,0X00);
-"586
-[e ( _command (3 , , -> -> 76 `i `uc -> -> -> 0 `i `l `ul -> -> 0 `i `uc ]
-[; ;diskio.c: 587: proceed();
-"587
+[; ;diskio.c: 561: command(0X51,sector ,0X00);
+"561
+[e ( _command (3 , , -> -> 81 `i `uc _sector -> -> 0 `i `uc ]
+[; ;diskio.c: 562: proceed();
+"562
 [e ( _proceed ..  ]
-[; ;diskio.c: 588: do{
-"588
-[e :U 458 ]
+[; ;diskio.c: 563: do{
+"563
+[e :U 454 ]
 {
-[; ;diskio.c: 589: buff = response();
-"589
+[; ;diskio.c: 564: buff = response();
+"564
 [e = _buff ( _response ..  ]
-"590
+"565
 }
-[; ;diskio.c: 590: }while(buff!=0xFF);
-[e $ != -> _buff `i -> 255 `i 458  ]
+[; ;diskio.c: 565: }while(buff!=0X00);
+[e $ != -> _buff `i -> 0 `i 454  ]
+[e :U 453 ]
+[; ;diskio.c: 566: proceed();
+"566
+[e ( _proceed ..  ]
+"567
+}
+[e :U 451 ]
+[; ;diskio.c: 567: }
+[; ;diskio.c: 571: while(buff!=0xFE)
+"571
+[e $U 455  ]
+[e :U 456 ]
+[; ;diskio.c: 572: {
+"572
+{
+[; ;diskio.c: 573: buff = response();
+"573
+[e = _buff ( _response ..  ]
+[; ;diskio.c: 574: posicao_cursor_lcd(1,0);
+"574
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 575: escreve_inteiro_lcd(buff);
+"575
+[e ( _escreve_inteiro_lcd (1 -> _buff `i ]
+"577
+}
+[e :U 455 ]
+"571
+[e $ != -> _buff `i -> 254 `i 456  ]
 [e :U 457 ]
-[; ;diskio.c: 592: length = 0;
-"592
+[; ;diskio.c: 577: }
+[; ;diskio.c: 579: length = 0;
+"579
 [e = _length -> 0 `i ]
-[; ;diskio.c: 601: return res;
-"601
-[e ) _res ]
-[e $UE 446  ]
-[; ;diskio.c: 605: }
+[; ;diskio.c: 580: while ( length < 512 )
+"580
+[e $U 458  ]
+[e :U 459 ]
+[; ;diskio.c: 581: {
+"581
+{
+[; ;diskio.c: 582: p_buff[length] = response();
+"582
+[e = *U + _p_buff * -> _length `x -> -> # *U _p_buff `i `x ( _response ..  ]
+[; ;diskio.c: 583: length++;
+"583
+[e ++ _length -> 1 `i ]
+"584
+}
+[e :U 458 ]
+"580
+[e $ < _length -> 512 `i 459  ]
+[e :U 460 ]
+[; ;diskio.c: 584: }
+[; ;diskio.c: 589: length = 0;
+"589
+[e = _length -> 0 `i ]
+[; ;diskio.c: 590: posicao_cursor_lcd(1,0);
+"590
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 591: escreve_frase_ram_lcd("comando 4C");
+"591
+[e ( _escreve_frase_ram_lcd (1 -> :s 7C `*uc ]
+[; ;diskio.c: 592: dummy_clocks(10);
+"592
+[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
+[; ;diskio.c: 594: command(0X4C,0X00000000,0X00);
+"594
+[e ( _command (3 , , -> -> 76 `i `uc -> -> -> 0 `i `l `ul -> -> 0 `i `uc ]
+[; ;diskio.c: 595: proceed();
+"595
+[e ( _proceed ..  ]
+[; ;diskio.c: 596: do{
+"596
+[e :U 463 ]
+{
+[; ;diskio.c: 597: buff = response();
+"597
+[e = _buff ( _response ..  ]
+[; ;diskio.c: 598: posicao_cursor_lcd(2,0);
+"598
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 599: escreve_inteiro_lcd(buff);
+"599
+[e ( _escreve_inteiro_lcd (1 -> _buff `i ]
+"600
+}
+[; ;diskio.c: 600: }while(buff!=0xFF);
+[e $ != -> _buff `i -> 255 `i 463  ]
+[e :U 462 ]
+[; ;diskio.c: 602: length = 0;
+"602
+[e = _length -> 0 `i ]
+[; ;diskio.c: 605: escreve_cmd_lcd(0b00000001);
 "605
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;diskio.c: 606: posicao_cursor_lcd(2,10);
+"606
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 10 `i `uc ]
+[; ;diskio.c: 607: escreve_frase_ram_lcd("saindo");
+"607
+[e ( _escreve_frase_ram_lcd (1 -> :s 8C `*uc ]
+[; ;diskio.c: 611: return RES_OK;
+"611
+[e ) . `E25 0 ]
+[e $UE 446  ]
+[; ;diskio.c: 616: }
+"616
 [e :UE 446 ]
 }
-"613
+"624
 [v _sdc_disk_write `(E25 ~T0 @X0 1 ef3`*Cuc`ul`uc ]
-"614
+"625
 {
-[; ;diskio.c: 613: DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
-[; ;diskio.c: 614: {
+[; ;diskio.c: 624: DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
+[; ;diskio.c: 625: {
 [e :U _sdc_disk_write ]
-"613
+"624
 [v _p_buff `*Cuc ~T0 @X0 1 r1 ]
 [v _sector `ul ~T0 @X0 1 r2 ]
 [v _count `uc ~T0 @X0 1 r3 ]
-"614
+"625
 [f ]
-"615
+"626
 [v _res `E25 ~T0 @X0 1 a ]
-"616
+"627
 [v _buff `uc ~T0 @X0 1 a ]
-"617
+"628
 [v _i `i ~T0 @X0 1 a ]
-[; ;diskio.c: 615: DRESULT res;
-[; ;diskio.c: 616: unsigned char buff;
-[; ;diskio.c: 617: int i=0,j, count1 = 0;
+[; ;diskio.c: 626: DRESULT res;
+[; ;diskio.c: 627: unsigned char buff;
+[; ;diskio.c: 628: int i=0,j, count1 = 0;
 [e = _i -> 0 `i ]
 [v _j `i ~T0 @X0 1 a ]
 [v _count1 `i ~T0 @X0 1 a ]
 [e = _count1 -> 0 `i ]
-[; ;diskio.c: 621: LATBbits.LATB7 = 0;
-"621
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 622: LATBbits.LATB4 = 0;
-"622
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 623: dummy_clocks(10);
-"623
-[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
-[; ;diskio.c: 624: command(0X58, 0X00000000, 0X00);
-"624
-[e ( _command (3 , , -> -> 88 `i `uc -> -> -> 0 `i `l `ul -> -> 0 `i `uc ]
-[; ;diskio.c: 625: proceed();
-"625
-[e ( _proceed ..  ]
-[; ;diskio.c: 626: do{
-"626
-[e :U 462 ]
-{
-[; ;diskio.c: 627: buff = response();
-"627
-[e = _buff ( _response ..  ]
-"628
-}
-[; ;diskio.c: 628: }while(buff!=0X00);
-[e $ != -> _buff `i -> 0 `i 462  ]
-[e :U 461 ]
-[; ;diskio.c: 631: LATBbits.LATB4 = 0;
-"631
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 632: LATBbits.LATB7 = 0;
+[; ;diskio.c: 632: LATCbits.LATC7 = 0;
 "632
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 633: dummy_clocks(1);
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+[; ;diskio.c: 633: LATBbits.LATB4 = 0;
 "633
-[e ( _dummy_clocks (1 -> -> 1 `i `uc ]
-[; ;diskio.c: 634: escreve_dado_SPI(0XFE);
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[; ;diskio.c: 634: dummy_clocks(10);
 "634
-[e ( _escreve_dado_SPI (1 -> -> 254 `i `uc ]
-[; ;diskio.c: 637: for(j=0;j<512;j++)
+[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
+[; ;diskio.c: 635: command(0X58, sector*512, 0X00);
+"635
+[e ( _command (3 , , -> -> 88 `i `uc * _sector -> -> -> 512 `i `l `ul -> -> 0 `i `uc ]
+[; ;diskio.c: 636: proceed();
+"636
+[e ( _proceed ..  ]
+[; ;diskio.c: 637: do{
 "637
+[e :U 467 ]
+{
+[; ;diskio.c: 638: buff = response();
+"638
+[e = _buff ( _response ..  ]
+"639
+}
+[; ;diskio.c: 639: }while(buff!=0X00);
+[e $ != -> _buff `i -> 0 `i 467  ]
+[e :U 466 ]
+[; ;diskio.c: 641: LATBbits.LATB4 = 0;
+"641
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[; ;diskio.c: 642: LATCbits.LATC7 = 0;
+"642
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+[; ;diskio.c: 643: dummy_clocks(1);
+"643
+[e ( _dummy_clocks (1 -> -> 1 `i `uc ]
+[; ;diskio.c: 644: WriteSPI_(0XFE);
+"644
+[e ( _WriteSPI_ (1 -> -> 254 `i `uc ]
+[; ;diskio.c: 647: for(j=0;j<512;j++)
+"647
 {
 [e = _j -> 0 `i ]
-[e $ < _j -> 512 `i 463  ]
-[e $U 464  ]
-"638
-[e :U 463 ]
-[; ;diskio.c: 638: {
-{
-[; ;diskio.c: 639: escreve_dado_SPI(*p_buff);
-"639
-[e ( _escreve_dado_SPI (1 *U _p_buff ]
-[; ;diskio.c: 640: p_buff++;
-"640
-[e ++ _p_buff * -> -> 1 `i `x -> -> # *U _p_buff `i `x ]
-"642
-}
-"637
-[e ++ _j -> 1 `i ]
-[e $ < _j -> 512 `i 463  ]
-[e :U 464 ]
-"642
-}
-[; ;diskio.c: 642: }
-[; ;diskio.c: 645: escreve_dado_SPI(0XFF);
-"645
-[e ( _escreve_dado_SPI (1 -> -> 255 `i `uc ]
-[; ;diskio.c: 646: escreve_dado_SPI(0XFF);
-"646
-[e ( _escreve_dado_SPI (1 -> -> 255 `i `uc ]
-[; ;diskio.c: 649: _delay((unsigned long)((1000)*(48000000/4000.0)));
-"649
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;diskio.c: 652: LATBbits.LATB4 = 0;
-"652
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;diskio.c: 653: LATBbits.LATB7 = 0;
-"653
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;diskio.c: 654: dummy_clocks(10);
-"654
-[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
-[; ;diskio.c: 655: command(0X4D,0X00000000,0XFF);
-"655
-[e ( _command (3 , , -> -> 77 `i `uc -> -> -> 0 `i `l `ul -> -> 255 `i `uc ]
-[; ;diskio.c: 656: proceed();
-"656
-[e ( _proceed ..  ]
-[; ;diskio.c: 657: do{
-"657
+[e $ < _j -> 512 `i 468  ]
+[e $U 469  ]
+"648
 [e :U 468 ]
+[; ;diskio.c: 648: {
 {
+[; ;diskio.c: 649: WriteSPI_(*p_buff);
+"649
+[e ( _WriteSPI_ (1 *U _p_buff ]
+[; ;diskio.c: 650: p_buff++;
+"650
+[e ++ _p_buff * -> -> 1 `i `x -> -> # *U _p_buff `i `x ]
+"652
+}
+"647
+[e ++ _j -> 1 `i ]
+[e $ < _j -> 512 `i 468  ]
+[e :U 469 ]
+"652
+}
+[; ;diskio.c: 652: }
+[; ;diskio.c: 655: ReadSPI_();
+"655
+[e ( _ReadSPI_ ..  ]
+[; ;diskio.c: 656: ReadSPI_();
+"656
+[e ( _ReadSPI_ ..  ]
+[; ;diskio.c: 657: proceed();
+"657
+[e ( _proceed ..  ]
 [; ;diskio.c: 658: buff = response();
 "658
 [e = _buff ( _response ..  ]
-"664
-}
-[; ;diskio.c: 664: }while(buff!=0X00 );
-[e $ != -> _buff `i -> 0 `i 468  ]
-[e :U 467 ]
-[; ;diskio.c: 669: return res;
-"669
-[e ) _res ]
-[e $UE 459  ]
-[; ;diskio.c: 671: }
-"671
-[e :UE 459 ]
-}
-"680
-[v _sdc_disk_status `(uc ~T0 @X0 1 ef1`uc ]
-"681
+[; ;diskio.c: 659: _delay((unsigned long)((1000)*(48000000/4000.0)));
+"659
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;diskio.c: 662: if((buff & 0x1F) != 0x05)
+"662
+[e $ ! != & -> _buff `i -> 31 `i -> 5 `i 471  ]
+[; ;diskio.c: 663: {
+"663
 {
-[; ;diskio.c: 680: DSTATUS sdc_disk_status(BYTE pdrv)
-[; ;diskio.c: 681: {
-[e :U _sdc_disk_status ]
+[; ;diskio.c: 664: posicao_cursor_lcd(1,0);
+"664
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 665: escreve_frase_ram_lcd("ERRO ESCRITA");
+"665
+[e ( _escreve_frase_ram_lcd (1 -> :s 9C `*uc ]
+[; ;diskio.c: 666: _delay((unsigned long)((4000)*(48000000/4000.0)));
+"666
+[e ( __delay (1 -> * -> -> 4000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+"667
+}
+[e :U 471 ]
+[; ;diskio.c: 667: }
+[; ;diskio.c: 668: LATBbits.LATB4 = 0;
+"668
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[; ;diskio.c: 669: LATCbits.LATC7 = 0;
+"669
+[e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
+[; ;diskio.c: 670: dummy_clocks(1);
+"670
+[e ( _dummy_clocks (1 -> -> 1 `i `uc ]
+[; ;diskio.c: 671: command(0X4D,0X00000000,0X00);
+"671
+[e ( _command (3 , , -> -> 77 `i `uc -> -> -> 0 `i `l `ul -> -> 0 `i `uc ]
+[; ;diskio.c: 672: proceed();
+"672
+[e ( _proceed ..  ]
+[; ;diskio.c: 673: do{
+"673
+[e :U 474 ]
+{
+[; ;diskio.c: 674: buff = response();
+"674
+[e = _buff ( _response ..  ]
+[; ;diskio.c: 676: posicao_cursor_lcd(1,0);
+"676
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;diskio.c: 677: escreve_inteiro_lcd(buff);
+"677
+[e ( _escreve_inteiro_lcd (1 -> _buff `i ]
+[; ;diskio.c: 678: _delay((unsigned long)((30)*(48000000/4000000.0)));
+"678
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
 "680
+}
+[; ;diskio.c: 680: }while(buff!=0X00 );
+[e $ != -> _buff `i -> 0 `i 474  ]
+[e :U 473 ]
+[; ;diskio.c: 685: return res;
+"685
+[e ) _res ]
+[e $UE 464  ]
+[; ;diskio.c: 687: }
+"687
+[e :UE 464 ]
+}
+"696
+[v _sdc_disk_status `(uc ~T0 @X0 1 ef1`uc ]
+"697
+{
+[; ;diskio.c: 696: DSTATUS sdc_disk_status(BYTE pdrv)
+[; ;diskio.c: 697: {
+[e :U _sdc_disk_status ]
+"696
 [v _pdrv `uc ~T0 @X0 1 r1 ]
-"681
+"697
 [f ]
-"682
+"698
 [v _stat `uc ~T0 @X0 1 a ]
-[; ;diskio.c: 682: DSTATUS stat = 0;
+[; ;diskio.c: 698: DSTATUS stat = 0;
 [e = _stat -> -> 0 `i `uc ]
-"683
+"699
 [v _buff `uc ~T0 @X0 1 a ]
 [v _cont `uc ~T0 @X0 1 a ]
-[; ;diskio.c: 683: unsigned char buff, cont;
-[; ;diskio.c: 685: if (pdrv != 0) return 0x01;
-"685
-[e $ ! != -> _pdrv `i -> 0 `i 470  ]
+[; ;diskio.c: 699: unsigned char buff, cont;
+[; ;diskio.c: 701: if (pdrv != 0) return 0x01;
+"701
+[e $ ! != -> _pdrv `i -> 0 `i 476  ]
 [e ) -> -> 1 `i `uc ]
-[e $UE 469  ]
-[e :U 470 ]
-[; ;diskio.c: 687: return FR_OK;
-"687
-[e ) -> . `E3964 0 `uc ]
-[e $UE 469  ]
-[; ;diskio.c: 689: }
-"689
-[e :UE 469 ]
+[e $UE 475  ]
+[e :U 476 ]
+[; ;diskio.c: 703: return FR_OK;
+"703
+[e ) -> . `E3961 0 `uc ]
+[e $UE 475  ]
+[; ;diskio.c: 705: }
+"705
+[e :UE 475 ]
 }
+[a 8C 115 97 105 110 100 111 0 ]
 [a 3C 67 97 114 116 97 111 32 73 110 115 101 114 105 100 111 0 ]
 [a 2C 73 110 115 105 114 97 32 111 32 67 97 114 116 97 111 0 ]
 [a 1C 83 101 109 32 67 97 114 116 97 111 0 ]
+[a 6C 76 69 78 68 79 32 83 68 0 ]
+[a 7C 99 111 109 97 110 100 111 32 52 67 0 ]
+[a 9C 69 82 82 79 32 69 83 67 82 73 84 65 0 ]
 [a 5C 77 77 67 32 86 101 114 46 32 51 0 ]
 [a 4C 83 68 32 86 69 82 46 32 49 0 ]

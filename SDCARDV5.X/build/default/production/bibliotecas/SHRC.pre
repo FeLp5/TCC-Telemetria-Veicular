@@ -4819,36 +4819,76 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 38 "bibliotecas/SHRC.h"
+# 45 "bibliotecas/SHRC.h"
 void controle_shrc (void);
 
 void inicializa_shrc(void);
+
+void escreve_dado_SPI(unsigned char data_to_shrc);
 
 void shrc_seta_bit(unsigned char posicao_bit);
 
 void shrc_apaga_bit(unsigned char posicao_bit);
 
-void shrc_recebe_byte(unsigned char dado_recebido);
+unsigned char recebe_dado_SPI();
 
-# 27 "bibliotecas/SHRC.c"
+# 199 "bibliotecas/display_lcd.h"
+extern void init_lcd(void);
+
+# 208
+extern void escreve_cmd_lcd(unsigned char comando);
+
+# 220
+extern void endereco_cursor_lcd(unsigned char endereco);
+
+# 236
+extern void posicao_cursor_lcd(unsigned char linha, unsigned char coluna);
+
+# 247
+extern void escreve_caractere_lcd(char data);
+
+# 261
+extern void escreve_inteiro_lcd(int valor);
+
+# 276
+extern void escreve_float_lcd(float valor, char formatacao);
+
+# 290
+extern void escreve_frase_ram_lcd(char *buffer);
+
+# 304
+extern void escreve_frase_lcd(const char *buffer);
+
+# 322
+extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
+
+# 332
+void converte_inteiro_matriz(unsigned int val, char* str );
+
+# 28 "bibliotecas/SHRC.c"
 unsigned char dado;
 
-# 35
+# 36
 void envia_dados_shrc(unsigned char data_to_shrc);
 void ativa_latch_shrc ( void );
 
-# 47
+# 48
 void inicializa_shrc(void)
 {
-LATBbits.LATB5 = 0;
+
+TRISBbits.RB6 = 0;
+TRISBbits.RB5 = 1;
+TRISBbits.RB7 = 0;
+
+
 LATBbits.LATB6 = 0;
 LATBbits.LATB7 = 0;
-
 }
 
-# 62
-void envia_dados_shrc(unsigned char data_to_shrc)
+# 67
+void escreve_dado_SPI(unsigned char data_to_shrc)
 {
+
 unsigned char contador=0;
 (INTCONbits.GIE = 0);
 
@@ -4863,48 +4903,39 @@ else
 LATBbits.LATB7 = 1;
 }
 data_to_shrc = data_to_shrc << 1;
-_delay((unsigned long)((30)*(48000000/4000000.0)));
+_delay((unsigned long)((2)*(48000000/4000000.0)));
 LATBbits.LATB6 = 1;
-_delay((unsigned long)((30)*(48000000/4000000.0)));
+_delay((unsigned long)((2)*(48000000/4000000.0)));
 LATBbits.LATB7 = 0;
-_delay((unsigned long)((30)*(48000000/4000000.0)));
+_delay((unsigned long)((2)*(48000000/4000000.0)));
 LATBbits.LATB6 = 0;
-_delay((unsigned long)((30)*(48000000/4000000.0)));
+_delay((unsigned long)((2)*(48000000/4000000.0)));
 contador++;
 }
 (INTCONbits.GIE = 1);
 }
 
-# 96
-void ativa_latch_shrc ( void )
+# 143
+unsigned char recebe_dado_SPI()
 {
+dado = 0;
 
-LATBbits.LATB5 = 0;
-_delay((unsigned long)((30)*(48000000/4000000.0)));
-LATBbits.LATB5 = 1;
-_delay((unsigned long)((60)*(48000000/4000000.0)));
-LATBbits.LATB5 = 0;
+unsigned char contador=0;
+
+(INTCONbits.GIE = 0);
+
+while(contador<=7)
+{
+dado |= (PORTBbits.RB5 << (7-contador));
+
+_delay((unsigned long)((2)*(48000000/4000000.0)));
+LATBbits.LATB6 = 1;
+_delay((unsigned long)((2)*(48000000/4000000.0)));
+_delay((unsigned long)((2)*(48000000/4000000.0)));
+LATBbits.LATB6 = 0;
+_delay((unsigned long)((2)*(48000000/4000000.0)));
+contador++;
 }
-
-# 112
-void controle_shrc (void)
-{
-
-envia_dados_shrc(dado);
-ativa_latch_shrc();
-}
-
-void shrc_seta_bit(unsigned char posicao_bit)
-{
-dado |= (1<<posicao_bit);
-}
-
-void shrc_apaga_bit(unsigned char posicao_bit)
-{
-dado &= ~(1<<posicao_bit);
-}
-
-void shrc_recebe_byte(unsigned char dado_recebido)
-{
-dado = dado_recebido;
+(INTCONbits.GIE = 1);
+return dado;
 }

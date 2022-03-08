@@ -36,30 +36,17 @@
 extern "C" {
 #endif
 
-#include "../pffconf.h"
-#include "../integer.h"
-
-
+#include "ffconf.h"
+#include "integer.h"
+#include "diskio.h"
+#include <p18f4550.h>
+#include "hardware.h"
 /*---------------------------------------*/
-/* Prototypes for disk control functions */
-//typedef BYTE	DSTATUS;
-//
-///* Results of Disk Functions */
-//typedef enum {
-//	RES_OK = 0,		/* 0: Function succeeded */
-//	RES_ERROR,		/* 1: Disk error */
-//	RES_NOTRDY,		/* 2: Not ready */
-//	RES_PARERR		/* 3: Invalid parameter */
-//} DRESULT;
-//
 
-/*---------------------------------------*/
-/* Prototypes for disk control functions */
 
-//DSTATUS disk_initialize (void);
-//DRESULT disk_readp (BYTE* buff, DWORD sector, UINT offset, UINT count);
-//DRESULT disk_writep (const BYTE* buff, DWORD sc);
-
+//Defines===========================    
+//==================================    
+    
 
 #define STA_NOINIT		0x01	/* Drive not initialized */
 #define STA_NODISK		0x02	/* No medium in the drive */
@@ -99,17 +86,24 @@ extern "C" {
 /******************************************************************************
 * Prototipos das funções
 ******************************************************************************/
-void init_SDcard();
-void envia_CMD16(void);
-unsigned char envia_CMD8(void);
-void envia_CMD1(void);
-void envia_CMD0(void);
-
-
+//void init_SDcard();
+//void envia_CMD16(void);
+//unsigned char envia_CMD8(void);
+//void envia_CMD1(void);
+//void envia_CMD0(void);
+void SDCard(void);
 BYTE response(void);
 void proceed(void);
 void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+
+
+//disk management
+void sdc_reset(void);
+DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
+DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
+DSTATUS sdc_disk_initialize(void);
+DSTATUS sdc_disk_status(BYTE pdrv);
 /*****************************************************************************/
 
 #ifdef __cplusplus

@@ -19,12 +19,13 @@
 /*-----------------------------------------------------------------------*/
 
 #include "SDCard.h"
-#include "SPI.h"
+//#include "SPI.h"
 #include "hardware.h"
 #include "integer.h"
 #include "display_lcd.h"
-#include "pff.h"
+#include "ff.h"
 #include "diskio.h"
+#include "SHRC.h"
 //#include "sw_uart.h"
 
 //global variables
@@ -38,7 +39,7 @@ BYTE data_buffer_32[32];
 
 
 // File to read================================================================= 
-BYTE fileName[10] = {"check.txt"}; //USE SMALLER ARRAY SIZE /testmapp/testtext 
+BYTE fileName[15] = {"teste.txt"}; //USE SMALLER ARRAY SIZE /testmapp/testtext 
 BYTE folder[48] = {""}; 
 //==============================================================================
 
@@ -48,9 +49,9 @@ BYTE response(void)
 {
     
     unsigned char buff;
-    chip_select = 1;//CS low   
+    CHIP_SELECT = 0;//CS low   
     buff= recebe_dado_SPI();   //read buffer (R1) should be 0x01 = idle mode   
-    chip_select = 0;//CS high
+//    CHIP_SELECT = 1;//CS high
     return buff;
 }
 
@@ -65,11 +66,13 @@ BYTE response(void)
 void dummy_clocks(unsigned char n)
 {
     unsigned int i;
+    __delay_ms(1);
+//    LATB5 = 1;
     for(i=0;i<n;i++)
     {
-        chip_select = 0;
-        WriteSPI_(0XFF);
-        chip_select = 1;
+        CHIP_SELECT = 1;
+        escreve_dado_SPI(0XFF);
+        CHIP_SELECT = 0;
     }
 }
 
@@ -83,9 +86,9 @@ void dummy_clocks(unsigned char n)
  *****************************************************************************/
 void proceed(void)
 {
-    chip_select = 1; //CS Low
-    WriteSPI_(0xFF); // Give Time For SD_CARD To Proceed
-    chip_select = 0; //CS High
+    CHIP_SELECT = 0; //CS Low
+    escreve_dado_SPI(0xFF); // Give Time For SD_CARD To Proceed
+    CHIP_SELECT = 1; //CS High
 }
 
 //extern  void check();
@@ -100,18 +103,18 @@ void proceed(void)
 
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
 {
-    LATBbits.LATB3 = ~LATBbits.LATB3;
-    unsigned char argument = arg>>24;
-    WriteSPI_(0xFF);
-    WriteSPI_(CMD);
-    WriteSPI_(argument);
+    unsigned char argument;
+    escreve_dado_SPI(0xFF);
+    escreve_dado_SPI(CMD);
+    argument = arg>>24;
+    escreve_dado_SPI(argument);
     argument = arg>>16;
-    WriteSPI_(argument);
+    escreve_dado_SPI(argument);
     argument = arg>>8;
-    WriteSPI_(argument);
+    escreve_dado_SPI(argument);
     argument = arg;
-    WriteSPI_(argument);
-    WriteSPI_(CRC);
+    escreve_dado_SPI(argument);
+    escreve_dado_SPI(CRC);
 }
 
 
@@ -123,119 +126,52 @@ void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
  * Descricao:	Realiza a montagem do sistema de arquivos, cria o arquivo, escreve no arquivo
  * e fecha o arquivo
  *****************************************************************************/
-
+FATFS fs;
 void SDCard(void) 
 {
+    T0CONbits.TMR0ON = 0;
+//    inicializa_SPI(0,3,1);
     FRESULT FResult;
-    FATFS fs;
-    WORD br;
+    FIL fil;
+    WORD br, bw;
     
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd("Attempting to");
-    posicao_cursor_lcd(2,0);
-    escreve_frase_ram_lcd("mount file sys");
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd("Attempting to");
+//    posicao_cursor_lcd(2,0);
+//    escreve_frase_ram_lcd("mount file sys");
+//    SPI_DATA_OUT = 0;
+//    __delay_ms(2000);
+//    SPI_DATA_OUT = 1;
+//    __delay_ms(2000);
     LIMPA_DISPLAY();
     
     /*READ FUNCTION=============================================================*/
-    proceed();
-	if((FResult = pf_mount(&fs)) == FR_OK )
-	{
+//    proceed();
+    posicao_cursor_lcd(1,0);
+    escreve_frase_ram_lcd("montando sistema");
+	if ((FResult = f_mount(&fs, "", 1)) == FR_OK) {	/* Mount SD */
+
         posicao_cursor_lcd(1,0);
-        escreve_frase_ram_lcd("syst inicialized");
-        
-		//open file=======================================
-		FResult = pf_open("check.txt"/*fileName*/);
-        //=================================================
-		if( FResult == FR_OK )
-		{
-			// Read 31 bytes from the file                        
-            if( (FResult = pf_write("SD_Card", 5, &br)) == FR_OK )
-			{
-                posicao_cursor_lcd(1,0);
-                escreve_frase_ram_lcd("syst inicialized");
-			} 
-			else
-			{
-                LIMPA_DISPLAY();
-                posicao_cursor_lcd(1,0);
-                escreve_frase_ram_lcd("SDCard error");
-				while( 1 );
-			}
-            LIMPA_DISPLAY();
+        escreve_frase_ram_lcd("Abrindo arquivo");
+		if ((FResult = f_open(&fil, "teste.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE)) == FR_OK) {	/* Open or create a file */
             
-            //Starts to read the file for writing
+             posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd("lendo tamanho");
+			if ((fil.fsize != 0) && (f_lseek(&fil, fil.fsize) != FR_OK)) goto endSD;	/* Jump to the end of the file */
             posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("lendo arquivo");
-
-			// read file and print it until it ends
-			do
-			{
-                readover(1); //Set Flag=1 in diskio.c before reading Card Data
-                
-				// Read 31 bytes from the file
-				if( (FResult = pf_read(data_buffer_32, 31, &br)) == FR_OK )
-				{
-					// putsUSART needs a C-string (NULL terminated)
-					data_buffer_32[br] = 0;
-                    break;
-					//putsUART(data_buffer_32);
-				}
-				else
-				{
-                    //write on the screen if it got an error
-                    LIMPA_DISPLAY();
-                    posicao_cursor_lcd(1,0);
-                    escreve_frase_ram_lcd("Erro tentando");
-                    posicao_cursor_lcd(2,0);
-                    escreve_frase_ram_lcd("ler o arquivo");
-					
-					while( 1 );
-				}
-			} while( br == 31 );	// if the pf_Read reads less then 31 bytes the file has ended
-		}
-		else 
-		{
-            LIMPA_DISPLAY();
+            escreve_frase_ram_lcd("escrevendo");
+			f_write(&fil, "Hello world!\r\n", 14, &bw);	/* Write data to the file */
             posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("Erro tentando");
-            posicao_cursor_lcd(2,0);
-            escreve_frase_ram_lcd("abrir o arquivo");
-			while( 1 );
+            escreve_frase_ram_lcd("fechando");
+			endSD: f_close(&fil);								/* Close the file */
 		}
+        posicao_cursor_lcd(1,0);
+        escreve_inteiro_lcd(FResult);
 	}
-	else
-	{
-    //Write a error message if the file wasnt oppened 
-		while( 1 );
+    posicao_cursor_lcd(1,0);
+    escreve_inteiro_lcd(FResult);
+	while (1) {
+		// Add your application code
 	}
-
-    
-    
-  	// do a directory listing and list all files on the SD-card ========
-
-    
-    
-//============================================================================
-	//scan_files(folder);????????????????? function depreciated ?
-		
-	// unmount drive
-//	putsUART("\r\nAttempting to UNmount file system.\r\n");
-	
-	//FResult = pf_mount(NULL); ??????????????????????????????
-	
-//============================================================================  
-    
-	if( FResult != FR_OK )
-	{
-    //write on the screen it wanst possible to create     
-//		putsUART("\r\nError trying to UNmount filesystem; ");
-//		WriteUART(FResult + 0x30);
-//		putsUART(".\r\n");
-		while( 1 );
-	}	
-
-//	putsUART("\rFile system succesfully unmounted.\r\n");
-	while(1);
-/*WRITE FUNCTION*/
 }		
  

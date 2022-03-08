@@ -1,5 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"3077 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
+"3634 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
+[s S143 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S143 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
+"3644
+[s S144 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S144 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"3633
+[u S142 `S143 1 `S144 1 ]
+[n S142 . . . ]
+"3655
+[v _TRISBbits `VS142 ~T0 @X0 0 e@3987 ]
+"3077
 [s S125 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S125 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
 "3087
@@ -28,6 +39,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
 [v __delay `JF3783 ~T0 @X0 0 e ]
 [p i __delay ]
+"2457 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
+[s S102 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S102 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"2467
+[s S103 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S103 . INT0 INT1 INT2 . PGM PGC PGD ]
+"2476
+[s S104 :3 `uc 1 :1 `uc 1 ]
+[n S104 . . CCP2_PA2 ]
+"2456
+[u S101 `S102 1 `S103 1 `S104 1 ]
+[n S101 . . . . ]
+"2481
+[v _PORTBbits `VS101 ~T0 @X0 0 e@3969 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -3546,225 +3571,211 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.h: 39: void timer_dois(void);
 [; ;hardware.h: 44: typedef unsigned char uint8_t;
 [; ;hardware.h: 45: typedef unsigned int uint16_t;
-[; ;SHRC.h: 38: void controle_shrc (void);
-[; ;SHRC.h: 40: void inicializa_shrc(void);
-[; ;SHRC.h: 42: void shrc_seta_bit(unsigned char posicao_bit);
-[; ;SHRC.h: 44: void shrc_apaga_bit(unsigned char posicao_bit);
-[; ;SHRC.h: 46: void shrc_recebe_byte(unsigned char dado_recebido);
-"27 bibliotecas/SHRC.c
+[; ;SHRC.h: 45: void controle_shrc (void);
+[; ;SHRC.h: 47: void inicializa_shrc(void);
+[; ;SHRC.h: 49: void escreve_dado_SPI(unsigned char data_to_shrc);
+[; ;SHRC.h: 51: void shrc_seta_bit(unsigned char posicao_bit);
+[; ;SHRC.h: 53: void shrc_apaga_bit(unsigned char posicao_bit);
+[; ;SHRC.h: 55: unsigned char recebe_dado_SPI();
+[; ;display_lcd.h: 199: extern void init_lcd(void);
+[; ;display_lcd.h: 208: extern void escreve_cmd_lcd(unsigned char comando);
+[; ;display_lcd.h: 220: extern void endereco_cursor_lcd(unsigned char endereco);
+[; ;display_lcd.h: 236: extern void posicao_cursor_lcd(unsigned char linha, unsigned char coluna);
+[; ;display_lcd.h: 247: extern void escreve_caractere_lcd(char data);
+[; ;display_lcd.h: 261: extern void escreve_inteiro_lcd(int valor);
+[; ;display_lcd.h: 276: extern void escreve_float_lcd(float valor, char formatacao);
+[; ;display_lcd.h: 290: extern void escreve_frase_ram_lcd(char *buffer);
+[; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
+[; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
+[; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
+"28 bibliotecas/SHRC.c
 [v _dado `uc ~T0 @X0 1 e ]
-[; ;SHRC.c: 27: unsigned char dado;
-[; ;SHRC.c: 35: void envia_dados_shrc(unsigned char data_to_shrc);
-[; ;SHRC.c: 36: void ativa_latch_shrc ( void );
-"47
-[v _inicializa_shrc `(v ~T0 @X0 1 ef ]
+[; ;SHRC.c: 28: unsigned char dado;
+[; ;SHRC.c: 36: void envia_dados_shrc(unsigned char data_to_shrc);
+[; ;SHRC.c: 37: void ativa_latch_shrc ( void );
 "48
+[v _inicializa_shrc `(v ~T0 @X0 1 ef ]
+"49
 {
-[; ;SHRC.c: 47: void inicializa_shrc(void)
-[; ;SHRC.c: 48: {
+[; ;SHRC.c: 48: void inicializa_shrc(void)
+[; ;SHRC.c: 49: {
 [e :U _inicializa_shrc ]
 [f ]
-[; ;SHRC.c: 49: LATBbits.LATB5 = 0;
-"49
-[e = . . _LATBbits 0 5 -> -> 0 `i `uc ]
-[; ;SHRC.c: 50: LATBbits.LATB6 = 0;
-"50
-[e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
-[; ;SHRC.c: 51: LATBbits.LATB7 = 0;
+[; ;SHRC.c: 51: TRISBbits.RB6 = 0;
 "51
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;SHRC.c: 53: }
+[e = . . _TRISBbits 1 6 -> -> 0 `i `uc ]
+[; ;SHRC.c: 52: TRISBbits.RB5 = 1;
+"52
+[e = . . _TRISBbits 1 5 -> -> 1 `i `uc ]
+[; ;SHRC.c: 53: TRISBbits.RB7 = 0;
 "53
+[e = . . _TRISBbits 1 7 -> -> 0 `i `uc ]
+[; ;SHRC.c: 56: LATBbits.LATB6 = 0;
+"56
+[e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
+[; ;SHRC.c: 57: LATBbits.LATB7 = 0;
+"57
+[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
+[; ;SHRC.c: 58: }
+"58
 [e :UE 362 ]
 }
-"62
-[v _envia_dados_shrc `(v ~T0 @X0 1 ef1`uc ]
-"63
-{
-[; ;SHRC.c: 62: void envia_dados_shrc(unsigned char data_to_shrc)
-[; ;SHRC.c: 63: {
-[e :U _envia_dados_shrc ]
-"62
-[v _data_to_shrc `uc ~T0 @X0 1 r1 ]
-"63
-[f ]
-"64
-[v _contador `uc ~T0 @X0 1 a ]
-[; ;SHRC.c: 64: unsigned char contador=0;
-[e = _contador -> -> 0 `i `uc ]
-[; ;SHRC.c: 65: (INTCONbits.GIE = 0);
-"65
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[; ;SHRC.c: 67: while(contador<=7)
 "67
-[e $U 364  ]
-[e :U 365 ]
-[; ;SHRC.c: 68: {
+[v _escreve_dado_SPI `(v ~T0 @X0 1 ef1`uc ]
 "68
 {
-[; ;SHRC.c: 69: if((data_to_shrc & 0x80) == 0)
-"69
-[e $ ! == & -> _data_to_shrc `i -> 128 `i -> 0 `i 367  ]
-[; ;SHRC.c: 70: {
+[; ;SHRC.c: 67: void escreve_dado_SPI(unsigned char data_to_shrc)
+[; ;SHRC.c: 68: {
+[e :U _escreve_dado_SPI ]
+"67
+[v _data_to_shrc `uc ~T0 @X0 1 r1 ]
+"68
+[f ]
 "70
-{
-[; ;SHRC.c: 71: LATBbits.LATB7 = 0;
+[v _contador `uc ~T0 @X0 1 a ]
+[; ;SHRC.c: 70: unsigned char contador=0;
+[e = _contador -> -> 0 `i `uc ]
+[; ;SHRC.c: 71: (INTCONbits.GIE = 0);
 "71
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-"72
-}
-[; ;SHRC.c: 72: }
-[e $U 368  ]
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[; ;SHRC.c: 73: while(contador<=7)
 "73
-[e :U 367 ]
-[; ;SHRC.c: 73: else
+[e $U 364  ]
+[e :U 365 ]
 [; ;SHRC.c: 74: {
 "74
 {
-[; ;SHRC.c: 75: LATBbits.LATB7 = 1;
+[; ;SHRC.c: 75: if((data_to_shrc & 0x80) == 0)
 "75
-[e = . . _LATBbits 0 7 -> -> 1 `i `uc ]
+[e $ ! == & -> _data_to_shrc `i -> 128 `i -> 0 `i 367  ]
+[; ;SHRC.c: 76: {
 "76
+{
+[; ;SHRC.c: 77: LATBbits.LATB7 = 0;
+"77
+[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
+"78
+}
+[; ;SHRC.c: 78: }
+[e $U 368  ]
+"79
+[e :U 367 ]
+[; ;SHRC.c: 79: else
+[; ;SHRC.c: 80: {
+"80
+{
+[; ;SHRC.c: 81: LATBbits.LATB7 = 1;
+"81
+[e = . . _LATBbits 0 7 -> -> 1 `i `uc ]
+"82
 }
 [e :U 368 ]
-[; ;SHRC.c: 76: }
-[; ;SHRC.c: 77: data_to_shrc = data_to_shrc << 1;
-"77
-[e = _data_to_shrc -> << -> _data_to_shrc `i -> 1 `i `uc ]
-[; ;SHRC.c: 78: _delay((unsigned long)((30)*(48000000/4000000.0)));
-"78
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 79: LATBbits.LATB6 = 1;
-"79
-[e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
-[; ;SHRC.c: 80: _delay((unsigned long)((30)*(48000000/4000000.0)));
-"80
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 81: LATBbits.LATB7 = 0;
-"81
-[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
-[; ;SHRC.c: 82: _delay((unsigned long)((30)*(48000000/4000000.0)));
-"82
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 83: LATBbits.LATB6 = 0;
+[; ;SHRC.c: 82: }
+[; ;SHRC.c: 83: data_to_shrc = data_to_shrc << 1;
 "83
-[e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
-[; ;SHRC.c: 84: _delay((unsigned long)((30)*(48000000/4000000.0)));
+[e = _data_to_shrc -> << -> _data_to_shrc `i -> 1 `i `uc ]
+[; ;SHRC.c: 84: _delay((unsigned long)((2)*(48000000/4000000.0)));
 "84
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 85: contador++;
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 85: LATBbits.LATB6 = 1;
 "85
-[e ++ _contador -> -> 1 `i `uc ]
+[e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
+[; ;SHRC.c: 86: _delay((unsigned long)((2)*(48000000/4000000.0)));
 "86
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 87: LATBbits.LATB7 = 0;
+"87
+[e = . . _LATBbits 0 7 -> -> 0 `i `uc ]
+[; ;SHRC.c: 88: _delay((unsigned long)((2)*(48000000/4000000.0)));
+"88
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 89: LATBbits.LATB6 = 0;
+"89
+[e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
+[; ;SHRC.c: 90: _delay((unsigned long)((2)*(48000000/4000000.0)));
+"90
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 91: contador++;
+"91
+[e ++ _contador -> -> 1 `i `uc ]
+"92
 }
 [e :U 364 ]
-"67
+"73
 [e $ <= -> _contador `i -> 7 `i 365  ]
 [e :U 366 ]
-[; ;SHRC.c: 86: }
-[; ;SHRC.c: 87: (INTCONbits.GIE = 1);
-"87
+[; ;SHRC.c: 92: }
+[; ;SHRC.c: 93: (INTCONbits.GIE = 1);
+"93
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;SHRC.c: 88: }
-"88
+[; ;SHRC.c: 94: }
+"94
 [e :UE 363 ]
 }
-"96
-[v _ativa_latch_shrc `(v ~T0 @X0 1 ef ]
-"97
+"143
+[v _recebe_dado_SPI `(uc ~T0 @X0 1 ef ]
+"144
 {
-[; ;SHRC.c: 96: void ativa_latch_shrc ( void )
-[; ;SHRC.c: 97: {
-[e :U _ativa_latch_shrc ]
+[; ;SHRC.c: 143: unsigned char recebe_dado_SPI()
+[; ;SHRC.c: 144: {
+[e :U _recebe_dado_SPI ]
 [f ]
-[; ;SHRC.c: 99: LATBbits.LATB5 = 0;
-"99
-[e = . . _LATBbits 0 5 -> -> 0 `i `uc ]
-[; ;SHRC.c: 100: _delay((unsigned long)((30)*(48000000/4000000.0)));
-"100
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 101: LATBbits.LATB5 = 1;
-"101
-[e = . . _LATBbits 0 5 -> -> 1 `i `uc ]
-[; ;SHRC.c: 102: _delay((unsigned long)((60)*(48000000/4000000.0)));
-"102
-[e ( __delay (1 -> * -> -> 60 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-[; ;SHRC.c: 103: LATBbits.LATB5 = 0;
-"103
-[e = . . _LATBbits 0 5 -> -> 0 `i `uc ]
-[; ;SHRC.c: 104: }
-"104
+[; ;SHRC.c: 145: dado = 0;
+"145
+[e = _dado -> -> 0 `i `uc ]
+"147
+[v _contador `uc ~T0 @X0 1 a ]
+[; ;SHRC.c: 147: unsigned char contador=0;
+[e = _contador -> -> 0 `i `uc ]
+[; ;SHRC.c: 149: (INTCONbits.GIE = 0);
+"149
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[; ;SHRC.c: 151: while(contador<=7)
+"151
+[e $U 370  ]
+[e :U 371 ]
+[; ;SHRC.c: 152: {
+"152
+{
+[; ;SHRC.c: 153: dado |= (PORTBbits.RB5 << (7-contador));
+"153
+[e =| _dado -> << -> . . _PORTBbits 0 5 `i - -> 7 `i -> _contador `i `uc ]
+[; ;SHRC.c: 155: _delay((unsigned long)((2)*(48000000/4000000.0)));
+"155
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 156: LATBbits.LATB6 = 1;
+"156
+[e = . . _LATBbits 0 6 -> -> 1 `i `uc ]
+[; ;SHRC.c: 157: _delay((unsigned long)((2)*(48000000/4000000.0)));
+"157
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 158: _delay((unsigned long)((2)*(48000000/4000000.0)));
+"158
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 159: LATBbits.LATB6 = 0;
+"159
+[e = . . _LATBbits 0 6 -> -> 0 `i `uc ]
+[; ;SHRC.c: 160: _delay((unsigned long)((2)*(48000000/4000000.0)));
+"160
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
+[; ;SHRC.c: 161: contador++;
+"161
+[e ++ _contador -> -> 1 `i `uc ]
+"162
+}
+[e :U 370 ]
+"151
+[e $ <= -> _contador `i -> 7 `i 371  ]
+[e :U 372 ]
+[; ;SHRC.c: 162: }
+[; ;SHRC.c: 163: (INTCONbits.GIE = 1);
+"163
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;SHRC.c: 164: return dado;
+"164
+[e ) _dado ]
+[e $UE 369  ]
+[; ;SHRC.c: 165: }
+"165
 [e :UE 369 ]
-}
-"112
-[v _controle_shrc `(v ~T0 @X0 1 ef ]
-"113
-{
-[; ;SHRC.c: 112: void controle_shrc (void)
-[; ;SHRC.c: 113: {
-[e :U _controle_shrc ]
-[f ]
-[; ;SHRC.c: 115: envia_dados_shrc(dado);
-"115
-[e ( _envia_dados_shrc (1 _dado ]
-[; ;SHRC.c: 116: ativa_latch_shrc();
-"116
-[e ( _ativa_latch_shrc ..  ]
-[; ;SHRC.c: 117: }
-"117
-[e :UE 370 ]
-}
-"119
-[v _shrc_seta_bit `(v ~T0 @X0 1 ef1`uc ]
-"120
-{
-[; ;SHRC.c: 119: void shrc_seta_bit(unsigned char posicao_bit)
-[; ;SHRC.c: 120: {
-[e :U _shrc_seta_bit ]
-"119
-[v _posicao_bit `uc ~T0 @X0 1 r1 ]
-"120
-[f ]
-[; ;SHRC.c: 121: dado |= (1<<posicao_bit);
-"121
-[e =| _dado -> << -> 1 `i _posicao_bit `uc ]
-[; ;SHRC.c: 122: }
-"122
-[e :UE 371 ]
-}
-"124
-[v _shrc_apaga_bit `(v ~T0 @X0 1 ef1`uc ]
-"125
-{
-[; ;SHRC.c: 124: void shrc_apaga_bit(unsigned char posicao_bit)
-[; ;SHRC.c: 125: {
-[e :U _shrc_apaga_bit ]
-"124
-[v _posicao_bit `uc ~T0 @X0 1 r1 ]
-"125
-[f ]
-[; ;SHRC.c: 126: dado &= ~(1<<posicao_bit);
-"126
-[e =& _dado -> ~ << -> 1 `i _posicao_bit `uc ]
-[; ;SHRC.c: 127: }
-"127
-[e :UE 372 ]
-}
-"129
-[v _shrc_recebe_byte `(v ~T0 @X0 1 ef1`uc ]
-"130
-{
-[; ;SHRC.c: 129: void shrc_recebe_byte(unsigned char dado_recebido)
-[; ;SHRC.c: 130: {
-[e :U _shrc_recebe_byte ]
-"129
-[v _dado_recebido `uc ~T0 @X0 1 r1 ]
-"130
-[f ]
-[; ;SHRC.c: 131: dado = dado_recebido;
-"131
-[e = _dado _dado_recebido ]
-[; ;SHRC.c: 132: }
-"132
-[e :UE 373 ]
 }

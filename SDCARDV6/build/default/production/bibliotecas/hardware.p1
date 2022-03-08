@@ -3691,18 +3691,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 99: {
 [e :U _init_interrupt ]
 [f ]
-[; ;hardware.c: 100: INTCON = 0b11110000;
+[; ;hardware.c: 100: INTCON = 0b10110000;
 "100
-[e = _INTCON -> -> 240 `i `uc ]
+[e = _INTCON -> -> 176 `i `uc ]
 [; ;hardware.c: 101: INTCON2 = 0b00000000;
 "101
 [e = _INTCON2 -> -> 0 `i `uc ]
 [; ;hardware.c: 102: INTCON3 = 0b00000000;
 "102
 [e = _INTCON3 -> -> 0 `i `uc ]
-[; ;hardware.c: 104: PIE1 = 0b00100000;
+[; ;hardware.c: 104: PIE1 = 0b00001000;
 "104
-[e = _PIE1 -> -> 32 `i `uc ]
+[e = _PIE1 -> -> 8 `i `uc ]
 [; ;hardware.c: 105: }
 "105
 [e :UE 365 ]
@@ -3898,9 +3898,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 203: TMR2 = 0;
 "203
 [e = _TMR2 -> -> 0 `i `uc ]
-[; ;hardware.c: 204: PR2 = 0xFF;
+[; ;hardware.c: 204: PR2 = 0x01;
 "204
-[e = _PR2 -> -> 255 `i `uc ]
+[e = _PR2 -> -> 1 `i `uc ]
 [; ;hardware.c: 205: }
 "205
 [e :UE 380 ]

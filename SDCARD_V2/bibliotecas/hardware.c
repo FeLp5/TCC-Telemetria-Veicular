@@ -18,7 +18,8 @@
 #include "hardware.h"
 #include "adc.h"
 //#include "biblioteca/display_lcd.h"
-
+#include "../main.h"
+#include "SHRC.h"
 /*****************************************************************************/
 
 /******************************************************************************
@@ -62,11 +63,14 @@ void init_hardware(void)
     /* Configura Timer0 */
 	config_timer_zero();
     
+     /* Configura Timer2 */
+    config_timer_dois();
+    
     /* Configura Interrupcoes do microcontrolador */
 	init_interrupt();
     
     /* Inicializa conversor AD*/
-    inicializa_adc();
+//    inicializa_adc();
 }
 
 
@@ -93,10 +97,11 @@ void config_timer_zero(void)
  *****************************************************************************/
 void init_interrupt(void)
 {
-	INTCON  = 0b11110000;
+	INTCON  = 0b10110000;
     INTCON2 = 0b00000000;
-    INTCON3 = 0b00000000;	
-	PIE1    = 0b10100000;   //SSPIE Enable
+    INTCON3 = 0b00000000;
+    
+	PIE1    = 0b00001000;   //SSPIE Enable
 }
 
  /******************************************************************************
@@ -148,8 +153,8 @@ void write_timer_zero(unsigned int timer0)
  *****************************************************************************/
 void init_ports(void)
 {
-    TRISB = 0b00000001;            
-	LATB  = 0x00;
+    TRISB = 0b00100001;            
+	LATB  = 0xFF;
     TRISD = 0x00;           
     TRISA = 0b00000111; 
     TRISC = 0x01111111;
@@ -194,9 +199,9 @@ void ms_delay(unsigned int val)
  *****************************************************************************/
 void config_timer_dois(void)
 {
-    T2CON = 0b00000111;
+    T2CON = 0b00000100;
     TMR2 = 0;
-    PR2 = 0xFF;
+    PR2 = 0x01;
 }
 
  /******************************************************************************
@@ -213,7 +218,18 @@ void timer_dois(void)
         TMR2 = 0;
 //        posicao_cursor_lcd(2,1);
 //        escreve_frase_ram_lcd("olá");
-        PORTBbits.RB4 = ~PORTBbits.RB4;
+        static unsigned char flag = 0;
+        flag = !flag;
+        if(!flag)
+        {
+            shrc_seta_bit(BIT_2);
+            controle_shrc();
+        }
+        else
+        {
+            shrc_apaga_bit(BIT_2);
+            controle_shrc();
+        }
 
     }
 }

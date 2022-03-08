@@ -25,23 +25,34 @@
 #include <p18f4550.h>
 
 //Bibliotecas do OPENLAB================
-#include "bibliotecas/config.h"
-#include "bibliotecas/ff.h"
+//#include "bibliotecas/config.h"
+#include "bibliotecas/tff.h"
 #include "bibliotecas/diskio.h"
 //======================================
 #include "main.h"
 #include "bibliotecas/hardware.h"
 #include "bibliotecas/uart.h"
 //#include "bibliotecas/chaves.h"
-#include "bibliotecas/SHRC.h"
+//#include "bibliotecas/SHRC.h"
 #include "bibliotecas/display_lcd.h"
 //#include "bibliotecas/adc.h"
-//#include "bibliotecas/SPI.h"
+#include "bibliotecas/SPI.h"
 #include "bibliotecas/SDCard.h"
 #include "bibliotecas/GPS.h"
 //=-============================
 
+#define _XTAL_FREQ 48000000
 
+//#pragma config FOSC     = HSPLL_HS
+//#pragma config PLLDIV   = 5				// (20 MHz crystal on PICDEM FS USB board)
+//#pragma config CPUDIV   = OSC1_PLL2		// Clock source from 96MHz PLL/2
+//
+//#pragma config PWRT = ON
+//#pragma config BOR = ON
+//#pragma config BORV = 2
+//#pragma config WDT = OFF
+//#pragma config DEBUG = OFF
+//#pragma config LVP = OFF
 
 /******************************************************************************
 * Variaveis Globais
@@ -157,7 +168,7 @@ void interrupt isr(void)
 void inicializa_tarefas(void)
 {
 
-    p_tarefas[0] = SDCard;
+//    p_tarefas[0] = SDCard;
 //    p_tarefas[1] = gps;
 	/*init temporization values of each task. 
 	These values do no change during execution*/
@@ -209,12 +220,14 @@ void main(void)
     init_hardware();
 //	inicializa_uart();
     init_lcd();
-    inicializa_shrc();
+//    inicializa_shrc();
 //    inicializa_i2c();
 	mensagem_inicial();
-    inicializa_tarefas();;
-//    inicializa_SPI(0,3,1);
+    inicializa_tarefas();
+    inicializa_SPI(0,3,1);
     ADCON1 = 0X0F;
+//     CMCON |= 7;
+    SDCard();
     while(1)
     {
         //Verification: check if there�s a task to be executed
@@ -224,8 +237,7 @@ void main(void)
             escalonador();			
         }
 //        leitura_chaves_sistema();   /*Driver*/
-//        leitura_continua_adc();     /*Driver*/
-        
+//        leitura_continua_adc();     /*Driver*/ 
     }
 }
 /******************************************************************************

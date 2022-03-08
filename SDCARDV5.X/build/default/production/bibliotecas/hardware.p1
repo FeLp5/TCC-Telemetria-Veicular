@@ -88,11 +88,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PR2 `Vuc ~T0 @X0 0 e@4043 ]
 "10193
 [v _TMR2IF `Vb ~T0 @X0 0 e@31985 ]
-"42 bibliotecas/SHRC.h
+"51 bibliotecas/SHRC.h
 [v _shrc_seta_bit `(v ~T0 @X0 0 ef1`uc ]
-"38
+"45
 [v _controle_shrc `(v ~T0 @X0 0 ef ]
-"44
+"53
 [v _shrc_apaga_bit `(v ~T0 @X0 0 ef1`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -3616,11 +3616,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 36: unsigned int leitura_adc(unsigned char canal);
 [; ;adc.h: 38: void leitura_continua_adc(void);
 [; ;adc.h: 40: unsigned int valor_medio_adc(unsigned char canal);
-[; ;SHRC.h: 38: void controle_shrc (void);
-[; ;SHRC.h: 40: void inicializa_shrc(void);
-[; ;SHRC.h: 42: void shrc_seta_bit(unsigned char posicao_bit);
-[; ;SHRC.h: 44: void shrc_apaga_bit(unsigned char posicao_bit);
-[; ;SHRC.h: 46: void shrc_recebe_byte(unsigned char dado_recebido);
+[; ;SHRC.h: 45: void controle_shrc (void);
+[; ;SHRC.h: 47: void inicializa_shrc(void);
+[; ;SHRC.h: 49: void escreve_dado_SPI(unsigned char data_to_shrc);
+[; ;SHRC.h: 51: void shrc_seta_bit(unsigned char posicao_bit);
+[; ;SHRC.h: 53: void shrc_apaga_bit(unsigned char posicao_bit);
+[; ;SHRC.h: 55: unsigned char recebe_dado_SPI();
 [; ;hardware.c: 30: union Timers
 [; ;hardware.c: 31: {
 [; ;hardware.c: 32: unsigned int lt;
@@ -3797,9 +3798,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 155: {
 [e :U _init_ports ]
 [f ]
-[; ;hardware.c: 156: TRISB = 0b00000001;
+[; ;hardware.c: 156: TRISB = 0b00100001;
 "156
-[e = _TRISB -> -> 1 `i `uc ]
+[e = _TRISB -> -> 33 `i `uc ]
 [; ;hardware.c: 157: LATB = 0xFF;
 "157
 [e = _LATB -> -> 255 `i `uc ]
@@ -3809,9 +3810,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.c: 159: TRISA = 0b00000111;
 "159
 [e = _TRISA -> -> 7 `i `uc ]
-[; ;hardware.c: 160: TRISC = 0x11111111;
+[; ;hardware.c: 160: TRISC = 0x01111111;
 "160
-[e = _TRISC -> -> 286331153 `l `uc ]
+[e = _TRISC -> -> 17895697 `l `uc ]
 [; ;hardware.c: 161: TRISE = 0b00000011;
 "161
 [e = _TRISE -> -> 3 `i `uc ]
@@ -3925,17 +3926,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 "218
 [e = _TMR2 -> -> 0 `i `uc ]
 "221
-[v F3847 `uc ~T0 @X0 1 s flag ]
-[i F3847
+[v F3848 `uc ~T0 @X0 1 s flag ]
+[i F3848
 -> -> 0 `i `uc
 ]
 [; ;hardware.c: 221: static unsigned char flag = 0;
 [; ;hardware.c: 222: flag = !flag;
 "222
-[e = F3847 -> -> ! != -> F3847 `i -> -> -> 0 `i `uc `i `i `uc ]
+[e = F3848 -> -> ! != -> F3848 `i -> -> -> 0 `i `uc `i `i `uc ]
 [; ;hardware.c: 223: if(!flag)
 "223
-[e $ ! ! != -> F3847 `i -> -> -> 0 `i `uc `i 383  ]
+[e $ ! ! != -> F3848 `i -> -> -> 0 `i `uc `i 383  ]
 [; ;hardware.c: 224: {
 "224
 {

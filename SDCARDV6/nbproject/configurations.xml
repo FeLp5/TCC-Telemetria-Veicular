@@ -17,9 +17,8 @@
       <itemPath>bibliotecas/int_eeprom.h</itemPath>
       <itemPath>bibliotecas/uart.h</itemPath>
       <itemPath>bibliotecas/diskio.h</itemPath>
-      <itemPath>bibliotecas/ffconf.h</itemPath>
       <itemPath>bibliotecas/integer.h</itemPath>
-      <itemPath>bibliotecas/ff.h</itemPath>
+      <itemPath>bibliotecas/tff.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -42,7 +41,7 @@
       <itemPath>bibliotecas/diskio.c</itemPath>
       <itemPath>bibliotecas/ffsystem.c</itemPath>
       <itemPath>bibliotecas/ffunicode.c</itemPath>
-      <itemPath>bibliotecas/ff.c</itemPath>
+      <itemPath>bibliotecas/tff.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

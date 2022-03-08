@@ -19,11 +19,11 @@
 /*-----------------------------------------------------------------------*/
 
 #include "SDCard.h"
-//#include "SPI.h"
+#include "SPI.h"
 #include "hardware.h"
 #include "integer.h"
 #include "display_lcd.h"
-#include "ff.h"
+#include "tff.h"
 #include "diskio.h"
 #include "SHRC.h"
 //#include "sw_uart.h"
@@ -56,12 +56,13 @@ BYTE folder[48] = {""};
 //==============================================================================
 
 extern void readover(int);
+void sdc_wait_ready(void);
 
 BYTE response(void)
 {
     unsigned char buff;
     CHIP_SELECT = 0;//CS low   
-    buff= recebe_dado_SPI();   //read buffer (R1) should be 0x01 = idle mode   
+    buff= ReadSPI_();   //read buffer (R1) should be 0x01 = idle mode   
     return buff;
 }
 
@@ -81,7 +82,7 @@ void dummy_clocks(unsigned char n)
     for(i=0;i<n;i++)
     {
         CHIP_SELECT = 1;
-        escreve_dado_SPI(0XFF);
+        ReadSPI_();
         CHIP_SELECT = 0;
     }
 }
@@ -97,13 +98,26 @@ void dummy_clocks(unsigned char n)
 void proceed(void)
 {
     CHIP_SELECT = 0; //CS Low;
-    escreve_dado_SPI(0xFF); // Give Time For SD_CARD To Proceed
+    WriteSPI_(0xFF); // Give Time For SD_CARD To Proceed
     CHIP_SELECT = 1; //CS High;
 }
 
 //extern  void check();
 
 
+static
+BYTE wait_ready (void)
+{
+	BYTE res;
+	DWORD timeout = 0x7FFF;
+	char msg[10];
+	
+	do
+		res = ReadSPI_();
+	while ((res != 0xFF) && (--timeout));
+	
+	return res;
+}
 /******************************************************************************
  * Funcao:		command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
  * Entrada:		unsigned char CMD, unsigned long int arg, unsigned char CRC
@@ -114,17 +128,24 @@ void proceed(void)
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
 {
     unsigned char argument;
-//    escreve_dado_SPI(0xFF);
-    escreve_dado_SPI(CMD);
+    
+    if (wait_ready() != 0xFF) 
+    {
+        posicao_cursor_lcd(1,0);
+        escreve_frase_ram_lcd("Nao ta pronto");
+    }
+    
+    WriteSPI_(0xFF);
+    WriteSPI_(CMD);
     argument = arg>>24;
-    escreve_dado_SPI(argument);
+    WriteSPI_(argument);
     argument = arg>>16;
-    escreve_dado_SPI(argument);
+    WriteSPI_(argument);
     argument = arg>>8;
-    escreve_dado_SPI(argument);
+    WriteSPI_(argument);
     argument = arg;
-    escreve_dado_SPI(argument);
-    escreve_dado_SPI(CRC);
+    WriteSPI_(argument);
+    WriteSPI_(CRC);
     
 //    if ( CMD == 12 )
 //    {
@@ -163,27 +184,27 @@ void SDCard(void)
     proceed();
     
     __delay_ms(1);
-    FResult = f_mount(&fs, "", 1);
+    FResult = f_mount(0, &fs);
     if(FResult == FR_OK)
     {
         
     
         posicao_cursor_lcd(1,0);
         escreve_frase_ram_lcd("Abrindo arquivo");
-        FResult = f_open(&fil,"te.bin", FA_WRITE | FA_CREATE_ALWAYS);
+        FResult = f_open(&fil,"teste.txt", FA_WRITE | FA_OPEN_EXISTING | FA_CREATE_NEW );
         if(FResult == FR_OK)
         {
             
 //            f_close(&fil);
 //            posicao_cursor_lcd(1,0);
 //            escreve_frase_ram_lcd("arquivo criado");
-            FResult = f_write(&fil, "teste", br, &bw);
+            FResult = f_write(&fil, "yrds", 6, &bw);
             if(FResult == FR_OK)
             {
 //                FResult = f_read(&fil, buff, br, &bw);;
 //                FResult = f_printf(&fil, "%d", 1234);
-                posicao_cursor_lcd(2,0);
-                escreve_frase_ram_lcd(buff);
+//                posicao_cursor_lcd(2,0);
+//                escreve_frase_ram_lcd(buff);
                 f_close(&fil);
  
                 posicao_cursor_lcd(2,0);
@@ -193,7 +214,7 @@ void SDCard(void)
             else
             {
                 posicao_cursor_lcd(2,0);
-                escreve_frase_ram_lcd("FILE NOT CREATED");
+                escreve_frase_ram_lcd("MAS QUE MERDA");
                 posicao_cursor_lcd(1,0);
                 escreve_inteiro_lcd(FResult);
                 T0CONbits.TMR0ON = 1;
@@ -221,6 +242,11 @@ void SDCard(void)
             T0CONbits.TMR0ON = 1;
         }
    
+    }
+    else
+    {
+        posicao_cursor_lcd(1,0);
+        escreve_inteiro_lcd(FResult);
     }
     return;
 }

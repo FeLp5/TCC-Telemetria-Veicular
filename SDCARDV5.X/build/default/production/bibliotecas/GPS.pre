@@ -4969,9 +4969,16 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 54 "bibliotecas/GPS.h"
+# 56 "bibliotecas/GPS.h"
 void tratamento_uart(unsigned char received_char);
-void GPS(void);
+void gps(void);
+unsigned long int get_gpstime();
+float get_latitude(unsigned char);
+float get_longitude(unsigned char);
+unsigned long int get_dt(unsigned char);
+void convert_time_to_utc(unsigned long int);
+unsigned char convert_to_date(unsigned char dt[]);
+float convert_to_degrees(float);
 
 # 34 "bibliotecas/hardware.h"
 void init_hardware(void);
@@ -5020,243 +5027,277 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 13 "bibliotecas/GPS.c"
+# 40 "bibliotecas/uart.h"
+void envia_dado_uart(char data);
+
+unsigned char verifica_buffer_uart(void);
+
+void envia_string_uart(const char *string);
+
+char verifica_dado_disponivel_uart(void);
+
+char recebe_dado_uart(void);
+
+void recebe_string_uart(char *buffer, unsigned char length);
+
+void escreve_inteiro_uart(int valor);
+
+void inicializa_uart(void);
+
+# 16 "bibliotecas/GPS.c"
 unsigned long int get_gpstime();
 float get_latitude(unsigned char);
 float get_longitude(unsigned char);
-float get_altitude(unsigned char);
-void convert_time_to_UTC(unsigned long int);
+unsigned long int get_dt(unsigned char);
+void convert_time_to_utc(unsigned long int);
+unsigned char convert_to_date(unsigned char dt[]);
 float convert_to_degrees(float);
-float get_sv(unsigned char date_pointer);
-float get_date(unsigned char date_pointer);
 
-char GGA_Buffer[80];
-char GGA_CODE[3];
+# 28
+char gga_buffer[80];
+char rmc_buffer[70];
 
-unsigned char N_S, E_W;
-unsigned char GGA_Pointers[20];
-char CommaCounter_GGA;
-char Data_Buffer[15];
-volatile unsigned int GGA_Index;
-volatile unsigned char IsItGGAString = 0;
+char gga_code[3];
+char rmc_code[3];
+
+unsigned char n_s, E_W;
+
+unsigned char gga_pointers[20];
+unsigned char rmc_pointers[12];
+
+char comma_counter_gga;
+char comma_counter_rmc;
+
+char data_buffer[15];
+
+char dado_buffer[7];
 
 
-char RCM_CODE[3];
-char RCM_Buffer[70];
-unsigned char RCM_Pointers[12];
-volatile unsigned int RCM_Index;
-volatile unsigned char IsItRCMString = 0;
-char CommaCounter_RCM;
+volatile unsigned int gga_index;
+volatile unsigned int rmc_index;
 
-void GPS(void)
+volatile unsigned char is_it_gga_string = 0;
+volatile unsigned char is_it_rmc_string = 0;
+
+void gps(void)
 {
-
+inicializa_uart();
 unsigned char data_out[34];
-unsigned long int Time;
-float Latitude, Longitude, Altitude;
-char GPS_Buffer[15];
+unsigned long int time;
+unsigned long int date;
+float latitude, longitude;
+char gps_buffer[15];
 
-# 98
+# 113
+time = get_gpstime();
+convert_time_to_utc(time);
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Hora:");
+posicao_cursor_lcd(1,7);
+escreve_frase_ram_lcd(data_buffer);
+
+
+date = get_dt(rmc_pointers[7]);
+
+
+
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("Data:");
+
+posicao_cursor_lcd(2,7);
+escreve_frase_ram_lcd(dado_buffer);
+
+
+_delay((unsigned long)((2000)*(48000000/4000.0)));
+escreve_cmd_lcd(0b00000001);
+
+
+latitude = get_latitude(gga_pointers[0]);
+latitude = convert_to_degrees(latitude);
+sprintf(gps_buffer,"%.07f",latitude);
+
+
+posicao_cursor_lcd(1,0);
+escreve_frase_ram_lcd("Lat:");
+posicao_cursor_lcd(1,5);
+escreve_frase_ram_lcd(gps_buffer);
+memset(gps_buffer,0,15);
+
+
+
+
+longitude = get_longitude(gga_pointers[2]);
+longitude = convert_to_degrees(longitude);
+sprintf(gps_buffer,"%.07f",longitude);
+
+posicao_cursor_lcd(2,0);
+escreve_frase_ram_lcd("Lon:");
+posicao_cursor_lcd(2,5);
+escreve_frase_ram_lcd(gps_buffer);
+memset(gps_buffer,0,15);
+
+_delay((unsigned long)((2000)*(48000000/4000.0)));
+escreve_cmd_lcd(0b00000001);
+
+
 }
 
-# 109
+# 175
 unsigned long int get_gpstime()
 {
 unsigned char index;
-unsigned char Time_Buffer[15];
-unsigned long int _Time;
+unsigned char time_buffer[15];
+unsigned long int _time;
 
 
-for(index = 0; GGA_Buffer[index]!=','; index++)
+for(index = 0; gga_buffer[index]!=','; index++)
 {
-Time_Buffer[index] = GGA_Buffer[index];
+time_buffer[index] = gga_buffer[index];
 }
-_Time= atol(Time_Buffer);
-return _Time;
+_time= atol(time_buffer);
+return _time;
 }
 
-# 132
+# 198
 float get_latitude(char lat_pointer)
 {
 unsigned char lat_index = lat_pointer+1;
 unsigned char index = 0;
-char Lat_Buffer[15];
+char lat_buffer[15];
 float _latitude;
 
 
-for(;GGA_Buffer[lat_index]!=',';lat_index++){
-Lat_Buffer[index]= GGA_Buffer[lat_index];
+for(;gga_buffer[lat_index]!=',';lat_index++){
+lat_buffer[index]= gga_buffer[lat_index];
 index++;
 }
 lat_index++;
-N_S = GGA_Buffer[lat_index];
-_latitude = atof(Lat_Buffer);
+n_s = gga_buffer[lat_index];
+_latitude = atof(lat_buffer);
 return _latitude;
 }
 
-# 158
+# 224
 float get_longitude(unsigned char long_pointer)
 {
 unsigned char long_index;
 unsigned char index = long_pointer+1;
-char Long_Buffer[15];
+char long_buffer[15];
 float _longitude;
 long_index=0;
 
 
-for( ; GGA_Buffer[index]!=','; index++){
-Long_Buffer[long_index]= GGA_Buffer[index];
+for( ; gga_buffer[index]!=','; index++){
+long_buffer[long_index]= gga_buffer[index];
 long_index++;
 }
 long_index++;
-E_W = GGA_Buffer[long_index];
-_longitude = atof(Long_Buffer);
+E_W = gga_buffer[long_index];
+_longitude = atof(long_buffer);
 return _longitude;
 }
 
-# 186
-float get_altitude(unsigned char alt_pointer)
+# 250
+unsigned long int get_dt(unsigned char dt_pointer)
 {
-unsigned char alt_index;
-unsigned char index = alt_pointer+1;
-char Alt_Buffer[12];
-float _Altitude;
-alt_index=0;
+unsigned char dt_index = dt_pointer + 1;
+unsigned long int _dt;
+unsigned char index;
+index = 0;
 
 
-for( ; GGA_Buffer[index]!=','; index++){
-Alt_Buffer[alt_index]= GGA_Buffer[index];
-alt_index++;
-}
-_Altitude = atof(Alt_Buffer);
-return _Altitude;
+for(;rmc_buffer[dt_index]!=',';dt_index++){
+dado_buffer[index]= rmc_buffer[dt_index];
+index++;
 }
 
-# 210
-void convert_time_to_UTC(unsigned long int UTC_Time)
+dado_buffer[strlen(dado_buffer) - 0] = '\0';
+
+# 292
+}
+
+# 302
+void convert_time_to_utc(unsigned long int utc_time)
 {
 unsigned int hour, min, sec;
-
-hour = (UTC_Time / 10000);
-min = (UTC_Time % 10000) / 100;
-sec = (UTC_Time % 10000) % 100;
-
-sprintf(Data_Buffer, "%d:%d:%d", hour,min,sec);
-
+hour = (utc_time / 10000) + -3;
+min = (utc_time % 10000) / 100;
+sec = (utc_time % 10000) % 100;
+sprintf(data_buffer, "%d:%d:%d", hour,min,sec);
 }
 
-float convert_to_degrees(float NMEA_lat_long){
+unsigned char convert_to_date(unsigned char dt[])
+{
+
+# 335
+}
 
 
+
+float convert_to_degrees(float nmea_lat_long){
 float minutes, dec_deg, decimal;
-
 int degrees;
-
 float position;
-
-degrees = (int)(NMEA_lat_long/100.00);
-minutes = NMEA_lat_long - degrees*100.00;
+degrees = (int)(nmea_lat_long/100.00);
+minutes = nmea_lat_long - degrees*100.00;
 dec_deg = minutes / 60.00;
 decimal = degrees + dec_deg;
-if (N_S == 'S' || E_W == 'W') {
+if (n_s == 'S' || E_W == 'W') {
 decimal *= -1;
 }
 
 return decimal;
 }
 
-# 249
-float get_date(unsigned char date_pointer)
-{
-unsigned char date_index;
-unsigned char index = date_pointer + 1;
-char date_buffer[15];
-unsigned long int _date;
-date_index=0;
-
-
-for( ; RCM_Buffer[index]!=','; index++){
-date_buffer[date_index]= RCM_Buffer[index];
-date_index++;
-}
-_date = atof(date_buffer);
-return _date;
-}
-
-
-
-float get_sv(unsigned char date_pointer)
-{
-unsigned char date_index;
-unsigned char index = date_pointer + 1;
-char date_buffer[15];
-unsigned int _date;
-date_index=0;
-
-
-for( ; GGA_Buffer[index]!=','; index++){
-date_buffer[date_index]= GGA_Buffer[index];
-date_index++;
-}
-_date = atof(date_buffer);
-return _date;
-}
-
-# 293
+# 363
 void tratamento_uart(unsigned char received_char)
 {
 if(received_char =='$'){
-GGA_Index = 0;
-RCM_Index = 0;
-IsItGGAString = 0;
-IsItRCMString = 0;
-CommaCounter_GGA = 0;
-CommaCounter_RCM = 0;
+gga_index = 0;
+rmc_index = 0;
+is_it_gga_string = 0;
+is_it_rmc_string = 0;
+comma_counter_gga = 0;
+comma_counter_rmc = 0;
 }
 
-
-if(IsItGGAString == 1)
+if(is_it_gga_string == 1)
 {
 if(received_char == ',' )
 {
-GGA_Pointers[CommaCounter_GGA++] = GGA_Index;
+gga_pointers[comma_counter_gga++] = gga_index;
 }
-GGA_Buffer[GGA_Index++] = received_char;
+gga_buffer[gga_index++] = received_char;
 }
-else if(GGA_CODE[0] == 'G' && GGA_CODE[1] == 'G' && GGA_CODE[2] == 'A'){
-IsItGGAString = 1;
-GGA_CODE[0] = 0;
-GGA_CODE[1] = 0;
-GGA_CODE[2] = 0;
+else if(gga_code[0] == 'G' && gga_code[1] == 'G' && gga_code[2] == 'A'){
+is_it_gga_string = 1;
+gga_code[0] = 0;
+gga_code[1] = 0;
+gga_code[2] = 0;
 }
 else{
-GGA_CODE[0] = GGA_CODE[1];
-GGA_CODE[1] = GGA_CODE[2];
-GGA_CODE[2] = received_char;
+gga_code[0] = gga_code[1];
+gga_code[1] = gga_code[2];
+gga_code[2] = received_char;
 }
 
-
-
-if(IsItRCMString == 1)
+if(is_it_rmc_string == 1)
 {
 if(received_char == ',' )
 {
-RCM_Pointers[CommaCounter_RCM++] = RCM_Index;
+rmc_pointers[comma_counter_rmc++] = rmc_index;
 }
-RCM_Buffer[RCM_Index++] = received_char;
+rmc_buffer[rmc_index++] = received_char;
 }
-else if(RCM_CODE[0] == 'R' && RCM_CODE[1] == 'M' && RCM_CODE[2] == 'C'){
-IsItRCMString = 1;
-RCM_CODE[0] = 0;
-RCM_CODE[1] = 0;
-RCM_CODE[2] = 0;
+else if(rmc_code[0] == 'R' && rmc_code[1] == 'M' && rmc_code[2] == 'C'){
+is_it_rmc_string = 1;
+rmc_code[0] = 0;
+rmc_code[1] = 0;
+rmc_code[2] = 0;
 }
 else{
-RCM_CODE[0] = RCM_CODE[1];
-RCM_CODE[1] = RCM_CODE[2];
-RCM_CODE[2] = received_char;
+rmc_code[0] = rmc_code[1];
+rmc_code[1] = rmc_code[2];
+rmc_code[2] = received_char;
 }
-
-
-
 }

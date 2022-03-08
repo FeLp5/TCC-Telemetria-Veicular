@@ -47,11 +47,10 @@
 ******************************************************************************/
 void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
-unsigned char recebe_dado_SPI(void);
+unsigned char ReadSPI_(void);
 
 char WriteSPI_(unsigned char dado);
 
-unsigned char verifica_buffer_SPI(void);
 
 
 /*****************************************************************************/

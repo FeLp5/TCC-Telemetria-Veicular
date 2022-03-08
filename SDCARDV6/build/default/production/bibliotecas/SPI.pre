@@ -4852,12 +4852,12 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 48 "bibliotecas/SPI.h"
+# 50 "bibliotecas/SPI.h"
 void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
 
 unsigned char ReadSPI_(void);
 
-char WriteSPI_(unsigned char dado);
+void WriteSPI_(unsigned char dado);
 
 # 31 "bibliotecas/SPI.c"
 unsigned char estado = 0;
@@ -4865,47 +4865,24 @@ unsigned char estado = 0;
 # 49
 void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase)
 {
-SSPCON1bits.SSPEN = 0;
-SSPSTAT &= 0x3F;
-SSPCON1 = 0x00;
-SSPCON1 |= sync_mode<<7;
-SSPSTAT |= smp_phase;
-TRISBbits.RB4 = 0;
-switch(bus_mode)
-{
-case 0:
-SSPSTATbits.CKE = 1;
-break;
-case 2:
-SSPSTATbits.CKE = 1;
-SSPCON1bits.CKP = 1;
-break;
-case 3:
-SSPCON1bits.CKP = 1;
-break;
-default:
-break;
-}
-
-switch( sync_mode )
-{
-case 4:
-TRISBbits.RB1 = 1;
-TRISBbits.RB4 = 1;
-break;
-
-case 5:
-TRISBbits.RB1 = 1;
-break;
-
-default:
 TRISBbits.RB1 = 0;
-break;
-}
-
+TRISBbits.RB4 = 0;
 TRISBbits.RB0 = 1;
 TRISCbits.RC7 = 0;
 
+LATBbits.LATB4 = 1;
+SSPSTAT &= 0x3F;
+SSPCON1 = 0x00;
+
+# 95
+SSPSTATbits.SMP = 0;
+SSPSTATbits.CKE = 1;
+SSPCON1bits.CKP = 0;
+
+SSPCON1 = 0b00000011;
+
+
+LATBbits.LATB4 = 1;
 
 
 SSPCON1bits.SSPEN = 1;
@@ -4914,44 +4891,26 @@ escreve_frase_ram_lcd("SPI configurada!");
 escreve_cmd_lcd(0b00000001);
 }
 
-# 108
+# 119
 unsigned char ReadSPI_(void)
 {
-PIR1bits.SSPIF = 0;
-unsigned char temp_var;
-temp_var = SSPBUF;
 
-SSPBUF = 0x00;
+# 126
+SSPBUF = 0xFF;
 
-while(!PIR1bits.SSPIF);
-posicao_cursor_lcd(2,5);
-escreve_inteiro_lcd(SSPBUF);
+while(!SSPSTATbits.BF);
 return (SSPBUF);
 }
 
-# 129
-char WriteSPI_(unsigned char dado)
+# 139
+void WriteSPI_(unsigned char dado)
 {
 unsigned char TempVar;
 TempVar = SSPBUF;
 PIR1bits.SSPIF = 0;
-SSPCON1bits.WCOL = 0;
 
-
-
+# 150
 SSPBUF = dado;
-if (SSPCON1 & 0x80 )
-{
-return (-1);
-}
-else
-{
 while(!PIR1bits.SSPIF);
-_delay((unsigned long)((1000)*(48000000/4000.0)));
-
-# 157
-return (0);
-}
-
 }
 
