@@ -26,7 +26,7 @@
 
 //Bibliotecas do OPENLAB================
 //#include "bibliotecas/config.h"
-#include "bibliotecas/ff.h"
+#include "bibliotecas/tff.h"
 #include "bibliotecas/diskio.h"
 //======================================
 #include "main.h"
@@ -38,7 +38,7 @@
 //#include "bibliotecas/adc.h"
 #include "bibliotecas/SPI.h"
 #include "bibliotecas/SDCard.h"
-//#include "bibliotecas/GPS.h"
+#include "bibliotecas/GPS.h"
 //=-============================
 
 #define _XTAL_FREQ 48000000

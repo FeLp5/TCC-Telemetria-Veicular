@@ -692,8 +692,7 @@ FRESULT auto_mount (	/* FR_OK(0): successful, !=0: any error occured */
 
 	/* Search FAT partition on the drive */
 	fmt = check_fs(bootsect = 0);		/* Check sector 0 as an SFD format */
-    posicao_cursor_lcd(1,14);
-    escreve_inteiro_lcd(fmt);
+
 	if (fmt == 1) {						/* Not an FAT boot record, it may be patitioned */
 		/* Check a partition listed in top of the partition table */
 		if (fs->win[MBR_Table+4]) {						/* Is the 1st partition existing? */
@@ -1769,7 +1768,7 @@ int fputc (
 
 
 #if _USE_STRFUNC >= 2
-	if (chr == '\n') fputc ('\r', fil);	/* LF -> CRLF conversion */
+//	if (chr == '\n') fputc ('\r', fil);	/* LF -> CRLF conversion */
 #endif
 	if (!fil) {	/* Special value may be used to switch the destination to any other device */
 	/*	put_console(chr);	*/

@@ -25,7 +25,7 @@
 /******************************************************************************
 * Definicoes de pinos do microcontrolador
 ******************************************************************************/
-#define SHIFT_CLOCK         LATBbits.LATB6 
+#define SHIFT_CLOCK         LATBbits.LATB6
 #define SPI_DATA_OUT        LATBbits.LATB7
 #define SPI_DATA_IN         PORTBbits.RB5
 #define CHIP_SELECT         LATBbits.LATB4

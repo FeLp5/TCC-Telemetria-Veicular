@@ -23,9 +23,10 @@
 #include "hardware.h"
 #include "integer.h"
 #include "display_lcd.h"
-#include "ff.h"
+#include "tff.h"
 #include "diskio.h"
 #include "SHRC.h"
+#include <string.h>
 //#include "sw_uart.h"
 
 //global variables
@@ -51,7 +52,7 @@
 
 
 // File to read================================================================= 
-BYTE filename[15] = "tel.txt"; //USE SMALLER ARRAY SIZE /testmapp/testtext 
+BYTE filename[15] = "teste4.txt"; //USE SMALLER ARRAY SIZE /testmapp/testtext 
 //BYTE folder[48] = {""}; 
 //==============================================================================
 
@@ -169,30 +170,62 @@ void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
  *****************************************************************************/
 FATFS fs;
 FIL fil;
+fat_time time;
 //FIL fil;
-char buff[45] = "LONG: -1.303930933 , LAT: -2.3309330933\n";
+char buff[] = "0, -23.303930933 , -42.3309330933, 800, 45, 12764, 0";
 
 void sdcard_init(void) 
 {
 //    T0CONbits.TMR0ON = 0;
     FRESULT FResult;
-   
+    
     WORD bw;
     UINT br;
     DWORD tete;
     int i = 0;
     /*Mount FUNCTION=============================================================*/
     proceed();
-    f_mount(&fs, "", 0); //Mount FileSystem
-    f_open(&fil, filename, FA_OPEN_ALWAYS);
-    FResult = f_expand(&fil, 32, 0);
+    FResult = f_mount(0,&fs); //Mount FileSystem
+    if(FResult != FR_OK)
+    {
+//        while(1)
+//        {
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd("Erro ao montar");
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd("o Sistema de arquivo");
+//        }
+    }
+    FResult = f_open(&fil, filename, FA_OPEN_ALWAYS);
+       
+    if(FResult != FR_OK)
+    {
+        while(1)
+        {
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd("Erro ao criar");
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd("o arquivo");
+            __delay_ms(100);
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd("Verifique");
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd("o cartao");
+            
+        }
+    }
+//    FResult = fexpand(&fil, 32, 0);
     f_close(&fil);
     
-    posicao_cursor_lcd(1,0);
-    escreve_inteiro_lcd(FResult);
-    __delay_ms(2000);
+//    posicao_cursor_lcd(1,0);
+//    escreve_inteiro_lcd(FResult);
+//    __delay_ms(2000);
     return;
 }
+
+
+
+
 
 FRESULT open_append (
     FIL* fp,            /* [OUT] File object to create */
@@ -205,7 +238,7 @@ FRESULT open_append (
     fr = f_open(fp, path, FA_WRITE | FA_OPEN_ALWAYS );
     if (fr == FR_OK) {
         /* Seek to end of the file to append data */
-        fr = f_lseek(fp, f_size(fp));
+        fr = f_lseek(fp, 10);
         if (fr != FR_OK)
             f_close(fp);
     }
@@ -215,13 +248,20 @@ FRESULT open_append (
 void escrita_sdcard(void) 
 {
     static unsigned char count;
-     f_mount(&fs, "", 0);
-   	if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_READ | FA_WRITE | FA_OPEN_APPEND) == FR_OK) 
+    f_mount(0,&fs);
+   	if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_READ | FA_WRITE ) == FR_OK) 
     {	/* Open or create a file */
-        posicao_cursor_lcd(2,11);
-        escreve_inteiro_lcd(f_size(&fil));
-        f_puts(buff, &fil);	/* Write data to the file */							/* Close the file */
+        f_lseek(&fil, fsize(&fil));
+        
+        posicao_cursor_lcd(2,7);
+        escreve_inteiro_lcd(fsize(&fil));
+//        posicao_cursor_lcd(2,14);
+//        escreve_inteiro_lcd(time.hora);
+        fprintf(&fil,"\n");
+        fprintf(&fil, buff);	/* Write data to the file */							/* Close the file */
+        
         f_close(&fil);	
     } 
+     count += 50;
 
 }

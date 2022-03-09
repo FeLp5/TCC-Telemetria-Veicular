@@ -11,7 +11,7 @@
 #include "SDCard.h"
 #include "display_lcd.h"
 #include "SPI.h"
-#include "ff.h"
+#include "tff.h"
 #include <ctype.h>
 
 
@@ -170,9 +170,9 @@ DRESULT disk_read (
 		// translate the arguments here
 
 		result = sdc_disk_read(buff, sector, count);
-        posicao_cursor_lcd(1,0);
-        escreve_inteiro_lcd(result);
-        __delay_ms(2000);
+//        posicao_cursor_lcd(1,0);
+//        escreve_inteiro_lcd(result);
+//        __delay_ms(2000);
         res = result;
 		// translate the reslut code here
         buff = data_buff;
@@ -316,11 +316,6 @@ void sdc_reset(void)
             posicao_cursor_lcd(2,0);
             escreve_frase_ram_lcd("Insira o Cartao");
         }
-        else
-        {
-           posicao_cursor_lcd(1,0);
-           escreve_frase_ram_lcd("Cartao Inserido");
-        }
 
     }while(buff!=0X01);
     
@@ -420,15 +415,11 @@ DSTATUS sdc_disk_initialize(void)
             do{
                 buff = response();
                 ocr = (buff << 1) & 0b10000000;
-                posicao_cursor_lcd(2,0);
-                escreve_inteiro_lcd(ocr);
                 count2++;
             }while(ocr!=0X00 && ocr != 0x01 && count2<10);
         }while(ocr != 0X00 && ocr !=0x01);
         
-//        LIMPA_DISPLAY();
-//        posicao_cursor_lcd(1,0);
-//        escreve_inteiro_lcd(ocr);
+
         count1 = 0;
         //Delay before sending command
         __delay_ms(1);
@@ -610,40 +601,72 @@ DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
     DRESULT res;
     unsigned char buff; 
     int i=0,j, count1 = 0;
-    SPI_DATA_OUT = 0;
-    CHIP_SELECT = 0;
-    dummy_clocks(10);    
-    command(0X58, sector*512, 0X00); // CMD24
-    proceed();
-    do{   
-        buff = response();
-    }while(buff!=0X00);
-
-    CHIP_SELECT = 0;
-    SPI_DATA_OUT = 0;
-    dummy_clocks(1);
-    WriteSPI_(0XFE); //START TOKEN SINGLE BLOCK WRITE
-      
-    for(j=0;j<512;j++) //DATA BLOCK
+    
+    if(count>1)
     {
-       
+        SPI_DATA_OUT = 0;
+        CHIP_SELECT = 0;
+        dummy_clocks(10);    
+        command(0X57, count, 0XFF); // CMD24
+        proceed();
+        do{   
+            buff = response();
+        }while(buff!=0X00);
         
+        dummy_clocks(10);    
+        command(0X59, sector*512, 0XFF); // CMD24
+        proceed();
+        do{   
+            buff = response();
+        }while(buff!=0X00);
 
-        WriteSPI_(*p_buff);
-        p_buff++;
-
-       
+        dummy_clocks(1);
+        WriteSPI_(0XFC); //START TOKEN SINGLE BLOCK WRITE
+        for(j=0;j<512;j++) //DATA BLOCK
+        {
+            WriteSPI_(*p_buff);
+            p_buff++;
+        }
+        ReadSPI_(); // CRC 2 BYTES
+        ReadSPI_();
+                
+        dummy_clocks(1);
+        WriteSPI_(0XFD); //START TOKEN SINGLE BLOCK WRITE
+        
     }
+    else
+    {
+        SPI_DATA_OUT = 0;
+        CHIP_SELECT = 0;
+        dummy_clocks(10);    
+        command(0X58, sector*512, 0X00); // CMD24
+        proceed();
+        do{   
+            buff = response();
+        }while(buff!=0X00);
 
-    ReadSPI_(); // CRC 2 BYTES
-    ReadSPI_();
+        CHIP_SELECT = 0;
+        SPI_DATA_OUT = 0;
+        dummy_clocks(1);
+        WriteSPI_(0XFE); //START TOKEN SINGLE BLOCK WRITE    
+        for(j=0;j<512;j++) //DATA BLOCK
+        {
+            WriteSPI_(*p_buff);
+            p_buff++;
+        }    
+        ReadSPI_(); // CRC 2 BYTES
+        ReadSPI_();
 
-    dummy_clocks(10);
-    command(0X4D,0X00000000,0X00);    //CMD13
-    proceed();
-    do{ 
-        buff = response();      
-    }while(buff!=0X00 /*&& count<10*/);
+        dummy_clocks(10);
+        command(0X4D,0X00000000,0X00);    //CMD13
+        proceed();
+        do{ 
+            buff = response();      
+        }while(buff!=0X00 /*&& count<10*/);
+    }  
+
+
+
 //      
 //    posicao_cursor_lcd(1,0);
 //    escreve_frase_ram_lcd("OK");

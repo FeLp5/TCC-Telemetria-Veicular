@@ -47,12 +47,12 @@ void ativa_latch_shrc ( void );
  *****************************************************************************/
 void inicializa_shrc(void)
 {
-//    PORT_CHIP_SELECT = 0;
+    PORT_CHIP_SELECT = 0;
     PORT_CLOCK = 0;
     PORT_DATA_IN = 1;
     PORT_DATA_OUT = 0;
     
-//    CHIP_SELECT = 0;
+    CHIP_SELECT = 1;
 	SHIFT_CLOCK = 0;
 	SPI_DATA_OUT  = 0;
 }	
@@ -81,13 +81,13 @@ void escreve_dado_SPI(unsigned char data_to_shrc)
 			SPI_DATA_OUT = 1;
 		}
 		data_to_shrc = data_to_shrc << 1;
-		__delay_us(2.5);
+		__delay_us(0.005);
 		SHIFT_CLOCK = 1;
-        __delay_us(2.5);
+        __delay_us(0.005);
 		SPI_DATA_OUT  = 0;
-		__delay_us(2.5);
+		__delay_us(0.005);
 		SHIFT_CLOCK = 0;
-        __delay_us(2.5);
+        __delay_us(0.005);
 		contador++;
 	}
     ei();
@@ -103,7 +103,7 @@ void escreve_dado_SPI(unsigned char data_to_shrc)
 //{
 //    //Inicio da funcao.
 //    SHIFT_LATCH = 0;
-//    __delay_us(2.5);
+//    __delay_us(0.005);
 //    SHIFT_LATCH = 1;
 //    __delay_us(60);
 //    SHIFT_LATCH = 0;
@@ -152,12 +152,12 @@ unsigned char recebe_dado_SPI()
 	{     
         dado |= (SPI_DATA_IN << (7-contador));
 
-		__delay_us(2.5);
+		__delay_us(0.005);
 		SHIFT_CLOCK = 1;
-        __delay_us(2.5);
-		__delay_us(2.5);
+        __delay_us(0.005);
+		__delay_us(0.005);
 		SHIFT_CLOCK = 0;
-        __delay_us(2.5);
+        __delay_us(0.005);
 		contador++;
 	}
     ei();

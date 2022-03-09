@@ -55,7 +55,7 @@ volatile unsigned char is_it_rmc_string = 0;
 
 void gps(void)
 {
-//    inicializa_uart();
+    inicializa_uart();
 	unsigned char data_out[34];
 	unsigned long int time;
     unsigned long int date;
@@ -64,8 +64,8 @@ void gps(void)
     
 
     //hora
-//    time = get_gpstime();            /* Extract Time */
-//    convert_time_to_utc(time);       /* convert time to UTC */
+    time = get_gpstime();            /* Extract Time */
+    convert_time_to_utc(time);       /* convert time to UTC */
     
 //    
 //    //data
@@ -301,10 +301,10 @@ unsigned long int get_dt(unsigned char dt_pointer)
 void convert_time_to_utc(unsigned long int utc_time)
 {
     unsigned int hour, min, sec;
-//    DWORD data_time; //new for return to the get_fattime
-//	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
-//	min = (utc_time % 10000) / 100;             /* extract minute from integer */
-//	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
+    DWORD data_time; //new for return to the get_fattime
+	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
+	min = (utc_time % 10000) / 100;             /* extract minute from integer */
+	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
 //	sprintf(data_buffer, "%d:%d:%d", hour,min,sec); /* store UTC time in buffer */
 //    
     f_time.hora = hour;

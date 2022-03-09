@@ -36,13 +36,13 @@
 /  2: f_opendir and f_readdir are removed in addition to level 1.
 /  3: f_lseek is removed in addition to level 2. */
 
-#define	_USE_STRFUNC	0
+#define	_USE_STRFUNC	1
 /* To enable string functions, set _USE_STRFUNC to 1 or 2. */
 
 #define	_USE_FORWARD	0
 /* To enable f_forward function, set _USE_FORWARD to 1. */
 
-#define _FAT32	1
+#define _FAT32	0
 /* To enable FAT32 support in addition of FAT12/16, set _FAT32 to 1. */
 
 #define _USE_FSINFO 0
@@ -193,7 +193,7 @@ char* fgets (char*, int, FIL*);						/* Get a string from the file */
 DWORD get_fattime (void);	/* 31-25: Year(0-127 +1980), 24-21: Month(1-12), 20-16: Day(1-31) */
 							/* 15-11: Hour(0-23), 10-5: Minute(0-59), 4-0: Second(0-29 *2) */
 
-
+#define fsize(fp) ((fp)->fsize)
 
 /* File access control and file status flags (FIL.flag) */
 
