@@ -25,6 +25,12 @@ typedef enum {
 
 /*---------------------------------------*/
 /* Prototypes for disk control functions */
+void sdc_reset(void);
+DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
+DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
+DSTATUS sdc_disk_initialize(void);
+DSTATUS sdc_disk_status(BYTE pdrv);
+
 
 DSTATUS disk_initialize (BYTE pdrv);
 DSTATUS disk_status (BYTE pdrv);
@@ -36,6 +42,12 @@ DRESULT disk_ioctl (BYTE, BYTE, void*);
 void	disk_timerproc (void);
 
 
+
+#define GO_IDLE_STATE           0x40
+#define SEND_OP_COND            0x41   
+#define CHECK_VERSION           0x48
+#define SET_BLOCK_SIZE          0x50
+#define BLOCK_SIZE              0x00000200
 
 
 /* Disk Status Bits (DSTATUS) */

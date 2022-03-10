@@ -1,7 +1,25 @@
-/*
-    GPS Information extraction using PIC18F4550 
-    http://www.electronicwings.com
-*/
+/******************************************************************************
+ * Nome do Arquivo 	: GPS.c
+ *
+ * Descricao       	: Implementa funcoes de tratamento dos dados do GPS
+ *
+ * Ambiente			: MPLAB, XC8 versao 1.45, PIC18F4550
+ *
+ * Responsavel		: Souza, Deivide Conceiï¿½ao de
+                      Silva, Felipe Alves da
+                      Souza, Ricardo de
+			  
+ * 
+ * O sistema FAT é opensource disponibilizado por (C) ChaN, 2008
+ * Versao: FatFs - Tiny FAT file system module  R0.06                 (C)ChaN, 2008
+ * 
+ * 
+ * Contribuicao: GPS Information extraction using PIC18F4550 
+                    http://www.electronicwings.com
+ * 
+ * Versao/Data		: v00.01 - 26/09/2021 - versao inicial l
+ *
+ *****************************************************************************/
 
 #include <pic18f4550.h>
 #include <string.h>
@@ -25,8 +43,11 @@
 //float get_sv(unsigned char date_pointer);
 
 
-//variáveis
-fat_time f_time;
+/******************************************************************************
+* Variaveis Globais
+******************************************************************************/
+
+fat_time *f_time;
 
 char gga_buffer[GGA_BUFFER_SIZE];              /* to store GGA string */
 char rmc_buffer[RMC_BUFFER_SIZE];
@@ -53,9 +74,17 @@ volatile unsigned int rmc_index;
 volatile unsigned char is_it_gga_string	= 0;
 volatile unsigned char is_it_rmc_string = 0;
 
+
+
+/******************************************************************************
+ * Funcao:		void gps(void)
+ * Entrada:		Nenhuma (void)
+ * Saida:		Nenhuma (void)
+ * Descricao:	Realiza a execucao das funcoes de tratamento
+ *****************************************************************************/
 void gps(void)
 {
-    inicializa_uart();
+//    inicializa_uart();
 	unsigned char data_out[34];
 	unsigned long int time;
     unsigned long int date;
@@ -64,11 +93,9 @@ void gps(void)
     
 
     //hora
-    time = get_gpstime();            /* Extract Time */
-    convert_time_to_utc(time);       /* convert time to UTC */
+//    time = get_gpstime();            /* Extract Time */
+//    convert_time_to_utc(time);       /* convert time to UTC */
     
-//    
-//    //data
 //    date = get_dt(rmc_pointers[7]);/* Extract Latitude */
 ////    unsigned long int dt = "000000";
 ////    dt = convert_to_date(date);
@@ -78,25 +105,18 @@ void gps(void)
 //    
 //    posicao_cursor_lcd(2,7);
 //    escreve_frase_ram_lcd(dado_buffer);
-//
-//    
 //    __delay_ms(2000);
 //    LIMPA_DISPLAY();
 //    
-//    //latidude
 //    latitude = get_latitude(gga_pointers[0]); /* Extract Latitude */
 //    latitude = convert_to_degrees(latitude);  /* convert raw latitude in degree decimal*/
 //    sprintf(gps_buffer,"%.07f",latitude);			/* convert float value to string */
-//    // LCD_String(gps_buffer);  
-//    
 //    posicao_cursor_lcd(1,0);
 //    escreve_frase_ram_lcd("Lat:");/* display latitude in degree */    
 //    posicao_cursor_lcd(1,5);
 //    escreve_frase_ram_lcd(gps_buffer);
 //    memset(gps_buffer,0,15);
-//       
-//
-//    
+//  
 //    // LCD_String_xy(3,0,"Long: ");
 //    longitude = get_longitude(gga_pointers[2]);/* Extract Latitude */
 //    longitude = convert_to_degrees(longitude);/* convert raw longitude in degree decimal*/
@@ -107,7 +127,9 @@ void gps(void)
 //    posicao_cursor_lcd(2,5);
 //    escreve_frase_ram_lcd(gps_buffer);       
 //    memset(gps_buffer,0,15);
-//
+
+    
+    
 //    __delay_ms(2000);
 //    LIMPA_DISPLAY();
 //    time = get_gpstime();            /* Extract Time */
@@ -284,9 +306,9 @@ unsigned long int get_dt(unsigned char dt_pointer)
     
     //armazena valores em uma estrutura para o sistema de arquivos
     
-    f_time.dia = dia;
-    f_time.mes = mes;      
-    f_time.ano = ano;
+    f_time->dia = dia;
+    f_time->mes = mes;      
+    f_time->ano = ano;
     
 }
 
@@ -298,18 +320,21 @@ unsigned long int get_dt(unsigned char dt_pointer)
  * Descricao:	Converte de float para formato de hora
  *****************************************************************************/
 
-void convert_time_to_utc(unsigned long int utc_time)
+void convert_time_to_utc(int *hora, int *min, int *seg)
 {
-    unsigned int hour, min, sec;
+//    unsigned int hour, min, sec;
     DWORD data_time; //new for return to the get_fattime
-	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
-	min = (utc_time % 10000) / 100;             /* extract minute from integer */
-	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
+//	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
+//	min = (utc_time % 10000) / 100;             /* extract minute from integer */
+//	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
 //	sprintf(data_buffer, "%d:%d:%d", hour,min,sec); /* store UTC time in buffer */
 //    
-    f_time.hora = hour;
-    f_time.min = min;      
-    f_time.seg = sec;
+    hora = 12;
+    min = 18;
+    seg = 50;
+//    f_time->min = 37;      
+//    f_time->seg = 50;
+    return;
 }
 
 unsigned char convert_to_date(unsigned char dt[])

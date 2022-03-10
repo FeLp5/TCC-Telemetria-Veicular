@@ -9,11 +9,14 @@
                       Silva, Felipe Alves da
                       Souza, Ricardo de
 			  
- * Contribuiï¿½ï¿½o: Os codigos para comunicaï¿½ï¿½o com o SDCard (SDCard.h)
+ * Contribuicao: Os codigos para comunicacao com o SDCard
  * foram retiradas do site OPENLAB (https://openlabpro.com/guide/raw-sd-readwrite-using-pic-18f4550/)
- * E os demais cï¿½digos para inicializaï¿½ï¿½o do SDCard e todo o protocolo do sistema FAT 
+ * E os demais codigos para inicializacao do SDCard
  * Low level disk I/O module skeleton for Petit FatFs (C)ChaN, 2014 retirado em
  * (https://github.com/etiq/OpenLab-PIC18F4550-SDCard-Examples)
+ * 
+ * O sistema FAT é opensource disponibilizado por (C) ChaN, 2008
+ * Versao: FatFs - Tiny FAT file system module  R0.06                 (C)ChaN, 2008
  * 
  * 
  * 
@@ -25,42 +28,23 @@
 #include <p18f4550.h>
 
 //Bibliotecas do OPENLAB================
-//#include "bibliotecas/config.h"
 #include "bibliotecas/tff.h"
 #include "bibliotecas/diskio.h"
 //======================================
 #include "main.h"
 #include "bibliotecas/hardware.h"
 #include "bibliotecas/uart.h"
-//#include "bibliotecas/chaves.h"
-//#include "bibliotecas/SHRC.h"
 #include "bibliotecas/display_lcd.h"
-//#include "bibliotecas/adc.h"
 #include "bibliotecas/SPI.h"
 #include "bibliotecas/SDCard.h"
 #include "bibliotecas/GPS.h"
 //=-============================
 
-#define _XTAL_FREQ 48000000
 
-//#pragma config FOSC     = HSPLL_HS
-//#pragma config PLLDIV   = 5				// (20 MHz crystal on PICDEM FS USB board)
-//#pragma config CPUDIV   = OSC1_PLL2		// Clock source from 96MHz PLL/2
-//
-//#pragma config PWRT = ON
-//#pragma config BOR = ON
-//#pragma config BORV = 2
-//#pragma config WDT = OFF
-//#pragma config DEBUG = OFF
-//#pragma config LVP = OFF
 
 /******************************************************************************
 * Variaveis Globais
 ******************************************************************************/
-//++++++++++++++++++++++++++um dos principais causadores de perda de memï¿½ria+++++++++++++++++++
-////static unsigned char str[512];
-//BYTE sector_buffer[512];
-//============================
 
 unsigned char data_uart_recebe;
 
@@ -93,16 +77,12 @@ void mensagem_inicial(void);
 
 
 
-
-
-
-
 /*****************************************************************************/
 /******************************************************************************
  * Funcao:		void interrupt isr(void)
  * Entrada:		Nenhuma (void)
- * Saï¿½da:		Nenhuma (void)
- * Descriï¿½ï¿½o:	Implementa a rotina de interrupcao
+ * Saida:		Nenhuma (void)
+ * Descricao	Implementa a rotina de interrupcao
  *****************************************************************************/
 void interrupt isr(void)
 {
@@ -113,10 +93,7 @@ void interrupt isr(void)
     {
         data_uart_recebe = recebe_dado_uart();
         PIR1bits.RCIF = 0;
-//        tratamento_uart(data_uart_recebe);
-//        LATBbits.LATB4 = ~LATBbits.LATB4;
-        
-        		
+        tratamento_uart(data_uart_recebe);		
     } //End if interrupt Recepcao UART
 	
     
@@ -132,7 +109,6 @@ void interrupt isr(void)
             if(tempo_tarefa[cont]>0)    tempo_tarefa[cont]--;
         }
 
-        
         if(tarefa_em_execucao == YES)
         {
             timeout_tarefa--;
@@ -148,7 +124,7 @@ void interrupt isr(void)
         write_timer_zero(0x0083);
     
     }
-
+    
 	if (INT0IF && INT0IE)   
     {
         INT0IF = 0;
@@ -168,19 +144,22 @@ void interrupt isr(void)
 void inicializa_tarefas(void)
 {
 
-    p_tarefas[0] = escrita_sdcard;
-//    p_tarefas[1] = gps;
+    p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
+    p_tarefas[1] = gps; // executada a cada 100ms
+//    p_tarefas[2] = leitura_can; // executada a cada 100ms
+    
+    
 	/*init temporization values of each task. 
 	These values do no change during execution*/
-	tempo_backup[0] = TIME_100_MS;
-    tempo_backup[1] = TIME_5000_MS;
-//    tempo_backup[1] = TIME_2000_MS;
+	tempo_backup[0] = TIME_5000_MS; 
+    tempo_backup[1] = TIME_50_MS;
+//    tempo_backup[2] = TIME_2000_MS;
 	
 	/*init recent temporization values of each task. 
 	Theyï¿½re used to decide which task must be executed*/
-	tempo_tarefa[0] = TIME_100_MS;
-    tempo_tarefa[1] = TIME_5000_MS;
-//    tempo_tarefa[1] = TIME_2000_MS;
+	tempo_tarefa[0] = TIME_5000_MS;
+    tempo_tarefa[1] = TIME_50_MS;
+//    tempo_tarefa[2] = TIME_2000_MS;
 
 	//It indicates that thereï¿½s no task executing
     tarefa_em_execucao = NO;
@@ -218,14 +197,13 @@ void escalonador()
 void main(void) 
 {  
     init_hardware();
-//	inicializa_uart();
+    T0CONbits.TMR0ON = 0;
+
     init_lcd();
-//    inicializa_shrc();
-//    inicializa_i2c();
 	mensagem_inicial();
     inicializa_tarefas();
-    inicializa_SPI(0,3,1);
     sdcard_init();
+    T0CONbits.TMR0ON = 1;
     while(1)
     {
         //Verification: check if thereï¿½s a task to be executed

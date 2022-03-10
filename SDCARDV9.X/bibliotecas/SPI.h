@@ -47,11 +47,11 @@
 /******************************************************************************
 * Prototipos das funções
 ******************************************************************************/
-void inicializa_SPI(unsigned char sync_mode, unsigned char bus_mode, unsigned char smp_phase);
+void inicializa_SPI(void);
 
-unsigned char ReadSPI_(void);
+unsigned char leitura_SPI(void);
 
-void WriteSPI_(unsigned char dado);
+void escreve_SPI(unsigned char dado);
 
 
 

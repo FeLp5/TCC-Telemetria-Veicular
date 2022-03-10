@@ -14,54 +14,10 @@
 #include "tff.h"
 #include <ctype.h>
 
-
-
-//ESTRUTURAS
-typedef enum _SD_DataError
-{
-	SD_DATA_TOKEN_OK          = 0x00,
-	SD_DATA_TOKEN_ERROR       = 0x01,
-	SD_DATA_TOKEN_CC_ERROR    = 0x02,
-	SD_DATA_TOKEN_ECC_FAILURE = 0x04,
-	SD_DATA_TOKEN_OUT_OF_RANGE= 0x08,
-	SD_DATA_TOKEN_CARD_LOCKED = 0x10,
-} SD_DataError;
-
-
-
-typedef enum _SD_CMD
-{
-	SD_CMD_GO_IDLE_STATE		=  0, /*!< CMD0  = 0x40, ARG=0x00000000, CRC=0x95 */
-	SD_CMD_SEND_OP_COND			=  1, /*!< CMD1  = 0x41 */
-	SD_CMD_SEND_IF_COND			=  8, /*!< CMD8  = 0x48, ARG=0x000001AA, CRC=0x87 */
-	SD_CMD_SEND_APP				= 55, /*!< CMD55 = 0x77, ARG=0x00000000, CRC=0x65 */
-	SD_CMD_ACTIVATE_INIT		= 41, /*!< ACMD41= 0x69, ARG=0x40000000, CRC=0x77 */
-	SD_CMD_READ_OCR				= 58, /*!< CMD58 = 0x7A, ARG=0x00000000, CRC=0xFF */
-	SD_CMD_SEND_CSD				=  9, /*!< CMD9  = 0x49 */
-	SD_CMD_SEND_CID				= 10, /*!< CMD10 = 0x4A */
-	SD_CMD_SEND_SCR				= 51, /*!< ACMD51= 0x73 */
-	SD_CMD_STATUS				= 13, /*!< ACMD13= 0x4D */
-	SD_CMD_STOP_TRANSMISSION	= 12, /*!< CMD12 = 0x4C */
-	SD_CMD_SET_BLOCKLEN			= 16, /*!< CMD16 = 0x50 */
-	SD_CMD_READ_SINGLE_BLOCK	= 17, /*!< CMD17 = 0x51 */
-	SD_CMD_READ_MULT_BLOCK		= 18, /*!< CMD18 = 0x52 */
-	SD_CMD_SET_BLOCK_COUNT		= 23, /*!< CMD23 = 0x57 */
-	SD_CMD_WRITE_SINGLE_BLOCK	= 24, /*!< CMD24 = 0x58 */
-	SD_CMD_WRITE_MULT_BLOCK		= 25, /*!< CMD25 = 0x59 */
-	SD_CMD_ERASE_BLOCK_START	= 32, /*!< CMD32 = 0x60 */
-	SD_CMD_ERASE_BLOCK_END		= 33, /*!< CMD33 = 0x61 */
-	SD_CMD_ERASE				= 38  /*!< CMD38 = 0x66 */
-} SD_CMD;
-
-//=================
-
-
 /* Definitions of physical drive number for each drive */
 #define DEV_RAM		0	/* Example: Map Ramdisk to physical drive 0 */
 #define DEV_MMC		1	/* Example: Map MMC/SD card to physical drive 1 */
 #define DEV_USB		2	/* Example: Map USB MSD to physical drive 2 */
-
-#define SD_DUMMY_BYTE		0xFF
 
 BYTE *data_buff;
 /*-----------------------------------------------------------------------*/
@@ -79,21 +35,15 @@ DSTATUS disk_status (
 	case DEV_RAM :
 		stat = sdc_disk_status(pdrv);
 
-		// translate the reslut code here
 
 		return stat;
 
 	case DEV_MMC :
 		result = sdc_disk_status(pdrv);
 
-		// translate the reslut code here
-
 		return stat;
 
 	case DEV_USB :
-//		result = USB_disk_status();
-
-		// translate the reslut code here
 
 		return stat;
 	}
@@ -295,19 +245,12 @@ void sdc_reset(void)
     
     /*SOFTWARE RESET COMMAND*/
     do{
-//        SPI_DATA_OUT = 1;
-//        CHIP_SELECT = 0; 
-//        dummy_clocks(10); 
-        command(0X40, 0X00000000, 0X95);    //CMD0
+        command(GO_IDLE_STATE, 0X00000000, 0X95);    //CMD0
         proceed();
         do{  
-//            __delay_ms(50);
             buff = response(); 
             count++;
-//            posicao_cursor_lcd(1,0);
-//            escreve_inteiro_lcd(buff);
         }while(buff!=0X01 && count<10);
-//        CHIP_SELECT = 1;
         count = 0;
         if(buff != 0x01)
         {
@@ -318,9 +261,7 @@ void sdc_reset(void)
         }
 
     }while(buff!=0X01);
-    
-    /*SOFTWARE RESET RESPONSE BIT OBTAINED (0X01)*/
-    return; //CHECK FOR A STA_NODISK return
+    return;
 }
 
 
@@ -348,8 +289,6 @@ DSTATUS sdc_disk_initialize(void)
     proceed();
     do{
         buff_i = response(); 
-//        posicao_cursor_lcd(1,0);
-//        escreve_inteiro_lcd(buff_i);
         if(buff_i == 1)
         {
             crc_number = buff_i<<8;
@@ -374,14 +313,7 @@ DSTATUS sdc_disk_initialize(void)
             /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
             
             do{    
-//                command(0X41, 0X00000000, 0XFF);    //CMD55
-//                buff = 0XFF;
-//                /*CHECK THE BUFFER FOR A 0X00 RESPONSE BIT*/
-//                proceed();
-//                do{
-//                    buff = response();
-//                    count2++;
-//                }while((buff!=0X01) && count2<10);
+
                 
                 
                 dummy_clocks(10);
@@ -398,19 +330,17 @@ DSTATUS sdc_disk_initialize(void)
 
 
                 dummy_clocks(10);
-                command(0X69, /*0X40000000*/1UL << 30, 0x00);        
+                command(0X69, 0X40000000/*1UL << 30*/, 0x00);        
                 proceed();
                 buff = response();
                 count2++;
-//                posicao_cursor_lcd(2,5);
-//                escreve_inteiro_lcd(buff);
             }while(buff!=0X00);
             
             buff = 0xFF;
             
             
             dummy_clocks(10);
-            command(0X7A, 0X00000000, 0XFF);    //CMD58;
+            command(0X7A, 0X00000000, 0XFF);
             proceed();
             do{
                 buff = response();
@@ -429,7 +359,7 @@ DSTATUS sdc_disk_initialize(void)
         {
              
             dummy_clocks(10);
-            command(0X50,0X00000200,0XFF);    //CMD16
+            command(SET_BLOCK_SIZE, BLOCK_SIZE,0XFF);    //CMD16
             proceed();
 
             buff = 0xFF;
@@ -516,16 +446,12 @@ DRESULT sdc_disk_read(
     DRESULT res;
     unsigned char ptr=0X00, buff;
     unsigned long int start_add;
-//    static unsigned char arr[512];
     int length,i, count1;
     dummy_clocks(10);
+    
     start_add = sector*512;
     
-//    
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd("LENDO SD");
-    
-    
+
     if(sector != 1)
     {
         dummy_clocks(10);
@@ -552,18 +478,14 @@ DRESULT sdc_disk_read(
     while(buff!=0xFE)
     {
         buff = response();
-//        posicao_cursor_lcd(1,0);
-//        escreve_inteiro_lcd(buff);
-//        __delay_ms(900);
     }
-//    proceed();
+    
     length = 0;
     while ( length < 512 )               
     {
         p_buff[length] = response();
         length++;                   
     }
-
 
     length = 0;
     dummy_clocks(10);  
@@ -575,19 +497,7 @@ DRESULT sdc_disk_read(
     }while(buff!=0xFF);
     
     length = 0;
-//    while(p_buff[length]!='\0')
-//    {
-//            LIMPA_DISPLAY();
-//            posicao_cursor_lcd(2,10);
-//            escreve_frase_ram_lcd("saindo");
-//            length++;
-//    }
-//    *p_buff = length; // pointer to the pointer got in
 	return RES_OK;  
-    
-    //tem mais código mas estamos testando sem por enquanto
-    
-    
 }
 
 /******************************************************************************
@@ -621,17 +531,17 @@ DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
         }while(buff!=0X00);
 
         dummy_clocks(1);
-        WriteSPI_(0XFC); //START TOKEN SINGLE BLOCK WRITE
+        escreve_SPI(0XFC); //START TOKEN SINGLE BLOCK WRITE
         for(j=0;j<512;j++) //DATA BLOCK
         {
-            WriteSPI_(*p_buff);
+            escreve_SPI(*p_buff);
             p_buff++;
         }
-        ReadSPI_(); // CRC 2 BYTES
-        ReadSPI_();
+        leitura_SPI(); // CRC 2 BYTES
+        leitura_SPI();
                 
         dummy_clocks(1);
-        WriteSPI_(0XFD); //START TOKEN SINGLE BLOCK WRITE
+        escreve_SPI(0XFD); //START TOKEN SINGLE BLOCK WRITE
         
     }
     else
@@ -648,14 +558,14 @@ DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
         CHIP_SELECT = 0;
         SPI_DATA_OUT = 0;
         dummy_clocks(1);
-        WriteSPI_(0XFE); //START TOKEN SINGLE BLOCK WRITE    
+        escreve_SPI(0XFE); //START TOKEN SINGLE BLOCK WRITE    
         for(j=0;j<512;j++) //DATA BLOCK
         {
-            WriteSPI_(*p_buff);
+            escreve_SPI(*p_buff);
             p_buff++;
         }    
-        ReadSPI_(); // CRC 2 BYTES
-        ReadSPI_();
+        leitura_SPI(); // CRC 2 BYTES
+        leitura_SPI();
 
         dummy_clocks(10);
         command(0X4D,0X00000000,0X00);    //CMD13
@@ -664,13 +574,6 @@ DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count)
             buff = response();      
         }while(buff!=0X00 /*&& count<10*/);
     }  
-
-
-
-//      
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd("OK");
-//    __delay_ms(4000);
 	return res;
     
 }
