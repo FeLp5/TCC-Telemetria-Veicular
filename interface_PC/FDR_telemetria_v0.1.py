@@ -3,6 +3,8 @@
 
 
 import wx, os, re, datetime
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 
 
 
@@ -36,33 +38,48 @@ class Painel(wx.Frame):
         vbox1 = wx.BoxSizer(wx.VERTICAL)
         hbox2 = wx.BoxSizer(wx.HORIZONTAL)
 
-        pn_sq = wx.Panel(panel) # painel superior esquerdo
-        pn_sq.SetBackgroundColour('#ededed')
+        pn_se = wx.Panel(panel) # painel superior esquerdo
+        pn_se.SetBackgroundColour('#ededed')
+        
         pn_sm = wx.Panel(panel) #painel superior central
+        # pn_sm_g1 = wx.Panel(panel) #painel superior central - gráfico
+        # pn_sm_g1.SetBackgroundColour('green')
+        # pn_sm_g2 = wx.Panel(panel) #painel superior central
+        # 
         pn_sd = wx.Panel(panel) #painel superior direito
-        pn_sd.SetBackgroundColour('gray')
+        pn_sd.SetBackgroundColour('white')
         
         pn_ie = wx.Panel(panel) #painel inferior esquerdo
         pn_ie.SetBackgroundColour('gray')
         pn_id = wx.Panel(panel) #painel inferior direito
-        pn_id.SetBackgroundColour('#ededed')
+        pn_id.SetBackgroundColour('white')
 
-        vbox.Add(hbox1, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
-        hbox1.Add(pn_sq, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
-        hbox1.Add(pn_sm, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
-        hbox1.Add(pn_sd, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
+        vbox.Add(hbox1, 0, wx.ALL | wx.EXPAND, 0)
+        # hbox1.Add(pn_se, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
+        # hbox1.Add(pn_sm, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
+        # hbox1.Add(pn_sd, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
+        
+        hbox1.Add(pn_se, 0, wx.ALL | wx.EXPAND, 0)
+        hbox1.SetItemMinSize(pn_se, (180, 200))
+        
+        # hbox1.Add(pn_sm_g1, 2, wx.ALL | wx.EXPAND, 0)
+        # hbox1.Add(pn_sm_g2, 2, wx.ALL | wx.EXPAND, 0)
+        hbox1.Add(pn_sm, 2, wx.ALL | wx.EXPAND, 0)
+        
+        hbox1.Add(pn_sd, 0, wx.ALL | wx.EXPAND, 0)
 
-        vbox.Add(vbox1, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
-        vbox1.Add(hbox2, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
-        hbox2.Add(pn_ie, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
-        hbox2.Add(pn_id, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
+        vbox.Add(vbox1, 1, wx.ALL | wx.EXPAND, 0)
+        vbox1.Add(hbox2, 1, wx.ALL | wx.EXPAND, 0)
+        hbox2.Add(pn_ie, 0, wx.ALL | wx.EXPAND, 0)
+        hbox2.SetItemMinSize(pn_ie, (180, 200))
+        hbox2.Add(pn_id, 2, wx.ALL | wx.EXPAND, 0)
         panel.SetSizer(vbox)
 
-
-        
-        box = wx.StaticBox(pn_sq, label='Trajetos', pos=(5, 15), size=(300, 200))
+        # pn_sm_g1.Hide()
+        # pn_sm_g2.Hide()
+        # box = wx.StaticBox(pn_sq, label='Trajetos', pos=(5, 15), size=(300, 200))
     
-        
+        self.statxt_01 = wx.StaticText(pn_se, -1, "Trajetos" , (16, 10), (-1, -1))
         
         cont, titulo_bt, bt_caminho = self.arquivos() # pegando os nomes e caminhos dos botoes
         self.bt_camho = bt_caminho
@@ -74,7 +91,7 @@ class Painel(wx.Frame):
         for x in range(cont):
             count = count + 22
             nome_botao.append(str(self.convert_data((titulo_bt[x]))))
-            btn = wx.Button(pn_sq, label=self.convert_data((titulo_bt[x])), pos= (10, count), size = (-1,20))
+            btn = wx.Button(pn_se, label=self.convert_data((titulo_bt[x])), pos= (10, count), size = (-1,20))
             btn.Bind(wx.EVT_BUTTON, lambda evt, temp=self.convert_data((titulo_bt[x])): OnButton(evt, temp) )
 
             print nome_botao
@@ -88,7 +105,7 @@ class Painel(wx.Frame):
 #             
             # desenha o botao e quebra o laco
             if (x > 3):
-                botao_mais = wx.Button(pn_sq, wx.NewId(), "Mais antigos", (10, count + 32), (size_window[0]/14, 24))
+                botao_mais = wx.Button(pn_se, wx.NewId(), "Mais antigos", (10, count + 32), (size_window[0]/14, 24))
                 self.Bind(wx.EVT_BUTTON, self.abrir_arquivos, botao_mais)
 
                 break
@@ -155,9 +172,50 @@ class Painel(wx.Frame):
         
         self.botao_grafico = wx.Button(pn_sm, wx.NewId(), "Gráfico de velocidades", (10, 212), (180, 24))
         self.botao_graficoRPM = wx.Button(pn_sm, wx.NewId(), "Gráfico de rotações", (200, 212), (180, 24))
+        self.botao_grafico.Bind(wx.EVT_BUTTON, lambda evt, temp=1: abrir_janela(evt, temp))
+        self.botao_graficoRPM.Bind(wx.EVT_BUTTON, lambda evt, temp=2: abrir_janela(evt, temp))
+        
+    #gráficos
+        def abrir_janela(evt, janela):
+            pn_sm1 = wx.Panel(panel)
+            larg =100
+            alt =200
+            figure = Figure()
+            axes = figure.add_subplot(111)
+            canvas = FigureCanvas(pn_sm1, -1, figure)
+            canvas.SetSize((200,200))
+            botao_voltar = wx.Button(pn_sm1, wx.NewId(), "Voltar", (10, 220), (200,30))
+            botao_voltar.Bind(wx.EVT_BUTTON, lambda evt, temp=0: abrir_janela(evt, temp))
+            
+        
+            # print janela
+            # pn_sm.Hide() 
+            # pn_sm_g1.Hide()
+            # pn_sm_g2.Hide()
+            # if(janela == 0):
+            #     pn_sm.Show()
+            # if(janela == 1):
+            #     print "ok"
+            #     pn_sm_g1.Show()
+            #     desenhar_graficos(10, 10, 10)       
+            # if(janela == 2):
+            #     pn_sm_g2.Show()
         
         
+        def desenhar_graficos(itens_v, velocidades, max_velocidades):
+            # grupos = ['A', 'B', 'C' , 'D', 'E', 'F', 'G' , 'H', 'I', 'J', 'K', 'L' ]
+            # valores = [35, 77, 60, 43, 20, 36, 35, 38, 50, 51, 53, 35]
+    
+            axes.bar(itens_v, velocidades)
+            axes.set_autoscale_on
+            axes.plot(itens_v , max_velocidades)
+            
+            
         
+    
+    
+       
+
     def tratamento(self, lines):
         print "entrou"
         flag = 0
@@ -175,6 +233,7 @@ class Painel(wx.Frame):
                 tempo = re.search('h(.+?);', linha).group(1)
                 dtc = re.search('d(.+?);', linha).group(1)
                 velmax = velocidade # pegando o valor inicial
+                rpmmax = rpm # pegando o valor inicial
                 consumo = combustivel # pegando o valor inicial
                 km_rodado = km # pegando a distancia percorrida
                 hora = tempo[0] + tempo[1]
@@ -191,22 +250,24 @@ class Painel(wx.Frame):
                 tempo = tempo + "," + re.search('h(.+?);', linha).group(1)
                 dtc = dtc + "," + re.search('d(.+?);', linha).group(1)
                 
-                
-
                 #pegando a velocidade máxima
                 if(velmax < re.search('v(.+?);', linha).group(1)):
                     velmax = re.search('v(.+?);', linha).group(1)
-        
+                 
+                #pegando a rotação máxima
+                rpmmax_int = re.search('r(.+?);', linha).group(1)
+                rpmmax = int(rpmmax)
+                if rpmmax < int(rpmmax_int):
+                    rpmmax = int(rpmmax_int)
+                    
                 if(x == (len(lines) - 1)):
                     hora_g = tempo[0] + tempo[1]
-                    print hora_g
+                    # print hora_g
                     # precisa ser testado
                     if(int(hora) > int(hora_g) and flag == 0 ): #testando por causa da troca de 23h para 0h
                         hora = int(hora) - 24
-                        print "entrou" + str(hora)
+                        # print "entrou" + str(hora)
                         flag = 1
-                    
-                    
                     
                     #pegando o consumo
                     consumo = float(consumo) - float(re.search('c(.+?);', linha).group(1))
@@ -226,43 +287,46 @@ class Painel(wx.Frame):
                         min_g = int(min_g) -int(min)
                 
         self.statxt_inf_r1.SetLabel(str(km_rodado) + " Km") 
-        self.statxt_inf_r2.SetLabel(str(consumo) + " % total") 
+        self.statxt_inf_r2.SetLabel(str(consumo) + " % total") # precisamos ajustar aqui
         self.statxt_inf_r3.SetLabel(str(consumo * 50) + " km/l") # precisamos ajustar aqui
-        self.statxt_inf_r4.SetLabel(str("") + " % RPM") 
-        self.statxt_inf_r5.SetLabel(str(velmax) + " % Km/h") 
+        self.statxt_inf_r4.SetLabel(str(rpmmax) + " RPM") 
+        if rpmmax > 4500:
+            self.statxt_inf_r4.SetForegroundColour("red")
+        else:
+            self.statxt_inf_r4.SetForegroundColour("")
+        self.statxt_inf_r5.SetLabel(str(velmax) + " Km/h") 
         self.statxt_inf_r6.SetLabel(str(hora_g) + "h" + str(min_g)) 
         
-        print "tempo gasto " + str(hora_g) + "h" + str(min_g)
-        print "velocidade máxima " + velmax 
-        
-        print "Consumo"
-        print consumo 
-        
-        print "Distancia percorrida"
-        print km_rodado             
-        
-        print "Tempo Gasto"
-        print tempo_gasto         
-        
-
+        # print "tempo gasto " + str(hora_g) + "h" + str(min_g)
+        # print "velocidade máxima " + velmax 
+        # 
+        # print "Consumo"
+        # print consumo 
+        # 
+        # print "Distancia percorrida"
+        # print km_rodado             
+        # 
+        # print "Tempo Gasto"
+        # print tempo_gasto         
+        # 
 
         print "velocidade"
         print velocidade
-        print "latitude"
-        print latitude
-        print "longitude"
-        print longitude
+        # print "latitude"
+        # print latitude
+        # print "longitude"
+        # print longitude
         print "rpm"
         print rpm
-        print "combustivel"
-        print combustivel
-        print "km"
-        print km
-        print "tempo"
-        print tempo
-        print "dtc"
-        print dtc
-        
+        # print "combustivel"
+        # print combustivel
+        # print "km"
+        # print km
+        # print "tempo"
+        # print tempo
+        # print "dtc"
+        # print dtc
+        Painel.InitUI.valores_graficos(self)
 
     def abrir_recentes(self, nbotao):
 
@@ -282,7 +346,7 @@ class Painel(wx.Frame):
         except IOError:
             wx.LogError("Não é possível abrir o arquivo '%s'." % pathname)
 
-            
+        self.tratamento(lines)
             
     def arquivos(self):
         count = - 1
@@ -402,6 +466,48 @@ class Painel(wx.Frame):
             self.tratamento(lines)
 
 
+
+class show_grafico(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent, wx.ID_ANY,(5, 5), (-1, -1))
+
+
+
+class show_graficoRPM(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent)
+        
+        self.statxt_info = wx.StaticText(self, -1,  "Gráfico de RPMs" , (20, 26), (-1, -1))
+        
+        valor = self.GetSize()
+        self.figure = Figure()
+        self.axes = self.figure.add_subplot(111)
+        self.canvas = FigureCanvas(self, -1, self.figure)
+        self.canvas.SetSize(((larg * 6)-10, (alt * 2)-10))
+        
+        grupos = ""
+        item = "0"
+        x = 1
+        for x in range(12):
+           item = item + ", " + str(x);
+           print "itens"
+           print item
+
+        
+        valores = rpm
+        self.axes.bar(grupos, valores)
+        self.axes.set_autoscale_on
+        self.axes.plot([-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] , [40, 50, 50, 40, 40, 40, 40, 40, 40, 50, 50, 50, 50, 50])
+        self.botao_voltar = wx.Button(self, wx.NewId(), "Voltar", (10, 220), (size_window[0]/14, 24))           
+            
+           
+        
+
+            
+    
+       
+
+        
 def main():
 
     app = wx.App()
