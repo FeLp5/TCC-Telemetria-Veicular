@@ -53,7 +53,9 @@ extern "C" {
 * Prototipos das funções
 ******************************************************************************/
 void sdcard_init(void);
-void escrita_sdcard(void) ;
+//void escrita_sdcard(unsigned char *dado);
+void escrita_sdcard(void);
+void monta_sd(unsigned char index, const unsigned  char dado[100]);
 BYTE response(void);
 void proceed(void);
 void dummy_clocks(unsigned char n);

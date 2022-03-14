@@ -38,6 +38,7 @@
 ******************************************************************************/
 
 void envia_dado_uart(char data);
+void desliga_uart(void);
 
 unsigned char verifica_buffer_uart(void);
 

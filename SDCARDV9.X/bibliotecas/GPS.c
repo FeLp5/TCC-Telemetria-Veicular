@@ -29,7 +29,7 @@
 #include "display_lcd.h"
 #include "uart.h"
 #include "integer.h"
-
+#include "SDCard.h"
 
 // Protótipos de funções
 //unsigned long int get_gpstime();
@@ -84,7 +84,7 @@ volatile unsigned char is_it_rmc_string = 0;
  *****************************************************************************/
 void gps(void)
 {
-//    inicializa_uart();
+    inicializa_uart();
 	unsigned char data_out[34];
 	unsigned long int time;
     unsigned long int date;
@@ -93,12 +93,14 @@ void gps(void)
     
 
     //hora
-//    time = get_gpstime();            /* Extract Time */
-//    convert_time_to_utc(time);       /* convert time to UTC */
-    
-//    date = get_dt(rmc_pointers[7]);/* Extract Latitude */
-////    unsigned long int dt = "000000";
-////    dt = convert_to_date(date);
+    time = get_gpstime();            /* Extract Time */
+    convert_time_to_utc(time);       /* convert time to UTC */
+    monta_sd(0, "AAAA");
+    monta_sd(1, "TESTE");
+//    get_dt(/*rmc_pointers[7]*/ 7);/* Extract Latitude */
+//    unsigned long int dt = "000000";
+//    dt = convert_to_date(date);
+//    monta_sd(1,data_buffer);
 //    //sprintf(gps_buffer,"%%",date);		/* convert float value to string */
 //    posicao_cursor_lcd(2,0);
 //    escreve_frase_ram_lcd("Data:");
@@ -201,11 +203,14 @@ unsigned long int get_gpstime()
 	unsigned long int _time;
 	
 	/* parse time in GGA string stored in buffer */
-	for(index = 0; gga_buffer[index]!=','; index++)
+	for(index = 0; index< 6; index++)
 	{		
 		time_buffer[index] = gga_buffer[index];
+       
 	}
-	_time= atol(time_buffer);        /* convert string of time to integer */
+    _time= atol(time_buffer);        /* convert string of time to integer */
+
+	
 	return _time;                    /* return integer raw value of time */        
 }
 
@@ -281,7 +286,7 @@ unsigned long int get_dt(unsigned char dt_pointer)
 	index = 0;
 	/* parse time in GGA string stored in buffer */
 
-    for(;rmc_buffer[dt_index]!=',';dt_index++){
+    for(;dt_index < 13;dt_index++){
 		dado_buffer[index]= rmc_buffer[dt_index];
 		index++;
 	}
@@ -306,9 +311,6 @@ unsigned long int get_dt(unsigned char dt_pointer)
     
     //armazena valores em uma estrutura para o sistema de arquivos
     
-    f_time->dia = dia;
-    f_time->mes = mes;      
-    f_time->ano = ano;
     
 }
 
@@ -320,20 +322,15 @@ unsigned long int get_dt(unsigned char dt_pointer)
  * Descricao:	Converte de float para formato de hora
  *****************************************************************************/
 
-void convert_time_to_utc(int *hora, int *min, int *seg)
+void convert_time_to_utc(unsigned long int utc_time)
 {
-//    unsigned int hour, min, sec;
+    unsigned int hour, min, sec;
     DWORD data_time; //new for return to the get_fattime
-//	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
-//	min = (utc_time % 10000) / 100;             /* extract minute from integer */
-//	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
-//	sprintf(data_buffer, "%d:%d:%d", hour,min,sec); /* store UTC time in buffer */
-//    
-    hora = 12;
-    min = 18;
-    seg = 50;
-//    f_time->min = 37;      
-//    f_time->seg = 50;
+	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
+	min = (utc_time % 10000) / 100;             /* extract minute from integer */
+	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
+	sprintf(data_buffer, "%d:%d:%d", hour,min,sec); /* store UTC time in buffer */
+
     return;
 }
 
@@ -440,3 +437,6 @@ void tratamento_uart(unsigned char received_char)
 			rmc_code[2] = received_char;
         }	
 }
+
+
+
