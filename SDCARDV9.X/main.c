@@ -75,7 +75,7 @@ void mensagem_inicial(void);
 
 void grava_sd(void);
 
-
+void leitura_uart(void);;
 /*****************************************************************************/
 /******************************************************************************
  * Funcao:		void interrupt isr(void)
@@ -90,8 +90,9 @@ void interrupt isr(void)
 	/*Check UART interrupt reception */
 	if (PIE1bits.RCIE && PIR1bits.RCIF)     
     {
-        data_uart_recebe = recebe_dado_uart();
         PIR1bits.RCIF = 0;
+        data_uart_recebe = recebe_dado_uart();
+        tratamento_uart(data_uart_recebe);
         PORTBbits.RB2 =	!PORTBbits.RB2;	
     } //End if interrupt Recepcao UART
 	
@@ -143,21 +144,21 @@ void interrupt isr(void)
 void inicializa_tarefas(void)
 {
 
-    p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
-//    p_tarefas[0] = gps; // executada a cada 100ms
+//    p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
+//    p_tarefas[1] = gps; // executada a cada 100ms
 //    p_tarefas[2] = leitura_can; // executada a cada 100ms
     
     
 	/*init temporization values of each task. 
 	These values do no change during execution*/
-	tempo_backup[0] = TIME_1000_MS; 
-    tempo_backup[1] = TIME_5000_MS;
+	tempo_backup[0] = TIME_5000_MS; 
+    tempo_backup[1] = TIME_100_MS;
 //    tempo_backup[2] = TIME_2000_MS;
 	
 	/*init recent temporization values of each task. 
 	They�re used to decide which task must be executed*/
 	tempo_tarefa[0] = TIME_1000_MS;
-    tempo_tarefa[1] = TIME_5000_MS;
+    tempo_tarefa[1] = TIME_100_MS;
 //    tempo_tarefa[2] = TIME_2000_MS;
 
 	//It indicates that there�s no task executing
@@ -214,7 +215,7 @@ void main(void)
             sinaliza_int_timer = NO;  
             escalonador();			
         }
-        tratamento_uart(data_uart_recebe);
+//        leitura_uart();
         gps();
 //        get_gpstime();
 //        leitura_chaves_sistema();   /*Driver*/
@@ -255,4 +256,12 @@ void grava_sd(void)
    posicao_cursor_lcd(1,0);
    escreve_frase_ram_lcd(data);
 //   escrita_sdcard();     
+}
+
+
+void leitura_uart(void)
+{
+    PIR1bits.RCIF = 0;
+    while(!PIR1bits.RCIF);
+    tratamento_uart(data_uart_recebe);
 }

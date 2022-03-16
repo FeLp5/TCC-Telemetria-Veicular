@@ -219,9 +219,10 @@ void inicializa_uart(void)
 void desliga_uart(void)
 {
 	PINO_TX    = 1; 				// Registrador responsavel pelo envio de dados via UART.
-    PINO_RX    = 0; 				// Registrador responsavel pelo recebimento de dados via UART.
+    PINO_RX    = 1; 				// Registrador responsavel pelo recebimento de dados via UART.
 	
 //	(void)configura_baudrate_uart(9600);                // Inicializa Comunicação UART.
     TXSTA = 0x00;  	/* Enable Transmit(TX) */ 
+    
     RCSTA = 0x00;  	/* Enable Receive(RX) & Serial */
 }

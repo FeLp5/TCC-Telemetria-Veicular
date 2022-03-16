@@ -49,6 +49,8 @@
 ******************************************************************************/
 void inicializa_SPI(void);
 
+void desliga_SPI(void);
+
 unsigned char leitura_SPI(void);
 
 void escreve_SPI(unsigned char dado);

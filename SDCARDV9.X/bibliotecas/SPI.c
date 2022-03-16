@@ -66,6 +66,12 @@ void inicializa_SPI(void)
     SSPCON1bits.SSPEN = 1;
 }
 
+void desliga_SPI(void)
+{
+    SSPSTAT = 0x00;			// power on state 
+	SSPCON1 = 0x00;
+    SSPCON1bits.SSPEN = 0;
+}
 
 
 /******************************************************************************
@@ -77,6 +83,7 @@ void inicializa_SPI(void)
 unsigned char leitura_SPI(void)
 {
     SSPBUF = 0xFF;
+    SSPSTATbits.BF = 0;
     while(!SSPSTATbits.BF);
     return (SSPBUF);
 }
@@ -92,9 +99,11 @@ void escreve_SPI(unsigned char dado)
 {
     unsigned char TempVar;
     TempVar = SSPBUF; //Clear de BF
-    PIR1bits.SSPIF = 0; // Clear interrupt flag
+//    PIR1bits.SSPIF = 0; // Clear interrupt flag
+    SSPSTATbits.BF =0;
     SSPBUF = dado;
-    while(!PIR1bits.SSPIF);
+//    while(!PIR1bits.SSPIF);
+    while(!SSPSTATbits.BF);
 }
 
 

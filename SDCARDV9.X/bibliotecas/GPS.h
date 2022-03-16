@@ -60,6 +60,7 @@ float get_latitude(unsigned char);
 float get_longitude(unsigned char);
 unsigned long int get_dt(unsigned char);
 void convert_time_to_utc(unsigned long int);
+//void convert_time_to_utc(unsigned char *data);
 void gps_sd(void);
 //void convert_time_to_utc(int *hora, int *min, int *seg);
 unsigned char convert_to_date(unsigned char dt[]);

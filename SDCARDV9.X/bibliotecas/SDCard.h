@@ -47,7 +47,14 @@ extern "C" {
 //Defines===========================    
 //==================================    
 
-
+typedef struct{
+    unsigned char data[10];
+    unsigned char hora[10];
+    unsigned char LAT[20];
+    unsigned char LONG[20];
+    unsigned int  RPM;
+    unsigned int  TEMP;
+}string_tel;
     
 /******************************************************************************
 * Prototipos das funções

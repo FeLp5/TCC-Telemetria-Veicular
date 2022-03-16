@@ -35,8 +35,7 @@ BYTE filename[15] = "gps2.txt";
 FATFS fs;
 FIL fil;
 fat_time *time;
-
-
+string_tel string_dado;
 unsigned char data_buffer_sd[100];
 //char buff[] = "0, -23.303930933 , -42.3309330933, 800, 45, 12764, 0";
 
@@ -159,8 +158,8 @@ void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
  *****************************************************************************/
 void sdcard_init(void) 
 {
-    inicializa_SPI();
     desliga_uart();
+    inicializa_SPI();
     PORTBbits.RB3 = 0;
     FRESULT FResult;
     WORD bw;
@@ -191,6 +190,8 @@ void sdcard_init(void)
         }
     }
     f_close(&fil);
+    
+    
     return;
 }
 
@@ -205,60 +206,72 @@ void escrita_sdcard(void)
 {
     unsigned char i;
     desliga_uart();
-//    TRISCbits.RC7  = 0;
+    inicializa_SPI();
     PORTBbits.RB3 = 0;
-    T0CONbits.TMR0ON = 0;
     f_mount(0,&fs);
-    LIMPA_DISPLAY();
-   	if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_WRITE ) == FR_OK)  /* Open or create a file */
+    
+
+    
+
+    if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_WRITE ) == FR_OK)  /* Open or create a file */
     {	
 
         f_lseek(&fil, fsize(&fil));
         posicao_cursor_lcd(2,0);
         escreve_inteiro_lcd(fsize(&fil));
-        
-        fprintf(&fil, "\n%s",  data_buffer_sd);
-        
+        posicao_cursor_lcd(1,0);
+        escreve_frase_ram_lcd(string_dado.hora);
+        fprintf(&fil, "\n%s %s  %s",  string_dado.data, string_dado.hora, string_dado.LAT);
+
         /* Close the file */
         f_close(&fil);	
     } 
+    desliga_SPI();
     inicializa_uart();
-//    TRISCbits.RC7  = 1;
     PORTBbits.RB3 = 1;
-    T0CONbits.TMR0ON = 1;
     return;
 }
 
 
 void monta_sd(unsigned char index, const unsigned char *dado)
 {
-    unsigned char i, j, count;
-    unsigned char data_string[];
-    
-    if(!index)
+    unsigned char i, size;
+    size = strlen(dado);
+    switch(index)
     {
-        strcat(data_string, dado);
-        strcat(data_string, "|");
-        posicao_cursor_lcd(1,0);
-        escreve_frase_ram_lcd(data_string);
-    }
-    else if(index==1)
-    {
-        for(i=0; data_string[i] != '\0'; i++)
-        {
-            if(data_string[i] == ';')
+        case 0:
+            for(i=0; i<size;i++)
             {
-                count++;
-                if(count==index)
-                {
-                    i++;
-                    data_string[i] = *dado;
-                    dado++;
-                }
+                string_dado.hora[i] = *dado;
+                dado++;
             }
-        }
+        break;
+        
+        case 1:
+            for(i=0; i<size;i++)
+            {
+                string_dado.data[i] = *dado;
+                dado++;
+            }
+        break;
+        
+        case 2:
+            for(i=0; i<size;i++)
+            {
+                string_dado.LAT[i] = *dado;
+                dado++;
+            }
+        break;
+        
+       case 3:
+            for(i=0; i<size;i++)
+            {
+                string_dado.LONG[i] = *dado;
+                dado++;
+            }
+        break;
+        
     }
-    strcpy(data_buffer_sd, data_string);
     
     return;
 }
