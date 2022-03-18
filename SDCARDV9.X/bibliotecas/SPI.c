@@ -99,11 +99,11 @@ void escreve_SPI(unsigned char dado)
 {
     unsigned char TempVar;
     TempVar = SSPBUF; //Clear de BF
-//    PIR1bits.SSPIF = 0; // Clear interrupt flag
-    SSPSTATbits.BF =0;
+    PIR1bits.SSPIF = 0; // Clear interrupt flag
+//    SSPSTATbits.BF =0;
     SSPBUF = dado;
-//    while(!PIR1bits.SSPIF);
-    while(!SSPSTATbits.BF);
+    while(!PIR1bits.SSPIF);
+//    while(!SSPSTATbits.BF);
 }
 
 

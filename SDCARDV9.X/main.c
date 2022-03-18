@@ -144,7 +144,7 @@ void interrupt isr(void)
 void inicializa_tarefas(void)
 {
 
-//    p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
+    p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
 //    p_tarefas[1] = gps; // executada a cada 100ms
 //    p_tarefas[2] = leitura_can; // executada a cada 100ms
     
@@ -152,13 +152,13 @@ void inicializa_tarefas(void)
 	/*init temporization values of each task. 
 	These values do no change during execution*/
 	tempo_backup[0] = TIME_5000_MS; 
-    tempo_backup[1] = TIME_100_MS;
+    tempo_backup[1] = TIME_1000_MS;
 //    tempo_backup[2] = TIME_2000_MS;
 	
 	/*init recent temporization values of each task. 
 	They�re used to decide which task must be executed*/
 	tempo_tarefa[0] = TIME_1000_MS;
-    tempo_tarefa[1] = TIME_100_MS;
+    tempo_tarefa[1] = TIME_1000_MS;
 //    tempo_tarefa[2] = TIME_2000_MS;
 
 	//It indicates that there�s no task executing
@@ -215,11 +215,7 @@ void main(void)
             sinaliza_int_timer = NO;  
             escalonador();			
         }
-//        leitura_uart();
         gps();
-//        get_gpstime();
-//        leitura_chaves_sistema();   /*Driver*/
-//        leitura_continua_adc();     /*Driver*/ 
     }
 }
 /******************************************************************************
@@ -253,8 +249,18 @@ void mensagem_inicial(void)
 void grava_sd(void)
 {
    unsigned char data[];
-   posicao_cursor_lcd(1,0);
-   escreve_frase_ram_lcd(data);
+   if(!PORTEbits.RE1)
+   {
+       PORTBbits.RB3 = 0;
+       desliga_uart();
+   }
+   else
+   {
+       PORTBbits.RB3 = 1;
+       inicializa_uart();
+   }
+//   posicao_cursor_lcd(1,0);
+//   escreve_frase_ram_lcd(data);
 //   escrita_sdcard();     
 }
 

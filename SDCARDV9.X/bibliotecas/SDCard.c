@@ -31,7 +31,7 @@
 ******************************************************************************/
 
 // File to read================================================================= 
-BYTE filename[15] = "gps2.txt";
+BYTE filename[15] = "gpss.txt";
 FATFS fs;
 FIL fil;
 fat_time *time;
@@ -205,14 +205,14 @@ void sdcard_init(void)
 void escrita_sdcard(void) 
 {
     unsigned char i;
+    PORTBbits.RB3 = 0;
+//    __delay_us(30);
     desliga_uart();
     inicializa_SPI();
-    PORTBbits.RB3 = 0;
     f_mount(0,&fs);
     
 
     
-
     if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_WRITE ) == FR_OK)  /* Open or create a file */
     {	
 
@@ -220,20 +220,25 @@ void escrita_sdcard(void)
         posicao_cursor_lcd(2,0);
         escreve_inteiro_lcd(fsize(&fil));
         posicao_cursor_lcd(1,0);
+        escreve_frase_ram_lcd(string_dado.LAT);
+        posicao_cursor_lcd(2,0);
+        escreve_frase_ram_lcd(string_dado.LONG);
+        posicao_cursor_lcd(1,8);
         escreve_frase_ram_lcd(string_dado.hora);
-        fprintf(&fil, "\n%s %s  %s",  string_dado.data, string_dado.hora, string_dado.LAT);
+        fprintf(&fil, "\n%s  %s  %s  %s", string_dado.hora, string_dado.data, string_dado.LAT, string_dado.LONG);
 
         /* Close the file */
         f_close(&fil);	
-    } 
+    }
+    PORTBbits.RB3 = 1; 
     desliga_SPI();
     inicializa_uart();
-    PORTBbits.RB3 = 1;
+    
     return;
 }
 
 
-void monta_sd(unsigned char index, const unsigned char *dado)
+void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
 {
     unsigned char i, size;
     size = strlen(dado);
@@ -264,6 +269,7 @@ void monta_sd(unsigned char index, const unsigned char *dado)
         break;
         
        case 3:
+//           string_dado.LONG = dado_localizacao;
             for(i=0; i<size;i++)
             {
                 string_dado.LONG[i] = *dado;

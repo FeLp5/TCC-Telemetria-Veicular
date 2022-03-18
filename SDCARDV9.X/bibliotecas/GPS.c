@@ -1,25 +1,7 @@
-/******************************************************************************
- * Nome do Arquivo 	: GPS.c
- *
- * Descricao       	: Implementa funcoes de tratamento dos dados do GPS
- *
- * Ambiente			: MPLAB, XC8 versao 1.45, PIC18F4550
- *
- * Responsavel		: Souza, Deivide Conceiï¿½ao de
-                      Silva, Felipe Alves da
-                      Souza, Ricardo de
-			  
- * 
- * O sistema FAT é opensource disponibilizado por (C) ChaN, 2008
- * Versao: FatFs - Tiny FAT file system module  R0.06                 (C)ChaN, 2008
- * 
- * 
- * Contribuicao: GPS Information extraction using PIC18F4550 
-                    http://www.electronicwings.com
- * 
- * Versao/Data		: v00.01 - 26/09/2021 - versao inicial l
- *
- *****************************************************************************/
+/*
+    GPS Information extraction using PIC18F4550 
+    http://www.electronicwings.com
+*/
 
 #include <pic18f4550.h>
 #include <string.h>
@@ -28,27 +10,23 @@
 #include "GPS.h"
 #include "display_lcd.h"
 #include "uart.h"
-#include "integer.h"
 #include "SDCard.h"
 
+
 // Protótipos de funções
-//unsigned long int get_gpstime();
-//float get_latitude(unsigned char);
-//float get_longitude(unsigned char);
-//unsigned long int get_dt(unsigned char);
-//void convert_time_to_utc(unsigned long int);
-//unsigned char convert_to_date(unsigned char dt[]);
-//float convert_to_degrees(float);
+unsigned long int get_gpstime();
+float get_latitude(unsigned char);
+float get_longitude(unsigned char);
+unsigned long int get_dt(unsigned char);
+void convert_time_to_utc(unsigned long int);
+unsigned char convert_to_date(unsigned char dt[]);
+float convert_to_degrees(float);
 //float get_altitude(unsigned char);
 //float get_sv(unsigned char date_pointer);
 
 
-/******************************************************************************
-* Variaveis Globais
-******************************************************************************/
-
-fat_time *f_time;
-
+//variáveis
+char *teste;
 char gga_buffer[GGA_BUFFER_SIZE];              /* to store GGA string */
 char rmc_buffer[RMC_BUFFER_SIZE];
 
@@ -74,14 +52,6 @@ volatile unsigned int rmc_index;
 volatile unsigned char is_it_gga_string	= 0;
 volatile unsigned char is_it_rmc_string = 0;
 
-
-
-/******************************************************************************
- * Funcao:		void gps(void)
- * Entrada:		Nenhuma (void)
- * Saida:		Nenhuma (void)
- * Descricao:	Realiza a execucao das funcoes de tratamento
- *****************************************************************************/
 void gps(void)
 {
     inicializa_uart();
@@ -93,52 +63,6 @@ void gps(void)
     
 
     //hora
-    time = get_gpstime();            /* Extract Time */
-    convert_time_to_utc(time);       /* convert time to UTC */
-    posicao_cursor_lcd(2,0);
-    escreve_frase_ram_lcd("hora");
-    posicao_cursor_lcd(2,7);
-    escreve_frase_ram_lcd(dado_buffer);
-    monta_sd(0, data_buffer);
-    
-//    get_dt(7);/* Extract Latitude */
-//    monta_sd(1, data_buffer);
-//    unsigned long int dt = "000000";
-//    dt = convert_to_date(date);
-//    monta_sd(1,data_buffer);
-//    //sprintf(gps_buffer,"%%",date);		/* convert float value to string */
-//    posicao_cursor_lcd(2,0);
-//    escreve_frase_ram_lcd("Data:");
-//    
-
-//    __delay_ms(2000);
-//    LIMPA_DISPLAY();
-//    
-//    latitude = get_latitude(6); /* Extract Latitude */
-//    latitude = convert_to_degrees(latitude);  /* convert raw latitude in degree decimal*/
-////    sprintf(gps_buffer,"%.07f",latitude);			/* convert float value to string */
-//    monta_sd(2, data_buffer);
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd("Lat:");/* display latitude in degree */    
-//    posicao_cursor_lcd(1,5);
-//    escreve_frase_ram_lcd(gps_buffer);
-//    memset(gps_buffer,0,15);
-//  
-//    // LCD_String_xy(3,0,"Long: ");
-//    longitude = get_longitude(gga_pointers[2]);/* Extract Latitude */
-//    longitude = convert_to_degrees(longitude);/* convert raw longitude in degree decimal*/
-//    sprintf(gps_buffer,"%.07f",longitude);		/* convert float value to string */
-//    // LCD_String(gps_buffer);            				/* display latitude in degree */
-//    posicao_cursor_lcd(2,0);
-//    escreve_frase_ram_lcd("Lon:");/* display latitude in degree */ 
-//    posicao_cursor_lcd(2,5);
-//    escreve_frase_ram_lcd(gps_buffer);       
-//    memset(gps_buffer,0,15);
-
-    
-    
-//    __delay_ms(2000);
-//    LIMPA_DISPLAY();
 //    time = get_gpstime();            /* Extract Time */
 //    convert_time_to_utc(time);       /* convert time to UTC */
 //    posicao_cursor_lcd(1,0);
@@ -164,9 +88,60 @@ void gps(void)
 //    //latidude
 //    latitude = get_latitude(gga_pointers[0]); /* Extract Latitude */
 //    latitude = convert_to_degrees(latitude);  /* convert raw latitude in degree decimal*/
-//    sprintf(gps_buffer,"%.07f",latitude);			/* convert float value to string */;
+//    sprintf(gps_buffer,"%.07f",latitude);			/* convert float value to string */
 //    // LCD_String(gps_buffer);  
+//    
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd("Lat:");/* display latitude in degree */    
+//    posicao_cursor_lcd(1,5);
+//    escreve_frase_ram_lcd(gps_buffer);
+//    memset(gps_buffer,0,15);
+//       
+//
+//    
+//    // LCD_String_xy(3,0,"Long: ");
+//    longitude = get_longitude(gga_pointers[2]);/* Extract Latitude */
+//    longitude = convert_to_degrees(longitude);/* convert raw longitude in degree decimal*/
+//    sprintf(gps_buffer,"%.07f",longitude);		/* convert float value to string */
+//    // LCD_String(gps_buffer);            				/* display latitude in degree */
+//    posicao_cursor_lcd(2,0);
+//    escreve_frase_ram_lcd("Lon:");/* display latitude in degree */ 
+//    posicao_cursor_lcd(2,5);
+//    escreve_frase_ram_lcd(gps_buffer);       
+//    memset(gps_buffer,0,15);
+//
+//    __delay_ms(2000);
+//    LIMPA_DISPLAY();
+    time = get_gpstime();            /* Extract Time */
+    convert_time_to_utc(time);       /* convert time to UTC */
+    monta_sd(0, data_buffer, 0);
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd("Hora:");
+//    posicao_cursor_lcd(1,7);
+//    escreve_frase_ram_lcd(data_buffer);
     
+    //data
+    date = get_dt(rmc_pointers[7]);/* Extract Latitude */
+    monta_sd(1, data_buffer, 0);
+//    unsigned long int dt = "000000";
+//    dt = convert_to_date(date);
+//    //sprintf(gps_buffer,"%%",date);		/* convert float value to string */
+//    posicao_cursor_lcd(2,0);
+//    escreve_frase_ram_lcd("Data:");
+//    
+//    posicao_cursor_lcd(2,7);
+//    escreve_frase_ram_lcd(dado_buffer);
+
+    
+//    __delay_ms(2000);
+//    LIMPA_DISPLAY();
+    
+    //latidude
+    latitude = get_latitude(gga_pointers[0]); /* Extract Latitude */
+    latitude = convert_to_degrees(latitude);  /* convert raw latitude in degree decimal*/
+//    sprintf(gps_buffer,"%.07f",latitude);			/* convert float value to string */
+    // LCD_String(gps_buffer);  
+    monta_sd(2, data_buffer, 0);
 //    posicao_cursor_lcd(1,0);
 //    escreve_frase_ram_lcd("Lat:");/* display latitude in degree */    
 //    posicao_cursor_lcd(1,5);
@@ -176,10 +151,12 @@ void gps(void)
 
     
     // LCD_String_xy(3,0,"Long: ");
-//    longitude = get_longitude(gga_pointers[2]);/* Extract Latitude */
-//    longitude = convert_to_degrees(longitude);/* convert raw longitude in degree decimal*/
+    longitude = get_longitude(gga_pointers[2]);/* Extract Latitude */
+    longitude = convert_to_degrees(longitude);/* convert raw longitude in degree decimal*/
+    teste = ftoa(longitude, 7);
+    monta_sd(3, teste, 0);
 //    sprintf(gps_buffer,"%.07f",longitude);		/* convert float value to string */
-//    // LCD_String(gps_buffer);            				/* display latitude in degree */
+    // LCD_String(gps_buffer);            				/* display latitude in degree */
 //    posicao_cursor_lcd(2,0);
 //    escreve_frase_ram_lcd("Lon:");/* display latitude in degree */ 
 //    posicao_cursor_lcd(2,5);
@@ -208,15 +185,11 @@ unsigned long int get_gpstime()
 	unsigned long int _time;
 	
 	/* parse time in GGA string stored in buffer */
-	for(index = 0; gga_buffer[index] != ','; index++)
+	for(index = 0; gga_buffer[index]!=','; index++)
 	{		
 		time_buffer[index] = gga_buffer[index];
 	}
-    
-    
-    _time= atol(time_buffer);        /* convert string of time to integer */
-
-    
+	_time= atol(time_buffer);        /* convert string of time to integer */
 	return _time;                    /* return integer raw value of time */        
 }
 
@@ -233,27 +206,16 @@ float get_latitude(char lat_pointer)
 	unsigned char lat_index = lat_pointer+1;	/* index pointing to the latitude */
 	unsigned char index = 0;
 	char lat_buffer[15];
-    unsigned char *buff;
 	float _latitude;
 
 	/* parse Latitude in GGA string stored in buffer */
-	for(; lat_index!= 17;lat_index++){
+	for(;gga_buffer[lat_index]!=',';lat_index++){
 		lat_buffer[index]= gga_buffer[lat_index];
 		index++;
 	}
     lat_index++;
     n_s = gga_buffer[lat_index];
 	_latitude = atof(lat_buffer);     /* convert string of latitude to float */
-
-    buff = ftoa(_latitude, 7);
-    
-    strcat(buff, n_s);
-    posicao_cursor_lcd(1,0);
-    escreve_frase_ram_lcd(buff);
-    __delay_ms(500);
-    LIMPA_DISPLAY();
-    strcpy(data_buffer, buff);
-//    sprintf(data_buffer,"%.07f",_latitude);
 	return _latitude;                 /* return float raw value of Latitude */
 }
 
@@ -296,39 +258,43 @@ unsigned long int get_dt(unsigned char dt_pointer)
     unsigned char dt_index = dt_pointer + 1; //dt_pointer+1;
 	unsigned long int _dt;
     unsigned char index;
-    unsigned char count;
-    unsigned char dia = "|"; 
-    unsigned char mes = "|"; 
-    unsigned char ano = "|";
 	index = 0;
 	/* parse time in GGA string stored in buffer */
 
-    for(;dt_index < 15;dt_index++){
-		data_buffer[index]= rmc_buffer[dt_index];
+    for(;rmc_buffer[dt_index]!=',';dt_index++){
+		dado_buffer[index]= rmc_buffer[dt_index];
 		index++;
 	}
     
-    data_buffer[strlen(data_buffer) - 0] = '\0';
+    dado_buffer[strlen(dado_buffer) - 0] = '\0';
 
-//    for(count = 0;count<=7; count++)
-//    {
-//        if(count < 2)
-//        {
-//            strcat(dia, dado_buffer[count]); 
-//        }
-//        else if(count>=2 && count<4)
-//        {
-//            strcat(mes, dado_buffer[count]); 
-//        }
-//        else
-//        {
-//            strcat(ano, dado_buffer[count]); 
-//        }
-//    }
-//    strcpy(data_buffer,dado_buffer);
-    //armazena valores em uma estrutura para o sistema de arquivos
     
+  
     
+    // testando
+//    LIMPA_DISPLAY();
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd(rmc_buffer);
+//    __delay_ms(1000);
+//      LIMPA_DISPLAY();    
+      
+//      
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd(dado_buffer);
+//    __delay_ms(1000);
+      //    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd(dado_buffer);
+//    __delay_ms(1000);
+      
+//      int tamanho = strlen(dado_buffer);
+//      posicao_cursor_lcd(1,0);
+//    escreve_inteiro_lcd(tamanho);
+//    __delay_ms(1000);
+
+//    _dt = atol(dado_buffer);        /* convert string of time to integer */
+//	return _dt;   
+    /* return integer raw value of time */    
+//    return dado_buffer;
 }
 
 
@@ -342,24 +308,10 @@ unsigned long int get_dt(unsigned char dt_pointer)
 void convert_time_to_utc(unsigned long int utc_time)
 {
     unsigned int hour, min, sec;
-    unsigned char buff[];
-    DWORD data_time; //new for return to the get_fattime
 	hour = (utc_time / 10000) + LOCAL;                  /* extract hour from integer */
 	min = (utc_time % 10000) / 100;             /* extract minute from integer */
 	sec = (utc_time % 10000) % 100;             /* extract second from integer*/
-    
-    
-    itoa(buff, hour, 10);
-    strcpy(data_buffer, buff);
-    itoa(buff, min, 10);
-    strcat(data_buffer,":");
-    strcat(data_buffer,buff);
-    itoa(buff, sec, 10);
-    strcat(data_buffer,":");
-    strcat(data_buffer,buff);
-    
-
-    return;
+	sprintf(data_buffer, "%d:%d:%d", hour,min,sec); /* store UTC time in buffer */
 }
 
 unsigned char convert_to_date(unsigned char dt[])
@@ -465,6 +417,3 @@ void tratamento_uart(unsigned char received_char)
 			rmc_code[2] = received_char;
         }	
 }
-
-
-
