@@ -48,10 +48,10 @@ extern "C" {
 //==================================    
 
 typedef struct{
-    unsigned char data[10];
-    unsigned char hora[10];
-    unsigned char LAT[10];
-    unsigned char LONG[10];
+    unsigned char data[7];
+    unsigned char hora[11];
+    unsigned char LAT[13];
+     unsigned char LONG[13];
     unsigned int  RPM;
     unsigned int  TEMP;
 }string_tel;

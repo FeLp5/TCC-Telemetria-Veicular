@@ -92,7 +92,7 @@ void interrupt isr(void)
     {
         PIR1bits.RCIF = 0;
         data_uart_recebe = recebe_dado_uart();
-        tratamento_uart(data_uart_recebe);
+        GPSRead(data_uart_recebe);
         PORTBbits.RB2 =	!PORTBbits.RB2;	
     } //End if interrupt Recepcao UART
 	
@@ -202,9 +202,6 @@ void main(void)
     init_lcd();
 	mensagem_inicial();
     inicializa_tarefas();
-    PORTBbits.RB3 = 0;
-    sdcard_init();
-    PORTBbits.RB3 = 1;
     inicializa_uart();
     T0CONbits.TMR0ON = 1;
     while(1)
@@ -215,7 +212,8 @@ void main(void)
             sinaliza_int_timer = NO;  
             escalonador();			
         }
-        gps();
+//        gps();
+        transf_dados_sd();
     }
 }
 /******************************************************************************
@@ -265,9 +263,9 @@ void grava_sd(void)
 }
 
 
-void leitura_uart(void)
-{
-    PIR1bits.RCIF = 0;
-    while(!PIR1bits.RCIF);
-    tratamento_uart(data_uart_recebe);
-}
+//void leitura_uart(void)
+//{
+//    PIR1bits.RCIF = 0;
+//    while(!PIR1bits.RCIF);
+//    tratamento_uart(data_uart_recebe);
+//}

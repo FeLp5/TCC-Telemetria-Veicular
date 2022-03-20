@@ -221,11 +221,7 @@ void escrita_sdcard(void)
         escreve_inteiro_lcd(fsize(&fil));
         posicao_cursor_lcd(1,0);
         escreve_frase_ram_lcd(string_dado.LAT);
-        posicao_cursor_lcd(2,0);
-        escreve_frase_ram_lcd(string_dado.LONG);
-        posicao_cursor_lcd(1,8);
-        escreve_frase_ram_lcd(string_dado.hora);
-        fprintf(&fil, "\n%s  %s  %s  %s", string_dado.hora, string_dado.data, string_dado.LAT, string_dado.LONG);
+        fprintf(&fil, "\n%s\n%s\n%s\n%s\n", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
 
         /* Close the file */
         f_close(&fil);	
@@ -245,7 +241,7 @@ void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
     switch(index)
     {
         case 0:
-            for(i=0; i<size;i++)
+            for(i=0; i<6;i++)
             {
                 string_dado.hora[i] = *dado;
                 dado++;
@@ -261,7 +257,7 @@ void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
         break;
         
         case 2:
-            for(i=0; i<size;i++)
+            for(i=0; i<13;i++)
             {
                 string_dado.LAT[i] = *dado;
                 dado++;

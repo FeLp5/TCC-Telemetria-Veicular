@@ -53,19 +53,36 @@ extern "C" {
 /******************************************************************************
 * Prototipos das funÃ§Ãµes
 ******************************************************************************/
-void tratamento_uart(unsigned char received_char); 
-void gps(void);
-unsigned long int get_gpstime();
-float get_latitude(unsigned char);
-float get_longitude(unsigned char);
-unsigned long int get_dt(unsigned char);
-void convert_time_to_utc(unsigned long int);
-//void convert_time_to_utc(unsigned char *data);
-void gps_sd(void);
-//void convert_time_to_utc(int *hora, int *min, int *seg);
-unsigned char convert_to_date(unsigned char dt[]);
-float convert_to_degrees(float);
+//void tratamento_uart(unsigned char received_char); 
+//void gps(void);
+//unsigned long int get_gpstime();
+//float get_latitude(unsigned char);
+//float get_longitude(unsigned char);
+//unsigned long int get_dt(unsigned char);
+//void convert_time_to_utc(unsigned long int);
+////void convert_time_to_utc(unsigned char *data);
+//void gps_sd(void);
+////void convert_time_to_utc(int *hora, int *min, int *seg);
+//unsigned char convert_to_date(unsigned char dt[]);
+//float convert_to_degrees(float);
 
+    
+void stringcpy(char *str1, char *str2, int dir);
+int GPSRead(unsigned char buff);
+uint8_t GPSSecond();
+uint8_t GPSMinute();
+uint8_t GPSHour();
+uint8_t GPSDay();
+uint8_t GPSMonth();
+uint8_t GPSyear();
+float parse_rawDegree(char *term_);
+float Latitude();
+float Longitude();
+float Altitude();
+uint8_t Satellites();
+float Speed();
+float Course();
+void transf_dados_sd(void);
 /*****************************************************************************/
 
 #ifdef __cplusplus
