@@ -20,6 +20,7 @@ import wx.lib.scrolledpanel as scrolled
 cor = wx.NamedColour('white')
 corBotoes = ""
 b = 0
+grafico = "esconder"
 
 #pegando a dimensao da tela
 app = wx.App(False) # the wx.App object must be created first.    
@@ -32,22 +33,31 @@ altura_display = size_window[1] - 6
 larg = (largura_display / 10) 
 alt = (altura_display / 6)
 print ( largura_display , altura_display, larg, alt)
-class janelas(wx.Frame):
+
+print grafico
+
+
+import wx  
+
+
+    
+    
+class janelas(wx.Window):
     """- A wx.Window with a coloured background
     - pos and size == (-1, -1) since sizers are used"""
     
     def __init__(self, parent, id, BackColour):
-        wx.Window.__init__(self, parent, id, (5, 5), (-1, -1), wx.BORDER_DEFAULT | wx.VSCROLL)
+        wx.Window.__init__(self, parent, id, (5, 5), (-1, -1), wx.BORDER_DEFAULT | wx.VSCROLL | wx.FULL_REPAINT_ON_RESIZE)
         self.SetBackgroundColour(BackColour)   
         
+
         
         largura_panel = wx.Window.GetSize(self)
-        # print(largura_panel)
         valor = self.GetSize()
-        #print(largura_panel)
         
+        
+
     def arquivos(self):
-    # def arquivos(scrolled.ScrolledPanel):
         count = - 1
         pasta = './'
         botoes = 0
@@ -58,8 +68,6 @@ class janelas(wx.Frame):
         self.titulo_bt_od = [0] * 100
         self.botao_path = [""] * 100
         #self.titulo_bt = [" "," "]
-        
-       
         
         statxt1 = wx.StaticText(self, -1, "Selecione um arquivo:" , (16, 4), (-1, -1))
         statxt1.SetForegroundColour("black")
@@ -80,7 +88,7 @@ class janelas(wx.Frame):
                 ext = ""
                 
                 x = 0
-                #cont = cont + 1
+  
                 # pegando as extensoes dos arquivos
                 for x in range(len(arquivo)): 
                     if( x > pos):  
@@ -89,58 +97,19 @@ class janelas(wx.Frame):
                 extensao = "tlm"
                 if(ext == extensao ):
                  # informacao adicional dos arquivos 
-                    #print(arquivos)
-                    
-                    
 
-                    
                     datacri = ""
                     datamod = ""
                     infos = str(os.stat(arquivo))
                     
                     try:
                         datam = re.search('st_mtime=(.+?),', infos).group(1)
-                        #datac = re.search('st_ctime=(.+?),', infos).group(1)
-                        
-                        # print int(datam)
-                        
-                        #datacri = datetime.datetime.fromtimestamp(float(datac)).strftime(' - %H:%M')
-                        #'%Y-%m-%d-%H:%M'
-                        
-                        # print('timestamp', datahora)
-                        # print(found)
-                        # print(found)
+
                     except AttributeError:
                         pass
                         
-                    # try:
-                    #     datac = re.search('st_ctime=(.+?),', infos).group(1)
-                    #     datacri = datetime.datetime.fromtimestamp(float(datac)).strftime('%Y-%m-%d-%H:%M')
-                    #     # print('timestamp', datahora)
-                    #     # print(found)
-                    #     # print(found)
-                    # except AttributeError:
-                    #     pass
-                    
-                    
-                    # print("cont", cont)
-                    
-                    
-                    
                     self.titulo_bt[cont] = int(datam)
-                    # if (self.titulo_bt[cont] < arquivo):
-                    #     self.titulo_bt[cont + 1] = self.titulo_bt[cont]
-                    #     
-                    #     #print("cont", cont)
-                    # else:
-                    #     #print("self.titulo", self.titulo_bt[cont], datamod)
-                    #     self.titulo_bt[cont + 1] = arquivo
-                    #     #print("cont", cont)
-                    # for w in range(cont):
-                    #     print("w", w)
-                            
-                   
-                    # pegando o nome original para abrir pelos botoes recentes
+
                     self.botao_path[cont] = str(arquivo)
                     print  self.botao_path[cont]
                     
@@ -166,13 +135,6 @@ class janelas(wx.Frame):
             p = p+1
             # print ("--")        
             
-        # faz a conversao
-
-
-
-        
-
-        
         #desenha os botoes
         count = 2
         for x in range(cont):
@@ -187,28 +149,7 @@ class janelas(wx.Frame):
                 self.botao_mais = wx.Button(self, wx.NewId(), "Mais antigos", (10, count + 32), (size_window[0]/14, 24))
                 self.Bind(wx.EVT_BUTTON, self.abrir_arquivos, self.botao_mais)
                 break
-        #desenha os botoes
-        # self.botao1 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[0])), (10, 22), (larg * 2, 20))  
-        # self.botao1.SetBackgroundColour(corBotoes)
-        # 
-        # 
-        # self.botao2 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[1])), (10, 44), (larg * 2, 20))  
-        # self.botao2.SetBackgroundColour(corBotoes)
-        # 
-        # self.botao3 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[2])), (10, 66), (larg * 2, 20))  
-        # self.botao3.SetBackgroundColour(corBotoes)
-        # 
-        # self.botao4 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[3])), (10, 88), (larg * 2, 20))  
-        # self.botao4.SetBackgroundColour(corBotoes)
-        # 
-        # self.botao5 = wx.Button(self, wx.NewId(), convert_data((self.titulo_bt[4])), (10, 110), (larg * 2, 20))  
-        # self.botao5.SetBackgroundColour(corBotoes)
-        
-            
-            # desenha o botao e quebra o laco
-            
-        # self.botao_mais = wx.Button(self, wx.NewId(), "Mais antigos", (10, 144), (size_window[0]/14, 24))
-        
+
         print botoes
        
         # self.botao_mais.Bind(wx.EVT_BUTTON, abrir_arquivos(self, click))
@@ -287,6 +228,7 @@ class janelas(wx.Frame):
             botao2.SetBackgroundColour(corBotoes)
             botao3.SetBackgroundColour("blue")
             botao4.SetBackgroundColour(corBotoes)
+            
     def abrir_recente5(self, event):
             self.abrir_recentes(4)
             self.statxt3.SetLabel(self.botao_path[4])
@@ -328,43 +270,15 @@ class janelas(wx.Frame):
             botao2.SetBackgroundColour(corBotoes)
             botao3.SetBackgroundColour(corBotoes)
             botao4.SetBackgroundColour(corBotoes)
-                
-                
-                
-
-        
-    def grafico(self):
-        valor = self.GetSize()
-        #print("grafico", valor)
-        
-        
-        self.figure = Figure()
-        
-        self.axes = self.figure.add_subplot(111)
-        self.canvas = FigureCanvas(self, -1, self.figure)
-        self.canvas.SetSize(((larg * 6)-10, (alt * 2)-10))
-        
-        # print("window", size_window[0])
-        grupos = ['A', 'B', 'C' , 'D', 'E', 'F', 'G' , 'H', 'I', 'J', 'K', 'L' ]
-        valores = [35, 77, 60, 43, 20, 36, 35, 38, 50, 51, 53, 35]
-        # self.SetSizer(self.sizer)
-        # self.Fit()
-        self.axes.bar(grupos, valores)
-        self.axes.set_autoscale_on
-        self.axes.plot([-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] , [40, 50, 50, 40, 40, 40, 40, 40, 40, 50, 50, 50, 50, 50])
-        
+            
+            
+    
+    
     def nulo(self):
         print()
         
     def mapa(self):
-        # BASE_DIR = Path(__file__).absolute().parent
-        # file = "teste.html"
-        # final_path = BASE_DIR / file
-        # final_path = "file://" + str(final_path) + "?dados=saoos"
-        # 
-        # print(final_path)
-        # print(largura, " largura")
-        #def __init__(self, parent, content='', *args, **kwargs):
+        
         valor = self.GetSize()
         print(valor)
         v2 = (size_window[0]/8)*6       
@@ -374,12 +288,9 @@ class janelas(wx.Frame):
         #url = "http://maps.google.com"
         url = ""
         self.browser.LoadURL(url)
-        #self.SetSizer() 
+
         self.browser.SetSize((larg * 7, alt * 4))
-        # self.browser.SetPage(content,'')
-        
-        #self.Center()
-        #self.CenterOnScreen()
+
         
         self.Show()
         
@@ -398,15 +309,74 @@ class janelas(wx.Frame):
     def logo(self):
         imageFile = 'imagens/logo_fatec.png'
         data = open(imageFile, "rb").read()
-        # convert to a data stream
-        #stream = cStringIO.StringIO(data)
+
 
         png = wx.Image(imageFile, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
         wx.StaticBitmap(self, -1, png, ( 0, 0), (png.GetWidth(), png.GetHeight()))
         
+class show_grafico(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent)
+        self.botao_grafico = wx.Button(self, wx.NewId(), "Ver grafico", (10, 32), (size_window[0]/14, 24))
+    
+        valor = self.GetSize()
+        self.figure = Figure()
+        self.axes = self.figure.add_subplot(111)
+        self.canvas = FigureCanvas(self, -1, self.figure)
+        self.canvas.SetSize(((larg * 6)-10, (alt * 2)-10))
         
-# janela5 = janelas(null, -1, wx.NamedColour('gray'))
+        grupos = ['A', 'B', 'C' , 'D', 'E', 'F', 'G' , 'H', 'I', 'J', 'K', 'L' ]
+        valores = [35, 77, 60, 43, 20, 36, 35, 38, 50, 51, 53, 35]
 
+        self.axes.bar(grupos, valores)
+        self.axes.set_autoscale_on
+        self.axes.plot([-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] , [40, 50, 50, 40, 40, 40, 40, 40, 40, 50, 50, 50, 50, 50])
+        self.botao_grafico = wx.Button(self, wx.NewId(), "Ver grafico", (10, 32), (size_window[0]/14, 24))
+    
+    
+class hide_grafico(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent)
+       
+        print grafico
+        statxt1 = wx.StaticText(self, -1, "Selecione um arquivo:" , (16, 4), (-1, -1))
+        
+        self.botao_grafico = wx.Button(self, wx.NewId(), "Ver informacoes", (10, 32), (size_window[0]/14, 24))
+            
+     
+class grafico(wx.Window):      
+    # def __init__(self):
+    #     wx.Frame.__init__(self, None, wx.ID_ANY, 'Program')
+    def __init__(self, parent, id, BackColour):
+        wx.Window.__init__(self, parent, id, (5, 5), (-1, -1), wx.BORDER_DEFAULT | wx.VSCROLL | wx.FULL_REPAINT_ON_RESIZE)
+        self.SetBackgroundColour(BackColour)   
+        sizer = wx.BoxSizer()
+        self.SetSizer(sizer)
+    
+        self.panel_one = hide_grafico(self)
+        sizer.Add(self.panel_one, 1, wx.EXPAND)
+        self.panel_one.botao_grafico.Bind(wx.EVT_BUTTON, self.show_panel_two)
+        self.panel_two = show_grafico(self)
+        sizer.Add(self.panel_two, 1, wx.EXPAND)
+        self.panel_two.botao_grafico.Bind(wx.EVT_BUTTON, self.show_panel_one)
+        self.panel_two.Hide()
+        self.SetSize((300, 300))
+        self.Centre()
+        
+        print "ok" 
+    def show_panel_one(self, event):
+        self.panel_one.Show()
+        self.panel_two.Hide()
+        self.Layout()
+        print "ok" 
+    def show_panel_two(self, event):
+        self.panel_two.Show()
+        self.panel_one.Hide()
+        self.Layout()
+        print "ok" 
+        
+
+                
 class MyPanel(wx.Panel):
     """- This example is coming from one of my applications
     - in the real app, the white window is a drawing area and
@@ -417,27 +387,31 @@ class MyPanel(wx.Panel):
         
         wx.Panel.__init__(self, parent, -1, wx.DefaultPosition, wx.DefaultSize)
         self.parent = parent
-        
-        
         valor = self.GetSize()
-        #print("panel ", valor)
-        #print(wx.DefaultSize)
-        #a menu for the beauty of the demo
-        menu1 = wx.Menu()
-        menu1.Append(101, '&Abrir arquivo de telemetria 3S')
-        menu1.Append(102, '&Fechar')
-        menu1.Append(103, '&Sair')
-        menu1.InsertSeparator(1)
-        menu2 = wx.Menu()
-        menu2.Append(201, '&Sobre')
-        menuBar = wx.MenuBar()
-        menuBar.Append(menu1, '&Arquivo')
-        menuBar.Append(menu2, '&Ajuda')
-        self.parent.SetMenuBar(menuBar)
         
-       
+        
+        self.parent.CreateStatusBar() # A Statusbar in the bottom of the window
+
+        # Setting up the menu.
+        filemenu= wx.Menu()
+        menuOpen = filemenu.Append(wx.ID_OPEN, "&Abrir"," Abrir um arquivo")
+        menuAbout= filemenu.Append(wx.ID_ABOUT, "&Sobre"," Dados sobre este programa")
+        menuExit = filemenu.Append(wx.ID_EXIT,"S&air"," Fechar o programa")
+
+        # Creating the menubar.
+        menuBar = wx.MenuBar()
+        menuBar.Append(filemenu,"&Arquivo") # Adding the "filemenu" to the MenuBar
+        self.parent.SetMenuBar(menuBar)  # Adding the MenuBar to the Frame content.
+
+        # Events.
+        self.Bind(wx.EVT_MENU, objetos.OnOpen, menuOpen)
+        self.Bind(wx.EVT_MENU, self.OnExit, menuExit)
+        self.Bind(wx.EVT_MENU, self.OnAbout, menuAbout)
+
+
+
         janela1 = janelas(self, -1, cor)
-        janela2 = janelas(self, -1, cor)
+        janela2 = grafico(self, -1, cor)
         janela3 = janelas(self, -1, cor)
         janela4 = janelas(self, -1, cor)
         global janela5
@@ -445,19 +419,14 @@ class MyPanel(wx.Panel):
         global janela6 
         janela6 = janelas(self, -1, cor)
         
-        
         janela1.arquivos()
-        janela2.grafico()
+        janela2
         janela3.logo()
         janela4.nulo()
         janela5.ruas()
         janela6.mapa()
         
-        
-    
-        #wblack = ColWin(self, -1, 'RED')
-        # wred = ColWin(self, -1, cor)
-        # wcoral = ColWin(self, -1, cor)
+
         staline = wx.StaticLine(self, -1, (-1, -1), (-1, 1), wx.LI_HORIZONTAL)
         
         vsizer1 = wx.BoxSizer(wx.VERTICAL)
@@ -487,57 +456,41 @@ class MyPanel(wx.Panel):
    
         self.SetSizerAndFit(vsizer4)
         
-        # for item in self.sizerItems: 
-        #     print item.GetWidth()
-        
+class objetos(wx.Window):
+    # def __init__(self, parent, id, BackColour):
+    # wx.Window.__init__(self, parent, id, (5, 5), (-1, -1), wx.BORDER_DEFAULT | wx.VSCROLL | wx.FULL_REPAINT_ON_RESIZE)
+    def OnAbout(self,e):
+        # Create a message dialog box
+        dlg = wx.MessageDialog(self, " A sample editor \n in wxPython", "About Sample Editor", wx.OK)
+        dlg.ShowModal() # Shows it
+        dlg.Destroy() # finally destroy it when finished.
 
-# class MyFrame(wx.Frame):
-# 
-#     def __init__(self, parent, id):
-#         s = __file__
-#         wx.Frame.__init__(self, parent, id, s, (0, 0), (500, 400))
-# 
-# 
-#         self.panel = eval('MyPanel_%d(self)' % panel)
-# 
-#         self.Bind(wx.EVT_CLOSE, self.OnCloseWindow)
-# 
-#     def OnCloseWindow(self, event):
-#         self.Destroy()
+    def OnExit(self,e):
+        Self.Close(True)  # Close the frame.
 
+    def OnOpen(self,e):
+        """ Open a file"""
+        print "ok -----"
+        dlg = wx.FileDialog(self, "Choose a file", self.dirname, "", "*.*", wx.FD_OPEN)
+        if dlg.ShowModal() == wx.ID_OK:
+            self.filename = dlg.GetFilename()
+            self.dirname = dlg.GetDirectory()
+            f = open(os.path.join(self.dirname, self.filename), 'r')
+            self.control.SetValue(f.read())
+            f.close()
+        dlg.Destroy()
 
 def SizeChange(event):
-    # width, height = event.GetSize()
-    # print(width, height)
     size_window = event.GetSize()
-    # print(size_window[0])
-    # janela5.grafico()
-    # frame.Show(False)
-    # from time import sleep
-    # sleep(1)
-    
-
     largura = size_window[0] / 2
-    
-    # frame.Show(True)
-    #print(largura , "largura")
 
 class MyApp(wx.App):
 
     def OnInit(self):
         
         global frame
-        frame = wx.Frame(None, -1, __file__, (0, 0), size_window)
-        # print ("size window")
-        # print(size_window)
-        
+        frame = wx.Frame(None, -1, "Telemetria Veicular 3S", (0, 0), size_window)
         frame.panel = MyPanel(frame)
-        
-        # frame.Show(True)
-        # self.SetTopWindow(frame)
-        # return True
- 
-        
         frame.Show()
         self.SetTopWindow(frame)
         return True
@@ -547,9 +500,8 @@ def main():
     app = MyApp()
     app.MainLoop()
     
-# app.MainLoop()
-
-
 if __name__ == "__main__" :
     main()
+    
+
 

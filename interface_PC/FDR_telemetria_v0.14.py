@@ -28,6 +28,7 @@ velocidade = 0
 # janela = 0
 # flag = 0
 
+apy_key="XXXXXXXXXXX"
 
 class mapa(wx.Panel):
     def __init__(self, parent):
@@ -36,8 +37,8 @@ class mapa(wx.Panel):
         
 
         self.browser = wx.html2.WebView.New(self)
-        url = "https://www.google.com/maps/@-23.6022347,-46.5409388,17.05z"
-        # url = ""
+        # url = "https://www.google.com/maps/@-23.6022347,-46.5409388,17.05z"
+        url = ""
         self.browser.LoadURL(url)
         t_x, t_y = size_window
 
@@ -55,18 +56,19 @@ class Painel_grafico_A(wx.Panel):
         global velocidade
 
 
-        statxt_info = wx.StaticText(self, -1,  "Gráfico de Velocidades" , (100, 26), (-1, -1))
-        
+        # statxt_info = wx.StaticText(self, -1,  "Gráfico de Velocidades" , (100, 26), (-1, -1))
+
         
         
         i = 0
         velocidade = str(velocidade)
         velocidade_list = velocidade.split(',')
         velocidade_list = [int(i) for i in velocidade_list]
-        print velocidade
+        print ( velocidade )
         # valor = self.GetSize()
         figure = Figure()
         axes = figure.add_subplot(111)
+        axes.set_title('Grafico de Velocidade', fontstyle='italic')
         canvas = FigureCanvas(self, -1, figure)
         t_x, t_y = size_window
         canvas.SetSize((t_x/4*2.5, 200))
@@ -100,7 +102,7 @@ class Painel_grafico_B(wx.Panel): #RPM
         rpm_list = rpm.split(',')
         rpm_list = [int(i) for i in rpm_list]
         # rpm = "(" + rpm + ")"
-        print rpm
+        print ( rpm )
         statxt_info = wx.StaticText(self, -1,  "Gráfico de RPMs" , (20, 26), (-1, -1))
         
         # valor = GetSize()
@@ -114,7 +116,7 @@ class Painel_grafico_B(wx.Panel): #RPM
                 item_b = "0"
             else:
                 item_b = item_b + ", " + str(x);
-           # print "itens"
+           # print ( "itens"
 
         
         item_b = item_b.split(',')
@@ -166,7 +168,7 @@ class Painel_infos(wx.Panel):
         
         
     def mostrar_dados(self):
-        print "aqui" , a
+        print ( "aqui" , a)
         global km_rodado, consumo, rpmmax, velmax, hora_g, min_g
         self.statxt_inf_r1.SetLabel(str(km_rodado) + " Km") 
         self.statxt_inf_r2.SetLabel(str(consumo) + " % total") # precisamos ajustar aqui
@@ -222,7 +224,7 @@ class Painel_central_superior(wx.Panel):
 
         # painels = Painel(self, -1, "", "")
         # painels.InitUI()
-        print a
+        print ( a)
         a = 1
         
     def show_panel_two(self, event):
@@ -257,7 +259,7 @@ class Painel(wx.Frame):
 
         self.j = 0
         panel = wx.Panel(self)
-        print a
+        print ( a)
         b = 1
         font = wx.SystemSettings.GetFont(wx.SYS_SYSTEM_FONT)
         font.SetPointSize(9)
@@ -306,7 +308,7 @@ class Painel(wx.Frame):
         hbox2.SetItemMinSize(pn_ie, (180, 200))
         hbox2.Add(pn_id, 2, wx.ALL | wx.EXPAND, b)
         panel.SetSizer(vbox)
-        # print janela
+        # print ( janela)
         # pn_sm_g1.Hide()
         # pn_sm_g2.Hide()
         # box = wx.StaticBox(pn_sq, label='Trajetos', pos=(5, 15), size=(300, 200))
@@ -328,12 +330,12 @@ class Painel(wx.Frame):
             btn = wx.Button(pn_se, label=self.convert_data((titulo_bt[x])), pos= (10, count), size = (-1,20))
             btn.Bind(wx.EVT_BUTTON, lambda evt, temp=self.convert_data((titulo_bt[x])): OnButton(evt, temp) )
 
-            # print nome_botao
+            # print ( nome_botao)
 
             def OnButton(Event, button_label):
                 for y in range(len(nome_botao)):
                     if(button_label == nome_botao[y]):
-                        # print y
+                        # print ( y)
                         self.abrir_recentes(y)
 
                         pn_sm.show_panel_one(self) # mostrando a tela de texto dos dados
@@ -394,11 +396,12 @@ class Painel(wx.Frame):
 
 
     def tratamento(self, lines):
-        # print "entrou"
+        # print ( "entrou")
         global flag
         flag = 1
+        cordenadas = ""
         tamanho = str(len(lines))
-        print lines
+        # print ( lines
         global km_rodado, consumo, rpmmax, velmax, hora_g, min_g, rpm, velocidade
         for x in range(len(lines)): 
             linha = lines[x]
@@ -429,6 +432,33 @@ class Painel(wx.Frame):
                 tempo = tempo + "," + re.search('h(.+?);', linha).group(1)
                 dtc = dtc + "," + re.search('d(.+?);', linha).group(1)
                 
+                
+                ## montando as strings para as apis
+                ## roads retornará a velocidade da via
+                ## maps_api - irá desenhar o mapa e a rota
+                ## geocode - trará os nomes das ruas 
+                
+                if x == len(lines) - 1 : 
+                    t_x, t_y = size_window
+                    t_x = t_x/7*6
+                    t_y = t_y/3*2
+                    tamanho_janela = str(t_x) + "&" + str(t_y)
+                    roads = "https://roads.googleapis.com/v1/speedLimits?path=" + cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "&key=" + apy_key
+                    static_map = "https://maps.googleapis.com/maps/api/staticmap?size=" + tamanho_janela + "&center=" + cordenada_central + "&path=color:0x0000ff|weight:5|" + cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "&key=" + apy_key
+                    # roads = "https://roads.googleapis.com/v1/speedLimits?path=" + api1 + "&key=" + apy_key
+                    print ( "ROADS API -> ", roads)
+                    print ( "STATIC_MAP API ->" , static_map)
+                elif  x == round(len(lines) / 2, 0) + 1 : 
+                    print ( "ok")
+                    print ( x)
+                    cordenada_central = re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pggando a coordenada central
+                    cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # inserindo também na string aqui
+                else:
+                    cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|"
+                    
+
+                ## ------------------------------------------------
+                
                 #pegando a velocidade máxima
                 if(velmax < re.search('v(.+?);', linha).group(1)):
                     velmax = re.search('v(.+?);', linha).group(1)
@@ -441,11 +471,11 @@ class Painel(wx.Frame):
                     
                 if(x == (len(lines) - 1)):
                     hora_g = tempo[0] + tempo[1]
-                    # print hora_g
+                    # print ( hora_g)
                     # precisa ser testado
                     if(int(hora) > int(hora_g) and flag == 0 ): #testando por causa da troca de 23h para 0h
                         hora = int(hora) - 24
-                        # print "entrou" + str(hora)
+                        # print ( "entrou" + str(hora))
                         flag = 1
                     
                     #pegando o consumo
@@ -467,38 +497,10 @@ class Painel(wx.Frame):
         
         # return (km_rodado, consumo, rpmmax, velmax, hora_g, min_g)
 
-        # Painel_infos.inserir_dados(self, km_rodado)
-        # print "tempo gasto " + str(hora_g) + "h" + str(min_g)
-        # print "velocidade máxima " + velmax 
-        # 
-        # print "Consumo"
-        # print consumo 
-        # 
-        # print "Distancia percorrida"
-        # print km_rodado             
-        # 
-        # print "Tempo Gasto"
-        # print tempo_gasto         
-        # 
-
-        # print "velocidade"
-        # print velocidade
-        # print "latitude"
-        # print latitude
-        # print "longitude"
-        # print longitude
-        print "rpm"
-        print rpm
-        # print "combustivel"
-        # print combustivel
-        # print "km"
-        # print km
-        # print "tempo"
-        # print tempo
-        # print "dtc"
-        # print dtc
-        # Painel.InitUI.valores_graficos(self)
+        ## strings finais para requisição
+        ## veja a saida no terminal
         
+
         
 
 
@@ -507,13 +509,13 @@ class Painel(wx.Frame):
 
         pathname = self.bt_camho[nbotao]
         # Proceed loading the file chosen by the user
-        # print str(pathname)
+        # print ( str(pathname))
         
         try:
             with open(pathname, 'r') as file:
                 lines = file.readlines()
-                # print(lines)
-                # print str(file)
+                # print ((lines))
+                # print ( str(file))
                 self.lines = lines
                 info = lines
                 
@@ -538,7 +540,7 @@ class Painel(wx.Frame):
         for diretorio, subpastas, arquivos in os.walk(pasta):
             
             for arquivo in arquivos:
-                # print(os.path.join(diretorio, arquivo))
+                # print ((os.path.join(diretorio, arquivo)))
 
                 pos = arquivo.rfind(".")
                 ext = ""
@@ -568,7 +570,7 @@ class Painel(wx.Frame):
                     titulo_bt.insert(cont, int(datam))
 
                     botao_path.insert(cont, str(arquivo))
-                    # print  botao_path[cont]
+                    # print (  botao_path[cont])
                     
                     cont = cont + 1
         
@@ -578,7 +580,7 @@ class Painel(wx.Frame):
         # ordenando os arquivos
         for x in range(cont):
             for w in range(cont):
-                # print (titulo_bt[w])
+                # print ( (titulo_bt[w]))
                 if(titulo_bt[p] > titulo_bt[w]):
                     temp = titulo_bt[p] 
                     titulo_bt[p] = titulo_bt[w]
@@ -589,7 +591,7 @@ class Painel(wx.Frame):
                     botao_path[w] = temp_path
                     
             p = p+1
-            # print ("--")        
+            # print ( ("--")        )
             
         return cont, titulo_bt, botao_path
         
@@ -599,7 +601,7 @@ class Painel(wx.Frame):
     
     
     def OnAbout(self,e):
-        print   "okkkkk"
+        print (   "okkkkk")
         # Create a message dialog box
         dlg = wx.MessageDialog(self, " Informações sobre o uso do veículo ", "FDR Telemetria v0.1", wx.OK)
         dlg.ShowModal() # Shows it
@@ -616,13 +618,13 @@ class Painel(wx.Frame):
     
             # Proceed loading the file chosen by the user
             pathname = fileDialog.GetPath()
-            # print str(pathname)
+            # print ( str(pathname))
             
             try:
                 with open(pathname, 'r') as file:
                     lines = file.readlines()
-                    # print(lines)
-                    # print str(file)
+                    # print ((lines))
+                    # print ( str(file))
                     self.lines = lines
                     
             except IOError:
