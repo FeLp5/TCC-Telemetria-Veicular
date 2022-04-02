@@ -31,10 +31,10 @@
 ******************************************************************************/
 
 // File to read================================================================= 
-BYTE filename[15];
+BYTE filename[15] = "teste.txt";
 FATFS fs;
 FIL fil;
-fat_time *time;
+//fat_time *time;
 string_tel string_dado;
 unsigned char data_hoje;
 //char buff[] = "0, -23.303930933 , -42.3309330933, 800, 45, 12764, 0";
@@ -213,8 +213,8 @@ void escrita_sdcard(void)
     f_mount(0,&fs);
     
 
-    if(data_hoje)
-    {
+//    if(data_hoje)
+//    {
         if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_WRITE ) == FR_OK)  /* Open or create a file */
         {	
 
@@ -228,7 +228,7 @@ void escrita_sdcard(void)
             /* Close the file */
             f_close(&fil);	
         }
-    }
+//    }
     PORTBbits.RB3 = 1; 
     desliga_SPI();
     inicializa_uart();
@@ -268,8 +268,8 @@ void monta_sd(unsigned char index, unsigned char *dado)
             if(string_dado.data)
             {
                 data_hoje = 1;
-                strcpy(filename, string_dado.data);
-                strcat(filename, ".txt");
+//                strcpy(filename, string_dado.data);
+//                strcat(filename, ".txt");
             }
         break;
         

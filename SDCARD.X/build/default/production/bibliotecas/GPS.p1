@@ -3620,7 +3620,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
 [; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir);
 [; ;GPS.h: 71: int GPSRead(unsigned char buff);
-[; ;GPS.h: 85: void transf_dados_sd(void);
+[; ;GPS.h: 85: void dados_gps_to_sd(void);
 [; ;integer.h: 8: typedef struct{
 [; ;integer.h: 9: unsigned int hora;
 [; ;integer.h: 10: unsigned int min;
@@ -4023,12 +4023,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 372 ]
 }
 "632
-[v _transf_dados_sd `(v ~T0 @X0 1 ef ]
+[v _dados_gps_to_sd `(v ~T0 @X0 1 ef ]
 "633
 {
-[; ;GPS.c: 632: void transf_dados_sd(void)
+[; ;GPS.c: 632: void dados_gps_to_sd(void)
 [; ;GPS.c: 633: {
-[e :U _transf_dados_sd ]
+[e :U _dados_gps_to_sd ]
 [f ]
 [; ;GPS.c: 634: monta_sd(0, rawTime);
 "634

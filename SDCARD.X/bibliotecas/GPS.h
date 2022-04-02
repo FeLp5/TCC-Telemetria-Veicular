@@ -82,7 +82,7 @@ int GPSRead(unsigned char buff);
 //uint8_t Satellites();
 //float Speed();
 //float Course();
-void transf_dados_sd(void);
+void dados_gps_to_sd(void);
 /*****************************************************************************/
 
 #ifdef __cplusplus

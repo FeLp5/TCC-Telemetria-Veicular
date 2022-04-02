@@ -5078,7 +5078,7 @@ void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
 # 85
-void transf_dados_sd(void);
+void dados_gps_to_sd(void);
 
 # 49 "main.c"
 unsigned char data_uart_recebe;
@@ -5212,15 +5212,16 @@ if ((sinaliza_int_timer == 1) && (2))
 sinaliza_int_timer = 0;
 escalonador();
 }
-transf_dados_sd();
+dados_gps_to_sd();
+
 }
 }
 
-# 223
+# 224
 void mensagem_inicial(void)
 {
-const unsigned char msg_linha_um[17] = "TCC--TELEMTRIA";
-const unsigned char msg_dois[17] = " 18/01/2022   ";
+const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
+const unsigned char msg_dois[17] = "TCC--TELEMTRIA";
 
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd(msg_linha_um);

@@ -5004,7 +5004,7 @@ void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
 # 85
-void transf_dados_sd(void);
+void dados_gps_to_sd(void);
 
 # 8 "bibliotecas/integer.h"
 typedef struct{
@@ -5213,7 +5213,7 @@ return 0;
 }
 
 # 632
-void transf_dados_sd(void)
+void dados_gps_to_sd(void)
 {
 monta_sd(0, rawTime);
 monta_sd(1, rawDate);

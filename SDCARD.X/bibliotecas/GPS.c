@@ -629,7 +629,7 @@ int GPSRead(unsigned char buff)
 
 
 
-void transf_dados_sd(void)
+void dados_gps_to_sd(void)
 {
     monta_sd(0, rawTime);
     monta_sd(1, rawDate);

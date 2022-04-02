@@ -5108,7 +5108,7 @@ void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
 # 85
-void transf_dados_sd(void);
+void dados_gps_to_sd(void);
 
 # 40 "bibliotecas/uart.h"
 void envia_dado_uart(char data);
@@ -5129,10 +5129,10 @@ void escreve_inteiro_uart(int valor);
 void inicializa_uart(void);
 
 # 34 "bibliotecas/SDCard.c"
-BYTE filename[15];
+BYTE filename[15] = "teste.txt";
 FATFS fs;
 FIL fil;
-fat_time *time;
+
 string_tel string_dado;
 unsigned char data_hoje;
 
@@ -5260,8 +5260,8 @@ inicializa_SPI();
 f_mount(0,&fs);
 
 
-if(data_hoje)
-{
+
+
 if (f_open(&fil, filename, 0x10 | 0x02 ) == FR_OK)
 {
 
@@ -5275,7 +5275,7 @@ fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string
 
 f_close(&fil);
 }
-}
+
 PORTBbits.RB3 = 1;
 desliga_SPI();
 inicializa_uart();
@@ -5307,8 +5307,8 @@ dado++;
 if(string_dado.data)
 {
 data_hoje = 1;
-strcpy(filename, string_dado.data);
-strcat(filename, ".txt");
+
+
 }
 break;
 

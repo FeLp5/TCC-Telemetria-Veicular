@@ -91,7 +91,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "55 bibliotecas/uart.h
 [v _inicializa_uart `(v ~T0 @X0 0 ef ]
 "85 bibliotecas/GPS.h
-[v _transf_dados_sd `(v ~T0 @X0 0 ef ]
+[v _dados_gps_to_sd `(v ~T0 @X0 0 ef ]
 "236 bibliotecas/display_lcd.h
 [v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
 "290
@@ -3783,7 +3783,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 67: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 [; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir);
 [; ;GPS.h: 71: int GPSRead(unsigned char buff);
-[; ;GPS.h: 85: void transf_dados_sd(void);
+[; ;GPS.h: 85: void dados_gps_to_sd(void);
 "49 main.c
 [v _data_uart_recebe `uc ~T0 @X0 1 e ]
 [; ;main.c: 49: unsigned char data_uart_recebe;
@@ -4074,30 +4074,54 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 388 ]
 [; ;main.c: 213: }
-[; ;main.c: 214: transf_dados_sd();
+[; ;main.c: 214: dados_gps_to_sd();
 "214
-[e ( _transf_dados_sd ..  ]
-"215
+[e ( _dados_gps_to_sd ..  ]
+"216
 }
 [e :U 385 ]
 "206
 [e $U 386  ]
 [e :U 387 ]
-[; ;main.c: 215: }
 [; ;main.c: 216: }
-"216
+[; ;main.c: 217: }
+"217
 [e :UE 384 ]
 }
-"223
-[v _mensagem_inicial `(v ~T0 @X0 1 ef ]
 "224
+[v _mensagem_inicial `(v ~T0 @X0 1 ef ]
+"225
 {
-[; ;main.c: 223: void mensagem_inicial(void)
-[; ;main.c: 224: {
+[; ;main.c: 224: void mensagem_inicial(void)
+[; ;main.c: 225: {
 [e :U _mensagem_inicial ]
 [f ]
 [v F4119 `Cuc ~T0 @X0 -> 17 `i s ]
 [i F4119
+:U ..
+-> 70 `c
+-> 65 `c
+-> 84 `c
+-> 69 `c
+-> 67 `c
+-> 32 `c
+-> 83 `c
+-> 84 `c
+-> 32 `c
+-> 65 `c
+-> 78 `c
+-> 68 `c
+-> 82 `c
+-> 69 `c
+-> 0 `c
+..
+]
+"226
+[v _msg_linha_um `Cuc ~T0 @X0 -> 17 `i a ]
+[; ;main.c: 226: const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
+[e = _msg_linha_um F4119 ]
+[v F4121 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4121
 :U ..
 -> 84 `c
 -> 67 `c
@@ -4116,53 +4140,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"225
-[v _msg_linha_um `Cuc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 225: const unsigned char msg_linha_um[17] = "TCC--TELEMTRIA";
-[e = _msg_linha_um F4119 ]
-[v F4121 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4121
-:U ..
--> 32 `c
--> 49 `c
--> 56 `c
--> 47 `c
--> 48 `c
--> 49 `c
--> 47 `c
--> 50 `c
--> 48 `c
--> 50 `c
--> 50 `c
--> 32 `c
--> 32 `c
--> 32 `c
--> 0 `c
-..
-]
-"226
+"227
 [v _msg_dois `Cuc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 226: const unsigned char msg_dois[17] = " 18/01/2022   ";
+[; ;main.c: 227: const unsigned char msg_dois[17] = "TCC--TELEMTRIA";
 [e = _msg_dois F4121 ]
-[; ;main.c: 228: posicao_cursor_lcd(1,0);
-"228
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 229: escreve_frase_ram_lcd(msg_linha_um);
+[; ;main.c: 229: posicao_cursor_lcd(1,0);
 "229
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 230: escreve_frase_ram_lcd(msg_linha_um);
+"230
 [e ( _escreve_frase_ram_lcd (1 -> &U _msg_linha_um `*uc ]
-[; ;main.c: 231: posicao_cursor_lcd(2,0);
-"231
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 232: escreve_frase_ram_lcd(msg_dois);
+[; ;main.c: 232: posicao_cursor_lcd(2,0);
 "232
-[e ( _escreve_frase_ram_lcd (1 -> &U _msg_dois `*uc ]
-[; ;main.c: 233: _delay((unsigned long)((1000)*(48000000/4000.0)));
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 233: escreve_frase_ram_lcd(msg_dois);
 "233
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;main.c: 234: escreve_cmd_lcd(0b00000001);
+[e ( _escreve_frase_ram_lcd (1 -> &U _msg_dois `*uc ]
+[; ;main.c: 234: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "234
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;main.c: 235: escreve_cmd_lcd(0b00000001);
+"235
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 236: }
-"236
+[; ;main.c: 237: }
+"237
 [e :UE 389 ]
 }

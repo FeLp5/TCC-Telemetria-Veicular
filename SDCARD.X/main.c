@@ -145,7 +145,7 @@ void inicializa_tarefas(void)
 {
 
     p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
-//    p_tarefas[1] = gps; // executada a cada 100ms
+//    p_tarefas[1] = dados_gps_to_sd; // executada a cada 100ms
 //    p_tarefas[2] = leitura_can; // executada a cada 100ms
     
     
@@ -211,7 +211,8 @@ void main(void)
             sinaliza_int_timer = NO;  
             escalonador();			
         }
-        transf_dados_sd();
+        dados_gps_to_sd();
+       
     }
 }
 /******************************************************************************
@@ -222,8 +223,8 @@ void main(void)
  *****************************************************************************/
 void mensagem_inicial(void)
 {
-    const unsigned char msg_linha_um[NUM_CARACTERES]      = "TCC--TELEMTRIA";
-	const unsigned char msg_dois[NUM_CARACTERES]          = " 18/01/2022   ";
+    const unsigned char msg_linha_um[NUM_CARACTERES]      = "FATEC ST ANDRE";
+	const unsigned char msg_dois[NUM_CARACTERES]          = "TCC--TELEMTRIA";
 	
 	posicao_cursor_lcd(1,0);
 	escreve_frase_ram_lcd(msg_linha_um);
