@@ -69,20 +69,20 @@ extern "C" {
     
 void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
-uint8_t GPSSecond();
-uint8_t GPSMinute();
-uint8_t GPSHour();
-uint8_t GPSDay();
-uint8_t GPSMonth();
-uint8_t GPSyear();
-float parse_rawDegree(char *term_);
-float Latitude();
-float Longitude();
-float Altitude();
-uint8_t Satellites();
-float Speed();
-float Course();
-void transf_dados_sd(void);
+//uint8_t GPSSecond();
+//uint8_t GPSMinute();
+//uint8_t GPSHour();
+//uint8_t GPSDay();
+//uint8_t GPSMonth();
+//uint8_t GPSyear();
+//float parse_rawDegree(char *term_);
+//float Latitude();
+//float Longitude();
+//float Altitude();
+//uint8_t Satellites();
+//float Speed();
+//float Course();
+void dados_gps_to_sd(void);
 /*****************************************************************************/
 
 #ifdef __cplusplus

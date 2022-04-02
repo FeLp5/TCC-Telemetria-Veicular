@@ -145,7 +145,7 @@ void inicializa_tarefas(void)
 {
 
     p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
-//    p_tarefas[1] = gps; // executada a cada 100ms
+//    p_tarefas[1] = dados_gps_to_sd; // executada a cada 100ms
 //    p_tarefas[2] = leitura_can; // executada a cada 100ms
     
     
@@ -157,7 +157,7 @@ void inicializa_tarefas(void)
 	
 	/*init recent temporization values of each task. 
 	They�re used to decide which task must be executed*/
-	tempo_tarefa[0] = TIME_1000_MS;
+	tempo_tarefa[0] = TIME_5000_MS;
     tempo_tarefa[1] = TIME_1000_MS;
 //    tempo_tarefa[2] = TIME_2000_MS;
 
@@ -198,7 +198,6 @@ void main(void)
 {  
     init_hardware();
     T0CONbits.TMR0ON = 0;
-//    inicializa_uart();
     init_lcd();
 	mensagem_inicial();
     inicializa_tarefas();
@@ -212,8 +211,8 @@ void main(void)
             sinaliza_int_timer = NO;  
             escalonador();			
         }
-//        gps();
-        transf_dados_sd();
+        dados_gps_to_sd();
+       
     }
 }
 /******************************************************************************
@@ -224,8 +223,8 @@ void main(void)
  *****************************************************************************/
 void mensagem_inicial(void)
 {
-    const unsigned char msg_linha_um[NUM_CARACTERES]      = "SDCard Init   ";
-	const unsigned char msg_dois[NUM_CARACTERES]          = " 18/01/2022   ";
+    const unsigned char msg_linha_um[NUM_CARACTERES]      = "FATEC ST ANDRE";
+	const unsigned char msg_dois[NUM_CARACTERES]          = "TCC--TELEMTRIA";
 	
 	posicao_cursor_lcd(1,0);
 	escreve_frase_ram_lcd(msg_linha_um);
@@ -233,39 +232,7 @@ void mensagem_inicial(void)
     posicao_cursor_lcd(2,0);
 	escreve_frase_ram_lcd(msg_dois);
     __delay_ms(1000);
-    LIMPA_DISPLAY();
-    
-    
-//    posicao_cursor_lcd(1,0);
-//	escreve_frase_ram_lcd("LAT:");
-//    
-//    posicao_cursor_lcd(2,0);
-//	escreve_frase_ram_lcd("LONG:");
+    LIMPA_DISPLAY(); 
+  
 }
 
-
-void grava_sd(void)
-{
-   unsigned char data[];
-   if(!PORTEbits.RE1)
-   {
-       PORTBbits.RB3 = 0;
-       desliga_uart();
-   }
-   else
-   {
-       PORTBbits.RB3 = 1;
-       inicializa_uart();
-   }
-//   posicao_cursor_lcd(1,0);
-//   escreve_frase_ram_lcd(data);
-//   escrita_sdcard();     
-}
-
-
-//void leitura_uart(void)
-//{
-//    PIR1bits.RCIF = 0;
-//    while(!PIR1bits.RCIF);
-//    tratamento_uart(data_uart_recebe);
-//}

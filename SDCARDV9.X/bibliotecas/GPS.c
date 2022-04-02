@@ -420,8 +420,25 @@
 
 
 
-// GPS Library for CCS PIC C compiler
-// http://simple-circuit.com/
+
+///******************************************************************************
+// * Nome do Arquivo 	: GPS.c
+// *
+// * Descricao       	: Implementa a interface para gravacao no sd card
+// *
+// * Ambiente			 : MPLAB, XC8 versao 1.45, PIC18F4550
+// *
+// * Responsavel		: Souza, Deivide Conceicao de
+//			              Silva, Felipe Alves da
+//			              Souza, Ricardo de 
+//			  
+// *
+// * Versao/Data		: v00.01 - 26/09/2021 - versao inicial l
+//// GPS Library for CCS PIC C compiler
+//// http://simple-circuit.com/
+// *****************************************************************************/
+
+
 
 
 
@@ -544,79 +561,79 @@ int GPSRead(unsigned char buff)
 
   return 0;
 }
+//
+//uint8_t GPSSecond() 
+//{
+//  return ((rawTime[4] - '0') * 10 + (rawTime[5] - '0'));
+//}
+//uint8_t GPSMinute()
+//{
+//  return ((rawTime[2] - '0') * 10 + (rawTime[3] - '0'));
+//}
+//uint8_t GPSHour()
+//{
+//  return ((rawTime[0] - '0') * 10 + (rawTime[1] - '0'));
+//}
+//
+//uint8_t GPSDay() 
+//{
+//  return ((rawDate[0] - '0') * 10 + (rawDate[1] - '0'));
+//}
+//uint8_t GPSMonth() 
+//{
+//  return ((rawDate[2] - '0') * 10 + (rawDate[3] - '0'));
+//}
+//uint8_t GPSyear()
+//{
+//  return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
+//}
+//
+//float parse_rawDegree(char *term_) 
+//{
+//  float term_value = atof(term_)/100;
+//  int16_t term_dec = term_value;
+//  term_value -= term_dec;
+//  term_value  = term_value * 5/3 + term_dec;
+//  return term_value;
+//}
+//
+//float Latitude() 
+//{
+//  return parse_rawDegree(rawLatitude);
+//}
+//
+//float Longitude() 
+//{
+//  return parse_rawDegree(rawLongitude);
+//}
+//
+//float Altitude()
+//{
+//  return atof(rawAltitude);
+//}
+//
+//uint8_t Satellites()
+//{
+//  return atoi(rawSatellites);
+//}
+//
+//float Speed()
+//{
+//  return (atof(rawSpeed) * 1.852);
+//}
+//
+//float Course()
+//{
+//  return atof(rawCourse);
+//}
 
-uint8_t GPSSecond() 
-{
-  return ((rawTime[4] - '0') * 10 + (rawTime[5] - '0'));
-}
-uint8_t GPSMinute()
-{
-  return ((rawTime[2] - '0') * 10 + (rawTime[3] - '0'));
-}
-uint8_t GPSHour()
-{
-  return ((rawTime[0] - '0') * 10 + (rawTime[1] - '0'));
-}
-
-uint8_t GPSDay() 
-{
-  return ((rawDate[0] - '0') * 10 + (rawDate[1] - '0'));
-}
-uint8_t GPSMonth() 
-{
-  return ((rawDate[2] - '0') * 10 + (rawDate[3] - '0'));
-}
-uint8_t GPSyear()
-{
-  return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
-}
-
-float parse_rawDegree(char *term_) 
-{
-  float term_value = atof(term_)/100;
-  int16_t term_dec = term_value;
-  term_value -= term_dec;
-  term_value  = term_value * 5/3 + term_dec;
-  return term_value;
-}
-
-float Latitude() 
-{
-  return parse_rawDegree(rawLatitude);
-}
-
-float Longitude() 
-{
-  return parse_rawDegree(rawLongitude);
-}
-
-float Altitude()
-{
-  return atof(rawAltitude);
-}
-
-uint8_t Satellites()
-{
-  return atoi(rawSatellites);
-}
-
-float Speed()
-{
-  return (atof(rawSpeed) * 1.852);
-}
-
-float Course()
-{
-  return atof(rawCourse);
-}
 
 
-
-void transf_dados_sd(void)
+void dados_gps_to_sd(void)
 {
-    monta_sd(0, rawTime, 0);
-    monta_sd(1, rawDate, 0);
-    monta_sd(2, rawLatitude, 0);
-    monta_sd(3, rawLongitude, 0);
+    monta_sd(0, rawTime);
+    monta_sd(1, rawDate);
+    monta_sd(2, rawLatitude);
+    monta_sd(3, rawLongitude);
     return;
 }

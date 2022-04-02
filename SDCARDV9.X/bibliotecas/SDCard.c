@@ -31,12 +31,12 @@
 ******************************************************************************/
 
 // File to read================================================================= 
-BYTE filename[15] = "gpss.txt";
+BYTE filename[15] = "teste.txt";
 FATFS fs;
 FIL fil;
-fat_time *time;
+//fat_time *time;
 string_tel string_dado;
-unsigned char data_buffer_sd[100];
+unsigned char data_hoje;
 //char buff[] = "0, -23.303930933 , -42.3309330933, 800, 45, 12764, 0";
 
 
@@ -205,6 +205,7 @@ void sdcard_init(void)
 void escrita_sdcard(void) 
 {
     unsigned char i;
+    static unsigned char flag;
     PORTBbits.RB3 = 0;
 //    __delay_us(30);
     desliga_uart();
@@ -212,20 +213,22 @@ void escrita_sdcard(void)
     f_mount(0,&fs);
     
 
-    
-    if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_WRITE ) == FR_OK)  /* Open or create a file */
-    {	
+//    if(data_hoje)
+//    {
+        if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_WRITE ) == FR_OK)  /* Open or create a file */
+        {	
 
-        f_lseek(&fil, fsize(&fil));
-        posicao_cursor_lcd(2,0);
-        escreve_inteiro_lcd(fsize(&fil));
-        posicao_cursor_lcd(1,0);
-        escreve_frase_ram_lcd(string_dado.LAT);
-        fprintf(&fil, "\n%s\n%s\n%s\n%s\n", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
+            f_lseek(&fil, fsize(&fil));
+            posicao_cursor_lcd(2,0);
+            escreve_inteiro_lcd(fsize(&fil));
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd(string_dado.hora);
+            fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
 
-        /* Close the file */
-        f_close(&fil);	
-    }
+            /* Close the file */
+            f_close(&fil);	
+        }
+//    }
     PORTBbits.RB3 = 1; 
     desliga_SPI();
     inicializa_uart();
@@ -234,7 +237,15 @@ void escrita_sdcard(void)
 }
 
 
-void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
+/******************************************************************************
+ * Funcao:		void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
+ * Entrada:		unsigned char index, unsigned char *dado, float dado_localizacao
+ * Saida:		Nenhuma (void)
+ * Descricao:	Realiza a transferencia das informacoes para gravar no sdcard
+ *****************************************************************************/
+
+
+void monta_sd(unsigned char index, unsigned char *dado)
 {
     unsigned char i, size;
     size = strlen(dado);
@@ -249,10 +260,16 @@ void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
         break;
         
         case 1:
-            for(i=0; i<size;i++)
+            for(i=0; i<6;i++)
             {
                 string_dado.data[i] = *dado;
                 dado++;
+            }
+            if(string_dado.data)
+            {
+                data_hoje = 1;
+//                strcpy(filename, string_dado.data);
+//                strcat(filename, ".txt");
             }
         break;
         
@@ -265,6 +282,15 @@ void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
         break;
         
        case 3:
+//           string_dado.LONG = dado_localizacao;
+            for(i=0; i<13;i++)
+            {
+                string_dado.LONG[i] = *dado;
+                dado++;
+            }
+        break;
+        
+        case 4:
 //           string_dado.LONG = dado_localizacao;
             for(i=0; i<size;i++)
             {

@@ -51,9 +51,7 @@ typedef struct{
     unsigned char data[7];
     unsigned char hora[11];
     unsigned char LAT[13];
-     unsigned char LONG[13];
-    unsigned int  RPM;
-    unsigned int  TEMP;
+    unsigned char LONG[13];
 }string_tel;
     
 /******************************************************************************
@@ -62,7 +60,7 @@ typedef struct{
 void sdcard_init(void);
 //void escrita_sdcard(unsigned char *dado);
 void escrita_sdcard(void);
-void monta_sd(unsigned char index,  unsigned  char dado[100], float dado_localizacao);
+void monta_sd(unsigned char index,  unsigned  char *dado);
 BYTE response(void);
 void proceed(void);
 void dummy_clocks(unsigned char n);
