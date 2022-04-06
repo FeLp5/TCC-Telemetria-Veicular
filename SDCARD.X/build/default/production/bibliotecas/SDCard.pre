@@ -4893,6 +4893,8 @@ unsigned char LONG[13];
 void sdcard_init(void);
 
 void escrita_sdcard(void);
+char *leitura_sdcard(unsigned char num_spot);
+
 void monta_sd(unsigned char index, unsigned char *dado);
 BYTE response(void);
 void proceed(void);
@@ -5108,6 +5110,8 @@ void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
 # 85
+char *Latitude(void);
+char *Longitude(void);
 void dados_gps_to_sd(void);
 
 # 40 "bibliotecas/uart.h"
@@ -5132,14 +5136,15 @@ void inicializa_uart(void);
 BYTE filename[15] = "teste.txt";
 FATFS fs;
 FIL fil;
+BYTE dado_arquivo[20];
 
 string_tel string_dado;
 unsigned char data_hoje;
 
-# 47
+# 48
 void sdc_wait_ready(void);
 
-# 58
+# 59
 BYTE response(void)
 {
 unsigned char buff;
@@ -5148,7 +5153,7 @@ buff= leitura_SPI();
 return buff;
 }
 
-# 73
+# 74
 void dummy_clocks(unsigned char n)
 {
 unsigned int i;
@@ -5161,7 +5166,7 @@ LATBbits.LATB4 = 0;
 }
 }
 
-# 91
+# 92
 void proceed(void)
 {
 LATBbits.LATB4 = 0;
@@ -5169,7 +5174,7 @@ escreve_SPI(0xFF);
 LATBbits.LATB4 = 1;
 }
 
-# 104
+# 105
 static BYTE wait_ready (void)
 {
 BYTE res;
@@ -5183,7 +5188,7 @@ while ((res != 0xFF) && (--timeout));
 return res;
 }
 
-# 124
+# 125
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
 {
 unsigned char argument;
@@ -5208,7 +5213,7 @@ escreve_SPI(argument);
 escreve_SPI(CRC);
 }
 
-# 159
+# 160
 void sdcard_init(void)
 {
 desliga_uart();
@@ -5248,13 +5253,11 @@ f_close(&fil);
 return;
 }
 
-# 205
+# 206
 void escrita_sdcard(void)
 {
-unsigned char i;
-static unsigned char flag;
+WORD bw;
 PORTBbits.RB3 = 0;
-
 desliga_uart();
 inicializa_SPI();
 f_mount(0,&fs);
@@ -5283,7 +5286,36 @@ inicializa_uart();
 return;
 }
 
-# 248
+# 246
+char *leitura_sdcard(unsigned char num_spot)
+{
+
+static unsigned char size = 20;
+WORD br;
+unsigned int offset;
+
+
+PORTBbits.RB3 = 0;
+desliga_uart();
+inicializa_SPI();
+f_mount(0,&fs);
+
+if (f_open(&fil, filename, 0x01 ) == FR_OK)
+{
+offset = num_spot*((&fil)->fsize);
+f_lseek(&fil, offset);
+f_read(&fil, dado_arquivo, size, &br);
+
+f_close(&fil);
+}
+PORTBbits.RB3 = 1;
+desliga_SPI();
+inicializa_uart();
+
+return (dado_arquivo);
+}
+
+# 287
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;

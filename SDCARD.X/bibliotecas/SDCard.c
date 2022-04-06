@@ -34,6 +34,7 @@
 BYTE filename[15] = "teste.txt";
 FATFS fs;
 FIL fil;
+BYTE dado_arquivo[20];
 //fat_time *time;
 string_tel string_dado;
 unsigned char data_hoje;
@@ -204,10 +205,8 @@ void sdcard_init(void)
  *****************************************************************************/
 void escrita_sdcard(void) 
 {
-    unsigned char i;
-    static unsigned char flag;
+    WORD bw;
     PORTBbits.RB3 = 0;
-//    __delay_us(30);
     desliga_uart();
     inicializa_SPI();
     f_mount(0,&fs);
@@ -237,14 +236,54 @@ void escrita_sdcard(void)
 }
 
 
+
+/******************************************************************************
+ * Funcao:		void leitura_sdcard(void)
+ * Entrada:		Nenhuma (void)
+ * Saida:		Nenhuma (void)
+ * Descricao:	Realiza a leitura dos arquivos no sdcard
+ *****************************************************************************/
+char *leitura_sdcard(unsigned char num_spot) 
+{
+    
+    static unsigned char size = 20;
+    WORD br;
+    unsigned int offset;
+    
+    
+    PORTBbits.RB3 = 0;
+    desliga_uart();
+    inicializa_SPI();
+    f_mount(0,&fs);
+    
+    if (f_open(&fil, filename, FA_READ ) == FR_OK)  /* Open or create a file */
+    {	
+        offset = num_spot*fsize(&fil);
+        f_lseek(&fil, offset);
+        f_read(&fil, dado_arquivo, size, &br);
+        /* Close the file */
+        f_close(&fil);	
+    }
+    PORTBbits.RB3 = 1; 
+    desliga_SPI();
+    inicializa_uart();
+    
+    return (dado_arquivo);
+}
+
+
+
+
+
+
+
+
 /******************************************************************************
  * Funcao:		void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
  * Entrada:		unsigned char index, unsigned char *dado, float dado_localizacao
  * Saida:		Nenhuma (void)
  * Descricao:	Realiza a transferencia das informacoes para gravar no sdcard
  *****************************************************************************/
-
-
 void monta_sd(unsigned char index, unsigned char *dado)
 {
     unsigned char i, size;

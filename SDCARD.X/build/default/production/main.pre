@@ -4981,6 +4981,13 @@ DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
 DRESULT disk_ioctl (BYTE, BYTE, void*);
 void disk_timerproc (void);
 
+# 61 "main.h"
+typedef struct
+{
+char *latitude;
+char *longitude;
+}fence_struct;
+
 # 34 "bibliotecas/hardware.h"
 void init_hardware(void);
 void write_timer_zero(unsigned int timer0);
@@ -5067,6 +5074,8 @@ unsigned char LONG[13];
 void sdcard_init(void);
 
 void escrita_sdcard(void);
+char *leitura_sdcard(unsigned char num_spot);
+
 void monta_sd(unsigned char index, unsigned char *dado);
 BYTE response(void);
 void proceed(void);
@@ -5078,9 +5087,14 @@ void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
 # 85
+char *Latitude(void);
+char *Longitude(void);
 void dados_gps_to_sd(void);
 
 # 49 "main.c"
+fence_struct poligono[3];
+
+
 unsigned char data_uart_recebe;
 
 
@@ -5101,14 +5115,12 @@ volatile char tarefa_em_execucao;
 
 unsigned int timeout_tarefa;
 
-# 74
+# 77
 void mensagem_inicial(void);
 
-void grava_sd(void);
+void verifica_fence(void);
 
-void leitura_uart(void);;
-
-# 86
+# 87
 void interrupt isr(void)
 {
 unsigned char cont;
@@ -5158,17 +5170,15 @@ INT0IF = 0;
 }
 }
 
-# 144
+# 145
 void inicializa_tarefas(void)
 {
 
-p_tarefas[0] = escrita_sdcard;
-
-# 154
+# 155
 tempo_backup[0] = 5000;
 tempo_backup[1] = 1000;
 
-# 160
+# 161
 tempo_tarefa[0] = 5000;
 tempo_tarefa[1] = 1000;
 
@@ -5177,7 +5187,7 @@ tempo_tarefa[1] = 1000;
 tarefa_em_execucao = 0;
 }
 
-# 176
+# 177
 void escalonador()
 {
 unsigned char cont;
@@ -5194,7 +5204,7 @@ tempo_tarefa[cont] = tempo_backup[cont];
 }
 }
 
-# 197
+# 198
 void main(void)
 {
 init_hardware();
@@ -5217,7 +5227,7 @@ dados_gps_to_sd();
 }
 }
 
-# 224
+# 225
 void mensagem_inicial(void)
 {
 const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
@@ -5233,3 +5243,17 @@ escreve_cmd_lcd(0b00000001);
 
 }
 
+# 248
+void verifica_fence(void)
+{
+
+poligono[0].latitude = leitura_sdcard(0);
+poligono[0].longitude = leitura_sdcard(1);
+poligono[1].latitude = leitura_sdcard(2);
+poligono[1].longitude = leitura_sdcard(3);
+poligono[2].latitude = leitura_sdcard(4);
+poligono[2].longitude = leitura_sdcard(5);
+
+
+
+}

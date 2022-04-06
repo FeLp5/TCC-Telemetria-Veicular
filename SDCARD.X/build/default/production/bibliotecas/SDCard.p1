@@ -45,21 +45,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S102 . . . . ]
 "2481
 [v _PORTBbits `VS102 ~T0 @X0 0 e@3969 ]
-"164 bibliotecas/SDCard.c
-[c E3972 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
-[n E3972 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
+"165 bibliotecas/SDCard.c
+[c E3974 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
+[n E3974 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
 "163 bibliotecas/tff.h
-[v _f_mount `(E3972 ~T0 @X0 0 ef2`uc`*S364 ]
+[v _f_mount `(E3974 ~T0 @X0 0 ef2`uc`*S364 ]
 "236 bibliotecas/display_lcd.h
 [v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
 "290
 [v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
 "164 bibliotecas/tff.h
-[v _f_open `(E3972 ~T0 @X0 0 ef3`*S366`*Cuc`uc ]
+[v _f_open `(E3974 ~T0 @X0 0 ef3`*S366`*Cuc`uc ]
 "168
-[v _f_close `(E3972 ~T0 @X0 0 ef1`*S366 ]
+[v _f_close `(E3974 ~T0 @X0 0 ef1`*S366 ]
 "167
-[v _f_lseek `(E3972 ~T0 @X0 0 ef2`*S366`ul ]
+[v _f_lseek `(E3974 ~T0 @X0 0 ef2`*S366`ul ]
 "261 bibliotecas/display_lcd.h
 [v _escreve_inteiro_lcd `(v ~T0 @X0 0 ef1`i ]
 "186 bibliotecas/tff.h
@@ -68,6 +68,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _desliga_SPI `(v ~T0 @X0 0 ef ]
 "55 bibliotecas/uart.h
 [v _inicializa_uart `(v ~T0 @X0 0 ef ]
+"165 bibliotecas/tff.h
+[v _f_read `(E3974 ~T0 @X0 0 ef4`*S366`*v`ui`*ui ]
 "56 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
 [; ;integer.h: 8: typedef struct{
@@ -3635,11 +3637,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 55: }string_tel;
 [; ;SDCard.h: 60: void sdcard_init(void);
 [; ;SDCard.h: 62: void escrita_sdcard(void);
-[; ;SDCard.h: 63: void monta_sd(unsigned char index, unsigned char *dado);
-[; ;SDCard.h: 64: BYTE response(void);
-[; ;SDCard.h: 65: void proceed(void);
-[; ;SDCard.h: 66: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 67: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SDCard.h: 63: char *leitura_sdcard(unsigned char num_spot);
+[; ;SDCard.h: 65: void monta_sd(unsigned char index, unsigned char *dado);
+[; ;SDCard.h: 66: BYTE response(void);
+[; ;SDCard.h: 67: void proceed(void);
+[; ;SDCard.h: 68: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 69: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 [; ;SPI.h: 50: void inicializa_SPI(void);
 [; ;SPI.h: 52: void desliga_SPI(void);
 [; ;SPI.h: 54: unsigned char leitura_SPI(void);
@@ -3775,7 +3778,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 60: extern char * strrichr(const char *, int);
 [; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir);
 [; ;GPS.h: 71: int GPSRead(unsigned char buff);
-[; ;GPS.h: 85: void dados_gps_to_sd(void);
+[; ;GPS.h: 85: char *Latitude(void);
+[; ;GPS.h: 86: char *Longitude(void);
+[; ;GPS.h: 87: void dados_gps_to_sd(void);
 [; ;uart.h: 40: void envia_dado_uart(char data);
 [; ;uart.h: 41: void desliga_uart(void);
 [; ;uart.h: 43: unsigned char verifica_buffer_uart(void);
@@ -3808,622 +3813,696 @@ Version 3.2 HI-TECH Software Intermediate Code
 "36
 [v _fil `S366 ~T0 @X0 1 e ]
 [; ;SDCard.c: 36: FIL fil;
-"38
-[v _string_dado `S363 ~T0 @X0 1 e ]
-[; ;SDCard.c: 38: string_tel string_dado;
+"37
+[v _dado_arquivo `uc ~T0 @X0 -> 20 `i e ]
+[; ;SDCard.c: 37: BYTE dado_arquivo[20];
 "39
+[v _string_dado `S363 ~T0 @X0 1 e ]
+[; ;SDCard.c: 39: string_tel string_dado;
+"40
 [v _data_hoje `uc ~T0 @X0 1 e ]
-[; ;SDCard.c: 39: unsigned char data_hoje;
-[; ;SDCard.c: 47: void sdc_wait_ready(void);
-"58
-[v _response `(uc ~T0 @X0 1 ef ]
+[; ;SDCard.c: 40: unsigned char data_hoje;
+[; ;SDCard.c: 48: void sdc_wait_ready(void);
 "59
+[v _response `(uc ~T0 @X0 1 ef ]
+"60
 {
-[; ;SDCard.c: 58: BYTE response(void)
-[; ;SDCard.c: 59: {
+[; ;SDCard.c: 59: BYTE response(void)
+[; ;SDCard.c: 60: {
 [e :U _response ]
 [f ]
-"60
-[v _buff `uc ~T0 @X0 1 a ]
-[; ;SDCard.c: 60: unsigned char buff;
-[; ;SDCard.c: 61: LATBbits.LATB4 = 0;
 "61
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;SDCard.c: 62: buff= leitura_SPI();
+[v _buff `uc ~T0 @X0 1 a ]
+[; ;SDCard.c: 61: unsigned char buff;
+[; ;SDCard.c: 62: LATBbits.LATB4 = 0;
 "62
-[e = _buff ( _leitura_SPI ..  ]
-[; ;SDCard.c: 63: return buff;
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[; ;SDCard.c: 63: buff= leitura_SPI();
 "63
+[e = _buff ( _leitura_SPI ..  ]
+[; ;SDCard.c: 64: return buff;
+"64
 [e ) _buff ]
 [e $UE 368  ]
-[; ;SDCard.c: 64: }
-"64
+[; ;SDCard.c: 65: }
+"65
 [e :UE 368 ]
 }
-"73
+"74
 [v _dummy_clocks `(v ~T0 @X0 1 ef1`uc ]
-"74
-{
-[; ;SDCard.c: 73: void dummy_clocks(unsigned char n)
-[; ;SDCard.c: 74: {
-[e :U _dummy_clocks ]
-"73
-[v _n `uc ~T0 @X0 1 r1 ]
-"74
-[f ]
 "75
-[v _i `ui ~T0 @X0 1 a ]
-[; ;SDCard.c: 75: unsigned int i;
-[; ;SDCard.c: 76: _delay((unsigned long)((1)*(48000000/4000.0)));
+{
+[; ;SDCard.c: 74: void dummy_clocks(unsigned char n)
+[; ;SDCard.c: 75: {
+[e :U _dummy_clocks ]
+"74
+[v _n `uc ~T0 @X0 1 r1 ]
+"75
+[f ]
 "76
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;SDCard.c: 77: for(i=0;i<n;i++)
+[v _i `ui ~T0 @X0 1 a ]
+[; ;SDCard.c: 76: unsigned int i;
+[; ;SDCard.c: 77: _delay((unsigned long)((1)*(48000000/4000.0)));
 "77
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;SDCard.c: 78: for(i=0;i<n;i++)
+"78
 {
 [e = _i -> -> 0 `i `ui ]
 [e $U 373  ]
-"78
-[e :U 370 ]
-[; ;SDCard.c: 78: {
-{
-[; ;SDCard.c: 79: LATBbits.LATB4 = 1;
 "79
-[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
-[; ;SDCard.c: 80: leitura_SPI();
+[e :U 370 ]
+[; ;SDCard.c: 79: {
+{
+[; ;SDCard.c: 80: LATBbits.LATB4 = 1;
 "80
-[e ( _leitura_SPI ..  ]
-[; ;SDCard.c: 81: LATBbits.LATB4 = 0;
+[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
+[; ;SDCard.c: 81: leitura_SPI();
 "81
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[e ( _leitura_SPI ..  ]
+[; ;SDCard.c: 82: LATBbits.LATB4 = 0;
 "82
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+"83
 }
-"77
+"78
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 373 ]
 [e $ < _i -> _n `ui 370  ]
 [e :U 371 ]
-"82
-}
-[; ;SDCard.c: 82: }
-[; ;SDCard.c: 83: }
 "83
+}
+[; ;SDCard.c: 83: }
+[; ;SDCard.c: 84: }
+"84
 [e :UE 369 ]
 }
-"91
-[v _proceed `(v ~T0 @X0 1 ef ]
 "92
+[v _proceed `(v ~T0 @X0 1 ef ]
+"93
 {
-[; ;SDCard.c: 91: void proceed(void)
-[; ;SDCard.c: 92: {
+[; ;SDCard.c: 92: void proceed(void)
+[; ;SDCard.c: 93: {
 [e :U _proceed ]
 [f ]
-[; ;SDCard.c: 93: LATBbits.LATB4 = 0;
-"93
-[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
-[; ;SDCard.c: 94: escreve_SPI(0xFF);
+[; ;SDCard.c: 94: LATBbits.LATB4 = 0;
 "94
-[e ( _escreve_SPI (1 -> -> 255 `i `uc ]
-[; ;SDCard.c: 95: LATBbits.LATB4 = 1;
+[e = . . _LATBbits 0 4 -> -> 0 `i `uc ]
+[; ;SDCard.c: 95: escreve_SPI(0xFF);
 "95
-[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
-[; ;SDCard.c: 96: }
+[e ( _escreve_SPI (1 -> -> 255 `i `uc ]
+[; ;SDCard.c: 96: LATBbits.LATB4 = 1;
 "96
+[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
+[; ;SDCard.c: 97: }
+"97
 [e :UE 374 ]
 }
-"104
-[v _wait_ready `(uc ~T0 @X0 1 sf ]
 "105
+[v _wait_ready `(uc ~T0 @X0 1 sf ]
+"106
 {
-[; ;SDCard.c: 104: static BYTE wait_ready (void)
-[; ;SDCard.c: 105: {
+[; ;SDCard.c: 105: static BYTE wait_ready (void)
+[; ;SDCard.c: 106: {
 [e :U _wait_ready ]
 [f ]
-"106
-[v _res `uc ~T0 @X0 1 a ]
 "107
-[v _timeout `ul ~T0 @X0 1 a ]
-[; ;SDCard.c: 106: BYTE res;
-[; ;SDCard.c: 107: DWORD timeout = 0x7FFF;
-[e = _timeout -> -> -> 32767 `i `l `ul ]
+[v _res `uc ~T0 @X0 1 a ]
 "108
+[v _timeout `ul ~T0 @X0 1 a ]
+[; ;SDCard.c: 107: BYTE res;
+[; ;SDCard.c: 108: DWORD timeout = 0x7FFF;
+[e = _timeout -> -> -> 32767 `i `l `ul ]
+"109
 [v _msg `uc ~T0 @X0 -> 10 `i a ]
-[; ;SDCard.c: 108: char msg[10];
-[; ;SDCard.c: 110: do
-"110
-[e :U 378 ]
-[; ;SDCard.c: 111: res = leitura_SPI();
+[; ;SDCard.c: 109: char msg[10];
+[; ;SDCard.c: 111: do
 "111
-[e = _res ( _leitura_SPI ..  ]
-[; ;SDCard.c: 112: while ((res != 0xFF) && (--timeout));
+[e :U 378 ]
+[; ;SDCard.c: 112: res = leitura_SPI();
 "112
+[e = _res ( _leitura_SPI ..  ]
+[; ;SDCard.c: 113: while ((res != 0xFF) && (--timeout));
+"113
 [e $ && != -> _res `i -> 255 `i != =- _timeout -> -> -> 1 `i `l `ul -> -> 0 `i `ul 378  ]
 [e :U 377 ]
-[; ;SDCard.c: 114: return res;
-"114
+[; ;SDCard.c: 115: return res;
+"115
 [e ) _res ]
 [e $UE 375  ]
-[; ;SDCard.c: 115: }
-"115
+[; ;SDCard.c: 116: }
+"116
 [e :UE 375 ]
 }
-"124
-[v _command `(v ~T0 @X0 1 ef3`uc`ul`uc ]
 "125
+[v _command `(v ~T0 @X0 1 ef3`uc`ul`uc ]
+"126
 {
-[; ;SDCard.c: 124: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
-[; ;SDCard.c: 125: {
+[; ;SDCard.c: 125: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
+[; ;SDCard.c: 126: {
 [e :U _command ]
-"124
+"125
 [v _CMD `uc ~T0 @X0 1 r1 ]
 [v _arg `ul ~T0 @X0 1 r2 ]
 [v _CRC `uc ~T0 @X0 1 r3 ]
-"125
-[f ]
 "126
+[f ]
+"127
 [v _argument `uc ~T0 @X0 1 a ]
-[; ;SDCard.c: 126: unsigned char argument;
-[; ;SDCard.c: 128: if (wait_ready() != 0xFF)
-"128
-[e $ ! != -> ( _wait_ready ..  `i -> 255 `i 380  ]
-[; ;SDCard.c: 129: {
+[; ;SDCard.c: 127: unsigned char argument;
+[; ;SDCard.c: 129: if (wait_ready() != 0xFF)
 "129
-{
-[; ;SDCard.c: 130: while(wait_ready() != 0xFF)
+[e $ ! != -> ( _wait_ready ..  `i -> 255 `i 380  ]
+[; ;SDCard.c: 130: {
 "130
+{
+[; ;SDCard.c: 131: while(wait_ready() != 0xFF)
+"131
 [e $U 381  ]
 [e :U 382 ]
-[; ;SDCard.c: 131: {
-"131
-{
-[; ;SDCard.c: 132: dummy_clocks(10);
+[; ;SDCard.c: 132: {
 "132
-[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
+{
+[; ;SDCard.c: 133: dummy_clocks(10);
 "133
-}
-[e :U 381 ]
-"130
-[e $ != -> ( _wait_ready ..  `i -> 255 `i 382  ]
-[e :U 383 ]
+[e ( _dummy_clocks (1 -> -> 10 `i `uc ]
 "134
 }
-[e :U 380 ]
-[; ;SDCard.c: 133: }
-[; ;SDCard.c: 134: }
-[; ;SDCard.c: 135: escreve_SPI(0xFF);
+[e :U 381 ]
+"131
+[e $ != -> ( _wait_ready ..  `i -> 255 `i 382  ]
+[e :U 383 ]
 "135
-[e ( _escreve_SPI (1 -> -> 255 `i `uc ]
-[; ;SDCard.c: 136: escreve_SPI(CMD);
+}
+[e :U 380 ]
+[; ;SDCard.c: 134: }
+[; ;SDCard.c: 135: }
+[; ;SDCard.c: 136: escreve_SPI(0xFF);
 "136
-[e ( _escreve_SPI (1 _CMD ]
-[; ;SDCard.c: 137: argument = arg>>24;
+[e ( _escreve_SPI (1 -> -> 255 `i `uc ]
+[; ;SDCard.c: 137: escreve_SPI(CMD);
 "137
-[e = _argument -> >> _arg -> 24 `i `uc ]
-[; ;SDCard.c: 138: escreve_SPI(argument);
+[e ( _escreve_SPI (1 _CMD ]
+[; ;SDCard.c: 138: argument = arg>>24;
 "138
-[e ( _escreve_SPI (1 _argument ]
-[; ;SDCard.c: 139: argument = arg>>16;
+[e = _argument -> >> _arg -> 24 `i `uc ]
+[; ;SDCard.c: 139: escreve_SPI(argument);
 "139
-[e = _argument -> >> _arg -> 16 `i `uc ]
-[; ;SDCard.c: 140: escreve_SPI(argument);
+[e ( _escreve_SPI (1 _argument ]
+[; ;SDCard.c: 140: argument = arg>>16;
 "140
-[e ( _escreve_SPI (1 _argument ]
-[; ;SDCard.c: 141: argument = arg>>8;
+[e = _argument -> >> _arg -> 16 `i `uc ]
+[; ;SDCard.c: 141: escreve_SPI(argument);
 "141
-[e = _argument -> >> _arg -> 8 `i `uc ]
-[; ;SDCard.c: 142: escreve_SPI(argument);
+[e ( _escreve_SPI (1 _argument ]
+[; ;SDCard.c: 142: argument = arg>>8;
 "142
-[e ( _escreve_SPI (1 _argument ]
-[; ;SDCard.c: 143: argument = arg;
+[e = _argument -> >> _arg -> 8 `i `uc ]
+[; ;SDCard.c: 143: escreve_SPI(argument);
 "143
-[e = _argument -> _arg `uc ]
-[; ;SDCard.c: 144: escreve_SPI(argument);
-"144
 [e ( _escreve_SPI (1 _argument ]
-[; ;SDCard.c: 145: escreve_SPI(CRC);
+[; ;SDCard.c: 144: argument = arg;
+"144
+[e = _argument -> _arg `uc ]
+[; ;SDCard.c: 145: escreve_SPI(argument);
 "145
-[e ( _escreve_SPI (1 _CRC ]
-[; ;SDCard.c: 146: }
+[e ( _escreve_SPI (1 _argument ]
+[; ;SDCard.c: 146: escreve_SPI(CRC);
 "146
+[e ( _escreve_SPI (1 _CRC ]
+[; ;SDCard.c: 147: }
+"147
 [e :UE 379 ]
 }
-"159
-[v _sdcard_init `(v ~T0 @X0 1 ef ]
 "160
+[v _sdcard_init `(v ~T0 @X0 1 ef ]
+"161
 {
-[; ;SDCard.c: 159: void sdcard_init(void)
-[; ;SDCard.c: 160: {
+[; ;SDCard.c: 160: void sdcard_init(void)
+[; ;SDCard.c: 161: {
 [e :U _sdcard_init ]
 [f ]
-[; ;SDCard.c: 161: desliga_uart();
-"161
-[e ( _desliga_uart ..  ]
-[; ;SDCard.c: 162: inicializa_SPI();
+[; ;SDCard.c: 162: desliga_uart();
 "162
-[e ( _inicializa_SPI ..  ]
-[; ;SDCard.c: 163: PORTBbits.RB3 = 0;
+[e ( _desliga_uart ..  ]
+[; ;SDCard.c: 163: inicializa_SPI();
 "163
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+[e ( _inicializa_SPI ..  ]
+[; ;SDCard.c: 164: PORTBbits.RB3 = 0;
 "164
-[v _FResult `E3972 ~T0 @X0 1 a ]
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
 "165
-[v _bw `us ~T0 @X0 1 a ]
-[; ;SDCard.c: 164: FRESULT FResult;
-[; ;SDCard.c: 165: WORD bw;
-[; ;SDCard.c: 166: proceed();
+[v _FResult `E3974 ~T0 @X0 1 a ]
 "166
-[e ( _proceed ..  ]
-[; ;SDCard.c: 167: FResult = f_mount(0,&fs);
+[v _bw `us ~T0 @X0 1 a ]
+[; ;SDCard.c: 165: FRESULT FResult;
+[; ;SDCard.c: 166: WORD bw;
+[; ;SDCard.c: 167: proceed();
 "167
-[e = _FResult ( _f_mount (2 , -> -> 0 `i `uc &U _fs ]
-[; ;SDCard.c: 168: if(FResult != FR_OK)
+[e ( _proceed ..  ]
+[; ;SDCard.c: 168: FResult = f_mount(0,&fs);
 "168
-[e $ ! != -> _FResult `i -> . `E3972 0 `i 385  ]
-[; ;SDCard.c: 169: {
+[e = _FResult ( _f_mount (2 , -> -> 0 `i `uc &U _fs ]
+[; ;SDCard.c: 169: if(FResult != FR_OK)
 "169
-{
-[; ;SDCard.c: 170: posicao_cursor_lcd(1,0);
+[e $ ! != -> _FResult `i -> . `E3974 0 `i 385  ]
+[; ;SDCard.c: 170: {
 "170
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 171: escreve_frase_ram_lcd("Erro ao montar");
+{
+[; ;SDCard.c: 171: posicao_cursor_lcd(1,0);
 "171
-[e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
-[; ;SDCard.c: 172: posicao_cursor_lcd(1,0);
-"172
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 173: escreve_frase_ram_lcd("o Sistema de arquivo");
+[; ;SDCard.c: 172: escreve_frase_ram_lcd("Erro ao montar");
+"172
+[e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
+[; ;SDCard.c: 173: posicao_cursor_lcd(1,0);
 "173
-[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;SDCard.c: 174: escreve_frase_ram_lcd("o Sistema de arquivo");
 "174
+[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
+"175
 }
 [e :U 385 ]
-[; ;SDCard.c: 174: }
-[; ;SDCard.c: 175: FResult = f_open(&fil, filename, 0x10);
-"175
+[; ;SDCard.c: 175: }
+[; ;SDCard.c: 176: FResult = f_open(&fil, filename, 0x10);
+"176
 [e = _FResult ( _f_open (3 , , &U _fil -> &U _filename `*Cuc -> -> 16 `i `uc ]
-[; ;SDCard.c: 177: if(FResult != FR_OK)
-"177
-[e $ ! != -> _FResult `i -> . `E3972 0 `i 386  ]
-[; ;SDCard.c: 178: {
+[; ;SDCard.c: 178: if(FResult != FR_OK)
 "178
-{
-[; ;SDCard.c: 179: while((FResult = f_open(&fil, filename, 0x10)) != FR_OK)
+[e $ ! != -> _FResult `i -> . `E3974 0 `i 386  ]
+[; ;SDCard.c: 179: {
 "179
+{
+[; ;SDCard.c: 180: while((FResult = f_open(&fil, filename, 0x10)) != FR_OK)
+"180
 [e $U 387  ]
 [e :U 388 ]
-[; ;SDCard.c: 180: {
-"180
-{
-[; ;SDCard.c: 181: posicao_cursor_lcd(1,0);
+[; ;SDCard.c: 181: {
 "181
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 182: escreve_frase_ram_lcd("Erro ao criar");
+{
+[; ;SDCard.c: 182: posicao_cursor_lcd(1,0);
 "182
-[e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
-[; ;SDCard.c: 183: posicao_cursor_lcd(1,0);
-"183
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 184: escreve_frase_ram_lcd("o arquivo");
+[; ;SDCard.c: 183: escreve_frase_ram_lcd("Erro ao criar");
+"183
+[e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
+[; ;SDCard.c: 184: posicao_cursor_lcd(1,0);
 "184
-[e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
-[; ;SDCard.c: 185: posicao_cursor_lcd(2,0);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;SDCard.c: 185: escreve_frase_ram_lcd("o arquivo");
 "185
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 186: escreve_frase_ram_lcd("Verifique");
+[e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
+[; ;SDCard.c: 186: posicao_cursor_lcd(2,0);
 "186
-[e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
-[; ;SDCard.c: 187: posicao_cursor_lcd(2,0);
-"187
 [e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 188: escreve_frase_ram_lcd("o cartao");
+[; ;SDCard.c: 187: escreve_frase_ram_lcd("Verifique");
+"187
+[e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
+[; ;SDCard.c: 188: posicao_cursor_lcd(2,0);
 "188
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;SDCard.c: 189: escreve_frase_ram_lcd("o cartao");
+"189
 [e ( _escreve_frase_ram_lcd (1 -> :s 6C `*uc ]
-"190
-}
-[e :U 387 ]
-"179
-[e $ != -> = _FResult ( _f_open (3 , , &U _fil -> &U _filename `*Cuc -> -> 16 `i `uc `i -> . `E3972 0 `i 388  ]
-[e :U 389 ]
 "191
 }
-[e :U 386 ]
-[; ;SDCard.c: 190: }
-[; ;SDCard.c: 191: }
-[; ;SDCard.c: 192: f_close(&fil);
+[e :U 387 ]
+"180
+[e $ != -> = _FResult ( _f_open (3 , , &U _fil -> &U _filename `*Cuc -> -> 16 `i `uc `i -> . `E3974 0 `i 388  ]
+[e :U 389 ]
 "192
+}
+[e :U 386 ]
+[; ;SDCard.c: 191: }
+[; ;SDCard.c: 192: }
+[; ;SDCard.c: 193: f_close(&fil);
+"193
 [e ( _f_close (1 &U _fil ]
-[; ;SDCard.c: 195: return;
-"195
-[e $UE 384  ]
-[; ;SDCard.c: 196: }
+[; ;SDCard.c: 196: return;
 "196
+[e $UE 384  ]
+[; ;SDCard.c: 197: }
+"197
 [e :UE 384 ]
 }
-"205
-[v _escrita_sdcard `(v ~T0 @X0 1 ef ]
 "206
+[v _escrita_sdcard `(v ~T0 @X0 1 ef ]
+"207
 {
-[; ;SDCard.c: 205: void escrita_sdcard(void)
-[; ;SDCard.c: 206: {
+[; ;SDCard.c: 206: void escrita_sdcard(void)
+[; ;SDCard.c: 207: {
 [e :U _escrita_sdcard ]
 [f ]
-"207
-[v _i `uc ~T0 @X0 1 a ]
 "208
-[v F4214 `uc ~T0 @X0 1 s flag ]
-[; ;SDCard.c: 207: unsigned char i;
-[; ;SDCard.c: 208: static unsigned char flag;
+[v _bw `us ~T0 @X0 1 a ]
+[; ;SDCard.c: 208: WORD bw;
 [; ;SDCard.c: 209: PORTBbits.RB3 = 0;
 "209
 [e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[; ;SDCard.c: 211: desliga_uart();
-"211
+[; ;SDCard.c: 210: desliga_uart();
+"210
 [e ( _desliga_uart ..  ]
-[; ;SDCard.c: 212: inicializa_SPI();
-"212
+[; ;SDCard.c: 211: inicializa_SPI();
+"211
 [e ( _inicializa_SPI ..  ]
-[; ;SDCard.c: 213: f_mount(0,&fs);
-"213
+[; ;SDCard.c: 212: f_mount(0,&fs);
+"212
 [e ( _f_mount (2 , -> -> 0 `i `uc &U _fs ]
-[; ;SDCard.c: 218: if (f_open(&fil, filename, 0x10 | 0x02 ) == FR_OK)
+[; ;SDCard.c: 217: if (f_open(&fil, filename, 0x10 | 0x02 ) == FR_OK)
+"217
+[e $ ! == -> ( _f_open (3 , , &U _fil -> &U _filename `*Cuc -> | -> 16 `i -> 2 `i `uc `i -> . `E3974 0 `i 391  ]
+[; ;SDCard.c: 218: {
 "218
-[e $ ! == -> ( _f_open (3 , , &U _fil -> &U _filename `*Cuc -> | -> 16 `i -> 2 `i `uc `i -> . `E3972 0 `i 391  ]
-[; ;SDCard.c: 219: {
-"219
 {
-[; ;SDCard.c: 221: f_lseek(&fil, ((&fil)->fsize));
-"221
+[; ;SDCard.c: 220: f_lseek(&fil, ((&fil)->fsize));
+"220
 [e ( _f_lseek (2 , &U _fil . *U &U _fil 5 ]
-[; ;SDCard.c: 222: posicao_cursor_lcd(2,0);
-"222
+[; ;SDCard.c: 221: posicao_cursor_lcd(2,0);
+"221
 [e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 223: escreve_inteiro_lcd(((&fil)->fsize));
-"223
+[; ;SDCard.c: 222: escreve_inteiro_lcd(((&fil)->fsize));
+"222
 [e ( _escreve_inteiro_lcd (1 -> . *U &U _fil 5 `i ]
-[; ;SDCard.c: 224: posicao_cursor_lcd(1,0);
-"224
+[; ;SDCard.c: 223: posicao_cursor_lcd(1,0);
+"223
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;SDCard.c: 225: escreve_frase_ram_lcd(string_dado.hora);
-"225
+[; ;SDCard.c: 224: escreve_frase_ram_lcd(string_dado.hora);
+"224
 [e ( _escreve_frase_ram_lcd (1 &U . _string_dado 1 ]
-[; ;SDCard.c: 226: fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
-"226
+[; ;SDCard.c: 225: fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
+"225
 [e ( _fprintf (1 , , , , (. , &U _fil :s 7C &U . _string_dado 1 &U . _string_dado 0 &U . _string_dado 2 &U . _string_dado 3 ]
-[; ;SDCard.c: 229: f_close(&fil);
-"229
+[; ;SDCard.c: 228: f_close(&fil);
+"228
 [e ( _f_close (1 &U _fil ]
-"230
+"229
 }
 [e :U 391 ]
-[; ;SDCard.c: 230: }
-[; ;SDCard.c: 232: PORTBbits.RB3 = 1;
-"232
+[; ;SDCard.c: 229: }
+[; ;SDCard.c: 231: PORTBbits.RB3 = 1;
+"231
 [e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
-[; ;SDCard.c: 233: desliga_SPI();
-"233
+[; ;SDCard.c: 232: desliga_SPI();
+"232
 [e ( _desliga_SPI ..  ]
-[; ;SDCard.c: 234: inicializa_uart();
-"234
+[; ;SDCard.c: 233: inicializa_uart();
+"233
 [e ( _inicializa_uart ..  ]
-[; ;SDCard.c: 236: return;
-"236
+[; ;SDCard.c: 235: return;
+"235
 [e $UE 390  ]
-[; ;SDCard.c: 237: }
-"237
+[; ;SDCard.c: 236: }
+"236
 [e :UE 390 ]
 }
-"248
-[v _monta_sd `(v ~T0 @X0 1 ef2`uc`*uc ]
-"249
+"246
+[v _leitura_sdcard `(*uc ~T0 @X0 1 ef1`uc ]
+"247
 {
-[; ;SDCard.c: 248: void monta_sd(unsigned char index, unsigned char *dado)
-[; ;SDCard.c: 249: {
+[; ;SDCard.c: 246: char *leitura_sdcard(unsigned char num_spot)
+[; ;SDCard.c: 247: {
+[e :U _leitura_sdcard ]
+"246
+[v _num_spot `uc ~T0 @X0 1 r1 ]
+"247
+[f ]
+"249
+[v F4222 `uc ~T0 @X0 1 s size ]
+[i F4222
+-> -> 20 `i `uc
+]
+"250
+[v _br `us ~T0 @X0 1 a ]
+"251
+[v _offset `ui ~T0 @X0 1 a ]
+[; ;SDCard.c: 249: static unsigned char size = 20;
+[; ;SDCard.c: 250: WORD br;
+[; ;SDCard.c: 251: unsigned int offset;
+[; ;SDCard.c: 254: PORTBbits.RB3 = 0;
+"254
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+[; ;SDCard.c: 255: desliga_uart();
+"255
+[e ( _desliga_uart ..  ]
+[; ;SDCard.c: 256: inicializa_SPI();
+"256
+[e ( _inicializa_SPI ..  ]
+[; ;SDCard.c: 257: f_mount(0,&fs);
+"257
+[e ( _f_mount (2 , -> -> 0 `i `uc &U _fs ]
+[; ;SDCard.c: 259: if (f_open(&fil, filename, 0x01 ) == FR_OK)
+"259
+[e $ ! == -> ( _f_open (3 , , &U _fil -> &U _filename `*Cuc -> -> 1 `i `uc `i -> . `E3974 0 `i 393  ]
+[; ;SDCard.c: 260: {
+"260
+{
+[; ;SDCard.c: 261: offset = num_spot*((&fil)->fsize);
+"261
+[e = _offset -> * -> _num_spot `ul . *U &U _fil 5 `ui ]
+[; ;SDCard.c: 262: f_lseek(&fil, offset);
+"262
+[e ( _f_lseek (2 , &U _fil -> _offset `ul ]
+[; ;SDCard.c: 263: f_read(&fil, dado_arquivo, size, &br);
+"263
+[e ( _f_read (4 , , , &U _fil -> &U _dado_arquivo `*v -> F4222 `ui -> &U _br `*ui ]
+[; ;SDCard.c: 265: f_close(&fil);
+"265
+[e ( _f_close (1 &U _fil ]
+"266
+}
+[e :U 393 ]
+[; ;SDCard.c: 266: }
+[; ;SDCard.c: 267: PORTBbits.RB3 = 1;
+"267
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[; ;SDCard.c: 268: desliga_SPI();
+"268
+[e ( _desliga_SPI ..  ]
+[; ;SDCard.c: 269: inicializa_uart();
+"269
+[e ( _inicializa_uart ..  ]
+[; ;SDCard.c: 271: return (dado_arquivo);
+"271
+[e ) &U _dado_arquivo ]
+[e $UE 392  ]
+[; ;SDCard.c: 272: }
+"272
+[e :UE 392 ]
+}
+"287
+[v _monta_sd `(v ~T0 @X0 1 ef2`uc`*uc ]
+"288
+{
+[; ;SDCard.c: 287: void monta_sd(unsigned char index, unsigned char *dado)
+[; ;SDCard.c: 288: {
 [e :U _monta_sd ]
-"248
+"287
 [v _index `uc ~T0 @X0 1 r1 ]
 [v _dado `*uc ~T0 @X0 1 r2 ]
-"249
+"288
 [f ]
-"250
+"289
 [v _i `uc ~T0 @X0 1 a ]
 [v _size `uc ~T0 @X0 1 a ]
-[; ;SDCard.c: 250: unsigned char i, size;
-[; ;SDCard.c: 251: size = strlen(dado);
-"251
+[; ;SDCard.c: 289: unsigned char i, size;
+[; ;SDCard.c: 290: size = strlen(dado);
+"290
 [e = _size -> ( _strlen (1 -> _dado `*Cuc `uc ]
-[; ;SDCard.c: 252: switch(index)
-"252
-[e $U 394  ]
-[; ;SDCard.c: 253: {
-"253
-{
-[; ;SDCard.c: 254: case 0:
-"254
-[e :U 395 ]
-[; ;SDCard.c: 255: for(i=0; i<6;i++)
-"255
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 6 `i 396  ]
-[e $U 397  ]
-"256
-[e :U 396 ]
-[; ;SDCard.c: 256: {
-{
-[; ;SDCard.c: 257: string_dado.hora[i] = *dado;
-"257
-[e = *U + &U . _string_dado 1 * -> _i `ux -> -> # *U &U . _string_dado 1 `ui `ux *U _dado ]
-[; ;SDCard.c: 258: dado++;
-"258
-[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
-"259
-}
-"255
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 396  ]
-[e :U 397 ]
-"259
-}
-[; ;SDCard.c: 259: }
-[; ;SDCard.c: 260: break;
-"260
-[e $U 393  ]
-[; ;SDCard.c: 262: case 1:
-"262
-[e :U 399 ]
-[; ;SDCard.c: 263: for(i=0; i<6;i++)
-"263
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 6 `i 400  ]
-[e $U 401  ]
-"264
-[e :U 400 ]
-[; ;SDCard.c: 264: {
-{
-[; ;SDCard.c: 265: string_dado.data[i] = *dado;
-"265
-[e = *U + &U . _string_dado 0 * -> _i `ux -> -> # *U &U . _string_dado 0 `ui `ux *U _dado ]
-[; ;SDCard.c: 266: dado++;
-"266
-[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
-"267
-}
-"263
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 400  ]
-[e :U 401 ]
-"267
-}
-[; ;SDCard.c: 267: }
-[; ;SDCard.c: 268: if(string_dado.data)
-"268
-[e $ ! != &U . _string_dado 0 -> -> 0 `i `*uc 403  ]
-[; ;SDCard.c: 269: {
-"269
-{
-[; ;SDCard.c: 270: data_hoje = 1;
-"270
-[e = _data_hoje -> -> 1 `i `uc ]
-"273
-}
-[e :U 403 ]
-[; ;SDCard.c: 273: }
-[; ;SDCard.c: 274: break;
-"274
-[e $U 393  ]
-[; ;SDCard.c: 276: case 2:
-"276
-[e :U 404 ]
-[; ;SDCard.c: 277: for(i=0; i<13;i++)
-"277
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 13 `i 405  ]
-[e $U 406  ]
-"278
-[e :U 405 ]
-[; ;SDCard.c: 278: {
-{
-[; ;SDCard.c: 279: string_dado.LAT[i] = *dado;
-"279
-[e = *U + &U . _string_dado 2 * -> _i `ux -> -> # *U &U . _string_dado 2 `ui `ux *U _dado ]
-[; ;SDCard.c: 280: dado++;
-"280
-[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
-"281
-}
-"277
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 13 `i 405  ]
-[e :U 406 ]
-"281
-}
-[; ;SDCard.c: 281: }
-[; ;SDCard.c: 282: break;
-"282
-[e $U 393  ]
-[; ;SDCard.c: 284: case 3:
-"284
-[e :U 408 ]
-[; ;SDCard.c: 286: for(i=0; i<13;i++)
-"286
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 13 `i 409  ]
-[e $U 410  ]
-"287
-[e :U 409 ]
-[; ;SDCard.c: 287: {
-{
-[; ;SDCard.c: 288: string_dado.LONG[i] = *dado;
-"288
-[e = *U + &U . _string_dado 3 * -> _i `ux -> -> # *U &U . _string_dado 3 `ui `ux *U _dado ]
-[; ;SDCard.c: 289: dado++;
-"289
-[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
-"290
-}
-"286
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 13 `i 409  ]
-[e :U 410 ]
-"290
-}
-[; ;SDCard.c: 290: }
-[; ;SDCard.c: 291: break;
+[; ;SDCard.c: 291: switch(index)
 "291
-[e $U 393  ]
-[; ;SDCard.c: 293: case 4:
+[e $U 396  ]
+[; ;SDCard.c: 292: {
+"292
+{
+[; ;SDCard.c: 293: case 0:
 "293
-[e :U 412 ]
-[; ;SDCard.c: 295: for(i=0; i<size;i++)
-"295
+[e :U 397 ]
+[; ;SDCard.c: 294: for(i=0; i<6;i++)
+"294
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 416  ]
-"296
-[e :U 413 ]
-[; ;SDCard.c: 296: {
-{
-[; ;SDCard.c: 297: string_dado.LONG[i] = *dado;
-"297
-[e = *U + &U . _string_dado 3 * -> _i `ux -> -> # *U &U . _string_dado 3 `ui `ux *U _dado ]
-[; ;SDCard.c: 298: dado++;
-"298
-[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
-"299
-}
+[e $ < -> _i `i -> 6 `i 398  ]
+[e $U 399  ]
 "295
+[e :U 398 ]
+[; ;SDCard.c: 295: {
+{
+[; ;SDCard.c: 296: string_dado.hora[i] = *dado;
+"296
+[e = *U + &U . _string_dado 1 * -> _i `ux -> -> # *U &U . _string_dado 1 `ui `ux *U _dado ]
+[; ;SDCard.c: 297: dado++;
+"297
+[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
+"298
+}
+"294
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 416 ]
-[e $ < -> _i `i -> _size `i 413  ]
-[e :U 414 ]
+[e $ < -> _i `i -> 6 `i 398  ]
+[e :U 399 ]
+"298
+}
+[; ;SDCard.c: 298: }
+[; ;SDCard.c: 299: break;
 "299
-}
-[; ;SDCard.c: 299: }
-[; ;SDCard.c: 300: break;
-"300
-[e $U 393  ]
+[e $U 395  ]
+[; ;SDCard.c: 301: case 1:
+"301
+[e :U 401 ]
+[; ;SDCard.c: 302: for(i=0; i<6;i++)
 "302
-}
-[; ;SDCard.c: 302: }
-[e $U 393  ]
-"252
-[e :U 394 ]
-[e [\ _index , $ -> -> 0 `i `uc 395
- , $ -> -> 1 `i `uc 399
- , $ -> -> 2 `i `uc 404
- , $ -> -> 3 `i `uc 408
- , $ -> -> 4 `i `uc 412
- 393 ]
-"302
-[e :U 393 ]
-[; ;SDCard.c: 304: return;
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 6 `i 402  ]
+[e $U 403  ]
+"303
+[e :U 402 ]
+[; ;SDCard.c: 303: {
+{
+[; ;SDCard.c: 304: string_dado.data[i] = *dado;
 "304
-[e $UE 392  ]
-[; ;SDCard.c: 305: }
+[e = *U + &U . _string_dado 0 * -> _i `ux -> -> # *U &U . _string_dado 0 `ui `ux *U _dado ]
+[; ;SDCard.c: 305: dado++;
 "305
-[e :UE 392 ]
+[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
+"306
+}
+"302
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 402  ]
+[e :U 403 ]
+"306
+}
+[; ;SDCard.c: 306: }
+[; ;SDCard.c: 307: if(string_dado.data)
+"307
+[e $ ! != &U . _string_dado 0 -> -> 0 `i `*uc 405  ]
+[; ;SDCard.c: 308: {
+"308
+{
+[; ;SDCard.c: 309: data_hoje = 1;
+"309
+[e = _data_hoje -> -> 1 `i `uc ]
+"312
+}
+[e :U 405 ]
+[; ;SDCard.c: 312: }
+[; ;SDCard.c: 313: break;
+"313
+[e $U 395  ]
+[; ;SDCard.c: 315: case 2:
+"315
+[e :U 406 ]
+[; ;SDCard.c: 316: for(i=0; i<13;i++)
+"316
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 13 `i 407  ]
+[e $U 408  ]
+"317
+[e :U 407 ]
+[; ;SDCard.c: 317: {
+{
+[; ;SDCard.c: 318: string_dado.LAT[i] = *dado;
+"318
+[e = *U + &U . _string_dado 2 * -> _i `ux -> -> # *U &U . _string_dado 2 `ui `ux *U _dado ]
+[; ;SDCard.c: 319: dado++;
+"319
+[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
+"320
+}
+"316
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 13 `i 407  ]
+[e :U 408 ]
+"320
+}
+[; ;SDCard.c: 320: }
+[; ;SDCard.c: 321: break;
+"321
+[e $U 395  ]
+[; ;SDCard.c: 323: case 3:
+"323
+[e :U 410 ]
+[; ;SDCard.c: 325: for(i=0; i<13;i++)
+"325
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 13 `i 411  ]
+[e $U 412  ]
+"326
+[e :U 411 ]
+[; ;SDCard.c: 326: {
+{
+[; ;SDCard.c: 327: string_dado.LONG[i] = *dado;
+"327
+[e = *U + &U . _string_dado 3 * -> _i `ux -> -> # *U &U . _string_dado 3 `ui `ux *U _dado ]
+[; ;SDCard.c: 328: dado++;
+"328
+[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
+"329
+}
+"325
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 13 `i 411  ]
+[e :U 412 ]
+"329
+}
+[; ;SDCard.c: 329: }
+[; ;SDCard.c: 330: break;
+"330
+[e $U 395  ]
+[; ;SDCard.c: 332: case 4:
+"332
+[e :U 414 ]
+[; ;SDCard.c: 334: for(i=0; i<size;i++)
+"334
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 418  ]
+"335
+[e :U 415 ]
+[; ;SDCard.c: 335: {
+{
+[; ;SDCard.c: 336: string_dado.LONG[i] = *dado;
+"336
+[e = *U + &U . _string_dado 3 * -> _i `ux -> -> # *U &U . _string_dado 3 `ui `ux *U _dado ]
+[; ;SDCard.c: 337: dado++;
+"337
+[e ++ _dado * -> -> 1 `i `x -> -> # *U _dado `i `x ]
+"338
+}
+"334
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 418 ]
+[e $ < -> _i `i -> _size `i 415  ]
+[e :U 416 ]
+"338
+}
+[; ;SDCard.c: 338: }
+[; ;SDCard.c: 339: break;
+"339
+[e $U 395  ]
+"341
+}
+[; ;SDCard.c: 341: }
+[e $U 395  ]
+"291
+[e :U 396 ]
+[e [\ _index , $ -> -> 0 `i `uc 397
+ , $ -> -> 1 `i `uc 401
+ , $ -> -> 2 `i `uc 406
+ , $ -> -> 3 `i `uc 410
+ , $ -> -> 4 `i `uc 414
+ 395 ]
+"341
+[e :U 395 ]
+[; ;SDCard.c: 343: return;
+"343
+[e $UE 394  ]
+[; ;SDCard.c: 344: }
+"344
+[e :UE 394 ]
 }
 [a 1C 69 114 114 111 32 97 111 32 109 111 110 116 97 114 0 ]
 [a 3C 69 114 114 111 32 97 111 32 99 114 105 97 114 0 ]

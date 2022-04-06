@@ -45,6 +45,9 @@
 /******************************************************************************
 * Variaveis Globais
 ******************************************************************************/
+//estrutura de dados para o fence
+fence_struct poligono[3];
+
 
 unsigned char data_uart_recebe;
 
@@ -73,9 +76,7 @@ unsigned int timeout_tarefa;
 ******************************************************************************/
 void mensagem_inicial(void);
 
-void grava_sd(void);
-
-void leitura_uart(void);;
+void verifica_fence(void);
 /*****************************************************************************/
 /******************************************************************************
  * Funcao:		void interrupt isr(void)
@@ -144,7 +145,7 @@ void interrupt isr(void)
 void inicializa_tarefas(void)
 {
 
-    p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
+//    p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
 //    p_tarefas[1] = dados_gps_to_sd; // executada a cada 100ms
 //    p_tarefas[2] = leitura_can; // executada a cada 100ms
     
@@ -236,3 +237,24 @@ void mensagem_inicial(void)
   
 }
 
+
+/******************************************************************************
+ * Funcao:		void verifica_dados(void)
+ * Entrada:		Nenhuma (void)
+ * Saida:		Nenhuma (void)
+ * Descricao:	Verifica os dados do fence atual
+ *****************************************************************************/
+
+void verifica_fence(void)
+{
+    
+    poligono[0].latitude  = leitura_sdcard(0);
+    poligono[0].longitude = leitura_sdcard(1);
+    poligono[1].latitude  = leitura_sdcard(2);
+    poligono[1].longitude = leitura_sdcard(3);
+    poligono[2].latitude  = leitura_sdcard(4);
+    poligono[2].longitude = leitura_sdcard(5);
+    
+    
+    
+}
