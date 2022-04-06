@@ -176,45 +176,9 @@ class Painel(wx.Frame):
         self.botao_graficoRPM.Bind(wx.EVT_BUTTON, lambda evt, temp=2: abrir_janela(evt, temp))
         
     #gráficos
-        def abrir_janela(evt, janela):
-            pn_sm1 = wx.Panel(panel)
-            larg =100
-            alt =200
-            figure = Figure()
-            axes = figure.add_subplot(111)
-            canvas = FigureCanvas(pn_sm1, -1, figure)
-            canvas.SetSize((200,200))
-            botao_voltar = wx.Button(pn_sm1, wx.NewId(), "Voltar", (10, 220), (200,30))
-            botao_voltar.Bind(wx.EVT_BUTTON, lambda evt, temp=0: abrir_janela(evt, temp))
-            
-        
-            # print janela
-            # pn_sm.Hide() 
-            # pn_sm_g1.Hide()
-            # pn_sm_g2.Hide()
-            # if(janela == 0):
-            #     pn_sm.Show()
-            # if(janela == 1):
-            #     print "ok"
-            #     pn_sm_g1.Show()
-            #     desenhar_graficos(10, 10, 10)       
-            # if(janela == 2):
-            #     pn_sm_g2.Show()
-        
-        
-        def desenhar_graficos(itens_v, velocidades, max_velocidades):
-            # grupos = ['A', 'B', 'C' , 'D', 'E', 'F', 'G' , 'H', 'I', 'J', 'K', 'L' ]
-            # valores = [35, 77, 60, 43, 20, 36, 35, 38, 50, 51, 53, 35]
-    
-            axes.bar(itens_v, velocidades)
-            axes.set_autoscale_on
-            axes.plot(itens_v , max_velocidades)
             
             
-        
-    
-    
-       
+
 
     def tratamento(self, lines):
         print "entrou"
