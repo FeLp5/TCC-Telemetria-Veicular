@@ -246,9 +246,9 @@ void escrita_sdcard(void)
 char *leitura_sdcard(unsigned char num_spot) 
 {
     
-    static unsigned char size = 20;
+    static unsigned char size = 10;
     WORD br;
-    unsigned int offset;
+    unsigned int offset = 0;
     
     
     PORTBbits.RB3 = 0;
@@ -256,11 +256,12 @@ char *leitura_sdcard(unsigned char num_spot)
     inicializa_SPI();
     f_mount(0,&fs);
     
-    if (f_open(&fil, filename, FA_READ ) == FR_OK)  /* Open or create a file */
+    if (f_open(&fil, "extfence.txt", FA_READ ) == FR_OK)  /* Open or create a file */
     {	
-        offset = num_spot*fsize(&fil);
-        f_lseek(&fil, offset);
-        f_read(&fil, dado_arquivo, size, &br);
+//        offset = num_spot*39 + 7;
+//        f_lseek(&fil, offset);
+//        f_read(&fil, dado_arquivo, size, &br);
+        fgets(dado_arquivo, 90, &fil );
         /* Close the file */
         f_close(&fil);	
     }

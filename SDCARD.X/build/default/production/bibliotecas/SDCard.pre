@@ -5110,8 +5110,8 @@ void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
 # 85
-char *Latitude(void);
-char *Longitude(void);
+char Latitude(unsigned char num);
+char Longitude(unsigned char num);
 void dados_gps_to_sd(void);
 
 # 40 "bibliotecas/uart.h"
@@ -5290,9 +5290,9 @@ return;
 char *leitura_sdcard(unsigned char num_spot)
 {
 
-static unsigned char size = 20;
+static unsigned char size = 10;
 WORD br;
-unsigned int offset;
+unsigned int offset = 0;
 
 
 PORTBbits.RB3 = 0;
@@ -5300,11 +5300,12 @@ desliga_uart();
 inicializa_SPI();
 f_mount(0,&fs);
 
-if (f_open(&fil, filename, 0x01 ) == FR_OK)
+if (f_open(&fil, "extfence.txt", 0x01 ) == FR_OK)
 {
-offset = num_spot*((&fil)->fsize);
-f_lseek(&fil, offset);
-f_read(&fil, dado_arquivo, size, &br);
+
+
+
+fgets(dado_arquivo, 90, &fil );
 
 f_close(&fil);
 }
@@ -5315,7 +5316,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 287
+# 288
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;

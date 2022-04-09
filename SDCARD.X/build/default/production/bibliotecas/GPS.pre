@@ -5004,8 +5004,8 @@ void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
 # 85
-char *Latitude(void);
-char *Longitude(void);
+char Latitude(unsigned char num);
+char Longitude(unsigned char num);
 void dados_gps_to_sd(void);
 
 # 8 "bibliotecas/integer.h"
@@ -5217,14 +5217,14 @@ return 0;
 }
 
 # 600
-char *Latitude(void)
+char Latitude(unsigned char num)
 {
-return (rawLatitude);
+return (rawLatitude[num]);
 }
 
-char *Longitude(void)
+char Longitude(unsigned char num)
 {
-return (rawLongitude);
+return (rawLongitude[num]);
 }
 
 # 632

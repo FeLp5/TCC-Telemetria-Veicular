@@ -82,8 +82,8 @@ int GPSRead(unsigned char buff);
 //uint8_t Satellites();
 //float Speed();
 //float Course();
-char  *Latitude(void);
-char  *Longitude(void);
+char  Latitude(unsigned char num);
+char  Longitude(unsigned char num);
 void dados_gps_to_sd(void);
 /*****************************************************************************/
 

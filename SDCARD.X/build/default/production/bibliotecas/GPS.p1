@@ -3620,8 +3620,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
 [; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir);
 [; ;GPS.h: 71: int GPSRead(unsigned char buff);
-[; ;GPS.h: 85: char *Latitude(void);
-[; ;GPS.h: 86: char *Longitude(void);
+[; ;GPS.h: 85: char Latitude(unsigned char num);
+[; ;GPS.h: 86: char Longitude(unsigned char num);
 [; ;GPS.h: 87: void dados_gps_to_sd(void);
 [; ;integer.h: 8: typedef struct{
 [; ;integer.h: 9: unsigned int hora;
@@ -4026,32 +4026,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 372 ]
 }
 "600
-[v _Latitude `(*uc ~T0 @X0 1 ef ]
+[v _Latitude `(uc ~T0 @X0 1 ef1`uc ]
 "601
 {
-[; ;GPS.c: 600: char *Latitude(void)
+[; ;GPS.c: 600: char Latitude(unsigned char num)
 [; ;GPS.c: 601: {
 [e :U _Latitude ]
+"600
+[v _num `uc ~T0 @X0 1 r1 ]
+"601
 [f ]
-[; ;GPS.c: 602: return (rawLatitude);
+[; ;GPS.c: 602: return (rawLatitude[num]);
 "602
-[e ) &U _rawLatitude ]
+[e ) *U + &U _rawLatitude * -> _num `ux -> -> # *U &U _rawLatitude `ui `ux ]
 [e $UE 401  ]
 [; ;GPS.c: 603: }
 "603
 [e :UE 401 ]
 }
 "605
-[v _Longitude `(*uc ~T0 @X0 1 ef ]
+[v _Longitude `(uc ~T0 @X0 1 ef1`uc ]
 "606
 {
-[; ;GPS.c: 605: char *Longitude(void)
+[; ;GPS.c: 605: char Longitude(unsigned char num)
 [; ;GPS.c: 606: {
 [e :U _Longitude ]
+"605
+[v _num `uc ~T0 @X0 1 r1 ]
+"606
 [f ]
-[; ;GPS.c: 607: return (rawLongitude);
+[; ;GPS.c: 607: return (rawLongitude[num]);
 "607
-[e ) &U _rawLongitude ]
+[e ) *U + &U _rawLongitude * -> _num `ux -> -> # *U &U _rawLongitude `ui `ux ]
 [e $UE 402  ]
 [; ;GPS.c: 608: }
 "608

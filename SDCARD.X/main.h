@@ -33,7 +33,7 @@
 
 #define NUM_CARACTERES				17
 
-#define NUMBER_OF_TASKS				2
+#define NUMBER_OF_TASKS				3
 
 #define TIME_150_MS					150   //time unit: ms
 #define TIME_50_MS                  50
@@ -58,11 +58,16 @@
 #define BIT_7   7
 
 
+
 typedef struct
 {
-    char *latitude;
-    char *longitude;
-}fence_struct;
+    unsigned char latitude[11];
+    unsigned char longitude[11];
+    unsigned char fence_diff_lat[11];
+    unsigned char fence_diff_long[11];
+    unsigned char point_diff_lat[11];
+    unsigned char point_diff_long[11];
+}fence_ext_struct;
 
 /*****************************************************************************/
 
