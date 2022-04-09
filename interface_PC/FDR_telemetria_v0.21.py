@@ -297,8 +297,8 @@ class Painel_arquivos(wx.Panel):
 
         cordenadas = ""
         ## testando funcao latlong
-        lat = self.latlong(-2342.09544)
-        long = self.latlong(-04629.71966)
+        lat = self.latlong(-2345.03232)
+        long = self.latlong(-04655.0021)
         print(("LAT " , lat, "LONG " , long))
         ##
 
