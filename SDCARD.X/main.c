@@ -38,6 +38,8 @@
 #include "bibliotecas/SPI.h"
 #include "bibliotecas/SDCard.h"
 #include "bibliotecas/GPS.h"
+#include "stdlib.h"
+#include "string.h"
 //=-============================
 
 
@@ -45,6 +47,9 @@
 /******************************************************************************
 * Variaveis Globais
 ******************************************************************************/
+//estrutura de dados para o fence
+fence_ext_struct poligono_ext[3];
+
 
 unsigned char data_uart_recebe;
 
@@ -66,16 +71,20 @@ volatile char tarefa_em_execucao;
 //variable for check timeout
 unsigned int timeout_tarefa;
 
-
+unsigned char metros;
 
 /******************************************************************************
 * Prototipos das funcoes
 ******************************************************************************/
 void mensagem_inicial(void);
 
-void grava_sd(void);
+void verifica_fence_externo(void);
 
-void leitura_uart(void);;
+void verifica_dados_operacionais(void);
+
+void incrementa_metros(void);
+
+void verifica_fence_interno(void);
 /*****************************************************************************/
 /******************************************************************************
  * Funcao:		void interrupt isr(void)
@@ -144,22 +153,22 @@ void interrupt isr(void)
 void inicializa_tarefas(void)
 {
 
-    p_tarefas[0] = escrita_sdcard; //executada a cada 5 segundos
-//    p_tarefas[1] = dados_gps_to_sd; // executada a cada 100ms
-//    p_tarefas[2] = leitura_can; // executada a cada 100ms
+    p_tarefas[0] = verifica_dados_operacionais; //executada a cada 5 segundos
+    p_tarefas[1] = incrementa_metros; // executada a cada 100ms
+    p_tarefas[2] = verifica_fence_externo; // executada a cada 100ms
     
     
 	/*init temporization values of each task. 
 	These values do no change during execution*/
 	tempo_backup[0] = TIME_5000_MS; 
     tempo_backup[1] = TIME_1000_MS;
-//    tempo_backup[2] = TIME_2000_MS;
+    tempo_backup[2] = TIME_10000_MS;
 	
 	/*init recent temporization values of each task. 
 	They�re used to decide which task must be executed*/
 	tempo_tarefa[0] = TIME_5000_MS;
     tempo_tarefa[1] = TIME_1000_MS;
-//    tempo_tarefa[2] = TIME_2000_MS;
+    tempo_tarefa[2] = TIME_10000_MS;
 
 	//It indicates that there�s no task executing
     tarefa_em_execucao = NO;
@@ -236,3 +245,152 @@ void mensagem_inicial(void)
   
 }
 
+
+/******************************************************************************
+ * Funcao:		void verifica_dados(void)
+ * Entrada:		Nenhuma (void)
+ * Saida:		Nenhuma (void)
+ * Descricao:	Verifica os dados do fence atual
+ *****************************************************************************/
+
+void verifica_fence_externo(void)
+{
+    
+    unsigned char *point_buff, i, j, count;
+    unsigned char point, caractere_gps, size;
+    unsigned char temp_buff[10];
+    count = 0;
+    point = 0;
+    point_buff = leitura_sdcard(0);
+    size = strlen(point_buff);
+    size = 22;
+    j= 0;
+    
+    
+    for(i=22; i<44; i++)
+    {
+//        caractere_gps = Latitude(count);
+        caractere_gps = 'a';
+        if(i<=33)
+        {
+            poligono_ext[0].latitude[i] = point_buff[i];
+            posicao_cursor_lcd(2,0);
+            escreve_frase_ram_lcd(poligono_ext[0].latitude); 
+            posicao_cursor_lcd(1,10);
+            escreve_inteiro_lcd(size); 
+//            if(poligono_ext[0].latitude[i] != caractere_gps)
+//            {
+//                poligono_ext[0].fence_diff_lat[i] = caractere_gps;
+////                poligono_ext[point].point_diff_lat[i] = poligono_ext[point].latitude[i];
+//            }
+        }
+        
+//        if(i>11)
+//        {
+//            caractere_gps = Longitude(count);
+//            poligono_ext[point].longitude[i] = *point_buff;
+//            if(poligono_ext[point].longitude[i] != caractere_gps)
+//            {
+//                poligono_ext[point].fence_diff_long[i] = caractere_gps;
+//                poligono_ext[point].point_diff_long[i] = poligono_ext[point].longitude[i];
+//            }
+//        }
+        count++;
+//        point_buff++;
+        if(count == 11)
+        {
+            count = 0;
+        }
+    }
+    
+    
+    
+    
+//    for(i=j; i<(j+22); i++)
+//    {
+//        caractere_gps = Latitude(count);
+//        if(i<=(j+(22/2)))
+//        {
+//            poligono_ext[point].latitude[i] = *point_buff;
+//            if(poligono_ext[point].latitude[i] != caractere_gps)
+//            {
+//                poligono_ext[point].fence_diff_lat[i] = caractere_gps;
+//                poligono_ext[point].point_diff_lat[i] = poligono_ext[point].latitude[i];
+//            }
+//        }
+//        
+//        if(i>(j+(22/2)))
+//        {
+//            caractere_gps = Longitude(i);
+//            poligono_ext[point].longitude[i] = *point_buff;
+//            if(poligono_ext[point].longitude[i] != caractere_gps)
+//            {
+//                poligono_ext[point].fence_diff_long[i] = caractere_gps;
+//                poligono_ext[point].point_diff_long[i] = poligono_ext[point].longitude[i];
+//            }
+//        }
+//        count++;
+//        point_buff++;
+//        
+//        if(i==(j+22))
+//        {
+//            j += 22;
+//            point += 1;
+//        }
+//        if(count==13)
+//        {
+//            count = 0;
+//        }
+//        
+//        if(i==size)
+//        {
+//            i = (j+22);
+//        }     
+//    }
+   
+    
+}
+
+
+void verifica_fence_interno(void)
+{
+    
+    unsigned char *p_buff, i;
+    unsigned char temp_buff[10];
+    unsigned long int dado;
+        
+    
+
+}
+
+
+void verifica_dados_operacionais(void)
+{
+    
+    if(!PORTEbits.RE1)
+    {
+        escrita_sdcard();
+    }
+    
+    
+    
+}
+
+
+
+
+void incrementa_metros(void)
+{
+    
+//    if(!PORTEbits.RE1)
+//    {
+//        metros++;
+//        posicao_cursor_lcd(2,0);
+//        escreve_frase_ram_lcd("PERCORRIDO");
+//        posicao_cursor_lcd(2,10);
+//        escreve_inteiro_lcd(metros);
+//    }
+    
+    
+    
+}

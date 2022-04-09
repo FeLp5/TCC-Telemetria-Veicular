@@ -55,8 +55,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "8087
 [v _T0CONbits `VS341 ~T0 @X0 0 e@4053 ]
 "30 bibliotecas/hardware.c
-[u S362 `ui 1 `uc -> 2 `i ]
-[n S362 Timers lt bt ]
+[u S363 `ui 1 `uc -> 2 `i ]
+[n S363 Timers lt bt ]
 "6579 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
 "3623
@@ -3618,6 +3618,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 36: unsigned int leitura_adc(unsigned char canal);
 [; ;adc.h: 38: void leitura_continua_adc(void);
 [; ;adc.h: 40: unsigned int valor_medio_adc(unsigned char canal);
+[; ;main.h: 62: typedef struct
+[; ;main.h: 63: {
+[; ;main.h: 64: unsigned char latitude[11];
+[; ;main.h: 65: unsigned char longitude[11];
+[; ;main.h: 66: unsigned char fence_diff_lat[11];
+[; ;main.h: 67: unsigned char fence_diff_long[11];
+[; ;main.h: 68: unsigned char point_diff_lat[11];
+[; ;main.h: 69: unsigned char point_diff_long[11];
+[; ;main.h: 70: }fence_ext_struct;
 [; ;SHRC.h: 45: void controle_shrc (void);
 [; ;SHRC.h: 47: void inicializa_shrc(void);
 [; ;SHRC.h: 49: void escreve_dado_SPI(unsigned char data_to_shrc);
@@ -3659,7 +3668,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _init_interrupt ..  ]
 [; ;hardware.c: 74: }
 "74
-[e :UE 363 ]
+[e :UE 364 ]
 }
 "83
 [v _config_timer_zero `(v ~T0 @X0 1 ef ]
@@ -3683,7 +3692,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _write_timer_zero (1 -> -> 131 `i `ui ]
 [; ;hardware.c: 90: }
 "90
-[e :UE 364 ]
+[e :UE 365 ]
 }
 "98
 [v _init_interrupt `(v ~T0 @X0 1 ef ]
@@ -3707,7 +3716,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _PIE1 -> -> 40 `i `uc ]
 [; ;hardware.c: 105: }
 "105
-[e :UE 365 ]
+[e :UE 366 ]
 }
 "113
 [v _open_timer0 `(v ~T0 @X0 1 ef1`uc ]
@@ -3734,7 +3743,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
 [; ;hardware.c: 120: if(config&0x80)
 "120
-[e $ ! != & -> _config `i -> 128 `i -> 0 `i 367  ]
+[e $ ! != & -> _config `i -> 128 `i -> 0 `i 368  ]
 [; ;hardware.c: 121: {
 "121
 {
@@ -3744,9 +3753,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "123
 }
 [; ;hardware.c: 123: }
-[e $U 368  ]
+[e $U 369  ]
 "124
-[e :U 367 ]
+[e :U 368 ]
 [; ;hardware.c: 124: else
 [; ;hardware.c: 125: {
 "125
@@ -3756,14 +3765,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
 "127
 }
-[e :U 368 ]
+[e :U 369 ]
 [; ;hardware.c: 127: }
 [; ;hardware.c: 129: T0CONbits.TMR0ON = 1;
 "129
 [e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
 [; ;hardware.c: 130: }
 "130
-[e :UE 366 ]
+[e :UE 367 ]
 }
 "138
 [v _write_timer_zero `(v ~T0 @X0 1 ef1`ui ]
@@ -3777,7 +3786,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "139
 [f ]
 "140
-[v _timer `S362 ~T0 @X0 1 a ]
+[v _timer `S363 ~T0 @X0 1 a ]
 [; ;hardware.c: 140: union Timers timer;
 [; ;hardware.c: 142: timer.lt = timer0;
 "142
@@ -3790,7 +3799,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TMR0L *U + &U . _timer 1 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _timer 1 `ui `ux ]
 [; ;hardware.c: 146: }
 "146
-[e :UE 369 ]
+[e :UE 370 ]
 }
 "154
 [v _init_ports `(v ~T0 @X0 1 ef ]
@@ -3823,7 +3832,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TRISE -> -> 3 `i `uc ]
 [; ;hardware.c: 164: }
 "164
-[e :UE 370 ]
+[e :UE 371 ]
 }
 "172
 [v _init_oscilador `(v ~T0 @X0 1 ef ]
@@ -3844,7 +3853,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _OSCCONbits 1 6 -> -> 1 `i `uc ]
 [; ;hardware.c: 178: }
 "178
-[e :UE 371 ]
+[e :UE 372 ]
 }
 "186
 [v _ms_delay `(v ~T0 @X0 1 ef1`ui ]
@@ -3865,29 +3874,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 "189
 {
 [e = _i -> -> 0 `i `ui ]
-[e $U 376  ]
+[e $U 377  ]
 "190
-[e :U 373 ]
+[e :U 374 ]
 [; ;hardware.c: 190: for(j=0;j<165;j++);
 {
 [e = _j -> -> 0 `i `ui ]
-[e $ < _j -> -> 165 `i `ui 377  ]
-[e $U 378  ]
-[e :U 377 ]
-[e ++ _j -> -> 1 `i `ui ]
-[e $ < _j -> -> 165 `i `ui 377  ]
+[e $ < _j -> -> 165 `i `ui 378  ]
+[e $U 379  ]
 [e :U 378 ]
+[e ++ _j -> -> 1 `i `ui ]
+[e $ < _j -> -> 165 `i `ui 378  ]
+[e :U 379 ]
 }
 "189
 [e ++ _i -> -> 1 `i `ui ]
-[e :U 376 ]
-[e $ < _i _val 373  ]
-[e :U 374 ]
+[e :U 377 ]
+[e $ < _i _val 374  ]
+[e :U 375 ]
 "190
 }
 [; ;hardware.c: 191: }
 "191
-[e :UE 372 ]
+[e :UE 373 ]
 }
 "201
 [v _config_timer_dois `(v ~T0 @X0 1 ef ]
@@ -3908,7 +3917,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _PR2 -> -> 1 `i `uc ]
 [; ;hardware.c: 206: }
 "206
-[e :UE 380 ]
+[e :UE 381 ]
 }
 "214
 [v _timer_dois `(v ~T0 @X0 1 ef ]
@@ -3920,7 +3929,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;hardware.c: 216: if(TMR2IF)
 "216
-[e $ ! _TMR2IF 382  ]
+[e $ ! _TMR2IF 383  ]
 [; ;hardware.c: 217: {
 "217
 {
@@ -3931,17 +3940,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 "219
 [e = _TMR2 -> -> 0 `i `uc ]
 "222
-[v F3848 `uc ~T0 @X0 1 s flag ]
-[i F3848
+[v F3856 `uc ~T0 @X0 1 s flag ]
+[i F3856
 -> -> 0 `i `uc
 ]
 [; ;hardware.c: 222: static unsigned char flag = 0;
 [; ;hardware.c: 223: flag = !flag;
 "223
-[e = F3848 -> -> ! != -> F3848 `i -> -> -> 0 `i `uc `i `i `uc ]
+[e = F3856 -> -> ! != -> F3856 `i -> -> -> 0 `i `uc `i `i `uc ]
 [; ;hardware.c: 224: if(!flag)
 "224
-[e $ ! ! != -> F3848 `i -> -> -> 0 `i `uc `i 383  ]
+[e $ ! ! != -> F3856 `i -> -> -> 0 `i `uc `i 384  ]
 [; ;hardware.c: 225: {
 "225
 {
@@ -3954,9 +3963,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "228
 }
 [; ;hardware.c: 228: }
-[e $U 384  ]
+[e $U 385  ]
 "229
-[e :U 383 ]
+[e :U 384 ]
 [; ;hardware.c: 229: else
 [; ;hardware.c: 230: {
 "230
@@ -3969,13 +3978,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _controle_shrc ..  ]
 "233
 }
-[e :U 384 ]
+[e :U 385 ]
 "235
 }
-[e :U 382 ]
+[e :U 383 ]
 [; ;hardware.c: 233: }
 [; ;hardware.c: 235: }
 [; ;hardware.c: 236: }
 "236
-[e :UE 381 ]
+[e :UE 382 ]
 }

@@ -597,15 +597,15 @@ int GPSRead(unsigned char buff)
 //  return term_value;
 //}
 //
-//float Latitude() 
-//{
-//  return parse_rawDegree(rawLatitude);
-//}
+char  Latitude(unsigned char num) 
+{
+  return (rawLatitude[num]);
+}
 //
-//float Longitude() 
-//{
-//  return parse_rawDegree(rawLongitude);
-//}
+char Longitude(unsigned char num) 
+{
+  return (rawLongitude[num]);
+}
 //
 //float Altitude()
 //{
