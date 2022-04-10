@@ -420,13 +420,11 @@ class Painel_arquivos(wx.Panel):
         print("décimos ", decimal)
         
         return decimal	
-        
         # return (km_rodado, consumo, rpmmax, velmax, hora_g, min_g)
 class mapa(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         self.SetBackgroundColour("")   
-        
 
         # self.browser = wx.html2.WebView.New(self)
         # # url = "https://www.google.com/maps/@-23.6022347,-46.5409388,17.05z"
