@@ -59,7 +59,8 @@ typedef struct{
 ******************************************************************************/
 void sdcard_init(void);
 //void escrita_sdcard(unsigned char *dado);
-void escrita_sdcard(void);
+//void escrita_sdcard(void);
+void escrita_sdcard(unsigned char *point1, unsigned char *point2);
 char *leitura_sdcard(unsigned char num_spot);
 
 void monta_sd(unsigned char index,  unsigned  char *dado);

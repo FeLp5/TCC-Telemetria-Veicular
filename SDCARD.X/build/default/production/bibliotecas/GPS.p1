@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "45 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
-"65 bibliotecas/SDCard.h
+"66 bibliotecas/SDCard.h
 [v _monta_sd `(v ~T0 @X0 0 ef2`uc`*uc ]
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
@@ -3620,8 +3620,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
 [; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir);
 [; ;GPS.h: 71: int GPSRead(unsigned char buff);
-[; ;GPS.h: 85: char Latitude(unsigned char num);
-[; ;GPS.h: 86: char Longitude(unsigned char num);
+[; ;GPS.h: 85: char *Latitude(void);
+[; ;GPS.h: 86: char *Longitude(void);
 [; ;GPS.h: 87: void dados_gps_to_sd(void);
 [; ;integer.h: 8: typedef struct{
 [; ;integer.h: 9: unsigned int hora;
@@ -3677,13 +3677,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 54: unsigned char LONG[13];
 [; ;SDCard.h: 55: }string_tel;
 [; ;SDCard.h: 60: void sdcard_init(void);
-[; ;SDCard.h: 62: void escrita_sdcard(void);
-[; ;SDCard.h: 63: char *leitura_sdcard(unsigned char num_spot);
-[; ;SDCard.h: 65: void monta_sd(unsigned char index, unsigned char *dado);
-[; ;SDCard.h: 66: BYTE response(void);
-[; ;SDCard.h: 67: void proceed(void);
-[; ;SDCard.h: 68: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 69: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SDCard.h: 63: void escrita_sdcard(unsigned char *point1, unsigned char *point2);
+[; ;SDCard.h: 64: char *leitura_sdcard(unsigned char num_spot);
+[; ;SDCard.h: 66: void monta_sd(unsigned char index, unsigned char *dado);
+[; ;SDCard.h: 67: BYTE response(void);
+[; ;SDCard.h: 68: void proceed(void);
+[; ;SDCard.h: 69: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 70: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 "454 bibliotecas/GPS.c
 [v _GPRMC_ok `i ~T0 @X0 1 e ]
 [i _GPRMC_ok
@@ -4026,38 +4026,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 372 ]
 }
 "600
-[v _Latitude `(uc ~T0 @X0 1 ef1`uc ]
+[v _Latitude `(*uc ~T0 @X0 1 ef ]
 "601
 {
-[; ;GPS.c: 600: char Latitude(unsigned char num)
+[; ;GPS.c: 600: char *Latitude(void)
 [; ;GPS.c: 601: {
 [e :U _Latitude ]
-"600
-[v _num `uc ~T0 @X0 1 r1 ]
-"601
 [f ]
-[; ;GPS.c: 602: return (rawLatitude[num]);
+[; ;GPS.c: 602: return rawLatitude;
 "602
-[e ) *U + &U _rawLatitude * -> _num `ux -> -> # *U &U _rawLatitude `ui `ux ]
+[e ) &U _rawLatitude ]
 [e $UE 401  ]
 [; ;GPS.c: 603: }
 "603
 [e :UE 401 ]
 }
 "605
-[v _Longitude `(uc ~T0 @X0 1 ef1`uc ]
+[v _Longitude `(*uc ~T0 @X0 1 ef ]
 "606
 {
-[; ;GPS.c: 605: char Longitude(unsigned char num)
+[; ;GPS.c: 605: char *Longitude(void)
 [; ;GPS.c: 606: {
 [e :U _Longitude ]
-"605
-[v _num `uc ~T0 @X0 1 r1 ]
-"606
 [f ]
-[; ;GPS.c: 607: return (rawLongitude[num]);
+[; ;GPS.c: 607: return rawLongitude;
 "607
-[e ) *U + &U _rawLongitude * -> _num `ux -> -> # *U &U _rawLongitude `ui `ux ]
+[e ) &U _rawLongitude ]
 [e $UE 402  ]
 [; ;GPS.c: 608: }
 "608

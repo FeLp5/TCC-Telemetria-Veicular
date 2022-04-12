@@ -4892,7 +4892,8 @@ unsigned char LONG[13];
 # 60
 void sdcard_init(void);
 
-void escrita_sdcard(void);
+
+void escrita_sdcard(unsigned char *point1, unsigned char *point2);
 char *leitura_sdcard(unsigned char num_spot);
 
 void monta_sd(unsigned char index, unsigned char *dado);
@@ -5110,8 +5111,8 @@ void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
 # 85
-char Latitude(unsigned char num);
-char Longitude(unsigned char num);
+char *Latitude(void);
+char *Longitude(void);
 void dados_gps_to_sd(void);
 
 # 40 "bibliotecas/uart.h"
@@ -5133,7 +5134,7 @@ void escreve_inteiro_uart(int valor);
 void inicializa_uart(void);
 
 # 34 "bibliotecas/SDCard.c"
-BYTE filename[15] = "teste.txt";
+BYTE filename[15] = "teste1.txt";
 FATFS fs;
 FIL fil;
 BYTE dado_arquivo[20];
@@ -5254,7 +5255,7 @@ return;
 }
 
 # 206
-void escrita_sdcard(void)
+void escrita_sdcard(unsigned char *point1, unsigned char *point2)
 {
 WORD bw;
 PORTBbits.RB3 = 0;
@@ -5264,16 +5265,13 @@ f_mount(0,&fs);
 
 
 
-
 if (f_open(&fil, filename, 0x10 | 0x02 ) == FR_OK)
 {
 
 f_lseek(&fil, ((&fil)->fsize));
-posicao_cursor_lcd(2,0);
-escreve_inteiro_lcd(((&fil)->fsize));
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd(string_dado.hora);
-fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
+
+# 225
+fprintf(&fil, "\n%s ; %s ;", point1, point2);
 
 
 f_close(&fil);
@@ -5290,7 +5288,7 @@ return;
 char *leitura_sdcard(unsigned char num_spot)
 {
 
-static unsigned char size = 10;
+static unsigned char size = 88;
 WORD br;
 unsigned int offset = 0;
 
@@ -5304,8 +5302,7 @@ if (f_open(&fil, "extfence.txt", 0x01 ) == FR_OK)
 {
 
 
-
-fgets(dado_arquivo, 90, &fil );
+f_read(&fil, dado_arquivo, size, &br);
 
 f_close(&fil);
 }
@@ -5316,7 +5313,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 288
+# 287
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;

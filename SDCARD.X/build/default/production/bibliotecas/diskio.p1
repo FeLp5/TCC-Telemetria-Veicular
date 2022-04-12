@@ -10,11 +10,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _sdc_disk_read `(E25 ~T0 @X0 0 ef3`*uc`ul`uc ]
 "30
 [v _sdc_disk_write `(E25 ~T0 @X0 0 ef3`*Cuc`ul`uc ]
-"69 bibliotecas/SDCard.h
+"70 bibliotecas/SDCard.h
 [v _command `(v ~T0 @X0 0 ef3`uc`ul`uc ]
-"67
+"68
 [v _proceed `(v ~T0 @X0 0 ef ]
-"66
+"67
 [v _response `(uc ~T0 @X0 0 ef ]
 "236 bibliotecas/display_lcd.h
 [v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
@@ -24,7 +24,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
 [v __delay `JF3848 ~T0 @X0 0 e ]
 [p i __delay ]
-"68 bibliotecas/SDCard.h
+"69 bibliotecas/SDCard.h
 [v _dummy_clocks `(v ~T0 @X0 0 ef1`uc ]
 "3189 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [s S129 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -53,8 +53,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "54
 [v _leitura_SPI `(uc ~T0 @X0 0 ef ]
 "595 bibliotecas/diskio.c
-[c E3974 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
-[n E3974 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
+[c E3975 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
+[n E3975 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
 [; ;integer.h: 8: typedef struct{
 [; ;integer.h: 9: unsigned int hora;
 [; ;integer.h: 10: unsigned int min;
@@ -3619,13 +3619,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 54: unsigned char LONG[13];
 [; ;SDCard.h: 55: }string_tel;
 [; ;SDCard.h: 60: void sdcard_init(void);
-[; ;SDCard.h: 62: void escrita_sdcard(void);
-[; ;SDCard.h: 63: char *leitura_sdcard(unsigned char num_spot);
-[; ;SDCard.h: 65: void monta_sd(unsigned char index, unsigned char *dado);
-[; ;SDCard.h: 66: BYTE response(void);
-[; ;SDCard.h: 67: void proceed(void);
-[; ;SDCard.h: 68: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 69: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SDCard.h: 63: void escrita_sdcard(unsigned char *point1, unsigned char *point2);
+[; ;SDCard.h: 64: char *leitura_sdcard(unsigned char num_spot);
+[; ;SDCard.h: 66: void monta_sd(unsigned char index, unsigned char *dado);
+[; ;SDCard.h: 67: BYTE response(void);
+[; ;SDCard.h: 68: void proceed(void);
+[; ;SDCard.h: 69: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 70: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 [; ;display_lcd.h: 199: extern void init_lcd(void);
 [; ;display_lcd.h: 208: extern void escreve_cmd_lcd(unsigned char comando);
 [; ;display_lcd.h: 220: extern void endereco_cursor_lcd(unsigned char endereco);
@@ -5052,7 +5052,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 483 ]
 [; ;diskio.c: 595: return FR_OK;
 "595
-[e ) -> . `E3974 0 `uc ]
+[e ) -> . `E3975 0 `uc ]
 [e $UE 482  ]
 [; ;diskio.c: 597: }
 "597
