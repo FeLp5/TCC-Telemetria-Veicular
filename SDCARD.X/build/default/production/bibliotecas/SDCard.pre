@@ -4893,7 +4893,7 @@ unsigned char LONG[13];
 void sdcard_init(void);
 
 
-void escrita_sdcard(unsigned char *point1, unsigned char *point2);
+void escrita_sdcard(void);
 char *leitura_sdcard(unsigned char num_spot);
 
 void monta_sd(unsigned char index, unsigned char *dado);
@@ -5255,7 +5255,7 @@ return;
 }
 
 # 206
-void escrita_sdcard(unsigned char *point1, unsigned char *point2)
+void escrita_sdcard()
 {
 WORD bw;
 PORTBbits.RB3 = 0;
@@ -5270,8 +5270,10 @@ if (f_open(&fil, filename, 0x10 | 0x02 ) == FR_OK)
 
 f_lseek(&fil, ((&fil)->fsize));
 
-# 225
-fprintf(&fil, "\n%s ; %s ;", point1, point2);
+
+
+
+fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
 
 
 f_close(&fil);
@@ -5284,7 +5286,7 @@ inicializa_uart();
 return;
 }
 
-# 246
+# 245
 char *leitura_sdcard(unsigned char num_spot)
 {
 
@@ -5313,7 +5315,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 287
+# 286
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;

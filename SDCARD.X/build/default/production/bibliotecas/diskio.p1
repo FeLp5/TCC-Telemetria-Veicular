@@ -53,8 +53,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "54
 [v _leitura_SPI `(uc ~T0 @X0 0 ef ]
 "595 bibliotecas/diskio.c
-[c E3975 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
-[n E3975 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
+[c E3974 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
+[n E3974 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
 [; ;integer.h: 8: typedef struct{
 [; ;integer.h: 9: unsigned int hora;
 [; ;integer.h: 10: unsigned int min;
@@ -3619,7 +3619,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 54: unsigned char LONG[13];
 [; ;SDCard.h: 55: }string_tel;
 [; ;SDCard.h: 60: void sdcard_init(void);
-[; ;SDCard.h: 63: void escrita_sdcard(unsigned char *point1, unsigned char *point2);
+[; ;SDCard.h: 63: void escrita_sdcard(void);
 [; ;SDCard.h: 64: char *leitura_sdcard(unsigned char num_spot);
 [; ;SDCard.h: 66: void monta_sd(unsigned char index, unsigned char *dado);
 [; ;SDCard.h: 67: BYTE response(void);
@@ -5052,7 +5052,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 483 ]
 [; ;diskio.c: 595: return FR_OK;
 "595
-[e ) -> . `E3975 0 `uc ]
+[e ) -> . `E3974 0 `uc ]
 [e $UE 482  ]
 [; ;diskio.c: 597: }
 "597

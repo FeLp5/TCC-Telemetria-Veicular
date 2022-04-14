@@ -203,7 +203,7 @@ void sdcard_init(void)
  * Saida:		Nenhuma (void)
  * Descricao:	Realiza a escrita dos arquivos no sdcard
  *****************************************************************************/
-void escrita_sdcard(unsigned char *point1, unsigned char *point2) 
+void escrita_sdcard() 
 {
     WORD bw;
     PORTBbits.RB3 = 0;
@@ -221,8 +221,7 @@ void escrita_sdcard(unsigned char *point1, unsigned char *point2)
 //            escreve_inteiro_lcd(fsize(&fil));
 //            posicao_cursor_lcd(1,0);
 //            escreve_frase_ram_lcd(string_dado.hora);
-//            fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
-            fprintf(&fil, "\n%s ; %s ;", point1, point2);
+            fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
 
             /* Close the file */
             f_close(&fil);	

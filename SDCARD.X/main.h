@@ -57,6 +57,11 @@
 #define BIT_6   6
 #define BIT_7   7
 
+typedef struct
+{
+    unsigned char point:1;
+}bit_field;
+
 
 
 typedef struct
@@ -65,8 +70,8 @@ typedef struct
     unsigned char longitude[11];
     unsigned char fence_diff_lat[11];
     unsigned char fence_diff_long[11];
-    unsigned char point_diff_lat[11];
-    unsigned char point_diff_long[11];
+    unsigned long int diff_lat;
+    unsigned long int diff_long;
 }fence_ext_struct;
 
 /*****************************************************************************/

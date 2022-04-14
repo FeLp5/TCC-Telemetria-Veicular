@@ -3677,7 +3677,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 54: unsigned char LONG[13];
 [; ;SDCard.h: 55: }string_tel;
 [; ;SDCard.h: 60: void sdcard_init(void);
-[; ;SDCard.h: 63: void escrita_sdcard(unsigned char *point1, unsigned char *point2);
+[; ;SDCard.h: 63: void escrita_sdcard(void);
 [; ;SDCard.h: 64: char *leitura_sdcard(unsigned char num_spot);
 [; ;SDCard.h: 66: void monta_sd(unsigned char index, unsigned char *dado);
 [; ;SDCard.h: 67: BYTE response(void);

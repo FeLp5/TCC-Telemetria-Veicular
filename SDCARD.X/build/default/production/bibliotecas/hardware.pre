@@ -4828,15 +4828,22 @@ void leitura_continua_adc(void);
 
 unsigned int valor_medio_adc(unsigned char canal);
 
-# 62 "bibliotecas/../main.h"
+# 60 "bibliotecas/../main.h"
+typedef struct
+{
+unsigned char point:1;
+}bit_field;
+
+
+
 typedef struct
 {
 unsigned char latitude[11];
 unsigned char longitude[11];
 unsigned char fence_diff_lat[11];
 unsigned char fence_diff_long[11];
-unsigned char point_diff_lat[11];
-unsigned char point_diff_long[11];
+unsigned long int diff_lat;
+unsigned long int diff_long;
 }fence_ext_struct;
 
 # 45 "bibliotecas/SHRC.h"
