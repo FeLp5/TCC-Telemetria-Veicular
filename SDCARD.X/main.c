@@ -49,7 +49,7 @@
 ******************************************************************************/
 //estrutura de dados para o fence
 fence_ext_struct poligono_ext[4];
-bit_field flag[4];
+bit_field flag[3];
 
 
   
@@ -296,39 +296,64 @@ void verifica_fence_externo(void)
     }
     
     
-    while(j<4)
+
+    for(i=0; i<5; i++)
     {
-        for(i=0; i<5; i++)
+        if((poligono_ext[0].fence_diff_long[i] != temp_buff_long[i]) &&
+           (poligono_ext[1].fence_diff_long[i] != temp_buff_long[i]) &&
+           (poligono_ext[2].fence_diff_long[i] != temp_buff_long[i]) &&
+           (poligono_ext[3].fence_diff_long[i] != temp_buff_long[i])
+        )
         {
-            flag[j].point = 1;
-        }
-        j++;
+            flag[2].point = 1;
+        }  
     }
 
-    point = 0;
+    for(i=0; i<5; i++)
+    {
+        if((poligono_ext[0].fence_diff_lat[i] != temp_buff_lat[i]) &&
+           (poligono_ext[1].fence_diff_lat[i] != temp_buff_lat[i]) &&
+           (poligono_ext[2].fence_diff_lat[i] != temp_buff_lat[i]) &&
+           (poligono_ext[3].fence_diff_lat[i] != temp_buff_lat[i])    
+          )
+        {
+            flag[2].point = 1;
+        } 
+    }
+    
     
     while(point<4)
     {
         for(i=6; i<11; i++)
         {
-            if(poligono_ext[point].fence_diff_lat[i] != temp_buff_lat[i])
+            if(poligono_ext[point].fence_diff_lat[i] != poligono_ext[point].latitude[i])
             {
                 for(j= 0; i < 11; j++)
                 {
-                    poligono_ext[point].diff_lat = (atoi(poligono_ext[point].fence_diff_lat)) - (atoi(poligono_ext[point].latitude));
-                }
-                
-            }
-            
-            if(poligono_ext[point].fence_diff_long[i] != temp_buff_long[i])
-            {
-                for(j= 0; i < 11; j++)
-                {
-                    poligono_ext[point].diff_long = (atoi(poligono_ext[point].fence_diff_long)) - (atoi(poligono_ext[point].longitude));
+                    poligono_ext[point].fence_lat_min[j] = poligono_ext[point].fence_diff_lat[i];
+                    poligono_ext[point].point_lat_min[j] = poligono_ext[point].latitude[i];
+                    i++;
                 }
                 
             }
         } 
+        
+        for(i=6; i<11; i++)
+        {
+            if(poligono_ext[point].fence_diff_long[i] != poligono_ext[point].longitude[i])
+            {
+                for(j= 0; i < 11; j++)
+                {
+                    poligono_ext[point].fence_long_min[j] = poligono_ext[point].fence_diff_long[i];
+                    poligono_ext[point].point_long_min[j] = poligono_ext[point].longitude[i];
+                    i++;
+                }
+                
+            }
+        } 
+        poligono_ext[point].diff_lat = (atoi(poligono_ext[point].fence_lat_min)) - (atoi(poligono_ext[point].point_lat_min));
+        poligono_ext[point].diff_long = (atoi(poligono_ext[point].fence_long_min)) - (atoi(poligono_ext[point].point_long_min));
+        point++;
     }
 
     
@@ -371,8 +396,8 @@ void verifica_fence_externo(void)
     {
         case '-':
             if(poligono_ext[0].diff_lat < 0  &&
-               poligono_ext[1].diff_lat < 0  &&    
-               poligono_ext[2].diff_lat > 0  &&
+//               poligono_ext[1].diff_lat < 0  &&    
+//               poligono_ext[2].diff_lat > 0  &&
                poligono_ext[3].diff_lat > 0      
              )
             {
@@ -386,8 +411,8 @@ void verifica_fence_externo(void)
         
         default:
             if(poligono_ext[0].diff_lat > 0  &&
-               poligono_ext[1].diff_lat > 0  &&    
-               poligono_ext[2].diff_lat < 0  &&
+//               poligono_ext[1].diff_lat > 0  &&    
+//               poligono_ext[2].diff_lat < 0  &&
                poligono_ext[3].diff_lat < 0       
              )
             {
@@ -402,7 +427,7 @@ void verifica_fence_externo(void)
     }
 
     
-    if(flag[0].point && flag[1].point)
+    if((flag[0].point && flag[1].point) || flag[2].point)
     {
         posicao_cursor_lcd(1,0);
         escreve_frase_ram_lcd("REGIAO NEGADA");
@@ -515,7 +540,6 @@ void verifica_dados_operacionais(void)
 
 void disparo_gravacao(void)
 {
-    
     if(!time_sd)
     {
         escrita_sdcard();
