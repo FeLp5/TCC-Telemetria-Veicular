@@ -3624,17 +3624,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.h: 63: }bit_field;
 [; ;main.h: 67: typedef struct
 [; ;main.h: 68: {
-[; ;main.h: 69: unsigned char latitude[11];
-[; ;main.h: 70: unsigned char longitude[11];
-[; ;main.h: 71: unsigned char fence_diff_lat[11];
-[; ;main.h: 72: unsigned char fence_diff_long[11];
-[; ;main.h: 73: unsigned char fence_lat_min[6];
-[; ;main.h: 74: unsigned char fence_long_min[6];
-[; ;main.h: 75: unsigned char point_lat_min[6];
-[; ;main.h: 76: unsigned char point_long_min[6];
-[; ;main.h: 77: unsigned long int diff_lat;
-[; ;main.h: 78: unsigned long int diff_long;
-[; ;main.h: 79: }fence_ext_struct;
+[; ;main.h: 69: unsigned char fence_lat_deg[6];
+[; ;main.h: 70: unsigned char fence_long_deg[6];
+[; ;main.h: 71: unsigned char point_lat_deg[6];
+[; ;main.h: 72: unsigned char point_long_deg[6];
+[; ;main.h: 73: long int diff_lat_deg;
+[; ;main.h: 74: long int diff_long_deg;
+[; ;main.h: 75: unsigned char fence_lat_min[6];
+[; ;main.h: 76: unsigned char fence_long_min[6];
+[; ;main.h: 77: unsigned char point_lat_min[6];
+[; ;main.h: 78: unsigned char point_long_min[6];
+[; ;main.h: 79: long int diff_lat_min;
+[; ;main.h: 80: long int diff_long_min;
+[; ;main.h: 81: }fence_ext_struct;
 [; ;SHRC.h: 45: void controle_shrc (void);
 [; ;SHRC.h: 47: void inicializa_shrc(void);
 [; ;SHRC.h: 49: void escreve_dado_SPI(unsigned char data_to_shrc);
@@ -3948,17 +3950,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 "219
 [e = _TMR2 -> -> 0 `i `uc ]
 "222
-[v F3863 `uc ~T0 @X0 1 s flag ]
-[i F3863
+[v F3865 `uc ~T0 @X0 1 s flag ]
+[i F3865
 -> -> 0 `i `uc
 ]
 [; ;hardware.c: 222: static unsigned char flag = 0;
 [; ;hardware.c: 223: flag = !flag;
 "223
-[e = F3863 -> -> ! != -> F3863 `i -> -> -> 0 `i `uc `i `i `uc ]
+[e = F3865 -> -> ! != -> F3865 `i -> -> -> 0 `i `uc `i `i `uc ]
 [; ;hardware.c: 224: if(!flag)
 "224
-[e $ ! ! != -> F3863 `i -> -> -> 0 `i `uc `i 385  ]
+[e $ ! ! != -> F3865 `i -> -> -> 0 `i `uc `i 385  ]
 [; ;hardware.c: 225: {
 "225
 {

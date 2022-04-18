@@ -454,7 +454,7 @@
 int GPRMC_ok = 0, GPGGA_ok = 0;
 uint8_t char_number = 0, SentenceType = 0, Term;
 char sentence[6], rawTime[11], rawDate[7], rawSpeed[6], rawCourse[6], rawSatellites[3],
-     rawLatitude[13], rawLongitude[13], rawAltitude[7], buffer[12];
+     rawLatitude[13], rawLongitude[13], rawAltitude[7], buffer[12], rawFix;
 
 void stringcpy(char *str1, char *str2, int dir)
 {
@@ -550,6 +550,11 @@ int GPSRead(unsigned char buff)
       if((Term == 9) && (SentenceType == _GPGGA_)) {
         stringcpy(buffer, rawAltitude, 0);
       }
+
+      
+//     if((Term == 6) && (SentenceType == _GPGGA_)) {
+//        stringcpy(buffer, rawFix);
+//      }
       Term++;
       char_number = 0;
       break;
