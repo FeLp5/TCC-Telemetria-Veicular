@@ -3,8 +3,9 @@ import wx
 from mapa import Mapa
 from grafico_a import Painel_grafico_A
 from grafico_b import Painel_grafico_B
+from relatorio import Relatorio
 
-# variáveis globais
+
 tema = ("", "", "")
 
 
@@ -31,10 +32,14 @@ class Painel_inferior_direito(wx.Panel):
         
         self.panel_quatro = Mapa(self)
         self.sizer.Add(self.panel_quatro, 1, wx.EXPAND)
+        
+        self.panel_cinco = Relatorio(self)
+        self.sizer.Add(self.panel_cinco, 1, wx.EXPAND)
 
         self.panel_dois.Hide()
         self.panel_tres.Hide()
         self.panel_quatro.Hide()
+        self.panel_cinco.Hide()
         self.SetSize((300, 300))
         self.Centre()
 
@@ -43,29 +48,41 @@ class Painel_inferior_direito(wx.Panel):
         self.panel_dois.Hide()
         self.panel_tres.Hide()
         self.panel_quatro.Hide()
-        # self.panel_um.mostrar_dados()
-        # global a
-        # print(( a))
-        a = 1
+        self.panel_cinco.Hide()
+        self.Layout()
         
     def show_panel_two(self, event):
         self.panel_um.Hide()
         self.panel_dois.Show()
+        self.panel_dois.montar_grafico()
         self.panel_tres.Hide()
         self.panel_quatro.Hide()
-        self.panel_dois.montar_grafico()
+        self.panel_cinco.Hide()
         self.Layout()
+        
     def show_panel_tres(self, event):
         self.panel_um.Hide()
         self.panel_dois.Hide()
         self.panel_tres.Show()
         self.panel_tres.montar_grafico()
         self.panel_quatro.Hide()
+        self.panel_cinco.Hide()
         self.Layout()
+        
     def show_panel_four(self, event):
         self.panel_um.Hide()
         self.panel_dois.Hide()
         self.panel_tres.Hide()
         self.panel_quatro.Show()
         self.panel_quatro.atualiza_labels()
+        self.panel_cinco.Hide()
+        self.Layout()
+        
+    def show_panel_five(self, event):
+        self.panel_um.Hide()
+        self.panel_dois.Hide()
+        self.panel_tres.Hide()
+        self.panel_quatro.Hide()
+        self.panel_cinco.Show()
+        self.panel_cinco.atualiza_labels()
         self.Layout()

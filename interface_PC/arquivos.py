@@ -1,24 +1,20 @@
 # encoding: utf-8
-import wx, datetime, os, re
+import wx, datetime, os, re, requests
 import vars
-# from FDR_telemetria import Painel as painel
 
 
 class Painel_arquivos(wx.Panel):
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        
-        # Janela esquerda superior
- 
-    def mostrar_botoes(self, cont, titulo_bt, bt_caminho, diretorio):
+    
+    #mostrar os botões
+    def mostrar_botoes(self, cont, titulo_bt, bt_caminho, diretorio): 
         self.bt_camho = bt_caminho
         count = 20
         botoes = 0
         x = 0
-        
-        # global vars.criou_botoes
-        
+
         if(vars.flag_iniciar == 0 and vars.criou_botoes == 0):
             titulo_bt = [0] * 5
             self.statxt_02 = wx.StaticText(self, -1, "Trajetos Recentes" , (16, 10), (-1, -1))
@@ -68,7 +64,6 @@ class Painel_arquivos(wx.Panel):
                 self.botao4.Show()
             if (cont > 5):
                 self.botao_mais.Show()
-
             
             self.statxt_01.Hide()
             self.botao_sdcard.Hide()
@@ -77,16 +72,16 @@ class Painel_arquivos(wx.Panel):
             
             return "ok"
 
-                
+    #abrir os arquivos recentes - definindo 5 botões de acesso rápido            
     def abrir_recentes(self, nbotao):
         pathname_recente = self.bt_camho[nbotao]
-        for x in range(len(self.bt_camho)):
-        # Proceed loading the file chosen by the user
-        # print(( str(pathname)))
-            print("Caminho -> " + str(x) + " " + self.bt_camho[x])
+        # for x in range(len(self.bt_camho)):
+        # # Proceed loading the file chosen by the user
+        # # print(( str(pathname)))
+        #     print("Caminho -> " + str(x) + " " + self.bt_camho[x])
         try:
             with open(pathname_recente , 'r') as file:
-                print(pathname_recente)
+                # print(pathname_recente)
                 lines = file.readlines()
                 # print(((lines)))
                 # print(( str(file)))
@@ -97,58 +92,48 @@ class Painel_arquivos(wx.Panel):
             wx.LogError("Não é possível abrir o arquivo '%s'." % pathname)
 
         self.tratamento(lines)
-        # global arquivo_aberto
-        vars.arquivo_aberto = 1
         
+        vars.arquivo_aberto = 1 # global arquivo_aberto -- flag
 
-        # s_botoes(self)
-        # global vars.titulo_bt
         vars.titulo_bt = self.bt_camho[nbotao] # pegando o nome do arquivo e tornando global
         
         
-    def arquivos(self, pasta):
-        # global vars.flag_iniciar
+    def arquivos(self, pasta): # função para abrir os arquivos
+
         count = - 1
-        # global pasta
         botoes = 0
         cont = 0
-
-        # from array import array
         vars.titulo_bt = [] 
         titulo_bt_od = []
         botao_path = [] 
-        #titulo_bt = [" "," "]
         q_arqu = 0
         diretorio = ""
-        for diretorio, subpastas, arquivos in os.walk(pasta):
         
-            print("DIRETORIO", diretorio)
-            print("SUBPASTAS", pasta)
-                
+        for diretorio, subpastas, arquivos in os.walk(pasta): # percorrendo o diretorio
+        
+            # print("DIRETORIO", diretorio)
+            # print("SUBPASTAS", pasta)
             for arquivo in arquivos:
-                # print(((os.path.join(diretorio, arquivo))))
-
                 pos = arquivo.rfind(".")
                 ext = ""
-                
                 x = 0
 
                 # pegando as extensoes dos arquivos
                 for x in range(len(arquivo)): 
                     if( x > pos):  
                         ext = ext + arquivo[x]
-                        print(ext)
+                        # print(ext)
+                        
                 # pegando apenas a extesnao desejada
                 caminho = diretorio + "/" + arquivo
-                print("CAMINHO" + caminho)
+                # print("CAMINHO" + caminho)
                 extensao = "tlm"
                 if(ext == extensao ):
                 # informacao adicional dos arquivos 
-
-                    datacri = ""
-                    datamod = ""
+                    # datacri = "" # data de criação dos arquivos
+                    # datamod = "" # data de modificação dos arquivos
                     
-                    infos = str(os.stat(caminho))
+                    infos = str(os.stat(caminho)) # armazenando na variável os dados dos arquivos
                     
                     try:
                         datam = re.search('st_mtime=(.+?),', infos).group(1)
@@ -156,22 +141,17 @@ class Painel_arquivos(wx.Panel):
                     except AttributeError:
                         pass
 
-
-                    vars.titulo_bt.insert(cont, int(datam))
-
-                    botao_path.insert(cont, str(caminho))
-                    # print((  botao_path[cont]))
+                    vars.titulo_bt.insert(cont, int(datam)) # adicionando os valores no array
+                    botao_path.insert(cont, caminho) # adicionando os caminhos no array
+                    cont = cont + 1 # incrementando
                     
-                    cont = cont + 1
-        
-        
-            
-        p=0
-        temp = 0
+        p = 0 # criando e definindo um contador p
+        temp = 0 # criando uma variável temporária com 0
         # ordenando os arquivos
+        
+        #definindo a ordem em que os botões aparecerão na tela 
         for x in range(cont):
             for w in range(cont):
-                # print(( (titulo_bt[w])))
                 if(vars.titulo_bt[p] > vars.titulo_bt[w]):
                     temp = vars.titulo_bt[p] 
                     vars.titulo_bt[p] = vars.titulo_bt[w]
@@ -180,199 +160,193 @@ class Painel_arquivos(wx.Panel):
                     temp_path = botao_path[p]
                     botao_path[p] = botao_path[w]
                     botao_path[w] = temp_path
-                    print( vars.titulo_bt[w])
-            p = p+1
-            # print(( ("--")        ))
+                    # print( vars.titulo_bt[w])
+            p = p + 1
         
-        # return cont, titulo_bt, botao_path, diretorio
-        print "CONT " , cont
         if cont > 0:
-            print "**"
-            vars.flag_iniciar = 1
-            print vars.flag_iniciar
-            # s_botoes(self)
-            
+            vars.flag_iniciar = 1 # flag que demonstra que há arquivos de telemetria
+            # print vars.flag_iniciar
         
-        self.mostrar_botoes(cont, vars.titulo_bt, botao_path, diretorio)
+        # chamando a função que monta os botões
+        self.mostrar_botoes(cont, vars.titulo_bt, botao_path, diretorio) 
         
-  
-
-        
-        
+    # converte a data e hora - para o formato que queremos nos botões
     def convert_data(self, data):
         data_convertida = datetime.datetime.fromtimestamp(float(data)).strftime('%d/%m/%Y - %H:%M')
         return str(data_convertida)
     
-    
+    # mostra a janela sobre com informações sobre o programa
     def OnAbout(self,e):
-        print((   "okkkkk"))
-        # Create a message dialog box
-        dlg = wx.MessageDialog(self, " Informações sobre o uso do veículo ", "FDR Telemetria v0.1", wx.OK)
-        dlg.ShowModal() # Shows it
-        dlg.Destroy() # finally destroy it when finished.
+        dlg = wx.MessageDialog(self, "\n      FDR Telemetria      \n    Fatec Santo André     \n\nAbril de 2022 - Versão 0.1", "FDR Telemetria v0.1", wx.OK)
+        dlg.ShowModal() # Mostra a mensagem
+        dlg.Destroy() # Destroi e finaliza
     
+    # abre a janela para selcionar um arquivo
     def abrir_arquivos(self, event):
         with wx.FileDialog(self, "Abrir arquivo de telemetria", wildcard="arquivos tlm  (*.tlm)|*.tlm",
                             style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
             if fileDialog.ShowModal() == wx.ID_CANCEL:
-                return     # the user nbotaochanged their mind
-    
-            # Proceed loading the file chosen by the user
+                return    
+            # carregando o arquivo selecionado
             pathname = fileDialog.GetPath()
-            vars.iniciado
-            
-            
-            # print(( str(pathname)))
-            
+            vars.iniciado 
+
             try:
                 with open(pathname, 'r') as file:
                     lines = file.readlines()
-                    # print(((lines)))
-                    # print(( str(file)))
                     self.lines = lines
-                    
             except IOError:
-                wx.LogError("Cannot open file '%s'." % newfile)
-            
-            
-            
+                wx.LogError("Não foi possível abrir o arquivo '%s'." % newfile)
             
             self.tratamento(lines)
-            # self.arquivos(pathname)
-            
-            # vars.titulo_bt
-            vars.titulo_bt = pathname # pegando o nome do arquivo e tornando global
+            vars.titulo_bt = pathname # pegando o nome/caminho do arquivo e tornando global
                 
-                
+    # abre a janela para selcionar o diretório que contém o SD Card             
     def abrir_diretorio(self, event):
-        with wx.DirDialog (None, "Escolha o SD Card com os dados de Telemetria", "",
+        with wx.DirDialog (None, "Escolha o SD Card com os arquivos de Telemetria", "",
                     wx.DD_DEFAULT_STYLE | wx.DD_DIR_MUST_EXIST) as fileDialog:
             if fileDialog.ShowModal() == wx.ID_CANCEL:
-                return     # the user nbotaochanged their mind
+                return     
     
-            # Proceed loading the file chosen by the user
+            # armazenando o diretório selecionado
             pathname = fileDialog.GetPath()
-
-            print(pathname)
-            # if iniciado == 1:
-            #     self.tratamento(lines)
-            # else:
-            #     iniciado = 1
             self.arquivos(pathname)
 
-
+    # fazendo o tratamento dos dados
     def tratamento(self, lines):
-        # print(( "entrou"))
-
-        cordenadas = ""
-        ## testando funcao latlong
-        lat = self.latlong(-2345.03232)
-        long = self.latlong(-04655.0021)
-        print(("LAT " , lat, "LONG " , long))
-        ##
-
-        tamanho = str(len(lines))
-        # print(( lines)
-        # global km_rodado, consumo, rpmmax, velmax, hora_g, min_g, rpm, velocidade
+        cordenadas = "" # criando a variável 
+        cordenada_central = "" # criando a variável 
+        
+        # percorrendo os dados do arquivo e montando as strings
         for x in range(len(lines)): 
-            linha = lines[x]
-            if(x == 0):
-                vars.velocidade = re.search('v(.+?);', linha).group(1)
-                latitude = re.search('lt(.+?);', linha).group(1)
+            linha = lines[x] # selecionando a linha a ser percorrida
+
+            # pegando as cordenadas e cordenada central para centralizar o mapa (static map)
+            if  x == round(len(lines) / 2, 0) + 1 : 
+                cordenada_central = re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pegando a coordenada central
+                cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # necessario inserir na string cordenadas também
+            elif x == len(lines) - 1:
+                cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pegando a cordenada final e montando na string
+            else:
+                cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # pegando as cordenadas e montando a string
+                
+            
+            if(x == 0): # pegando o valor inicial para montar a string
+                velocidade = re.search('v(.+?);', linha).group(1)
+                latitude = re.search('lt(.+?);', linha).group(1) 
                 longitude = re.search('lo(.+?);', linha).group(1)
-                vars.rpm = re.search('r(.+?);', linha).group(1)
+                rpm = re.search('r(.+?);', linha).group(1)
                 combustivel = re.search('c(.+?);', linha).group(1)
                 km = re.search('k(.+?);', linha).group(1)
                 tempo = re.search('h(.+?);', linha).group(1)
                 dtc = re.search('d(.+?);', linha).group(1)
-                vars.velmax = vars.velocidade # pegando o valor inicial
-                vars.rpmmax = vars.rpm # pegando o valor inicial
-                vars.consumo = combustivel # pegando o valor inicial
-                vars.km_rodado = km # pegando a distancia percorrida
+                
+                velmax = velocidade
+                rpmmax = rpm
+                consumo = combustivel
+                km_rodado = km
                 hora = tempo[0] + tempo[1]
                 min = tempo[2] + tempo[3]
+                lat = latitude
+                long  = longitude
                 
-            else:
-                vars.velocidade = vars.velocidade + "," + re.search('v(.+?);', linha).group(1)
+                #gerando  os nomes das ruas para esta cordenada
+                self.ruas(latitude, longitude, x)
+                
+            else: #pegando as demais linhas
+                velocidade = velocidade + "," + re.search('v(.+?);', linha).group(1)
                 latitude = latitude + "," + re.search('lt(.+?);', linha).group(1)
                 longitude = longitude + "," + re.search('lo(.+?);', linha).group(1)
-                vars.rpm = vars.rpm + "," + re.search('r(.+?);', linha).group(1)
+                rpm = rpm + "," + re.search('r(.+?);', linha).group(1)
                 combustivel = combustivel + "," + re.search('c(.+?);', linha).group(1)
-                
                 km = km + "," + re.search('k(.+?);', linha).group(1)
                 tempo = tempo + "," + re.search('h(.+?);', linha).group(1)
                 dtc = dtc + "," + re.search('d(.+?);', linha).group(1)
                 
-                
-                ## montando as strings para as apis
-                ## roads retornará a velocidade da via
-                ## maps_api - irá desenhar o mapa e a rota
-                ## geocode - trará os nomes das ruas 
-                
-                if x == len(lines) - 1 : 
-                    t_x, t_y = vars.size_window
-                    t_x = t_x/7*6
-                    t_y = t_y/3*2
-                    tamanho_janela = str(t_x) + "&" + str(t_y)
-                    vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "&key=" + vars.api_key
-                    vars.static_map = "https://maps.googleapis.com/maps/api/staticmap?size=" + tamanho_janela + "&center=" + cordenada_central + "&path=color:0x0000ff|weight:5|" + cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "&key=" + vars.api_key
-                    # roads = "https://roads.googleapis.com/v1/speedLimits?path=" + api1 + "&key=" + api_key
-                    print(( "ROADS API -> ", vars.roads))
-                    print(( "STATIC_MAP API ->" , vars.static_map))
-                elif  x == round(len(lines) / 2, 0) + 1 : 
-                    print(( "ok"))
-                    print(( x))
-                    cordenada_central = re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pggando a coordenada central
-                    cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # inserindo também na string aqui
-                else:
-                    cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|"
-                    
+                # gerando os outros nomes das ruas para as demais cordenadas
+                self.ruas(re.search('lt(.+?);', linha).group(1), re.search('lo(.+?);', linha).group(1), x)
 
-                ## ------------------------------------------------
-                
                 #pegando a velocidade máxima
-                if(vars.velmax < re.search('v(.+?);', linha).group(1)):
-                    vars.velmax = re.search('v(.+?);', linha).group(1)
+                if(velmax < re.search('v(.+?);', linha).group(1)):
+                    velmax = re.search('v(.+?);', linha).group(1)
                  
                 #pegando a rotação máxima
                 rpmmax_int = re.search('r(.+?);', linha).group(1)
-                vars.rpmmax = int(vars.rpmmax)
-                if vars.rpmmax < int(rpmmax_int):
-                    vars.rpmmax = int(rpmmax_int)
+                rpmmax = int(rpmmax)
+                if rpmmax < int(rpmmax_int):
+                    rpmmax = int(rpmmax_int)
                     
                 if(x == (len(lines) - 1)):
-                    vars.hora_g = tempo[0] + tempo[1]
-                    # print(( hora_g))
+                    hora_g = tempo[0] + tempo[1]
+
                     # precisa ser testado
-                    if(int(hora) > int(vars.hora_g) and flag == 0 ): #testando por causa da troca de 23h para 0h
+                    if(int(hora) > int(hora_g) and flag == 0 ): #testando por causa da troca de 23h para 0h
                         hora = int(hora) - 24
-                        # print(( "entrou" + str(hora)))
+
                         flag = 1
                     
                     #pegando o consumo
-                    vars.consumo = float(vars.consumo) - float(re.search('c(.+?);', linha).group(1))
+                    consumo = float(consumo) - float(re.search('c(.+?);', linha).group(1))
                     
                     #ṕegando a distancia percorrida
-                    vars.km_rodado = float(re.search('k(.+?);', linha).group(1))- float(vars.km_rodado)
+                    km_rodado = float(re.search('k(.+?);', linha).group(1))- float(km_rodado)
                 
                     #pegando o tempo gasto, precisamos testar
                     tempo_gasto = (re.search('h(.+?);', linha).group(1))
-                    vars.hora_g = tempo_gasto[0] + tempo_gasto[1]
-                    vars.min_g = tempo_gasto[2] + tempo_gasto[3]
+                    hora_g = tempo_gasto[0] + tempo_gasto[1]
+                    min_g = tempo_gasto[2] + tempo_gasto[3]
                     
-                    vars.hora_g = int(vars.hora_g) - int(hora)
-                    if(int(vars.min_g) < int(min)):
-                        vars.ming_g = int(vars.min_g) - int(min) + 60
+                    hora_g = int(hora_g) - int(hora)
+                    if(int(min_g) < int(min)):
+                        ming_g = int(min_g) - int(min) + 60
                     else:
-                        vars.min_g = int(vars.min_g) -int(min)
+                        min_g = int(min_g) -int(min)
                         
+                    vars.velocidade = velocidade # passando para global
+                    vars.rpm = rpm # passando para global
+                    vars.velmax = velmax # passando para global
+                    vars.rpmmax = rpmmax  # passando para global
+                    vars.consumo = consumo  # passando para global
+                    vars.km_rodado = km_rodado # passando para global
+                    vars.hora_g = hora_g # passando para global
+                    vars.min_g = min_g # passando para global
         
-        # vars.s_botoes(self)
-        # painel = Painel(self)
-        # painel.mostra_botoes()
 
+        # roads retornará a velocidade da via
+        vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + cordenadas  + "&key=" + vars.api_key
         
+        # static_map - irá desenhar o mapa e a rota
+        vars.static_map = "https://maps.googleapis.com/maps/api/staticmap?center=" + cordenada_central + "&path=color:0x0000ff|weight:5|" + cordenadas + "&size=640x400&key=" + vars.api_key
+
+        print(( "ROADS API -> ", vars.roads))
+        print(( "STATIC_MAP API ->" , vars.static_map))
+
+    #funçao que retorna os nomes das ruas
+    def ruas(self, lat, long, cont):
+        if(vars.velocidade != ''): #!= ''): #travando para não executar
         
+            # geocode - trará os nomes das ruas
+            ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
+            
+            r = requests.get(ruas)
+            if r.status_code not in range(200, 299):
+                return None, None
+            try:
+                results = r.json()['results'][0]
+                for types in results['address_components']:
+                    field = types.get('types', [])
+                    if 'route' in field:
+                        nome_rua = types['long_name']
+            except:
+                print "ERRO"
+                pass
+            
+                    
+            vars.nomes_das_ruas.append(nome_rua)
+            # print vars.nomes_das_ruas
+           
+    
+    #função de conversão de latitude / longitude para graus/minutos
     def latlong(self, lt_lo):
         minutes = 0.0
         dec_deg = 0
@@ -381,15 +355,14 @@ class Painel_arquivos(wx.Panel):
         degrees = 0.0
         # position = 0.0
         
-        print("LATLONG ", lt_lo)
+        # print("LATLONG ", lt_lo)
         degrees = int(lt_lo/100)
-        print("GRAUS ", degrees)
+        # print("GRAUS ", degrees)
         minutes = lt_lo - (degrees * 100)
-        print("MINUTES ", minutes)
+        # print("MINUTES ", minutes)
         dec_deg = minutes / 60.00;
         print("Décimos de GRAUS ", dec_deg)
-        decimal = degrees + dec_deg;
+        # decimal = degrees + dec_deg;
         print("décimos ", decimal)
         
         return decimal	
-        # return (km_rodado, consumo, rpmmax, velmax, hora_g, min_g)

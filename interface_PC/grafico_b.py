@@ -9,18 +9,11 @@ class Painel_grafico_B(wx.Panel): #RPM
         wx.Panel.__init__(self, parent)
 
     def montar_grafico(self):
-        # global rpm
         rpm = str(vars.rpm)
         i = 0
-        # print(( rpm ))
-        
-        # rpm = list(rpm)
         rpm_list = rpm.split(',')
         rpm_list = [int(i) for i in rpm_list]
-        # rpm = "(" + rpm + ")"
-        print(( rpm ))
-        
-        
+
         figure = Figure()
         
         axes = figure.add_subplot(111)
@@ -33,14 +26,10 @@ class Painel_grafico_B(wx.Panel): #RPM
                 item_b = "0"
             else:
                 item_b = item_b + ", " + str(x);
-           # print(( "itens")
 
-        
         item_b = item_b.split(',')
         item_b = [int(i) for i in item_b]
         
-        # valores = rpm
         axes.bar(item_b, rpm_list, color="green")
-        # self.axes.set_autoscale_on
-        # self.axes.plot(rpm)
+
  

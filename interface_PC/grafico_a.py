@@ -3,7 +3,6 @@ import wx
 import vars
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
-# from wx import html2 as webview
 
 class Painel_grafico_A(wx.Panel):
 
@@ -12,7 +11,6 @@ class Painel_grafico_A(wx.Panel):
         self.panel = wx.Panel(self)
 
     def montar_grafico(self):
-        # global velocidade
 
         i = 0
         velocidade = str(vars.velocidade)
@@ -46,4 +44,5 @@ class Painel_grafico_A(wx.Panel):
         axes.set_ylabel('Velocidade Km/h')
         axes.set_xlabel('Medicoes')
         axes.set_ymargin(4)
+        
 

@@ -3,15 +3,21 @@
 import wx
 
 #pegando a dimensao da tela
-app = wx.App(False) # the wx.App object must be created first.    
-  # returns a tuple
-size_window = wx.GetDisplaySize()
-cor_botoes = ""
+app = wx.App(False) # Criando um objeto wx.App
+size_window = wx.GetDisplaySize() # retorna uma tuple
+t_x, t_y = size_window
 
-# variáveis globais
+cor_botoes = ""
+tema = ("", "", "")
+
+#flags
 flag_iniciar = 0
 criou_botoes = 0
-# a = 0
+arquivo_aberto = 0
+# iniciado = 0
+# mudanca = 0
+
+#dados coletados
 km_rodado = 0
 consumo = 0
 rpmmax = 0 
@@ -21,20 +27,23 @@ min_g = 0
 rpm = 0
 flag = 0
 velocidade = 0
-iniciado = 0
-mudanca = 0
-flag_iniciar = 0
-criou_botoes = 0
-t_x, t_y = size_window
-arquivo_aberto = 0
-print (t_x , t_y )
-tema = ("", "", "")
+
+VIN = "9BWXXXXXXXXXXXXXX2345"
+
+# itens da tela
 titulo_bt = 0000
 
+# dados para as apis
 roads = ""
 static_map = ""
+ruas = ""
+nomes_das_ruas = []
 
-api_key="XXXXXXXXXXX"
-VIN = "9BWXXXXXXXXXXXXXX2345"
+#credenciais apis
+api_key="AIzaSyBMnrCuQWbuZlsYWl1l4D86wTzFUVT_EHU"
+secret_key="PqTf169GaYbiKoLY-6URq2N2RHc="
+
+
+
 
 
