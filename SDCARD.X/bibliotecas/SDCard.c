@@ -31,7 +31,7 @@
 ******************************************************************************/
 
 // File to read================================================================= 
-BYTE filename[15] = "teste.txt";
+BYTE filename[15] = "teste1.txt";
 FATFS fs;
 FIL fil;
 BYTE dado_arquivo[20];
@@ -203,7 +203,7 @@ void sdcard_init(void)
  * Saida:		Nenhuma (void)
  * Descricao:	Realiza a escrita dos arquivos no sdcard
  *****************************************************************************/
-void escrita_sdcard(void) 
+void escrita_sdcard() 
 {
     WORD bw;
     PORTBbits.RB3 = 0;
@@ -211,17 +211,16 @@ void escrita_sdcard(void)
     inicializa_SPI();
     f_mount(0,&fs);
     
-
 //    if(data_hoje)
 //    {
         if (f_open(&fil, filename, FA_OPEN_ALWAYS | FA_WRITE ) == FR_OK)  /* Open or create a file */
         {	
 
             f_lseek(&fil, fsize(&fil));
-            posicao_cursor_lcd(2,0);
-            escreve_inteiro_lcd(fsize(&fil));
-            posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd(string_dado.hora);
+//            posicao_cursor_lcd(2,0);
+//            escreve_inteiro_lcd(fsize(&fil));
+//            posicao_cursor_lcd(1,0);
+//            escreve_frase_ram_lcd(string_dado.hora);
             fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
 
             /* Close the file */
@@ -246,7 +245,7 @@ void escrita_sdcard(void)
 char *leitura_sdcard(unsigned char num_spot) 
 {
     
-    static unsigned char size = 10;
+    static unsigned char size = 88;
     WORD br;
     unsigned int offset = 0;
     
@@ -260,8 +259,7 @@ char *leitura_sdcard(unsigned char num_spot)
     {	
 //        offset = num_spot*39 + 7;
 //        f_lseek(&fil, offset);
-//        f_read(&fil, dado_arquivo, size, &br);
-        fgets(dado_arquivo, 90, &fil );
+        f_read(&fil, dado_arquivo, size, &br);
         /* Close the file */
         f_close(&fil);	
     }

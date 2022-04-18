@@ -115,7 +115,11 @@ FR_MKFS_ABORTED 13
 [v _stringcpy stringcpy `(v  1 e 1 0 ]
 "468
 [v _GPSRead GPSRead `(i  1 e 2 0 ]
-"632
+"605
+[v _Latitude Latitude `(*.39uc  1 e 2 0 ]
+"610
+[v _Longitude Longitude `(*.39uc  1 e 2 0 ]
+"637
 [v _dados_gps_to_sd dados_gps_to_sd `(v  1 e 1 0 ]
 "55 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/hardware.c
 [v _init_hardware init_hardware `(v  1 e 1 0 ]
@@ -144,9 +148,7 @@ FR_MKFS_ABORTED 13
 [v _command command `(v  1 e 1 0 ]
 "206
 [v _escrita_sdcard escrita_sdcard `(v  1 e 1 0 ]
-"246
-[v _leitura_sdcard leitura_sdcard `(*.39uc  1 e 2 0 ]
-"288
+"286
 [v _monta_sd monta_sd `(v  1 e 1 0 ]
 "49 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SPI.c
 [v _inicializa_SPI inicializa_SPI `(v  1 e 1 0 ]
@@ -193,7 +195,7 @@ FR_MKFS_ABORTED 13
 "825
 [v _f_open f_open `(E3974  1 e 1 0 ]
 "924
-[v _f_read f_read `(E155  1 e 1 0 ]
+[v _f_read f_read `(E3974  1 e 1 0 ]
 "991
 [v _f_write f_write `(E155  1 e 1 0 ]
 "1069
@@ -202,8 +204,6 @@ FR_MKFS_ABORTED 13
 [v _f_close f_close `(E3974  1 e 1 0 ]
 "1132
 [v _f_lseek f_lseek `(E3974  1 e 1 0 ]
-"1730
-[v _fgets fgets `(*.39uc  1 e 2 0 ]
 "1761
 [v _fputc fputc `(i  1 e 2 0 ]
 "1788
@@ -226,6 +226,8 @@ FR_MKFS_ABORTED 13
 [v _abs abs `(i  1 e 2 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\aldiv.c
 [v ___aldiv __aldiv `(l  1 e 4 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
 "32 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\awtoft.c
 [v ___awtoft __awtoft `(f  1 e 3 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\float.c
@@ -244,6 +246,8 @@ FR_MKFS_ABORTED 13
 [v ___ftsub __ftsub `(f  1 e 3 0 ]
 "44 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\itoa.c
 [v _itoa itoa `(*.39uc  1 e 2 0 ]
 "17
@@ -278,22 +282,24 @@ FR_MKFS_ABORTED 13
 [v ___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"95 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\main.c
+"102 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"153
+"161
 [v _inicializa_tarefas inicializa_tarefas `(v  1 e 1 0 ]
-"185
+"193
 [v _escalonador escalonador `(v  1 e 1 0 ]
-"206
+"214
 [v _main main `(v  1 e 1 0 ]
-"233
+"241
 [v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
-"256
+"264
 [v _verifica_fence_externo verifica_fence_externo `(v  1 e 1 0 ]
-"367
+"645
 [v _verifica_dados_operacionais verifica_dados_operacionais `(v  1 e 1 0 ]
-"382
-[v _incrementa_metros incrementa_metros `(v  1 e 1 0 ]
+"660
+[v _disparo_gravacao disparo_gravacao `(v  1 e 1 0 ]
+"671
+[v _troca_de_tela troca_de_tela `(v  1 e 1 0 ]
 "22 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/diskio.c
 [v _data_buff data_buff `*.2uc  1 e 2 0 ]
 "454 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/GPS.c
@@ -317,30 +323,30 @@ FR_MKFS_ABORTED 13
 [v _buffer buffer `[12]uc  1 e 12 0 ]
 "34 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SDCard.c
 [v _filename filename `[15]uc  1 e 15 0 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "35
-[v _fs fs `S522  1 e 544 0 ]
+[v _fs fs `S566  1 e 544 0 ]
 "36
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v _fil fil `S538  1 e 28 0 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v _fil fil `S582  1 e 28 0 ]
 "37
 [v _dado_arquivo dado_arquivo `[20]uc  1 e 20 0 ]
-[s S550 . 44 `[7]uc 1 data 7 0 `[11]uc 1 hora 11 7 `[13]uc 1 LAT 13 18 `[13]uc 1 LONG 13 31 ]
+[s S594 . 44 `[7]uc 1 data 7 0 `[11]uc 1 hora 11 7 `[13]uc 1 LAT 13 18 `[13]uc 1 LONG 13 31 ]
 "39
-[v _string_dado string_dado `S550  1 e 44 0 ]
+[v _string_dado string_dado `S594  1 e 44 0 ]
 "40
 [v _data_hoje data_hoje `uc  1 e 1 0 ]
 "28 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SHRC.c
 [v _dado dado `uc  1 e 1 0 ]
 "59 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/tff.c
-[v _FatFs FatFs `*.39S522  1 s 2 FatFs ]
+[v _FatFs FatFs `*.39S566  1 s 2 FatFs ]
 "61
 [v _fsid fsid `us  1 s 2 fsid ]
 "70 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18f4550.h
 [v _SPPCFG SPPCFG `VEuc  1 e 1 @3939 ]
 "221
 [v _SPPCON SPPCON `VEuc  1 e 1 @3941 ]
-[s S106 . 1 `uc 1 RB0 1 0 :1:0 
+[s S114 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -350,7 +356,7 @@ FR_MKFS_ABORTED 13
 `uc 1 RB7 1 0 :1:7 
 ]
 "2481
-[s S115 . 1 `uc 1 INT0 1 0 :1:0 
+[s S123 . 1 `uc 1 INT0 1 0 :1:0 
 `uc 1 INT1 1 0 :1:1 
 `uc 1 INT2 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -358,12 +364,12 @@ FR_MKFS_ABORTED 13
 `uc 1 PGC 1 0 :1:6 
 `uc 1 PGD 1 0 :1:7 
 ]
-[s S123 . 1 `uc 1 . 1 0 :3:0 
+[s S131 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2_PA2 1 0 :1:3 
 ]
-[u S126 . 1 `S106 1 . 1 0 `S115 1 . 1 0 `S123 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES126  1 e 1 @3969 ]
-[s S1308 . 1 `uc 1 RD0 1 0 :1:0 
+[u S134 . 1 `S114 1 . 1 0 `S123 1 . 1 0 `S131 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES134  1 e 1 @3969 ]
+[s S1359 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -373,7 +379,7 @@ FR_MKFS_ABORTED 13
 `uc 1 RD7 1 0 :1:7 
 ]
 "2734
-[s S1348 . 1 `uc 1 SPP0 1 0 :1:0 
+[s S1399 . 1 `uc 1 SPP0 1 0 :1:0 
 `uc 1 SPP1 1 0 :1:1 
 `uc 1 SPP2 1 0 :1:2 
 `uc 1 SPP3 1 0 :1:3 
@@ -382,12 +388,12 @@ FR_MKFS_ABORTED 13
 `uc 1 SPP6 1 0 :1:6 
 `uc 1 SPP7 1 0 :1:7 
 ]
-[s S1357 . 1 `uc 1 . 1 0 :7:0 
+[s S1408 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 SS2 1 0 :1:7 
 ]
-[u S1360 . 1 `S1308 1 . 1 0 `S1348 1 . 1 0 `S1357 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES1360  1 e 1 @3971 ]
-[s S306 . 1 `uc 1 RE0 1 0 :1:0 
+[u S1411 . 1 `S1359 1 . 1 0 `S1399 1 . 1 0 `S1408 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES1411  1 e 1 @3971 ]
+[s S325 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
@@ -395,34 +401,34 @@ FR_MKFS_ABORTED 13
 `uc 1 RDPU 1 0 :1:7 
 ]
 "2866
-[s S313 . 1 `uc 1 CK1SPP 1 0 :1:0 
+[s S332 . 1 `uc 1 CK1SPP 1 0 :1:0 
 `uc 1 CK2SPP 1 0 :1:1 
 `uc 1 OESPP 1 0 :1:2 
 ]
-[s S317 . 1 `uc 1 PD2 1 0 :1:0 
+[s S336 . 1 `uc 1 PD2 1 0 :1:0 
 `uc 1 PC2 1 0 :1:1 
 `uc 1 CCP10 1 0 :1:2 
 `uc 1 CCP9E 1 0 :1:3 
 `uc 1 . 1 0 :3:4 
 `uc 1 CCP2E 1 0 :1:7 
 ]
-[s S324 . 1 `uc 1 RDE 1 0 :1:0 
+[s S343 . 1 `uc 1 RDE 1 0 :1:0 
 `uc 1 WRE 1 0 :1:1 
 `uc 1 CS 1 0 :1:2 
 `uc 1 PC3E 1 0 :1:3 
 `uc 1 . 1 0 :3:4 
 `uc 1 PA2E 1 0 :1:7 
 ]
-[s S331 . 1 `uc 1 . 1 0 :2:0 
+[s S350 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 PB2 1 0 :1:2 
 `uc 1 . 1 0 :4:3 
 `uc 1 RE7 1 0 :1:7 
 ]
-[u S336 . 1 `S306 1 . 1 0 `S313 1 . 1 0 `S317 1 . 1 0 `S324 1 . 1 0 `S331 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES336  1 e 1 @3972 ]
+[u S355 . 1 `S325 1 . 1 0 `S332 1 . 1 0 `S336 1 . 1 0 `S343 1 . 1 0 `S350 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES355  1 e 1 @3972 ]
 "3071
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S555 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S599 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -432,7 +438,7 @@ FR_MKFS_ABORTED 13
 `uc 1 LATB7 1 0 :1:7 
 ]
 "3098
-[s S564 . 1 `uc 1 LB0 1 0 :1:0 
+[s S608 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -441,9 +447,9 @@ FR_MKFS_ABORTED 13
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S573 . 1 `S555 1 . 1 0 `S564 1 . 1 0 ]
-[v _LATBbits LATBbits `VES573  1 e 1 @3978 ]
-[s S1140 . 1 `uc 1 LATC0 1 0 :1:0 
+[u S617 . 1 `S599 1 . 1 0 `S608 1 . 1 0 ]
+[v _LATBbits LATBbits `VES617  1 e 1 @3978 ]
+[s S1191 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
@@ -451,20 +457,20 @@ FR_MKFS_ABORTED 13
 `uc 1 LATC7 1 0 :1:7 
 ]
 "3206
-[s S1147 . 1 `uc 1 LC0 1 0 :1:0 
+[s S1198 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S1154 . 1 `S1140 1 . 1 0 `S1147 1 . 1 0 ]
-[v _LATCbits LATCbits `VES1154  1 e 1 @3979 ]
+[u S1205 . 1 `S1191 1 . 1 0 `S1198 1 . 1 0 ]
+[v _LATCbits LATCbits `VES1205  1 e 1 @3979 ]
 "3425
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
 "3623
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
-[s S786 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S837 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -474,11 +480,11 @@ FR_MKFS_ABORTED 13
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "3655
-[u S804 . 1 `S786 1 . 1 0 `S106 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES804  1 e 1 @3987 ]
+[u S855 . 1 `S837 1 . 1 0 `S114 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES855  1 e 1 @3987 ]
 "3845
 [v _TRISC TRISC `VEuc  1 e 1 @3988 ]
-[s S826 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S877 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
@@ -486,18 +492,18 @@ FR_MKFS_ABORTED 13
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "3873
-[s S833 . 1 `uc 1 RC0 1 0 :1:0 
+[s S884 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[u S840 . 1 `S826 1 . 1 0 `S833 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES840  1 e 1 @3988 ]
+[u S891 . 1 `S877 1 . 1 0 `S884 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES891  1 e 1 @3988 ]
 "3999
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
-[s S1299 . 1 `uc 1 TRISD0 1 0 :1:0 
+[s S1350 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
 `uc 1 TRISD3 1 0 :1:3 
@@ -507,13 +513,13 @@ FR_MKFS_ABORTED 13
 `uc 1 TRISD7 1 0 :1:7 
 ]
 "4031
-[u S1317 . 1 `S1299 1 . 1 0 `S1308 1 . 1 0 ]
-[v _TRISDbits TRISDbits `VES1317  1 e 1 @3989 ]
+[u S1368 . 1 `S1350 1 . 1 0 `S1359 1 . 1 0 ]
+[v _TRISDbits TRISDbits `VES1368  1 e 1 @3989 ]
 "4221
 [v _TRISE TRISE `VEuc  1 e 1 @3990 ]
 "4382
 [v _PIE1 PIE1 `VEuc  1 e 1 @3997 ]
-[s S29 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S37 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -523,15 +529,15 @@ FR_MKFS_ABORTED 13
 `uc 1 SPPIE 1 0 :1:7 
 ]
 "4406
-[s S38 . 1 `uc 1 . 1 0 :4:0 
+[s S46 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IE 1 0 :1:4 
 `uc 1 RC1IE 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIE 1 0 :1:7 
 ]
-[u S44 . 1 `S29 1 . 1 0 `S38 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES44  1 e 1 @3997 ]
-[s S63 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S52 . 1 `S37 1 . 1 0 `S46 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES52  1 e 1 @3997 ]
+[s S71 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -541,17 +547,17 @@ FR_MKFS_ABORTED 13
 `uc 1 SPPIF 1 0 :1:7 
 ]
 "4490
-[s S72 . 1 `uc 1 . 1 0 :4:0 
+[s S80 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIF 1 0 :1:7 
 ]
-[u S78 . 1 `S63 1 . 1 0 `S72 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES78  1 e 1 @3998 ]
+[u S86 . 1 `S71 1 . 1 0 `S80 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES86  1 e 1 @3998 ]
 "4934
 [v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
-[s S1661 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S1712 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -561,22 +567,22 @@ FR_MKFS_ABORTED 13
 `uc 1 SPEN 1 0 :1:7 
 ]
 "4975
-[s S1670 . 1 `uc 1 . 1 0 :3:0 
+[s S1721 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 ADEN 1 0 :1:3 
 ]
-[s S1673 . 1 `uc 1 . 1 0 :5:0 
+[s S1724 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 SRENA 1 0 :1:5 
 ]
-[s S1676 . 1 `uc 1 . 1 0 :6:0 
+[s S1727 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[s S1679 . 1 `uc 1 . 1 0 :6:0 
+[s S1730 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S1682 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S1733 . 1 `uc 1 RCD8 1 0 :1:0 
 ]
-[u S1684 . 1 `S1661 1 . 1 0 `S1670 1 . 1 0 `S1673 1 . 1 0 `S1676 1 . 1 0 `S1679 1 . 1 0 `S1682 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES1684  1 e 1 @4011 ]
+[u S1735 . 1 `S1712 1 . 1 0 `S1721 1 . 1 0 `S1724 1 . 1 0 `S1727 1 . 1 0 `S1730 1 . 1 0 `S1733 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES1735  1 e 1 @4011 ]
 "5144
 [v _TXSTA TXSTA `VEuc  1 e 1 @4012 ]
 "5400
@@ -589,30 +595,30 @@ FR_MKFS_ABORTED 13
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
 "6866
 [v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
-[s S1023 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S1074 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "6886
-[s S1029 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S1080 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S1034 . 1 `S1023 1 . 1 0 `S1029 1 . 1 0 ]
-[v _SSPCON1bits SSPCON1bits `VES1034  1 e 1 @4038 ]
+[u S1085 . 1 `S1074 1 . 1 0 `S1080 1 . 1 0 ]
+[v _SSPCON1bits SSPCON1bits `VES1085  1 e 1 @4038 ]
 "6936
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
-[s S882 . 1 `uc 1 . 1 0 :2:0 
+[s S933 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
 "7019
-[s S885 . 1 `uc 1 . 1 0 :5:0 
+[s S936 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S888 . 1 `uc 1 BF 1 0 :1:0 
+[s S939 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -621,56 +627,56 @@ FR_MKFS_ABORTED 13
 `uc 1 CKE 1 0 :1:6 
 `uc 1 SMP 1 0 :1:7 
 ]
-[s S897 . 1 `uc 1 . 1 0 :2:0 
+[s S948 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S902 . 1 `uc 1 . 1 0 :2:0 
+[s S953 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
-[s S908 . 1 `uc 1 . 1 0 :2:0 
+[s S959 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S913 . 1 `uc 1 . 1 0 :2:0 
+[s S964 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
-[s S916 . 1 `uc 1 . 1 0 :5:0 
+[s S967 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
-[s S919 . 1 `uc 1 . 1 0 :2:0 
+[s S970 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S924 . 1 `uc 1 . 1 0 :2:0 
+[s S975 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[s S929 . 1 `uc 1 . 1 0 :2:0 
+[s S980 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S934 . 1 `uc 1 . 1 0 :2:0 
+[s S985 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 `uc 1 START 1 0 :1:3 
 `uc 1 STOP 1 0 :1:4 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S940 . 1 `uc 1 . 1 0 :2:0 
+[s S991 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 NOT_A 1 0 :1:5 
 ]
-[u S945 . 1 `S882 1 . 1 0 `S885 1 . 1 0 `S888 1 . 1 0 `S897 1 . 1 0 `S902 1 . 1 0 `S908 1 . 1 0 `S913 1 . 1 0 `S916 1 . 1 0 `S919 1 . 1 0 `S924 1 . 1 0 `S929 1 . 1 0 `S934 1 . 1 0 `S940 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES945  1 e 1 @4039 ]
+[u S996 . 1 `S933 1 . 1 0 `S936 1 . 1 0 `S939 1 . 1 0 `S948 1 . 1 0 `S953 1 . 1 0 `S959 1 . 1 0 `S964 1 . 1 0 `S967 1 . 1 0 `S970 1 . 1 0 `S975 1 . 1 0 `S980 1 . 1 0 `S985 1 . 1 0 `S991 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES996  1 e 1 @4039 ]
 "7191
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
 "7198
@@ -679,14 +685,14 @@ FR_MKFS_ABORTED 13
 [v _PR2 PR2 `VEuc  1 e 1 @4043 ]
 "7406
 [v _TMR2 TMR2 `VEuc  1 e 1 @4044 ]
-[s S1539 . 1 `uc 1 SCS 1 0 :2:0 
+[s S1590 . 1 `uc 1 SCS 1 0 :2:0 
 `uc 1 IOFS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 `uc 1 IDLEN 1 0 :1:7 
 ]
 "8007
-[s S1545 . 1 `uc 1 SCS0 1 0 :1:0 
+[s S1596 . 1 `uc 1 SCS0 1 0 :1:0 
 `uc 1 SCS1 1 0 :1:1 
 `uc 1 FLTS 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -694,11 +700,11 @@ FR_MKFS_ABORTED 13
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S1553 . 1 `S1539 1 . 1 0 `S1545 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES1553  1 e 1 @4051 ]
+[u S1604 . 1 `S1590 1 . 1 0 `S1596 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES1604  1 e 1 @4051 ]
 "8067
 [v _T0CON T0CON `VEuc  1 e 1 @4053 ]
-[s S227 . 1 `uc 1 T0PS 1 0 :3:0 
+[s S239 . 1 `uc 1 T0PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -706,12 +712,12 @@ FR_MKFS_ABORTED 13
 `uc 1 TMR0ON 1 0 :1:7 
 ]
 "8087
-[s S234 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S246 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 ]
-[u S238 . 1 `S227 1 . 1 0 `S234 1 . 1 0 ]
-[v _T0CONbits T0CONbits `VES238  1 e 1 @4053 ]
+[u S250 . 1 `S239 1 . 1 0 `S246 1 . 1 0 ]
+[v _T0CONbits T0CONbits `VES250  1 e 1 @4053 ]
 "8144
 [v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
 "8151
@@ -722,7 +728,7 @@ FR_MKFS_ABORTED 13
 [v _INTCON2 INTCON2 `VEuc  1 e 1 @4081 ]
 "8580
 [v _INTCON INTCON `VEuc  1 e 1 @4082 ]
-[s S153 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S161 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -732,7 +738,7 @@ FR_MKFS_ABORTED 13
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "8612
-[s S162 . 1 `uc 1 . 1 0 :1:0 
+[s S170 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -741,12 +747,12 @@ FR_MKFS_ABORTED 13
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S171 . 1 `uc 1 . 1 0 :6:0 
+[s S179 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S175 . 1 `S153 1 . 1 0 `S162 1 . 1 0 `S171 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES175  1 e 1 @4082 ]
+[u S183 . 1 `S161 1 . 1 0 `S170 1 . 1 0 `S179 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES183  1 e 1 @4082 ]
 "8771
 [v _PCL PCL `VEuc  1 e 1 @4089 ]
 "8778
@@ -775,54 +781,51 @@ FR_MKFS_ABORTED 13
 [v _TRMT TRMT `VEb  1 e 0 @32097 ]
 "10321
 [v _TXEN TXEN `VEb  1 e 0 @32101 ]
-[s S21 . 66 `[11]uc 1 latitude 11 0 `[11]uc 1 longitude 11 11 `[11]uc 1 fence_diff_lat 11 22 `[11]uc 1 fence_diff_long 11 33 `[11]uc 1 point_diff_lat 11 44 `[11]uc 1 point_diff_long 11 55 ]
+[s S21 . 64 `[6]uc 1 fence_lat_deg 6 0 `[6]uc 1 fence_long_deg 6 6 `[6]uc 1 point_lat_deg 6 12 `[6]uc 1 point_long_deg 6 18 `l 1 diff_lat_deg 4 24 `l 1 diff_long_deg 4 28 `[6]uc 1 fence_lat_min 6 32 `[6]uc 1 fence_long_min 6 38 `[6]uc 1 point_lat_min 6 44 `[6]uc 1 point_long_min 6 50 `l 1 diff_lat_min 4 56 `l 1 diff_long_min 4 60 ]
 "51 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\main.c
-[v _poligono_ext poligono_ext `[3]S21  1 e 198 0 ]
-"54
+[v _poligono_ext poligono_ext `[4]S21  1 e 256 0 ]
+[s S34 . 1 `uc 1 point 1 0 :1:0 
+]
+"52
+[v _flag flag `[3]S34  1 e 3 0 ]
+"58
 [v _data_uart_recebe data_uart_recebe `uc  1 e 1 0 ]
-"57
-[v _p_tarefas p_tarefas `[3]*.37(v  1 e 6 0 ]
-"60
-[v _tempo_backup tempo_backup `[3]ui  1 e 6 0 ]
-"63
-[v _tempo_tarefa tempo_tarefa `[3]ui  1 e 6 0 ]
-"66
+"61
+[v _p_tarefas p_tarefas `[4]*.37(v  1 e 8 0 ]
+"64
+[v _tempo_backup tempo_backup `[4]ui  1 e 8 0 ]
+"67
+[v _tempo_tarefa tempo_tarefa `[4]ui  1 e 8 0 ]
+"70
 [v _sinaliza_int_timer sinaliza_int_timer `uc  1 e 1 0 ]
-"69
+"73
 [v _tarefa_em_execucao tarefa_em_execucao `VEuc  1 e 1 0 ]
-"72
+"76
 [v _timeout_tarefa timeout_tarefa `ui  1 e 2 0 ]
-"206
+"78
+[v _time_sd time_sd `ui  1 e 2 0 ]
+"214
 [v _main main `(v  1 e 1 0 ]
 {
-"226
+"234
 } 0
-"233
+"241
 [v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
 {
-"236
-[v mensagem_inicial@msg_dois msg_dois `C[17]uc  1 a 17 23 ]
-"235
-[v mensagem_inicial@msg_linha_um msg_linha_um `C[17]uc  1 a 17 6 ]
-"234
-[v mensagem_inicial@F4345 F4345 `C[17]uc  1 s 17 F4345 ]
-"235
-[v mensagem_inicial@F4347 F4347 `C[17]uc  1 s 17 F4347 ]
-"246
+"244
+[v mensagem_inicial@msg_dois msg_dois `C[17]uc  1 a 17 25 ]
+"243
+[v mensagem_inicial@msg_linha_um msg_linha_um `C[17]uc  1 a 17 8 ]
+"242
+[v mensagem_inicial@F4356 F4356 `C[17]uc  1 s 17 F4356 ]
+"243
+[v mensagem_inicial@F4358 F4358 `C[17]uc  1 s 17 F4358 ]
+"254
 } 0
 "71 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/display_lcd.c
 [v _init_lcd init_lcd `(v  1 e 1 0 ]
 {
 "153
-} 0
-"162
-[v _escreve_cmd_lcd escreve_cmd_lcd `(v  1 e 1 0 ]
-{
-[v escreve_cmd_lcd@comando comando `uc  1 a 1 wreg ]
-[v escreve_cmd_lcd@comando comando `uc  1 a 1 wreg ]
-"165
-[v escreve_cmd_lcd@comando comando `uc  1 a 1 0 ]
-"206
 } 0
 "55 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/hardware.c
 [v _init_hardware init_hardware `(v  1 e 1 0 ]
@@ -852,11 +855,11 @@ FR_MKFS_ABORTED 13
 "138
 [v _write_timer_zero write_timer_zero `(v  1 e 1 0 ]
 {
-[u S1529 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
+[u S1580 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
 "140
-[v write_timer_zero@timer timer `S1529  1 a 2 0 ]
+[v write_timer_zero@timer timer `S1580  1 a 2 2 ]
 "138
-[v write_timer_zero@timer0 timer0 `ui  1 p 2 32 ]
+[v write_timer_zero@timer0 timer0 `ui  1 p 2 0 ]
 "146
 } 0
 "201
@@ -864,100 +867,172 @@ FR_MKFS_ABORTED 13
 {
 "206
 } 0
-"153 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\main.c
+"161 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\main.c
 [v _inicializa_tarefas inicializa_tarefas `(v  1 e 1 0 ]
 {
-"175
+"183
 } 0
-"185
+"193
 [v _escalonador escalonador `(v  1 e 1 0 ]
 {
-"187
-[v escalonador@cont cont `uc  1 a 1 47 ]
-"199
+"195
+[v escalonador@cont cont `uc  1 a 1 37 ]
+"207
 } 0
-"382
-[v _incrementa_metros incrementa_metros `(v  1 e 1 0 ]
+"671
+[v _troca_de_tela troca_de_tela `(v  1 e 1 0 ]
 {
-"396
+"674
+[v troca_de_tela@state state `uc  1 s 1 state ]
+"675
+[v troca_de_tela@last_state last_state `uc  1 s 1 last_state ]
+"749
 } 0
-"367
+"660
+[v _disparo_gravacao disparo_gravacao `(v  1 e 1 0 ]
+{
+"667
+} 0
+"645
 [v _verifica_dados_operacionais verifica_dados_operacionais `(v  1 e 1 0 ]
 {
-"377
+"655
 } 0
-"256
+"264
 [v _verifica_fence_externo verifica_fence_externo `(v  1 e 1 0 ]
 {
-"259
-[v verifica_fence_externo@point_buff point_buff `*.39uc  1 a 2 142 ]
-[v verifica_fence_externo@i i `uc  1 a 1 144 ]
-[v verifica_fence_externo@count count `uc  1 a 1 141 ]
-"260
-[v verifica_fence_externo@size size `uc  1 a 1 140 ]
-[v verifica_fence_externo@caractere_gps caractere_gps `uc  1 a 1 139 ]
-[v verifica_fence_externo@point point `uc  1 a 1 138 ]
-"259
-[v verifica_fence_externo@j j `uc  1 a 1 137 ]
-"352
+"267
+[v verifica_fence_externo@fence_diff_long fence_diff_long `[4][11]uc  1 a 44 44 ]
+"266
+[v verifica_fence_externo@fence_diff_lat fence_diff_lat `[4][11]uc  1 a 44 0 ]
+"282
+[v verifica_fence_externo@temp_buff_long temp_buff_long `[11]uc  1 a 11 99 ]
+"281
+[v verifica_fence_externo@temp_buff_lat temp_buff_lat `[11]uc  1 a 11 88 ]
+"280
+[v verifica_fence_externo@temp_var_deg temp_var_deg `ui  1 a 2 116 ]
+"278
+[v verifica_fence_externo@point_buff_gps_long point_buff_gps_long `*.39uc  1 a 2 114 ]
+[v verifica_fence_externo@point_buff_gps_lat point_buff_gps_lat `*.39uc  1 a 2 112 ]
+"279
+[v verifica_fence_externo@point point `uc  1 a 1 120 ]
+"277
+[v verifica_fence_externo@i i `uc  1 a 1 119 ]
+[v verifica_fence_externo@j j `uc  1 a 1 118 ]
+"279
+[v verifica_fence_externo@point_dif point_dif `uc  1 a 1 111 ]
+"277
+[v verifica_fence_externo@count count `uc  1 a 1 110 ]
+"265
+[v verifica_fence_externo@F4363 F4363 `[4][11]uc  1 s 44 F4363 ]
+"266
+[v verifica_fence_externo@F4366 F4366 `[4][11]uc  1 s 44 F4366 ]
+"280
+[v verifica_fence_externo@F4378 F4378 `[11]uc  1 s 11 F4378 ]
+"281
+[v verifica_fence_externo@F4380 F4380 `[11]uc  1 s 11 F4380 ]
+"643
 } 0
-"246 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SDCard.c
-[v _leitura_sdcard leitura_sdcard `(*.39uc  1 e 2 0 ]
+"376 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/display_lcd.c
+[v _escreve_inteiro_lcd escreve_inteiro_lcd `(v  1 e 1 0 ]
 {
-"251
-[v leitura_sdcard@offset offset `ui  1 a 2 135 ]
-"273
+"378
+[v escreve_inteiro_lcd@texto texto `[7]uc  1 a 7 26 ]
+"376
+[v escreve_inteiro_lcd@valor valor `i  1 p 2 24 ]
+"377
+[v escreve_inteiro_lcd@F3966 F3966 `[7]uc  1 s 7 F3966 ]
+"381
 } 0
-"1730 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/tff.c
-[v _fgets fgets `(*.39uc  1 e 2 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\itoa.c
+[v _itoa itoa `(*.39uc  1 e 2 0 ]
 {
-"1737
-[v fgets@p p `*.39uc  1 a 2 131 ]
-"1738
-[v fgets@rc rc `ui  1 a 2 129 ]
-"1736
-[v fgets@i i `i  1 a 2 127 ]
-"1731
-[v fgets@buff buff `*.39uc  1 p 2 116 ]
-"1732
-[v fgets@len len `i  1 p 2 118 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
-"1733
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v fgets@fil fil `*.39S538  1 p 2 120 ]
-"1752
+"6
+[v itoa@cp cp `*.39uc  1 a 2 22 ]
+"4
+[v itoa@buf buf `*.39uc  1 p 2 16 ]
+[v itoa@val val `i  1 p 2 18 ]
+[v itoa@base base `i  1 p 2 20 ]
+"14
 } 0
-"924
-[v _f_read f_read `(E155  1 e 1 0 ]
+"17
+[v _utoa utoa `(*.39uc  1 e 2 0 ]
 {
-"932
-[v f_read@sect sect `ul  1 a 4 104 ]
-[v f_read@remain remain `ul  1 a 4 100 ]
-"933
-[v f_read@rcnt rcnt `ui  1 a 2 114 ]
-[v f_read@cc cc `ui  1 a 2 112 ]
-"934
-[v f_read@clust clust `us  1 a 2 110 ]
-"935
-[v f_read@rbuff rbuff `*.39uc  1 a 2 108 ]
-"931
-[v f_read@res res `E155  1 a 1 99 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
-"925
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v f_read@fp fp `*.39S538  1 p 2 83 ]
-"926
-[v f_read@buff buff `*.39v  1 p 2 85 ]
-"927
-[v f_read@btr btr `ui  1 p 2 87 ]
-"928
-[v f_read@br br `*.39ui  1 p 2 89 ]
-"981
+"19
+[v utoa@v v `ui  1 a 2 13 ]
+"20
+[v utoa@c c `uc  1 a 1 15 ]
+"17
+[v utoa@buf buf `*.39uc  1 p 2 7 ]
+[v utoa@val val `ui  1 p 2 9 ]
+[v utoa@base base `i  1 p 2 11 ]
+"37
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwmod@counter counter `uc  1 a 1 4 ]
+"8
+[v ___lwmod@dividend dividend `ui  1 p 2 0 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 2 ]
+"26
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwdiv@quotient quotient `ui  1 a 2 5 ]
+"12
+[v ___lwdiv@counter counter `uc  1 a 1 4 ]
+"8
+[v ___lwdiv@dividend dividend `ui  1 p 2 0 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 2 ]
+"31
+} 0
+"5 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+{
+"7
+[v atoi@a a `i  1 a 2 11 ]
+"8
+[v atoi@sign sign `uc  1 a 1 10 ]
+"5
+[v atoi@s s `*.39Cuc  1 p 2 6 ]
+"24
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+{
+[v isdigit@c c `uc  1 a 1 wreg ]
+[v isdigit@c c `uc  1 a 1 wreg ]
+"14
+[v isdigit@c c `uc  1 a 1 2 ]
+"15
+} 0
+"610 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/GPS.c
+[v _Longitude Longitude `(*.39uc  1 e 2 0 ]
+{
+"613
+} 0
+"605
+[v _Latitude Latitude `(*.39uc  1 e 2 0 ]
+{
+"608
+} 0
+"162 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/display_lcd.c
+[v _escreve_cmd_lcd escreve_cmd_lcd `(v  1 e 1 0 ]
+{
+[v escreve_cmd_lcd@comando comando `uc  1 a 1 wreg ]
+[v escreve_cmd_lcd@comando comando `uc  1 a 1 wreg ]
+"165
+[v escreve_cmd_lcd@comando comando `uc  1 a 1 2 ]
+"206
 } 0
 "206 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SDCard.c
 [v _escrita_sdcard escrita_sdcard `(v  1 e 1 0 ]
 {
-"236
+"235
 } 0
 "206 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/uart.c
 [v _inicializa_uart inicializa_uart `(v  1 e 1 0 ]
@@ -968,7 +1043,7 @@ FR_MKFS_ABORTED 13
 [v _configura_baudrate_uart configura_baudrate_uart `(uc  1 e 1 0 ]
 {
 "52
-[v configura_baudrate_uart@x x `ui  1 a 2 32 ]
+[v configura_baudrate_uart@x x `ui  1 a 2 26 ]
 "50
 [v configura_baudrate_uart@baudrate baudrate `Cl  1 p 4 14 ]
 "74
@@ -995,40 +1070,40 @@ FR_MKFS_ABORTED 13
 [v _fprintf fprintf `(i  1 e 2 0 ]
 {
 "1817
-[v fprintf@s s `[16]uc  1 a 16 12 ]
+[v fprintf@s s `[16]uc  1 a 16 0 ]
 "1816
-[v fprintf@val val `ul  1 a 4 36 ]
+[v fprintf@val val `ul  1 a 4 24 ]
 "1818
-[v fprintf@i i `i  1 a 2 44 ]
-[v fprintf@cc cc `i  1 a 2 42 ]
+[v fprintf@i i `i  1 a 2 32 ]
+[v fprintf@cc cc `i  1 a 2 30 ]
 "1814
-[v fprintf@arp arp `[1]*.39v  1 a 2 40 ]
+[v fprintf@arp arp `[1]*.39v  1 a 2 28 ]
 "1818
-[v fprintf@w w `i  1 a 2 32 ]
-[v fprintf@res res `i  1 a 2 28 ]
+[v fprintf@w w `i  1 a 2 20 ]
+[v fprintf@res res `i  1 a 2 16 ]
 "1815
-[v fprintf@c c `uc  1 a 1 46 ]
-[v fprintf@r r `uc  1 a 1 35 ]
-[v fprintf@f f `uc  1 a 1 34 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[v fprintf@c c `uc  1 a 1 34 ]
+[v fprintf@r r `uc  1 a 1 23 ]
+[v fprintf@f f `uc  1 a 1 22 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "1809
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v fprintf@fil fil `*.39S538  1 p 2 0 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v fprintf@fil fil `*.39S582  1 p 2 6 ]
 "1810
-[v fprintf@str str `*.25Cuc  1 p 2 2 ]
+[v fprintf@str str `*.25Cuc  1 p 2 8 ]
 "1884
 } 0
 "1788
 [v _fputs fputs `(i  1 e 2 0 ]
 {
 "1793
-[v fputs@n n `i  1 a 2 145 ]
+[v fputs@n n `i  1 a 2 4 ]
 "1789
-[v fputs@str str `*.39Cuc  1 p 2 140 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[v fputs@str str `*.39Cuc  1 p 2 0 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "1790
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v fputs@fil fil `*.39S538  1 p 2 142 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v fputs@fil fil `*.39S582  1 p 2 2 ]
 "1800
 } 0
 "1761
@@ -1040,10 +1115,10 @@ FR_MKFS_ABORTED 13
 [v fputc@c c `uc  1 a 1 137 ]
 "1762
 [v fputc@chr chr `i  1 p 2 133 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "1763
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v fputc@fil fil `*.39S538  1 p 2 135 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v fputc@fil fil `*.39S582  1 p 2 135 ]
 "1780
 } 0
 "991
@@ -1061,10 +1136,10 @@ FR_MKFS_ABORTED 13
 [v f_write@wbuff wbuff `*.39Cuc  1 a 2 121 ]
 "998
 [v f_write@res res `E155  1 a 1 120 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "992
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v f_write@fp fp `*.39S538  1 p 2 100 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v f_write@fp fp `*.39S582  1 p 2 100 ]
 "993
 [v f_write@buff buff `*.39Cv  1 p 2 102 ]
 "994
@@ -1077,7 +1152,7 @@ FR_MKFS_ABORTED 13
 [v ___llmod __llmod `(ul  1 e 4 0 ]
 {
 "11
-[v ___llmod@counter counter `uc  1 a 1 32 ]
+[v ___llmod@counter counter `uc  1 a 1 8 ]
 "8
 [v ___llmod@dividend dividend `ul  1 p 4 0 ]
 [v ___llmod@divisor divisor `ul  1 p 4 4 ]
@@ -1090,10 +1165,10 @@ FR_MKFS_ABORTED 13
 [v f_open@dw dw `ul  1 a 4 14 ]
 "851
 [v f_open@rs rs `us  1 a 2 12 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "832
-[s S1796 _DIR_E 14 `us 1 id 2 0 `us 1 index 2 2 `*.39S522 1 fs 2 4 `us 1 sclust 2 6 `us 1 clust 2 8 `ul 1 sect 4 10 ]
-[v f_open@dj dj `S1796  1 a 14 21 ]
+[s S1847 _DIR_E 14 `us 1 id 2 0 `us 1 index 2 2 `*.39S566 1 fs 2 4 `us 1 sclust 2 6 `us 1 clust 2 8 `ul 1 sect 4 10 ]
+[v f_open@dj dj `S1847  1 a 14 21 ]
 "834
 [v f_open@fn fn `[12]uc  1 a 12 0 ]
 "833
@@ -1101,8 +1176,8 @@ FR_MKFS_ABORTED 13
 "831
 [v f_open@res res `E155  1 a 1 18 ]
 "826
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v f_open@fp fp `*.39S538  1 p 2 119 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v f_open@fp fp `*.39S582  1 p 2 119 ]
 "827
 [v f_open@path path `*.35Cuc  1 p 2 121 ]
 "828
@@ -1116,14 +1191,14 @@ FR_MKFS_ABORTED 13
 [v trace_path@dptr dptr `*.39uc  1 a 2 117 ]
 "508
 [v trace_path@clust clust `us  1 a 2 114 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "511
-[v trace_path@fs fs `*.39S522  1 a 2 112 ]
+[v trace_path@fs fs `*.39S566  1 a 2 112 ]
 "509
 [v trace_path@ds ds `uc  1 a 1 116 ]
 "502
-[s S1796 _DIR_E 14 `us 1 id 2 0 `us 1 index 2 2 `*.39S522 1 fs 2 4 `us 1 sclust 2 6 `us 1 clust 2 8 `ul 1 sect 4 10 ]
-[v trace_path@dj dj `*.39S1796  1 p 2 96 ]
+[s S1847 _DIR_E 14 `us 1 id 2 0 `us 1 index 2 2 `*.39S566 1 fs 2 4 `us 1 sclust 2 6 `us 1 clust 2 8 `ul 1 sect 4 10 ]
+[v trace_path@dj dj `*.39S1847  1 p 2 96 ]
 "503
 [v trace_path@fn fn `*.39uc  1 p 2 98 ]
 "504
@@ -1136,15 +1211,15 @@ FR_MKFS_ABORTED 13
 [v _make_dirfile make_dirfile `(uc  1 s 1 make_dirfile ]
 {
 "443
-[v make_dirfile@c c `uc  1 a 1 18 ]
-[v make_dirfile@n n `uc  1 a 1 17 ]
-[v make_dirfile@a a `uc  1 a 1 16 ]
-[v make_dirfile@t t `uc  1 a 1 15 ]
-[v make_dirfile@b b `uc  1 a 1 14 ]
+[v make_dirfile@c c `uc  1 a 1 20 ]
+[v make_dirfile@n n `uc  1 a 1 19 ]
+[v make_dirfile@a a `uc  1 a 1 18 ]
+[v make_dirfile@t t `uc  1 a 1 17 ]
+[v make_dirfile@b b `uc  1 a 1 16 ]
 "439
-[v make_dirfile@path path `*.39*.35Cuc  1 p 2 6 ]
+[v make_dirfile@path path `*.39*.35Cuc  1 p 2 8 ]
 "440
-[v make_dirfile@dirname dirname `*.39uc  1 p 2 8 ]
+[v make_dirfile@dirname dirname `*.39uc  1 p 2 10 ]
 "492
 } 0
 "567
@@ -1152,9 +1227,9 @@ FR_MKFS_ABORTED 13
 {
 "573
 [v reserve_direntry@sector sector `ul  1 a 4 106 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "575
-[v reserve_direntry@fs fs `*.39S522  1 a 2 116 ]
+[v reserve_direntry@fs fs `*.39S566  1 a 2 116 ]
 "572
 [v reserve_direntry@clust clust `us  1 a 2 114 ]
 "574
@@ -1162,8 +1237,8 @@ FR_MKFS_ABORTED 13
 [v reserve_direntry@c c `uc  1 a 1 113 ]
 [v reserve_direntry@n n `uc  1 a 1 110 ]
 "568
-[s S1796 _DIR_E 14 `us 1 id 2 0 `us 1 index 2 2 `*.39S522 1 fs 2 4 `us 1 sclust 2 6 `us 1 clust 2 8 `ul 1 sect 4 10 ]
-[v reserve_direntry@dj dj `*.39S1796  1 p 2 100 ]
+[s S1847 _DIR_E 14 `us 1 id 2 0 `us 1 index 2 2 `*.39S566 1 fs 2 4 `us 1 sclust 2 6 `us 1 clust 2 8 `ul 1 sect 4 10 ]
+[v reserve_direntry@dj dj `*.39S1847  1 p 2 100 ]
 "569
 [v reserve_direntry@dir dir `*.39*.39uc  1 p 2 102 ]
 "612
@@ -1175,18 +1250,18 @@ FR_MKFS_ABORTED 13
 [v next_dir_entry@idx idx `us  1 a 2 94 ]
 "362
 [v next_dir_entry@clust clust `us  1 a 2 92 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "359
-[s S1796 _DIR_E 14 `us 1 id 2 0 `us 1 index 2 2 `*.39S522 1 fs 2 4 `us 1 sclust 2 6 `us 1 clust 2 8 `ul 1 sect 4 10 ]
-[v next_dir_entry@dj dj `*.39S1796  1 p 2 83 ]
+[s S1847 _DIR_E 14 `us 1 id 2 0 `us 1 index 2 2 `*.39S566 1 fs 2 4 `us 1 sclust 2 6 `us 1 clust 2 8 `ul 1 sect 4 10 ]
+[v next_dir_entry@dj dj `*.39S1847  1 p 2 83 ]
 "383
 } 0
 "338
 [v _clust2sect clust2sect `(ul  1 s 4 clust2sect ]
 {
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "342
-[v clust2sect@fs fs `*.39S522  1 a 2 32 ]
+[v clust2sect@fs fs `*.39S566  1 a 2 21 ]
 "339
 [v clust2sect@clust clust `us  1 p 2 12 ]
 "348
@@ -1194,9 +1269,9 @@ FR_MKFS_ABORTED 13
 "249
 [v _remove_chain remove_chain `(E105  1 s 1 remove_chain ]
 {
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "254
-[v remove_chain@fs fs `*.39S522  1 a 2 92 ]
+[v remove_chain@fs fs `*.39S566  1 a 2 92 ]
 "253
 [v remove_chain@nxt nxt `us  1 a 2 90 ]
 "250
@@ -1226,9 +1301,9 @@ FR_MKFS_ABORTED 13
 [v auto_mount@totalsect totalsect `ul  1 a 4 77 ]
 [v auto_mount@bootsect bootsect `ul  1 a 4 73 ]
 [v auto_mount@maxclust maxclust `ul  1 a 4 69 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "660
-[v auto_mount@fs fs `*.39S522  1 a 2 89 ]
+[v auto_mount@fs fs `*.39S566  1 a 2 89 ]
 "659
 [v auto_mount@p p `*.35Cuc  1 a 2 81 ]
 "657
@@ -1245,7 +1320,7 @@ FR_MKFS_ABORTED 13
 [v _memset memset `(*.39v  1 e 2 0 ]
 {
 "15
-[v memset@p p `*.39uc  1 a 2 32 ]
+[v memset@p p `*.39uc  1 a 2 6 ]
 "8
 [v memset@p1 p1 `*.39v  1 p 2 0 ]
 [v memset@c c `i  1 p 2 2 ]
@@ -1301,12 +1376,12 @@ FR_MKFS_ABORTED 13
 {
 [v posicao_cursor_lcd@linha linha `uc  1 a 1 wreg ]
 "273
-[v posicao_cursor_lcd@endereco endereco `uc  1 a 1 3 ]
+[v posicao_cursor_lcd@endereco endereco `uc  1 a 1 5 ]
 "271
 [v posicao_cursor_lcd@linha linha `uc  1 a 1 wreg ]
-[v posicao_cursor_lcd@coluna coluna `uc  1 p 1 1 ]
+[v posicao_cursor_lcd@coluna coluna `uc  1 p 1 3 ]
 "273
-[v posicao_cursor_lcd@linha linha `uc  1 a 1 2 ]
+[v posicao_cursor_lcd@linha linha `uc  1 a 1 4 ]
 "312
 } 0
 "218
@@ -1315,15 +1390,38 @@ FR_MKFS_ABORTED 13
 [v endereco_cursor_lcd@endereco endereco `uc  1 a 1 wreg ]
 [v endereco_cursor_lcd@endereco endereco `uc  1 a 1 wreg ]
 "221
-[v endereco_cursor_lcd@endereco endereco `uc  1 a 1 0 ]
+[v endereco_cursor_lcd@endereco endereco `uc  1 a 1 2 ]
 "255
+} 0
+"445
+[v _escreve_frase_ram_lcd escreve_frase_ram_lcd `(v  1 e 1 0 ]
+{
+[v escreve_frase_ram_lcd@buffer buffer `*.35uc  1 p 2 3 ]
+"452
+} 0
+"323
+[v _escreve_caractere_lcd escreve_caractere_lcd `(v  1 e 1 0 ]
+{
+[v escreve_caractere_lcd@data data `uc  1 a 1 wreg ]
+[v escreve_caractere_lcd@data data `uc  1 a 1 wreg ]
+"326
+[v escreve_caractere_lcd@data data `uc  1 a 1 2 ]
+"362
+} 0
+"45
+[v _delay delay `(v  1 e 1 0 ]
+{
+"47
+[v delay@contador_int contador_int `uc  1 a 1 1 ]
+[v delay@contador_ext contador_ext `uc  1 a 1 0 ]
+"57
 } 0
 "623 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/tff.c
 [v _check_fs check_fs `(uc  1 s 1 check_fs ]
 {
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "627
-[v check_fs@fs fs `*.39S522  1 a 2 49 ]
+[v check_fs@fs fs `*.39S566  1 a 2 49 ]
 "624
 [v check_fs@sect sect `ul  1 p 4 43 ]
 "641
@@ -1352,11 +1450,11 @@ FR_MKFS_ABORTED 13
 "794
 [v f_mount@drv drv `uc  1 a 1 wreg ]
 [v f_mount@drv drv `uc  1 a 1 wreg ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "795
-[v f_mount@fs fs `*.39S522  1 p 2 32 ]
+[v f_mount@fs fs `*.39S566  1 p 2 0 ]
 "798
-[v f_mount@drv drv `uc  1 a 1 0 ]
+[v f_mount@drv drv `uc  1 a 1 2 ]
 "806
 } 0
 "1132
@@ -1369,10 +1467,10 @@ FR_MKFS_ABORTED 13
 [v f_lseek@clust clust `us  1 a 2 127 ]
 "1137
 [v f_lseek@res res `E155  1 a 1 118 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "1133
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v f_lseek@fp fp `*.39S538  1 p 2 100 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v f_lseek@fp fp `*.39S582  1 p 2 100 ]
 "1134
 [v f_lseek@ofs ofs `ul  1 p 4 102 ]
 "1205
@@ -1384,9 +1482,9 @@ FR_MKFS_ABORTED 13
 [v create_chain@ncl ncl `us  1 a 2 98 ]
 [v create_chain@scl scl `us  1 a 2 96 ]
 [v create_chain@cstat cstat `us  1 a 2 94 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "287
-[v create_chain@fs fs `*.39S522  1 a 2 92 ]
+[v create_chain@fs fs `*.39S566  1 a 2 92 ]
 "286
 [v create_chain@mcl mcl `us  1 a 2 90 ]
 "283
@@ -1398,9 +1496,9 @@ FR_MKFS_ABORTED 13
 {
 "204
 [v put_cluster@fatsect fatsect `ul  1 a 4 76 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "205
-[v put_cluster@fs fs `*.39S522  1 a 2 84 ]
+[v put_cluster@fs fs `*.39S566  1 a 2 84 ]
 "203
 [v put_cluster@p p `*.39uc  1 a 2 82 ]
 "202
@@ -1416,9 +1514,9 @@ FR_MKFS_ABORTED 13
 {
 "159
 [v get_cluster@fatsect fatsect `ul  1 a 4 75 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "160
-[v get_cluster@fs fs `*.39S522  1 a 2 81 ]
+[v get_cluster@fs fs `*.39S566  1 a 2 81 ]
 "158
 [v get_cluster@bc bc `us  1 a 2 79 ]
 [v get_cluster@wc wc `us  1 a 2 73 ]
@@ -1430,7 +1528,7 @@ FR_MKFS_ABORTED 13
 [v ___wmul __wmul `(ui  1 e 2 0 ]
 {
 "17
-[v ___wmul@product product `ui  1 a 2 32 ]
+[v ___wmul@product product `ui  1 a 2 4 ]
 "15
 [v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
@@ -1453,10 +1551,10 @@ FR_MKFS_ABORTED 13
 {
 "1112
 [v f_close@res res `E155  1 a 1 77 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "1109
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v f_close@fp fp `*.39S538  1 p 2 75 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v f_close@fp fp `*.39S582  1 p 2 75 ]
 "1122
 } 0
 "1069
@@ -1468,20 +1566,20 @@ FR_MKFS_ABORTED 13
 [v f_sync@dir dir `*.39uc  1 a 2 73 ]
 "1073
 [v f_sync@res res `E155  1 a 1 72 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "1070
-[s S538 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S522 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
-[v f_sync@fp fp `*.39S538  1 p 2 66 ]
+[s S582 _FIL 28 `us 1 id 2 0 `uc 1 flag 1 2 `uc 1 csect 1 3 `*.39S566 1 fs 2 4 `ul 1 fptr 4 6 `ul 1 fsize 4 10 `us 1 org_clust 2 14 `us 1 curr_clust 2 16 `ul 1 curr_sect 4 18 `ul 1 dir_sect 4 22 `*.39uc 1 dir_ptr 2 26 ]
+[v f_sync@fp fp `*.39S582  1 p 2 66 ]
 "1098
 } 0
 "766
 [v _validate validate `(E155  1 s 1 validate ]
 {
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "767
-[v validate@fs fs `*.39CS522  1 p 2 5 ]
+[v validate@fs fs `*.39CS566  1 p 2 7 ]
 "768
-[v validate@id id `us  1 p 2 7 ]
+[v validate@id id `us  1 p 2 9 ]
 "777
 } 0
 "27 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/diskio.c
@@ -1490,13 +1588,13 @@ FR_MKFS_ABORTED 13
 "28
 [v disk_status@pdrv pdrv `uc  1 a 1 wreg ]
 "32
-[v disk_status@result result `i  1 a 2 1 ]
+[v disk_status@result result `i  1 a 2 3 ]
 "31
-[v disk_status@stat stat `uc  1 a 1 4 ]
+[v disk_status@stat stat `uc  1 a 1 6 ]
 "28
 [v disk_status@pdrv pdrv `uc  1 a 1 wreg ]
 "27
-[v disk_status@pdrv pdrv `uc  1 a 1 3 ]
+[v disk_status@pdrv pdrv `uc  1 a 1 5 ]
 "51
 } 0
 "588
@@ -1504,19 +1602,19 @@ FR_MKFS_ABORTED 13
 {
 [v sdc_disk_status@pdrv pdrv `uc  1 a 1 wreg ]
 "590
-[v sdc_disk_status@stat stat `uc  1 a 1 32 ]
+[v sdc_disk_status@stat stat `uc  1 a 1 0 ]
 "588
 [v sdc_disk_status@pdrv pdrv `uc  1 a 1 wreg ]
 "590
-[v sdc_disk_status@pdrv pdrv `uc  1 a 1 33 ]
+[v sdc_disk_status@pdrv pdrv `uc  1 a 1 1 ]
 "597
 } 0
 "118 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/tff.c
 [v _sync sync `(E155  1 s 1 sync ]
 {
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "120
-[v sync@fs fs `*.39S522  1 a 2 64 ]
+[v sync@fs fs `*.39S566  1 a 2 64 ]
 "143
 } 0
 "76
@@ -1526,9 +1624,9 @@ FR_MKFS_ABORTED 13
 [v move_window@n n `uc  1 a 1 57 ]
 "80
 [v move_window@wsect wsect `ul  1 a 4 58 ]
-[s S522 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
+[s S566 _FATFS 544 `us 1 id 2 0 `us 1 n_rootdir 2 2 `ul 1 winsect 4 4 `ul 1 fatbase 4 8 `ul 1 dirbase 4 12 `ul 1 database 4 16 `us 1 sects_fat 2 20 `us 1 max_clust 2 22 `us 1 last_clust 2 24 `us 1 free_clust 2 26 `uc 1 fs_type 1 28 `uc 1 csize 1 29 `uc 1 n_fats 1 30 `uc 1 winflag 1 31 `[512]uc 1 win 512 32 ]
 "81
-[v move_window@fs fs `*.39S522  1 a 2 62 ]
+[v move_window@fs fs `*.39S566  1 a 2 62 ]
 "77
 [v move_window@sector sector `ul  1 p 4 43 ]
 "107
@@ -1614,7 +1712,7 @@ FR_MKFS_ABORTED 13
 [v _response response `(uc  1 e 1 0 ]
 {
 "61
-[v response@buff buff `uc  1 a 1 32 ]
+[v response@buff buff `uc  1 a 1 0 ]
 "65
 } 0
 "92
@@ -1650,11 +1748,11 @@ FR_MKFS_ABORTED 13
 {
 [v escreve_SPI@dado dado `uc  1 a 1 wreg ]
 "100
-[v escreve_SPI@TempVar TempVar `uc  1 a 1 32 ]
+[v escreve_SPI@TempVar TempVar `uc  1 a 1 0 ]
 "98
 [v escreve_SPI@dado dado `uc  1 a 1 wreg ]
 "101
-[v escreve_SPI@dado dado `uc  1 a 1 33 ]
+[v escreve_SPI@dado dado `uc  1 a 1 1 ]
 "107
 } 0
 "74 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SDCard.c
@@ -1662,11 +1760,11 @@ FR_MKFS_ABORTED 13
 {
 [v dummy_clocks@n n `uc  1 a 1 wreg ]
 "76
-[v dummy_clocks@i i `ui  1 a 2 1 ]
+[v dummy_clocks@i i `ui  1 a 2 3 ]
 "74
 [v dummy_clocks@n n `uc  1 a 1 wreg ]
 "77
-[v dummy_clocks@n n `uc  1 a 1 0 ]
+[v dummy_clocks@n n `uc  1 a 1 2 ]
 "84
 } 0
 "83 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SPI.c
@@ -1680,7 +1778,7 @@ FR_MKFS_ABORTED 13
 "199
 [v disk_ioctl@pdrv pdrv `uc  1 a 1 wreg ]
 "204
-[v disk_ioctl@res res `E25  1 a 1 33 ]
+[v disk_ioctl@res res `E25  1 a 1 4 ]
 "199
 [v disk_ioctl@pdrv pdrv `uc  1 a 1 wreg ]
 "200
@@ -1688,96 +1786,16 @@ FR_MKFS_ABORTED 13
 "201
 [v disk_ioctl@buff buff `*.2v  1 p 2 1 ]
 "198
-[v disk_ioctl@pdrv pdrv `uc  1 a 1 32 ]
+[v disk_ioctl@pdrv pdrv `uc  1 a 1 3 ]
 "228
 } 0
 "809 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/tff.c
 [v _get_fattime get_fattime `(ul  1 e 4 0 ]
 {
-[s S1825 . 9 `ui 1 hora 2 0 `ui 1 min 2 2 `ui 1 seg 2 4 `uc 1 dia 1 6 `uc 1 mes 1 7 `uc 1 ano 1 8 ]
+[s S1876 . 9 `ui 1 hora 2 0 `ui 1 min 2 2 `ui 1 seg 2 4 `uc 1 dia 1 6 `uc 1 mes 1 7 `uc 1 ano 1 8 ]
 "811
-[v get_fattime@f_time f_time `S1825  1 a 9 42 ]
+[v get_fattime@f_time f_time `S1876  1 a 9 42 ]
 "819
-} 0
-"376 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/display_lcd.c
-[v _escreve_inteiro_lcd escreve_inteiro_lcd `(v  1 e 1 0 ]
-{
-"378
-[v escreve_inteiro_lcd@texto texto `[7]uc  1 a 7 26 ]
-"376
-[v escreve_inteiro_lcd@valor valor `i  1 p 2 24 ]
-"377
-[v escreve_inteiro_lcd@F3966 F3966 `[7]uc  1 s 7 F3966 ]
-"381
-} 0
-"4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\itoa.c
-[v _itoa itoa `(*.39uc  1 e 2 0 ]
-{
-"6
-[v itoa@cp cp `*.39uc  1 a 2 22 ]
-"4
-[v itoa@buf buf `*.39uc  1 p 2 16 ]
-[v itoa@val val `i  1 p 2 18 ]
-[v itoa@base base `i  1 p 2 20 ]
-"14
-} 0
-"17
-[v _utoa utoa `(*.39uc  1 e 2 0 ]
-{
-"19
-[v utoa@v v `ui  1 a 2 13 ]
-"20
-[v utoa@c c `uc  1 a 1 15 ]
-"17
-[v utoa@buf buf `*.39uc  1 p 2 7 ]
-[v utoa@val val `ui  1 p 2 9 ]
-[v utoa@base base `i  1 p 2 11 ]
-"37
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
-{
-"11
-[v ___lwmod@counter counter `uc  1 a 1 32 ]
-"8
-[v ___lwmod@dividend dividend `ui  1 p 2 0 ]
-[v ___lwmod@divisor divisor `ui  1 p 2 2 ]
-"26
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwdiv.c
-[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
-{
-"11
-[v ___lwdiv@quotient quotient `ui  1 a 2 5 ]
-"12
-[v ___lwdiv@counter counter `uc  1 a 1 4 ]
-"8
-[v ___lwdiv@dividend dividend `ui  1 p 2 0 ]
-[v ___lwdiv@divisor divisor `ui  1 p 2 2 ]
-"31
-} 0
-"445 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/display_lcd.c
-[v _escreve_frase_ram_lcd escreve_frase_ram_lcd `(v  1 e 1 0 ]
-{
-[v escreve_frase_ram_lcd@buffer buffer `*.35uc  1 p 2 1 ]
-"452
-} 0
-"323
-[v _escreve_caractere_lcd escreve_caractere_lcd `(v  1 e 1 0 ]
-{
-[v escreve_caractere_lcd@data data `uc  1 a 1 wreg ]
-[v escreve_caractere_lcd@data data `uc  1 a 1 wreg ]
-"326
-[v escreve_caractere_lcd@data data `uc  1 a 1 0 ]
-"362
-} 0
-"45
-[v _delay delay `(v  1 e 1 0 ]
-{
-"47
-[v delay@contador_int contador_int `uc  1 a 1 33 ]
-[v delay@contador_ext contador_ext `uc  1 a 1 32 ]
-"57
 } 0
 "219 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/uart.c
 [v _desliga_uart desliga_uart `(v  1 e 1 0 ]
@@ -1789,46 +1807,46 @@ FR_MKFS_ABORTED 13
 {
 "74
 } 0
-"632 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/GPS.c
+"637 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/GPS.c
 [v _dados_gps_to_sd dados_gps_to_sd `(v  1 e 1 0 ]
 {
-"639
+"644
 } 0
-"288 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SDCard.c
+"286 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/SDCard.c
 [v _monta_sd monta_sd `(v  1 e 1 0 ]
 {
 [v monta_sd@index index `uc  1 a 1 wreg ]
-"290
-[v monta_sd@i i `uc  1 a 1 8 ]
-[v monta_sd@size size `uc  1 a 1 7 ]
 "288
+[v monta_sd@i i `uc  1 a 1 10 ]
+[v monta_sd@size size `uc  1 a 1 9 ]
+"286
 [v monta_sd@index index `uc  1 a 1 wreg ]
-[v monta_sd@dado dado `*.39uc  1 p 2 4 ]
-"291
-[v monta_sd@index index `uc  1 a 1 6 ]
-"345
+[v monta_sd@dado dado `*.39uc  1 p 2 6 ]
+"289
+[v monta_sd@index index `uc  1 a 1 8 ]
+"343
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strlen.c
 [v _strlen strlen `(ui  1 e 2 0 ]
 {
 "6
-[v strlen@cp cp `*.39Cuc  1 a 2 2 ]
+[v strlen@cp cp `*.39Cuc  1 a 2 4 ]
 "4
-[v strlen@s s `*.39Cuc  1 p 2 32 ]
+[v strlen@s s `*.39Cuc  1 p 2 0 ]
 "13
 } 0
-"95 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\main.c
+"102 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"97
+"104
 [v isr@cont cont `uc  1 a 1 31 ]
-"142
+"150
 } 0
 "138 E:\FATEC\Arquivos TCC\Desenvolvimento do TCC\repositorio openlab\OpenLab-PIC18F4550-SDCard-Examples\SDCARD.X\bibliotecas/hardware.c
 [v i2_write_timer_zero write_timer_zero `(v  1 e 1 0 ]
 {
-[u S1529 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
-[v i2write_timer_zero@timer write_timer_zero `S1529  1 a 2 2 ]
+[u S1580 Timers 2 `ui 1 lt 2 0 `[2]uc 1 bt 2 0 ]
+[v i2write_timer_zero@timer write_timer_zero `S1580  1 a 2 2 ]
 [v i2write_timer_zero@timer0 timer0 `ui  1 p 2 0 ]
 "146
 } 0
@@ -1847,7 +1865,7 @@ FR_MKFS_ABORTED 13
 [v GPSRead@buff buff `uc  1 a 1 wreg ]
 "470
 [v GPSRead@buff buff `uc  1 a 1 9 ]
-"563
+"568
 } 0
 "459
 [v _stringcpy stringcpy `(v  1 e 1 0 ]

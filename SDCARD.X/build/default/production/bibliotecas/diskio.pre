@@ -4892,6 +4892,7 @@ unsigned char LONG[13];
 # 60
 void sdcard_init(void);
 
+
 void escrita_sdcard(void);
 char *leitura_sdcard(unsigned char num_spot);
 
