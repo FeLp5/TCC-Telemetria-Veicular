@@ -24,8 +24,7 @@ class Painel_arquivos(wx.Panel):
             self.botao3 = wx.Button(self, wx.ID_ANY, self.convert_data((titulo_bt[3])), (10, 108), size = (-1,20))
             self.botao4 = wx.Button(self, wx.ID_ANY, self.convert_data((titulo_bt[4])), (10, 130), size = (-1,20))
             self.botao_mais = wx.Button(self, wx.NewId(), "Mais antigos", (10, 162),(-1,20))
-            self.Bind(wx.EVT_BUTTON, self.abrir_arquivos, self.botao_mais)
-  
+
             self.botao0.Hide()
             self.botao1.Hide()
             self.botao2.Hide()
@@ -34,7 +33,7 @@ class Painel_arquivos(wx.Panel):
             self.statxt_02.Hide()
             self.botao_mais.Hide()
             
-            self.statxt_01 = wx.StaticText(self, -1, "A pasta não contém \nnenhum arquivo de \ntelemetria" , (16, 100), (-1, -1)) 
+            self.statxt_01 = wx.StaticText(self, -1, "Clique em abrir SD Card \npara abrir os arquivos \nde telemetria" , (16, 100), (-1, -1)) 
             self.botao_sdcard = wx.Button(self, wx.NewId(), "Abrir SD Card", (10, count + 32),(-1,20))
             self.Layout()
             vars.criou_botoes = 1
@@ -70,7 +69,7 @@ class Painel_arquivos(wx.Panel):
 
             self.Layout()
             
-            return "ok"
+            # return "ok"
 
     #abrir os arquivos recentes - definindo 5 botões de acesso rápido            
     def abrir_recentes(self, nbotao):
@@ -85,8 +84,8 @@ class Painel_arquivos(wx.Panel):
                 lines = file.readlines()
                 # print(((lines)))
                 # print(( str(file)))
-                self.lines = lines
-                info = lines
+                # self.lines = lines
+                # info = lines
                 
         except IOError:
             wx.LogError("Não é possível abrir o arquivo '%s'." % pathname)
@@ -95,8 +94,8 @@ class Painel_arquivos(wx.Panel):
         
         vars.arquivo_aberto = 1 # global arquivo_aberto -- flag
 
-        vars.titulo_bt = self.bt_camho[nbotao] # pegando o nome do arquivo e tornando global
-        
+        # vars.titulo_bt = self.bt_camho[nbotao] 
+        vars.caminho_bt = self.bt_camho[nbotao] # pegando o nome do arquivo e tornando global
         
     def arquivos(self, pasta): # função para abrir os arquivos
 
@@ -180,26 +179,6 @@ class Painel_arquivos(wx.Panel):
         dlg = wx.MessageDialog(self, "\n      FDR Telemetria      \n    Fatec Santo André     \n\nAbril de 2022 - Versão 0.1", "FDR Telemetria v0.1", wx.OK)
         dlg.ShowModal() # Mostra a mensagem
         dlg.Destroy() # Destroi e finaliza
-    
-    # abre a janela para selcionar um arquivo
-    def abrir_arquivos(self, event):
-        with wx.FileDialog(self, "Abrir arquivo de telemetria", wildcard="arquivos tlm  (*.tlm)|*.tlm",
-                            style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
-            if fileDialog.ShowModal() == wx.ID_CANCEL:
-                return    
-            # carregando o arquivo selecionado
-            pathname = fileDialog.GetPath()
-            vars.iniciado 
-
-            try:
-                with open(pathname, 'r') as file:
-                    lines = file.readlines()
-                    self.lines = lines
-            except IOError:
-                wx.LogError("Não foi possível abrir o arquivo '%s'." % newfile)
-            
-            self.tratamento(lines)
-            vars.titulo_bt = pathname # pegando o nome/caminho do arquivo e tornando global
                 
     # abre a janela para selcionar o diretório que contém o SD Card             
     def abrir_diretorio(self, event):
@@ -323,7 +302,7 @@ class Painel_arquivos(wx.Panel):
 
     #funçao que retorna os nomes das ruas
     def ruas(self, lat, long, cont):
-        if(vars.velocidade != ''): #!= ''): #travando para não executar
+        if(vars.velocidade != ''): #!= ''): # só executa quando algo estiver carregado
         
             # geocode - trará os nomes das ruas
             ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
@@ -337,6 +316,8 @@ class Painel_arquivos(wx.Panel):
                     field = types.get('types', [])
                     if 'route' in field:
                         nome_rua = types['long_name']
+
+                
             except:
                 print "ERRO"
                 pass

@@ -20,7 +20,7 @@ class Painel_grafico_B(wx.Panel): #RPM
         axes.set_title('Grafico de RPM ', fontstyle='italic')
         canvas = FigureCanvas(self, -1, figure)
         t_x, t_y = vars.size_window
-        canvas.SetSize((int(t_x/4*3), int(t_y/3 - 30)))
+        canvas.SetSize((int(t_x/7*6), int(t_y/3*1.5)))
         for x in range(len(rpm_list)):
             if(x == 0):
                 item_b = "0"

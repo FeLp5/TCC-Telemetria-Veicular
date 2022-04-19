@@ -23,10 +23,10 @@ class Painel_grafico_A(wx.Panel):
         axes.set_title('Grafico de Velocidades', fontstyle='normal', fontsize="10", verticalalignment='baseline')
         canvas = FigureCanvas(self, -1, figure)
         t_x, t_y = vars.size_window
-        altura = int(t_y/3 - 30)
-        print ("Altura " , altura)
-        largura = int(t_x/4*3)
-        print ("Largura " , largura)
+        altura = int(t_y/3*1.5)
+        # print ("Altura " , altura)
+        largura = int(t_x/7*6)
+        # print ("Largura " , largura)
         canvas.SetSize((largura, altura))
 
         for x in range(len(velocidade_list)):

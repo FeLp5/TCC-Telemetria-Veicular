@@ -28,8 +28,8 @@ class Mapa(wx.Panel):
         # self.statxt_02.SetLabel(vars.roads)
         # self.statxt_04.SetLabel(vars.static_map)
       
-        for x in range(len(vars.nomes_das_ruas)):
-            self.statxt_05 = wx.StaticText(self, -1, vars.nomes_das_ruas[0] , (700, 60), (-1, -1)) 
+        # for x in range(len(vars.nomes_das_ruas)):
+        #     self.statxt_05 = wx.StaticText(self, -1, vars.nomes_das_ruas[0] , (700, 60), (-1, -1)) 
       
         
       

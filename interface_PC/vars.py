@@ -32,6 +32,7 @@ VIN = "9BWXXXXXXXXXXXXXX2345"
 
 # itens da tela
 titulo_bt = 0000
+caminho_bt = ''
 
 # dados para as apis
 roads = ""

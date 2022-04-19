@@ -4,6 +4,7 @@
 import wx, os, re, datetime
 
 #importando as classes em python
+# from mapa import Mapa 
 from mapa import Mapa 
 from arquivos import Painel_arquivos
 from grafico_a import Painel_grafico_A
@@ -34,6 +35,9 @@ class Painel(wx.Frame):
         pn_se.SetBackgroundColour('')
         
         pn_se.mostrar_botoes(0, vars.titulo_bt, "", "") # chamando o metodo mostrar botoes
+        
+        # abre a janela para selecionar um arquivo
+
   
         def botao_sdcard(self):
              pn_se.abrir_diretorio(self)
@@ -47,6 +51,11 @@ class Painel(wx.Frame):
             
             if num_botao == -1:
                 pn_se.botao0.SetBackgroundColour("")
+                pn_se.botao1.SetBackgroundColour("")
+                pn_se.botao2.SetBackgroundColour("")                
+                pn_se.botao3.SetBackgroundColour("")
+                pn_se.botao4.SetBackgroundColour("")
+
             else:
                 pn_se.abrir_recentes(num_botao)
                 status_botoes(self)
@@ -136,7 +145,8 @@ class Painel(wx.Frame):
                 pn_se.botao4.Bind(wx.EVT_BUTTON, lambda evt, temp=4: acao_botao_recente(evt, temp))
                 pn_sm.mostrar_dados()
                 pn_id.show_panel_one(self)
-                
+                menuOpen.Enable(False) # desabilitando o botão para que não seja possível reabrir o SDCARD
+
             #verificando se algum arquivo foi carrgado, se sim habilita os botões
             if vars.arquivo_aberto == 0:
                 botao_grafico.Disable()
@@ -157,7 +167,32 @@ class Painel(wx.Frame):
                 g_mapa.Enable(True)
                 relatorio.Enable(True)
                     
+        def abrir_arquivos(event):
+            with wx.FileDialog(self, "Abrir arquivo de telemetria", wildcard="arquivos tlm  (*.tlm)|*.tlm",
+                                style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+                if fileDialog.ShowModal() == wx.ID_CANCEL:
+                    return    
+                # carregando o arquivo selecionado
+                pathname = fileDialog.GetPath()
+                # vars.iniciado 
+    
+                try:
+                    with open(pathname, 'r') as file:
+                        lines = file.readlines()
+                        self.lines = lines
+                        
 
+                except IOError:
+                    wx.LogError("Não foi possível abrir o arquivo '%s'." % newfile)
+                
+                pn_se.tratamento(lines)
+                vars.arquivo_aberto = 1 # global arquivo_aberto -- flag
+                vars.caminho_bt = pathname # pegando o nome/caminho do arquivo e tornando global
+                status_botoes(self)
+                acao_botao_recente(self, -1) # apagando os destaques dos botões
+                
+        pn_se.Bind(wx.EVT_BUTTON, abrir_arquivos, pn_se.botao_mais) # evento do botão mais antigos
+        
         status_botoes(self) # chama o método
 
         vbox.Add(hbox1, 0, wx.ALL | wx.EXPAND, border)
