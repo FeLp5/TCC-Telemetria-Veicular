@@ -48,7 +48,7 @@
 * Variaveis Globais
 ******************************************************************************/
 //estrutura de dados para o fence
-fence_ext_struct poligono_ext[4];
+fence_ext_struct poligono_ext[2];
 bit_field flag[3];
 
 
@@ -77,7 +77,7 @@ unsigned int timeout_tarefa;
 
 unsigned int time_sd;
 
-
+unsigned int time_atualizacao;
 
 /******************************************************************************
 * Prototipos das funcoes
@@ -123,9 +123,10 @@ void interrupt isr(void)
         for(cont= 0; cont<NUMBER_OF_TASKS;cont++)
         {
             if(tempo_tarefa[cont]>0)    tempo_tarefa[cont]--;
-            if(time_sd > 0) time_sd--;
+            
         }
-
+        if(time_sd > 0) time_sd--;
+        if(time_atualizacao > 0) time_atualizacao--;    
         if(tarefa_em_execucao == YES)
         {
             timeout_tarefa--;
@@ -138,8 +139,8 @@ void interrupt isr(void)
         }  
     
         //Please use HEX.
-        write_timer_zero(0x0083);
-    
+//        write_timer_zero(0x0083);
+          write_timer_zero(0x45);
     }
     
 	if (INT0IF && INT0IE)   
@@ -263,8 +264,8 @@ void mensagem_inicial(void)
 
 void verifica_fence_externo(void)
 {
-    unsigned char fence_diff_lat[4][11]  = {"-2365.84991", "-2365.84991", "-2365.99731", "-2365.99731"};
-    unsigned char fence_diff_long[4][11] = {"-4653.16622", "-4653.00475", "-4653.00475", "-4653.16622"};
+    unsigned char fence_diff_lat[4][11]  = {"-2342.07112", "-2342.07112", "-2342.11784", "-2342.11784"};
+    unsigned char fence_diff_long[4][12] = {"-04629.73477", "-04629.68601", "-04629.68601", "-04629.73477"};
 //    unsigned char fence_diff_lat[11]  = "-2365.84991";
 //    unsigned char fence_diff_long[11] = "-4653.00475";
 //    unsigned char fence_diff_lat[11]  = "-2365.99682";
@@ -276,94 +277,101 @@ void verifica_fence_externo(void)
     
     unsigned char *point_buff, i, j, count, count_index;
     unsigned char *point_buff_gps_lat, *point_buff_gps_long;
-    unsigned char point, point_dif;
-    unsigned int temp_var_deg;
-    unsigned char temp_buff_lat[11] =  "-2365.91992";
-    unsigned char temp_buff_long[11] = "-4653.16620";
+    unsigned char point, point_dif_lat ,point_dif_long;
+    unsigned long int temp_var_deg;
+    unsigned char temp_buff_lat[11] =  "-2342.07112";
+    unsigned char temp_buff_long[12] = "-04629.73477";
     count = 0;
     point = 0;
-    point_dif = 0;
+    point_dif_lat = 0;
+    point_dif_long = 0;
     j= 0;
 //    point_buff = leitura_sdcard(0);
     
     point_buff_gps_lat = Latitude();
     point_buff_gps_long = Longitude();
     
-    for(i=0; i<11; i++)
-    {
-        temp_buff_lat[i]  = *point_buff_gps_lat;
-        temp_buff_long[i] = *point_buff_gps_long;
-        point_buff_gps_lat++;
-        point_buff_gps_long++;
-    }
+    
+    
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd("AQUI");
+//    for(i=0; i<11; i++)
+//    {
+//        temp_buff_lat[i]  = *point_buff_gps_lat;
+//        temp_buff_long[i] = *point_buff_gps_long;
+//        point_buff_gps_lat++;
+//        point_buff_gps_long++;
+//    }   
     
 //GRAUS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
     while(point<4)
     {
+
+        for(i=1; i<6; i++)
+        {
+            if(point == 0 || point == 2)
+            {      
+                if(point == 2 && !point_dif_long)
+                {
+                    point_dif_long++;
+                }
+                for(j= 0; i < 6; j++)
+                {
+                    poligono_ext[point_dif_long].point_long_deg[j] = temp_buff_long[i];  
+                    poligono_ext[point_dif_long].fence_long_deg[j] = fence_diff_long[point][i]; 
+
+                    i++;
+                }
+                
+            } 
+            
+        }
         
-    
         for(i=1; i<5; i++)
         {
             if(point == 0 || point == 2)
             {
-//                
+                     
+                if(point == 2 && !point_dif_lat)
+                {
+                    point_dif_lat++;
+                }
+                
+                
                 for(j= 0; i < 5; j++)
                 {
-                    poligono_ext[point].point_long_deg[j] = temp_buff_long[i];  
-                    poligono_ext[point].fence_long_deg[j] = fence_diff_long[point][i]; 
-//                    posicao_cursor_lcd(2,10);
-//                    escreve_caractere_lcd(poligono_ext[point].point_long_deg[i]);
-//                    __delay_ms(500);
+                    poligono_ext[point_dif_lat].point_lat_deg[j] = temp_buff_lat[i];  
+                    poligono_ext[point_dif_lat].fence_lat_deg[j] = fence_diff_lat[point][i]; 
                     i++;
                 }
-//                posicao_cursor_lcd(2,0);
-//                escreve_inteiro_lcd(atoi(poligono_ext[point].fence_long_deg));
-//                __delay_ms(500);
+                
             } 
-            
         }
-    
-        for(i=1; i<5; i++)
+        
+        
+        
+        if(point == 0 || point == 2)
         {
-            if(point == 0 || point == 3)
-            {
-                                
-                for(j= 0; i < 5; j++)
-                {
-                    poligono_ext[point].point_lat_deg[j] = temp_buff_lat[i];  
-                    poligono_ext[point].fence_lat_deg[j] = fence_diff_lat[point][i]; 
-//                    posicao_cursor_lcd(1,0);
-//                    escreve_caractere_lcd(poligono_ext[point].point_lat_deg[j]);
-                    i++;
-                }
-//                __delay_ms(1000);
-            } 
+            temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
+            poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
+            poligono_ext[count].diff_lat_deg -= temp_var_deg;            
+            temp_var_deg = atoi(poligono_ext[count].point_long_deg);
+            poligono_ext[count].diff_long_deg =  atoi(poligono_ext[count].fence_long_deg);
+            poligono_ext[count].diff_long_deg -= temp_var_deg; 
+            
+            count++;
         }
-        temp_var_deg = atoi(poligono_ext[point].point_lat_deg);
-        poligono_ext[point].diff_lat_deg = atoi(poligono_ext[point].fence_lat_deg);
-        poligono_ext[point].diff_lat_deg -= temp_var_deg;
-//        posicao_cursor_lcd(1,0);
-//        escreve_inteiro_lcd(poligono_ext[point].diff_lat_deg);
-//        
-        
-        temp_var_deg = atoi(poligono_ext[point].point_long_deg);
-        poligono_ext[point].diff_long_deg =  atoi(poligono_ext[point].fence_long_deg);
-        poligono_ext[point].diff_long_deg -= temp_var_deg; 
-//        posicao_cursor_lcd(2,0);
-//        escreve_inteiro_lcd(poligono_ext[point].diff_long_deg);
-        
-//        posicao_cursor_lcd(2,10);
-//        escreve_inteiro_lcd((atoi(poligono_ext[point].fence_lat_deg)));
-//        __delay_ms(10);
         point++;
     }
+    
+    
+    
+    
+    
     point = 0;
-//    posicao_cursor_lcd(2,14);
-//    escreve_inteiro_lcd(poligono_ext[3].diff_lat_min);
-//    __delay_ms(1000);
-//    posicao_cursor_lcd(2,5);
-//    escreve_inteiro_lcd(poligono_ext[0].diff_lat_deg);
-//    __delay_ms(1000);
+    count = 0;
+    point_dif_lat = 0;
+    point_dif_long = 0;
     
     
 //MINUTOS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -371,18 +379,23 @@ void verifica_fence_externo(void)
     {
         for(i=6; i<11; i++)
         {
-            if(point == 0 || point == 3)
+            if(point == 0 || point == 2)
             {
+                if(point == 2 && !point_dif_lat)
+                {
+                    point_dif_lat++;
+                }
                 if(fence_diff_lat[point][i] != temp_buff_lat[i])
                 {
                     for(j= 0; i < 11; j++)
                     {
-                        poligono_ext[point].fence_lat_min[j] = fence_diff_lat[point][i];
-                        poligono_ext[point].point_lat_min[j] = temp_buff_lat[i];
+                        poligono_ext[point_dif_lat].fence_lat_min[j] = fence_diff_lat[point][i];
+                        poligono_ext[point_dif_lat].point_lat_min[j] = temp_buff_lat[i];
                         i++;
                     }
 
                 }
+                
             }
             else
             {
@@ -390,16 +403,22 @@ void verifica_fence_externo(void)
             }    
         } 
         
-        for(i=6; i<11; i++)
+        for(i=7; i<12; i++)
         {
             if(point == 0 || point == 2)
             {
+                if(point == 2 && !point_dif_long)
+                {
+                    point_dif_long++;
+                }
+                
+                
                 if(fence_diff_long[point][i] != temp_buff_long[i])
                 {
-                    for(j= 0; i < 11; j++)
+                    for(j= 0; i < 12; j++)
                     {
-                        poligono_ext[point].fence_long_min[j] = fence_diff_long[point][i];
-                        poligono_ext[point].point_long_min[j] = temp_buff_long[i];
+                        poligono_ext[point_dif_long].fence_long_min[j] = fence_diff_long[point][i];
+                        poligono_ext[point_dif_long].point_long_min[j] = temp_buff_long[i];
                         i++;
                     }
                 }
@@ -410,18 +429,18 @@ void verifica_fence_externo(void)
             }
             
         } 
-        poligono_ext[point].diff_lat_min = (atoi(poligono_ext[point].fence_lat_min)) - (atoi(poligono_ext[point].point_lat_min));
-        poligono_ext[point].diff_long_min = (atoi(poligono_ext[point].fence_long_min)) - (atoi(poligono_ext[point].point_long_min));
+        if(point == 0 || point == 2)
+        {
+            poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
+            poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
+            count++;
+        }
+       
         point++;
     }
+    count = 0;
+    point = 0;
 
-
-    
-//    posicao_cursor_lcd(1,0);
-//    escreve_inteiro_lcd(poligono_ext[0].diff_lat_deg);
-//    posicao_cursor_lcd(2,0);
-//    escreve_inteiro_lcd(poligono_ext[3].diff_lat_deg);
-    
     
     
     
@@ -431,19 +450,19 @@ void verifica_fence_externo(void)
         case '-':
             if(
                 ((poligono_ext[0].diff_long_min >= 0  &&
-               poligono_ext[2].diff_long_min <= 0)  &&
+               poligono_ext[1].diff_long_min <= 0)  &&
                     
                (poligono_ext[0].diff_long_deg >= 0  &&
-               poligono_ext[2].diff_long_deg <= 0)))
+               poligono_ext[1].diff_long_deg <= 0)))
             {
                 flag[0].point = 0;
             }
             else if((poligono_ext[0].diff_long_min == 0 ||
-                    poligono_ext[2].diff_long_min == 0 ) &&
+                    poligono_ext[1].diff_long_min == 0 ) &&
                     
                     
                     (poligono_ext[0].diff_long_deg == 0 ||
-                    poligono_ext[2].diff_long_deg == 0))
+                    poligono_ext[1].diff_long_deg == 0))
             {
                 flag[0].point = 0;
             }
@@ -456,16 +475,16 @@ void verifica_fence_externo(void)
         default:
             if(
                (poligono_ext[0].diff_long_min <= 0  &&
-               poligono_ext[2].diff_long_min >= 0 )  &&
+               poligono_ext[1].diff_long_min >= 0 )  &&
               (poligono_ext[0].diff_lat_deg <= 0  &&  
-               poligono_ext[2].diff_lat_deg >= 0))
+               poligono_ext[1].diff_lat_deg >= 0))
             {
                 flag[0].point = 0;
             }
             else if((poligono_ext[0].diff_long_min == 0 ||
-                    poligono_ext[2].diff_long_min == 0) &&
+                    poligono_ext[1].diff_long_min == 0) &&
                     (poligono_ext[0].diff_long_deg == 0 ||
-                    poligono_ext[2].diff_long_deg == 0))
+                    poligono_ext[1].diff_long_deg == 0))
             {
                 flag[0].point = 0;
             }
@@ -484,49 +503,45 @@ void verifica_fence_externo(void)
             if(
               (
                poligono_ext[0].diff_lat_min <= 0  &&
-               poligono_ext[3].diff_lat_min >= 0)  &&
+               poligono_ext[1].diff_lat_min >= 0)  &&
 
                (poligono_ext[0].diff_lat_deg <= 0  &&  
-               poligono_ext[3].diff_lat_deg >= 0)) 
+               poligono_ext[1].diff_lat_deg >= 0)) 
                 
             {
-//                posicao_cursor_lcd(2,0);
-//                escreve_frase_ram_lcd("SWITCH2");
                 flag[1].point = 0;
             }
             else if(
                     (poligono_ext[0].diff_lat_min == 0 ||
-                    poligono_ext[3].diff_lat_min == 0) &&
+                    poligono_ext[1].diff_lat_min == 0) &&
                     (poligono_ext[0].diff_lat_deg == 0 ||
-                    poligono_ext[3].diff_lat_deg == 0))
+                    poligono_ext[1].diff_lat_deg == 0))
             {
                 
                 flag[1].point = 0;
             }
             else
             {
-//                posicao_cursor_lcd(2,0);
-//                escreve_frase_ram_lcd("SWITCH2");
                 flag[1].point = 1;
             }
         break;
         
         default:
             if((poligono_ext[0].diff_lat_min >= 0  &&
-               poligono_ext[3].diff_lat_min <= 0 ) &&
+               poligono_ext[1].diff_lat_min <= 0 ) &&
                     
                     
                (poligono_ext[0].diff_lat_deg >= 0   &&
-               poligono_ext[3].diff_lat_deg <= 0)     
+               poligono_ext[1].diff_lat_deg <= 0)     
              )
             {
                 flag[1].point = 0;
             }
             else if((poligono_ext[0].diff_lat_min == 0 ||
-                    poligono_ext[3].diff_lat_min == 0) &&
+                    poligono_ext[1].diff_lat_min == 0) &&
                     
                     (poligono_ext[0].diff_lat_deg == 0 ||
-                    poligono_ext[3].diff_lat_deg == 0))
+                    poligono_ext[1].diff_lat_deg == 0))
             {
                 flag[1].point = 0;
             }
@@ -553,93 +568,7 @@ void verifica_fence_externo(void)
     }
  
     
-    
-//    for(i=0; i<11; i++)
-//    {
-//        temp_buff_lat[i] = *point_buff_gps_lat;
-//        temp_buff_long[i] = *point_buff_gps_long;
-//        point_buff_gps_lat++;  
-//        point_buff_gps_long++;
-//    }
-    
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd(point_buff);
-//    __delay_ms(1000);
-//
-//    for(i=0; caractere_gps[i] != ';'; i++)
-//    {
-//        posicao_cursor_lcd(1,0);
-//        escreve_caractere_lcd(caractere_gps[i]);
-//        if(caractere_gps[i-1] == '|' || flag_long)
-//        {
-//            flag_long = 1;
-//            flag_lat = 0;
-//            if(caractere_gps[i] != temp_buff_long[count])
-//            {
-//                for(count_index = 0; caractere_gps[i] != '$'; count_index++)
-//                {
-//                    poligono_ext[point].fence_diff_long[count_index] = caractere_gps[i];
-//                    poligono_ext[point].point_diff_long[count_index] = temp_buff_long[count];
-//                    i++;
-//                    count++;
-//                    
-//                }
-//                count = 0;
-//            }
-//        }
-//        
-//        
-//        //11 22 33 44
-//        
-//        if(caractere_gps[i-1] == '$' || flag_lat)
-//        {
-//            
-//            flag_long = 0;
-//            flag_lat = 1;
-//            if(caractere_gps[i] != temp_buff_lat[count])
-//            {
-//                for(count_index = 0; caractere_gps[i] != '|'; count_index++)
-//                {
-//                    poligono_ext[point].fence_diff_lat[count_index] = caractere_gps[i];
-//                    poligono_ext[point].point_diff_lat[count_index] = temp_buff_lat[count];
-//                    posicao_cursor_lcd(1,count_index);
-//                    escreve_caractere_lcd(poligono_ext[point].fence_diff_lat[count_index]);
-////                    __delay_ms(100);
-//                    i++;
-//                    count++;
-//                }
-//            
-//            }
-//            count = 0;
-//        }
-//        count++;
-//        if(count == 11)
-//        {
-//            count = 0;
-//        }
-//            
-//
-//            if(i==(j+22))
-//            {
-//                j += 22;
-//                point += 1;
-//            }
-//
-//
-//            if(i==size)
-//            {
-//                i = (j+22);
-//            }     
-    
-    
-//    LIMPA_DISPLAY();
-//    posicao_cursor_lcd(1,5);
-//    escreve_frase_ram_lcd(poligono_ext[1].point_diff_long);
-//    posicao_cursor_lcd(2,5);
-//    escreve_frase_ram_lcd(poligono_ext[1].fence_diff_long);
-//    
-//    escrita_sdcard(poligono_ext[0].point_diff_long, poligono_ext[0].fence_diff_long);
-    
+  
 }
 
 void verifica_dados_operacionais(void)
@@ -661,8 +590,12 @@ void disparo_gravacao(void)
 {
     if(!time_sd)
     {
-        escrita_sdcard();
-        time_sd = 30000;
+//        if(fix)
+//        {
+            escrita_sdcard();
+            time_sd = 30000;
+//        }
+
     } 
 }
 
@@ -673,8 +606,15 @@ void troca_de_tela(void)
     
     static unsigned char state = 0;
     static unsigned char last_state = 0;;
+   
     if(!PORTEbits.RE0 && !flag[2].point || (state == 1 ))
     {
+        
+        if(!time_atualizacao)
+        {
+            
+            time_atualizacao = 10000;
+        }
         
         if(last_state != 1)
         {
@@ -691,6 +631,16 @@ void troca_de_tela(void)
     
     if(!PORTEbits.RE1 && !flag[2].point || (state == 2))
     {
+        if(!time_atualizacao)
+        {
+            posicao_cursor_lcd(1,8);
+            escreve_frase_ram_lcd("N/D");
+            posicao_cursor_lcd(2,8);
+            escreve_frase_ram_lcd(fix());
+            time_atualizacao = 10000;
+        }
+        
+        
         if(last_state != 2)
         {
             state = 2;
@@ -702,7 +652,7 @@ void troca_de_tela(void)
             posicao_cursor_lcd(2,0);
             escreve_frase_ram_lcd("LFIX:");
             posicao_cursor_lcd(2,8);
-            escreve_frase_ram_lcd("N/D");
+            escreve_frase_ram_lcd(fix());
         }
         last_state = 2;
     }
@@ -710,6 +660,11 @@ void troca_de_tela(void)
     if(flag[2].point || (state == 3))
     {
         //ideia para implementacao futura
+        if(!time_atualizacao)
+        {  
+            time_atualizacao = 10000;
+        }
+        
         if(last_state != 3)
         {
             state = 3;
@@ -727,9 +682,9 @@ void troca_de_tela(void)
             LIMPA_DISPLAY();
             state = 0;
             posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("B1:telas B2:HOME");
+            escreve_frase_ram_lcd("B1:RPM B2:FENCE");
             posicao_cursor_lcd(2,0);
-            escreve_frase_ram_lcd("B3:HOME");
+            escreve_frase_ram_lcd("B2:HOME");
         }
         last_state = 4;
     }
@@ -742,7 +697,7 @@ void troca_de_tela(void)
             posicao_cursor_lcd(1,0);
             escreve_frase_ram_lcd("B1:RPM  B2:FENCE");
             posicao_cursor_lcd(2,0);
-            escreve_frase_ram_lcd("B3:HOME");
+            escreve_frase_ram_lcd("B2:HOME");
         }
         last_state = 4;
     }

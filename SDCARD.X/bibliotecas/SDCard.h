@@ -48,10 +48,16 @@ extern "C" {
 //==================================    
 
 typedef struct{
-    unsigned char data[7];
+//    unsigned char data[7];
     unsigned char hora[11];
-    unsigned char LAT[13];
-    unsigned char LONG[13];
+    unsigned char lt[13];
+    unsigned char lo[13];
+    unsigned char rpm[4];
+    unsigned char vel[3];
+    unsigned char comb[3];
+    unsigned char odometro_total[4];
+    unsigned char dtc;
+//    unsigned char VIN[30];
 }string_tel;
     
 /******************************************************************************
