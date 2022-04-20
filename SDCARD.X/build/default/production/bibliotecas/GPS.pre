@@ -5006,6 +5006,7 @@ int GPSRead(unsigned char buff);
 # 85
 char *Latitude(void);
 char *Longitude(void);
+char fix(void);
 void dados_gps_to_sd(void);
 
 # 8 "bibliotecas/integer.h"
@@ -5086,13 +5087,19 @@ typedef unsigned int uint16_t;
 
 # 50 "bibliotecas/SDCard.h"
 typedef struct{
-unsigned char data[7];
+
 unsigned char hora[11];
-unsigned char LAT[13];
-unsigned char LONG[13];
+unsigned char lt[13];
+unsigned char lo[13];
+unsigned char rpm[4];
+unsigned char vel[3];
+unsigned char comb[3];
+unsigned char odometro_total[4];
+unsigned char dtc;
+
 }string_tel;
 
-# 60
+# 66
 void sdcard_init(void);
 
 
@@ -5206,7 +5213,11 @@ if((Term == 9) && (SentenceType == 2)) {
 stringcpy(buffer, rawAltitude, 0);
 }
 
-# 558
+
+if((Term == 6) && (SentenceType == 2)) {
+stringcpy(buffer, rawFix,0);
+
+}
 Term++;
 char_number = 0;
 break;
@@ -5219,7 +5230,7 @@ break;
 return 0;
 }
 
-# 605
+# 606
 char *Latitude(void)
 {
 return rawLatitude;
@@ -5230,7 +5241,12 @@ char *Longitude(void)
 return rawLongitude;
 }
 
-# 637
+char fix(void)
+{
+return rawFix;
+}
+
+# 643
 void dados_gps_to_sd(void)
 {
 monta_sd(0, rawTime);

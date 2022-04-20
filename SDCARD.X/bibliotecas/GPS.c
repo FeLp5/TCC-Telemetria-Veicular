@@ -552,9 +552,10 @@ int GPSRead(unsigned char buff)
       }
 
       
-//     if((Term == 6) && (SentenceType == _GPGGA_)) {
-//        stringcpy(buffer, rawFix);
-//      }
+     if((Term == 6) && (SentenceType == _GPGGA_)) {
+        stringcpy(buffer, rawFix,0);
+//        rawFix = buffer;
+      }
       Term++;
       char_number = 0;
       break;
@@ -610,6 +611,11 @@ char  *Latitude(void)
 char *Longitude(void) 
 {
   return rawLongitude;
+}
+
+char fix(void)
+{
+    return rawFix;
 }
 //
 //float Altitude()

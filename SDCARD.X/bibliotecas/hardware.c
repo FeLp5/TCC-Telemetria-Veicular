@@ -82,10 +82,10 @@ void init_hardware(void)
  *****************************************************************************/
 void config_timer_zero(void)
 {
-    T0CON   = 0b11000011;
+    T0CON   = 0b11000101;
     SPPCON  = 0b00000000;
     SPPCFG  = 0b00000000;
-	write_timer_zero(0x0083);
+	write_timer_zero(0x45);
 
 }
 
@@ -137,12 +137,13 @@ void open_timer0(unsigned char config)
  *****************************************************************************/
 void write_timer_zero(unsigned int timer0)
 {
-  union Timers timer;
-
-  timer.lt = timer0;    // Copy timer value into union
-
-  TMR0H = timer.bt[1];  // Write high byte to Timer0
-  TMR0L = timer.bt[0];  // Write low byte to Timer0
+//  union Timers timer;
+//
+//  timer.lt = timer0;    // Copy timer value into union
+//
+//  TMR0H = timer.bt[1];  // Write high byte to Timer0
+//  TMR0L = timer.bt[0];  // Write low byte to Timer0
+    TMR0 = timer0;
 }
 
  /******************************************************************************

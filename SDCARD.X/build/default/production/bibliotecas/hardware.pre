@@ -4904,10 +4904,10 @@ init_interrupt();
 # 83
 void config_timer_zero(void)
 {
-T0CON = 0b11000011;
+T0CON = 0b11000101;
 SPPCON = 0b00000000;
 SPPCFG = 0b00000000;
-write_timer_zero(0x0083);
+write_timer_zero(0x45);
 
 }
 
@@ -4944,15 +4944,12 @@ T0CONbits.TMR0ON = 1;
 # 138
 void write_timer_zero(unsigned int timer0)
 {
-union Timers timer;
 
-timer.lt = timer0;
-
-TMR0H = timer.bt[1];
-TMR0L = timer.bt[0];
+# 146
+TMR0 = timer0;
 }
 
-# 154
+# 155
 void init_ports(void)
 {
 ADCON1 = 0X0F;
@@ -4965,7 +4962,7 @@ TRISE = 0b00000011;
 
 }
 
-# 172
+# 173
 void init_oscilador(void)
 {
 
@@ -4974,7 +4971,7 @@ OSCCONbits.IRCF1 = 1;
 OSCCONbits.IRCF2 = 1;
 }
 
-# 186
+# 187
 void ms_delay(unsigned int val)
 {
 unsigned int i,j;
@@ -4982,7 +4979,7 @@ for(i=0;i<val;i++)
 for(j=0;j<165;j++);
 }
 
-# 201
+# 202
 void config_timer_dois(void)
 {
 T2CON = 0b00000100;
@@ -4990,7 +4987,7 @@ TMR2 = 0;
 PR2 = 0x01;
 }
 
-# 214
+# 215
 void timer_dois(void)
 {
 if(TMR2IF)

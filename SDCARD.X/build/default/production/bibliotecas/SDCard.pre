@@ -4883,13 +4883,19 @@ typedef unsigned int uint16_t;
 
 # 50 "bibliotecas/SDCard.h"
 typedef struct{
-unsigned char data[7];
+
 unsigned char hora[11];
-unsigned char LAT[13];
-unsigned char LONG[13];
+unsigned char lt[13];
+unsigned char lo[13];
+unsigned char rpm[4];
+unsigned char vel[3];
+unsigned char comb[3];
+unsigned char odometro_total[4];
+unsigned char dtc;
+
 }string_tel;
 
-# 60
+# 66
 void sdcard_init(void);
 
 
@@ -5113,6 +5119,7 @@ int GPSRead(unsigned char buff);
 # 85
 char *Latitude(void);
 char *Longitude(void);
+char fix(void);
 void dados_gps_to_sd(void);
 
 # 40 "bibliotecas/uart.h"
@@ -5273,7 +5280,7 @@ f_lseek(&fil, ((&fil)->fsize));
 
 
 
-fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
+fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc");
 
 
 f_close(&fil);
@@ -5331,23 +5338,14 @@ dado++;
 break;
 
 case 1:
-for(i=0; i<6;i++)
-{
-string_dado.data[i] = *dado;
-dado++;
-}
-if(string_dado.data)
-{
-data_hoje = 1;
 
-
-}
+# 312
 break;
 
 case 2:
 for(i=0; i<13;i++)
 {
-string_dado.LAT[i] = *dado;
+string_dado.lt[i] = *dado;
 dado++;
 }
 break;
@@ -5356,7 +5354,7 @@ case 3:
 
 for(i=0; i<13;i++)
 {
-string_dado.LONG[i] = *dado;
+string_dado.lo[i] = *dado;
 dado++;
 }
 break;
@@ -5365,7 +5363,7 @@ case 4:
 
 for(i=0; i<size;i++)
 {
-string_dado.LONG[i] = *dado;
+string_dado.lo[i] = *dado;
 dado++;
 }
 break;

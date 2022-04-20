@@ -221,7 +221,7 @@ void escrita_sdcard()
 //            escreve_inteiro_lcd(fsize(&fil));
 //            posicao_cursor_lcd(1,0);
 //            escreve_frase_ram_lcd(string_dado.hora);
-            fprintf(&fil, "\n%s ; %s ; %s ; %s ;", string_dado.hora, string_dado.data,string_dado.LAT, string_dado.LONG);
+            fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc");
 
             /* Close the file */
             f_close(&fil);	
@@ -298,23 +298,23 @@ void monta_sd(unsigned char index, unsigned char *dado)
         break;
         
         case 1:
-            for(i=0; i<6;i++)
-            {
-                string_dado.data[i] = *dado;
-                dado++;
-            }
-            if(string_dado.data)
-            {
-                data_hoje = 1;
-//                strcpy(filename, string_dado.data);
-//                strcat(filename, ".txt");
-            }
+//            for(i=0; i<6;i++)
+//            {
+//                string_dado.data[i] = *dado;
+//                dado++;
+//            }
+//            if(string_dado.data)
+//            {
+//                data_hoje = 1;
+////                strcpy(filename, string_dado.data);
+////                strcat(filename, ".txt");
+//            }
         break;
         
         case 2:
             for(i=0; i<13;i++)
             {
-                string_dado.LAT[i] = *dado;
+                string_dado.lt[i] = *dado;
                 dado++;
             }
         break;
@@ -323,7 +323,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
 //           string_dado.LONG = dado_localizacao;
             for(i=0; i<13;i++)
             {
-                string_dado.LONG[i] = *dado;
+                string_dado.lo[i] = *dado;
                 dado++;
             }
         break;
@@ -332,7 +332,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
 //           string_dado.LONG = dado_localizacao;
             for(i=0; i<size;i++)
             {
-                string_dado.LONG[i] = *dado;
+                string_dado.lo[i] = *dado;
                 dado++;
             }
         break;

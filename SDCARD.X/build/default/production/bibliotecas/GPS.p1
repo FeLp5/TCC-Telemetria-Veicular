@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "45 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
-"66 bibliotecas/SDCard.h
+"72 bibliotecas/SDCard.h
 [v _monta_sd `(v ~T0 @X0 0 ef2`uc`*uc ]
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
@@ -3622,7 +3622,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;GPS.h: 71: int GPSRead(unsigned char buff);
 [; ;GPS.h: 85: char *Latitude(void);
 [; ;GPS.h: 86: char *Longitude(void);
-[; ;GPS.h: 87: void dados_gps_to_sd(void);
+[; ;GPS.h: 87: char fix(void);
+[; ;GPS.h: 88: void dados_gps_to_sd(void);
 [; ;integer.h: 8: typedef struct{
 [; ;integer.h: 9: unsigned int hora;
 [; ;integer.h: 10: unsigned int min;
@@ -3671,19 +3672,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.h: 44: typedef unsigned char uint8_t;
 [; ;hardware.h: 45: typedef unsigned int uint16_t;
 [; ;SDCard.h: 50: typedef struct{
-[; ;SDCard.h: 51: unsigned char data[7];
 [; ;SDCard.h: 52: unsigned char hora[11];
-[; ;SDCard.h: 53: unsigned char LAT[13];
-[; ;SDCard.h: 54: unsigned char LONG[13];
-[; ;SDCard.h: 55: }string_tel;
-[; ;SDCard.h: 60: void sdcard_init(void);
-[; ;SDCard.h: 63: void escrita_sdcard(void);
-[; ;SDCard.h: 64: char *leitura_sdcard(unsigned char num_spot);
-[; ;SDCard.h: 66: void monta_sd(unsigned char index, unsigned char *dado);
-[; ;SDCard.h: 67: BYTE response(void);
-[; ;SDCard.h: 68: void proceed(void);
-[; ;SDCard.h: 69: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 70: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SDCard.h: 53: unsigned char lt[13];
+[; ;SDCard.h: 54: unsigned char lo[13];
+[; ;SDCard.h: 55: unsigned char rpm[4];
+[; ;SDCard.h: 56: unsigned char vel[3];
+[; ;SDCard.h: 57: unsigned char comb[3];
+[; ;SDCard.h: 58: unsigned char odometro_total[4];
+[; ;SDCard.h: 59: unsigned char dtc;
+[; ;SDCard.h: 61: }string_tel;
+[; ;SDCard.h: 66: void sdcard_init(void);
+[; ;SDCard.h: 69: void escrita_sdcard(void);
+[; ;SDCard.h: 70: char *leitura_sdcard(unsigned char num_spot);
+[; ;SDCard.h: 72: void monta_sd(unsigned char index, unsigned char *dado);
+[; ;SDCard.h: 73: BYTE response(void);
+[; ;SDCard.h: 74: void proceed(void);
+[; ;SDCard.h: 75: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 76: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 "454 bibliotecas/GPS.c
 [v _GPRMC_ok `i ~T0 @X0 1 e ]
 [i _GPRMC_ok
@@ -3988,102 +3993,129 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 399 ]
 [; ;GPS.c: 552: }
-[; ;GPS.c: 558: Term++;
+[; ;GPS.c: 555: if((Term == 6) && (SentenceType == 2)) {
+"555
+[e $ ! && == -> _Term `i -> 6 `i == -> _SentenceType `i -> 2 `i 400  ]
+{
+[; ;GPS.c: 556: stringcpy(buffer, rawFix,0);
+"556
+[e ( _stringcpy (3 , , &U _buffer -> _rawFix `*uc -> 0 `i ]
 "558
-[e ++ _Term -> -> 1 `i `uc ]
-[; ;GPS.c: 559: char_number = 0;
-"559
-[e = _char_number -> -> 0 `i `uc ]
-[; ;GPS.c: 560: break;
-"560
-[e $U 373  ]
-[; ;GPS.c: 562: default:
-"562
-[e :U 400 ]
-[; ;GPS.c: 563: buffer[char_number++] = c;
-"563
-[e = *U + &U _buffer * -> ++ _char_number -> -> 1 `i `uc `ux -> -> # *U &U _buffer `ui `ux _c ]
-[; ;GPS.c: 564: break;
-"564
-[e $U 373  ]
-"565
 }
-[; ;GPS.c: 565: }
+[e :U 400 ]
+[; ;GPS.c: 558: }
+[; ;GPS.c: 559: Term++;
+"559
+[e ++ _Term -> -> 1 `i `uc ]
+[; ;GPS.c: 560: char_number = 0;
+"560
+[e = _char_number -> -> 0 `i `uc ]
+[; ;GPS.c: 561: break;
+"561
+[e $U 373  ]
+[; ;GPS.c: 563: default:
+"563
+[e :U 401 ]
+[; ;GPS.c: 564: buffer[char_number++] = c;
+"564
+[e = *U + &U _buffer * -> ++ _char_number -> -> 1 `i `uc `ux -> -> # *U &U _buffer `ui `ux _c ]
+[; ;GPS.c: 565: break;
+"565
+[e $U 373  ]
+"566
+}
+[; ;GPS.c: 566: }
 [e $U 373  ]
 "472
 [e :U 374 ]
 [e [\ _c , $ -> -> 13 `ui `uc 375
  , $ -> -> 36 `ui `uc 379
  , $ -> -> 44 `ui `uc 380
- 400 ]
-"565
+ 401 ]
+"566
 [e :U 373 ]
-[; ;GPS.c: 567: return 0;
-"567
+[; ;GPS.c: 568: return 0;
+"568
 [e ) -> 0 `i ]
 [e $UE 372  ]
-[; ;GPS.c: 568: }
-"568
+[; ;GPS.c: 569: }
+"569
 [e :UE 372 ]
 }
-"605
-[v _Latitude `(*uc ~T0 @X0 1 ef ]
 "606
+[v _Latitude `(*uc ~T0 @X0 1 ef ]
+"607
 {
-[; ;GPS.c: 605: char *Latitude(void)
-[; ;GPS.c: 606: {
+[; ;GPS.c: 606: char *Latitude(void)
+[; ;GPS.c: 607: {
 [e :U _Latitude ]
 [f ]
-[; ;GPS.c: 607: return rawLatitude;
-"607
-[e ) &U _rawLatitude ]
-[e $UE 401  ]
-[; ;GPS.c: 608: }
+[; ;GPS.c: 608: return rawLatitude;
 "608
-[e :UE 401 ]
-}
-"610
-[v _Longitude `(*uc ~T0 @X0 1 ef ]
-"611
-{
-[; ;GPS.c: 610: char *Longitude(void)
-[; ;GPS.c: 611: {
-[e :U _Longitude ]
-[f ]
-[; ;GPS.c: 612: return rawLongitude;
-"612
-[e ) &U _rawLongitude ]
+[e ) &U _rawLatitude ]
 [e $UE 402  ]
-[; ;GPS.c: 613: }
-"613
+[; ;GPS.c: 609: }
+"609
 [e :UE 402 ]
 }
-"637
-[v _dados_gps_to_sd `(v ~T0 @X0 1 ef ]
-"638
+"611
+[v _Longitude `(*uc ~T0 @X0 1 ef ]
+"612
 {
-[; ;GPS.c: 637: void dados_gps_to_sd(void)
-[; ;GPS.c: 638: {
+[; ;GPS.c: 611: char *Longitude(void)
+[; ;GPS.c: 612: {
+[e :U _Longitude ]
+[f ]
+[; ;GPS.c: 613: return rawLongitude;
+"613
+[e ) &U _rawLongitude ]
+[e $UE 403  ]
+[; ;GPS.c: 614: }
+"614
+[e :UE 403 ]
+}
+"616
+[v _fix `(uc ~T0 @X0 1 ef ]
+"617
+{
+[; ;GPS.c: 616: char fix(void)
+[; ;GPS.c: 617: {
+[e :U _fix ]
+[f ]
+[; ;GPS.c: 618: return rawFix;
+"618
+[e ) _rawFix ]
+[e $UE 404  ]
+[; ;GPS.c: 619: }
+"619
+[e :UE 404 ]
+}
+"643
+[v _dados_gps_to_sd `(v ~T0 @X0 1 ef ]
+"644
+{
+[; ;GPS.c: 643: void dados_gps_to_sd(void)
+[; ;GPS.c: 644: {
 [e :U _dados_gps_to_sd ]
 [f ]
-[; ;GPS.c: 639: monta_sd(0, rawTime);
-"639
+[; ;GPS.c: 645: monta_sd(0, rawTime);
+"645
 [e ( _monta_sd (2 , -> -> 0 `i `uc &U _rawTime ]
-[; ;GPS.c: 640: monta_sd(1, rawDate);
-"640
+[; ;GPS.c: 646: monta_sd(1, rawDate);
+"646
 [e ( _monta_sd (2 , -> -> 1 `i `uc &U _rawDate ]
-[; ;GPS.c: 641: monta_sd(2, rawLatitude);
-"641
+[; ;GPS.c: 647: monta_sd(2, rawLatitude);
+"647
 [e ( _monta_sd (2 , -> -> 2 `i `uc &U _rawLatitude ]
-[; ;GPS.c: 642: monta_sd(3, rawLongitude);
-"642
+[; ;GPS.c: 648: monta_sd(3, rawLongitude);
+"648
 [e ( _monta_sd (2 , -> -> 3 `i `uc &U _rawLongitude ]
-[; ;GPS.c: 643: return;
-"643
-[e $UE 403  ]
-[; ;GPS.c: 644: }
-"644
-[e :UE 403 ]
+[; ;GPS.c: 649: return;
+"649
+[e $UE 405  ]
+[; ;GPS.c: 650: }
+"650
+[e :UE 405 ]
 }
 [a 1C 71 80 82 77 67 0 ]
 [a 2C 71 80 71 71 65 0 ]
