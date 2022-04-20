@@ -221,13 +221,13 @@ class Painel(wx.Frame):
         #logos
         imageFile = 'imagens/logo_fatec.png'
         data = open(imageFile, "rb").read()
-        png = wx.Image(imageFile, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-        wx.StaticBitmap(pn_sd, -1, png, (10, 10), (png.GetWidth()+30, png.GetHeight()))
+        png1 = wx.Image(imageFile, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        wx.StaticBitmap(pn_sd, -1, png1, (10, 10), (png1.GetWidth()+30, png1.GetHeight()))
         
-        imageFile = 'imagens/logo_FDR.jpg'
+        imageFile = 'imagens/logo_FDR.png'
         data = open(imageFile, "rb").read()
-        jpg = wx.Image(imageFile, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-        wx.StaticBitmap(pn_sd, -1, jpg, (10, 120), (png.GetWidth()+30, png.GetHeight()+50))
+        png2 = wx.Image(imageFile, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+        wx.StaticBitmap(pn_sd, -1, png2, (10, 120), (png2.GetWidth()+30, png2.GetHeight()+50))
 
 
     def OnExit(self,e):
