@@ -74,13 +74,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INT0IF `Vb ~T0 @X0 0 e@32657 ]
 "9515
 [v _INT0IE `Vb ~T0 @X0 0 e@32660 ]
-"89 main.c
+"92 main.c
 [v _verifica_dados_operacionais `(v ~T0 @X0 0 ef ]
-"91
+"94
 [v _disparo_gravacao `(v ~T0 @X0 0 ef ]
-"87
+"90
 [v _verifica_fence_externo `(v ~T0 @X0 0 ef ]
-"93
+"96
 [v _troca_de_tela `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "34 bibliotecas/hardware.h
@@ -98,7 +98,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _T0CONbits `VS341 ~T0 @X0 0 e@4053 ]
 "199 bibliotecas/display_lcd.h
 [v _init_lcd `(v ~T0 @X0 0 ef ]
-"85 main.c
+"88 main.c
 [v _mensagem_inicial `(v ~T0 @X0 0 ef ]
 "55 bibliotecas/uart.h
 [v _inicializa_uart `(v ~T0 @X0 0 ef ]
@@ -144,8 +144,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S115 . . . . . . ]
 "2866
 [v _PORTEbits `VS115 ~T0 @X0 0 e@3972 ]
-"87 bibliotecas/GPS.h
-[v _fix `(uc ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -3965,332 +3963,338 @@ Version 3.2 HI-TECH Software Intermediate Code
 "80
 [v _time_atualizacao `ui ~T0 @X0 1 e ]
 [; ;main.c: 80: unsigned int time_atualizacao;
-[; ;main.c: 85: void mensagem_inicial(void);
-[; ;main.c: 87: void verifica_fence_externo(void);
-[; ;main.c: 89: void verifica_dados_operacionais(void);
-[; ;main.c: 91: void disparo_gravacao(void);
-[; ;main.c: 93: void troca_de_tela(void);
+"82
+[v _point_buff_gps_lat `*uc ~T0 @X0 1 e ]
+[; ;main.c: 82: unsigned char *point_buff_gps_lat;
+"83
+[v _point_buff_gps_long `*uc ~T0 @X0 1 e ]
+[; ;main.c: 83: unsigned char *point_buff_gps_long;
+[; ;main.c: 88: void mensagem_inicial(void);
+[; ;main.c: 90: void verifica_fence_externo(void);
+[; ;main.c: 92: void verifica_dados_operacionais(void);
+[; ;main.c: 94: void disparo_gravacao(void);
+[; ;main.c: 96: void troca_de_tela(void);
 [v $root$_isr `(v ~T0 @X0 0 e ]
-[v F4349 `(v ~T0 @X0 1 tf ]
-"102
-[v _isr `IF4349 ~T0 @X0 1 e ]
-"103
+[v F4351 `(v ~T0 @X0 1 tf ]
+"105
+[v _isr `IF4351 ~T0 @X0 1 e ]
+"106
 {
-[; ;main.c: 102: void interrupt isr(void)
-[; ;main.c: 103: {
+[; ;main.c: 105: void interrupt isr(void)
+[; ;main.c: 106: {
 [e :U _isr ]
 [f ]
-"104
-[v _cont `uc ~T0 @X0 1 a ]
-[; ;main.c: 104: unsigned char cont;
-[; ;main.c: 107: if (PIE1bits.RCIE && PIR1bits.RCIF)
 "107
-[e $ ! && != -> . . _PIE1bits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 375  ]
-[; ;main.c: 108: {
-"108
-{
-[; ;main.c: 109: PIR1bits.RCIF = 0;
-"109
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 110: data_uart_recebe = recebe_dado_uart();
+[v _cont `uc ~T0 @X0 1 a ]
+[; ;main.c: 107: unsigned char cont;
+[; ;main.c: 110: if (PIE1bits.RCIE && PIR1bits.RCIF)
 "110
-[e = _data_uart_recebe ( _recebe_dado_uart ..  ]
-[; ;main.c: 111: GPSRead(data_uart_recebe);
+[e $ ! && != -> . . _PIE1bits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 375  ]
+[; ;main.c: 111: {
 "111
-[e ( _GPSRead (1 _data_uart_recebe ]
-[; ;main.c: 112: PORTBbits.RB2 = !PORTBbits.RB2;
+{
+[; ;main.c: 112: PIR1bits.RCIF = 0;
 "112
-[e = . . _PORTBbits 0 2 -> -> ! != -> . . _PORTBbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 113: data_uart_recebe = recebe_dado_uart();
 "113
+[e = _data_uart_recebe ( _recebe_dado_uart ..  ]
+[; ;main.c: 114: GPSRead(data_uart_recebe);
+"114
+[e ( _GPSRead (1 _data_uart_recebe ]
+[; ;main.c: 115: PORTBbits.RB2 = !PORTBbits.RB2;
+"115
+[e = . . _PORTBbits 0 2 -> -> ! != -> . . _PORTBbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+"116
 }
 [e :U 375 ]
-[; ;main.c: 113: }
-[; ;main.c: 116: unsigned char cont;
-[; ;main.c: 118: if (TMR0IF && T0IF)
-"118
-[e $ ! && _TMR0IF _T0IF 376  ]
-[; ;main.c: 119: {
-"119
-{
-[; ;main.c: 120: INTCONbits.TMR0IF = 0;
-"120
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 121: sinaliza_int_timer = 1;
+[; ;main.c: 116: }
+[; ;main.c: 119: unsigned char cont;
+[; ;main.c: 121: if (TMR0IF && T0IF)
 "121
-[e = _sinaliza_int_timer -> -> 1 `i `uc ]
-[; ;main.c: 123: for(cont= 0; cont<4;cont++)
+[e $ ! && _TMR0IF _T0IF 376  ]
+[; ;main.c: 122: {
+"122
+{
+[; ;main.c: 123: INTCONbits.TMR0IF = 0;
 "123
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 124: sinaliza_int_timer = 1;
+"124
+[e = _sinaliza_int_timer -> -> 1 `i `uc ]
+[; ;main.c: 126: for(cont= 0; cont<4;cont++)
+"126
 {
 [e = _cont -> -> 0 `i `uc ]
 [e $ < -> _cont `i -> 4 `i 377  ]
 [e $U 378  ]
-"124
+"127
 [e :U 377 ]
-[; ;main.c: 124: {
+[; ;main.c: 127: {
 {
-[; ;main.c: 125: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
-"125
+[; ;main.c: 128: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
+"128
 [e $ ! > *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 380  ]
 [e -- *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1 `i `ui ]
 [e :U 380 ]
-"127
+"130
 }
-"123
+"126
 [e ++ _cont -> -> 1 `i `uc ]
 [e $ < -> _cont `i -> 4 `i 377  ]
 [e :U 378 ]
-"127
+"130
 }
-[; ;main.c: 127: }
-[; ;main.c: 128: if(time_sd > 0) time_sd--;
-"128
+[; ;main.c: 130: }
+[; ;main.c: 131: if(time_sd > 0) time_sd--;
+"131
 [e $ ! > _time_sd -> -> 0 `i `ui 381  ]
 [e -- _time_sd -> -> 1 `i `ui ]
 [e :U 381 ]
-[; ;main.c: 129: if(time_atualizacao > 0) time_atualizacao--;
-"129
+[; ;main.c: 132: if(time_atualizacao > 0) time_atualizacao--;
+"132
 [e $ ! > _time_atualizacao -> -> 0 `i `ui 382  ]
 [e -- _time_atualizacao -> -> 1 `i `ui ]
 [e :U 382 ]
-[; ;main.c: 130: if(tarefa_em_execucao == 1)
-"130
-[e $ ! == -> _tarefa_em_execucao `i -> 1 `i 383  ]
-[; ;main.c: 131: {
-"131
-{
-[; ;main.c: 132: timeout_tarefa--;
-"132
-[e -- _timeout_tarefa -> -> 1 `i `ui ]
-[; ;main.c: 133: if(!timeout_tarefa)
+[; ;main.c: 133: if(tarefa_em_execucao == 1)
 "133
-[e $ ! ! != _timeout_tarefa -> -> 0 `i `ui 384  ]
+[e $ ! == -> _tarefa_em_execucao `i -> 1 `i 383  ]
 [; ;main.c: 134: {
 "134
 {
-[; ;main.c: 136: PCLATH = 0;
+[; ;main.c: 135: timeout_tarefa--;
+"135
+[e -- _timeout_tarefa -> -> 1 `i `ui ]
+[; ;main.c: 136: if(!timeout_tarefa)
 "136
-[e = _PCLATH -> -> 0 `i `uc ]
-[; ;main.c: 137: PCL = 0;
+[e $ ! ! != _timeout_tarefa -> -> 0 `i `ui 384  ]
+[; ;main.c: 137: {
 "137
+{
+[; ;main.c: 139: PCLATH = 0;
+"139
+[e = _PCLATH -> -> 0 `i `uc ]
+[; ;main.c: 140: PCL = 0;
+"140
 [e = _PCL -> -> 0 `i `uc ]
-"138
+"141
 }
 [e :U 384 ]
-"139
+"142
 }
 [e :U 383 ]
-[; ;main.c: 138: }
-[; ;main.c: 139: }
-[; ;main.c: 143: write_timer_zero(0x45);
-"143
+[; ;main.c: 141: }
+[; ;main.c: 142: }
+[; ;main.c: 146: write_timer_zero(0x45);
+"146
 [e ( _write_timer_zero (1 -> -> 69 `i `ui ]
-"144
+"147
 }
 [e :U 376 ]
-[; ;main.c: 144: }
-[; ;main.c: 146: if (INT0IF && INT0IE)
-"146
+[; ;main.c: 147: }
+[; ;main.c: 149: if (INT0IF && INT0IE)
+"149
 [e $ ! && _INT0IF _INT0IE 385  ]
-[; ;main.c: 147: {
-"147
-{
-[; ;main.c: 148: INT0IF = 0;
-"148
-[e = _INT0IF -> -> 0 `i `b ]
+[; ;main.c: 150: {
 "150
+{
+[; ;main.c: 151: INT0IF = 0;
+"151
+[e = _INT0IF -> -> 0 `i `b ]
+"153
 }
 [e :U 385 ]
-[; ;main.c: 150: }
-[; ;main.c: 151: }
-"151
+[; ;main.c: 153: }
+[; ;main.c: 154: }
+"154
 [e :UE 374 ]
 }
-"162
+"165
 [v _inicializa_tarefas `(v ~T0 @X0 1 ef ]
-"163
+"166
 {
-[; ;main.c: 162: void inicializa_tarefas(void)
-[; ;main.c: 163: {
+[; ;main.c: 165: void inicializa_tarefas(void)
+[; ;main.c: 166: {
 [e :U _inicializa_tarefas ]
 [f ]
-[; ;main.c: 165: p_tarefas[0] = verifica_dados_operacionais;
-"165
-[e = *U + &U _p_tarefas * -> -> -> 0 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _verifica_dados_operacionais ]
-[; ;main.c: 166: p_tarefas[1] = disparo_gravacao;
-"166
-[e = *U + &U _p_tarefas * -> -> -> 1 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _disparo_gravacao ]
-[; ;main.c: 167: p_tarefas[2] = verifica_fence_externo;
-"167
-[e = *U + &U _p_tarefas * -> -> -> 2 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _verifica_fence_externo ]
-[; ;main.c: 168: p_tarefas[3] = troca_de_tela;
+[; ;main.c: 168: p_tarefas[0] = verifica_dados_operacionais;
 "168
+[e = *U + &U _p_tarefas * -> -> -> 0 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _verifica_dados_operacionais ]
+[; ;main.c: 169: p_tarefas[1] = disparo_gravacao;
+"169
+[e = *U + &U _p_tarefas * -> -> -> 1 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _disparo_gravacao ]
+[; ;main.c: 170: p_tarefas[2] = verifica_fence_externo;
+"170
+[e = *U + &U _p_tarefas * -> -> -> 2 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _verifica_fence_externo ]
+[; ;main.c: 171: p_tarefas[3] = troca_de_tela;
+"171
 [e = *U + &U _p_tarefas * -> -> -> 3 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _troca_de_tela ]
-[; ;main.c: 172: tempo_backup[0] = 5000;
-"172
-[e = *U + &U _tempo_backup * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 5000 `i `ui ]
-[; ;main.c: 173: tempo_backup[1] = 1000;
-"173
-[e = *U + &U _tempo_backup * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 1000 `i `ui ]
-[; ;main.c: 174: tempo_backup[2] = 1000;
-"174
-[e = *U + &U _tempo_backup * -> -> -> 2 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 1000 `i `ui ]
-[; ;main.c: 175: tempo_backup[3] = 100;
+[; ;main.c: 175: tempo_backup[0] = 5000;
 "175
-[e = *U + &U _tempo_backup * -> -> -> 3 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 100 `i `ui ]
-[; ;main.c: 178: tempo_tarefa[0] = 5000;
+[e = *U + &U _tempo_backup * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 5000 `i `ui ]
+[; ;main.c: 176: tempo_backup[1] = 1000;
+"176
+[e = *U + &U _tempo_backup * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 1000 `i `ui ]
+[; ;main.c: 177: tempo_backup[2] = 1000;
+"177
+[e = *U + &U _tempo_backup * -> -> -> 2 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 1000 `i `ui ]
+[; ;main.c: 178: tempo_backup[3] = 100;
 "178
-[e = *U + &U _tempo_tarefa * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 5000 `i `ui ]
-[; ;main.c: 179: tempo_tarefa[1] = 1000;
-"179
-[e = *U + &U _tempo_tarefa * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1000 `i `ui ]
-[; ;main.c: 180: tempo_tarefa[2] = 1000;
-"180
-[e = *U + &U _tempo_tarefa * -> -> -> 2 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1000 `i `ui ]
-[; ;main.c: 181: tempo_tarefa[3] = 5000;
+[e = *U + &U _tempo_backup * -> -> -> 3 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 100 `i `ui ]
+[; ;main.c: 181: tempo_tarefa[0] = 5000;
 "181
-[e = *U + &U _tempo_tarefa * -> -> -> 3 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 5000 `i `ui ]
-[; ;main.c: 183: tarefa_em_execucao = 0;
+[e = *U + &U _tempo_tarefa * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 5000 `i `ui ]
+[; ;main.c: 182: tempo_tarefa[1] = 1000;
+"182
+[e = *U + &U _tempo_tarefa * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1000 `i `ui ]
+[; ;main.c: 183: tempo_tarefa[2] = 1000;
 "183
-[e = _tarefa_em_execucao -> -> 0 `i `uc ]
-[; ;main.c: 184: }
+[e = *U + &U _tempo_tarefa * -> -> -> 2 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1000 `i `ui ]
+[; ;main.c: 184: tempo_tarefa[3] = 1000;
 "184
+[e = *U + &U _tempo_tarefa * -> -> -> 3 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1000 `i `ui ]
+[; ;main.c: 186: tarefa_em_execucao = 0;
+"186
+[e = _tarefa_em_execucao -> -> 0 `i `uc ]
+[; ;main.c: 187: }
+"187
 [e :UE 386 ]
 }
-"194
+"197
 [v _escalonador `(v ~T0 @X0 1 ef ]
-"195
+"198
 {
-[; ;main.c: 194: void escalonador()
-[; ;main.c: 195: {
+[; ;main.c: 197: void escalonador()
+[; ;main.c: 198: {
 [e :U _escalonador ]
 [f ]
-"196
+"199
 [v _cont `uc ~T0 @X0 1 a ]
-[; ;main.c: 196: unsigned char cont;
-[; ;main.c: 197: for(cont = 0; cont<4;cont++)
-"197
+[; ;main.c: 199: unsigned char cont;
+[; ;main.c: 200: for(cont = 0; cont<4;cont++)
+"200
 {
 [e = _cont -> -> 0 `i `uc ]
 [e $ < -> _cont `i -> 4 `i 388  ]
 [e $U 389  ]
-"198
-[e :U 388 ]
-[; ;main.c: 198: {
-{
-[; ;main.c: 199: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
-"199
-[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F4328 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 391  ]
-[; ;main.c: 200: {
-"200
-{
-[; ;main.c: 201: tarefa_em_execucao = 1;
 "201
-[e = _tarefa_em_execucao -> -> 1 `i `uc ]
-[; ;main.c: 202: timeout_tarefa = 60000;
+[e :U 388 ]
+[; ;main.c: 201: {
+{
+[; ;main.c: 202: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
 "202
-[e = _timeout_tarefa -> -> 60000 `l `ui ]
-[; ;main.c: 203: p_tarefas[cont]();
+[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F4328 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 391  ]
+[; ;main.c: 203: {
 "203
-[e ( *U *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux ..  ]
-[; ;main.c: 204: tarefa_em_execucao = 0;
+{
+[; ;main.c: 204: tarefa_em_execucao = 1;
 "204
-[e = _tarefa_em_execucao -> -> 0 `i `uc ]
-[; ;main.c: 205: tempo_tarefa[cont] = tempo_backup[cont];
+[e = _tarefa_em_execucao -> -> 1 `i `uc ]
+[; ;main.c: 205: timeout_tarefa = 60000;
 "205
-[e = *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux *U + &U _tempo_backup * -> _cont `ux -> -> # *U &U _tempo_backup `ui `ux ]
+[e = _timeout_tarefa -> -> 60000 `l `ui ]
+[; ;main.c: 206: p_tarefas[cont]();
 "206
+[e ( *U *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux ..  ]
+[; ;main.c: 207: tarefa_em_execucao = 0;
+"207
+[e = _tarefa_em_execucao -> -> 0 `i `uc ]
+[; ;main.c: 208: tempo_tarefa[cont] = tempo_backup[cont];
+"208
+[e = *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux *U + &U _tempo_backup * -> _cont `ux -> -> # *U &U _tempo_backup `ui `ux ]
+"209
 }
 [e :U 391 ]
-"207
+"210
 }
-"197
+"200
 [e ++ _cont -> -> 1 `i `uc ]
 [e $ < -> _cont `i -> 4 `i 388  ]
 [e :U 389 ]
-"207
+"210
 }
-[; ;main.c: 206: }
-[; ;main.c: 207: }
-[; ;main.c: 208: }
-"208
+[; ;main.c: 209: }
+[; ;main.c: 210: }
+[; ;main.c: 211: }
+"211
 [e :UE 387 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"215
+"218
 [v _main `(v ~T0 @X0 1 ef ]
-"216
+"219
 {
-[; ;main.c: 215: void main(void)
-[; ;main.c: 216: {
+[; ;main.c: 218: void main(void)
+[; ;main.c: 219: {
 [e :U _main ]
 [f ]
-[; ;main.c: 217: init_hardware();
-"217
-[e ( _init_hardware ..  ]
-[; ;main.c: 218: T0CONbits.TMR0ON = 0;
-"218
-[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 219: init_lcd();
-"219
-[e ( _init_lcd ..  ]
-[; ;main.c: 220: mensagem_inicial();
+[; ;main.c: 220: init_hardware();
 "220
-[e ( _mensagem_inicial ..  ]
-[; ;main.c: 221: inicializa_tarefas();
+[e ( _init_hardware ..  ]
+[; ;main.c: 221: T0CONbits.TMR0ON = 0;
 "221
-[e ( _inicializa_tarefas ..  ]
-[; ;main.c: 222: inicializa_uart();
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 222: init_lcd();
 "222
-[e ( _inicializa_uart ..  ]
-[; ;main.c: 223: T0CONbits.TMR0ON = 1;
+[e ( _init_lcd ..  ]
+[; ;main.c: 223: mensagem_inicial();
 "223
-[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 224: while(1)
+[e ( _mensagem_inicial ..  ]
+[; ;main.c: 224: inicializa_tarefas();
 "224
-[e :U 394 ]
-[; ;main.c: 225: {
+[e ( _inicializa_tarefas ..  ]
+[; ;main.c: 225: inicializa_uart();
 "225
-{
-[; ;main.c: 227: if ((sinaliza_int_timer == 1) && (4))
+[e ( _inicializa_uart ..  ]
+[; ;main.c: 226: T0CONbits.TMR0ON = 1;
+"226
+[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
+[; ;main.c: 227: while(1)
 "227
-[e $ ! && == -> _sinaliza_int_timer `i -> 1 `i != -> 4 `i -> 0 `i 396  ]
+[e :U 394 ]
 [; ;main.c: 228: {
 "228
 {
-[; ;main.c: 229: sinaliza_int_timer = 0;
-"229
-[e = _sinaliza_int_timer -> -> 0 `i `uc ]
-[; ;main.c: 230: escalonador();
+[; ;main.c: 230: if ((sinaliza_int_timer == 1) && (4))
 "230
-[e ( _escalonador ..  ]
+[e $ ! && == -> _sinaliza_int_timer `i -> 1 `i != -> 4 `i -> 0 `i 396  ]
+[; ;main.c: 231: {
 "231
-}
-[e :U 396 ]
-[; ;main.c: 231: }
-[; ;main.c: 232: dados_gps_to_sd();
+{
+[; ;main.c: 232: sinaliza_int_timer = 0;
 "232
-[e ( _dados_gps_to_sd ..  ]
+[e = _sinaliza_int_timer -> -> 0 `i `uc ]
+[; ;main.c: 233: escalonador();
+"233
+[e ( _escalonador ..  ]
 "234
 }
+[e :U 396 ]
+[; ;main.c: 234: }
+[; ;main.c: 235: dados_gps_to_sd();
+"235
+[e ( _dados_gps_to_sd ..  ]
+"237
+}
 [e :U 393 ]
-"224
+"227
 [e $U 394  ]
 [e :U 395 ]
-[; ;main.c: 234: }
-[; ;main.c: 235: }
-"235
+[; ;main.c: 237: }
+[; ;main.c: 238: }
+"238
 [e :UE 392 ]
 }
-"242
+"245
 [v _mensagem_inicial `(v ~T0 @X0 1 ef ]
-"243
+"246
 {
-[; ;main.c: 242: void mensagem_inicial(void)
-[; ;main.c: 243: {
+[; ;main.c: 245: void mensagem_inicial(void)
+[; ;main.c: 246: {
 [e :U _mensagem_inicial ]
 [f ]
-[v F4363 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4363
+[v F4365 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4365
 :U ..
 -> 70 `c
 -> 65 `c
@@ -4309,12 +4313,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"244
+"247
 [v _msg_linha_um `Cuc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 244: const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
-[e = _msg_linha_um F4363 ]
-[v F4365 `Cuc ~T0 @X0 -> 17 `i s ]
-[i F4365
+[; ;main.c: 247: const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
+[e = _msg_linha_um F4365 ]
+[v F4367 `Cuc ~T0 @X0 -> 17 `i s ]
+[i F4367
 :U ..
 -> 84 `c
 -> 67 `c
@@ -4333,43 +4337,43 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-"245
-[v _msg_dois `Cuc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 245: const unsigned char msg_dois[17] = "TCC--TELEMTRIA";
-[e = _msg_dois F4365 ]
-[; ;main.c: 247: posicao_cursor_lcd(1,0);
-"247
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 248: escreve_frase_ram_lcd(msg_linha_um);
 "248
-[e ( _escreve_frase_ram_lcd (1 -> &U _msg_linha_um `*uc ]
-[; ;main.c: 250: posicao_cursor_lcd(2,0);
+[v _msg_dois `Cuc ~T0 @X0 -> 17 `i a ]
+[; ;main.c: 248: const unsigned char msg_dois[17] = "TCC--TELEMTRIA";
+[e = _msg_dois F4367 ]
+[; ;main.c: 250: posicao_cursor_lcd(1,0);
 "250
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 251: escreve_frase_ram_lcd(msg_dois);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 251: escreve_frase_ram_lcd(msg_linha_um);
 "251
-[e ( _escreve_frase_ram_lcd (1 -> &U _msg_dois `*uc ]
-[; ;main.c: 252: _delay((unsigned long)((1000)*(48000000/4000.0)));
-"252
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
-[; ;main.c: 253: escreve_cmd_lcd(0b00000001);
+[e ( _escreve_frase_ram_lcd (1 -> &U _msg_linha_um `*uc ]
+[; ;main.c: 253: posicao_cursor_lcd(2,0);
 "253
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 255: }
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 254: escreve_frase_ram_lcd(msg_dois);
+"254
+[e ( _escreve_frase_ram_lcd (1 -> &U _msg_dois `*uc ]
+[; ;main.c: 255: _delay((unsigned long)((1000)*(48000000/4000.0)));
 "255
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
+[; ;main.c: 256: escreve_cmd_lcd(0b00000001);
+"256
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 258: }
+"258
 [e :UE 397 ]
 }
-"265
+"268
 [v _verifica_fence_externo `(v ~T0 @X0 1 ef ]
-"266
+"269
 {
-[; ;main.c: 265: void verifica_fence_externo(void)
-[; ;main.c: 266: {
+[; ;main.c: 268: void verifica_fence_externo(void)
+[; ;main.c: 269: {
 [e :U _verifica_fence_externo ]
 [f ]
-[v F4369 `uc ~T0 @X0 -> 11 `i t ]
-[v F4370 `F4369 ~T0 @X0 -> 4 `i s ]
-[i F4370
+[v F4371 `uc ~T0 @X0 -> 11 `i t ]
+[v F4372 `F4371 ~T0 @X0 -> 4 `i s ]
+[i F4372
 :U ..
 :U ..
 -> 45 `c
@@ -4425,13 +4429,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"267
-[v _fence_diff_lat `F4369 ~T0 @X0 -> 4 `i a ]
-[; ;main.c: 267: unsigned char fence_diff_lat[4][11] = {"-2342.07112", "-2342.07112", "-2342.11784", "-2342.11784"};
-[e = _fence_diff_lat F4370 ]
-[v F4372 `uc ~T0 @X0 -> 12 `i t ]
-[v F4373 `F4372 ~T0 @X0 -> 4 `i s ]
-[i F4373
+"270
+[v _fence_diff_lat `F4371 ~T0 @X0 -> 4 `i a ]
+[; ;main.c: 270: unsigned char fence_diff_lat[4][11] = {"-2342.07112", "-2342.07112", "-2342.11784", "-2342.11784"};
+[e = _fence_diff_lat F4372 ]
+[v F4374 `uc ~T0 @X0 -> 12 `i t ]
+[v F4375 `F4374 ~T0 @X0 -> 4 `i s ]
+[i F4375
 :U ..
 :U ..
 -> 45 `c
@@ -4491,24 +4495,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"268
-[v _fence_diff_long `F4372 ~T0 @X0 -> 4 `i a ]
-[; ;main.c: 268: unsigned char fence_diff_long[4][12] = {"-04629.73477", "-04629.68601", "-04629.68601", "-04629.73477"};
-[e = _fence_diff_long F4373 ]
-"278
+"271
+[v _fence_diff_long `F4374 ~T0 @X0 -> 4 `i a ]
+[; ;main.c: 271: unsigned char fence_diff_long[4][12] = {"-04629.73477", "-04629.68601", "-04629.68601", "-04629.73477"};
+[e = _fence_diff_long F4375 ]
+"281
 [v _point_buff `*uc ~T0 @X0 1 a ]
 [v _i `uc ~T0 @X0 1 a ]
 [v _j `uc ~T0 @X0 1 a ]
 [v _count `uc ~T0 @X0 1 a ]
 [v _count_index `uc ~T0 @X0 1 a ]
-"279
-[v _point_buff_gps_lat `*uc ~T0 @X0 1 a ]
-[v _point_buff_gps_long `*uc ~T0 @X0 1 a ]
-"280
+"282
 [v _point `uc ~T0 @X0 1 a ]
 [v _point_dif_lat `uc ~T0 @X0 1 a ]
 [v _point_dif_long `uc ~T0 @X0 1 a ]
-"281
+"283
 [v _temp_var_deg `ul ~T0 @X0 1 a ]
 [v F4386 `uc ~T0 @X0 -> 11 `i s ]
 [i F4386
@@ -4526,13 +4527,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 50 `c
 ..
 ]
-"282
+"284
 [v _temp_buff_lat `uc ~T0 @X0 -> 11 `i a ]
-[; ;main.c: 278: unsigned char *point_buff, i, j, count, count_index;
-[; ;main.c: 279: unsigned char *point_buff_gps_lat, *point_buff_gps_long;
-[; ;main.c: 280: unsigned char point, point_dif_lat ,point_dif_long;
-[; ;main.c: 281: unsigned long int temp_var_deg;
-[; ;main.c: 282: unsigned char temp_buff_lat[11] = "-2342.07112";
+[; ;main.c: 281: unsigned char *point_buff, i, j, count, count_index;
+[; ;main.c: 282: unsigned char point, point_dif_lat ,point_dif_long;
+[; ;main.c: 283: unsigned long int temp_var_deg;
+[; ;main.c: 284: unsigned char temp_buff_lat[11] = "-2342.07112";
 [e = _temp_buff_lat F4386 ]
 [v F4388 `uc ~T0 @X0 -> 12 `i s ]
 [i F4388
@@ -4551,1080 +4551,1134 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 55 `c
 ..
 ]
-"283
-[v _temp_buff_long `uc ~T0 @X0 -> 12 `i a ]
-[; ;main.c: 283: unsigned char temp_buff_long[12] = "-04629.73477";
-[e = _temp_buff_long F4388 ]
-[; ;main.c: 284: count = 0;
-"284
-[e = _count -> -> 0 `i `uc ]
-[; ;main.c: 285: point = 0;
 "285
-[e = _point -> -> 0 `i `uc ]
-[; ;main.c: 286: point_dif_lat = 0;
+[v _temp_buff_long `uc ~T0 @X0 -> 12 `i a ]
+[; ;main.c: 285: unsigned char temp_buff_long[12] = "-04629.73477";
+[e = _temp_buff_long F4388 ]
+[; ;main.c: 286: count = 0;
 "286
-[e = _point_dif_lat -> -> 0 `i `uc ]
-[; ;main.c: 287: point_dif_long = 0;
+[e = _count -> -> 0 `i `uc ]
+[; ;main.c: 287: point = 0;
 "287
-[e = _point_dif_long -> -> 0 `i `uc ]
-[; ;main.c: 288: j= 0;
+[e = _point -> -> 0 `i `uc ]
+[; ;main.c: 288: point_dif_lat = 0;
 "288
+[e = _point_dif_lat -> -> 0 `i `uc ]
+[; ;main.c: 289: point_dif_long = 0;
+"289
+[e = _point_dif_long -> -> 0 `i `uc ]
+[; ;main.c: 290: j= 0;
+"290
 [e = _j -> -> 0 `i `uc ]
-[; ;main.c: 291: point_buff_gps_lat = Latitude();
-"291
+[; ;main.c: 293: point_buff_gps_lat = Latitude();
+"293
 [e = _point_buff_gps_lat ( _Latitude ..  ]
-[; ;main.c: 292: point_buff_gps_long = Longitude();
-"292
+[; ;main.c: 294: point_buff_gps_long = Longitude();
+"294
 [e = _point_buff_gps_long ( _Longitude ..  ]
-[; ;main.c: 307: while(point<4)
-"307
-[e $U 399  ]
-[e :U 400 ]
-[; ;main.c: 308: {
-"308
+[; ;main.c: 300: for(i=0; i<11; i++)
+"300
 {
-[; ;main.c: 310: for(i=1; i<6; i++)
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 11 `i 399  ]
+[e $U 400  ]
+"301
+[e :U 399 ]
+[; ;main.c: 301: {
+{
+[; ;main.c: 302: temp_buff_lat[i] = *point_buff_gps_lat;
+"302
+[e = *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux *U _point_buff_gps_lat ]
+[; ;main.c: 303: temp_buff_long[i] = *point_buff_gps_long;
+"303
+[e = *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux *U _point_buff_gps_long ]
+[; ;main.c: 304: point_buff_gps_lat++;
+"304
+[e ++ _point_buff_gps_lat * -> -> 1 `i `x -> -> # *U _point_buff_gps_lat `i `x ]
+[; ;main.c: 305: point_buff_gps_long++;
+"305
+[e ++ _point_buff_gps_long * -> -> 1 `i `x -> -> # *U _point_buff_gps_long `i `x ]
+"306
+}
+"300
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 11 `i 399  ]
+[e :U 400 ]
+"306
+}
+[; ;main.c: 306: }
+[; ;main.c: 309: while(point<4)
+"309
+[e $U 402  ]
+[e :U 403 ]
+[; ;main.c: 310: {
 "310
 {
-[e = _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 402  ]
-[e $U 403  ]
-"311
-[e :U 402 ]
-[; ;main.c: 311: {
-{
-[; ;main.c: 312: if(point == 0 || point == 2)
+[; ;main.c: 312: for(i=1; i<6; i++)
 "312
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 405  ]
-[; ;main.c: 313: {
-"313
 {
-[; ;main.c: 314: if(point == 2 && !point_dif_long)
+[e = _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 405  ]
+[e $U 406  ]
+"313
+[e :U 405 ]
+[; ;main.c: 313: {
+{
+[; ;main.c: 314: if(point == 0 || point == 2)
 "314
-[e $ ! && == -> _point `i -> 2 `i ! != -> _point_dif_long `i -> -> -> 0 `i `uc `i 406  ]
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 408  ]
 [; ;main.c: 315: {
 "315
 {
-[; ;main.c: 316: point_dif_long++;
+[; ;main.c: 316: if(point == 2 && !point_dif_long)
 "316
-[e ++ _point_dif_long -> -> 1 `i `uc ]
+[e $ ! && == -> _point `i -> 2 `i ! != -> _point_dif_long `i -> -> -> 0 `i `uc `i 409  ]
+[; ;main.c: 317: {
 "317
-}
-[e :U 406 ]
-[; ;main.c: 317: }
-[; ;main.c: 318: for(j= 0; i < 6; j++)
+{
+[; ;main.c: 318: point_dif_long++;
 "318
+[e ++ _point_dif_long -> -> 1 `i `uc ]
+"319
+}
+[e :U 409 ]
+[; ;main.c: 319: }
+[; ;main.c: 320: for(j= 0; i < 6; j++)
+"320
 {
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 6 `i 407  ]
-[e $U 408  ]
-"319
-[e :U 407 ]
-[; ;main.c: 319: {
-{
-[; ;main.c: 320: poligono_ext[point_dif_long].point_long_deg[j] = temp_buff_long[i];
-"320
-[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 3 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 3 `ui `ux *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux ]
-[; ;main.c: 321: poligono_ext[point_dif_long].fence_long_deg[j] = fence_diff_long[point][i];
+[e $ < -> _i `i -> 6 `i 410  ]
+[e $U 411  ]
 "321
-[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 1 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 1 `ui `ux *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux ]
-[; ;main.c: 323: i++;
+[e :U 410 ]
+[; ;main.c: 321: {
+{
+[; ;main.c: 322: poligono_ext[point_dif_long].point_long_deg[j] = temp_buff_long[i];
+"322
+[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 3 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 3 `ui `ux *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux ]
+[; ;main.c: 323: poligono_ext[point_dif_long].fence_long_deg[j] = fence_diff_long[point][i];
 "323
+[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 1 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 1 `ui `ux *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux ]
+[; ;main.c: 325: i++;
+"325
 [e ++ _i -> -> 1 `i `uc ]
-"324
-}
-"318
-[e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 407  ]
-[e :U 408 ]
-"324
-}
 "326
 }
-[e :U 405 ]
+"320
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 410  ]
+[e :U 411 ]
+"326
+}
 "328
 }
-"310
+[e :U 408 ]
+"330
+}
+"312
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 402  ]
-[e :U 403 ]
-"328
+[e $ < -> _i `i -> 6 `i 405  ]
+[e :U 406 ]
+"330
 }
-[; ;main.c: 324: }
 [; ;main.c: 326: }
 [; ;main.c: 328: }
-[; ;main.c: 330: for(i=1; i<5; i++)
-"330
+[; ;main.c: 330: }
+[; ;main.c: 332: for(i=1; i<5; i++)
+"332
 {
 [e = _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 410  ]
-[e $U 411  ]
-"331
-[e :U 410 ]
-[; ;main.c: 331: {
-{
-[; ;main.c: 332: if(point == 0 || point == 2)
-"332
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 413  ]
-[; ;main.c: 333: {
+[e $ < -> _i `i -> 5 `i 413  ]
+[e $U 414  ]
 "333
+[e :U 413 ]
+[; ;main.c: 333: {
 {
-[; ;main.c: 335: if(point == 2 && !point_dif_lat)
+[; ;main.c: 334: if(point == 0 || point == 2)
+"334
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 416  ]
+[; ;main.c: 335: {
 "335
-[e $ ! && == -> _point `i -> 2 `i ! != -> _point_dif_lat `i -> -> -> 0 `i `uc `i 414  ]
-[; ;main.c: 336: {
-"336
 {
-[; ;main.c: 337: point_dif_lat++;
+[; ;main.c: 337: if(point == 2 && !point_dif_lat)
 "337
-[e ++ _point_dif_lat -> -> 1 `i `uc ]
+[e $ ! && == -> _point `i -> 2 `i ! != -> _point_dif_lat `i -> -> -> 0 `i `uc `i 417  ]
+[; ;main.c: 338: {
 "338
+{
+[; ;main.c: 339: point_dif_lat++;
+"339
+[e ++ _point_dif_lat -> -> 1 `i `uc ]
+"340
 }
-[e :U 414 ]
-[; ;main.c: 338: }
-[; ;main.c: 341: for(j= 0; i < 5; j++)
-"341
+[e :U 417 ]
+[; ;main.c: 340: }
+[; ;main.c: 343: for(j= 0; i < 5; j++)
+"343
 {
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 5 `i 415  ]
-[e $U 416  ]
-"342
-[e :U 415 ]
-[; ;main.c: 342: {
-{
-[; ;main.c: 343: poligono_ext[point_dif_lat].point_lat_deg[j] = temp_buff_lat[i];
-"343
-[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 2 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 2 `ui `ux *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux ]
-[; ;main.c: 344: poligono_ext[point_dif_lat].fence_lat_deg[j] = fence_diff_lat[point][i];
+[e $ < -> _i `i -> 5 `i 418  ]
+[e $U 419  ]
 "344
-[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 0 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 0 `ui `ux *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux ]
-[; ;main.c: 345: i++;
+[e :U 418 ]
+[; ;main.c: 344: {
+{
+[; ;main.c: 345: poligono_ext[point_dif_lat].point_lat_deg[j] = temp_buff_lat[i];
 "345
+[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 2 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 2 `ui `ux *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux ]
+[; ;main.c: 346: poligono_ext[point_dif_lat].fence_lat_deg[j] = fence_diff_lat[point][i];
+"346
+[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 0 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 0 `ui `ux *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux ]
+[; ;main.c: 347: i++;
+"347
 [e ++ _i -> -> 1 `i `uc ]
-"346
-}
-"341
-[e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 415  ]
-[e :U 416 ]
-"346
-}
 "348
 }
-[e :U 413 ]
-"349
+"343
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 5 `i 418  ]
+[e :U 419 ]
+"348
 }
-"330
+"350
+}
+[e :U 416 ]
+"351
+}
+"332
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 410  ]
-[e :U 411 ]
-"349
+[e $ < -> _i `i -> 5 `i 413  ]
+[e :U 414 ]
+"351
 }
-[; ;main.c: 346: }
 [; ;main.c: 348: }
-[; ;main.c: 349: }
-[; ;main.c: 353: if(point == 0 || point == 2)
-"353
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 418  ]
-[; ;main.c: 354: {
-"354
-{
-[; ;main.c: 355: temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
+[; ;main.c: 350: }
+[; ;main.c: 351: }
+[; ;main.c: 355: if(point == 0 || point == 2)
 "355
-[e = _temp_var_deg -> -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 2 `*Cuc `l `ul ]
-[; ;main.c: 356: poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 421  ]
+[; ;main.c: 356: {
 "356
-[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 0 `*Cuc `l ]
-[; ;main.c: 357: poligono_ext[count].diff_lat_deg -= temp_var_deg;
+{
+[; ;main.c: 357: temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
 "357
-[e =- . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> _temp_var_deg `l ]
-[; ;main.c: 358: temp_var_deg = atoi(poligono_ext[count].point_long_deg);
+[e = _temp_var_deg -> -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 2 `*Cuc `l `ul ]
+[; ;main.c: 358: poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
 "358
-[e = _temp_var_deg -> -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 3 `*Cuc `l `ul ]
-[; ;main.c: 359: poligono_ext[count].diff_long_deg = atoi(poligono_ext[count].fence_long_deg);
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 0 `*Cuc `l ]
+[; ;main.c: 359: poligono_ext[count].diff_lat_deg -= temp_var_deg;
 "359
-[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 1 `*Cuc `l ]
-[; ;main.c: 360: poligono_ext[count].diff_long_deg -= temp_var_deg;
+[e =- . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> _temp_var_deg `l ]
+[; ;main.c: 360: temp_var_deg = atoi(poligono_ext[count].point_long_deg);
 "360
-[e =- . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> _temp_var_deg `l ]
-[; ;main.c: 362: count++;
+[e = _temp_var_deg -> -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 3 `*Cuc `l `ul ]
+[; ;main.c: 361: poligono_ext[count].diff_long_deg = atoi(poligono_ext[count].fence_long_deg);
+"361
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 1 `*Cuc `l ]
+[; ;main.c: 362: poligono_ext[count].diff_long_deg -= temp_var_deg;
 "362
-[e ++ _count -> -> 1 `i `uc ]
-"363
-}
-[e :U 418 ]
-[; ;main.c: 363: }
-[; ;main.c: 364: point++;
+[e =- . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> _temp_var_deg `l ]
+[; ;main.c: 364: count++;
 "364
-[e ++ _point -> -> 1 `i `uc ]
+[e ++ _count -> -> 1 `i `uc ]
 "365
 }
-[e :U 399 ]
-"307
-[e $ < -> _point `i -> 4 `i 400  ]
-[e :U 401 ]
+[e :U 421 ]
 [; ;main.c: 365: }
-[; ;main.c: 371: point = 0;
-"371
-[e = _point -> -> 0 `i `uc ]
-[; ;main.c: 372: count = 0;
-"372
-[e = _count -> -> 0 `i `uc ]
-[; ;main.c: 373: point_dif_lat = 0;
+[; ;main.c: 366: point++;
+"366
+[e ++ _point -> -> 1 `i `uc ]
+"367
+}
+[e :U 402 ]
+"309
+[e $ < -> _point `i -> 4 `i 403  ]
+[e :U 404 ]
+[; ;main.c: 367: }
+[; ;main.c: 373: point = 0;
 "373
-[e = _point_dif_lat -> -> 0 `i `uc ]
-[; ;main.c: 374: point_dif_long = 0;
+[e = _point -> -> 0 `i `uc ]
+[; ;main.c: 374: count = 0;
 "374
+[e = _count -> -> 0 `i `uc ]
+[; ;main.c: 375: point_dif_lat = 0;
+"375
+[e = _point_dif_lat -> -> 0 `i `uc ]
+[; ;main.c: 376: point_dif_long = 0;
+"376
 [e = _point_dif_long -> -> 0 `i `uc ]
-[; ;main.c: 378: while(point<4)
-"378
-[e $U 419  ]
-[e :U 420 ]
-[; ;main.c: 379: {
-"379
-{
-[; ;main.c: 380: for(i=6; i<11; i++)
+[; ;main.c: 380: while(point<4)
 "380
+[e $U 422  ]
+[e :U 423 ]
+[; ;main.c: 381: {
+"381
+{
+[; ;main.c: 382: for(i=6; i<11; i++)
+"382
 {
 [e = _i -> -> 6 `i `uc ]
-[e $ < -> _i `i -> 11 `i 422  ]
-[e $U 423  ]
-"381
-[e :U 422 ]
-[; ;main.c: 381: {
-{
-[; ;main.c: 382: if(point == 0 || point == 2)
-"382
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 425  ]
-[; ;main.c: 383: {
+[e $ < -> _i `i -> 11 `i 425  ]
+[e $U 426  ]
 "383
+[e :U 425 ]
+[; ;main.c: 383: {
 {
-[; ;main.c: 384: if(point == 2 && !point_dif_lat)
+[; ;main.c: 384: if(point == 0 || point == 2)
 "384
-[e $ ! && == -> _point `i -> 2 `i ! != -> _point_dif_lat `i -> -> -> 0 `i `uc `i 426  ]
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 428  ]
 [; ;main.c: 385: {
 "385
 {
-[; ;main.c: 386: point_dif_lat++;
+[; ;main.c: 386: if(point == 2 && !point_dif_lat)
 "386
-[e ++ _point_dif_lat -> -> 1 `i `uc ]
+[e $ ! && == -> _point `i -> 2 `i ! != -> _point_dif_lat `i -> -> -> 0 `i `uc `i 429  ]
+[; ;main.c: 387: {
 "387
-}
-[e :U 426 ]
-[; ;main.c: 387: }
-[; ;main.c: 388: if(fence_diff_lat[point][i] != temp_buff_lat[i])
-"388
-[e $ ! != -> *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux `i -> *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux `i 427  ]
-[; ;main.c: 389: {
-"389
 {
-[; ;main.c: 390: for(j= 0; i < 11; j++)
+[; ;main.c: 388: point_dif_lat++;
+"388
+[e ++ _point_dif_lat -> -> 1 `i `uc ]
+"389
+}
+[e :U 429 ]
+[; ;main.c: 389: }
+[; ;main.c: 390: if(fence_diff_lat[point][i] != temp_buff_lat[i])
 "390
+[e $ ! != -> *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux `i -> *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux `i 430  ]
+[; ;main.c: 391: {
+"391
+{
+[; ;main.c: 392: for(j= 0; i < 11; j++)
+"392
 {
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 11 `i 428  ]
-[e $U 429  ]
-"391
-[e :U 428 ]
-[; ;main.c: 391: {
-{
-[; ;main.c: 392: poligono_ext[point_dif_lat].fence_lat_min[j] = fence_diff_lat[point][i];
-"392
-[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 6 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 6 `ui `ux *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux ]
-[; ;main.c: 393: poligono_ext[point_dif_lat].point_lat_min[j] = temp_buff_lat[i];
+[e $ < -> _i `i -> 11 `i 431  ]
+[e $U 432  ]
 "393
-[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 8 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 8 `ui `ux *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux ]
-[; ;main.c: 394: i++;
+[e :U 431 ]
+[; ;main.c: 393: {
+{
+[; ;main.c: 394: poligono_ext[point_dif_lat].fence_lat_min[j] = fence_diff_lat[point][i];
 "394
+[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 6 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 6 `ui `ux *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux ]
+[; ;main.c: 395: poligono_ext[point_dif_lat].point_lat_min[j] = temp_buff_lat[i];
+"395
+[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 8 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_lat `ux -> -> # *U &U _poligono_ext `ui `ux 8 `ui `ux *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux ]
+[; ;main.c: 396: i++;
+"396
 [e ++ _i -> -> 1 `i `uc ]
-"395
-}
-"390
-[e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 11 `i 428  ]
-[e :U 429 ]
-"395
-}
 "397
 }
-[e :U 427 ]
+"392
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 11 `i 431  ]
+[e :U 432 ]
+"397
+}
 "399
 }
-[; ;main.c: 395: }
+[e :U 430 ]
+"401
+}
 [; ;main.c: 397: }
 [; ;main.c: 399: }
-[e $U 431  ]
-"400
-[e :U 425 ]
-[; ;main.c: 400: else
-[; ;main.c: 401: {
-"401
-{
-[; ;main.c: 402: i = 11;
+[; ;main.c: 401: }
+[e $U 434  ]
 "402
-[e = _i -> -> 11 `i `uc ]
+[e :U 428 ]
+[; ;main.c: 402: else
+[; ;main.c: 403: {
 "403
-}
-[e :U 431 ]
+{
+[; ;main.c: 404: i = 11;
 "404
+[e = _i -> -> 11 `i `uc ]
+"405
 }
-"380
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 11 `i 422  ]
-[e :U 423 ]
-"404
-}
-[; ;main.c: 403: }
-[; ;main.c: 404: }
-[; ;main.c: 406: for(i=7; i<12; i++)
+[e :U 434 ]
 "406
+}
+"382
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 11 `i 425  ]
+[e :U 426 ]
+"406
+}
+[; ;main.c: 405: }
+[; ;main.c: 406: }
+[; ;main.c: 408: for(i=7; i<12; i++)
+"408
 {
 [e = _i -> -> 7 `i `uc ]
-[e $ < -> _i `i -> 12 `i 432  ]
-[e $U 433  ]
-"407
-[e :U 432 ]
-[; ;main.c: 407: {
-{
-[; ;main.c: 408: if(point == 0 || point == 2)
-"408
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 435  ]
-[; ;main.c: 409: {
+[e $ < -> _i `i -> 12 `i 435  ]
+[e $U 436  ]
 "409
+[e :U 435 ]
+[; ;main.c: 409: {
 {
-[; ;main.c: 410: if(point == 2 && !point_dif_long)
+[; ;main.c: 410: if(point == 0 || point == 2)
 "410
-[e $ ! && == -> _point `i -> 2 `i ! != -> _point_dif_long `i -> -> -> 0 `i `uc `i 436  ]
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 438  ]
 [; ;main.c: 411: {
 "411
 {
-[; ;main.c: 412: point_dif_long++;
+[; ;main.c: 412: if(point == 2 && !point_dif_long)
 "412
-[e ++ _point_dif_long -> -> 1 `i `uc ]
+[e $ ! && == -> _point `i -> 2 `i ! != -> _point_dif_long `i -> -> -> 0 `i `uc `i 439  ]
+[; ;main.c: 413: {
 "413
-}
-[e :U 436 ]
-[; ;main.c: 413: }
-[; ;main.c: 416: if(fence_diff_long[point][i] != temp_buff_long[i])
-"416
-[e $ ! != -> *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux `i 437  ]
-[; ;main.c: 417: {
-"417
 {
-[; ;main.c: 418: for(j= 0; i < 12; j++)
+[; ;main.c: 414: point_dif_long++;
+"414
+[e ++ _point_dif_long -> -> 1 `i `uc ]
+"415
+}
+[e :U 439 ]
+[; ;main.c: 415: }
+[; ;main.c: 418: if(fence_diff_long[point][i] != temp_buff_long[i])
 "418
+[e $ ! != -> *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux `i 440  ]
+[; ;main.c: 419: {
+"419
+{
+[; ;main.c: 420: for(j= 0; i < 12; j++)
+"420
 {
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 12 `i 438  ]
-[e $U 439  ]
-"419
-[e :U 438 ]
-[; ;main.c: 419: {
-{
-[; ;main.c: 420: poligono_ext[point_dif_long].fence_long_min[j] = fence_diff_long[point][i];
-"420
-[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 7 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 7 `ui `ux *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux ]
-[; ;main.c: 421: poligono_ext[point_dif_long].point_long_min[j] = temp_buff_long[i];
+[e $ < -> _i `i -> 12 `i 441  ]
+[e $U 442  ]
 "421
-[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 9 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 9 `ui `ux *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux ]
-[; ;main.c: 422: i++;
+[e :U 441 ]
+[; ;main.c: 421: {
+{
+[; ;main.c: 422: poligono_ext[point_dif_long].fence_long_min[j] = fence_diff_long[point][i];
 "422
-[e ++ _i -> -> 1 `i `uc ]
+[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 7 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 7 `ui `ux *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux ]
+[; ;main.c: 423: poligono_ext[point_dif_long].point_long_min[j] = temp_buff_long[i];
 "423
-}
-"418
-[e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 12 `i 438  ]
-[e :U 439 ]
-"423
-}
+[e = *U + &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 9 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_dif_long `ux -> -> # *U &U _poligono_ext `ui `ux 9 `ui `ux *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux ]
+[; ;main.c: 424: i++;
 "424
-}
-[e :U 437 ]
+[e ++ _i -> -> 1 `i `uc ]
 "425
 }
-[; ;main.c: 423: }
-[; ;main.c: 424: }
-[; ;main.c: 425: }
-[e $U 441  ]
-"426
-[e :U 435 ]
-[; ;main.c: 426: else
-[; ;main.c: 427: {
-"427
-{
-[; ;main.c: 428: i = 11;
-"428
-[e = _i -> -> 11 `i `uc ]
-"429
-}
-[e :U 441 ]
-"431
-}
-"406
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 12 `i 432  ]
-[e :U 433 ]
-"431
-}
-[; ;main.c: 429: }
-[; ;main.c: 431: }
-[; ;main.c: 432: if(point == 0 || point == 2)
-"432
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 442  ]
-[; ;main.c: 433: {
-"433
-{
-[; ;main.c: 434: poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
-"434
-[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> - ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 6 `*Cuc ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 8 `*Cuc `l ]
-[; ;main.c: 435: poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
-"435
-[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> - ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 7 `*Cuc ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 9 `*Cuc `l ]
-[; ;main.c: 436: count++;
-"436
-[e ++ _count -> -> 1 `i `uc ]
-"437
-}
+"420
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 12 `i 441  ]
 [e :U 442 ]
-[; ;main.c: 437: }
-[; ;main.c: 439: point++;
-"439
-[e ++ _point -> -> 1 `i `uc ]
-"440
+"425
 }
-[e :U 419 ]
-"378
-[e $ < -> _point `i -> 4 `i 420  ]
-[e :U 421 ]
-[; ;main.c: 440: }
-[; ;main.c: 441: count = 0;
-"441
-[e = _count -> -> 0 `i `uc ]
-[; ;main.c: 442: point = 0;
-"442
-[e = _point -> -> 0 `i `uc ]
-[; ;main.c: 448: switch(temp_buff_long[0])
-"448
+"426
+}
+[e :U 440 ]
+"427
+}
+[; ;main.c: 425: }
+[; ;main.c: 426: }
+[; ;main.c: 427: }
 [e $U 444  ]
-[; ;main.c: 449: {
-"449
+"428
+[e :U 438 ]
+[; ;main.c: 428: else
+[; ;main.c: 429: {
+"429
 {
-[; ;main.c: 450: case '-':
-"450
-[e :U 445 ]
-[; ;main.c: 451: if(
-[; ;main.c: 452: ((poligono_ext[0].diff_long_min >= 0 &&
-[; ;main.c: 453: poligono_ext[1].diff_long_min <= 0) &&
-[; ;main.c: 455: (poligono_ext[0].diff_long_deg >= 0 &&
-[; ;main.c: 456: poligono_ext[1].diff_long_deg <= 0)))
-"456
-[e $ ! && && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 446  ]
-[; ;main.c: 457: {
-"457
-{
-[; ;main.c: 458: flag[0].point = 0;
-"458
-[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
-"459
+[; ;main.c: 430: i = 11;
+"430
+[e = _i -> -> 11 `i `uc ]
+"431
 }
-[; ;main.c: 459: }
-[e $U 447  ]
-"460
-[e :U 446 ]
-[; ;main.c: 460: else if((poligono_ext[0].diff_long_min == 0 ||
-[; ;main.c: 461: poligono_ext[1].diff_long_min == 0 ) &&
-[; ;main.c: 464: (poligono_ext[0].diff_long_deg == 0 ||
-[; ;main.c: 465: poligono_ext[1].diff_long_deg == 0))
-"465
-[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 448  ]
-[; ;main.c: 466: {
-"466
-{
-[; ;main.c: 467: flag[0].point = 0;
-"467
-[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
-"468
-}
-[; ;main.c: 468: }
-[e $U 449  ]
-"469
-[e :U 448 ]
-[; ;main.c: 469: else
-[; ;main.c: 470: {
-"470
-{
-[; ;main.c: 471: flag[0].point = 1;
-"471
-[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
-"472
-}
-[e :U 449 ]
-[e :U 447 ]
-[; ;main.c: 472: }
-[; ;main.c: 473: break;
-"473
-[e $U 443  ]
-[; ;main.c: 475: default:
-"475
-[e :U 450 ]
-[; ;main.c: 476: if(
-[; ;main.c: 477: (poligono_ext[0].diff_long_min <= 0 &&
-[; ;main.c: 478: poligono_ext[1].diff_long_min >= 0 ) &&
-[; ;main.c: 479: (poligono_ext[0].diff_lat_deg <= 0 &&
-[; ;main.c: 480: poligono_ext[1].diff_lat_deg >= 0))
-"480
-[e $ ! && && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 451  ]
-[; ;main.c: 481: {
-"481
-{
-[; ;main.c: 482: flag[0].point = 0;
-"482
-[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
-"483
-}
-[; ;main.c: 483: }
-[e $U 452  ]
-"484
-[e :U 451 ]
-[; ;main.c: 484: else if((poligono_ext[0].diff_long_min == 0 ||
-[; ;main.c: 485: poligono_ext[1].diff_long_min == 0) &&
-[; ;main.c: 486: (poligono_ext[0].diff_long_deg == 0 ||
-[; ;main.c: 487: poligono_ext[1].diff_long_deg == 0))
-"487
-[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 453  ]
-[; ;main.c: 488: {
-"488
-{
-[; ;main.c: 489: flag[0].point = 0;
-"489
-[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
-"490
-}
-[; ;main.c: 490: }
-[e $U 454  ]
-"491
-[e :U 453 ]
-[; ;main.c: 491: else
-[; ;main.c: 492: {
-"492
-{
-[; ;main.c: 493: flag[0].point = 1;
-"493
-[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
-"494
-}
-[e :U 454 ]
-[e :U 452 ]
-[; ;main.c: 494: }
-[; ;main.c: 495: break;
-"495
-[e $U 443  ]
-"497
-}
-[; ;main.c: 497: }
-[e $U 443  ]
-"448
 [e :U 444 ]
-[e [\ *U + &U _temp_buff_long * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp_buff_long `ui `ux , $ -> -> 45 `ui `uc 445
- 450 ]
-"497
-[e :U 443 ]
-[; ;main.c: 500: switch(temp_buff_lat[0])
-"500
-[e $U 456  ]
-[; ;main.c: 501: {
-"501
-{
-[; ;main.c: 502: case '-':
-"502
-[e :U 457 ]
-[; ;main.c: 503: if(
-[; ;main.c: 504: (
-[; ;main.c: 505: poligono_ext[0].diff_lat_min <= 0 &&
-[; ;main.c: 506: poligono_ext[1].diff_lat_min >= 0) &&
-[; ;main.c: 508: (poligono_ext[0].diff_lat_deg <= 0 &&
-[; ;main.c: 509: poligono_ext[1].diff_lat_deg >= 0))
-"509
-[e $ ! && && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 458  ]
-[; ;main.c: 511: {
-"511
-{
-[; ;main.c: 512: flag[1].point = 0;
-"512
-[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
-"513
+"433
 }
-[; ;main.c: 513: }
-[e $U 459  ]
-"514
-[e :U 458 ]
-[; ;main.c: 514: else if(
-[; ;main.c: 515: (poligono_ext[0].diff_lat_min == 0 ||
-[; ;main.c: 516: poligono_ext[1].diff_lat_min == 0) &&
-[; ;main.c: 517: (poligono_ext[0].diff_lat_deg == 0 ||
-[; ;main.c: 518: poligono_ext[1].diff_lat_deg == 0))
-"518
-[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 460  ]
-[; ;main.c: 519: {
-"519
-{
-[; ;main.c: 521: flag[1].point = 0;
-"521
-[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
-"522
+"408
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 12 `i 435  ]
+[e :U 436 ]
+"433
 }
-[; ;main.c: 522: }
-[e $U 461  ]
-"523
-[e :U 460 ]
-[; ;main.c: 523: else
-[; ;main.c: 524: {
-"524
+[; ;main.c: 431: }
+[; ;main.c: 433: }
+[; ;main.c: 434: if(point == 0 || point == 2)
+"434
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 445  ]
+[; ;main.c: 435: {
+"435
 {
-[; ;main.c: 525: flag[1].point = 1;
-"525
-[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
-"526
+[; ;main.c: 436: poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
+"436
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> - ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 6 `*Cuc ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 8 `*Cuc `l ]
+[; ;main.c: 437: poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
+"437
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> - ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 7 `*Cuc ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 9 `*Cuc `l ]
+[; ;main.c: 438: count++;
+"438
+[e ++ _count -> -> 1 `i `uc ]
+"439
 }
-[e :U 461 ]
-[e :U 459 ]
-[; ;main.c: 526: }
-[; ;main.c: 527: break;
-"527
+[e :U 445 ]
+[; ;main.c: 439: }
+[; ;main.c: 441: point++;
+"441
+[e ++ _point -> -> 1 `i `uc ]
+"442
+}
+[e :U 422 ]
+"380
+[e $ < -> _point `i -> 4 `i 423  ]
+[e :U 424 ]
+[; ;main.c: 442: }
+[; ;main.c: 443: count = 0;
+"443
+[e = _count -> -> 0 `i `uc ]
+[; ;main.c: 444: point = 0;
+"444
+[e = _point -> -> 0 `i `uc ]
+[; ;main.c: 450: switch(temp_buff_long[0])
+"450
+[e $U 447  ]
+[; ;main.c: 451: {
+"451
+{
+[; ;main.c: 452: case '-':
+"452
+[e :U 448 ]
+[; ;main.c: 453: if(
+[; ;main.c: 454: ((poligono_ext[0].diff_long_min >= 0 &&
+[; ;main.c: 455: poligono_ext[1].diff_long_min <= 0) &&
+[; ;main.c: 457: (poligono_ext[0].diff_long_deg >= 0 &&
+[; ;main.c: 458: poligono_ext[1].diff_long_deg <= 0)))
+"458
+[e $ ! && && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 449  ]
+[; ;main.c: 459: {
+"459
+{
+[; ;main.c: 460: flag[0].point = 0;
+"460
+[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"461
+}
+[; ;main.c: 461: }
+[e $U 450  ]
+"462
+[e :U 449 ]
+[; ;main.c: 462: else if((poligono_ext[0].diff_long_min == 0 ||
+[; ;main.c: 463: poligono_ext[1].diff_long_min == 0 ) &&
+[; ;main.c: 466: (poligono_ext[0].diff_long_deg == 0 ||
+[; ;main.c: 467: poligono_ext[1].diff_long_deg == 0))
+"467
+[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 451  ]
+[; ;main.c: 468: {
+"468
+{
+[; ;main.c: 469: flag[0].point = 0;
+"469
+[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"470
+}
+[; ;main.c: 470: }
+[e $U 452  ]
+"471
+[e :U 451 ]
+[; ;main.c: 471: else
+[; ;main.c: 472: {
+"472
+{
+[; ;main.c: 473: flag[0].point = 1;
+"473
+[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
+"474
+}
+[e :U 452 ]
+[e :U 450 ]
+[; ;main.c: 474: }
+[; ;main.c: 475: break;
+"475
+[e $U 446  ]
+[; ;main.c: 477: default:
+"477
+[e :U 453 ]
+[; ;main.c: 478: if(
+[; ;main.c: 479: (poligono_ext[0].diff_long_min <= 0 &&
+[; ;main.c: 480: poligono_ext[1].diff_long_min >= 0 ) &&
+[; ;main.c: 481: (poligono_ext[0].diff_lat_deg <= 0 &&
+[; ;main.c: 482: poligono_ext[1].diff_lat_deg >= 0))
+"482
+[e $ ! && && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 454  ]
+[; ;main.c: 483: {
+"483
+{
+[; ;main.c: 484: flag[0].point = 0;
+"484
+[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"485
+}
+[; ;main.c: 485: }
 [e $U 455  ]
-[; ;main.c: 529: default:
-"529
-[e :U 462 ]
-[; ;main.c: 530: if((poligono_ext[0].diff_lat_min >= 0 &&
-[; ;main.c: 531: poligono_ext[1].diff_lat_min <= 0 ) &&
-[; ;main.c: 534: (poligono_ext[0].diff_lat_deg >= 0 &&
-[; ;main.c: 535: poligono_ext[1].diff_lat_deg <= 0)
-[; ;main.c: 536: )
-"536
-[e $ ! && && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 463  ]
-[; ;main.c: 537: {
-"537
+"486
+[e :U 454 ]
+[; ;main.c: 486: else if((poligono_ext[0].diff_long_min == 0 ||
+[; ;main.c: 487: poligono_ext[1].diff_long_min == 0) &&
+[; ;main.c: 488: (poligono_ext[0].diff_long_deg == 0 ||
+[; ;main.c: 489: poligono_ext[1].diff_long_deg == 0))
+"489
+[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 456  ]
+[; ;main.c: 490: {
+"490
 {
-[; ;main.c: 538: flag[1].point = 0;
-"538
-[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
-"539
+[; ;main.c: 491: flag[0].point = 0;
+"491
+[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"492
 }
-[; ;main.c: 539: }
-[e $U 464  ]
-"540
-[e :U 463 ]
-[; ;main.c: 540: else if((poligono_ext[0].diff_lat_min == 0 ||
-[; ;main.c: 541: poligono_ext[1].diff_lat_min == 0) &&
-[; ;main.c: 543: (poligono_ext[0].diff_lat_deg == 0 ||
-[; ;main.c: 544: poligono_ext[1].diff_lat_deg == 0))
-"544
-[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 465  ]
-[; ;main.c: 545: {
-"545
-{
-[; ;main.c: 546: flag[1].point = 0;
-"546
-[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
-"547
-}
-[; ;main.c: 547: }
-[e $U 466  ]
-"548
-[e :U 465 ]
-[; ;main.c: 548: else
-[; ;main.c: 549: {
-"549
-{
-[; ;main.c: 552: flag[1].point = 1;
-"552
-[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
-"553
-}
-[e :U 466 ]
-[e :U 464 ]
-[; ;main.c: 553: }
-[; ;main.c: 554: break;
-"554
-[e $U 455  ]
-"556
-}
-[; ;main.c: 556: }
-[e $U 455  ]
-"500
+[; ;main.c: 492: }
+[e $U 457  ]
+"493
 [e :U 456 ]
-[e [\ *U + &U _temp_buff_lat * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp_buff_lat `ui `ux , $ -> -> 45 `ui `uc 457
- 462 ]
-"556
-[e :U 455 ]
-[; ;main.c: 559: if(flag[0].point || flag[1].point)
-"559
-[e $ ! || != -> . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i != -> . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 467  ]
-[; ;main.c: 560: {
-"560
+[; ;main.c: 493: else
+[; ;main.c: 494: {
+"494
 {
-[; ;main.c: 561: flag[2].point = 1;
-"561
-[e = . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
-[; ;main.c: 562: posicao_cursor_lcd(1,0);
-"562
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 563: escreve_frase_ram_lcd("REGIAO NEGADA");
-"563
-[e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
-[; ;main.c: 564: posicao_cursor_lcd(2,14);
-"564
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 14 `i `uc ]
-[; ;main.c: 565: escreve_inteiro_lcd(flag[0].point);
-"565
-[e ( _escreve_inteiro_lcd (1 -> . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i ]
-[; ;main.c: 566: posicao_cursor_lcd(2,15);
-"566
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 15 `i `uc ]
-[; ;main.c: 567: escreve_inteiro_lcd(flag[1].point);
-"567
-[e ( _escreve_inteiro_lcd (1 -> . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i ]
-"568
+[; ;main.c: 495: flag[0].point = 1;
+"495
+[e = . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
+"496
 }
+[e :U 457 ]
+[e :U 455 ]
+[; ;main.c: 496: }
+[; ;main.c: 497: break;
+"497
+[e $U 446  ]
+"499
+}
+[; ;main.c: 499: }
+[e $U 446  ]
+"450
+[e :U 447 ]
+[e [\ *U + &U _temp_buff_long * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp_buff_long `ui `ux , $ -> -> 45 `ui `uc 448
+ 453 ]
+"499
+[e :U 446 ]
+[; ;main.c: 502: switch(temp_buff_lat[0])
+"502
+[e $U 459  ]
+[; ;main.c: 503: {
+"503
+{
+[; ;main.c: 504: case '-':
+"504
+[e :U 460 ]
+[; ;main.c: 505: if(
+[; ;main.c: 506: (
+[; ;main.c: 507: poligono_ext[0].diff_lat_min <= 0 &&
+[; ;main.c: 508: poligono_ext[1].diff_lat_min >= 0) &&
+[; ;main.c: 510: (poligono_ext[0].diff_lat_deg <= 0 &&
+[; ;main.c: 511: poligono_ext[1].diff_lat_deg >= 0))
+"511
+[e $ ! && && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 461  ]
+[; ;main.c: 513: {
+"513
+{
+[; ;main.c: 514: flag[1].point = 0;
+"514
+[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"515
+}
+[; ;main.c: 515: }
+[e $U 462  ]
+"516
+[e :U 461 ]
+[; ;main.c: 516: else if(
+[; ;main.c: 517: (poligono_ext[0].diff_lat_min == 0 ||
+[; ;main.c: 518: poligono_ext[1].diff_lat_min == 0) &&
+[; ;main.c: 519: (poligono_ext[0].diff_lat_deg == 0 ||
+[; ;main.c: 520: poligono_ext[1].diff_lat_deg == 0))
+"520
+[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 463  ]
+[; ;main.c: 521: {
+"521
+{
+[; ;main.c: 523: flag[1].point = 0;
+"523
+[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"524
+}
+[; ;main.c: 524: }
+[e $U 464  ]
+"525
+[e :U 463 ]
+[; ;main.c: 525: else
+[; ;main.c: 526: {
+"526
+{
+[; ;main.c: 527: flag[1].point = 1;
+"527
+[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
+"528
+}
+[e :U 464 ]
+[e :U 462 ]
+[; ;main.c: 528: }
+[; ;main.c: 529: break;
+"529
+[e $U 458  ]
+[; ;main.c: 531: default:
+"531
+[e :U 465 ]
+[; ;main.c: 532: if((poligono_ext[0].diff_lat_min >= 0 &&
+[; ;main.c: 533: poligono_ext[1].diff_lat_min <= 0 ) &&
+[; ;main.c: 536: (poligono_ext[0].diff_lat_deg >= 0 &&
+[; ;main.c: 537: poligono_ext[1].diff_lat_deg <= 0)
+[; ;main.c: 538: )
+"538
+[e $ ! && && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 466  ]
+[; ;main.c: 539: {
+"539
+{
+[; ;main.c: 540: flag[1].point = 0;
+"540
+[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"541
+}
+[; ;main.c: 541: }
+[e $U 467  ]
+"542
+[e :U 466 ]
+[; ;main.c: 542: else if((poligono_ext[0].diff_lat_min == 0 ||
+[; ;main.c: 543: poligono_ext[1].diff_lat_min == 0) &&
+[; ;main.c: 545: (poligono_ext[0].diff_lat_deg == 0 ||
+[; ;main.c: 546: poligono_ext[1].diff_lat_deg == 0))
+"546
+[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 468  ]
+[; ;main.c: 547: {
+"547
+{
+[; ;main.c: 548: flag[1].point = 0;
+"548
+[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"549
+}
+[; ;main.c: 549: }
+[e $U 469  ]
+"550
+[e :U 468 ]
+[; ;main.c: 550: else
+[; ;main.c: 551: {
+"551
+{
+[; ;main.c: 554: flag[1].point = 1;
+"554
+[e = . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
+"555
+}
+[e :U 469 ]
 [e :U 467 ]
-[; ;main.c: 568: }
-[; ;main.c: 572: }
+[; ;main.c: 555: }
+[; ;main.c: 556: break;
+"556
+[e $U 458  ]
+"558
+}
+[; ;main.c: 558: }
+[e $U 458  ]
+"502
+[e :U 459 ]
+[e [\ *U + &U _temp_buff_lat * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp_buff_lat `ui `ux , $ -> -> 45 `ui `uc 460
+ 465 ]
+"558
+[e :U 458 ]
+[; ;main.c: 561: if(flag[0].point || flag[1].point)
+"561
+[e $ ! || != -> . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i != -> . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 470  ]
+[; ;main.c: 562: {
+"562
+{
+[; ;main.c: 563: flag[2].point = 1;
+"563
+[e = . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 1 `i `uc ]
+[; ;main.c: 564: posicao_cursor_lcd(1,0);
+"564
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 565: escreve_frase_ram_lcd("REGIAO NEGADA");
+"565
+[e ( _escreve_frase_ram_lcd (1 -> :s 1C `*uc ]
+[; ;main.c: 566: posicao_cursor_lcd(2,14);
+"566
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 14 `i `uc ]
+[; ;main.c: 567: escreve_inteiro_lcd(flag[0].point);
+"567
+[e ( _escreve_inteiro_lcd (1 -> . *U + &U _flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i ]
+[; ;main.c: 568: posicao_cursor_lcd(2,15);
+"568
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 15 `i `uc ]
+[; ;main.c: 569: escreve_inteiro_lcd(flag[1].point);
+"569
+[e ( _escreve_inteiro_lcd (1 -> . *U + &U _flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i ]
+"570
+}
+[; ;main.c: 570: }
+[e $U 471  ]
+"571
+[e :U 470 ]
+[; ;main.c: 571: else
+[; ;main.c: 572: {
 "572
+{
+[; ;main.c: 573: flag[2].point = 0;
+"573
+[e = . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 -> -> 0 `i `uc ]
+"574
+}
+[e :U 471 ]
+[; ;main.c: 574: }
+[; ;main.c: 578: }
+"578
 [e :UE 398 ]
 }
-"574
+"580
 [v _verifica_dados_operacionais `(v ~T0 @X0 1 ef ]
-"575
+"581
 {
-[; ;main.c: 574: void verifica_dados_operacionais(void)
-[; ;main.c: 575: {
+[; ;main.c: 580: void verifica_dados_operacionais(void)
+[; ;main.c: 581: {
 [e :U _verifica_dados_operacionais ]
 [f ]
-[; ;main.c: 584: }
-"584
-[e :UE 468 ]
-}
-"589
-[v _disparo_gravacao `(v ~T0 @X0 1 ef ]
+[; ;main.c: 590: }
 "590
+[e :UE 472 ]
+}
+"595
+[v _disparo_gravacao `(v ~T0 @X0 1 ef ]
+"596
 {
-[; ;main.c: 589: void disparo_gravacao(void)
-[; ;main.c: 590: {
+[; ;main.c: 595: void disparo_gravacao(void)
+[; ;main.c: 596: {
 [e :U _disparo_gravacao ]
 [f ]
-[; ;main.c: 591: if(!time_sd)
-"591
-[e $ ! ! != _time_sd -> -> 0 `i `ui 470  ]
-[; ;main.c: 592: {
-"592
+[; ;main.c: 597: if(!time_sd)
+"597
+[e $ ! ! != _time_sd -> -> 0 `i `ui 474  ]
+[; ;main.c: 598: {
+"598
 {
-[; ;main.c: 595: escrita_sdcard();
-"595
+[; ;main.c: 601: escrita_sdcard();
+"601
 [e ( _escrita_sdcard ..  ]
-[; ;main.c: 596: time_sd = 30000;
-"596
+[; ;main.c: 602: time_sd = 30000;
+"602
 [e = _time_sd -> -> 30000 `i `ui ]
-"599
-}
-[e :U 470 ]
-[; ;main.c: 599: }
-[; ;main.c: 600: }
-"600
-[e :UE 469 ]
-}
-"604
-[v _troca_de_tela `(v ~T0 @X0 1 ef ]
 "605
+}
+[e :U 474 ]
+[; ;main.c: 605: }
+[; ;main.c: 606: }
+"606
+[e :UE 473 ]
+}
+"610
+[v _troca_de_tela `(v ~T0 @X0 1 ef ]
+"611
 {
-[; ;main.c: 604: void troca_de_tela(void)
-[; ;main.c: 605: {
+[; ;main.c: 610: void troca_de_tela(void)
+[; ;main.c: 611: {
 [e :U _troca_de_tela ]
 [f ]
-"607
+"613
 [v F4392 `uc ~T0 @X0 1 s state ]
 [i F4392
 -> -> 0 `i `uc
 ]
-"608
+"614
 [v F4393 `uc ~T0 @X0 1 s last_state ]
 [i F4393
 -> -> 0 `i `uc
 ]
-[; ;main.c: 607: static unsigned char state = 0;
-[; ;main.c: 608: static unsigned char last_state = 0;;
-[; ;main.c: 610: if(!PORTEbits.RE0 && !flag[2].point || (state == 1 ))
-"610
-[e $ ! || && ! != -> . . _PORTEbits 0 0 `i -> -> -> 0 `i `Vuc `i ! != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i == -> F4392 `i -> 1 `i 472  ]
-[; ;main.c: 611: {
-"611
-{
-[; ;main.c: 613: if(!time_atualizacao)
-"613
-[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 473  ]
-[; ;main.c: 614: {
-"614
-{
-[; ;main.c: 616: time_atualizacao = 10000;
-"616
-[e = _time_atualizacao -> -> 10000 `i `ui ]
-"617
-}
-[e :U 473 ]
-[; ;main.c: 617: }
-[; ;main.c: 619: if(last_state != 1)
+[; ;main.c: 613: static unsigned char state = 0;
+[; ;main.c: 614: static unsigned char last_state = 0;;
+[; ;main.c: 618: if(!PORTEbits.RE0 && !flag[2].point || (state == 1 ))
+"618
+[e $ ! || && ! != -> . . _PORTEbits 0 0 `i -> -> -> 0 `i `Vuc `i ! != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i == -> F4392 `i -> 1 `i 476  ]
+[; ;main.c: 619: {
 "619
-[e $ ! != -> F4393 `i -> 1 `i 474  ]
-[; ;main.c: 620: {
-"620
 {
-[; ;main.c: 621: state = 1;
+[; ;main.c: 621: if(!time_atualizacao)
 "621
-[e = F4392 -> -> 1 `i `uc ]
-[; ;main.c: 622: escreve_cmd_lcd(0b00000001);
+[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 477  ]
+[; ;main.c: 622: {
 "622
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 623: posicao_cursor_lcd(1,0);
-"623
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 624: escreve_frase_ram_lcd("RPM:");
+{
+[; ;main.c: 624: time_atualizacao = 10000;
 "624
-[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
-[; ;main.c: 625: posicao_cursor_lcd(2,0);
-"625
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 626: escreve_frase_ram_lcd("VEL:");
-"626
-[e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
-"627
-}
-[e :U 474 ]
-[; ;main.c: 627: }
-[; ;main.c: 628: last_state = 1;
-"628
-[e = F4393 -> -> 1 `i `uc ]
-"630
-}
-[e :U 472 ]
-[; ;main.c: 630: }
-[; ;main.c: 632: if(!PORTEbits.RE1 && !flag[2].point || (state == 2))
-"632
-[e $ ! || && ! != -> . . _PORTEbits 0 1 `i -> -> -> 0 `i `Vuc `i ! != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i == -> F4392 `i -> 2 `i 475  ]
-[; ;main.c: 633: {
-"633
-{
-[; ;main.c: 634: if(!time_atualizacao)
-"634
-[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 476  ]
-[; ;main.c: 635: {
-"635
-{
-[; ;main.c: 636: posicao_cursor_lcd(1,8);
-"636
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 637: escreve_frase_ram_lcd("N/D");
-"637
-[e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
-[; ;main.c: 638: posicao_cursor_lcd(2,8);
-"638
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 639: escreve_frase_ram_lcd(fix());
-"639
-[e ( _escreve_frase_ram_lcd (1 -> ( _fix ..  `*uc ]
-[; ;main.c: 640: time_atualizacao = 10000;
-"640
 [e = _time_atualizacao -> -> 10000 `i `ui ]
-"641
-}
-[e :U 476 ]
-[; ;main.c: 641: }
-[; ;main.c: 644: if(last_state != 2)
-"644
-[e $ ! != -> F4393 `i -> 2 `i 477  ]
-[; ;main.c: 645: {
-"645
-{
-[; ;main.c: 646: state = 2;
-"646
-[e = F4392 -> -> 2 `i `uc ]
-[; ;main.c: 647: escreve_cmd_lcd(0b00000001);
-"647
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 648: posicao_cursor_lcd(1,0);
-"648
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 649: escreve_frase_ram_lcd("D_Fence:");
-"649
-[e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
-[; ;main.c: 650: posicao_cursor_lcd(1,8);
-"650
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 651: escreve_frase_ram_lcd("N/D");
-"651
-[e ( _escreve_frase_ram_lcd (1 -> :s 6C `*uc ]
-[; ;main.c: 652: posicao_cursor_lcd(2,0);
-"652
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 653: escreve_frase_ram_lcd("LFIX:");
-"653
-[e ( _escreve_frase_ram_lcd (1 -> :s 7C `*uc ]
-[; ;main.c: 654: posicao_cursor_lcd(2,8);
-"654
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 655: escreve_frase_ram_lcd(fix());
-"655
-[e ( _escreve_frase_ram_lcd (1 -> ( _fix ..  `*uc ]
-"656
+"625
 }
 [e :U 477 ]
-[; ;main.c: 656: }
-[; ;main.c: 657: last_state = 2;
-"657
-[e = F4393 -> -> 2 `i `uc ]
-"658
-}
-[e :U 475 ]
-[; ;main.c: 658: }
-[; ;main.c: 660: if(flag[2].point || (state == 3))
-"660
-[e $ ! || != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i == -> F4392 `i -> 3 `i 478  ]
-[; ;main.c: 661: {
-"661
+[; ;main.c: 625: }
+[; ;main.c: 627: if(last_state != 1)
+"627
+[e $ ! != -> F4393 `i -> 1 `i 478  ]
+[; ;main.c: 628: {
+"628
 {
-[; ;main.c: 663: if(!time_atualizacao)
-"663
-[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 479  ]
-[; ;main.c: 664: {
-"664
-{
-[; ;main.c: 665: time_atualizacao = 10000;
-"665
-[e = _time_atualizacao -> -> 10000 `i `ui ]
-"666
-}
-[e :U 479 ]
-[; ;main.c: 666: }
-[; ;main.c: 668: if(last_state != 3)
-"668
-[e $ ! != -> F4393 `i -> 3 `i 480  ]
-[; ;main.c: 669: {
-"669
-{
-[; ;main.c: 670: state = 3;
-"670
-[e = F4392 -> -> 3 `i `uc ]
-[; ;main.c: 671: escreve_cmd_lcd(0b00000001);
-"671
+[; ;main.c: 629: state = 1;
+"629
+[e = F4392 -> -> 1 `i `uc ]
+[; ;main.c: 630: escreve_cmd_lcd(0b00000001);
+"630
 [e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 672: posicao_cursor_lcd(2,0);
-"672
+[; ;main.c: 631: posicao_cursor_lcd(1,0);
+"631
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 632: escreve_frase_ram_lcd("RPM:");
+"632
+[e ( _escreve_frase_ram_lcd (1 -> :s 2C `*uc ]
+[; ;main.c: 633: posicao_cursor_lcd(2,0);
+"633
 [e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 673: escreve_frase_ram_lcd("D_Fence:");
-"673
-[e ( _escreve_frase_ram_lcd (1 -> :s 8C `*uc ]
-"674
-}
-[e :U 480 ]
-[; ;main.c: 674: }
-[; ;main.c: 675: last_state = 3;
-"675
-[e = F4393 -> -> 3 `i `uc ]
-"676
+[; ;main.c: 634: escreve_frase_ram_lcd("VEL:");
+"634
+[e ( _escreve_frase_ram_lcd (1 -> :s 3C `*uc ]
+"635
 }
 [e :U 478 ]
-[; ;main.c: 676: }
-[; ;main.c: 678: if((!PORTEbits.RE1 && state!=0) && !flag[2].point )
+[; ;main.c: 635: }
+[; ;main.c: 636: last_state = 1;
+"636
+[e = F4393 -> -> 1 `i `uc ]
+"638
+}
+[e :U 476 ]
+[; ;main.c: 638: }
+[; ;main.c: 641: if(!PORTEbits.RE1 && !flag[2].point || (state == 2))
+"641
+[e $ ! || && ! != -> . . _PORTEbits 0 1 `i -> -> -> 0 `i `Vuc `i ! != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i == -> F4392 `i -> 2 `i 479  ]
+[; ;main.c: 642: {
+"642
+{
+[; ;main.c: 643: if(!time_atualizacao)
+"643
+[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 480  ]
+[; ;main.c: 644: {
+"644
+{
+[; ;main.c: 645: point_buff_gps_lat = Latitude();
+"645
+[e = _point_buff_gps_lat ( _Latitude ..  ]
+[; ;main.c: 646: point_buff_gps_long = Longitude();
+"646
+[e = _point_buff_gps_long ( _Longitude ..  ]
+[; ;main.c: 647: posicao_cursor_lcd(1,4);
+"647
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 4 `i `uc ]
+[; ;main.c: 648: escreve_frase_ram_lcd(point_buff_gps_lat);
+"648
+[e ( _escreve_frase_ram_lcd (1 _point_buff_gps_lat ]
+[; ;main.c: 649: posicao_cursor_lcd(2,4);
+"649
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 4 `i `uc ]
+[; ;main.c: 650: escreve_frase_ram_lcd(point_buff_gps_long);
+"650
+[e ( _escreve_frase_ram_lcd (1 _point_buff_gps_long ]
+[; ;main.c: 651: time_atualizacao = 2000;
+"651
+[e = _time_atualizacao -> -> 2000 `i `ui ]
+"652
+}
+[e :U 480 ]
+[; ;main.c: 652: }
+[; ;main.c: 655: if(last_state != 2)
+"655
+[e $ ! != -> F4393 `i -> 2 `i 481  ]
+[; ;main.c: 656: {
+"656
+{
+[; ;main.c: 657: state = 2;
+"657
+[e = F4392 -> -> 2 `i `uc ]
+[; ;main.c: 658: escreve_cmd_lcd(0b00000001);
+"658
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 659: point_buff_gps_lat = Latitude();
+"659
+[e = _point_buff_gps_lat ( _Latitude ..  ]
+[; ;main.c: 660: point_buff_gps_long = Longitude();
+"660
+[e = _point_buff_gps_long ( _Longitude ..  ]
+[; ;main.c: 661: posicao_cursor_lcd(1,0);
+"661
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 662: escreve_frase_ram_lcd("lt:");
+"662
+[e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
+[; ;main.c: 663: posicao_cursor_lcd(1,4);
+"663
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 4 `i `uc ]
+[; ;main.c: 664: escreve_frase_ram_lcd(point_buff_gps_lat);
+"664
+[e ( _escreve_frase_ram_lcd (1 _point_buff_gps_lat ]
+[; ;main.c: 665: posicao_cursor_lcd(2,0);
+"665
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 666: escreve_frase_ram_lcd("lo:");
+"666
+[e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
+[; ;main.c: 667: posicao_cursor_lcd(2,4);
+"667
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 4 `i `uc ]
+[; ;main.c: 668: escreve_frase_ram_lcd(point_buff_gps_long);
+"668
+[e ( _escreve_frase_ram_lcd (1 _point_buff_gps_long ]
+"669
+}
+[e :U 481 ]
+[; ;main.c: 669: }
+[; ;main.c: 670: last_state = 2;
+"670
+[e = F4393 -> -> 2 `i `uc ]
+"671
+}
+[e :U 479 ]
+[; ;main.c: 671: }
+[; ;main.c: 675: if(flag[2].point || state == 3)
+"675
+[e $ ! || != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i == -> F4392 `i -> 3 `i 482  ]
+[; ;main.c: 676: {
+"676
+{
+[; ;main.c: 678: if(!time_atualizacao)
 "678
-[e $ ! && && ! != -> . . _PORTEbits 0 1 `i -> -> -> 0 `i `Vuc `i != -> F4392 `i -> 0 `i ! != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 481  ]
+[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 483  ]
 [; ;main.c: 679: {
 "679
 {
-[; ;main.c: 680: if(last_state != 4)
+[; ;main.c: 680: time_atualizacao = 10000;
 "680
-[e $ ! != -> F4393 `i -> 4 `i 482  ]
-[; ;main.c: 681: {
+[e = _time_atualizacao -> -> 10000 `i `ui ]
 "681
-{
-[; ;main.c: 682: escreve_cmd_lcd(0b00000001);
-"682
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 683: state = 0;
-"683
-[e = F4392 -> -> 0 `i `uc ]
-[; ;main.c: 684: posicao_cursor_lcd(1,0);
-"684
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 685: escreve_frase_ram_lcd("B1:RPM B2:FENCE");
-"685
-[e ( _escreve_frase_ram_lcd (1 -> :s 9C `*uc ]
-[; ;main.c: 686: posicao_cursor_lcd(2,0);
-"686
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 687: escreve_frase_ram_lcd("B2:HOME");
-"687
-[e ( _escreve_frase_ram_lcd (1 -> :s 10C `*uc ]
-"688
-}
-[e :U 482 ]
-[; ;main.c: 688: }
-[; ;main.c: 689: last_state = 4;
-"689
-[e = F4393 -> -> 4 `i `uc ]
-"690
-}
-[e :U 481 ]
-[; ;main.c: 690: }
-[; ;main.c: 692: if(!state && !flag[2].point)
-"692
-[e $ ! && ! != -> F4392 `i -> -> -> 0 `i `uc `i ! != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 483  ]
-[; ;main.c: 693: {
-"693
-{
-[; ;main.c: 694: if(last_state != 4)
-"694
-[e $ ! != -> F4393 `i -> 4 `i 484  ]
-[; ;main.c: 695: {
-"695
-{
-[; ;main.c: 696: escreve_cmd_lcd(0b00000001);
-"696
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 697: posicao_cursor_lcd(1,0);
-"697
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 698: escreve_frase_ram_lcd("B1:RPM  B2:FENCE");
-"698
-[e ( _escreve_frase_ram_lcd (1 -> :s 11C `*uc ]
-[; ;main.c: 699: posicao_cursor_lcd(2,0);
-"699
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 700: escreve_frase_ram_lcd("B2:HOME");
-"700
-[e ( _escreve_frase_ram_lcd (1 -> :s 12C `*uc ]
-"701
-}
-[e :U 484 ]
-[; ;main.c: 701: }
-[; ;main.c: 702: last_state = 4;
-"702
-[e = F4393 -> -> 4 `i `uc ]
-"703
 }
 [e :U 483 ]
-[; ;main.c: 703: }
-[; ;main.c: 704: }
-"704
-[e :UE 471 ]
+[; ;main.c: 681: }
+[; ;main.c: 683: if(last_state != 3)
+"683
+[e $ ! != -> F4393 `i -> 3 `i 484  ]
+[; ;main.c: 684: {
+"684
+{
+[; ;main.c: 685: state = 3;
+"685
+[e = F4392 -> -> 3 `i `uc ]
+[; ;main.c: 686: escreve_cmd_lcd(0b00000001);
+"686
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 687: posicao_cursor_lcd(2,0);
+"687
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 688: escreve_frase_ram_lcd("D_Fence:");
+"688
+[e ( _escreve_frase_ram_lcd (1 -> :s 6C `*uc ]
+"689
 }
+[e :U 484 ]
+[; ;main.c: 689: }
+[; ;main.c: 690: last_state = 3;
+"690
+[e = F4393 -> -> 3 `i `uc ]
+"691
+}
+[e :U 482 ]
+[; ;main.c: 691: }
+[; ;main.c: 699: if((!PORTEbits.RE1 && state!=0) && !flag[2].point )
+"699
+[e $ ! && && ! != -> . . _PORTEbits 0 1 `i -> -> -> 0 `i `Vuc `i != -> F4392 `i -> 0 `i ! != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 485  ]
+[; ;main.c: 700: {
+"700
+{
+[; ;main.c: 701: if(last_state != 4)
+"701
+[e $ ! != -> F4393 `i -> 4 `i 486  ]
+[; ;main.c: 702: {
+"702
+{
+[; ;main.c: 703: escreve_cmd_lcd(0b00000001);
+"703
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 704: state = 0;
+"704
+[e = F4392 -> -> 0 `i `uc ]
+[; ;main.c: 705: posicao_cursor_lcd(1,0);
+"705
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 706: escreve_frase_ram_lcd("B1:RPM B2:FENCE");
+"706
+[e ( _escreve_frase_ram_lcd (1 -> :s 7C `*uc ]
+[; ;main.c: 707: posicao_cursor_lcd(2,0);
+"707
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 708: escreve_frase_ram_lcd("B2:HOME");
+"708
+[e ( _escreve_frase_ram_lcd (1 -> :s 8C `*uc ]
+"709
+}
+[e :U 486 ]
+[; ;main.c: 709: }
+[; ;main.c: 710: last_state = 4;
+"710
+[e = F4393 -> -> 4 `i `uc ]
+"711
+}
+[e :U 485 ]
+[; ;main.c: 711: }
+[; ;main.c: 713: if(!state && !flag[2].point)
+"713
+[e $ ! && ! != -> F4392 `i -> -> -> 0 `i `uc `i ! != -> . *U + &U _flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 487  ]
+[; ;main.c: 714: {
+"714
+{
+[; ;main.c: 715: if(last_state != 4)
+"715
+[e $ ! != -> F4393 `i -> 4 `i 488  ]
+[; ;main.c: 716: {
+"716
+{
+[; ;main.c: 717: escreve_cmd_lcd(0b00000001);
+"717
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 718: posicao_cursor_lcd(1,0);
+"718
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 719: escreve_frase_ram_lcd("B1:RPM  B2:FENCE");
+"719
+[e ( _escreve_frase_ram_lcd (1 -> :s 9C `*uc ]
+[; ;main.c: 720: posicao_cursor_lcd(2,0);
+"720
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 721: escreve_frase_ram_lcd("B2:HOME");
+"721
+[e ( _escreve_frase_ram_lcd (1 -> :s 10C `*uc ]
+"722
+}
+[e :U 488 ]
+[; ;main.c: 722: }
+[; ;main.c: 723: last_state = 4;
+"723
+[e = F4393 -> -> 4 `i `uc ]
+"724
+}
+[e :U 487 ]
+[; ;main.c: 724: }
+[; ;main.c: 727: }
+"727
+[e :UE 475 ]
+}
+[a 8C 66 50 58 72 79 77 69 0 ]
 [a 10C 66 50 58 72 79 77 69 0 ]
-[a 12C 66 50 58 72 79 77 69 0 ]
-[a 9C 66 49 58 82 80 77 32 66 50 58 70 69 78 67 69 0 ]
-[a 11C 66 49 58 82 80 77 32 32 66 50 58 70 69 78 67 69 0 ]
-[a 4C 78 47 68 0 ]
-[a 6C 78 47 68 0 ]
+[a 7C 66 49 58 82 80 77 32 66 50 58 70 69 78 67 69 0 ]
+[a 9C 66 49 58 82 80 77 32 32 66 50 58 70 69 78 67 69 0 ]
 [a 1C 82 69 71 73 65 79 32 78 69 71 65 68 65 0 ]
-[a 5C 68 95 70 101 110 99 101 58 0 ]
-[a 8C 68 95 70 101 110 99 101 58 0 ]
-[a 7C 76 70 73 88 58 0 ]
+[a 4C 108 116 58 0 ]
+[a 5C 108 111 58 0 ]
+[a 6C 68 95 70 101 110 99 101 58 0 ]
 [a 2C 82 80 77 58 0 ]
 [a 3C 86 69 76 58 0 ]

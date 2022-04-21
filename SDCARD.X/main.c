@@ -79,6 +79,9 @@ unsigned int time_sd;
 
 unsigned int time_atualizacao;
 
+unsigned char *point_buff_gps_lat;
+unsigned char *point_buff_gps_long;
+
 /******************************************************************************
 * Prototipos das funcoes
 ******************************************************************************/
@@ -178,7 +181,7 @@ void inicializa_tarefas(void)
 	tempo_tarefa[0] = TIME_5000_MS;
     tempo_tarefa[1] = TIME_1000_MS;
     tempo_tarefa[2] = TIME_1000_MS;
-    tempo_tarefa[3] = TIME_5000_MS;
+    tempo_tarefa[3] = TIME_1000_MS;
 	//It indicates that there�s no task executing
     tarefa_em_execucao = NO;
 }
@@ -276,7 +279,6 @@ void verifica_fence_externo(void)
     
     
     unsigned char *point_buff, i, j, count, count_index;
-    unsigned char *point_buff_gps_lat, *point_buff_gps_long;
     unsigned char point, point_dif_lat ,point_dif_long;
     unsigned long int temp_var_deg;
     unsigned char temp_buff_lat[11] =  "-2342.07112";
@@ -295,13 +297,13 @@ void verifica_fence_externo(void)
     
 //    posicao_cursor_lcd(1,0);
 //    escreve_frase_ram_lcd("AQUI");
-//    for(i=0; i<11; i++)
-//    {
-//        temp_buff_lat[i]  = *point_buff_gps_lat;
-//        temp_buff_long[i] = *point_buff_gps_long;
-//        point_buff_gps_lat++;
-//        point_buff_gps_long++;
-//    }   
+    for(i=0; i<11; i++)
+    {
+        temp_buff_lat[i]  = *point_buff_gps_lat;
+        temp_buff_long[i] = *point_buff_gps_long;
+        point_buff_gps_lat++;
+        point_buff_gps_long++;
+    }   
     
 //GRAUS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
     while(point<4)
@@ -566,6 +568,10 @@ void verifica_fence_externo(void)
         posicao_cursor_lcd(2,15);
         escreve_inteiro_lcd(flag[1].point);
     }
+    else
+    {
+        flag[2].point = 0;
+    }
  
     
   
@@ -607,6 +613,8 @@ void troca_de_tela(void)
     static unsigned char state = 0;
     static unsigned char last_state = 0;;
    
+    
+    //primeira tela
     if(!PORTEbits.RE0 && !flag[2].point || (state == 1 ))
     {
         
@@ -628,16 +636,19 @@ void troca_de_tela(void)
         last_state = 1;
 
     } 
+    //segunda tela
     
     if(!PORTEbits.RE1 && !flag[2].point || (state == 2))
     {
         if(!time_atualizacao)
         {
-            posicao_cursor_lcd(1,8);
-            escreve_frase_ram_lcd("N/D");
-            posicao_cursor_lcd(2,8);
-            escreve_frase_ram_lcd(fix());
-            time_atualizacao = 10000;
+            point_buff_gps_lat = Latitude();
+            point_buff_gps_long = Longitude();
+            posicao_cursor_lcd(1,4);
+            escreve_frase_ram_lcd(point_buff_gps_lat);
+            posicao_cursor_lcd(2,4);
+            escreve_frase_ram_lcd(point_buff_gps_long);
+            time_atualizacao = 2000;
         }
         
         
@@ -645,19 +656,23 @@ void troca_de_tela(void)
         {
             state = 2;
             LIMPA_DISPLAY();
+            point_buff_gps_lat = Latitude();
+            point_buff_gps_long = Longitude();
             posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd("D_Fence:");
-            posicao_cursor_lcd(1,8);
-            escreve_frase_ram_lcd("N/D");
+            escreve_frase_ram_lcd("lt:");
+            posicao_cursor_lcd(1,4);
+            escreve_frase_ram_lcd(point_buff_gps_lat);
             posicao_cursor_lcd(2,0);
-            escreve_frase_ram_lcd("LFIX:");
-            posicao_cursor_lcd(2,8);
-            escreve_frase_ram_lcd(fix());
+            escreve_frase_ram_lcd("lo:");
+            posicao_cursor_lcd(2,4);
+            escreve_frase_ram_lcd(point_buff_gps_long);
         }
         last_state = 2;
     }
     
-    if(flag[2].point || (state == 3))
+    
+    //FORA DO FENCE
+    if(flag[2].point || state == 3)
     {
         //ideia para implementacao futura
         if(!time_atualizacao)
@@ -674,6 +689,12 @@ void troca_de_tela(void)
         }
         last_state = 3;
     }
+
+    
+    
+    
+    
+    //HOME
     
     if((!PORTEbits.RE1 && state!=0) && !flag[2].point )
     {
@@ -701,4 +722,6 @@ void troca_de_tela(void)
         }
         last_state = 4;
     }
+   
+    
 }
