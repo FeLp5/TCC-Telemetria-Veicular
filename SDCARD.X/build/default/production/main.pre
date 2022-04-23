@@ -5249,7 +5249,10 @@ unsigned int time_sd;
 
 unsigned int time_atualizacao;
 
-# 85
+unsigned char *point_buff_gps_lat;
+unsigned char *point_buff_gps_long;
+
+# 88
 void mensagem_inicial(void);
 
 void verifica_fence_externo(void);
@@ -5260,7 +5263,7 @@ void disparo_gravacao(void);
 
 void troca_de_tela(void);
 
-# 102
+# 105
 void interrupt isr(void)
 {
 unsigned char cont;
@@ -5312,7 +5315,7 @@ INT0IF = 0;
 }
 }
 
-# 162
+# 165
 void inicializa_tarefas(void)
 {
 
@@ -5321,22 +5324,22 @@ p_tarefas[1] = disparo_gravacao;
 p_tarefas[2] = verifica_fence_externo;
 p_tarefas[3] = troca_de_tela;
 
-# 172
+# 175
 tempo_backup[0] = 5000;
 tempo_backup[1] = 1000;
 tempo_backup[2] = 1000;
 tempo_backup[3] = 100;
 
-# 178
+# 181
 tempo_tarefa[0] = 5000;
 tempo_tarefa[1] = 1000;
 tempo_tarefa[2] = 1000;
-tempo_tarefa[3] = 5000;
+tempo_tarefa[3] = 1000;
 
 tarefa_em_execucao = 0;
 }
 
-# 194
+# 197
 void escalonador()
 {
 unsigned char cont;
@@ -5353,7 +5356,7 @@ tempo_tarefa[cont] = tempo_backup[cont];
 }
 }
 
-# 215
+# 218
 void main(void)
 {
 init_hardware();
@@ -5376,7 +5379,7 @@ dados_gps_to_sd();
 }
 }
 
-# 242
+# 245
 void mensagem_inicial(void)
 {
 const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
@@ -5392,15 +5395,14 @@ escreve_cmd_lcd(0b00000001);
 
 }
 
-# 265
+# 268
 void verifica_fence_externo(void)
 {
 unsigned char fence_diff_lat[4][11] = {"-2342.07112", "-2342.07112", "-2342.11784", "-2342.11784"};
 unsigned char fence_diff_long[4][12] = {"-04629.73477", "-04629.68601", "-04629.68601", "-04629.73477"};
 
-# 278
+# 281
 unsigned char *point_buff, i, j, count, count_index;
-unsigned char *point_buff_gps_lat, *point_buff_gps_long;
 unsigned char point, point_dif_lat ,point_dif_long;
 unsigned long int temp_var_deg;
 unsigned char temp_buff_lat[11] = "-2342.07112";
@@ -5415,7 +5417,16 @@ j= 0;
 point_buff_gps_lat = Latitude();
 point_buff_gps_long = Longitude();
 
-# 307
+# 300
+for(i=0; i<11; i++)
+{
+temp_buff_lat[i] = *point_buff_gps_lat;
+temp_buff_long[i] = *point_buff_gps_long;
+point_buff_gps_lat++;
+point_buff_gps_long++;
+}
+
+
 while(point<4)
 {
 
@@ -5476,7 +5487,7 @@ count++;
 point++;
 }
 
-# 371
+# 373
 point = 0;
 count = 0;
 point_dif_lat = 0;
@@ -5550,7 +5561,7 @@ point++;
 count = 0;
 point = 0;
 
-# 448
+# 450
 switch(temp_buff_long[0])
 {
 case '-':
@@ -5672,6 +5683,10 @@ escreve_inteiro_lcd(flag[0].point);
 posicao_cursor_lcd(2,15);
 escreve_inteiro_lcd(flag[1].point);
 }
+else
+{
+flag[2].point = 0;
+}
 
 
 
@@ -5680,7 +5695,7 @@ escreve_inteiro_lcd(flag[1].point);
 void verifica_dados_operacionais(void)
 {
 
-# 584
+# 590
 }
 
 
@@ -5707,6 +5722,8 @@ void troca_de_tela(void)
 static unsigned char state = 0;
 static unsigned char last_state = 0;;
 
+
+
 if(!PORTEbits.RE0 && !flag[2].point || (state == 1 ))
 {
 
@@ -5729,15 +5746,18 @@ last_state = 1;
 
 }
 
+
 if(!PORTEbits.RE1 && !flag[2].point || (state == 2))
 {
 if(!time_atualizacao)
 {
-posicao_cursor_lcd(1,8);
-escreve_frase_ram_lcd("N/D");
-posicao_cursor_lcd(2,8);
-escreve_frase_ram_lcd(fix());
-time_atualizacao = 10000;
+point_buff_gps_lat = Latitude();
+point_buff_gps_long = Longitude();
+posicao_cursor_lcd(1,4);
+escreve_frase_ram_lcd(point_buff_gps_lat);
+posicao_cursor_lcd(2,4);
+escreve_frase_ram_lcd(point_buff_gps_long);
+time_atualizacao = 2000;
 }
 
 
@@ -5745,19 +5765,23 @@ if(last_state != 2)
 {
 state = 2;
 escreve_cmd_lcd(0b00000001);
+point_buff_gps_lat = Latitude();
+point_buff_gps_long = Longitude();
 posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("D_Fence:");
-posicao_cursor_lcd(1,8);
-escreve_frase_ram_lcd("N/D");
+escreve_frase_ram_lcd("lt:");
+posicao_cursor_lcd(1,4);
+escreve_frase_ram_lcd(point_buff_gps_lat);
 posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("LFIX:");
-posicao_cursor_lcd(2,8);
-escreve_frase_ram_lcd(fix());
+escreve_frase_ram_lcd("lo:");
+posicao_cursor_lcd(2,4);
+escreve_frase_ram_lcd(point_buff_gps_long);
 }
 last_state = 2;
 }
 
-if(flag[2].point || (state == 3))
+
+
+if(flag[2].point || state == 3)
 {
 
 if(!time_atualizacao)
@@ -5775,6 +5799,7 @@ escreve_frase_ram_lcd("D_Fence:");
 last_state = 3;
 }
 
+# 699
 if((!PORTEbits.RE1 && state!=0) && !flag[2].point )
 {
 if(last_state != 4)
@@ -5801,4 +5826,6 @@ escreve_frase_ram_lcd("B2:HOME");
 }
 last_state = 4;
 }
+
+
 }
