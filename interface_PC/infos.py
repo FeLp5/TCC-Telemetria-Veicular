@@ -6,7 +6,7 @@ class Painel_infos(wx.Panel):
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        self.statxt_nada_carregado = wx.StaticText(self, -1,  "         Nada por aqui, por enquanto!\nAbra um arquivo, selecionando SD Card", (200, 100), (-1, -1))
+        self.statxt_nada_carregado = wx.StaticText(self, -1,  "             Nada aqui, por enquanto!\nAbra um arquivo, selecionando SD Card", (300, 100), (-1, -1))
         self.flag = 0
 
     def mostrar_dados(self):

@@ -193,21 +193,39 @@ class Painel_arquivos(wx.Panel):
 
     # fazendo o tratamento dos dados
     def tratamento(self, lines):
-        cordenadas = "" # criando a variável 
+        coordenadas = "" # criando a variável 
         cordenada_central = "" # criando a variável 
+        vars.nomes_das_ruas = []
         
+        # código para reduzir as requisições, podemos ajustar a quantidade de requisições por aqui
+        incrementoA = 0
+        incrementoB = 1
+        # gerando um fator para diminuir requisições
+        fator = 0
+        if (len(lines) < 250):
+            fator = 10
+        if(len(lines) < 100):
+            fator = 2
+        if(len(lines) < 50):
+            fator = 1
+            
         # percorrendo os dados do arquivo e montando as strings
         for x in range(len(lines)): 
             linha = lines[x] # selecionando a linha a ser percorrida
 
-            # pegando as cordenadas e cordenada central para centralizar o mapa (static map)
+            # pegando as coordenadas e cordenada central para centralizar o mapa (static map)
             if  x == round(len(lines) / 2, 0) + 1 : 
                 cordenada_central = re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pegando a coordenada central
-                cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # necessario inserir na string cordenadas também
+                coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # necessario inserir na string coordenadas também
             elif x == len(lines) - 1:
-                cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pegando a cordenada final e montando na string
-            else:
-                cordenadas = cordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # pegando as cordenadas e montando a string
+                coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pegando a cordenada final e montando na string
+            else: # tentando economizar as requisições
+ 
+                if(x == incrementoA * fator):
+                    coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # pegando as coordenadas e montando a string
+                    incrementoA = incrementoA + 1
+                    print "VEZES", x
+                    
                 
             
             if(x == 0): # pegando o valor inicial para montar a string
@@ -242,8 +260,12 @@ class Painel_arquivos(wx.Panel):
                 tempo = tempo + "," + re.search('h(.+?);', linha).group(1)
                 dtc = dtc + "," + re.search('d(.+?);', linha).group(1)
                 
-                # gerando os outros nomes das ruas para as demais cordenadas
-                self.ruas(re.search('lt(.+?);', linha).group(1), re.search('lo(.+?);', linha).group(1), x)
+               
+                if (x == incrementoB * fator): # economizando nas requisições
+                # gerando os outros nomes das ruas para as demais coordenadas
+                    self.ruas(re.search('lt(.+?);', linha).group(1), re.search('lo(.+?);', linha).group(1), x)
+                    incrementoB = incrementoB + 1
+                    print "RUAS", x
 
                 #pegando a velocidade máxima
                 if(velmax < re.search('v(.+?);', linha).group(1)):
@@ -292,17 +314,19 @@ class Painel_arquivos(wx.Panel):
         
 
         # roads retornará a velocidade da via
-        vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + cordenadas  + "&key=" + vars.api_key
+        vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + coordenadas  + "&key=" + vars.api_key
         
         # static_map - irá desenhar o mapa e a rota
-        vars.static_map = "https://maps.googleapis.com/maps/api/staticmap?center=" + cordenada_central + "&path=color:0x0000ff|weight:5|" + cordenadas + "&size=640x400&key=" + vars.api_key
+        vars.static_map = "https://maps.googleapis.com/maps/api/staticmap?center=" + cordenada_central + "&path=color:0x0000ff|weight:5|" + coordenadas + "&size=640x400&key=" + vars.api_key
 
         print(( "ROADS API -> ", vars.roads))
         print(( "STATIC_MAP API ->" , vars.static_map))
 
     #funçao que retorna os nomes das ruas
     def ruas(self, lat, long, cont):
-        if(vars.velocidade != ''): #!= ''): # só executa quando algo estiver carregado
+        print "REQUISIÇÕES: " , cont
+
+        if(vars.velocidade == 4000): #!= ''): # só executa quando algo estiver carregado
         
             # geocode - trará os nomes das ruas
             ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
@@ -316,8 +340,10 @@ class Painel_arquivos(wx.Panel):
                     field = types.get('types', [])
                     if 'route' in field:
                         nome_rua = types['long_name']
+                    if 'administrative_area_level_2' in field:
+                        nome_rua = nome_rua + "   - Cidade: " + types['long_name']
 
-                
+                print "ERROR"
             except:
                 print "ERRO"
                 pass

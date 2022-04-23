@@ -227,7 +227,7 @@ class Painel(wx.Frame):
         imageFile = 'imagens/logo_FDR.png'
         data = open(imageFile, "rb").read()
         png2 = wx.Image(imageFile, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
-        wx.StaticBitmap(pn_sd, -1, png2, (10, 120), (png2.GetWidth()+30, png2.GetHeight()+50))
+        wx.StaticBitmap(pn_sd, -1, png2, (10, 90), (png2.GetWidth()+30, png2.GetHeight()+50))
 
 
     def OnExit(self,e):
