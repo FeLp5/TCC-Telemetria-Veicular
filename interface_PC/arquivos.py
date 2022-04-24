@@ -175,7 +175,7 @@ class Painel_arquivos(wx.Panel):
         return str(data_convertida)
     
     # mostra a janela sobre com informações sobre o programa
-    def OnAbout(self,e):
+    def sobre(self,e):
         dlg = wx.MessageDialog(self, "\n      FDR Telemetria      \n    Fatec Santo André     \n\nAbril de 2022 - Versão 0.1", "FDR Telemetria v0.1", wx.OK)
         dlg.ShowModal() # Mostra a mensagem
         dlg.Destroy() # Destroi e finaliza

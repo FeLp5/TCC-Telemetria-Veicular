@@ -84,5 +84,5 @@ class Painel_inferior_direito(wx.Panel):
         self.panel_tres.Hide()
         self.panel_quatro.Hide()
         self.panel_cinco.Show()
-        self.panel_cinco.atualiza_labels()
+        self.panel_cinco.atualiza()
         self.Layout()

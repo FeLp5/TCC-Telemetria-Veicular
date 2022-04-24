@@ -211,8 +211,8 @@ class Painel(wx.Frame):
             
         # Eventos dos botões da barra de menus
         self.Bind(wx.EVT_MENU, pn_se.abrir_diretorio, menuOpen)
-        self.Bind(wx.EVT_MENU, self.OnExit, menuExit)
-        self.Bind(wx.EVT_MENU, pn_se.OnAbout, sobre)
+        self.Bind(wx.EVT_MENU, self.sair, menuExit)
+        self.Bind(wx.EVT_MENU, pn_se.sobre, sobre)
         self.Bind(wx.EVT_MENU, pn_id.show_panel_two, g_velocidades)
         self.Bind(wx.EVT_MENU, pn_id.show_panel_tres, g_rotacoes)
         self.Bind(wx.EVT_MENU, pn_id.show_panel_four, g_mapa)
@@ -230,7 +230,7 @@ class Painel(wx.Frame):
         wx.StaticBitmap(pn_sd, -1, png2, (10, 90), (png2.GetWidth()+30, png2.GetHeight()+50))
 
 
-    def OnExit(self,e):
+    def sair(self,e):
         self.Close(True)  # Fecha o programa
 
 

@@ -11,6 +11,15 @@ class Relatorio(wx.Panel):
         self.html.SetSize((vars.t_x, vars.t_y)) # definindo o tamanho
          
     def atualiza(self):
+        
+        #testando uma maneira de gravar um arquivo e fazer as requisições a partir dele
+        with open("batch/test.txt",'w') as f:
+            f.write("{\n")
+            f.write('    batchItems": [\n')
+            f.write('        {"query": "/reverseGeocode/-23.613197,-46.544090.json"},\n')
+            f.write('        {"query": "/reverseGeocode/-23.615283,-46.543633.json"},\n')
+            f.write("    ]\n")
+            f.write("}")
 
         endereco = os.path.dirname(os.path.realpath(__file__)) # pegando o endereço de execução para o html (css e imagens)
         endereco = "file://" + endereco + "/" # completando a string endereço para o html
