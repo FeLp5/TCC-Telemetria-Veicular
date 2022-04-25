@@ -97,7 +97,7 @@ class Painel_arquivos(wx.Panel):
         # vars.titulo_bt = self.bt_camho[nbotao] 
         vars.caminho_bt = self.bt_camho[nbotao] # pegando o nome do arquivo e tornando global
         
-    def nomes_botoes(self, pasta): # função para abrir os arquivos
+    def arquivos(self, pasta): # função para abrir os arquivos
 
         count = - 1
         botoes = 0
@@ -189,16 +189,17 @@ class Painel_arquivos(wx.Panel):
     
             # armazenando o diretório selecionado
             pathname = fileDialog.GetPath()
-            self.nomes_botoes(pathname)
+            self.arquivos(pathname)
 
     # fazendo o tratamento dos dados
     def tratamento(self, lines):
-
+        coordenadas = "" # criando a variável 
+        cordenada_central = "" # criando a variável 
         vars.nomes_das_ruas = []
         
         # código para reduzir as requisições, podemos ajustar a quantidade de requisições por aqui
-        incremento = 1
-        
+        incrementoA = 0
+        incrementoB = 1
         # gerando um fator para diminuir requisições
         fator = 0
         if (len(lines) < 250):
@@ -207,54 +208,27 @@ class Painel_arquivos(wx.Panel):
             fator = 2
         if(len(lines) < 50):
             fator = 1
-        
-        self.requests_coordenadas(lines, fator)
-        
-        self.vars_sdcard(lines)
-        
-        # solicitando o reverse geocode para os nomes das ruas
-        for x in range(len(lines)):
-            linha = lines[x] # selecionando a linha a ser percorrida 
-            if (x == incremento * fator): # economizando nas requisições
-                # gerando os outros nomes das ruas para as demais coordenadas
-                self.request_ruas(re.search('lt(.+?);', linha).group(1), re.search('lo(.+?);', linha).group(1), x)
-                incremento = incremento + 1
-                print "RUAS", x
-
-    #funçao que retorna os nomes das ruas
-    def request_ruas(self, lat, long, cont):
-        print "REQUISIÇÕES: " , cont
-
-        if(vars.velocidade == 4000): #!= ''): # só executa quando algo estiver carregado
-        
-            # geocode - trará os nomes das ruas
-            ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
             
-            r = requests.get(ruas)
-            if r.status_code not in range(200, 299):
-                return None, None
-            try:
-                results = r.json()['results'][0]
-                for types in results['address_components']:
-                    field = types.get('types', [])
-                    if 'route' in field:
-                        nome_rua = types['long_name']
-                    if 'administrative_area_level_2' in field:
-                        nome_rua = nome_rua + "   - Cidade: " + types['long_name']
-
-                print "ERROR"
-            except:
-                print "ERRO"
-                pass
-            
-                    
-            vars.nomes_das_ruas.append(nome_rua)
-            # print vars.nomes_das_ruas
-    
-    def vars_sdcard (self, lines):
-        for x in range(len(lines)):
+        # percorrendo os dados do arquivo e montando as strings
+        for x in range(len(lines)): 
             linha = lines[x] # selecionando a linha a ser percorrida
-            if x == 0:
+
+            # pegando as coordenadas e cordenada central para centralizar o mapa (static map)
+            if  x == round(len(lines) / 2, 0) + 1 : 
+                cordenada_central = re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pegando a coordenada central
+                coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # necessario inserir na string coordenadas também
+            elif x == len(lines) - 1:
+                coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) # pegando a cordenada final e montando na string
+            else: # tentando economizar as requisições
+ 
+                if(x == incrementoA * fator):
+                    coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" # pegando as coordenadas e montando a string
+                    incrementoA = incrementoA + 1
+                    print "VEZES", x
+                    
+                
+            
+            if(x == 0): # pegando o valor inicial para montar a string
                 velocidade = re.search('v(.+?);', linha).group(1)
                 latitude = re.search('lt(.+?);', linha).group(1) 
                 longitude = re.search('lo(.+?);', linha).group(1)
@@ -272,7 +246,11 @@ class Painel_arquivos(wx.Panel):
                 min = tempo[2] + tempo[3]
                 lat = latitude
                 long  = longitude
-            else:
+                
+                #gerando  os nomes das ruas para esta cordenada
+                self.ruas(latitude, longitude, x)
+                
+            else: #pegando as demais linhas
                 velocidade = velocidade + "," + re.search('v(.+?);', linha).group(1)
                 latitude = latitude + "," + re.search('lt(.+?);', linha).group(1)
                 longitude = longitude + "," + re.search('lo(.+?);', linha).group(1)
@@ -281,11 +259,18 @@ class Painel_arquivos(wx.Panel):
                 km = km + "," + re.search('k(.+?);', linha).group(1)
                 tempo = tempo + "," + re.search('h(.+?);', linha).group(1)
                 dtc = dtc + "," + re.search('d(.+?);', linha).group(1)
-    
+                
+               
+                if (x == incrementoB * fator): # economizando nas requisições
+                # gerando os outros nomes das ruas para as demais coordenadas
+                    self.ruas(re.search('lt(.+?);', linha).group(1), re.search('lo(.+?);', linha).group(1), x)
+                    incrementoB = incrementoB + 1
+                    print "RUAS", x
+
                 #pegando a velocidade máxima
                 if(velmax < re.search('v(.+?);', linha).group(1)):
                     velmax = re.search('v(.+?);', linha).group(1)
-                    
+                 
                 #pegando a rotação máxima
                 rpmmax_int = re.search('r(.+?);', linha).group(1)
                 rpmmax = int(rpmmax)
@@ -294,10 +279,11 @@ class Painel_arquivos(wx.Panel):
                     
                 if(x == (len(lines) - 1)):
                     hora_g = tempo[0] + tempo[1]
-                # precisa ser testado
+
+                    # precisa ser testado
                     if(int(hora) > int(hora_g) and flag == 0 ): #testando por causa da troca de 23h para 0h
                         hora = int(hora) - 24
-    
+
                         flag = 1
                     
                     #pegando o consumo
@@ -325,35 +311,8 @@ class Painel_arquivos(wx.Panel):
                     vars.km_rodado = km_rodado # passando para global
                     vars.hora_g = hora_g # passando para global
                     vars.min_g = min_g # passando para global
-            
-        return lat, long
-    
-    #função de conversão de latitude / longitude para graus/minutos
-    
-    
-    def requests_coordenadas (self, lines, fator):
-        coordenadas = "" # criando a variável 
-        cordenada_central = "" # criando a variável 
-        incremento = 0
         
-        for x in range(len(lines)): 
-            linha = lines[x]
-        
-            if  x == round(len(lines) / 2, 0) + 1 : 
-                # pegando a coordenada central
-                cordenada_central = re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) 
-                # necessario inserir na string coordenadas também
-                coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" 
-            elif x == len(lines) - 1:
-                # pegando a cordenada final e montando na string
-                coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) 
-            else: 
-                # tentando economizar as requisições
-                if(x == incremento * fator):
-                    # pegando as coordenadas e montando a string
-                    coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" 
-                    incremento = incremento + 1
-                    
+
         # roads retornará a velocidade da via
         vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + coordenadas  + "&key=" + vars.api_key
         
@@ -363,9 +322,38 @@ class Painel_arquivos(wx.Panel):
         print(( "ROADS API -> ", vars.roads))
         print(( "STATIC_MAP API ->" , vars.static_map))
 
+    #funçao que retorna os nomes das ruas
+    def ruas(self, lat, long, cont):
+        print "REQUISIÇÕES: " , cont
 
-                
-                
+        if(vars.velocidade == 4000): #!= ''): # só executa quando algo estiver carregado
+        
+            # geocode - trará os nomes das ruas
+            ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
+            
+            r = requests.get(ruas)
+            if r.status_code not in range(200, 299):
+                return None, None
+            try:
+                results = r.json()['results'][0]
+                for types in results['address_components']:
+                    field = types.get('types', [])
+                    if 'route' in field:
+                        nome_rua = types['long_name']
+                    if 'administrative_area_level_2' in field:
+                        nome_rua = nome_rua + "   - Cidade: " + types['long_name']
+
+                print "ERROR"
+            except:
+                print "ERRO"
+                pass
+            
+                    
+            vars.nomes_das_ruas.append(nome_rua)
+            # print vars.nomes_das_ruas
+           
+    
+    #função de conversão de latitude / longitude para graus/minutos
     def latlong(self, lt_lo):
         minutes = 0.0
         dec_deg = 0
