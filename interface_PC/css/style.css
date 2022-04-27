@@ -1,3 +1,12 @@
-
+@font-face {
+    font-family: "square";
+    src: url("fonts/SQR721BE.TTF");
+}
+body{margin: 0px; background-color: white}
+div{float: left; width: 32.5%; height: 91px; background-color: white;  border-radius: 5px; margin: 2px; text-align: center; font: 12px/14px Arial; box-shadow: 10px 5px 5px #BCBCBC;}
+div img{margin: 1px;}
+div div{box-shadow: 0px 0px 0px #BCBCBC; height: 56px; background-color: white; width: 36%}
+p.text{font: 14px/14px square;}
+p.text2{font: 14px/16px square; padding-top: 10px}
 table{border: 1px solid gray; padding: 0px; margin: 0px; font: 12px/14px arial; border-collapse: collapse; }
-td{border: 1px solid gray; padding: 2px; margin: 0px; }
+td{border: 1px solid gray; padding: 2px; margin: 0px;}

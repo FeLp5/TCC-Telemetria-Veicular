@@ -44,7 +44,14 @@ nomes_das_ruas = []
 api_key="AIzaSyBMnrCuQWbuZlsYWl1l4D86wTzFUVT_EHU"
 secret_key="PqTf169GaYbiKoLY-6URq2N2RHc="
 
-apy_key_tom = "1EikkdReoKJEuw3ZtBeV3Sy8fJDcoR7t"
+api_key_tom = "hA4agzFVTHHbGuTurS0H2HHxgJYuQe4X"
+
+# variáveis para reverse geocode
+nome_rua = []
+cidade = []
+estado = []
+speed_limit = []
+
 
 
 

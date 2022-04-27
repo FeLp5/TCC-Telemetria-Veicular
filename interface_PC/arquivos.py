@@ -193,8 +193,12 @@ class Painel_arquivos(wx.Panel):
 
     # fazendo o tratamento dos dados
     def tratamento(self, lines):
-
-        vars.nomes_das_ruas = []
+        
+        #zerando as variáveis para um novo arquivo aberto
+        vars.nome_rua = []
+        vars.cidade = []
+        vars.estado = []
+        vars.speed_limit = []
         
         # código para reduzir as requisições, podemos ajustar a quantidade de requisições por aqui
         incremento = 1
@@ -204,9 +208,9 @@ class Painel_arquivos(wx.Panel):
         if (len(lines) < 250):
             fator = 10
         if(len(lines) < 100):
-            fator = 2
+            fator = 4
         if(len(lines) < 50):
-            fator = 1
+            fator = 2
         
         self.requests_coordenadas(lines, fator)
         
@@ -224,31 +228,80 @@ class Painel_arquivos(wx.Panel):
     #funçao que retorna os nomes das ruas
     def request_ruas(self, lat, long, cont):
         print "REQUISIÇÕES: " , cont
-
-        if(vars.velocidade == 4000): #!= ''): # só executa quando algo estiver carregado
         
+        ruas = "https://api.tomtom.com/search/2/reverseGeocode/" +lat+","+long+".json?&key=" + vars.api_key_tom + "&returnSpeedLimit=true"
+        print ruas
+
+        if(vars.velocidade != ''): #!= ''): # só executa quando algo estiver carregado
+        
+            ## google maps -- sem uso neste momento
             # geocode - trará os nomes das ruas
-            ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
+            # ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
             
+            ## tomtom - reverse geocode
+            ruas = "https://api.tomtom.com/search/2/reverseGeocode/" +lat+","+long+".json?&key=" + vars.api_key_tom + "&returnSpeedLimit=true"
+
+
             r = requests.get(ruas)
             if r.status_code not in range(200, 299):
                 return None, None
             try:
-                results = r.json()['results'][0]
-                for types in results['address_components']:
-                    field = types.get('types', [])
-                    if 'route' in field:
-                        nome_rua = types['long_name']
-                    if 'administrative_area_level_2' in field:
-                        nome_rua = nome_rua + "   - Cidade: " + types['long_name']
-
-                print "ERROR"
+                ## para google maps
+                # results = r.json()['results'][0]
+                # for types in results['address_components']:
+                #     field = types.get('types', [])
+                    # if 'route' in field:
+                    #     nome_rua = types['long_name']
+                    # if 'administrative_area_level_2' in field:
+                    #     nome_rua = nome_rua + "   - Cidade: " + types['long_name']
+                    
+                ## para tomtom
+                results = r.json()['addresses'][0]
+    
+                # for field in results['address']:
+                #     print field
+                #     # if 'street' in field:
+                #     if results['address']['street']:
+                #         vars.nome_rua.append(results['address']['street'])
+                #         # vars.nome_rua[field] = results['address']['street']
+                #     if results['address']['municipality']:
+                #         vars.cidade.append(results['address']['municipality'])
+                #         # vars.cidade[field] = results['address']['municipality']
+                #     if results['address']['countrySubdivision']:
+                #         vars.estado.append(results['address']['countrySubdivision'])
+                #         # vars.estado[field] = results['address']['countrySubdivision']
+                #     if results['address']['speedLimit']:
+                #         vars.speed_limit.append(results['address']['speedLimit'])
+                #         # vars.speed_limit[field] = results['address']["speedLimit"]
+                #     else:
+                #         vars.speed_limit.append("40")
+                
+                    # if 'street' in field:
+                if 'street' in results['address']:
+                    vars.nome_rua.append(results['address']['street'])
+                    # vars.nome_rua[field] = results['address']['street']
+                if 'municipality' in results['address']:
+                    vars.cidade.append(results['address']['municipality'])
+                    # vars.cidade[field] = results['address']['municipality']
+                if 'countrySubdivision' in results['address']:
+                    vars.estado.append(results['address']['countrySubdivision'])
+                    # vars.estado[field] = results['address']['countrySubdivision']
+                if 'speedLimit' in results['address']:
+                    vars.speed_limit.append(results['address']['speedLimit'])
+                    # vars.speed_limit[field] = results['address']["speedLimit"]
+                else:
+                    vars.speed_limit.append("40")
+        
+                print "TAMANHO", (len(vars.speed_limit))
+                print "NOME DA RUA" , vars.nome_rua[0] + " " + vars.cidade[0] + " " + vars.estado[0] + " " + vars.speed_limit[0]
             except:
                 print "ERRO"
                 pass
             
+            for x in range(len(vars.speed_limit)):
+                print vars.speed_limit[x]
                     
-            vars.nomes_das_ruas.append(nome_rua)
+            # vars.nomes_das_ruas.append(nome_rua)
             # print vars.nomes_das_ruas
     
     def vars_sdcard (self, lines):
@@ -354,18 +407,16 @@ class Painel_arquivos(wx.Panel):
                     coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" 
                     incremento = incremento + 1
                     
+        ## google maps -- sem uso neste momento
         # roads retornará a velocidade da via
-        vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + coordenadas  + "&key=" + vars.api_key
-        
+        # vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + coordenadas  + "&key=" + vars.api_key
+        # print(( "ROADS API -> ", vars.roads))
+
         # static_map - irá desenhar o mapa e a rota
         vars.static_map = "https://maps.googleapis.com/maps/api/staticmap?center=" + cordenada_central + "&path=color:0x0000ff|weight:5|" + coordenadas + "&size=640x400&key=" + vars.api_key
 
-        print(( "ROADS API -> ", vars.roads))
         print(( "STATIC_MAP API ->" , vars.static_map))
 
-
-                
-                
     def latlong(self, lt_lo):
         minutes = 0.0
         dec_deg = 0
