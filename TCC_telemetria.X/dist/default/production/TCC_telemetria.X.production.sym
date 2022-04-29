@@ -1294,7 +1294,7 @@ bssBIGRAM 2BB 4DA BIGRAM 2BB 1
 %locals
 dist/default/production\TCC_telemetria.X.production.obj
 C:\Program Files\Microchip\xc8\v2.30\pic\include\proc\pic18f4550.h
-C:\Users\Felipe\AppData\Local\Temp\saakx.as
+C:\Users\Felipe\AppData\Local\Temp\s68kx.as
 4485 4660 0 CODE 0
 4487 4660 0 CODE 0
 4490 4660 0 CODE 0
@@ -3011,7 +3011,7 @@ C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strlen.c
 9 5192 0 CODE 0
 12 51A0 0 CODE 0
 13 51AC 0 CODE 0
-C:\Users\Felipe\AppData\Local\Temp\saakx.as
+C:\Users\Felipe\AppData\Local\Temp\s68kx.as
 31395 8 0 CODE 0
 main.c
 107 8 0 CODE 0

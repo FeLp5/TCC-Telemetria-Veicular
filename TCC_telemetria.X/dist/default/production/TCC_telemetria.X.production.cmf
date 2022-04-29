@@ -11,6 +11,11 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
+$C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
+idloc IDLOC 5 200000 200000 8 1
+init CODE 0 E E 4 1
+reset_vec CODE 0 0 0 4 1
+config CONFIG 4 300000 300000 E 1
 $dist/default/production\TCC_telemetria.X.production.obj
 cinit CODE 0 4660 4660 84 1
 idloc IDLOC 5 200000 200000 8 1
@@ -142,11 +147,6 @@ bssBIGRAM BIGRAM 1 2BB 2BB 220 1
 bssCOMRAM COMRAM 1 33 33 13 1
 mediumconst MEDIUMCONST 0 608A 608A 1F6 1
 config CONFIG 4 300000 300000 E 1
-$C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
-idloc IDLOC 5 200000 200000 8 1
-init CODE 0 E E 4 1
-reset_vec CODE 0 0 0 4 1
-config CONFIG 4 300000 300000 E 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -190,7 +190,7 @@ MEDIUMCONST 54C1-6089 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\TCC_telemetria.X.production.obj
-8 intcode CODE >31395:C:\Users\Felipe\AppData\Local\Temp\saakx.as
+8 intcode CODE >31395:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
 8 intcode CODE >107:E:\Projetos\TCC_telemetria.X\main.c
 4D22 text111 CODE >33:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcmp.c
 4D22 text111 CODE >37:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcmp.c
@@ -1834,71 +1834,71 @@ FEE text42 CODE >1840:E:\Projetos\TCC_telemetria.X\bibliotecas/tff.c
 5120 text0 CODE >235:E:\Projetos\TCC_telemetria.X\main.c
 5124 text0 CODE >236:E:\Projetos\TCC_telemetria.X\main.c
 5128 text0 CODE >238:E:\Projetos\TCC_telemetria.X\main.c
-4660 cinit CODE >4485:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4660 cinit CODE >4487:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4660 cinit CODE >4490:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4660 cinit CODE >4665:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4662 cinit CODE >4666:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4664 cinit CODE >4667:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4666 cinit CODE >4668:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4668 cinit CODE >4669:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-466A cinit CODE >4670:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-466C cinit CODE >4671:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4670 cinit CODE >4672:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4674 cinit CODE >4673:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4674 cinit CODE >4674:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4676 cinit CODE >4675:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-467A cinit CODE >4676:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-467C cinit CODE >4677:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-467E cinit CODE >4678:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4680 cinit CODE >4682:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4682 cinit CODE >4683:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4684 cinit CODE >4684:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4686 cinit CODE >4685:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4688 cinit CODE >4686:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-468A cinit CODE >4687:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-468C cinit CODE >4688:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-468E cinit CODE >4689:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4692 cinit CODE >4693:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-4696 cinit CODE >4694:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-469A cinit CODE >4695:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-469A cinit CODE >4696:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-469C cinit CODE >4697:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-469E cinit CODE >4698:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46A0 cinit CODE >4699:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46A2 cinit CODE >4700:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46A4 cinit CODE >4701:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46A6 cinit CODE >4704:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46AA cinit CODE >4705:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46AC cinit CODE >4706:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46AC cinit CODE >4707:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46AE cinit CODE >4708:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46B0 cinit CODE >4709:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46B2 cinit CODE >4712:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46B6 cinit CODE >4713:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46B8 cinit CODE >4714:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46B8 cinit CODE >4715:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46BA cinit CODE >4716:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46BC cinit CODE >4717:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46BE cinit CODE >4720:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46C2 cinit CODE >4721:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46C4 cinit CODE >4722:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46C4 cinit CODE >4723:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46C6 cinit CODE >4724:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46C8 cinit CODE >4725:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46CA cinit CODE >4728:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46CE cinit CODE >4729:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46D0 cinit CODE >4730:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46D0 cinit CODE >4731:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46D2 cinit CODE >4732:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46D4 cinit CODE >4733:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46D6 cinit CODE >4739:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46D6 cinit CODE >4741:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46D8 cinit CODE >4742:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46DA cinit CODE >4744:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46DC cinit CODE >4745:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46DE cinit CODE >4746:C:\Users\Felipe\AppData\Local\Temp\saakx.as
-46E0 cinit CODE >4747:C:\Users\Felipe\AppData\Local\Temp\saakx.as
+4660 cinit CODE >4485:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4660 cinit CODE >4487:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4660 cinit CODE >4490:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4660 cinit CODE >4665:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4662 cinit CODE >4666:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4664 cinit CODE >4667:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4666 cinit CODE >4668:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4668 cinit CODE >4669:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+466A cinit CODE >4670:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+466C cinit CODE >4671:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4670 cinit CODE >4672:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4674 cinit CODE >4673:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4674 cinit CODE >4674:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4676 cinit CODE >4675:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+467A cinit CODE >4676:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+467C cinit CODE >4677:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+467E cinit CODE >4678:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4680 cinit CODE >4682:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4682 cinit CODE >4683:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4684 cinit CODE >4684:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4686 cinit CODE >4685:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4688 cinit CODE >4686:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+468A cinit CODE >4687:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+468C cinit CODE >4688:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+468E cinit CODE >4689:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4692 cinit CODE >4693:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+4696 cinit CODE >4694:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+469A cinit CODE >4695:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+469A cinit CODE >4696:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+469C cinit CODE >4697:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+469E cinit CODE >4698:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46A0 cinit CODE >4699:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46A2 cinit CODE >4700:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46A4 cinit CODE >4701:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46A6 cinit CODE >4704:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46AA cinit CODE >4705:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46AC cinit CODE >4706:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46AC cinit CODE >4707:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46AE cinit CODE >4708:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46B0 cinit CODE >4709:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46B2 cinit CODE >4712:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46B6 cinit CODE >4713:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46B8 cinit CODE >4714:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46B8 cinit CODE >4715:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46BA cinit CODE >4716:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46BC cinit CODE >4717:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46BE cinit CODE >4720:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46C2 cinit CODE >4721:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46C4 cinit CODE >4722:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46C4 cinit CODE >4723:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46C6 cinit CODE >4724:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46C8 cinit CODE >4725:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46CA cinit CODE >4728:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46CE cinit CODE >4729:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46D0 cinit CODE >4730:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46D0 cinit CODE >4731:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46D2 cinit CODE >4732:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46D4 cinit CODE >4733:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46D6 cinit CODE >4739:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46D6 cinit CODE >4741:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46D8 cinit CODE >4742:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46DA cinit CODE >4744:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46DC cinit CODE >4745:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46DE cinit CODE >4746:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
+46E0 cinit CODE >4747:C:\Users\Felipe\AppData\Local\Temp\s68kx.as
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -1934,7 +1934,7 @@ _escalonador 41B4 0 CODE 0 text11 dist/default/production\TCC_telemetria.X.produ
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\TCC_telemetria.X.production.obj
 _recebe_dado_uart 53F8 0 CODE 0 text108 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_move_window 2FBA 0 CODE 0 text81 dist/default/production\TCC_telemetria.X.production.obj
-__mediumconst 608A 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
+__mediumconst 608A 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\TCC_telemetria.X.production.obj
 __size_of_dados_gps_to_sd 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 disk_write@count 6E 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
@@ -1962,7 +1962,7 @@ _TMR0 FD6 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _TMR2 FCC 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _TXEN 7D65 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _Term 43 0 COMRAM 1 bssCOMRAM dist/default/production\TCC_telemetria.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
+___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
 _atoi 3E0E 0 CODE 0 text22 dist/default/production\TCC_telemetria.X.production.obj
 _flag 33 0 COMRAM 1 bssCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 _fsid 11A 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.production.obj
@@ -1972,7 +1972,7 @@ _sync 4C82 0 CODE 0 text80 dist/default/production\TCC_telemetria.X.production.o
 _utoa 4394 0 CODE 0 text28 dist/default/production\TCC_telemetria.X.production.obj
 btemp 47 0 COMRAM 1 temp dist/default/production\TCC_telemetria.X.production.obj
 __HbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\TCC_telemetria.X.production.obj
-start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
+start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
 ?_GPSMinute 19 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __size_of___aldiv 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _put_cluster$1527 92 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
@@ -2040,11 +2040,11 @@ utoa@c 27 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.produ
 utoa@v 25 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 sdc_disk_write@buff 67 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 __size_of_validate 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
-intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
-intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
-intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
-intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
+__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
+intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
+intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
+intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
+intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
 __ptext100 52C8 0 CODE 0 text100 dist/default/production\TCC_telemetria.X.production.obj
 __ptext101 5446 0 CODE 0 text101 dist/default/production\TCC_telemetria.X.production.obj
 __ptext102 5478 0 CODE 0 text102 dist/default/production\TCC_telemetria.X.production.obj
@@ -2105,8 +2105,8 @@ _ADCON1 FC1 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _time_recovery FA 0 BANK0 1 bssBANK0 dist/default/production\TCC_telemetria.X.production.obj
 verifica_diferenca_minutos@i 22 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 verifica_diferenca_minutos@j 20 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
 __end_of_recebe_dado_uart 540A 0 CODE 0 text108 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_get_fattime 355A 0 CODE 0 text94 dist/default/production\TCC_telemetria.X.production.obj
 __LdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production\TCC_telemetria.X.production.obj
@@ -2320,7 +2320,7 @@ __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\TCC_telemetria.X.productio
 __Hbigram 0 0 ABS 0 bigram dist/default/production\TCC_telemetria.X.production.obj
 ?_get_fattime 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 _GPGGA_ok 11C 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
 sdc_reset@buff 2B 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 wait_ready@timeout 19 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __end_of_escalonador 425A 0 CODE 0 text11 dist/default/production\TCC_telemetria.X.production.obj
@@ -2781,8 +2781,8 @@ escrita_sdcard@f_fix 40 0 COMRAM 1 bssCOMRAM dist/default/production\TCC_telemet
 auto_mount@p 9D 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_verifica_fence_externo 4B88 0 CODE 0 text15 dist/default/production\TCC_telemetria.X.production.obj
 escreve_cmd_lcd@comando 1B 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
-stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
-stacklo 4DB 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
+stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
+stacklo 4DB 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production\TCC_telemetria.X.production.obj
 _remove_chain 42F8 0 CODE 0 text53 dist/default/production\TCC_telemetria.X.production.obj
 __size_of_endereco_cursor_lcd 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
@@ -2981,7 +2981,7 @@ __Ltext97 0 0 ABS 0 text97 dist/default/production\TCC_telemetria.X.production.o
 __Ltext98 0 0 ABS 0 text98 dist/default/production\TCC_telemetria.X.production.obj
 __Ltext99 0 0 ABS 0 text99 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_check_fs 4766 0 CODE 0 text65 dist/default/production\TCC_telemetria.X.production.obj
-__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\saakx8.obj
+__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s68kx8.obj
 ___aldiv@dividend 19 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 ?_GPSMonth 19 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 create_chain@fs A6 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
