@@ -86,7 +86,7 @@ unsigned int GPSHour();
 unsigned int GPSyear();
 unsigned int GPSMonth();
 unsigned int GPSDay();
-char  *Latitude(void);
+char *Latitude(void);
 char *Longitude(void);
 char *fix(void);
 void dados_gps_to_sd(void);

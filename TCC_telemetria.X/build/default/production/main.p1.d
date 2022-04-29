@@ -3,6 +3,7 @@
  main.c  \
 bibliotecas/uart.h  \
 bibliotecas/diskio.h  \
+bibliotecas/fence.h  \
 bibliotecas/SDCard.h  \
 main.h  \
 bibliotecas/tff.h  \

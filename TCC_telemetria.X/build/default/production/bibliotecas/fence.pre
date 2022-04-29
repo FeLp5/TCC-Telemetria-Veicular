@@ -1,5 +1,21 @@
 
-# 1 "bibliotecas/GPS.c"
+# 1 "bibliotecas/fence.c"
+
+# 60 "bibliotecas/../main.h"
+typedef struct
+{
+unsigned char point:1;
+}bit_field;
+
+# 18 "C:\Program Files\Microchip\xc8\v2.30\pic\include\xc.h"
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
+
+
+# 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\xc8debug.h"
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
 
 # 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdint.h"
 typedef signed char int8_t;
@@ -87,196 +103,19 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 4 "C:\Program Files\Microchip\xc8\v2.30\pic\include\__size_t.h"
-typedef unsigned size_t;
 
-# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 65
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-
-# 73
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-
-# 85
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
+# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\builtins.h"
+#pragma intrinsic(__nop)
+extern void __nop(void);
 
 
+#pragma intrinsic(_delay)
+extern __nonreentrant void _delay(uint32_t);
+#pragma intrinsic(_delaywdt)
+extern __nonreentrant void _delaywdt(uint32_t);
 
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-
-# 13 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\xc8debug.h"
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
-
-# 104 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h"
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 14 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-# 36
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-
-# 67 "bibliotecas/GPS.h"
-void stringcpy(char *str1, char *str2, int dir);
-int GPSRead(unsigned char buff);
-
-# 83
-unsigned int GPSSecond();
-unsigned int GPSMinute();
-unsigned int GPSHour();
-unsigned int GPSyear();
-unsigned int GPSMonth();
-unsigned int GPSDay();
-char *Latitude(void);
-char *Longitude(void);
-char *fix(void);
-void dados_gps_to_sd(void);
-
-# 8 "bibliotecas/integer.h"
-typedef struct{
-unsigned int hora;
-unsigned int min;
-unsigned int seg;
-unsigned char dia;
-unsigned char mes;
-unsigned int ano;
-}fat_time;
-
-typedef int INT;
-typedef unsigned int UINT;
-
-
-typedef signed char CHAR;
-typedef unsigned char UCHAR;
-typedef unsigned char BYTE;
-
-
-typedef short SHORT;
-typedef unsigned short USHORT;
-typedef unsigned short WORD;
-
-
-typedef long LONG;
-typedef unsigned long ULONG;
-typedef unsigned long DWORD;
-
-
-typedef enum { FALSE = 0, TRUE } BOOL;
-
-# 14 "bibliotecas/diskio.h"
-typedef BYTE DSTATUS;
-
-
-typedef enum {
-RES_OK = 0,
-RES_ERROR,
-RES_WRPRT,
-RES_NOTRDY,
-RES_PARERR
-} DRESULT;
-
-
-
-
-void sdc_reset(void);
-DRESULT sdc_disk_read(BYTE *buff,DWORD sector, BYTE count);
-DRESULT sdc_disk_write(const BYTE *p_buff, DWORD sector, BYTE count);
-DSTATUS sdc_disk_initialize(void);
-DSTATUS sdc_disk_status(BYTE pdrv);
-
-
-DSTATUS disk_initialize (BYTE pdrv);
-DSTATUS disk_status (BYTE pdrv);
-DRESULT disk_read (BYTE pdrv, BYTE* buff, DWORD sector, BYTE count);
-
-DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
-
-DRESULT disk_ioctl (BYTE, BYTE, void*);
-void disk_timerproc (void);
+#pragma intrinsic(_delay3)
+extern __nonreentrant void _delay3(uint8_t);
 
 # 53 "C:\Program Files\Microchip\xc8\v2.30\pic\include\proc\pic18f4550.h"
 extern volatile unsigned char SPPDATA __at(0xF62);
@@ -5813,25 +5652,6 @@ extern volatile __bit nW __at(0x7E3A);
 
 extern volatile __bit nWRITE __at(0x7E3A);
 
-# 18 "C:\Program Files\Microchip\xc8\v2.30\pic\include\xc.h"
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\builtins.h"
-#pragma intrinsic(__nop)
-extern void __nop(void);
-
-
-#pragma intrinsic(_delay)
-extern __nonreentrant void _delay(uint32_t);
-#pragma intrinsic(_delaywdt)
-extern __nonreentrant void _delaywdt(uint32_t);
-
-#pragma intrinsic(_delay3)
-extern __nonreentrant void _delay3(uint8_t);
-
 # 19 "C:\Program Files\Microchip\xc8\v2.30\pic\include\pic18.h"
 __attribute__((__unsupported__("The " "flash_write" " routine is no longer supported. Please use the MPLAB X MCC."))) void flash_write(const unsigned char *, unsigned int, __far unsigned char *);
 __attribute__((__unsupported__("The " "EraseFlash" " routine is no longer supported. Please use the MPLAB X MCC."))) void EraseFlash(unsigned long startaddr, unsigned long endaddr);
@@ -5859,201 +5679,527 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 50 "bibliotecas/SDCard.h"
-typedef struct{
-unsigned char data[7];
-unsigned char hora[11];
-unsigned char lt[13];
-unsigned char lo[13];
-unsigned char rpm[4];
-unsigned char vel[3];
-unsigned char comb[3];
-unsigned char odometro_total[4];
-unsigned char dtc;
+# 199 "bibliotecas/display_lcd.h"
+extern void init_lcd(void);
 
-}string_tel;
+# 208
+extern void escreve_cmd_lcd(unsigned char comando);
 
-# 66
-void sdcard_init(void);
+# 220
+extern void endereco_cursor_lcd(unsigned char endereco);
 
+# 236
+extern void posicao_cursor_lcd(unsigned char linha, unsigned char coluna);
 
-void escrita_sdcard(void);
-char *leitura_sdcard(unsigned char num_spot);
+# 247
+extern void escreve_caractere_lcd(char data);
 
-void monta_sd(unsigned char index, unsigned char *dado);
-BYTE response(void);
-void proceed(void);
-void dummy_clocks(unsigned char n);
-void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+# 261
+extern void escreve_inteiro_lcd(int valor);
 
-# 29 "bibliotecas/GPS.c"
-int GPRMC_ok = 0, GPGGA_ok = 0;
-uint8_t char_number = 0, SentenceType = 0, Term;
-char sentence[6], rawTime[11], rawDate[7], rawSpeed[6], rawCourse[6], rawSatellites[3],
-rawLatitude[13], rawLongitude[13], rawAltitude[7], buffer[12], rawFix[2];
+# 276
+extern void escreve_float_lcd(float valor, char formatacao);
 
-void stringcpy(char *str1, char *str2, int dir)
+# 290
+extern void escreve_frase_ram_lcd(char *buffer);
+
+# 304
+extern void escreve_frase_lcd(const char *buffer);
+
+# 322
+extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
+
+# 332
+void converte_inteiro_matriz(unsigned int val, char* str );
+
+# 30 "bibliotecas/fence.h"
+typedef struct
 {
-uint8_t chr = 0;
+unsigned char point:1;
+}bit_field;
 
-do {
-str2[chr + dir] = str1[chr];
-} while(str1[chr++] != '\0');
+
+
+typedef struct
+{
+unsigned char fence_lat_deg[5];
+unsigned char fence_long_deg[6];
+unsigned char point_lat_deg[5];
+unsigned char point_long_deg[6];
+long int diff_lat_deg;
+long int diff_long_deg;
+unsigned char fence_lat_min[6];
+unsigned char fence_long_min[6];
+unsigned char point_lat_min[6];
+unsigned char point_long_min[6];
+long int diff_lat_min;
+long int diff_long_min;
+}fence_ext_struct;
+
+# 58
+void armazena_latitude(void);
+void armazena_longitude(void);
+void verifica_diferenca_graus(unsigned char select_data);
+void verifica_diferenca_minutos(unsigned char select_data);
+void calcula_diff_graus(void);
+void calcula_diff_minutos(void);
+unsigned char verifica_plausibilidade_long(void);
+unsigned char verifica_plausibilidade_lat(void);
+
+# 67 "bibliotecas/GPS.h"
+void stringcpy(char *str1, char *str2, int dir);
+int GPSRead(unsigned char buff);
+
+# 83
+unsigned int GPSSecond();
+unsigned int GPSMinute();
+unsigned int GPSHour();
+unsigned int GPSyear();
+unsigned int GPSMonth();
+unsigned int GPSDay();
+char *Latitude(void);
+char *Longitude(void);
+char *fix(void);
+void dados_gps_to_sd(void);
+
+# 4 "C:\Program Files\Microchip\xc8\v2.30\pic\include\__size_t.h"
+typedef unsigned size_t;
+
+# 14 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 36
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 7 "C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h"
+typedef unsigned short wchar_t;
+
+# 15
+typedef struct {
+int rem;
+int quot;
+} div_t;
+typedef struct {
+unsigned rem;
+unsigned quot;
+} udiv_t;
+typedef struct {
+long quot;
+long rem;
+} ldiv_t;
+typedef struct {
+unsigned long quot;
+unsigned long rem;
+} uldiv_t;
+
+# 65
+extern double atof(const char *);
+extern double strtod(const char *, const char **);
+extern int atoi(const char *);
+extern unsigned xtoi(const char *);
+extern long atol(const char *);
+
+# 73
+extern long strtol(const char *, char **, int);
+
+extern int rand(void);
+extern void srand(unsigned int);
+extern void * calloc(size_t, size_t);
+extern div_t div(int numer, int denom);
+extern udiv_t udiv(unsigned numer, unsigned denom);
+extern ldiv_t ldiv(long numer, long denom);
+extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+
+# 85
+extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+extern unsigned int _rotl(unsigned int value, unsigned int shift);
+extern unsigned int _rotr(unsigned int value, unsigned int shift);
+
+
+
+
+extern void * malloc(size_t);
+extern void free(void *);
+extern void * realloc(void *, size_t);
+
+# 104
+extern int atexit(void (*)(void));
+extern char * getenv(const char *);
+extern char ** environ;
+extern int system(char *);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+extern int abs(int);
+extern long labs(long);
+
+extern char * itoa(char * buf, int val, int base);
+extern char * utoa(char * buf, unsigned val, int base);
+
+
+
+
+extern char * ltoa(char * buf, long val, int base);
+extern char * ultoa(char * buf, unsigned long val, int base);
+
+extern char * ftoa(float f, int * status);
+
+# 33 "bibliotecas/fence.c"
+const unsigned char fence_diff_lat[4][11] = {"-2342.07112", "-2342.07112", "-2342.11784", "-2342.11784"};
+const unsigned char fence_diff_long[4][12] = {"-04629.73477", "-04629.68601", "-04629.68601", "-04629.73477"};
+
+unsigned char temp_buff_lat[11];
+unsigned char temp_buff_long[12];
+
+fence_ext_struct poligono_ext[2];
+
+# 56
+void armazena_longitude(void)
+{
+strcpy(temp_buff_long, Longitude());
 }
 
-int GPSRead(unsigned char buff)
+# 68
+void armazena_latitude(void)
 {
-uint8_t c = buff;
+strcpy(temp_buff_lat, Latitude());
+}
 
-switch(c) {
-case '\r':
-if(SentenceType == 1)
-GPRMC_ok = 1;
-if(SentenceType == 2)
-GPGGA_ok = 1;
-if(GPRMC_ok && GPGGA_ok) {
-GPRMC_ok = GPGGA_ok = 0;
+# 80
+void verifica_diferenca_graus(unsigned char select_data)
+{
+
+unsigned char point, point_index_lat ,point_index_long;
+unsigned char i, j;
+point = 0;
+point_index_long = 0;
+point_index_lat = 0;
+
+switch(select_data)
+{
+case 1:
+while(point<4)
+{
+for(i=1; i<6; i++)
+{
+if(point == 0 || point == 2)
+{
+if(point == 2 && !point_index_long)
+{
+point_index_long++;
+}
+for(j= 0; i < 6; j++)
+{
+poligono_ext[point_index_long].point_long_deg[j] = temp_buff_long[i];
+poligono_ext[point_index_long].fence_long_deg[j] = fence_diff_long[point][i];
+
+i++;
+}
+
+}
+
+}
+
+point++;
+}
+break;
+
+default:
+while(point<4)
+{
+for(i=1; i<5; i++)
+{
+if(point == 0 || point == 2)
+{
+
+if(point == 2 && !point_index_lat)
+{
+point_index_lat++;
+}
+
+
+for(j= 0; i < 5; j++)
+{
+poligono_ext[point_index_lat].point_lat_deg[j] = temp_buff_lat[i];
+poligono_ext[point_index_lat].fence_lat_deg[j] = fence_diff_lat[point][i];
+i++;
+}
+
+}
+}
+point++;
+}
+break;
+
+}
+
+
+}
+
+# 156
+void calcula_diff_graus(void)
+{
+unsigned char point, count;
+unsigned long int temp_var_deg;
+
+while(point<4)
+{
+if(point == 0 || point == 2)
+{
+temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
+poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
+poligono_ext[count].diff_lat_deg -= temp_var_deg;
+temp_var_deg = atoi(poligono_ext[count].point_long_deg);
+poligono_ext[count].diff_long_deg = atoi(poligono_ext[count].fence_long_deg);
+poligono_ext[count].diff_long_deg -= temp_var_deg;
+
+count++;
+}
+point++;
+}
+
+}
+
+# 187
+void verifica_diferenca_minutos(unsigned char select_data)
+{
+unsigned char point, point_index_lat ,point_index_long;
+unsigned char i, j;
+
+point_index_lat = 0;
+point_index_long = 0;
+point = 0;
+switch(select_data)
+{
+case 1:
+while(point<4)
+{
+for(i=6; i<11; i++)
+{
+if(point == 0 || point == 2)
+{
+if(point == 2 && !point_index_lat)
+{
+point_index_lat++;
+}
+if(fence_diff_lat[point][i] != temp_buff_lat[i])
+{
+for(j= 0; i < 11; j++)
+{
+poligono_ext[point_index_lat].fence_lat_min[j] = fence_diff_lat[point][i];
+poligono_ext[point_index_lat].point_lat_min[j] = temp_buff_lat[i];
+i++;
+}
+
+}
+
+}
+else
+{
+i = 11;
+}
+}
+point++;
+}
+break;
+default:
+while(point<4)
+{
+for(i=7; i<12; i++)
+{
+if(point == 0 || point == 2)
+{
+if(point == 2 && !point_index_long)
+{
+point_index_long++;
+}
+
+
+if(fence_diff_long[point][i] != temp_buff_long[i])
+{
+for(j= 0; i < 12; j++)
+{
+poligono_ext[point_index_long].fence_long_min[j] = fence_diff_long[point][i];
+poligono_ext[point_index_long].point_long_min[j] = temp_buff_long[i];
+i++;
+}
+}
+}
+else
+{
+i = 11;
+}
+
+}
+point++;
+}
+break;
+}
+}
+
+# 270
+void calcula_diff_minutos(void)
+{
+unsigned char point, count;
+
+
+while(point<4)
+{
+if(point == 0 || point == 2)
+{
+poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
+poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
+count++;
+}
+point++;
+}
+
+}
+
+# 294
+unsigned char verifica_plausibilidade_long(void)
+{
+switch(temp_buff_long[0])
+{
+case '-':
+if(
+((poligono_ext[0].diff_long_min >= 0 &&
+poligono_ext[1].diff_long_min <= 0) &&
+
+(poligono_ext[0].diff_long_deg >= 0 &&
+poligono_ext[1].diff_long_deg <= 0)))
+{
+return 0;
+}
+else if((poligono_ext[0].diff_long_min == 0 ||
+poligono_ext[1].diff_long_min == 0 ) &&
+
+
+(poligono_ext[0].diff_long_deg == 0 ||
+poligono_ext[1].diff_long_deg == 0))
+{
+return 0;
+}
+else
+{
 return 1;
 }
 break;
 
-case '$':
-Term = char_number = 0;
-break;
-
-case ',':
-buffer[char_number] = '\0';
-if(Term == 0) {
-stringcpy(buffer, sentence, 0);
-if(strcmp(sentence, "GPRMC") == 0)
-SentenceType = 1;
-else if(strcmp(sentence, "GPGGA") == 0)
-SentenceType = 2;
-else
-SentenceType = 3;
-}
-
-
-if(Term == 1 && SentenceType == 1) {
-stringcpy(buffer, rawTime, 0);
-}
-
-
-if((Term == 3) && (SentenceType == 1)) {
-stringcpy(buffer, rawLatitude, 1);
-}
-
-if((Term == 4) && (SentenceType == 1)) {
-if(buffer[0] == 'N')
-rawLatitude[0] = '0';
-else
-rawLatitude[0] = '-';
-}
-
-
-if((Term == 5) && (SentenceType == 1)) {
-stringcpy(buffer, rawLongitude, 1);
-}
-
-if((Term == 6) && (SentenceType == 1)) {
-if(buffer[0] == 'E')
-rawLongitude[0] = '0';
-else
-rawLongitude[0] = '-';
-}
-
-
-if((Term == 7) && (SentenceType == 1)) {
-stringcpy(buffer, rawSpeed, 0);
-}
-
-
-if((Term == 8) && (SentenceType == 1)) {
-stringcpy(buffer, rawCourse, 0);
-}
-
-
-if(Term == 9 && SentenceType == 1) {
-stringcpy(buffer, rawDate, 0);
-}
-
-
-if((Term == 7) && (SentenceType == 2)) {
-stringcpy(buffer, rawSatellites, 0);
-}
-
-
-if((Term == 9) && (SentenceType == 2)) {
-stringcpy(buffer, rawAltitude, 0);
-}
-
-
-if((Term == 6) && (SentenceType == 2)) {
-stringcpy(buffer, rawFix, 0);
-
-}
-Term++;
-char_number = 0;
-break;
-
 default:
-buffer[char_number++] = c;
-break;
+if(
+(poligono_ext[0].diff_long_min <= 0 &&
+poligono_ext[1].diff_long_min >= 0 ) &&
+(poligono_ext[0].diff_lat_deg <= 0 &&
+poligono_ext[1].diff_lat_deg >= 0))
+{
+return 0;
 }
+else if((poligono_ext[0].diff_long_min == 0 ||
+poligono_ext[1].diff_long_min == 0) &&
+(poligono_ext[0].diff_long_deg == 0 ||
+poligono_ext[1].diff_long_deg == 0))
+{
+return 0;
+}
+else
+{
+return 1;
+}
+break;
+
+}
+
+
+}
+
+# 356
+unsigned char verifica_plausibilidade_lat(void)
+{
+switch(temp_buff_lat[0])
+{
+case '-':
+if(
+(
+poligono_ext[0].diff_lat_min <= 0 &&
+poligono_ext[1].diff_lat_min >= 0) &&
+
+(poligono_ext[0].diff_lat_deg <= 0 &&
+poligono_ext[1].diff_lat_deg >= 0))
+
+{
+return 0;
+}
+else if(
+(poligono_ext[0].diff_lat_min == 0 ||
+poligono_ext[1].diff_lat_min == 0) &&
+(poligono_ext[0].diff_lat_deg == 0 ||
+poligono_ext[1].diff_lat_deg == 0))
+{
 
 return 0;
 }
+else
+{
+return 1;
+}
+break;
 
-unsigned int GPSSecond()
-{
-return ((rawTime[4] - '0') * 10 + (rawTime[5] - '0'));
-}
-unsigned int GPSMinute()
-{
-return ((rawTime[2] - '0') * 10 + (rawTime[3] - '0'));
-}
-unsigned int GPSHour()
-{
-return (((rawTime[0] - '0') * 10 + (rawTime[1] - '0')));
-}
-
-unsigned int GPSDay()
-{
-return ((rawDate[0] - '0') * 10 + (rawDate[1] - '0'));
-}
-unsigned int GPSMonth()
-{
-return ((rawDate[2] - '0') * 10 + (rawDate[3] - '0'));
-}
-unsigned int GPSyear()
-{
-return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
-}
+default:
+if((poligono_ext[0].diff_lat_min >= 0 &&
+poligono_ext[1].diff_lat_min <= 0 ) &&
 
 
-char *Latitude(void)
+(poligono_ext[0].diff_lat_deg >= 0 &&
+poligono_ext[1].diff_lat_deg <= 0)
+)
+{
+return 0;
+}
+else if((poligono_ext[0].diff_lat_min == 0 ||
+poligono_ext[1].diff_lat_min == 0) &&
+
+(poligono_ext[0].diff_lat_deg == 0 ||
+poligono_ext[1].diff_lat_deg == 0))
+{
+return 0;
+}
+else
 {
 
-return rawLatitude;
+
+return 1;
+}
+break;
+
 }
 
-char *Longitude(void)
-{
 
-return rawLongitude;
 }
 
-char *fix(void)
-{
-return rawFix;
-}
-
-# 212
-void dados_gps_to_sd(void)
-{
-monta_sd(0, rawTime);
-monta_sd(1, rawDate);
-monta_sd(2, rawLatitude);
-monta_sd(3, rawLongitude);
-return;
-}

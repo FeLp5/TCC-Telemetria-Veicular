@@ -6118,20 +6118,16 @@ PORTBbits.RB3 = 0;
 desliga_uart();
 inicializa_SPI();
 f_mount(0,&fs);
-fix_gps = fix();
 
-if(fix_gps[0] == '1')
-{
 if(!f_fix)
 {
-
-
 
 strcpy(filename, string_dado.data);
 
 strcat(filename, ".tlm");
 f_fix = 1;
 }
+
 if (f_open(&fil, filename, 0x02 ) == FR_OK)
 {
 
@@ -6147,7 +6143,7 @@ f_open(&fil, filename, 0x08 );
 f_close(&fil);
 
 }
-}
+
 PORTBbits.RB3 = 1;
 desliga_SPI();
 inicializa_uart();
@@ -6155,7 +6151,7 @@ inicializa_uart();
 return;
 }
 
-# 260
+# 256
 char *leitura_sdcard(unsigned char num_spot)
 {
 
@@ -6184,7 +6180,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 301
+# 297
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;
@@ -6206,7 +6202,7 @@ string_dado.data[i] = *dado;
 dado++;
 }
 
-# 327
+# 323
 break;
 
 case 2:

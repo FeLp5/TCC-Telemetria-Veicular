@@ -5841,24 +5841,6 @@ typedef struct
 unsigned char point:1;
 }bit_field;
 
-
-
-typedef struct
-{
-unsigned char fence_lat_deg[5];
-unsigned char fence_long_deg[6];
-unsigned char point_lat_deg[5];
-unsigned char point_long_deg[6];
-long int diff_lat_deg;
-long int diff_long_deg;
-unsigned char fence_lat_min[6];
-unsigned char fence_long_min[6];
-unsigned char point_lat_min[6];
-unsigned char point_long_min[6];
-long int diff_lat_min;
-long int diff_long_min;
-}fence_ext_struct;
-
 # 34 "bibliotecas/hardware.h"
 void init_hardware(void);
 void write_timer_zero(unsigned int timer0);
@@ -5976,6 +5958,40 @@ char *Longitude(void);
 char *fix(void);
 void dados_gps_to_sd(void);
 
+# 30 "bibliotecas/fence.h"
+typedef struct
+{
+unsigned char point:1;
+}bit_field;
+
+
+
+typedef struct
+{
+unsigned char fence_lat_deg[5];
+unsigned char fence_long_deg[6];
+unsigned char point_lat_deg[5];
+unsigned char point_long_deg[6];
+long int diff_lat_deg;
+long int diff_long_deg;
+unsigned char fence_lat_min[6];
+unsigned char fence_long_min[6];
+unsigned char point_lat_min[6];
+unsigned char point_long_min[6];
+long int diff_lat_min;
+long int diff_long_min;
+}fence_ext_struct;
+
+# 58
+void armazena_latitude(void);
+void armazena_longitude(void);
+void verifica_diferenca_graus(unsigned char select_data);
+void verifica_diferenca_minutos(unsigned char select_data);
+void calcula_diff_graus(void);
+void calcula_diff_minutos(void);
+unsigned char verifica_plausibilidade_long(void);
+unsigned char verifica_plausibilidade_lat(void);
+
 # 4 "C:\Program Files\Microchip\xc8\v2.30\pic\include\__size_t.h"
 typedef unsigned size_t;
 
@@ -6091,11 +6107,10 @@ uint8_t MCP2515_ENVIA(uint8_t id, uint8_t len, uint8_t *buf);
 
 uint8_t MCP2515_RECEBE(uint32_t *id, uint8_t *len, uint8_t *buf);
 
-# 49 "main.c"
-fence_ext_struct poligono_ext[2];
+# 51 "main.c"
 bit_field flag[3];
 
-# 56
+# 57
 unsigned char data_uart_recebe;
 
 
@@ -6117,13 +6132,14 @@ volatile char tarefa_em_execucao;
 unsigned int timeout_tarefa;
 
 unsigned int time_sd;
+unsigned int time_recovery;
 
 unsigned int time_atualizacao;
 
 unsigned char *point_buff_gps_lat;
 unsigned char *point_buff_gps_long;
 
-# 86
+# 88
 void mensagem_inicial(void);
 
 void verifica_fence_externo(void);
@@ -6134,7 +6150,7 @@ void disparo_gravacao(void);
 
 void troca_de_tela(void);
 
-# 105
+# 107
 void __interrupt() isr(void)
 {
 unsigned char cont;
@@ -6163,6 +6179,7 @@ if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
 }
 if(time_sd > 0) time_sd--;
 if(time_atualizacao > 0) time_atualizacao--;
+if(time_recovery>0) time_recovery--;
 if(tarefa_em_execucao == 1)
 {
 timeout_tarefa--;
@@ -6186,7 +6203,7 @@ INT0IF = 0;
 }
 }
 
-# 165
+# 168
 void inicializa_tarefas(void)
 {
 
@@ -6195,22 +6212,22 @@ p_tarefas[1] = disparo_gravacao;
 p_tarefas[2] = verifica_fence_externo;
 p_tarefas[3] = troca_de_tela;
 
-# 175
+# 178
 tempo_backup[0] = 100;
 tempo_backup[1] = 100;
 tempo_backup[2] = 1000;
 tempo_backup[3] = 100;
 
-# 181
+# 184
 tempo_tarefa[0] = 100;
 tempo_tarefa[1] = 100;
 tempo_tarefa[2] = 1000;
-tempo_tarefa[3] = 1000;
+tempo_tarefa[3] = 100;
 
 tarefa_em_execucao = 0;
 }
 
-# 197
+# 200
 void escalonador()
 {
 unsigned char cont;
@@ -6219,7 +6236,7 @@ for(cont = 0; cont<4;cont++)
 if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
 {
 tarefa_em_execucao = 1;
-timeout_tarefa = 7000;
+timeout_tarefa = 10000;
 p_tarefas[cont]();
 tarefa_em_execucao = 0;
 tempo_tarefa[cont] = tempo_backup[cont];
@@ -6227,7 +6244,7 @@ tempo_tarefa[cont] = tempo_backup[cont];
 }
 }
 
-# 218
+# 221
 void main(void)
 {
 init_hardware();
@@ -6251,7 +6268,7 @@ dados_gps_to_sd();
 }
 }
 
-# 246
+# 249
 void mensagem_inicial(void)
 {
 const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
@@ -6267,278 +6284,26 @@ escreve_cmd_lcd(0b00000001);
 
 }
 
-# 269
+# 272
 void verifica_fence_externo(void)
 {
-unsigned char fence_diff_lat[4][11] = {"-2342.07112", "-2342.07112", "-2342.11784", "-2342.11784"};
-unsigned char fence_diff_long[4][12] = {"-04629.73477", "-04629.68601", "-04629.68601", "-04629.73477"};
+
+# 570
+armazena_latitude();
+armazena_longitude();
+
+verifica_diferenca_graus(0);
+verifica_diferenca_graus(1);
+
+verifica_diferenca_minutos(0);
+verifica_diferenca_minutos(1);
+
+calcula_diff_graus();
+calcula_diff_minutos();
 
 
-unsigned char *p_buff_gps_lat, *p_buff_gps_long;
-unsigned char i, j, count, count_index;
-unsigned char point, point_index_lat ,point_index_long;
-unsigned long int temp_var_deg;
-unsigned char temp_buff_lat[11] = "-2342.07112";
-unsigned char temp_buff_long[12] = "-04629.73477";
-count = 0;
-point = 0;
-point_index_lat = 0;
-point_index_long = 0;
-j= 0;
-
-
-p_buff_gps_lat = Latitude();
-p_buff_gps_long = Longitude();
-
-# 301
-while(point<4)
-{
-
-for(i=1; i<6; i++)
-{
-if(point == 0 || point == 2)
-{
-if(point == 2 && !point_index_long)
-{
-point_index_long++;
-}
-for(j= 0; i < 6; j++)
-{
-poligono_ext[point_index_long].point_long_deg[j] = temp_buff_long[i];
-poligono_ext[point_index_long].fence_long_deg[j] = fence_diff_long[point][i];
-
-i++;
-}
-
-}
-
-}
-
-for(i=1; i<5; i++)
-{
-if(point == 0 || point == 2)
-{
-
-if(point == 2 && !point_index_lat)
-{
-point_index_lat++;
-}
-
-
-for(j= 0; i < 5; j++)
-{
-poligono_ext[point_index_lat].point_lat_deg[j] = temp_buff_lat[i];
-poligono_ext[point_index_lat].fence_lat_deg[j] = fence_diff_lat[point][i];
-i++;
-}
-
-}
-}
-
-
-
-if(point == 0 || point == 2)
-{
-temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
-poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
-poligono_ext[count].diff_lat_deg -= temp_var_deg;
-temp_var_deg = atoi(poligono_ext[count].point_long_deg);
-poligono_ext[count].diff_long_deg = atoi(poligono_ext[count].fence_long_deg);
-poligono_ext[count].diff_long_deg -= temp_var_deg;
-
-count++;
-}
-point++;
-}
-
-# 365
-point = 0;
-count = 0;
-point_index_lat = 0;
-point_index_long = 0;
-
-
-
-while(point<4)
-{
-for(i=6; i<11; i++)
-{
-if(point == 0 || point == 2)
-{
-if(point == 2 && !point_index_lat)
-{
-point_index_lat++;
-}
-if(fence_diff_lat[point][i] != temp_buff_lat[i])
-{
-for(j= 0; i < 11; j++)
-{
-poligono_ext[point_index_lat].fence_lat_min[j] = fence_diff_lat[point][i];
-poligono_ext[point_index_lat].point_lat_min[j] = temp_buff_lat[i];
-i++;
-}
-
-}
-
-}
-else
-{
-i = 11;
-}
-}
-
-
-
-for(i=7; i<12; i++)
-{
-if(point == 0 || point == 2)
-{
-if(point == 2 && !point_index_long)
-{
-point_index_long++;
-}
-
-
-if(fence_diff_long[point][i] != temp_buff_long[i])
-{
-for(j= 0; i < 12; j++)
-{
-poligono_ext[point_index_long].fence_long_min[j] = fence_diff_long[point][i];
-poligono_ext[point_index_long].point_long_min[j] = temp_buff_long[i];
-i++;
-}
-}
-}
-else
-{
-i = 11;
-}
-
-}
-
-
-if(point == 0 || point == 2)
-{
-poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
-poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
-count++;
-}
-
-point++;
-}
-count = 0;
-point = 0;
-
-# 446
-switch(temp_buff_long[0])
-{
-case '-':
-if(
-((poligono_ext[0].diff_long_min >= 0 &&
-poligono_ext[1].diff_long_min <= 0) &&
-
-(poligono_ext[0].diff_long_deg >= 0 &&
-poligono_ext[1].diff_long_deg <= 0)))
-{
-flag[0].point = 0;
-}
-else if((poligono_ext[0].diff_long_min == 0 ||
-poligono_ext[1].diff_long_min == 0 ) &&
-
-
-(poligono_ext[0].diff_long_deg == 0 ||
-poligono_ext[1].diff_long_deg == 0))
-{
-flag[0].point = 0;
-}
-else
-{
-flag[0].point = 1;
-}
-break;
-
-default:
-if(
-(poligono_ext[0].diff_long_min <= 0 &&
-poligono_ext[1].diff_long_min >= 0 ) &&
-(poligono_ext[0].diff_lat_deg <= 0 &&
-poligono_ext[1].diff_lat_deg >= 0))
-{
-flag[0].point = 0;
-}
-else if((poligono_ext[0].diff_long_min == 0 ||
-poligono_ext[1].diff_long_min == 0) &&
-(poligono_ext[0].diff_long_deg == 0 ||
-poligono_ext[1].diff_long_deg == 0))
-{
-flag[0].point = 0;
-}
-else
-{
-flag[0].point = 1;
-}
-break;
-
-}
-
-switch(temp_buff_lat[0])
-{
-case '-':
-if(
-(
-poligono_ext[0].diff_lat_min <= 0 &&
-poligono_ext[1].diff_lat_min >= 0) &&
-
-(poligono_ext[0].diff_lat_deg <= 0 &&
-poligono_ext[1].diff_lat_deg >= 0))
-
-{
-flag[1].point = 0;
-}
-else if(
-(poligono_ext[0].diff_lat_min == 0 ||
-poligono_ext[1].diff_lat_min == 0) &&
-(poligono_ext[0].diff_lat_deg == 0 ||
-poligono_ext[1].diff_lat_deg == 0))
-{
-
-flag[1].point = 0;
-}
-else
-{
-flag[1].point = 1;
-}
-break;
-
-default:
-if((poligono_ext[0].diff_lat_min >= 0 &&
-poligono_ext[1].diff_lat_min <= 0 ) &&
-
-
-(poligono_ext[0].diff_lat_deg >= 0 &&
-poligono_ext[1].diff_lat_deg <= 0)
-)
-{
-flag[1].point = 0;
-}
-else if((poligono_ext[0].diff_lat_min == 0 ||
-poligono_ext[1].diff_lat_min == 0) &&
-
-(poligono_ext[0].diff_lat_deg == 0 ||
-poligono_ext[1].diff_lat_deg == 0))
-{
-flag[1].point = 0;
-}
-else
-{
-
-
-flag[1].point = 1;
-}
-break;
-
-}
-
+flag[0].point = verifica_plausibilidade_long();
+flag[1].point = verifica_plausibilidade_lat();
 
 if(flag[0].point || flag[1].point)
 {
@@ -6553,28 +6318,32 @@ flag[2].point = 0;
 
 }
 
-# 577
+# 607
 void verifica_dados_operacionais(void)
 {
 
-# 586
+# 616
 }
 
-# 596
+# 626
 void disparo_gravacao(void)
 {
-if(!time_sd)
+unsigned char *fix_gps;
+
+fix_gps = fix();
+
+if(fix_gps[0] == '1')
 {
-
-
+if(!time_sd && !time_recovery)
+{
 escrita_sdcard();
 time_sd = 1000;
-
-
+time_recovery = 5000;
 }
 }
+}
 
-# 617
+# 651
 void troca_de_tela(void)
 {
 
@@ -6708,4 +6477,3 @@ break;
 
 
 }
-

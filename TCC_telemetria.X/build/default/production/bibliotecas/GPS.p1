@@ -4153,71 +4153,71 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;GPS.c: 174: {
 [e :U _Latitude ]
 [f ]
-[; ;GPS.c: 175: return rawLatitude;
-"175
+[; ;GPS.c: 176: return rawLatitude;
+"176
 [e ) &U _rawLatitude ]
 [e $UE 408  ]
-[; ;GPS.c: 176: }
-"176
+[; ;GPS.c: 177: }
+"177
 [e :UE 408 ]
 }
-"178
-[v _Longitude `(*uc ~T0 @X0 1 ef ]
 "179
+[v _Longitude `(*uc ~T0 @X0 1 ef ]
+"180
 {
-[; ;GPS.c: 178: char *Longitude(void)
-[; ;GPS.c: 179: {
+[; ;GPS.c: 179: char *Longitude(void)
+[; ;GPS.c: 180: {
 [e :U _Longitude ]
 [f ]
-[; ;GPS.c: 180: return rawLongitude;
-"180
+[; ;GPS.c: 182: return rawLongitude;
+"182
 [e ) &U _rawLongitude ]
 [e $UE 409  ]
-[; ;GPS.c: 181: }
-"181
+[; ;GPS.c: 183: }
+"183
 [e :UE 409 ]
 }
-"183
+"185
 [v _fix `(*uc ~T0 @X0 1 ef ]
-"184
+"186
 {
-[; ;GPS.c: 183: char *fix(void)
-[; ;GPS.c: 184: {
+[; ;GPS.c: 185: char *fix(void)
+[; ;GPS.c: 186: {
 [e :U _fix ]
 [f ]
-[; ;GPS.c: 185: return rawFix;
-"185
+[; ;GPS.c: 187: return rawFix;
+"187
 [e ) &U _rawFix ]
 [e $UE 410  ]
-[; ;GPS.c: 186: }
-"186
+[; ;GPS.c: 188: }
+"188
 [e :UE 410 ]
 }
-"210
+"212
 [v _dados_gps_to_sd `(v ~T0 @X0 1 ef ]
-"211
+"213
 {
-[; ;GPS.c: 210: void dados_gps_to_sd(void)
-[; ;GPS.c: 211: {
+[; ;GPS.c: 212: void dados_gps_to_sd(void)
+[; ;GPS.c: 213: {
 [e :U _dados_gps_to_sd ]
 [f ]
-[; ;GPS.c: 212: monta_sd(0, rawTime);
-"212
-[e ( _monta_sd (2 , -> -> 0 `i `uc &U _rawTime ]
-[; ;GPS.c: 213: monta_sd(1, rawDate);
-"213
-[e ( _monta_sd (2 , -> -> 1 `i `uc &U _rawDate ]
-[; ;GPS.c: 214: monta_sd(2, rawLatitude);
+[; ;GPS.c: 214: monta_sd(0, rawTime);
 "214
-[e ( _monta_sd (2 , -> -> 2 `i `uc &U _rawLatitude ]
-[; ;GPS.c: 215: monta_sd(3, rawLongitude);
+[e ( _monta_sd (2 , -> -> 0 `i `uc &U _rawTime ]
+[; ;GPS.c: 215: monta_sd(1, rawDate);
 "215
-[e ( _monta_sd (2 , -> -> 3 `i `uc &U _rawLongitude ]
-[; ;GPS.c: 216: return;
+[e ( _monta_sd (2 , -> -> 1 `i `uc &U _rawDate ]
+[; ;GPS.c: 216: monta_sd(2, rawLatitude);
 "216
-[e $UE 411  ]
-[; ;GPS.c: 217: }
+[e ( _monta_sd (2 , -> -> 2 `i `uc &U _rawLatitude ]
+[; ;GPS.c: 217: monta_sd(3, rawLongitude);
 "217
+[e ( _monta_sd (2 , -> -> 3 `i `uc &U _rawLongitude ]
+[; ;GPS.c: 218: return;
+"218
+[e $UE 411  ]
+[; ;GPS.c: 219: }
+"219
 [e :UE 411 ]
 }
 [a 1C 71 80 82 77 67 0 ]

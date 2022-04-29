@@ -171,12 +171,14 @@ unsigned int GPSyear()
 //
 
 char  *Latitude(void) 
-{
-  return rawLatitude;
+{   
+//    strcpy(rawLatitude,"-2342.07112");
+  return  rawLatitude;
 }
 //
 char *Longitude(void) 
 {
+//    strcpy(rawLongitude, "-04629.73476");
   return rawLongitude;
 }
 

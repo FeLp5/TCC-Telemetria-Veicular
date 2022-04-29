@@ -212,36 +212,32 @@ void escrita_sdcard()
     desliga_uart();
     inicializa_SPI();
     f_mount(0,&fs);
-    fix_gps = fix();
-    
-    if(fix_gps[0] == '1')
-    {
-        if(!f_fix)
-        {  
-//            strcpy(filename, 'T'); //[2][3]
-//            strcpy(filename, 'E'); //[4][5]
-//            strcpy(filename, string_dado.hora[0]);
-            strcpy(filename, string_dado.data);
-//            strcpy(filename, "TESTE");
-            strcat(filename, ".tlm");
-            f_fix = 1;
-        }
-        if (f_open(&fil, filename, FA_WRITE ) == FR_OK)  /* Open or create a file */
-        {	
 
-            f_lseek(&fil, fsize(&fil));
-            fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc");
+    if(!f_fix)
+    {  
 
-            /* Close the file */
-            f_close(&fil);	
-        }
-        else
-        {
-            f_open(&fil, filename, FA_CREATE_ALWAYS );
-            f_close(&fil);
-            
-        }
+        strcpy(filename, string_dado.data);
+//        strcpy(filename, "teste");
+        strcat(filename, ".tlm");
+        f_fix = 1;
     }
+    
+    if (f_open(&fil, filename, FA_WRITE ) == FR_OK)  /* Open or create a file */
+    {	
+
+        f_lseek(&fil, fsize(&fil));
+        fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc");
+
+        /* Close the file */
+        f_close(&fil);	
+    }
+    else
+    {
+        f_open(&fil, filename, FA_CREATE_ALWAYS );
+        f_close(&fil);
+
+    }
+
     PORTBbits.RB3 = 1; 
     desliga_SPI();
     inicializa_uart();

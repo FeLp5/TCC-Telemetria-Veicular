@@ -3639,21 +3639,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.h: 61: {
 [; ;main.h: 62: unsigned char point:1;
 [; ;main.h: 63: }bit_field;
-[; ;main.h: 67: typedef struct
-[; ;main.h: 68: {
-[; ;main.h: 69: unsigned char fence_lat_deg[5];
-[; ;main.h: 70: unsigned char fence_long_deg[6];
-[; ;main.h: 71: unsigned char point_lat_deg[5];
-[; ;main.h: 72: unsigned char point_long_deg[6];
-[; ;main.h: 73: long int diff_lat_deg;
-[; ;main.h: 74: long int diff_long_deg;
-[; ;main.h: 75: unsigned char fence_lat_min[6];
-[; ;main.h: 76: unsigned char fence_long_min[6];
-[; ;main.h: 77: unsigned char point_lat_min[6];
-[; ;main.h: 78: unsigned char point_long_min[6];
-[; ;main.h: 79: long int diff_lat_min;
-[; ;main.h: 80: long int diff_long_min;
-[; ;main.h: 81: }fence_ext_struct;
 [; ;hardware.c: 27: union Timers
 [; ;hardware.c: 28: {
 [; ;hardware.c: 29: unsigned int lt;
@@ -3689,7 +3674,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _init_interrupt ..  ]
 [; ;hardware.c: 70: }
 "70
-[e :UE 365 ]
+[e :UE 364 ]
 }
 "79
 [v _config_timer_zero `(v ~T0 @X0 1 ef ]
@@ -3713,7 +3698,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _write_timer_zero (1 -> -> 69 `i `ui ]
 [; ;hardware.c: 86: }
 "86
-[e :UE 366 ]
+[e :UE 365 ]
 }
 "94
 [v _init_interrupt `(v ~T0 @X0 1 ef ]
@@ -3737,7 +3722,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _PIE1 -> -> 40 `i `uc ]
 [; ;hardware.c: 101: }
 "101
-[e :UE 367 ]
+[e :UE 366 ]
 }
 "109
 [v _open_timer0 `(v ~T0 @X0 1 ef1`uc ]
@@ -3764,7 +3749,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
 [; ;hardware.c: 116: if(config&0x80)
 "116
-[e $ ! != & -> _config `i -> 128 `i -> 0 `i 369  ]
+[e $ ! != & -> _config `i -> 128 `i -> 0 `i 368  ]
 [; ;hardware.c: 117: {
 "117
 {
@@ -3774,9 +3759,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "119
 }
 [; ;hardware.c: 119: }
-[e $U 370  ]
+[e $U 369  ]
 "120
-[e :U 369 ]
+[e :U 368 ]
 [; ;hardware.c: 120: else
 [; ;hardware.c: 121: {
 "121
@@ -3786,14 +3771,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
 "123
 }
-[e :U 370 ]
+[e :U 369 ]
 [; ;hardware.c: 123: }
 [; ;hardware.c: 125: T0CONbits.TMR0ON = 1;
 "125
 [e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
 [; ;hardware.c: 126: }
 "126
-[e :UE 368 ]
+[e :UE 367 ]
 }
 "134
 [v _write_timer_zero `(v ~T0 @X0 1 ef1`ui ]
@@ -3811,7 +3796,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TMR0 -> _timer0 `us ]
 [; ;hardware.c: 143: }
 "143
-[e :UE 371 ]
+[e :UE 370 ]
 }
 "151
 [v _init_ports `(v ~T0 @X0 1 ef ]
@@ -3844,7 +3829,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TRISE -> -> 3 `i `uc ]
 [; ;hardware.c: 161: }
 "161
-[e :UE 372 ]
+[e :UE 371 ]
 }
 "169
 [v _init_oscilador `(v ~T0 @X0 1 ef ]
@@ -3865,7 +3850,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _OSCCONbits 1 6 -> -> 1 `i `uc ]
 [; ;hardware.c: 175: }
 "175
-[e :UE 373 ]
+[e :UE 372 ]
 }
 "183
 [v _ms_delay `(v ~T0 @X0 1 ef1`ui ]
@@ -3886,29 +3871,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 "186
 {
 [e = _i -> -> 0 `i `ui ]
-[e $U 378  ]
+[e $U 377  ]
 "187
-[e :U 375 ]
+[e :U 374 ]
 [; ;hardware.c: 187: for(j=0;j<165;j++);
 {
 [e = _j -> -> 0 `i `ui ]
-[e $ < _j -> -> 165 `i `ui 379  ]
-[e $U 380  ]
-[e :U 379 ]
+[e $ < _j -> -> 165 `i `ui 378  ]
+[e $U 379  ]
+[e :U 378 ]
 [e ++ _j -> -> 1 `i `ui ]
-[e $ < _j -> -> 165 `i `ui 379  ]
-[e :U 380 ]
+[e $ < _j -> -> 165 `i `ui 378  ]
+[e :U 379 ]
 }
 "186
 [e ++ _i -> -> 1 `i `ui ]
-[e :U 378 ]
-[e $ < _i _val 375  ]
-[e :U 376 ]
+[e :U 377 ]
+[e $ < _i _val 374  ]
+[e :U 375 ]
 "187
 }
 [; ;hardware.c: 188: }
 "188
-[e :UE 374 ]
+[e :UE 373 ]
 }
 "198
 [v _config_timer_dois `(v ~T0 @X0 1 ef ]
@@ -3929,7 +3914,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _PR2 -> -> 1 `i `uc ]
 [; ;hardware.c: 203: }
 "203
-[e :UE 382 ]
+[e :UE 381 ]
 }
 "211
 [v _timer_dois `(v ~T0 @X0 1 ef ]
@@ -3941,7 +3926,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;hardware.c: 213: if(TMR2IF)
 "213
-[e $ ! _TMR2IF 384  ]
+[e $ ! _TMR2IF 383  ]
 [; ;hardware.c: 214: {
 "214
 {
@@ -3952,19 +3937,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 "216
 [e = _TMR2 -> -> 0 `i `uc ]
 "219
-[v F3102 `uc ~T0 @X0 1 s flag ]
-[i F3102
+[v F3088 `uc ~T0 @X0 1 s flag ]
+[i F3088
 -> -> 0 `i `uc
 ]
 [; ;hardware.c: 219: static unsigned char flag = 0;
 [; ;hardware.c: 220: flag = !flag;
 "220
-[e = F3102 -> -> ! != -> F3102 `i -> -> -> 0 `i `uc `i `i `uc ]
+[e = F3088 -> -> ! != -> F3088 `i -> -> -> 0 `i `uc `i `i `uc ]
 "223
 }
-[e :U 384 ]
+[e :U 383 ]
 [; ;hardware.c: 223: }
 [; ;hardware.c: 224: }
 "224
-[e :UE 383 ]
+[e :UE 382 ]
 }
