@@ -216,7 +216,8 @@ void escrita_sdcard()
     if(!f_fix)
     {  
 
-        strcpy(filename, string_dado.data);
+        strcpy(filename, string_dado.data_name);
+        strcpy(filename, string_dado.hora_name);
 //        strcpy(filename, "teste");
         strcat(filename, ".tlm");
         f_fix = 1;
@@ -226,7 +227,7 @@ void escrita_sdcard()
     {	
 
         f_lseek(&fil, fsize(&fil));
-        fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc");
+        fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s;f%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc", string_dado.fence);
 
         /* Close the file */
         f_close(&fil);	
@@ -314,12 +315,6 @@ void monta_sd(unsigned char index, unsigned char *dado)
                 string_dado.data[i] = *dado;
                 dado++;
             }
-//            if(string_dado.data)
-//            {
-//                data_hoje = 1;
-////                strcpy(filename, string_dado.data);
-////                strcat(filename, ".txt");
-//            }
         break;
         
         case 2:
@@ -331,7 +326,6 @@ void monta_sd(unsigned char index, unsigned char *dado)
         break;
         
        case 3:
-//           string_dado.LONG = dado_localizacao;
             for(i=0; i<13;i++)
             {
                 string_dado.lo[i] = *dado;
@@ -340,10 +334,26 @@ void monta_sd(unsigned char index, unsigned char *dado)
         break;
         
         case 4:
-//           string_dado.LONG = dado_localizacao;
             for(i=0; i<size;i++)
             {
-                string_dado.lo[i] = *dado;
+                string_dado.fence[i] = *dado;
+                dado++;
+            }
+        break;
+                
+        case 5:
+            for(i=0; i<4;i++)
+            {
+                string_dado.hora_name[i] = *dado;
+                dado++;
+            }
+        break;
+        
+                
+        case 6:
+            for(i=0; i<4;i++)
+            {
+                string_dado.data_name[i] = *dado;
                 dado++;
             }
         break;

@@ -3895,11 +3895,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;fence.c: 93: {
 "93
 {
-[; ;fence.c: 94: for(i=1; i<6; i++)
+[; ;fence.c: 94: for(i=1; i<5; i++)
 "94
 {
 [e = _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 378  ]
+[e $ < -> _i `i -> 5 `i 378  ]
 [e $U 379  ]
 "95
 [e :U 378 ]
@@ -3911,810 +3911,785 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;fence.c: 97: {
 "97
 {
-[; ;fence.c: 98: if(point == 2 && !point_index_long)
-"98
-[e $ ! && == -> _point `i -> 2 `i ! != -> _point_index_long `i -> -> -> 0 `i `uc `i 382  ]
-[; ;fence.c: 99: {
+[; ;fence.c: 99: if(point == 2 && !point_index_lat)
 "99
-{
-[; ;fence.c: 100: point_index_long++;
+[e $ ! && == -> _point `i -> 2 `i ! != -> _point_index_lat `i -> -> -> 0 `i `uc `i 382  ]
+[; ;fence.c: 100: {
 "100
-[e ++ _point_index_long -> -> 1 `i `uc ]
+{
+[; ;fence.c: 101: point_index_lat++;
 "101
+[e ++ _point_index_lat -> -> 1 `i `uc ]
+"102
 }
 [e :U 382 ]
-[; ;fence.c: 101: }
-[; ;fence.c: 102: for(j= 0; i < 6; j++)
-"102
+[; ;fence.c: 102: }
+[; ;fence.c: 105: for(j= 0; i < 5; j++)
+"105
 {
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 6 `i 383  ]
+[e $ < -> _i `i -> 5 `i 383  ]
 [e $U 384  ]
-"103
+"106
 [e :U 383 ]
-[; ;fence.c: 103: {
+[; ;fence.c: 106: {
 {
-[; ;fence.c: 104: poligono_ext[point_index_long].point_long_deg[j] = temp_buff_long[i];
-"104
-[e = *U + &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 3 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 3 `ui `ux *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux ]
-[; ;fence.c: 105: poligono_ext[point_index_long].fence_long_deg[j] = fence_diff_long[point][i];
-"105
-[e = *U + &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 1 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 1 `ui `ux *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux ]
-[; ;fence.c: 107: i++;
+[; ;fence.c: 107: poligono_ext[point_index_lat].point_lat_deg[j] = temp_buff_lat[i];
 "107
+[e = *U + &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 2 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 2 `ui `ux *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux ]
+[; ;fence.c: 108: poligono_ext[point_index_lat].fence_lat_deg[j] = fence_diff_lat[point][i];
+"108
+[e = *U + &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 0 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 0 `ui `ux *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux ]
+[; ;fence.c: 109: i++;
+"109
 [e ++ _i -> -> 1 `i `uc ]
-"108
-}
-"102
-[e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 383  ]
-[e :U 384 ]
-"108
-}
 "110
 }
-[e :U 381 ]
+"105
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 5 `i 383  ]
+[e :U 384 ]
+"110
+}
 "112
+}
+[; ;fence.c: 110: }
+[; ;fence.c: 112: }
+[e $U 386  ]
+"113
+[e :U 381 ]
+[; ;fence.c: 113: else
+[; ;fence.c: 114: {
+"114
+{
+[; ;fence.c: 115: break;
+"115
+[e $U 379  ]
+"116
+}
+[e :U 386 ]
+"117
 }
 "94
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 378  ]
+[e $ < -> _i `i -> 5 `i 378  ]
 [e :U 379 ]
-"112
+"117
 }
-[; ;fence.c: 108: }
-[; ;fence.c: 110: }
-[; ;fence.c: 112: }
-[; ;fence.c: 114: point++;
-"114
+[; ;fence.c: 116: }
+[; ;fence.c: 117: }
+[; ;fence.c: 118: point++;
+"118
 [e ++ _point -> -> 1 `i `uc ]
-"115
+"119
 }
 [e :U 375 ]
 "92
 [e $ < -> _point `i -> 4 `i 376  ]
 [e :U 377 ]
-[; ;fence.c: 115: }
-[; ;fence.c: 116: break;
-"116
-[e $U 372  ]
-[; ;fence.c: 118: default:
-"118
-[e :U 386 ]
-[; ;fence.c: 119: while(point<4)
-"119
-[e $U 387  ]
-[e :U 388 ]
-[; ;fence.c: 120: {
+[; ;fence.c: 119: }
+[; ;fence.c: 120: break;
 "120
-{
-[; ;fence.c: 121: for(i=1; i<5; i++)
-"121
-{
-[e = _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 390  ]
-[e $U 391  ]
+[e $U 372  ]
+[; ;fence.c: 122: case 0:
 "122
-[e :U 390 ]
-[; ;fence.c: 122: {
-{
-[; ;fence.c: 123: if(point == 0 || point == 2)
+[e :U 387 ]
+[; ;fence.c: 123: while(point<4)
 "123
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 393  ]
+[e $U 388  ]
+[e :U 389 ]
 [; ;fence.c: 124: {
 "124
 {
-[; ;fence.c: 126: if(point == 2 && !point_index_lat)
-"126
-[e $ ! && == -> _point `i -> 2 `i ! != -> _point_index_lat `i -> -> -> 0 `i `uc `i 394  ]
-[; ;fence.c: 127: {
-"127
+[; ;fence.c: 125: for(i=1; i<6; i++)
+"125
 {
-[; ;fence.c: 128: point_index_lat++;
+[e = _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 391  ]
+[e $U 392  ]
+"126
+[e :U 391 ]
+[; ;fence.c: 126: {
+{
+[; ;fence.c: 127: if(point == 0 || point == 2)
+"127
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 394  ]
+[; ;fence.c: 128: {
 "128
-[e ++ _point_index_lat -> -> 1 `i `uc ]
+{
+[; ;fence.c: 129: if(point == 2 && !point_index_long)
 "129
-}
-[e :U 394 ]
-[; ;fence.c: 129: }
-[; ;fence.c: 132: for(j= 0; i < 5; j++)
+[e $ ! && == -> _point `i -> 2 `i ! != -> _point_index_long `i -> -> -> 0 `i `uc `i 395  ]
+[; ;fence.c: 130: {
+"130
+{
+[; ;fence.c: 131: point_index_long++;
+"131
+[e ++ _point_index_long -> -> 1 `i `uc ]
 "132
+}
+[e :U 395 ]
+[; ;fence.c: 132: }
+[; ;fence.c: 133: for(j= 0; i < 6; j++)
+"133
 {
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 5 `i 395  ]
-[e $U 396  ]
-"133
-[e :U 395 ]
-[; ;fence.c: 133: {
-{
-[; ;fence.c: 134: poligono_ext[point_index_lat].point_lat_deg[j] = temp_buff_lat[i];
+[e $ < -> _i `i -> 6 `i 396  ]
+[e $U 397  ]
 "134
-[e = *U + &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 2 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 2 `ui `ux *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux ]
-[; ;fence.c: 135: poligono_ext[point_index_lat].fence_lat_deg[j] = fence_diff_lat[point][i];
-"135
-[e = *U + &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 0 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 0 `ui `ux *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux ]
-[; ;fence.c: 136: i++;
-"136
-[e ++ _i -> -> 1 `i `uc ]
-"137
-}
-"132
-[e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 395  ]
 [e :U 396 ]
-"137
-}
+[; ;fence.c: 134: {
+{
+[; ;fence.c: 135: poligono_ext[point_index_long].point_long_deg[j] = temp_buff_long[i];
+"135
+[e = *U + &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 3 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 3 `ui `ux *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux ]
+[; ;fence.c: 136: poligono_ext[point_index_long].fence_long_deg[j] = fence_diff_long[point][i];
+"136
+[e = *U + &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 1 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 1 `ui `ux *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux ]
+[; ;fence.c: 138: i++;
+"138
+[e ++ _i -> -> 1 `i `uc ]
 "139
 }
-[e :U 393 ]
-"140
+"133
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 396  ]
+[e :U 397 ]
+"139
 }
-"121
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 390  ]
-[e :U 391 ]
-"140
-}
-[; ;fence.c: 137: }
-[; ;fence.c: 139: }
-[; ;fence.c: 140: }
-[; ;fence.c: 141: point++;
 "141
-[e ++ _point -> -> 1 `i `uc ]
-"142
 }
-[e :U 387 ]
-"119
-[e $ < -> _point `i -> 4 `i 388  ]
-[e :U 389 ]
-[; ;fence.c: 142: }
-[; ;fence.c: 143: break;
+[; ;fence.c: 139: }
+[; ;fence.c: 141: }
+[e $U 399  ]
+"142
+[e :U 394 ]
+[; ;fence.c: 142: else
+[; ;fence.c: 143: {
 "143
-[e $U 372  ]
+{
+[; ;fence.c: 144: break;
+"144
+[e $U 392  ]
 "145
 }
+[e :U 399 ]
+"147
+}
+"125
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 391  ]
+[e :U 392 ]
+"147
+}
 [; ;fence.c: 145: }
+[; ;fence.c: 147: }
+[; ;fence.c: 149: point++;
+"149
+[e ++ _point -> -> 1 `i `uc ]
+"150
+}
+[e :U 388 ]
+"123
+[e $ < -> _point `i -> 4 `i 389  ]
+[e :U 390 ]
+[; ;fence.c: 150: }
+[; ;fence.c: 151: break;
+"151
+[e $U 372  ]
+"155
+}
+[; ;fence.c: 155: }
 [e $U 372  ]
 "89
 [e :U 373 ]
 [e [\ _select_data , $ -> -> 1 `i `uc 374
- 386 ]
-"145
+ , $ -> -> 0 `i `uc 387
+ 372 ]
+"155
 [e :U 372 ]
-[; ;fence.c: 148: }
-"148
+[; ;fence.c: 158: }
+"158
 [e :UE 371 ]
 }
-"156
+"166
 [v _calcula_diff_graus `(v ~T0 @X0 1 ef ]
-"157
+"167
 {
-[; ;fence.c: 156: void calcula_diff_graus(void)
-[; ;fence.c: 157: {
+[; ;fence.c: 166: void calcula_diff_graus(void)
+[; ;fence.c: 167: {
 [e :U _calcula_diff_graus ]
 [f ]
-"158
+"168
 [v _point `uc ~T0 @X0 1 a ]
 [v _count `uc ~T0 @X0 1 a ]
-"159
-[v _temp_var_deg `ul ~T0 @X0 1 a ]
-[; ;fence.c: 158: unsigned char point, count;
-[; ;fence.c: 159: unsigned long int temp_var_deg;
-[; ;fence.c: 161: while(point<4)
-"161
-[e $U 399  ]
-[e :U 400 ]
-[; ;fence.c: 162: {
-"162
-{
-[; ;fence.c: 163: if(point == 0 || point == 2)
-"163
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 402  ]
-[; ;fence.c: 164: {
-"164
-{
-[; ;fence.c: 165: temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
-"165
-[e = _temp_var_deg -> -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 2 `*Cuc `l `ul ]
-[; ;fence.c: 166: poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
-"166
-[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 0 `*Cuc `l ]
-[; ;fence.c: 167: poligono_ext[count].diff_lat_deg -= temp_var_deg;
-"167
-[e =- . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> _temp_var_deg `l ]
-[; ;fence.c: 168: temp_var_deg = atoi(poligono_ext[count].point_long_deg);
-"168
-[e = _temp_var_deg -> -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 3 `*Cuc `l `ul ]
-[; ;fence.c: 169: poligono_ext[count].diff_long_deg = atoi(poligono_ext[count].fence_long_deg);
 "169
-[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 1 `*Cuc `l ]
-[; ;fence.c: 170: poligono_ext[count].diff_long_deg -= temp_var_deg;
-"170
-[e =- . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> _temp_var_deg `l ]
-[; ;fence.c: 172: count++;
+[v _temp_var_deg `ul ~T0 @X0 1 a ]
+[; ;fence.c: 168: unsigned char point, count;
+[; ;fence.c: 169: unsigned long int temp_var_deg;
+[; ;fence.c: 171: point = 0;
+"171
+[e = _point -> -> 0 `i `uc ]
+[; ;fence.c: 172: count = 0;
 "172
-[e ++ _count -> -> 1 `i `uc ]
-"173
-}
-[e :U 402 ]
-[; ;fence.c: 173: }
-[; ;fence.c: 174: point++;
+[e = _count -> -> 0 `i `uc ]
+[; ;fence.c: 174: while(point<4)
 "174
-[e ++ _point -> -> 1 `i `uc ]
+[e $U 401  ]
+[e :U 402 ]
+[; ;fence.c: 175: {
 "175
-}
-[e :U 399 ]
-"161
-[e $ < -> _point `i -> 4 `i 400  ]
-[e :U 401 ]
-[; ;fence.c: 175: }
-[; ;fence.c: 177: }
-"177
-[e :UE 398 ]
-}
-"187
-[v _verifica_diferenca_minutos `(v ~T0 @X0 1 ef1`uc ]
-"188
 {
-[; ;fence.c: 187: void verifica_diferenca_minutos(unsigned char select_data)
-[; ;fence.c: 188: {
-[e :U _verifica_diferenca_minutos ]
+[; ;fence.c: 176: if(point == 0 || point == 2)
+"176
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 404  ]
+[; ;fence.c: 177: {
+"177
+{
+[; ;fence.c: 178: temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
+"178
+[e = _temp_var_deg -> -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 2 `*Cuc `l `ul ]
+[; ;fence.c: 179: poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
+"179
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 0 `*Cuc `l ]
+[; ;fence.c: 180: poligono_ext[count].diff_lat_deg = poligono_ext[count].diff_long_deg - temp_var_deg;
+"180
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> - -> . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 `ul _temp_var_deg `l ]
+[; ;fence.c: 182: temp_var_deg = atoi(poligono_ext[count].point_long_deg);
+"182
+[e = _temp_var_deg -> -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 3 `*Cuc `l `ul ]
+[; ;fence.c: 183: poligono_ext[count].diff_long_deg = atoi(poligono_ext[count].fence_long_deg);
+"183
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 1 `*Cuc `l ]
+[; ;fence.c: 184: poligono_ext[count].diff_long_deg = poligono_ext[count].diff_long_deg - temp_var_deg;
+"184
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> - -> . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 5 `ul _temp_var_deg `l ]
+[; ;fence.c: 186: count++;
+"186
+[e ++ _count -> -> 1 `i `uc ]
 "187
-[v _select_data `uc ~T0 @X0 1 r1 ]
+}
+[e :U 404 ]
+[; ;fence.c: 187: }
+[; ;fence.c: 188: point++;
 "188
-[f ]
+[e ++ _point -> -> 1 `i `uc ]
 "189
+}
+[e :U 401 ]
+"174
+[e $ < -> _point `i -> 4 `i 402  ]
+[e :U 403 ]
+[; ;fence.c: 189: }
+[; ;fence.c: 191: }
+"191
+[e :UE 400 ]
+}
+"201
+[v _verifica_diferenca_minutos `(v ~T0 @X0 1 ef1`uc ]
+"202
+{
+[; ;fence.c: 201: void verifica_diferenca_minutos(unsigned char select_data)
+[; ;fence.c: 202: {
+[e :U _verifica_diferenca_minutos ]
+"201
+[v _select_data `uc ~T0 @X0 1 r1 ]
+"202
+[f ]
+"203
 [v _point `uc ~T0 @X0 1 a ]
 [v _point_index_lat `uc ~T0 @X0 1 a ]
 [v _point_index_long `uc ~T0 @X0 1 a ]
-"190
+"204
 [v _i `uc ~T0 @X0 1 a ]
 [v _j `uc ~T0 @X0 1 a ]
-[; ;fence.c: 189: unsigned char point, point_index_lat ,point_index_long;
-[; ;fence.c: 190: unsigned char i, j;
-[; ;fence.c: 192: point_index_lat = 0;
-"192
+[; ;fence.c: 203: unsigned char point, point_index_lat ,point_index_long;
+[; ;fence.c: 204: unsigned char i, j;
+[; ;fence.c: 206: point_index_lat = 0;
+"206
 [e = _point_index_lat -> -> 0 `i `uc ]
-[; ;fence.c: 193: point_index_long = 0;
-"193
+[; ;fence.c: 207: point_index_long = 0;
+"207
 [e = _point_index_long -> -> 0 `i `uc ]
-[; ;fence.c: 194: point = 0;
-"194
+[; ;fence.c: 208: point = 0;
+"208
 [e = _point -> -> 0 `i `uc ]
-[; ;fence.c: 195: switch(select_data)
-"195
-[e $U 405  ]
-[; ;fence.c: 196: {
-"196
-{
-[; ;fence.c: 197: case 1:
-"197
-[e :U 406 ]
-[; ;fence.c: 198: while(point<4)
-"198
+[; ;fence.c: 209: switch(select_data)
+"209
 [e $U 407  ]
-[e :U 408 ]
-[; ;fence.c: 199: {
-"199
+[; ;fence.c: 210: {
+"210
 {
-[; ;fence.c: 200: for(i=6; i<11; i++)
-"200
+[; ;fence.c: 211: case 1:
+"211
+[e :U 408 ]
+[; ;fence.c: 212: while(point<4)
+"212
+[e $U 409  ]
+[e :U 410 ]
+[; ;fence.c: 213: {
+"213
+{
+[; ;fence.c: 214: for(i=6; i<11; i++)
+"214
 {
 [e = _i -> -> 6 `i `uc ]
-[e $ < -> _i `i -> 11 `i 410  ]
-[e $U 411  ]
-"201
-[e :U 410 ]
-[; ;fence.c: 201: {
+[e $ < -> _i `i -> 11 `i 412  ]
+[e $U 413  ]
+"215
+[e :U 412 ]
+[; ;fence.c: 215: {
 {
-[; ;fence.c: 202: if(point == 0 || point == 2)
-"202
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 413  ]
-[; ;fence.c: 203: {
-"203
+[; ;fence.c: 216: if(point == 0 || point == 2)
+"216
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 415  ]
+[; ;fence.c: 217: {
+"217
 {
-[; ;fence.c: 204: if(point == 2 && !point_index_lat)
-"204
-[e $ ! && == -> _point `i -> 2 `i ! != -> _point_index_lat `i -> -> -> 0 `i `uc `i 414  ]
-[; ;fence.c: 205: {
-"205
+[; ;fence.c: 218: if(point == 2 && !point_index_lat)
+"218
+[e $ ! && == -> _point `i -> 2 `i ! != -> _point_index_lat `i -> -> -> 0 `i `uc `i 416  ]
+[; ;fence.c: 219: {
+"219
 {
-[; ;fence.c: 206: point_index_lat++;
-"206
+[; ;fence.c: 220: point_index_lat++;
+"220
 [e ++ _point_index_lat -> -> 1 `i `uc ]
-"207
+"221
 }
-[e :U 414 ]
-[; ;fence.c: 207: }
-[; ;fence.c: 208: if(fence_diff_lat[point][i] != temp_buff_lat[i])
-"208
-[e $ ! != -> *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux `i -> *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux `i 415  ]
-[; ;fence.c: 209: {
-"209
-{
-[; ;fence.c: 210: for(j= 0; i < 11; j++)
-"210
+[e :U 416 ]
+[; ;fence.c: 221: }
+[; ;fence.c: 224: for(j= 0; i < 11; j++)
+"224
 {
 [e = _j -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 11 `i 416  ]
-[e $U 417  ]
-"211
-[e :U 416 ]
-[; ;fence.c: 211: {
-{
-[; ;fence.c: 212: poligono_ext[point_index_lat].fence_lat_min[j] = fence_diff_lat[point][i];
-"212
-[e = *U + &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 6 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 6 `ui `ux *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux ]
-[; ;fence.c: 213: poligono_ext[point_index_lat].point_lat_min[j] = temp_buff_lat[i];
-"213
-[e = *U + &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 8 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 8 `ui `ux *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux ]
-[; ;fence.c: 214: i++;
-"214
-[e ++ _i -> -> 1 `i `uc ]
-"215
-}
-"210
-[e ++ _j -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 11 `i 416  ]
-[e :U 417 ]
-"215
-}
-"217
-}
-[e :U 415 ]
-"219
-}
-[; ;fence.c: 215: }
-[; ;fence.c: 217: }
-[; ;fence.c: 219: }
-[e $U 419  ]
-"220
-[e :U 413 ]
-[; ;fence.c: 220: else
-[; ;fence.c: 221: {
-"221
-{
-[; ;fence.c: 222: i = 11;
-"222
-[e = _i -> -> 11 `i `uc ]
-"223
-}
-[e :U 419 ]
-"224
-}
-"200
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 11 `i 410  ]
-[e :U 411 ]
-"224
-}
-[; ;fence.c: 223: }
-[; ;fence.c: 224: }
-[; ;fence.c: 225: point++;
+[e $ < -> _i `i -> 11 `i 417  ]
+[e $U 418  ]
 "225
-[e ++ _point -> -> 1 `i `uc ]
+[e :U 417 ]
+[; ;fence.c: 225: {
+{
+[; ;fence.c: 226: poligono_ext[point_index_lat].fence_lat_min[j] = fence_diff_lat[point][i];
 "226
-}
-[e :U 407 ]
-"198
-[e $ < -> _point `i -> 4 `i 408  ]
-[e :U 409 ]
-[; ;fence.c: 226: }
-[; ;fence.c: 227: break;
+[e = *U + &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 6 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 6 `ui `ux *U + &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_lat * -> _point `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 11 `i `ui `ux `ui `ux ]
+[; ;fence.c: 227: poligono_ext[point_index_lat].point_lat_min[j] = temp_buff_lat[i];
 "227
-[e $U 404  ]
-[; ;fence.c: 228: default:
+[e = *U + &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 8 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_lat `ux -> -> # *U &U _poligono_ext `ui `ux 8 `ui `ux *U + &U _temp_buff_lat * -> _i `ux -> -> # *U &U _temp_buff_lat `ui `ux ]
+[; ;fence.c: 228: i++;
 "228
-[e :U 420 ]
-[; ;fence.c: 229: while(point<4)
+[e ++ _i -> -> 1 `i `uc ]
 "229
-[e $U 421  ]
-[e :U 422 ]
-[; ;fence.c: 230: {
-"230
-{
-[; ;fence.c: 231: for(i=7; i<12; i++)
-"231
-{
-[e = _i -> -> 7 `i `uc ]
-[e $ < -> _i `i -> 12 `i 424  ]
-[e $U 425  ]
-"232
-[e :U 424 ]
-[; ;fence.c: 232: {
-{
-[; ;fence.c: 233: if(point == 0 || point == 2)
+}
+"224
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 11 `i 417  ]
+[e :U 418 ]
+"229
+}
 "233
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 427  ]
-[; ;fence.c: 234: {
+}
+[; ;fence.c: 229: }
+[; ;fence.c: 233: }
+[e $U 420  ]
 "234
-{
-[; ;fence.c: 235: if(point == 2 && !point_index_long)
+[e :U 415 ]
+[; ;fence.c: 234: else
+[; ;fence.c: 235: {
 "235
-[e $ ! && == -> _point `i -> 2 `i ! != -> _point_index_long `i -> -> -> 0 `i `uc `i 428  ]
-[; ;fence.c: 236: {
-"236
 {
-[; ;fence.c: 237: point_index_long++;
+[; ;fence.c: 237: break;
 "237
-[e ++ _point_index_long -> -> 1 `i `uc ]
+[e $U 413  ]
 "238
 }
-[e :U 428 ]
+[e :U 420 ]
+"239
+}
+"214
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 11 `i 412  ]
+[e :U 413 ]
+"239
+}
 [; ;fence.c: 238: }
-[; ;fence.c: 241: if(fence_diff_long[point][i] != temp_buff_long[i])
+[; ;fence.c: 239: }
+[; ;fence.c: 240: point++;
+"240
+[e ++ _point -> -> 1 `i `uc ]
 "241
-[e $ ! != -> *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux `i -> *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux `i 429  ]
-[; ;fence.c: 242: {
+}
+[e :U 409 ]
+"212
+[e $ < -> _point `i -> 4 `i 410  ]
+[e :U 411 ]
+[; ;fence.c: 241: }
+[; ;fence.c: 242: break;
 "242
+[e $U 406  ]
+[; ;fence.c: 244: case 0:
+"244
+[e :U 421 ]
+[; ;fence.c: 245: while(point<4)
+"245
+[e $U 422  ]
+[e :U 423 ]
+[; ;fence.c: 246: {
+"246
 {
-[; ;fence.c: 243: for(j= 0; i < 12; j++)
-"243
+[; ;fence.c: 247: for(i=7; i<12; i++)
+"247
+{
+[e = _i -> -> 7 `i `uc ]
+[e $ < -> _i `i -> 12 `i 425  ]
+[e $U 426  ]
+"248
+[e :U 425 ]
+[; ;fence.c: 248: {
+{
+[; ;fence.c: 249: if(point == 0 || point == 2)
+"249
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 428  ]
+[; ;fence.c: 250: {
+"250
+{
+[; ;fence.c: 251: if(point == 2 && !point_index_long)
+"251
+[e $ ! && == -> _point `i -> 2 `i ! != -> _point_index_long `i -> -> -> 0 `i `uc `i 429  ]
+[; ;fence.c: 252: {
+"252
+{
+[; ;fence.c: 253: point_index_long++;
+"253
+[e ++ _point_index_long -> -> 1 `i `uc ]
+"254
+}
+[e :U 429 ]
+[; ;fence.c: 254: }
+[; ;fence.c: 259: for(j= 0; i < 12; j++)
+"259
 {
 [e = _j -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 12 `i 430  ]
 [e $U 431  ]
-"244
+"260
 [e :U 430 ]
-[; ;fence.c: 244: {
+[; ;fence.c: 260: {
 {
-[; ;fence.c: 245: poligono_ext[point_index_long].fence_long_min[j] = fence_diff_long[point][i];
-"245
+[; ;fence.c: 261: poligono_ext[point_index_long].fence_long_min[j] = fence_diff_long[point][i];
+"261
 [e = *U + &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 7 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 7 `ui `ux *U + &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _fence_diff_long * -> _point `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 12 `i `ui `ux `ui `ux ]
-[; ;fence.c: 246: poligono_ext[point_index_long].point_long_min[j] = temp_buff_long[i];
-"246
+[; ;fence.c: 262: poligono_ext[point_index_long].point_long_min[j] = temp_buff_long[i];
+"262
 [e = *U + &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 9 * -> _j `ux -> -> # *U &U . *U + &U _poligono_ext * -> _point_index_long `ux -> -> # *U &U _poligono_ext `ui `ux 9 `ui `ux *U + &U _temp_buff_long * -> _i `ux -> -> # *U &U _temp_buff_long `ui `ux ]
-[; ;fence.c: 247: i++;
-"247
+[; ;fence.c: 263: i++;
+"263
 [e ++ _i -> -> 1 `i `uc ]
-"248
+"264
 }
-"243
+"259
 [e ++ _j -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 12 `i 430  ]
 [e :U 431 ]
-"248
+"264
 }
-"249
+"266
 }
-[e :U 429 ]
-"250
-}
-[; ;fence.c: 248: }
-[; ;fence.c: 249: }
-[; ;fence.c: 250: }
+[; ;fence.c: 264: }
+[; ;fence.c: 266: }
 [e $U 433  ]
-"251
-[e :U 427 ]
-[; ;fence.c: 251: else
-[; ;fence.c: 252: {
-"252
+"267
+[e :U 428 ]
+[; ;fence.c: 267: else
+[; ;fence.c: 268: {
+"268
 {
-[; ;fence.c: 253: i = 11;
-"253
-[e = _i -> -> 11 `i `uc ]
-"254
+[; ;fence.c: 270: break;
+"270
+[e $U 426  ]
+"271
 }
 [e :U 433 ]
-"256
+"273
 }
-"231
+"247
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 12 `i 424  ]
-[e :U 425 ]
-"256
+[e $ < -> _i `i -> 12 `i 425  ]
+[e :U 426 ]
+"273
 }
-[; ;fence.c: 254: }
-[; ;fence.c: 256: }
-[; ;fence.c: 257: point++;
-"257
+[; ;fence.c: 271: }
+[; ;fence.c: 273: }
+[; ;fence.c: 274: point++;
+"274
 [e ++ _point -> -> 1 `i `uc ]
-"258
+"275
 }
-[e :U 421 ]
-"229
-[e $ < -> _point `i -> 4 `i 422  ]
-[e :U 423 ]
-[; ;fence.c: 258: }
-[; ;fence.c: 259: break;
-"259
-[e $U 404  ]
-"260
+[e :U 422 ]
+"245
+[e $ < -> _point `i -> 4 `i 423  ]
+[e :U 424 ]
+[; ;fence.c: 275: }
+[; ;fence.c: 276: break;
+"276
+[e $U 406  ]
+"277
 }
-[; ;fence.c: 260: }
-[e $U 404  ]
-"195
-[e :U 405 ]
-[e [\ _select_data , $ -> -> 1 `i `uc 406
- 420 ]
-"260
-[e :U 404 ]
-[; ;fence.c: 261: }
-"261
-[e :UE 403 ]
+[; ;fence.c: 277: }
+[e $U 406  ]
+"209
+[e :U 407 ]
+[e [\ _select_data , $ -> -> 1 `i `uc 408
+ , $ -> -> 0 `i `uc 421
+ 406 ]
+"277
+[e :U 406 ]
+[; ;fence.c: 278: }
+"278
+[e :UE 405 ]
 }
-"270
+"287
 [v _calcula_diff_minutos `(v ~T0 @X0 1 ef ]
-"271
+"288
 {
-[; ;fence.c: 270: void calcula_diff_minutos(void)
-[; ;fence.c: 271: {
+[; ;fence.c: 287: void calcula_diff_minutos(void)
+[; ;fence.c: 288: {
 [e :U _calcula_diff_minutos ]
 [f ]
-"272
+"289
 [v _point `uc ~T0 @X0 1 a ]
 [v _count `uc ~T0 @X0 1 a ]
-[; ;fence.c: 272: unsigned char point, count;
-[; ;fence.c: 275: while(point<4)
-"275
+[; ;fence.c: 289: unsigned char point, count;
+[; ;fence.c: 292: while(point<4)
+"292
 [e $U 435  ]
 [e :U 436 ]
-[; ;fence.c: 276: {
-"276
+[; ;fence.c: 293: {
+"293
 {
-[; ;fence.c: 277: if(point == 0 || point == 2)
-"277
-[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 438  ]
-[; ;fence.c: 278: {
-"278
-{
-[; ;fence.c: 279: poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
-"279
-[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> - ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 6 `*Cuc ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 8 `*Cuc `l ]
-[; ;fence.c: 280: poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
-"280
-[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> - ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 7 `*Cuc ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 9 `*Cuc `l ]
-[; ;fence.c: 281: count++;
-"281
-[e ++ _count -> -> 1 `i `uc ]
-"282
-}
-[e :U 438 ]
-[; ;fence.c: 282: }
-[; ;fence.c: 283: point++;
-"283
-[e ++ _point -> -> 1 `i `uc ]
-"284
-}
-[e :U 435 ]
-"275
-[e $ < -> _point `i -> 4 `i 436  ]
-[e :U 437 ]
-[; ;fence.c: 284: }
-[; ;fence.c: 286: }
-"286
-[e :UE 434 ]
-}
+[; ;fence.c: 294: if(point == 0 || point == 2)
 "294
-[v _verifica_plausibilidade_long `(uc ~T0 @X0 1 ef ]
+[e $ ! || == -> _point `i -> 0 `i == -> _point `i -> 2 `i 438  ]
+[; ;fence.c: 295: {
 "295
 {
-[; ;fence.c: 294: unsigned char verifica_plausibilidade_long(void)
-[; ;fence.c: 295: {
+[; ;fence.c: 296: poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
+"296
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> - ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 6 `*Cuc ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 8 `*Cuc `l ]
+[; ;fence.c: 297: poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
+"297
+[e = . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> - ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 7 `*Cuc ( _atoi (1 -> &U . *U + &U _poligono_ext * -> _count `ux -> -> # *U &U _poligono_ext `ui `ux 9 `*Cuc `l ]
+[; ;fence.c: 298: count++;
+"298
+[e ++ _count -> -> 1 `i `uc ]
+"299
+}
+[e :U 438 ]
+[; ;fence.c: 299: }
+[; ;fence.c: 300: point++;
+"300
+[e ++ _point -> -> 1 `i `uc ]
+"301
+}
+[e :U 435 ]
+"292
+[e $ < -> _point `i -> 4 `i 436  ]
+[e :U 437 ]
+[; ;fence.c: 301: }
+[; ;fence.c: 303: }
+"303
+[e :UE 434 ]
+}
+"311
+[v _verifica_plausibilidade_long `(uc ~T0 @X0 1 ef ]
+"312
+{
+[; ;fence.c: 311: unsigned char verifica_plausibilidade_long(void)
+[; ;fence.c: 312: {
 [e :U _verifica_plausibilidade_long ]
 [f ]
-[; ;fence.c: 296: switch(temp_buff_long[0])
-"296
-[e $U 441  ]
-[; ;fence.c: 297: {
-"297
-{
-[; ;fence.c: 298: case '-':
-"298
-[e :U 442 ]
-[; ;fence.c: 299: if(
-[; ;fence.c: 300: ((poligono_ext[0].diff_long_min >= 0 &&
-[; ;fence.c: 301: poligono_ext[1].diff_long_min <= 0) &&
-[; ;fence.c: 303: (poligono_ext[0].diff_long_deg >= 0 &&
-[; ;fence.c: 304: poligono_ext[1].diff_long_deg <= 0)))
-"304
-[e $ ! && && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 443  ]
-[; ;fence.c: 305: {
-"305
-{
-[; ;fence.c: 306: return 0;
-"306
-[e ) -> -> 0 `i `uc ]
-[e $UE 439  ]
-"307
-}
-[; ;fence.c: 307: }
-[e $U 444  ]
-"308
-[e :U 443 ]
-[; ;fence.c: 308: else if((poligono_ext[0].diff_long_min == 0 ||
-[; ;fence.c: 309: poligono_ext[1].diff_long_min == 0 ) &&
-[; ;fence.c: 312: (poligono_ext[0].diff_long_deg == 0 ||
-[; ;fence.c: 313: poligono_ext[1].diff_long_deg == 0))
+[; ;fence.c: 313: switch(temp_buff_long[0])
 "313
-[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 445  ]
+[e $U 441  ]
 [; ;fence.c: 314: {
 "314
 {
-[; ;fence.c: 315: return 0;
+[; ;fence.c: 315: case '-':
 "315
+[e :U 442 ]
+[; ;fence.c: 316: if(
+[; ;fence.c: 317: ((poligono_ext[0].diff_long_min >= 0 &&
+[; ;fence.c: 318: poligono_ext[1].diff_long_min <= 0) &&
+[; ;fence.c: 320: (poligono_ext[0].diff_long_deg >= 0 &&
+[; ;fence.c: 321: poligono_ext[1].diff_long_deg <= 0)))
+"321
+[e $ ! && && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 443  ]
+[; ;fence.c: 322: {
+"322
+{
+[; ;fence.c: 323: return 0;
+"323
 [e ) -> -> 0 `i `uc ]
 [e $UE 439  ]
-"316
+"324
 }
-[; ;fence.c: 316: }
-[e $U 446  ]
-"317
-[e :U 445 ]
-[; ;fence.c: 317: else
-[; ;fence.c: 318: {
-"318
+[; ;fence.c: 324: }
+[e $U 444  ]
+"325
+[e :U 443 ]
+[; ;fence.c: 325: else if((poligono_ext[0].diff_long_min == 0 ||
+[; ;fence.c: 326: poligono_ext[1].diff_long_min == 0 ) &&
+[; ;fence.c: 329: (poligono_ext[0].diff_long_deg == 0 ||
+[; ;fence.c: 330: poligono_ext[1].diff_long_deg == 0))
+"330
+[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 445  ]
+[; ;fence.c: 331: {
+"331
 {
-[; ;fence.c: 319: return 1;
-"319
+[; ;fence.c: 332: return 0;
+"332
+[e ) -> -> 0 `i `uc ]
+[e $UE 439  ]
+"333
+}
+[; ;fence.c: 333: }
+[e $U 446  ]
+"334
+[e :U 445 ]
+[; ;fence.c: 334: else
+[; ;fence.c: 335: {
+"335
+{
+[; ;fence.c: 336: return 1;
+"336
 [e ) -> -> 1 `i `uc ]
 [e $UE 439  ]
-"320
+"337
 }
 [e :U 446 ]
 [e :U 444 ]
-[; ;fence.c: 320: }
-[; ;fence.c: 321: break;
-"321
-[e $U 440  ]
-[; ;fence.c: 323: default:
-"323
-[e :U 447 ]
-[; ;fence.c: 324: if(
-[; ;fence.c: 325: (poligono_ext[0].diff_long_min <= 0 &&
-[; ;fence.c: 326: poligono_ext[1].diff_long_min >= 0 ) &&
-[; ;fence.c: 327: (poligono_ext[0].diff_lat_deg <= 0 &&
-[; ;fence.c: 328: poligono_ext[1].diff_lat_deg >= 0))
-"328
-[e $ ! && && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 448  ]
-[; ;fence.c: 329: {
-"329
-{
-[; ;fence.c: 330: return 0;
-"330
-[e ) -> -> 0 `i `uc ]
-[e $UE 439  ]
-"331
-}
-[; ;fence.c: 331: }
-[e $U 449  ]
-"332
-[e :U 448 ]
-[; ;fence.c: 332: else if((poligono_ext[0].diff_long_min == 0 ||
-[; ;fence.c: 333: poligono_ext[1].diff_long_min == 0) &&
-[; ;fence.c: 334: (poligono_ext[0].diff_long_deg == 0 ||
-[; ;fence.c: 335: poligono_ext[1].diff_long_deg == 0))
-"335
-[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 450  ]
-[; ;fence.c: 336: {
-"336
-{
-[; ;fence.c: 337: return 0;
-"337
-[e ) -> -> 0 `i `uc ]
-[e $UE 439  ]
+[; ;fence.c: 337: }
+[; ;fence.c: 338: break;
 "338
-}
-[; ;fence.c: 338: }
-[e $U 451  ]
-"339
-[e :U 450 ]
-[; ;fence.c: 339: else
-[; ;fence.c: 340: {
+[e $U 440  ]
+[; ;fence.c: 340: default:
 "340
+[e :U 447 ]
+[; ;fence.c: 341: if(
+[; ;fence.c: 342: (poligono_ext[0].diff_long_min <= 0 &&
+[; ;fence.c: 343: poligono_ext[1].diff_long_min >= 0 ) &&
+[; ;fence.c: 344: (poligono_ext[0].diff_lat_deg <= 0 &&
+[; ;fence.c: 345: poligono_ext[1].diff_lat_deg >= 0))
+"345
+[e $ ! && && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 448  ]
+[; ;fence.c: 346: {
+"346
 {
-[; ;fence.c: 341: return 1;
-"341
+[; ;fence.c: 347: return 0;
+"347
+[e ) -> -> 0 `i `uc ]
+[e $UE 439  ]
+"348
+}
+[; ;fence.c: 348: }
+[e $U 449  ]
+"349
+[e :U 448 ]
+[; ;fence.c: 349: else if((poligono_ext[0].diff_long_min == 0 ||
+[; ;fence.c: 350: poligono_ext[1].diff_long_min == 0) &&
+[; ;fence.c: 351: (poligono_ext[0].diff_long_deg == 0 ||
+[; ;fence.c: 352: poligono_ext[1].diff_long_deg == 0))
+"352
+[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 11 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 5 -> -> 0 `i `l 450  ]
+[; ;fence.c: 353: {
+"353
+{
+[; ;fence.c: 354: return 0;
+"354
+[e ) -> -> 0 `i `uc ]
+[e $UE 439  ]
+"355
+}
+[; ;fence.c: 355: }
+[e $U 451  ]
+"356
+[e :U 450 ]
+[; ;fence.c: 356: else
+[; ;fence.c: 357: {
+"357
+{
+[; ;fence.c: 358: return 1;
+"358
 [e ) -> -> 1 `i `uc ]
 [e $UE 439  ]
-"342
+"359
 }
 [e :U 451 ]
 [e :U 449 ]
-[; ;fence.c: 342: }
-[; ;fence.c: 343: break;
-"343
+[; ;fence.c: 359: }
+[; ;fence.c: 360: break;
+"360
 [e $U 440  ]
-"345
+"362
 }
-[; ;fence.c: 345: }
+[; ;fence.c: 362: }
 [e $U 440  ]
-"296
+"313
 [e :U 441 ]
 [e [\ *U + &U _temp_buff_long * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp_buff_long `ui `ux , $ -> -> 45 `ui `uc 442
  447 ]
-"345
+"362
 [e :U 440 ]
-[; ;fence.c: 348: }
-"348
+[; ;fence.c: 365: }
+"365
 [e :UE 439 ]
 }
-"356
+"373
 [v _verifica_plausibilidade_lat `(uc ~T0 @X0 1 ef ]
-"357
+"374
 {
-[; ;fence.c: 356: unsigned char verifica_plausibilidade_lat(void)
-[; ;fence.c: 357: {
+[; ;fence.c: 373: unsigned char verifica_plausibilidade_lat(void)
+[; ;fence.c: 374: {
 [e :U _verifica_plausibilidade_lat ]
 [f ]
-[; ;fence.c: 358: switch(temp_buff_lat[0])
-"358
+[; ;fence.c: 375: switch(temp_buff_lat[0])
+"375
 [e $U 454  ]
-[; ;fence.c: 359: {
-"359
-{
-[; ;fence.c: 360: case '-':
-"360
-[e :U 455 ]
-[; ;fence.c: 361: if(
-[; ;fence.c: 362: (
-[; ;fence.c: 363: poligono_ext[0].diff_lat_min <= 0 &&
-[; ;fence.c: 364: poligono_ext[1].diff_lat_min >= 0) &&
-[; ;fence.c: 366: (poligono_ext[0].diff_lat_deg <= 0 &&
-[; ;fence.c: 367: poligono_ext[1].diff_lat_deg >= 0))
-"367
-[e $ ! && && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 456  ]
-[; ;fence.c: 369: {
-"369
-{
-[; ;fence.c: 370: return 0;
-"370
-[e ) -> -> 0 `i `uc ]
-[e $UE 452  ]
-"371
-}
-[; ;fence.c: 371: }
-[e $U 457  ]
-"372
-[e :U 456 ]
-[; ;fence.c: 372: else if(
-[; ;fence.c: 373: (poligono_ext[0].diff_lat_min == 0 ||
-[; ;fence.c: 374: poligono_ext[1].diff_lat_min == 0) &&
-[; ;fence.c: 375: (poligono_ext[0].diff_lat_deg == 0 ||
-[; ;fence.c: 376: poligono_ext[1].diff_lat_deg == 0))
+[; ;fence.c: 376: {
 "376
-[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 458  ]
-[; ;fence.c: 377: {
-"377
 {
-[; ;fence.c: 379: return 0;
-"379
+[; ;fence.c: 377: case '-':
+"377
+[e :U 455 ]
+[; ;fence.c: 378: if(
+[; ;fence.c: 379: (
+[; ;fence.c: 380: poligono_ext[0].diff_lat_min <= 0 &&
+[; ;fence.c: 381: poligono_ext[1].diff_lat_min >= 0) &&
+[; ;fence.c: 383: (poligono_ext[0].diff_lat_deg <= 0 &&
+[; ;fence.c: 384: poligono_ext[1].diff_lat_deg >= 0))
+"384
+[e $ ! && && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 456  ]
+[; ;fence.c: 386: {
+"386
+{
+[; ;fence.c: 387: return 0;
+"387
 [e ) -> -> 0 `i `uc ]
 [e $UE 452  ]
-"380
+"388
 }
-[; ;fence.c: 380: }
-[e $U 459  ]
-"381
-[e :U 458 ]
-[; ;fence.c: 381: else
-[; ;fence.c: 382: {
-"382
-{
-[; ;fence.c: 383: return 1;
-"383
-[e ) -> -> 1 `i `uc ]
-[e $UE 452  ]
-"384
-}
-[e :U 459 ]
-[e :U 457 ]
-[; ;fence.c: 384: }
-[; ;fence.c: 385: break;
-"385
-[e $U 453  ]
-[; ;fence.c: 387: default:
-"387
-[e :U 460 ]
-[; ;fence.c: 388: if((poligono_ext[0].diff_lat_min >= 0 &&
-[; ;fence.c: 389: poligono_ext[1].diff_lat_min <= 0 ) &&
-[; ;fence.c: 392: (poligono_ext[0].diff_lat_deg >= 0 &&
-[; ;fence.c: 393: poligono_ext[1].diff_lat_deg <= 0)
-[; ;fence.c: 394: )
+[; ;fence.c: 388: }
+[e $U 457  ]
+"389
+[e :U 456 ]
+[; ;fence.c: 389: else if(
+[; ;fence.c: 390: (poligono_ext[0].diff_lat_min == 0 ||
+[; ;fence.c: 391: poligono_ext[1].diff_lat_min == 0) &&
+[; ;fence.c: 392: (poligono_ext[0].diff_lat_deg == 0 ||
+[; ;fence.c: 393: poligono_ext[1].diff_lat_deg == 0))
+"393
+[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 458  ]
+[; ;fence.c: 394: {
 "394
-[e $ ! && && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 461  ]
-[; ;fence.c: 395: {
-"395
 {
 [; ;fence.c: 396: return 0;
 "396
@@ -4723,55 +4698,94 @@ Version 3.2 HI-TECH Software Intermediate Code
 "397
 }
 [; ;fence.c: 397: }
-[e $U 462  ]
+[e $U 459  ]
 "398
-[e :U 461 ]
-[; ;fence.c: 398: else if((poligono_ext[0].diff_lat_min == 0 ||
-[; ;fence.c: 399: poligono_ext[1].diff_lat_min == 0) &&
-[; ;fence.c: 401: (poligono_ext[0].diff_lat_deg == 0 ||
-[; ;fence.c: 402: poligono_ext[1].diff_lat_deg == 0))
-"402
-[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 463  ]
-[; ;fence.c: 403: {
-"403
+[e :U 458 ]
+[; ;fence.c: 398: else
+[; ;fence.c: 399: {
+"399
 {
-[; ;fence.c: 404: return 0;
-"404
-[e ) -> -> 0 `i `uc ]
-[e $UE 452  ]
-"405
-}
-[; ;fence.c: 405: }
-[e $U 464  ]
-"406
-[e :U 463 ]
-[; ;fence.c: 406: else
-[; ;fence.c: 407: {
-"407
-{
-[; ;fence.c: 410: return 1;
-"410
+[; ;fence.c: 400: return 1;
+"400
 [e ) -> -> 1 `i `uc ]
 [e $UE 452  ]
-"411
+"401
 }
-[e :U 464 ]
-[e :U 462 ]
-[; ;fence.c: 411: }
-[; ;fence.c: 412: break;
-"412
+[e :U 459 ]
+[e :U 457 ]
+[; ;fence.c: 401: }
+[; ;fence.c: 402: break;
+"402
 [e $U 453  ]
+[; ;fence.c: 404: default:
+"404
+[e :U 460 ]
+[; ;fence.c: 405: if((poligono_ext[0].diff_lat_min >= 0 &&
+[; ;fence.c: 406: poligono_ext[1].diff_lat_min <= 0 ) &&
+[; ;fence.c: 409: (poligono_ext[0].diff_lat_deg >= 0 &&
+[; ;fence.c: 410: poligono_ext[1].diff_lat_deg <= 0)
+[; ;fence.c: 411: )
+"411
+[e $ ! && && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 461  ]
+[; ;fence.c: 412: {
+"412
+{
+[; ;fence.c: 413: return 0;
+"413
+[e ) -> -> 0 `i `uc ]
+[e $UE 452  ]
 "414
 }
 [; ;fence.c: 414: }
+[e $U 462  ]
+"415
+[e :U 461 ]
+[; ;fence.c: 415: else if((poligono_ext[0].diff_lat_min == 0 ||
+[; ;fence.c: 416: poligono_ext[1].diff_lat_min == 0) &&
+[; ;fence.c: 418: (poligono_ext[0].diff_lat_deg == 0 ||
+[; ;fence.c: 419: poligono_ext[1].diff_lat_deg == 0))
+"419
+[e $ ! && || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 10 -> -> 0 `i `l || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 4 -> -> 0 `i `l 463  ]
+[; ;fence.c: 420: {
+"420
+{
+[; ;fence.c: 421: return 0;
+"421
+[e ) -> -> 0 `i `uc ]
+[e $UE 452  ]
+"422
+}
+[; ;fence.c: 422: }
+[e $U 464  ]
+"423
+[e :U 463 ]
+[; ;fence.c: 423: else
+[; ;fence.c: 424: {
+"424
+{
+[; ;fence.c: 427: return 1;
+"427
+[e ) -> -> 1 `i `uc ]
+[e $UE 452  ]
+"428
+}
+[e :U 464 ]
+[e :U 462 ]
+[; ;fence.c: 428: }
+[; ;fence.c: 429: break;
+"429
 [e $U 453  ]
-"358
+"431
+}
+[; ;fence.c: 431: }
+[e $U 453  ]
+"375
 [e :U 454 ]
 [e [\ *U + &U _temp_buff_lat * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp_buff_lat `ui `ux , $ -> -> 45 `ui `uc 455
  460 ]
-"414
+"431
 [e :U 453 ]
-[; ;fence.c: 417: }
-"417
+[; ;fence.c: 434: }
+"434
 [e :UE 452 ]
 }

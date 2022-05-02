@@ -172,13 +172,13 @@ unsigned int GPSyear()
 
 char  *Latitude(void) 
 {   
-//    strcpy(rawLatitude,"-2342.07112");
+    strcpy(rawLatitude,"-2339.71121");
   return  rawLatitude;
 }
 //
 char *Longitude(void) 
 {
-//    strcpy(rawLongitude, "-04629.73476");
+    strcpy(rawLongitude, "-04631.81790");
   return rawLongitude;
 }
 
@@ -215,5 +215,7 @@ void dados_gps_to_sd(void)
     monta_sd(1, rawDate);
     monta_sd(2, rawLatitude);
     monta_sd(3, rawLongitude);
+    monta_sd(5, rawTime);
+    monta_sd(6, rawDate);
     return;
 }

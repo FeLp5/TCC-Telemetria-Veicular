@@ -50,6 +50,8 @@ extern "C" {
 typedef struct{
     unsigned char data[7];
     unsigned char hora[11];
+    unsigned char data_name[4];
+    unsigned char hora_name[4];
     unsigned char lt[13];
     unsigned char lo[13];
     unsigned char rpm[4];
@@ -57,6 +59,7 @@ typedef struct{
     unsigned char comb[3];
     unsigned char odometro_total[4];
     unsigned char dtc;
+    unsigned char fence[6];
 //    unsigned char VIN[30];
 }string_tel;
     

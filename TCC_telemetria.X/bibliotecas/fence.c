@@ -87,35 +87,8 @@ void verifica_diferenca_graus(unsigned char select_data)
     point_index_lat  = 0;
     
     switch(select_data)
-    {
+    {        
         case 1:
-            while(point<4)
-            {
-                for(i=1; i<6; i++)
-                {
-                    if(point == 0 || point == 2)
-                    {      
-                        if(point == 2 && !point_index_long)
-                        {
-                            point_index_long++;
-                        }
-                        for(j= 0; i < 6; j++)
-                        {
-                            poligono_ext[point_index_long].point_long_deg[j] = temp_buff_long[i];  
-                            poligono_ext[point_index_long].fence_long_deg[j] = fence_diff_long[point][i]; 
-
-                            i++;
-                        }
-
-                    } 
-
-                }
-
-                point++;
-            }
-        break;
-        
-        default:
             while(point<4)
             {
                 for(i=1; i<5; i++)
@@ -136,11 +109,48 @@ void verifica_diferenca_graus(unsigned char select_data)
                             i++;
                         }
 
-                    } 
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
                 point++;
             }
         break;  
+        
+        case 0:
+            while(point<4)
+            {
+                for(i=1; i<6; i++)
+                {
+                    if(point == 0 || point == 2)
+                    {      
+                        if(point == 2 && !point_index_long)
+                        {
+                            point_index_long++;
+                        }
+                        for(j= 0; i < 6; j++)
+                        {
+                            poligono_ext[point_index_long].point_long_deg[j] = temp_buff_long[i];  
+                            poligono_ext[point_index_long].fence_long_deg[j] = fence_diff_long[point][i]; 
+
+                            i++;
+                        }
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+
+                point++;
+            }
+        break;
+        
+
         
     }
     
@@ -158,16 +168,20 @@ void calcula_diff_graus(void)
     unsigned char point, count;
     unsigned long int temp_var_deg;
     
+    point = 0;
+    count = 0;
+    
     while(point<4)
     {
         if(point == 0 || point == 2)
         {
             temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
             poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
-            poligono_ext[count].diff_lat_deg -= temp_var_deg;            
+            poligono_ext[count].diff_lat_deg = poligono_ext[count].diff_long_deg - temp_var_deg;            
+            
             temp_var_deg = atoi(poligono_ext[count].point_long_deg);
             poligono_ext[count].diff_long_deg =  atoi(poligono_ext[count].fence_long_deg);
-            poligono_ext[count].diff_long_deg -= temp_var_deg; 
+            poligono_ext[count].diff_long_deg = poligono_ext[count].diff_long_deg - temp_var_deg; 
             
             count++;
         }
@@ -205,27 +219,29 @@ void verifica_diferenca_minutos(unsigned char select_data)
                         {
                             point_index_lat++;
                         }
-                        if(fence_diff_lat[point][i] != temp_buff_lat[i])
+//                        if(fence_diff_lat[point][i] != temp_buff_lat[i])
+//                        {
+                        for(j= 0; i < 11; j++)
                         {
-                            for(j= 0; i < 11; j++)
-                            {
-                                poligono_ext[point_index_lat].fence_lat_min[j] = fence_diff_lat[point][i];
-                                poligono_ext[point_index_lat].point_lat_min[j] = temp_buff_lat[i];
+                            poligono_ext[point_index_lat].fence_lat_min[j] = fence_diff_lat[point][i];
+                            poligono_ext[point_index_lat].point_lat_min[j] = temp_buff_lat[i];
                                 i++;
-                            }
-
                         }
+
+//                        }
 
                     }
                     else
                     {
-                       i = 11; 
+//                       i = 11;
+                        break;
                     }    
                 }
                 point++;
             }
             break;
-        default:
+            
+        case 0:
             while(point<4)
             {
                 for(i=7; i<12; i++)
@@ -238,19 +254,20 @@ void verifica_diferenca_minutos(unsigned char select_data)
                         }
 
 
-                        if(fence_diff_long[point][i] != temp_buff_long[i])
-                        {
+//                        if(fence_diff_long[point][i] != temp_buff_long[i])
+//                        {
                             for(j= 0; i < 12; j++)
                             {
                                 poligono_ext[point_index_long].fence_long_min[j] = fence_diff_long[point][i];
                                 poligono_ext[point_index_long].point_long_min[j] = temp_buff_long[i];
                                 i++;
                             }
-                        }
+//                        }
                     }
                     else
                     {
-                        i = 11;
+//                        i = 11;
+                        break;
                     }
 
                 }

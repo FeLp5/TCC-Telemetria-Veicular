@@ -586,13 +586,15 @@ void verifica_fence_externo(void)
     if(flag[0].point || flag[1].point)
     {
         flag[2].point = 1;
+        monta_sd(4, "FORA");
     }
     else
     {
         flag[2].point = 0;
+        monta_sd(4, "DENTRO");
     }
  
-    
+
   
 }
 
@@ -655,9 +657,9 @@ void troca_de_tela(void)
     static unsigned char last_state = 0;;
    
     
-    switch(!flag[2].point)
+    switch(flag[2].point)
     {
-        case 1:
+        case 0:
             
             if(!PORTEbits.RE0 && !flag[2].point || (state == 1 ))
             {

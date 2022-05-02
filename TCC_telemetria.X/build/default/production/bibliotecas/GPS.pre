@@ -5863,6 +5863,8 @@ typedef unsigned int uint16_t;
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
+unsigned char data_name[4];
+unsigned char hora_name[4];
 unsigned char lt[13];
 unsigned char lo[13];
 unsigned char rpm[4];
@@ -5870,10 +5872,11 @@ unsigned char vel[3];
 unsigned char comb[3];
 unsigned char odometro_total[4];
 unsigned char dtc;
+unsigned char fence[6];
 
 }string_tel;
 
-# 66
+# 69
 void sdcard_init(void);
 
 
@@ -6033,13 +6036,13 @@ return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
 
 char *Latitude(void)
 {
-
+strcpy(rawLatitude,"-2339.71121");
 return rawLatitude;
 }
 
 char *Longitude(void)
 {
-
+strcpy(rawLongitude, "-04631.81790");
 return rawLongitude;
 }
 
@@ -6055,5 +6058,7 @@ monta_sd(0, rawTime);
 monta_sd(1, rawDate);
 monta_sd(2, rawLatitude);
 monta_sd(3, rawLongitude);
+monta_sd(5, rawTime);
+monta_sd(6, rawDate);
 return;
 }

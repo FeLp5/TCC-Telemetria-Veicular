@@ -5919,6 +5919,8 @@ void escreve_SPI(unsigned char dado);
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
+unsigned char data_name[4];
+unsigned char hora_name[4];
 unsigned char lt[13];
 unsigned char lo[13];
 unsigned char rpm[4];
@@ -5926,10 +5928,11 @@ unsigned char vel[3];
 unsigned char comb[3];
 unsigned char odometro_total[4];
 unsigned char dtc;
+unsigned char fence[6];
 
 }string_tel;
 
-# 66
+# 69
 void sdcard_init(void);
 
 
@@ -6308,24 +6311,26 @@ flag[1].point = verifica_plausibilidade_lat();
 if(flag[0].point || flag[1].point)
 {
 flag[2].point = 1;
+monta_sd(4, "FORA");
 }
 else
 {
 flag[2].point = 0;
+monta_sd(4, "DENTRO");
 }
 
 
 
 }
 
-# 607
+# 609
 void verifica_dados_operacionais(void)
 {
 
-# 616
+# 618
 }
 
-# 626
+# 628
 void disparo_gravacao(void)
 {
 unsigned char *fix_gps;
@@ -6343,7 +6348,7 @@ time_recovery = 5000;
 }
 }
 
-# 651
+# 653
 void troca_de_tela(void)
 {
 
@@ -6351,9 +6356,9 @@ static unsigned char state = 0;
 static unsigned char last_state = 0;;
 
 
-switch(!flag[2].point)
+switch(flag[2].point)
 {
-case 1:
+case 0:
 
 if(!PORTEbits.RE0 && !flag[2].point || (state == 1 ))
 {

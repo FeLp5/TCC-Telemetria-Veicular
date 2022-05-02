@@ -5739,6 +5739,8 @@ typedef unsigned int uint16_t;
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
+unsigned char data_name[4];
+unsigned char hora_name[4];
 unsigned char lt[13];
 unsigned char lo[13];
 unsigned char rpm[4];
@@ -5746,10 +5748,11 @@ unsigned char vel[3];
 unsigned char comb[3];
 unsigned char odometro_total[4];
 unsigned char dtc;
+unsigned char fence[6];
 
 }string_tel;
 
-# 66
+# 69
 void sdcard_init(void);
 
 
@@ -6122,7 +6125,8 @@ f_mount(0,&fs);
 if(!f_fix)
 {
 
-strcpy(filename, string_dado.data);
+strcpy(filename, string_dado.data_name);
+strcpy(filename, string_dado.hora_name);
 
 strcat(filename, ".tlm");
 f_fix = 1;
@@ -6132,7 +6136,7 @@ if (f_open(&fil, filename, 0x02 ) == FR_OK)
 {
 
 f_lseek(&fil, ((&fil)->fsize));
-fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc");
+fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s;f%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc", string_dado.fence);
 
 
 f_close(&fil);
@@ -6151,7 +6155,7 @@ inicializa_uart();
 return;
 }
 
-# 256
+# 257
 char *leitura_sdcard(unsigned char num_spot)
 {
 
@@ -6180,7 +6184,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 297
+# 298
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;
@@ -6201,8 +6205,6 @@ for(i=0; i<6;i++)
 string_dado.data[i] = *dado;
 dado++;
 }
-
-# 323
 break;
 
 case 2:
@@ -6214,7 +6216,6 @@ dado++;
 break;
 
 case 3:
-
 for(i=0; i<13;i++)
 {
 string_dado.lo[i] = *dado;
@@ -6223,10 +6224,26 @@ dado++;
 break;
 
 case 4:
-
 for(i=0; i<size;i++)
 {
-string_dado.lo[i] = *dado;
+string_dado.fence[i] = *dado;
+dado++;
+}
+break;
+
+case 5:
+for(i=0; i<4;i++)
+{
+string_dado.hora_name[i] = *dado;
+dado++;
+}
+break;
+
+
+case 6:
+for(i=0; i<4;i++)
+{
+string_dado.data_name[i] = *dado;
 dado++;
 }
 break;
