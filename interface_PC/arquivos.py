@@ -73,7 +73,8 @@ class Painel_arquivos(wx.Panel):
 
     #abrir os arquivos recentes - definindo 5 botões de acesso rápido            
     def abrir_recentes(self, nbotao):
-        pathname_recente = self.bt_camho[nbotao]
+        pathname_recente = self.botao_caminho[nbotao]
+        print "PATH", pathname_recente
         # for x in range(len(self.bt_camho)):
         # # Proceed loading the file chosen by the user
         # # print(( str(pathname)))
@@ -116,7 +117,7 @@ class Painel_arquivos(wx.Panel):
                 pos = arquivo.rfind(".")
                 ext = ""
                 x = 0
-
+        
                 # pegando as extensoes dos arquivos
                 for x in range(len(arquivo)): 
                     if( x > pos):  
@@ -159,9 +160,11 @@ class Painel_arquivos(wx.Panel):
                     temp_path = botao_path[p]
                     botao_path[p] = botao_path[w]
                     botao_path[w] = temp_path
-                    # print( vars.titulo_bt[w])
             p = p + 1
-        
+            
+                    # print(str(x) + " <> " + botao_path[w])
+        self.botao_caminho = botao_path
+        print self.botao_caminho
         if cont > 0:
             vars.flag_iniciar = 1 # flag que demonstra que há arquivos de telemetria
             # print vars.flag_iniciar
@@ -172,6 +175,7 @@ class Painel_arquivos(wx.Panel):
     # converte a data e hora - para o formato que queremos nos botões
     def convert_data(self, data):
         data_convertida = datetime.datetime.fromtimestamp(float(data)).strftime('%d/%m/%Y - %H:%M')
+        print data_convertida
         return str(data_convertida)
     
     # mostra a janela sobre com informações sobre o programa
@@ -199,9 +203,12 @@ class Painel_arquivos(wx.Panel):
         vars.cidade = []
         vars.estado = []
         vars.speed_limit = []
-        
         # código para reduzir as requisições, podemos ajustar a quantidade de requisições por aqui
         incremento = 1
+        vars.query = 0
+        vars.num_dados = (len(lines))
+
+        # print "NUM DADOS",  vars.num_dados
         
         # gerando um fator para diminuir requisições
         fator = 0
@@ -210,165 +217,198 @@ class Painel_arquivos(wx.Panel):
         if(len(lines) < 100):
             fator = 4
         if(len(lines) < 50):
-            fator = 2
+            fator = 1
         
-        self.requests_coordenadas(lines, fator)
+        self.vars_sdcard(lines, fator)
+
+        self.requests_mapa(vars.num_dados, fator)
         
-        self.vars_sdcard(lines)
+        # self.request_ruas()
         
         # solicitando o reverse geocode para os nomes das ruas
-        for x in range(len(lines)):
-            linha = lines[x] # selecionando a linha a ser percorrida 
-            if (x == incremento * fator): # economizando nas requisições
-                # gerando os outros nomes das ruas para as demais coordenadas
-                self.request_ruas(re.search('lt(.+?);', linha).group(1), re.search('lo(.+?);', linha).group(1), x)
-                incremento = incremento + 1
-                print "RUAS", x
+        # for x in range(len(lines)):
+        #     linha = lines[x] # selecionando a linha a ser percorrida 
+        #     if (x == incremento * fator): # economizando nas requisições
+        #         # gerando os outros nomes das ruas para as demais coordenadas
+        #         self.request_ruas(vars.latitude[x], vars.latitude[x], x)
+        #         incremento = incremento + 1
+        #         print "RUAS", x
 
     #funçao que retorna os nomes das ruas
-    def request_ruas(self, lat, long, cont):
-        print "REQUISIÇÕES: " , cont
-        
-        ruas = "https://api.tomtom.com/search/2/reverseGeocode/" +lat+","+long+".json?&key=" + vars.api_key_tom + "&returnSpeedLimit=true"
-        print ruas
+    def request_ruas(self):
+        if vars.requisicao != 0: #zerando a quantidade de requisições
+            vars.requisicao = 0
 
-        if(vars.velocidade != ''): #!= ''): # só executa quando algo estiver carregado
-        
-            ## google maps -- sem uso neste momento
-            # geocode - trará os nomes das ruas
-            # ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
+        for x in range(vars.num_dados):
+            speed_limit = '' # para armazenar o limite de velocidade a ser tratado
+            speed_limit_temp = '' #para armazenar o limite temporário
+            if(vars.velocidade != ''): #!= ''): # só executa quando algo estiver carregado
             
-            ## tomtom - reverse geocode
-            ruas = "https://api.tomtom.com/search/2/reverseGeocode/" +lat+","+long+".json?&key=" + vars.api_key_tom + "&returnSpeedLimit=true"
-
-
-            r = requests.get(ruas)
-            if r.status_code not in range(200, 299):
-                return None, None
-            try:
-                ## para google maps
-                # results = r.json()['results'][0]
-                # for types in results['address_components']:
-                #     field = types.get('types', [])
-                    # if 'route' in field:
-                    #     nome_rua = types['long_name']
-                    # if 'administrative_area_level_2' in field:
-                    #     nome_rua = nome_rua + "   - Cidade: " + types['long_name']
-                    
-                ## para tomtom
-                results = r.json()['addresses'][0]
-    
-                # for field in results['address']:
-                #     print field
-                #     # if 'street' in field:
-                #     if results['address']['street']:
-                #         vars.nome_rua.append(results['address']['street'])
-                #         # vars.nome_rua[field] = results['address']['street']
-                #     if results['address']['municipality']:
-                #         vars.cidade.append(results['address']['municipality'])
-                #         # vars.cidade[field] = results['address']['municipality']
-                #     if results['address']['countrySubdivision']:
-                #         vars.estado.append(results['address']['countrySubdivision'])
-                #         # vars.estado[field] = results['address']['countrySubdivision']
-                #     if results['address']['speedLimit']:
-                #         vars.speed_limit.append(results['address']['speedLimit'])
-                #         # vars.speed_limit[field] = results['address']["speedLimit"]
-                #     else:
-                #         vars.speed_limit.append("40")
+                ## google maps -- sem uso neste momento
+                # geocode - trará os nomes das ruas
+                # ruas = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=" + vars.api_key
                 
-                    # if 'street' in field:
-                if 'street' in results['address']:
-                    vars.nome_rua.append(results['address']['street'])
-                    # vars.nome_rua[field] = results['address']['street']
-                if 'municipality' in results['address']:
-                    vars.cidade.append(results['address']['municipality'])
-                    # vars.cidade[field] = results['address']['municipality']
-                if 'countrySubdivision' in results['address']:
-                    vars.estado.append(results['address']['countrySubdivision'])
-                    # vars.estado[field] = results['address']['countrySubdivision']
-                if 'speedLimit' in results['address']:
-                    vars.speed_limit.append(results['address']['speedLimit'])
-                    # vars.speed_limit[field] = results['address']["speedLimit"]
-                else:
-                    vars.speed_limit.append("40")
-        
-                print "TAMANHO", (len(vars.speed_limit))
-                print "NOME DA RUA" , vars.nome_rua[0] + " " + vars.cidade[0] + " " + vars.estado[0] + " " + vars.speed_limit[0]
-            except:
-                print "ERRO"
-                pass
-            
-            for x in range(len(vars.speed_limit)):
-                print vars.speed_limit[x]
-                    
-            # vars.nomes_das_ruas.append(nome_rua)
-            # print vars.nomes_das_ruas
+                ## tomtom - reverse geocode
+                ruas = "https://api.tomtom.com/search/2/reverseGeocode/" + vars.latitude[x] +"," + vars.longitude[x] + ".json?&key=" + vars.api_key_tom + "&returnSpeedLimit=true"
+                print ruas
+                
+                r = requests.get(ruas)
+                if r.status_code not in range(200, 299):
+                    return None, None
+                try:
+                    ## para google maps
+                    # results = r.json()['results'][0]
+                    # for types in results['address_components']:
+                    #     field = types.get('types', [])
+                        # if 'route' in field:
+                        #     nome_rua = types['long_name']
+                        # if 'administrative_area_level_2' in field:
+                        #     nome_rua = nome_rua + "   - Cidade: " + types['long_name']
+                        
+                    ## para tomtom
+                    results = r.json()['addresses'][0]
+                    if 'street' in results['address']:
+                        vars.nome_rua.append(results['address']['street'])
+                        # print "X", x
+                        # print vars.nome_rua[x]
     
-    def vars_sdcard (self, lines):
+                        # vars.nome_rua[field] = results['address']['street']
+                    if 'municipality' in results['address']:
+                        vars.cidade.append(results['address']['municipality'])
+                        # vars.cidade[field] = results['address']['municipality']
+                    if 'countrySubdivision' in results['address']:
+                        vars.estado.append(results['address']['countrySubdivision'])
+                        # vars.estado[field] = results['address']['countrySubdivision']
+                    if 'speedLimit' in results['address']:
+                        # separando a string de ex. 40.00km para 40
+                        speed_limit = results['address']['speedLimit']
+                        if speed_limit[1] == '.':
+                            speed_limit_temp = speed_limit[0]
+                        if speed_limit[2] == '.':
+                            speed_limit_temp = speed_limit[0] + speed_limit[1]
+                        if speed_limit[3] == '.':
+                            speed_limit_temp = speed_limit[0] + speed_limit[1] + speed_limit[2]
+                        vars.speed_limit.append(speed_limit_temp)
+                        # vars.speed_limit[field] = results['address']["speedLimit"]
+                    else:
+                        vars.speed_limit.append("40")
+                        # for field in results['address']:
+                        #     print field
+                        #     # if 'street' in field:
+                        #     if results['address']['street']:
+                        #         vars.nome_rua.append(results['address']['street'])
+                        #         # vars.nome_rua[field] = results['address']['street']
+                        #     if results['address']['municipality']:
+                        #         vars.cidade.append(results['address']['municipality'])
+                        #         # vars.cidade[field] = results['address']['municipality']
+                        #     if results['address']['countrySubdivision']:
+                        #         vars.estado.append(results['address']['countrySubdivision'])
+                        #         # vars.estado[field] = results['address']['countrySubdivision']
+                        #     if results['address']['speedLimit']:
+                        #         vars.speed_limit.append(results['address']['speedLimit'])
+                        #         # vars.speed_limit[field] = results['address']["speedLimit"]
+                        #     else:
+                        #         vars.speed_limit.append("40")
+                        
+                            # if 'street' in field:
+    
+                        # print "TAMANHO", (len(vars.speed_limit))
+                    # print "NOME DA RUA" , vars.nome_rua[0] + " " + vars.cidade[0] + " " + vars.estado[0] + " " + vars.speed_limit[0]
+                except:
+                    # print "ERRO"
+                    pass
+                        
+          
+                vars.requisicao += 1
+        
+            
+                
+                    
+        
+                    # 
+                    # for x in range(len(vars.speed_limit)):
+                    #     print vars.speed_limit[x]
+                            
+                    # vars.nomes_das_ruas.append(nome_rua)
+                    # print vars.nomes_das_ruas
+    
+    def vars_sdcard (self, lines, fator):
         for x in range(len(lines)):
             linha = lines[x] # selecionando a linha a ser percorrida
+            
+            #pegando as infos em vetor
+            vars.vetor_velocidade.append(re.search('v(.+?);', linha).group(1))
+            vars.vetor_rpm.append(re.search('r(.+?);', linha).group(1))
+            vars.vetor_combustivel.append(re.search('c(.+?);', linha).group(1))
+            vars.vetor_km.append(re.search('k(.+?);', linha).group(1))
+            vars.vetor_tempo.append(re.search('h(.+?);', linha).group(1))
+            vars.vetor_dtc.append(re.search('d(.+?);', linha).group(1))
+            vars.latitude.append(self.latlong(re.search('lt(.+?);', linha).group(1)))
+            vars.longitude.append(self.latlong(re.search('lo(.+?);', linha).group(1)))
+            
+            
             if x == 0:
-                velocidade = re.search('v(.+?);', linha).group(1)
-                latitude = re.search('lt(.+?);', linha).group(1) 
-                longitude = re.search('lo(.+?);', linha).group(1)
-                rpm = re.search('r(.+?);', linha).group(1)
-                combustivel = re.search('c(.+?);', linha).group(1)
-                km = re.search('k(.+?);', linha).group(1)
-                tempo = re.search('h(.+?);', linha).group(1)
-                dtc = re.search('d(.+?);', linha).group(1)
+                velocidade = vars.vetor_velocidade[0]
+                rpm = vars.vetor_rpm[0]
+                combustivel = vars.vetor_combustivel[0]
+                km = vars.vetor_km[0]
+                tempo = vars.vetor_tempo[0]
+                dtc = vars.vetor_dtc[0]
                 
                 velmax = velocidade
                 rpmmax = rpm
                 consumo = combustivel
                 km_rodado = km
+                # print tempo
                 hora = tempo[0] + tempo[1]
                 min = tempo[2] + tempo[3]
-                lat = latitude
-                long  = longitude
+
             else:
-                velocidade = velocidade + "," + re.search('v(.+?);', linha).group(1)
-                latitude = latitude + "," + re.search('lt(.+?);', linha).group(1)
-                longitude = longitude + "," + re.search('lo(.+?);', linha).group(1)
-                rpm = rpm + "," + re.search('r(.+?);', linha).group(1)
-                combustivel = combustivel + "," + re.search('c(.+?);', linha).group(1)
-                km = km + "," + re.search('k(.+?);', linha).group(1)
-                tempo = tempo + "," + re.search('h(.+?);', linha).group(1)
-                dtc = dtc + "," + re.search('d(.+?);', linha).group(1)
+                velocidade = velocidade + "," + vars.vetor_velocidade[x]
+                rpm = rpm + "," + vars.vetor_rpm[x]
+                combustivel = combustivel + "," + vars.vetor_combustivel[x]
+                km = km + "," + vars.vetor_km[x]
+                tempo = tempo + "," + vars.vetor_tempo[x]
+                dtc = dtc + "," + vars.vetor_dtc[x]
     
                 #pegando a velocidade máxima
-                if(velmax < re.search('v(.+?);', linha).group(1)):
-                    velmax = re.search('v(.+?);', linha).group(1)
+                if(velmax < vars.vetor_velocidade[x]):
+                    velmax = vars.vetor_velocidade[x]
                     
                 #pegando a rotação máxima
-                rpmmax_int = re.search('r(.+?);', linha).group(1)
+                rpmmax_int = vars.vetor_rpm[x]
                 rpmmax = int(rpmmax)
                 if rpmmax < int(rpmmax_int):
                     rpmmax = int(rpmmax_int)
                     
-                if(x == (len(lines) - 1)):
-                    hora_g = tempo[0] + tempo[1]
-                # precisa ser testado
-                    if(int(hora) > int(hora_g) and flag == 0 ): #testando por causa da troca de 23h para 0h
-                        hora = int(hora) - 24
-    
-                        flag = 1
-                    
+                if(x == (len(lines)) -1 ):
                     #pegando o consumo
-                    consumo = float(consumo) - float(re.search('c(.+?);', linha).group(1))
+                    consumo = float(consumo) - float(vars.vetor_combustivel[x])
                     
                     #ṕegando a distancia percorrida
-                    km_rodado = float(re.search('k(.+?);', linha).group(1))- float(km_rodado)
+                    km_rodado = float(vars.vetor_km[x])- float(km_rodado)
                 
                     #pegando o tempo gasto, precisamos testar
-                    tempo_gasto = (re.search('h(.+?);', linha).group(1))
+                    tempo_gasto = vars.vetor_tempo[x]
                     hora_g = tempo_gasto[0] + tempo_gasto[1]
                     min_g = tempo_gasto[2] + tempo_gasto[3]
                     
+                    # precisa ser testado
+                    if(int(hora) > int(hora_g) and flag == 0 ): #testando por causa da troca de 23h para 0h
+                        hora = int(hora) - 24
+                        flag = 1
+                    
                     hora_g = int(hora_g) - int(hora)
+                    if  len(str(hora_g)) == 1:
+                        hora_g = "0" + str(hora_g)
+                    
                     if(int(min_g) < int(min)):
-                        ming_g = int(min_g) - int(min) + 60
+                        min_g = int(min_g) - int(min) + 60
                     else:
                         min_g = int(min_g) -int(min)
+                        
+                    if len(str(min_g)) == 1:
+                        min_g = "0" + str(min_g)
                         
                     vars.velocidade = velocidade # passando para global
                     vars.rpm = rpm # passando para global
@@ -378,42 +418,47 @@ class Painel_arquivos(wx.Panel):
                     vars.km_rodado = km_rodado # passando para global
                     vars.hora_g = hora_g # passando para global
                     vars.min_g = min_g # passando para global
-            
-        return lat, long
+                    
+
+
+            # print vars.latitude[x]
+            # print "VETOR", vars.vetor_velocidade[x]
+
+        # return lat, long
     
     #função de conversão de latitude / longitude para graus/minutos
     
     
-    def requests_coordenadas (self, lines, fator):
+    def requests_mapa (self, nlinhas, fator):
         coordenadas = "" # criando a variável 
         cordenada_central = "" # criando a variável 
         incremento = 0
         
-        for x in range(len(lines)): 
-            linha = lines[x]
-        
-            if  x == round(len(lines) / 2, 0) + 1 : 
+        for x in range(nlinhas): 
+
+            if  x == round(nlinhas / 2, 0) + 1 : 
                 # pegando a coordenada central
-                cordenada_central = re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) 
+                cordenada_central = vars.latitude[x] + "," + vars.longitude[x] 
                 # necessario inserir na string coordenadas também
-                coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" 
-            elif x == len(lines) - 1:
+                coordenadas = coordenadas + vars.latitude[x] + "," + vars.longitude[x]  + "|" 
+            elif x == nlinhas - 1:
                 # pegando a cordenada final e montando na string
-                coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) 
+                coordenadas = coordenadas + vars.latitude[x] + "," + vars.longitude[x]  
             else: 
                 # tentando economizar as requisições
                 if(x == incremento * fator):
                     # pegando as coordenadas e montando a string
-                    coordenadas = coordenadas + re.search('lt(.+?);', linha).group(1) + "," + re.search('lo(.+?);', linha).group(1) + "|" 
+                    coordenadas = coordenadas + vars.latitude[x] + "," + vars.longitude[x]  + "|" 
                     incremento = incremento + 1
-                    
+                    print incremento
+                    # velocidade_list
         ## google maps -- sem uso neste momento
         # roads retornará a velocidade da via
         # vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + coordenadas  + "&key=" + vars.api_key
         # print(( "ROADS API -> ", vars.roads))
 
         # static_map - irá desenhar o mapa e a rota
-        vars.static_map = "https://maps.googleapis.com/maps/api/staticmap?center=" + cordenada_central + "&path=color:0x0000ff|weight:5|" + coordenadas + "&size=640x400&key=" + vars.api_key
+        vars.static_map = "https://maps.googleapis.com/maps/api/staticmap?center=" + cordenada_central + "&scale=2&path=color:0x0000ff|weight:5|" + coordenadas + "&size=640x400&key=" + vars.api_key
 
         print(( "STATIC_MAP API ->" , vars.static_map))
 
@@ -424,15 +469,15 @@ class Painel_arquivos(wx.Panel):
 
         degrees = 0.0
         # position = 0.0
-        
+        lt_lo = float(lt_lo)
         # print("LATLONG ", lt_lo)
         degrees = int(lt_lo/100)
         # print("GRAUS ", degrees)
         minutes = lt_lo - (degrees * 100)
         # print("MINUTES ", minutes)
         dec_deg = minutes / 60.00;
-        print("Décimos de GRAUS ", dec_deg)
-        # decimal = degrees + dec_deg;
-        print("décimos ", decimal)
+        # print("Décimos de GRAUS ", dec_deg)
+        decimal = degrees + dec_deg;
+        # print("décimos ", decimal)
         
-        return decimal	
+        return str(decimal)	

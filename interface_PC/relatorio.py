@@ -1,18 +1,85 @@
 # encoding: utf-8
-import wx, os
+import wx, os, time, threading
 import vars
 from wx import html2 as html
+from datetime import datetime
 
 class Relatorio(wx.Panel):
+    flag_carreg = 0
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        self.SetBackgroundColour("")   
+        self.SetBackgroundColour("")
+
         self.html = wx.html2.WebView.New(self) # criando um novo WebView
-        self.html.SetSize((vars.t_x, vars.t_y)) # definindo o tamanho
-         
+        self.html.SetSize((vars.t_x/7*5, (vars.t_y/3*2)-40)) # definindo o tamanho
+    
+        self.endereco = os.path.dirname(os.path.realpath(__file__)) # pegando o endereço de execução para o html (css e imagens)
+        self.endereco = "file://" + self.endereco + "/" # completando a string endereço para o html
+        self.count = 0.0
+        
+        self.statxt_aguarde = wx.StaticText(self, -1,  "" , (200, 6), (-1, -1))
+        self.statxt_aguarde.SetForegroundColour("black")
+        self.statxt_aguarde.SetLabel("AGUARDE POR FAVOR...\n Coletando informações...")
+    
     def atualiza(self):
         
+        def tempo_atingido(event):
+                self.timer.Stop()
+                self.aguarda()
+        self.timer = wx.Timer(self)
+        self.Bind(wx.EVT_TIMER, tempo_atingido, self.timer)
+        self.timer.Start(2500)
         
+        # if self.count == 0:
+        #     if timer 
+                
+            
+        carreg = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'> <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'> <head>  <meta http-equiv='content-type' content='text/html;charset=utf-8' /><meta name='generator' /></head><body></body></html>"
+        # 
+        self.html.SetPage(carreg, self.endereco) # montando a página html
+            # print "x"
+        
+        self.gauge = wx.Gauge(self, range=100, size=(180, 30))
+        self.statxt_aguarde.Show()
+        # self.html.SetPage("<body></body>", self.endereco) # montando a página html
+        
+        
+    def aguarda(self):
+        
+        self.j = 0
+        print "aguarda"
+        def tempo_alcancado(event):
+            
+            if vars.requisicao != vars.num_dados:
+                print "REqus ", vars.requisicao
+                print "NUM DADOS ", vars.num_dados
+                
+                valor = float(float(vars.requisicao) / float(vars.num_dados)) * 100
+                self.count = valor 
+    
+                self.gauge.SetValue(int(self.count))
+                print "GAUGE ", int(self.count)
+                # self.count += 1
+                # time.sleep(0.2)
+                # self.Layout()
+                # self.atualiza()
+                
+            else:
+                self.gauge.SetValue(int(100))
+                self.j += 1
+                print "J", self.j
+                if self.j == 2:
+                    self.timer2.Stop()
+                    self.gauge.Hide()
+                    self.statxt_aguarde.Hide()
+                    self.atual()
+        
+        self.timer2 = wx.Timer(self)
+        self.Bind(wx.EVT_TIMER, tempo_alcancado, self.timer2)
+        self.timer2.Start(500)
+            
+            
+    def atual(self):
         
         #testando uma maneira de gravar um arquivo e fazer as requisições a partir dele
         # with open("batch/test.txt",'w') as f:
@@ -23,19 +90,32 @@ class Relatorio(wx.Panel):
         #     f.write("    ]\n")
         #     f.write("}")
 
-        endereco = os.path.dirname(os.path.realpath(__file__)) # pegando o endereço de execução para o html (css e imagens)
-        endereco = "file://" + endereco + "/" # completando a string endereço para o html
         botao_imprimir = wx.Button(self, wx.NewId(), "  imprimir", (10, 46 ), (160,24))
+        nome_arquivo = ''
+        hoje = datetime.today().strftime('%d-%m-%Y')
         
+        # print "VETOR" , len(vars.vetor_velocidade)
+        # print "CIDADE" , len(vars.cidade)
         # pegando as informações e montando as strings que comporão o relatório
         itens = ""
+        for y in range(12):
+            nome_arquivo = nome_arquivo + vars.caminho_bt[y - 12] 
+            
+        # print "RANGE", range(len(vars.nome_rua))
+        # print "RANGE", (len(vars.nome_rua))
+        print vars.nome_rua
         for x in range(len(vars.nome_rua)):
-            itens = itens + "<tr><td>" + vars.nome_rua[x]+ "</td><td>" + vars.cidade[x] + "</td><td>" + vars.estado[x] + "</td><td>" + vars.speed_limit[x] + "</td></tr>"
+            tempo = vars.vetor_tempo[x]
+            hora = tempo[0] + tempo[1] + "h" + tempo[2] + tempo[3]
+            # print "XXXX" , x
+            
+            itens = itens + "<tr><td>" + hora + "</td><td>" + vars.nome_rua[x]+ "</td><td>" + vars.cidade[x] + "</td><td>" + vars.estado[x] + "</td><td>" + vars.vetor_velocidade[x] + "</td><td>" + vars.speed_limit[x] + "</td><td>" + vars.vetor_rpm[x] + "</td><td>" + vars.vetor_combustivel[x] + "</td><td>" + vars.vetor_km[x] + "</td></tr>"
 
             
-        relatorio = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'><html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'><head><link rel='stylesheet' href='css/style.css'></head><body><h2>Relatório</h2><a href='#' onclick='window. print();'><button>Imprimir</button></a><table colspan = 0 width='800' border = 1 ><tr><td>Arquivo</td><td>" + vars.caminho_bt.encode(encoding='UTF-8',errors='strict') + "</td><td>VIN</td><td>" + vars.VIN + "</td><td></td><td></td><td rowspan=4><img src='imagens/logo_FDR.png' size='300'></td></tr><tr><td>Data</td><td></td><td>Hora</td><td></td><td></td><td></td></tr><tr><td>Tempo de Viagem</td><td></td><td>Consumo de Combustível</td><td></td><td></td><td></td></tr><tr><td>Rotação Máxima do Motor</td><td></td><td>Velocidade Máxima Atingida</td><td></td><td></td><td></td></tr></table><table colspan = 0 border = 0 width='800'><tr><td>Ruas trafegadas</td><td>Hora</td><td>Velocidade</td><td>RPM</td><td>Combustível</td><td>Hodômetro</td></tr>"  + itens.encode(encoding='UTF-8',errors='strict') + "</table></body>"
+        relatorio = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'><html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'><head><link rel='stylesheet' href='css/style.css'></head><body cellpadding=0 cellspacing=0><div class='barra'><p class='painel'>RELATÓRIO</p></div><br><br><a href='#' onclick='window. print();'><button>Imprimir</button></a><table colspan = 0 width='100%' border = 1 ><tr><td>Arquivo</td><td>" + nome_arquivo.encode(encoding='UTF-8',errors='strict') + "</td><td>VIN</td><td>" + vars.VIN + "</td><td></td><td></td><td rowspan=4><img src='imagens/logo_FDR.png' size='300'></td></tr><tr><td>Data</td><td>" + hoje + "</td><td>Hora</td><td></td><td></td><td></td></tr><tr><td>Tempo de Viagem</td><td></td><td>Consumo de Combustível</td><td></td><td></td><td></td></tr><tr><td>Rotação Máxima do Motor</td><td></td><td>Velocidade Máxima Atingida</td><td></td><td></td><td></td></tr></table><table colspan = 0 border = 0 width='100%'><tr><td>Hora</td><td>Via</td><td>Cidade</td><td>Estado</td><td>Velocidade</td><td>Velocidade Permitida</td><td>Rotação</td><td>Combustível Tanque</td><td>Hodômetro</td></tr>"  + itens.encode(encoding='UTF-8',errors='strict') + "</table></body>"
         
-        self.html.SetPage(relatorio, endereco) # montando a página html
+        
+        self.html.SetPage(relatorio, self.endereco) # montando a página html
         
         botao_imprimir.Bind(wx.EVT_BUTTON, self.imprimir) # listener do botão imprimir
         

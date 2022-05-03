@@ -1,9 +1,10 @@
 # encoding: utf-8
-import wx
+import wx, time
 from mapa import Mapa
 from grafico_a import Painel_grafico_A
 from grafico_b import Painel_grafico_B
 from relatorio import Relatorio
+import vars
 
 
 tema = ("", "", "")
@@ -51,10 +52,10 @@ class Painel_inferior_direito(wx.Panel):
         self.panel_cinco.Hide()
         self.Layout()
         
-    def show_panel_two(self, event):
+    def show_panel_two(self):
         self.panel_um.Hide()
         self.panel_dois.Show()
-        self.panel_dois.montar_grafico()
+        self.panel_dois.atualiza()
         self.panel_tres.Hide()
         self.panel_quatro.Hide()
         self.panel_cinco.Hide()
@@ -78,11 +79,15 @@ class Painel_inferior_direito(wx.Panel):
         self.panel_cinco.Hide()
         self.Layout()
         
-    def show_panel_five(self, event):
+
+    def show_panel_five(self):
+        print "<<<<<"
         self.panel_um.Hide()
         self.panel_dois.Hide()
         self.panel_tres.Hide()
         self.panel_quatro.Hide()
-        self.panel_cinco.Show()
+        
         self.panel_cinco.atualiza()
+        self.panel_cinco.Show()
+
         self.Layout()

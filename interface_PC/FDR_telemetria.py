@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import wx, os, re, datetime
+import wx, os, re, datetime, time, threading
+
 
 #importando as classes em python
 # from mapa import Mapa 
@@ -25,6 +26,7 @@ class Painel(wx.Frame):
         font = wx.SystemSettings.GetFont(wx.SYS_SYSTEM_FONT)
         font.SetPointSize(9)
         
+
         panel.SetBackgroundColour('')
         vbox = wx.BoxSizer(wx.VERTICAL)
         hbox1 = wx.BoxSizer(wx.HORIZONTAL)
@@ -45,7 +47,32 @@ class Painel(wx.Frame):
              acao_botao_recente(self, -1)
             
         pn_se.Bind(wx.EVT_BUTTON, botao_sdcard, pn_se.botao_sdcard)
+        
 
+        def abrir_relatorio(self):
+            if vars.query == 0:
+                
+                print "acessado"
+                vars.requisicoes = []
+                vars.query = 1
+                
+                # pn_se.request_ruas()
+                thread = threading.Thread(target = pn_se.request_ruas)
+                thread.start()
+                
+            pn_id.show_panel_five()
+        
+        def abrir_grafico_velocidades(self):
+            if vars.query == 0:
+                
+                print "acessado"
+                vars.requisicoes = []
+                vars.query = 1
+                thread = threading.Thread(target = pn_se.request_ruas)
+                thread.start()
+                
+            pn_id.show_panel_two()
+        
         def acao_botao_recente(Event, num_botao): # para mostrar qual botão foi selecionado
             # print("NUM" , num_botao)
             
@@ -62,28 +89,38 @@ class Painel(wx.Frame):
     
                 if num_botao == 0:
                     pn_se.botao0.SetBackgroundColour("gray")
+                    pn_se.botao0.SetForegroundColour("red")
                 else:
                     pn_se.botao0.SetBackgroundColour("")
+                    pn_se.botao0.SetForegroundColour("")
                     
                 if num_botao == 1:
-                    pn_se.botao1.SetBackgroundColour("gray")
+                    # pn_se.botao1.SetBackgroundColour("gray")
+                    pn_se.botao0.SetForegroundColour("red")
                 else:
-                    pn_se.botao1.SetBackgroundColour("")
+                    # pn_se.botao1.SetBackgroundColour("")
+                    pn_se.botao0.SetForegroundColour("")
                     
                 if num_botao == 2:
-                    pn_se.botao2.SetBackgroundColour("gray")
+                    # pn_se.botao2.SetBackgroundColour("gray")
+                    pn_se.botao0.SetForegroundColour("red")
                 else:
-                    pn_se.botao2.SetBackgroundColour("")
+                    # pn_se.botao2.SetBackgroundColour("")
+                    pn_se.botao0.SetForegroundColour("")
                     
                 if num_botao == 3:
-                    pn_se.botao3.SetBackgroundColour("gray")
+                    # pn_se.botao3.SetBackgroundColour("gray")
+                    pn_se.botao0.SetForegroundColour("red")
                 else:
-                    pn_se.botao3.SetBackgroundColour("")
+                    # pn_se.botao3.SetBackgroundColour("")
+                    pn_se.botao0.SetForegroundColour("")
                     
                 if num_botao == 4:
-                    pn_se.botao4.SetBackgroundColour("gray")
+                    # pn_se.botao4.SetBackgroundColour("gray")
+                    pn_se.botao0.SetForegroundColour("red")
                 else:
-                    pn_se.botao4.SetBackgroundColour("")
+                    # pn_se.botao4.SetBackgroundColour("")
+                    pn_se.botao0.SetForegroundColour("")
                 
             
                 
@@ -98,14 +135,14 @@ class Painel(wx.Frame):
         pn_id.SetBackgroundColour('')
         
         botao_grafico = wx.Button(pn_ie, wx.NewId(), "  Gráfico Velocidade", (10, 46 ), (160,24))
-        botao_graficoRPM = wx.Button(pn_ie, wx.NewId(), "  Gráfico Rotações", (10,72), (160,24))
-        botao_mapa = wx.Button(pn_ie, wx.NewId(), "Mapa", (10, 98 ), (160,24))
-        botao_relatorio = wx.Button(pn_ie, wx.NewId(), "Relatório", (10, 124), (160,24))
+        botao_graficoRPM = wx.Button(pn_ie, wx.NewId(), "  Gráfico Rotações", (10,80), (160,24))
+        botao_mapa = wx.Button(pn_ie, wx.NewId(), "Mapa", (10, 114 ), (160,24))
+        botao_relatorio = wx.Button(pn_ie, wx.NewId(), "Relatório", (10, 148), (160,24))
         #ações botões
-        botao_grafico.Bind(wx.EVT_BUTTON, pn_id.show_panel_two)
+        botao_grafico.Bind(wx.EVT_BUTTON, abrir_grafico_velocidades)
         botao_graficoRPM.Bind(wx.EVT_BUTTON, pn_id.show_panel_tres)
         botao_mapa.Bind(wx.EVT_BUTTON, pn_id.show_panel_four)
-        botao_relatorio.Bind(wx.EVT_BUTTON, pn_id.show_panel_five)
+        botao_relatorio.Bind(wx.EVT_BUTTON, abrir_relatorio)
 
         # Configurando o menu
         filemenu= wx.Menu()
@@ -209,14 +246,19 @@ class Painel(wx.Frame):
         hbox2.Add(pn_id, 2, wx.ALL | wx.EXPAND, border)
         panel.SetSizer(vbox)
             
+ 
+            
         # Eventos dos botões da barra de menus
         self.Bind(wx.EVT_MENU, pn_se.abrir_diretorio, menuOpen)
         self.Bind(wx.EVT_MENU, self.sair, menuExit)
         self.Bind(wx.EVT_MENU, pn_se.sobre, sobre)
-        self.Bind(wx.EVT_MENU, pn_id.show_panel_two, g_velocidades)
+        self.Bind(wx.EVT_MENU, abrir_grafico_velocidades, g_velocidades)
         self.Bind(wx.EVT_MENU, pn_id.show_panel_tres, g_rotacoes)
         self.Bind(wx.EVT_MENU, pn_id.show_panel_four, g_mapa)
-        self.Bind(wx.EVT_MENU, pn_id.show_panel_five, relatorio)
+        self.Bind(wx.EVT_MENU, abrir_relatorio, relatorio)
+        
+        
+
 
         #logos
         imageFile = 'imagens/logo_fatec.png'

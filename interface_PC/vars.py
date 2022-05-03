@@ -17,7 +17,18 @@ arquivo_aberto = 0
 # iniciado = 0
 # mudanca = 0
 
+
+#vetores
+vetor_velocidade = [] 
+vetor_km = []
+vetor_combustivel = []
+vetor_dtc = []
+vetor_rpm = []
+vetor_tempo = []
+
+
 #dados coletados
+num_dados = 0
 km_rodado = 0
 consumo = 0
 rpmmax = 0 
@@ -27,6 +38,8 @@ min_g = 0
 rpm = 0
 flag = 0
 velocidade = 0
+dtc = 'ok'
+
 
 VIN = "9BWXXXXXXXXXXXXXX2345"
 
@@ -34,11 +47,15 @@ VIN = "9BWXXXXXXXXXXXXXX2345"
 titulo_bt = 0000
 caminho_bt = ''
 
+
+
 # dados para as apis
 roads = ""
 static_map = ""
 ruas = ""
-nomes_das_ruas = []
+# nomes_das_ruas = []
+latitude = []
+longitude = []
 
 #credenciais apis
 api_key="AIzaSyBMnrCuQWbuZlsYWl1l4D86wTzFUVT_EHU"
@@ -47,10 +64,14 @@ secret_key="PqTf169GaYbiKoLY-6URq2N2RHc="
 api_key_tom = "hA4agzFVTHHbGuTurS0H2HHxgJYuQe4X"
 
 # variáveis para reverse geocode
+query = 0
 nome_rua = []
 cidade = []
 estado = []
 speed_limit = []
+
+requisicao = 0
+
 
 
 

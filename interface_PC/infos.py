@@ -14,20 +14,29 @@ class Painel_infos(wx.Panel):
 
     def mostrar_dados(self):
         
-        tab = 200
-        linha = 60
-        l_espace = 22
+        # tab = 200
+        # linha = 60
+        # l_espace = 22
+        #     
+        nome_arquivo = ''
+        cont = len(vars.caminho_bt)
+        print cont
+
+        for y in range(12):
+            nome_arquivo = nome_arquivo + vars.caminho_bt[y - 12] 
+
+        print vars.caminho_bt
+        print nome_arquivo
         
         if (vars.arquivo_aberto == 1 and self.flag == 0):
             endereco = os.path.dirname(os.path.realpath(__file__)) # pegando o endereço de execução para o html (css e imagens)
             endereco = "file://" + endereco + "/" # completando a string endereço para o html
-            
-        infos = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'> <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='pt' lang='pt-br'><head><link rel='stylesheet' href='css/style.css'></head> <body cellpadding=0 cellspacing=0><div style='width: 29%; height: 60px'><div><img src='imagens/file.png' height='30' ><br>Arquivo<br></div><p class=text2>220324.tlm</p></div><div style='width: 69%; height: 60px'><div><img src='imagens/vin.png' height='30'><br>Número de Identificação do Veículo<br></div><p class=text2>9BWXXXXXXXXXX8901</p></div><div><img src='imagens/velocidade.png' height='40'><br>Velocide Máxima Atingida<br><p class=text>100 <small>km/h</small></p></div><div><img src='imagens/rpm.png' height='40'><br>Rotação Máxima Atingida<br><p class=text>4970 <small>rpm</small></p></div><div><img src='imagens/distancia.png' height='40'><br>Distância Percorrida<br><p class=text>22,3 <small>km</small></p></div><div><img src='imagens/combustivel.png' height='40'><br>Combustivel<br><p class=text>12,2 <small>litros</small></p></div><div><img src='imagens/tempo.png' height='40'><br>Tempo de Viagem<br><p class=text>2h23</p></div></div> <div><img src='imagens/dtc.png' height='40'><br>Falhas no Veículo<br><p class=text>OK</p></div></div></body>"
-
         
+        infos = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'> <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='pt' lang='pt-br'><head><link rel='stylesheet' href='css/style.css'></head> <body cellpadding=0 cellspacing=0><div  class='barra'><p class='painel'>DASHBOARD</p></div><div style='clear: both; width: 32%; height: 52px'><div><img src='imagens/file.png' height='30' ><br>Arquivo<br></div><p class=text2>" + nome_arquivo.encode(encoding='UTF-8',errors='strict') + "</p></div><div style='width: 65%; height: 52px'><div><img src='imagens/vin.png' height='30'><br>Número de Identificação do Veículo<br></div><p class=text2>" + vars.VIN + "</p></div><div><div><img src='imagens/velocidade.png' height='40'><br>Velocide Máxima<br></div><p class=text>" + str(vars.velmax) + "<small> km/h</small></p></div><div><div><img src='imagens/rpm.png' height='40'><br>Rotação Máxima<br></div><p class=text>" + str(vars.rpmmax) + "<small> rpm</small></p></div><div><div><img src='imagens/distancia.png' height='40'><br>Distância Percorrida<br></div><p class=text>" + str(vars.km_rodado) + "<small> km</small></p></div><div><div><img src='imagens/combustivel.png' height='40'><br>Combustivel<br></div><p class=text>" + str(vars.consumo) + "<small> litros</small></p></div><div><div><img src='imagens/tempo.png' height='40'><br>Tempo de Viagem<br></div><p class=text>" + str(vars.hora_g) + "h" + str(vars.min_g) +  "</p></div><div><div><img src='imagens/dtc.png' height='40'><br>Falhas no Veículo<br></div><p class=text>" + vars.dtc + "</p></div></body>"
+
         self.html.SetPage(infos, endereco) # montando a página html
         
-        print infos
+        # print infos
             
         #     
         #     
