@@ -5752,7 +5752,7 @@ unsigned char fence[6];
 
 }string_tel;
 
-# 69
+# 72
 void sdcard_init(void);
 
 
@@ -5956,11 +5956,17 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 67 "bibliotecas/GPS.h"
+# 51 "bibliotecas/GPS.h"
+typedef struct
+{
+unsigned char flag:1;
+}bit_field_gps;
+
+# 72
 void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
-# 83
+# 87
 unsigned int GPSSecond();
 unsigned int GPSMinute();
 unsigned int GPSHour();
@@ -5971,6 +5977,7 @@ char *Latitude(void);
 char *Longitude(void);
 char *fix(void);
 void dados_gps_to_sd(void);
+char verifica_recep_gps(void);
 
 # 40 "bibliotecas/uart.h"
 void envia_dado_uart(char data);
@@ -6006,7 +6013,7 @@ void sdc_wait_ready(void);
 BYTE response(void)
 {
 unsigned char buff;
-LATBbits.LATB4 = 0;
+LATBbits.LATB5 = 0;
 buff= leitura_SPI();
 return buff;
 }
@@ -6018,18 +6025,18 @@ unsigned int i;
 _delay((unsigned long)((1)*(48000000/4000.0)));
 for(i=0;i<n;i++)
 {
-LATBbits.LATB4 = 1;
+LATBbits.LATB5 = 1;
 leitura_SPI();
-LATBbits.LATB4 = 0;
+LATBbits.LATB5 = 0;
 }
 }
 
 # 92
 void proceed(void)
 {
-LATBbits.LATB4 = 0;
+LATBbits.LATB5 = 0;
 escreve_SPI(0xFF);
-LATBbits.LATB4 = 1;
+LATBbits.LATB5 = 1;
 }
 
 # 105
@@ -6118,15 +6125,15 @@ unsigned char *fix_gps;
 static unsigned char f_fix = 0;
 WORD bw;
 PORTBbits.RB3 = 0;
-desliga_uart();
+
 inicializa_SPI();
 f_mount(0,&fs);
 
 if(!f_fix)
 {
 
-strcpy(filename, string_dado.data_name);
-strcpy(filename, string_dado.hora_name);
+strcpy(filename, "teste");
+strcat(filename, "23");
 
 strcat(filename, ".tlm");
 f_fix = 1;
@@ -6150,7 +6157,7 @@ f_close(&fil);
 
 PORTBbits.RB3 = 1;
 desliga_SPI();
-inicializa_uart();
+
 
 return;
 }

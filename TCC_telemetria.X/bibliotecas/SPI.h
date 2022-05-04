@@ -36,13 +36,13 @@
 #define modo_dois 2
 #define modo_tres 3
 
-#define TRIS_CS     TRISBbits.RB4
+#define TRIS_CS     TRISBbits.RB5
 #define TRIS_SCK    TRISBbits.RB1
 #define TRIS_SDI    TRISBbits.RB0
 #define TRIS_SDO    TRISCbits.RC7
 
 #define SPI_DATA_OUT LATCbits.LATC7 
-#define CHIP_SELECT LATBbits.LATB4
+#define CHIP_SELECT LATBbits.LATB5
 
 /******************************************************************************
 * Prototipos das funções

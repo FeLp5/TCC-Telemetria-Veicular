@@ -3682,18 +3682,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SPI.c: 50: TRISBbits.RB1 = 0;
 "50
 [e = . . _TRISBbits 1 1 -> -> 0 `i `uc ]
-[; ;SPI.c: 51: TRISBbits.RB4 = 0;
+[; ;SPI.c: 51: TRISBbits.RB5 = 0;
 "51
-[e = . . _TRISBbits 1 4 -> -> 0 `i `uc ]
+[e = . . _TRISBbits 1 5 -> -> 0 `i `uc ]
 [; ;SPI.c: 52: TRISBbits.RB0 = 1;
 "52
 [e = . . _TRISBbits 1 0 -> -> 1 `i `uc ]
 [; ;SPI.c: 53: TRISCbits.RC7 = 0;
 "53
 [e = . . _TRISCbits 1 5 -> -> 0 `i `uc ]
-[; ;SPI.c: 55: LATBbits.LATB4 = 1;
+[; ;SPI.c: 55: LATBbits.LATB5 = 1;
 "55
-[e = . . _LATBbits 0 4 -> -> 1 `i `uc ]
+[e = . . _LATBbits 0 5 -> -> 1 `i `uc ]
 [; ;SPI.c: 56: SSPSTAT &= 0x3F;
 "56
 [e =& _SSPSTAT -> -> 63 `i `uc ]

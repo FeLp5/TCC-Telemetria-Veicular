@@ -47,6 +47,11 @@ extern "C" {
 #define _GPGGA_  2
 #define _OTHER_  3
 
+    
+typedef struct
+{
+    unsigned char flag:1;
+}bit_field_gps;
 /******************************************************************************
 * Prototipos de funcoes
 ******************************************************************************/
@@ -79,7 +84,6 @@ int GPSRead(unsigned char buff);
 //uint8_t Satellites();
 //float Speed();
 //float Course();
-
 unsigned int GPSSecond();
 unsigned int GPSMinute();
 unsigned int GPSHour();
@@ -90,6 +94,7 @@ char *Latitude(void);
 char *Longitude(void);
 char *fix(void);
 void dados_gps_to_sd(void);
+char verifica_recep_gps(void);
 /*****************************************************************************/
 
 #ifdef __cplusplus

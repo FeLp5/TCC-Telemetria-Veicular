@@ -59,8 +59,8 @@ void armazena_latitude(void);
 void armazena_longitude(void);
 void verifica_diferenca_graus(unsigned char select_data);
 void verifica_diferenca_minutos(unsigned char select_data);
-void calcula_diff_graus(void);
-void calcula_diff_minutos(void);
+void calcula_diff_graus(unsigned char select_data);
+void calcula_diff_minutos(unsigned char select_data);
 unsigned char verifica_plausibilidade_long(void);
 unsigned char verifica_plausibilidade_lat(void);
 

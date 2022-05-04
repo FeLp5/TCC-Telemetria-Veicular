@@ -5932,7 +5932,7 @@ unsigned char fence[6];
 
 }string_tel;
 
-# 69
+# 72
 void sdcard_init(void);
 
 
@@ -5945,11 +5945,17 @@ void proceed(void);
 void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 
-# 67 "bibliotecas/GPS.h"
+# 51 "bibliotecas/GPS.h"
+typedef struct
+{
+unsigned char flag:1;
+}bit_field_gps;
+
+# 72
 void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
-# 83
+# 87
 unsigned int GPSSecond();
 unsigned int GPSMinute();
 unsigned int GPSHour();
@@ -5960,6 +5966,7 @@ char *Latitude(void);
 char *Longitude(void);
 char *fix(void);
 void dados_gps_to_sd(void);
+char verifica_recep_gps(void);
 
 # 30 "bibliotecas/fence.h"
 typedef struct
@@ -5990,8 +5997,8 @@ void armazena_latitude(void);
 void armazena_longitude(void);
 void verifica_diferenca_graus(unsigned char select_data);
 void verifica_diferenca_minutos(unsigned char select_data);
-void calcula_diff_graus(void);
-void calcula_diff_minutos(void);
+void calcula_diff_graus(unsigned char select_data);
+void calcula_diff_minutos(unsigned char select_data);
 unsigned char verifica_plausibilidade_long(void);
 unsigned char verifica_plausibilidade_lat(void);
 
@@ -6111,9 +6118,11 @@ uint8_t MCP2515_ENVIA(uint8_t id, uint8_t len, uint8_t *buf);
 uint8_t MCP2515_RECEBE(uint32_t *id, uint8_t *len, uint8_t *buf);
 
 # 51 "main.c"
-bit_field flag[3];
+bit_field fence_flag[3];
 
-# 57
+
+
+
 unsigned char data_uart_recebe;
 
 
@@ -6139,10 +6148,13 @@ unsigned int time_recovery;
 
 unsigned int time_atualizacao;
 
+unsigned char flag_anomalia;
+
 unsigned char *point_buff_gps_lat;
+
 unsigned char *point_buff_gps_long;
 
-# 88
+# 90
 void mensagem_inicial(void);
 
 void verifica_fence_externo(void);
@@ -6153,7 +6165,9 @@ void disparo_gravacao(void);
 
 void troca_de_tela(void);
 
-# 107
+void recebe_dados_gps(void);
+
+# 110
 void __interrupt() isr(void)
 {
 unsigned char cont;
@@ -6164,6 +6178,7 @@ if (PIE1bits.RCIE && PIR1bits.RCIF)
 PIR1bits.RCIF = 0;
 data_uart_recebe = recebe_dado_uart();
 GPSRead(data_uart_recebe);
+
 PORTBbits.RB2 = !PORTBbits.RB2;
 }
 
@@ -6182,7 +6197,7 @@ if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
 }
 if(time_sd > 0) time_sd--;
 if(time_atualizacao > 0) time_atualizacao--;
-if(time_recovery>0) time_recovery--;
+
 if(tarefa_em_execucao == 1)
 {
 timeout_tarefa--;
@@ -6206,31 +6221,31 @@ INT0IF = 0;
 }
 }
 
-# 168
+# 172
 void inicializa_tarefas(void)
 {
 
 p_tarefas[0] = verifica_dados_operacionais;
 p_tarefas[1] = disparo_gravacao;
-p_tarefas[2] = verifica_fence_externo;
-p_tarefas[3] = troca_de_tela;
 
-# 178
+p_tarefas[2] = troca_de_tela;
+
+# 182
 tempo_backup[0] = 100;
 tempo_backup[1] = 100;
-tempo_backup[2] = 1000;
-tempo_backup[3] = 100;
+tempo_backup[2] = 100;
+tempo_backup[3] = 1000;
 
-# 184
+# 188
 tempo_tarefa[0] = 100;
 tempo_tarefa[1] = 100;
-tempo_tarefa[2] = 1000;
-tempo_tarefa[3] = 100;
+tempo_tarefa[2] = 100;
+tempo_tarefa[3] = 1000;
 
 tarefa_em_execucao = 0;
 }
 
-# 200
+# 204
 void escalonador()
 {
 unsigned char cont;
@@ -6247,7 +6262,7 @@ tempo_tarefa[cont] = tempo_backup[cont];
 }
 }
 
-# 221
+# 225
 void main(void)
 {
 init_hardware();
@@ -6256,6 +6271,9 @@ init_lcd();
 mensagem_inicial();
 inicializa_tarefas();
 inicializa_uart();
+
+
+
 T0CONbits.TMR0ON = 1;
 while(1)
 {
@@ -6271,7 +6289,7 @@ dados_gps_to_sd();
 }
 }
 
-# 249
+# 256
 void mensagem_inicial(void)
 {
 const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
@@ -6287,35 +6305,37 @@ escreve_cmd_lcd(0b00000001);
 
 }
 
-# 272
+# 279
 void verifica_fence_externo(void)
 {
-
-# 570
 armazena_latitude();
 armazena_longitude();
 
 verifica_diferenca_graus(0);
+calcula_diff_graus(0);
+
 verifica_diferenca_graus(1);
+calcula_diff_graus(1);
+
 
 verifica_diferenca_minutos(0);
+calcula_diff_minutos(0);
+
 verifica_diferenca_minutos(1);
-
-calcula_diff_graus();
-calcula_diff_minutos();
+calcula_diff_minutos(1);
 
 
-flag[0].point = verifica_plausibilidade_long();
-flag[1].point = verifica_plausibilidade_lat();
+fence_flag[0].point = verifica_plausibilidade_long();
+fence_flag[1].point = verifica_plausibilidade_lat();
 
-if(flag[0].point || flag[1].point)
+if(fence_flag[0].point || fence_flag[1].point)
 {
-flag[2].point = 1;
+fence_flag[2].point = 1;
 monta_sd(4, "FORA");
 }
 else
 {
-flag[2].point = 0;
+fence_flag[2].point = 0;
 monta_sd(4, "DENTRO");
 }
 
@@ -6323,32 +6343,57 @@ monta_sd(4, "DENTRO");
 
 }
 
-# 609
+# 324
 void verifica_dados_operacionais(void)
 {
+unsigned char rpm[4];
 
-# 618
+
+
+if(!time_sd)
+{
+
+flag_anomalia = 0;
+
+
 }
 
-# 628
+# 344
+}
+
+# 354
 void disparo_gravacao(void)
 {
 unsigned char *fix_gps;
 
-fix_gps = fix();
 
+fix_gps = fix();
+if(!time_sd)
+{
+recebe_dados_gps();
 if(fix_gps[0] == '1')
 {
-if(!time_sd && !time_recovery)
-{
+verifica_fence_externo();
 escrita_sdcard();
-time_sd = 1000;
-time_recovery = 5000;
 }
-}
+else
+{
+verifica_fence_externo();
 }
 
-# 653
+
+time_sd = 1000;
+
+
+
+
+}
+
+
+
+}
+
+# 393
 void troca_de_tela(void)
 {
 
@@ -6356,11 +6401,11 @@ static unsigned char state = 0;
 static unsigned char last_state = 0;;
 
 
-switch(flag[2].point)
+switch(fence_flag[2].point)
 {
 case 0:
 
-if(!PORTEbits.RE0 && !flag[2].point || (state == 1 ))
+if(!PORTEbits.RE0 && !fence_flag[2].point || (state == 1 ))
 {
 
 if(!time_atualizacao)
@@ -6386,7 +6431,7 @@ last_state = 1;
 }
 
 
-if(!PORTEbits.RE1 && !flag[2].point || (state == 2))
+if(!PORTEbits.RE1 && !fence_flag[2].point || (state == 2))
 {
 if(!time_atualizacao)
 {
@@ -6418,45 +6463,30 @@ escreve_frase_ram_lcd(point_buff_gps_long);
 last_state = 2;
 }
 
-
-if((!PORTEbits.RE1 && state!=0) && !flag[2].point )
-{
-if(last_state != 4)
-{
-escreve_cmd_lcd(0b00000001);
-state = 0;
-posicao_cursor_lcd(1,0);
-escreve_frase_ram_lcd("B1:RPM B2:FENCE");
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("B2:HOME");
-}
-last_state = 4;
-}
-
-if(!state && !flag[2].point)
+# 475
+if(!state && !fence_flag[2].point)
 {
 if(last_state != 4)
 {
 escreve_cmd_lcd(0b00000001);
 posicao_cursor_lcd(1,0);
 escreve_frase_ram_lcd("B1:RPM  B2:FENCE");
-posicao_cursor_lcd(2,0);
-escreve_frase_ram_lcd("B2:HOME");
+
 }
 last_state = 4;
 }
 break;
 
 default:
-if(flag[2].point || state == 3)
+if(fence_flag[2].point || state == 3)
 {
 
 if(!time_atualizacao)
 {
 posicao_cursor_lcd(2,7);
-escreve_inteiro_lcd(flag[0].point);
+escreve_inteiro_lcd(fence_flag[0].point);
 posicao_cursor_lcd(2,9);
-escreve_inteiro_lcd(flag[1].point);
+escreve_inteiro_lcd(fence_flag[1].point);
 time_atualizacao = 10000;
 }
 
@@ -6469,11 +6499,11 @@ escreve_frase_ram_lcd("REGIAO NEGADA");
 posicao_cursor_lcd(2,0);
 escreve_frase_ram_lcd("LO-LT:");
 posicao_cursor_lcd(2,7);
-escreve_inteiro_lcd(flag[0].point);
+escreve_inteiro_lcd(fence_flag[0].point);
 posicao_cursor_lcd(2,8);
 escreve_frase_ram_lcd("-");
 posicao_cursor_lcd(2,9);
-escreve_inteiro_lcd(flag[1].point);
+escreve_inteiro_lcd(fence_flag[1].point);
 }
 last_state = 3;
 }
@@ -6481,4 +6511,24 @@ break;
 }
 
 
+}
+
+
+void recebe_dados_gps(void)
+{
+unsigned char flag_gps = 0;
+PORTBbits.RB3 = 1;
+desliga_SPI();
+inicializa_uart();
+
+
+while(!flag_gps)
+{
+flag_gps = verifica_recep_gps();
+}
+
+
+desliga_uart();
+inicializa_SPI();
+PORTBbits.RB3 = 0;
 }

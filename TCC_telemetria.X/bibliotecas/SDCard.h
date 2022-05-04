@@ -62,6 +62,9 @@ typedef struct{
     unsigned char fence[6];
 //    unsigned char VIN[30];
 }string_tel;
+
+
+
     
 /******************************************************************************
 * Prototipos das funções

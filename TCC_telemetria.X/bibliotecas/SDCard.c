@@ -209,20 +209,20 @@ void escrita_sdcard()
     static unsigned char f_fix = 0;
     WORD bw;
     PORTBbits.RB3 = 0;
-    desliga_uart();
+//    desliga_uart();
     inicializa_SPI();
     f_mount(0,&fs);
 
     if(!f_fix)
     {  
 
-        strcpy(filename, string_dado.data_name);
-        strcpy(filename, string_dado.hora_name);
+        strcpy(filename, "teste");
+        strcat(filename, "23");
 //        strcpy(filename, "teste");
         strcat(filename, ".tlm");
         f_fix = 1;
     }
-    
+   
     if (f_open(&fil, filename, FA_WRITE ) == FR_OK)  /* Open or create a file */
     {	
 
@@ -241,7 +241,7 @@ void escrita_sdcard()
 
     PORTBbits.RB3 = 1; 
     desliga_SPI();
-    inicializa_uart();
+//    inicializa_uart();
     
     return;
 }

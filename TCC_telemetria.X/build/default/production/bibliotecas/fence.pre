@@ -5741,16 +5741,22 @@ void armazena_latitude(void);
 void armazena_longitude(void);
 void verifica_diferenca_graus(unsigned char select_data);
 void verifica_diferenca_minutos(unsigned char select_data);
-void calcula_diff_graus(void);
-void calcula_diff_minutos(void);
+void calcula_diff_graus(unsigned char select_data);
+void calcula_diff_minutos(unsigned char select_data);
 unsigned char verifica_plausibilidade_long(void);
 unsigned char verifica_plausibilidade_lat(void);
 
-# 67 "bibliotecas/GPS.h"
+# 51 "bibliotecas/GPS.h"
+typedef struct
+{
+unsigned char flag:1;
+}bit_field_gps;
+
+# 72
 void stringcpy(char *str1, char *str2, int dir);
 int GPSRead(unsigned char buff);
 
-# 83
+# 87
 unsigned int GPSSecond();
 unsigned int GPSMinute();
 unsigned int GPSHour();
@@ -5761,6 +5767,7 @@ char *Latitude(void);
 char *Longitude(void);
 char *fix(void);
 void dados_gps_to_sd(void);
+char verifica_recep_gps(void);
 
 # 4 "C:\Program Files\Microchip\xc8\v2.30\pic\include\__size_t.h"
 typedef unsigned size_t;
@@ -5874,10 +5881,13 @@ extern char * ftoa(float f, int * status);
 const unsigned char fence_diff_lat[4][11] = {"-2339.49579", "-2339.49579", "-2339.92237", "-2339.92237"};
 const unsigned char fence_diff_long[4][12] = {"-04632.23318", "-04631.75907", "-04631.75907", "-04632.23318"};
 
-unsigned char temp_buff_lat[11];
-unsigned char temp_buff_long[12];
+char temp_buff_lat[11];
+char temp_buff_long[12];
 
 fence_ext_struct poligono_ext[2];
+
+# 47
+long int diff_calc(unsigned char *p_buff_fence, unsigned char *p_buff_point);
 
 # 56
 void armazena_longitude(void)
@@ -5973,34 +5983,58 @@ break;
 }
 
 # 166
-void calcula_diff_graus(void)
+void calcula_diff_graus(unsigned char select_data)
 {
 unsigned char point, count;
-unsigned long int temp_var_deg;
+
 
 point = 0;
 count = 0;
 
+switch(select_data)
+{
+case 1:
 while(point<4)
 {
 if(point == 0 || point == 2)
 {
-temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
-poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
-poligono_ext[count].diff_lat_deg = poligono_ext[count].diff_long_deg - temp_var_deg;
 
-temp_var_deg = atoi(poligono_ext[count].point_long_deg);
-poligono_ext[count].diff_long_deg = atoi(poligono_ext[count].fence_long_deg);
-poligono_ext[count].diff_long_deg = poligono_ext[count].diff_long_deg - temp_var_deg;
+
+
+poligono_ext[count].diff_lat_deg = diff_calc(poligono_ext[count].fence_lat_deg, poligono_ext[count].point_lat_deg);
+
+
+
 
 count++;
 }
 point++;
 }
+break;
 
+
+
+case 0:
+while(point<4)
+{
+if(point == 0 || point == 2)
+{
+poligono_ext[count].diff_long_deg = diff_calc(poligono_ext[count].fence_long_deg, poligono_ext[count].point_long_deg);
+
+
+
+
+count++;
+}
+point++;
+}
+break;
 }
 
-# 201
+# 218
+}
+
+# 228
 void verifica_diferenca_minutos(unsigned char select_data)
 {
 unsigned char point, point_index_lat ,point_index_long;
@@ -6080,26 +6114,46 @@ break;
 }
 }
 
-# 287
-void calcula_diff_minutos(void)
+# 314
+void calcula_diff_minutos(unsigned char select_data)
 {
 unsigned char point, count;
 
 
+switch(select_data)
+{
+case 1:
 while(point<4)
 {
 if(point == 0 || point == 2)
 {
-poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
-poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
+poligono_ext[count].diff_lat_min = diff_calc(poligono_ext[count].fence_lat_min, poligono_ext[count].point_lat_min );
+
 count++;
 }
 point++;
 }
+break;
+
+case 0:
+while(point<4)
+{
+if(point == 0 || point == 2)
+{
+poligono_ext[count].diff_long_min =diff_calc(poligono_ext[count].fence_long_min, poligono_ext[count].point_long_min );
+
+count++;
+}
+point++;
+}
+break;
+}
+
+
 
 }
 
-# 311
+# 358
 unsigned char verifica_plausibilidade_long(void)
 {
 switch(temp_buff_long[0])
@@ -6156,21 +6210,20 @@ break;
 
 }
 
-# 373
+# 420
 unsigned char verifica_plausibilidade_lat(void)
 {
 switch(temp_buff_lat[0])
 {
 case '-':
 if(
-(
-poligono_ext[0].diff_lat_min <= 0 &&
+(poligono_ext[0].diff_lat_min <= 0 &&
 poligono_ext[1].diff_lat_min >= 0) &&
 
 (poligono_ext[0].diff_lat_deg <= 0 &&
 poligono_ext[1].diff_lat_deg >= 0))
-
 {
+
 return 0;
 }
 else if(
@@ -6218,5 +6271,16 @@ break;
 }
 
 
+}
+
+
+long int diff_calc(unsigned char *p_buff_fence, unsigned char *p_buff_point)
+{
+unsigned char fence[12];
+unsigned char point[12];
+
+strcpy(fence, p_buff_fence);
+strcpy(point, p_buff_point);
+return ((atoi(fence))-(atoi(point)));
 }
 

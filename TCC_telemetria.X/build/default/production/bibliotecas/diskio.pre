@@ -5752,7 +5752,7 @@ unsigned char fence[6];
 
 }string_tel;
 
-# 69
+# 72
 void sdcard_init(void);
 
 
@@ -6378,7 +6378,7 @@ int i=0,j, count1 = 0;
 if(count>1)
 {
 LATCbits.LATC7 = 0;
-LATBbits.LATB4 = 0;
+LATBbits.LATB5 = 0;
 dummy_clocks(10);
 command(0X57, count, 0XFF);
 proceed();
@@ -6410,7 +6410,7 @@ escreve_SPI(0XFD);
 else
 {
 LATCbits.LATC7 = 0;
-LATBbits.LATB4 = 0;
+LATBbits.LATB5 = 0;
 dummy_clocks(10);
 command(0X58, sector*512, 0X00);
 proceed();
@@ -6418,7 +6418,7 @@ do{
 buff = response();
 }while(buff!=0X00);
 
-LATBbits.LATB4 = 0;
+LATBbits.LATB5 = 0;
 LATCbits.LATC7 = 0;
 dummy_clocks(1);
 escreve_SPI(0XFE);

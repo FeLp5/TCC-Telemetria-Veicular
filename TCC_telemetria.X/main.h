@@ -62,6 +62,7 @@ typedef struct
     unsigned char point:1;
 }bit_field;
 
+
 //
 //
 //typedef struct

@@ -34,7 +34,7 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 
-#define MCP2515_SPI_CS LATBbits.LATB5
+#define MCP2515_SPI_CS LATBbits.LATB4
 
 void MCP2515_INIT(void);
 

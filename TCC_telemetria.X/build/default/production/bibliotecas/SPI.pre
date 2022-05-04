@@ -5722,11 +5722,11 @@ unsigned char estado = 0;
 void inicializa_SPI(void)
 {
 TRISBbits.RB1 = 0;
-TRISBbits.RB4 = 0;
+TRISBbits.RB5 = 0;
 TRISBbits.RB0 = 1;
 TRISCbits.RC7 = 0;
 
-LATBbits.LATB4 = 1;
+LATBbits.LATB5 = 1;
 SSPSTAT &= 0x3F;
 SSPCON1 = 0x00;
 
