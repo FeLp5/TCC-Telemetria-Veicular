@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.30\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\TCC_telemetria.X.production.sym \
   --cmf=dist/default/production\TCC_telemetria.X.production.cmf -z \
-  -Q18F4550 -oC:\Users\Felipe\AppData\Local\Temp\s3gsx2 \
+  -Q18F4550 -oC:\Users\Felipe\AppData\Local\Temp\s5ecx2 \
   -Mdist/default/production/TCC_telemetria.X.production.map -E1 \
   -ver=XC8 Compiler -ASTACK=0501h-07FFh -pstack=STACK -ACODE=00h-0627Fh \
   -ACONST=00h-0627Fh -ASMALLCONST=0800h-08FFhx90,06200h-0627Fh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj \
+  C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj \
   dist/default/production\TCC_telemetria.X.production.obj 
 
 Object code version is 3.11
@@ -32,7 +32,7 @@ Machine type is 18F4550
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  E        E        4        4       0

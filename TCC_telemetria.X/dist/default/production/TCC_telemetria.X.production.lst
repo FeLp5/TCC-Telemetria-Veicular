@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.30 build 20200825195618 
-                                                                                               Thu May 05 13:57:20 2022
+                                                                                               Thu May 05 14:53:26 2022
 
 Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9 
      1                           	processor	18F4550
@@ -5705,8 +5705,8 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   5681  004DFA                     u15260:
   5682                           
   5683                           ; BSR set to: 1
-  5684                           ;main.c: 301: {;main.c: 302: fence_flag[2].point = 0;
-  5685  004DFA  9034               	bcf	(_fence_flag+2)^0,0,c
+  5684                           ;main.c: 301: {;main.c: 302: fence_flag[2].point = 1;
+  5685  004DFA  8034               	bsf	(_fence_flag+2)^0,0,c
   5686                           
   5687                           ; BSR set to: 1
   5688                           ;main.c: 303: monta_sd(4, "FORA");
@@ -26410,7 +26410,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.30 build 20200825195618 
-Symbol Table                                                                                   Thu May 05 13:57:20 2022
+Symbol Table                                                                                   Thu May 05 14:53:26 2022
 
                          next_dir_entry@idx 00A6                    __end_of_mensagem_inicial 4BF8  
                        next_dir_entry@clust 00A4                                 _SSPSTATbits 000FC7  

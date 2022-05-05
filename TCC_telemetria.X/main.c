@@ -299,7 +299,7 @@ void verifica_fence_externo(void)
     
     if(fence_flag[0].point || fence_flag[1].point)
     {
-        fence_flag[2].point = 0;
+        fence_flag[2].point = 1;
         monta_sd(4, "FORA");
     }
     else

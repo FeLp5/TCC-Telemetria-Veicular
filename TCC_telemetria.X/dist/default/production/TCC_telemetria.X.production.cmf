@@ -171,7 +171,7 @@ bssBIGRAM BIGRAM 1 2E1 2E1 220 1
 bssCOMRAM COMRAM 1 32 32 15 1
 mediumconst MEDIUMCONST 0 6088 6088 1F8 1
 config CONFIG 4 300000 300000 E 1
-$C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+$C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 idloc IDLOC 5 200000 200000 8 1
 init CODE 0 E E 4 1
 reset_vec CODE 0 0 0 4 1
@@ -218,7 +218,7 @@ MEDIUMCONST 5EFC-6087 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\TCC_telemetria.X.production.obj
-8 intcode CODE >36730:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
+8 intcode CODE >36730:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
 8 intcode CODE >110:E:\Projetos\TCC_telemetria.X\main.c
 5528 text138 CODE >33:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcmp.c
 5528 text138 CODE >37:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcmp.c
@@ -2182,84 +2182,84 @@ FEE text55 CODE >1840:E:\Projetos\TCC_telemetria.X\bibliotecas/tff.c
 5B04 text0 CODE >240:E:\Projetos\TCC_telemetria.X\main.c
 5B0A text0 CODE >242:E:\Projetos\TCC_telemetria.X\main.c
 5B0E text0 CODE >243:E:\Projetos\TCC_telemetria.X\main.c
-47D8 cinit CODE >4893:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47D8 cinit CODE >4895:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47D8 cinit CODE >4898:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47D8 cinit CODE >5119:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47DA cinit CODE >5120:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47DC cinit CODE >5121:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47DE cinit CODE >5122:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47E0 cinit CODE >5123:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47E2 cinit CODE >5124:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47E4 cinit CODE >5125:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47E8 cinit CODE >5126:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47EC cinit CODE >5127:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47EC cinit CODE >5128:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47EE cinit CODE >5129:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47F2 cinit CODE >5130:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47F4 cinit CODE >5131:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47F6 cinit CODE >5132:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47F8 cinit CODE >5136:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47FA cinit CODE >5137:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47FC cinit CODE >5138:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-47FE cinit CODE >5139:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4800 cinit CODE >5140:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4802 cinit CODE >5141:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4804 cinit CODE >5142:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4806 cinit CODE >5143:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-480A cinit CODE >5144:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-480C cinit CODE >5145:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4810 cinit CODE >5146:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4812 cinit CODE >5147:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4816 cinit CODE >5151:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4818 cinit CODE >5152:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-481A cinit CODE >5153:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-481C cinit CODE >5154:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-481E cinit CODE >5155:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4820 cinit CODE >5156:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4822 cinit CODE >5157:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4824 cinit CODE >5158:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4828 cinit CODE >5162:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-482C cinit CODE >5163:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4830 cinit CODE >5164:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4830 cinit CODE >5165:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4832 cinit CODE >5166:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4834 cinit CODE >5167:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4836 cinit CODE >5168:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4838 cinit CODE >5169:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-483A cinit CODE >5170:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-483C cinit CODE >5173:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4840 cinit CODE >5174:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4842 cinit CODE >5175:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4842 cinit CODE >5176:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4844 cinit CODE >5177:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4846 cinit CODE >5178:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4848 cinit CODE >5181:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-484C cinit CODE >5182:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-484E cinit CODE >5183:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-484E cinit CODE >5184:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4850 cinit CODE >5185:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4852 cinit CODE >5186:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4854 cinit CODE >5189:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4856 cinit CODE >5190:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4858 cinit CODE >5191:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-485A cinit CODE >5192:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-485C cinit CODE >5193:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-485E cinit CODE >5194:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4860 cinit CODE >5195:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4862 cinit CODE >5198:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4866 cinit CODE >5199:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4868 cinit CODE >5200:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4868 cinit CODE >5201:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-486A cinit CODE >5202:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-486C cinit CODE >5203:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-486E cinit CODE >5209:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-486E cinit CODE >5211:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4870 cinit CODE >5212:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4872 cinit CODE >5214:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4874 cinit CODE >5215:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4876 cinit CODE >5216:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
-4878 cinit CODE >5217:C:\Users\Felipe\AppData\Local\Temp\s3gsx.as
+47D8 cinit CODE >4893:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47D8 cinit CODE >4895:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47D8 cinit CODE >4898:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47D8 cinit CODE >5119:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47DA cinit CODE >5120:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47DC cinit CODE >5121:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47DE cinit CODE >5122:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47E0 cinit CODE >5123:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47E2 cinit CODE >5124:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47E4 cinit CODE >5125:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47E8 cinit CODE >5126:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47EC cinit CODE >5127:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47EC cinit CODE >5128:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47EE cinit CODE >5129:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47F2 cinit CODE >5130:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47F4 cinit CODE >5131:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47F6 cinit CODE >5132:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47F8 cinit CODE >5136:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47FA cinit CODE >5137:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47FC cinit CODE >5138:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+47FE cinit CODE >5139:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4800 cinit CODE >5140:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4802 cinit CODE >5141:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4804 cinit CODE >5142:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4806 cinit CODE >5143:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+480A cinit CODE >5144:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+480C cinit CODE >5145:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4810 cinit CODE >5146:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4812 cinit CODE >5147:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4816 cinit CODE >5151:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4818 cinit CODE >5152:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+481A cinit CODE >5153:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+481C cinit CODE >5154:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+481E cinit CODE >5155:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4820 cinit CODE >5156:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4822 cinit CODE >5157:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4824 cinit CODE >5158:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4828 cinit CODE >5162:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+482C cinit CODE >5163:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4830 cinit CODE >5164:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4830 cinit CODE >5165:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4832 cinit CODE >5166:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4834 cinit CODE >5167:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4836 cinit CODE >5168:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4838 cinit CODE >5169:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+483A cinit CODE >5170:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+483C cinit CODE >5173:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4840 cinit CODE >5174:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4842 cinit CODE >5175:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4842 cinit CODE >5176:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4844 cinit CODE >5177:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4846 cinit CODE >5178:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4848 cinit CODE >5181:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+484C cinit CODE >5182:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+484E cinit CODE >5183:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+484E cinit CODE >5184:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4850 cinit CODE >5185:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4852 cinit CODE >5186:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4854 cinit CODE >5189:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4856 cinit CODE >5190:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4858 cinit CODE >5191:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+485A cinit CODE >5192:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+485C cinit CODE >5193:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+485E cinit CODE >5194:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4860 cinit CODE >5195:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4862 cinit CODE >5198:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4866 cinit CODE >5199:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4868 cinit CODE >5200:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4868 cinit CODE >5201:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+486A cinit CODE >5202:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+486C cinit CODE >5203:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+486E cinit CODE >5209:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+486E cinit CODE >5211:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4870 cinit CODE >5212:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4872 cinit CODE >5214:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4874 cinit CODE >5215:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4876 cinit CODE >5216:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
+4878 cinit CODE >5217:C:\Users\Felipe\AppData\Local\Temp\s5ecx.as
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -2306,7 +2306,7 @@ _escalonador 4732 0 CODE 0 text11 dist/default/production\TCC_telemetria.X.produ
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\TCC_telemetria.X.production.obj
 _recebe_dado_uart 5E14 0 CODE 0 text135 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_move_window 325A 0 CODE 0 text94 dist/default/production\TCC_telemetria.X.production.obj
-__mediumconst 6088 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+__mediumconst 6088 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 mcp2515_init@canClock 2F 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 mcp2515_setRegister@value 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 _mcp2515_setRegisterS 58B8 0 CODE 0 text128 dist/default/production\TCC_telemetria.X.production.obj
@@ -2347,7 +2347,7 @@ _TMR0 FD6 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _TMR2 FCC 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _TXEN 7D65 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _Term 43 0 COMRAM 1 bssCOMRAM dist/default/production\TCC_telemetria.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 _atoi 43B4 0 CODE 0 text36 dist/default/production\TCC_telemetria.X.production.obj
 _fsid 12A 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.production.obj
 _itoa 58EE 0 CODE 0 text23 dist/default/production\TCC_telemetria.X.production.obj
@@ -2356,7 +2356,7 @@ _sync 53EE 0 CODE 0 text93 dist/default/production\TCC_telemetria.X.production.o
 _utoa 49B6 0 CODE 0 text24 dist/default/production\TCC_telemetria.X.production.obj
 btemp 47 0 COMRAM 1 temp dist/default/production\TCC_telemetria.X.production.obj
 __HbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\TCC_telemetria.X.production.obj
-start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 ?_GPSMinute 19 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __size_of___aldiv 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _put_cluster$1552 92 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
@@ -2438,11 +2438,11 @@ sdc_disk_write@buff 67 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemet
 __size_of_mcp2515_initCANBuffers 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 __size_of_validate 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 __end_of_mcp2515_init 43B4 0 CODE 0 text121 dist/default/production\TCC_telemetria.X.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
-intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
-intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
-intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
-intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
+intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
+intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
+intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
+intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 __ptext100 5EA6 0 CODE 0 text100 dist/default/production\TCC_telemetria.X.production.obj
 __ptext101 51EC 0 CODE 0 text101 dist/default/production\TCC_telemetria.X.production.obj
 __ptext102 5882 0 CODE 0 text102 dist/default/production\TCC_telemetria.X.production.obj
@@ -2540,8 +2540,8 @@ _time_recovery 124 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.p
 mcp2515_init@res 6F 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 verifica_diferenca_minutos@i 22 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 verifica_diferenca_minutos@j 20 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 __end_of_recebe_dado_uart 5E26 0 CODE 0 text135 dist/default/production\TCC_telemetria.X.production.obj
 __size_of_verifica_recep_gps 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 __end_of_get_fattime 3998 0 CODE 0 text107 dist/default/production\TCC_telemetria.X.production.obj
@@ -2815,7 +2815,7 @@ __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\TCC_telemetria.X.productio
 __Hbigram 0 0 ABS 0 bigram dist/default/production\TCC_telemetria.X.production.obj
 ?_get_fattime 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 _GPGGA_ok 12C 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 sdc_reset@buff 2B 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 wait_ready@timeout 19 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __end_of_escalonador 47D8 0 CODE 0 text11 dist/default/production\TCC_telemetria.X.production.obj
@@ -3317,8 +3317,8 @@ _MCP2515_INIT 5D22 0 CODE 0 text118 dist/default/production\TCC_telemetria.X.pro
 auto_mount@p 9F 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_verifica_fence_externo 4E1E 0 CODE 0 text28 dist/default/production\TCC_telemetria.X.production.obj
 escreve_cmd_lcd@comando 1B 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
-stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
-stacklo 501 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
+stacklo 501 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production\TCC_telemetria.X.production.obj
 __end_of_diff_calc 529E 0 CODE 0 text35 dist/default/production\TCC_telemetria.X.production.obj
 recebe_dados_gps@flag_gps 2D 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
@@ -3535,7 +3535,7 @@ __Ltext98 0 0 ABS 0 text98 dist/default/production\TCC_telemetria.X.production.o
 __Ltext99 0 0 ABS 0 text99 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_check_fs 4EA0 0 CODE 0 text78 dist/default/production\TCC_telemetria.X.production.obj
 verifica_dados_operacionais@rpm 73 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
-__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s3gsx8.obj
+__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s5ecx8.obj
 ___aldiv@dividend 19 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 ?_GPSMonth 19 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 create_chain@fs A6 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj

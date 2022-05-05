@@ -4508,9 +4508,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 301: {
 "301
 {
-[; ;main.c: 302: fence_flag[2].point = 0;
+[; ;main.c: 302: fence_flag[2].point = 1;
 "302
-[e = . *U + &U _fence_flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 -> -> 0 `i `uc ]
+[e = . *U + &U _fence_flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 -> -> 1 `i `uc ]
 [; ;main.c: 303: monta_sd(4, "FORA");
 "303
 [e ( _monta_sd (2 , -> -> 4 `i `uc -> :s 2C `*uc ]
