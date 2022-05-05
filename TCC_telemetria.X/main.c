@@ -50,7 +50,7 @@
 //fence_ext_struct poligono_ext[2];
 bit_field fence_flag[3];
 
-  
+bit_operacional sinaliza_mcp2515;  
 
 
 unsigned char data_uart_recebe;
@@ -179,16 +179,16 @@ void inicializa_tarefas(void)
     
 	/*init temporization values of each task. 
 	These values do no change during execution*/
-	tempo_backup[0] = TIME_100_MS; 
-    tempo_backup[1] = TIME_100_MS;
-    tempo_backup[2] = TIME_100_MS;
+	tempo_backup[0] = TIME_500_MS; 
+    tempo_backup[1] = TIME_1000_MS;
+    tempo_backup[2] = TIME_2000_MS;
 	tempo_backup[3] = TIME_1000_MS;
 	/*init recent temporization values of each task. 
 	They�re used to decide which task must be executed*/
-	tempo_tarefa[0] = TIME_100_MS;
-    tempo_tarefa[1] = TIME_100_MS;
-    tempo_tarefa[2] = TIME_100_MS;
-    tempo_tarefa[3] = TIME_1000_MS;
+	tempo_tarefa[0] = TIME_500_MS;
+    tempo_tarefa[1] = TIME_1000_MS;
+    tempo_tarefa[2] = TIME_5000_MS;
+    tempo_tarefa[3] = TIME_5000_MS;
 	//It indicates that there�s no task executing
     tarefa_em_execucao = NO;
 }
@@ -229,7 +229,7 @@ void main(void)
     init_lcd();
 	mensagem_inicial();
     inicializa_tarefas();
-    inicializa_uart();
+//    inicializa_uart();
 //    inicializa_SPI();
 //    MCP2515_INIT();
 
@@ -241,10 +241,7 @@ void main(void)
         {
             sinaliza_int_timer = NO;  
             escalonador();			
-        }
-        dados_gps_to_sd();
-//        escrita_sdcard();
-       
+        }    
     }
 }
 /******************************************************************************
@@ -265,7 +262,9 @@ void mensagem_inicial(void)
 	escreve_frase_ram_lcd(msg_dois);
     __delay_ms(1000);
     LIMPA_DISPLAY(); 
-  
+    posicao_cursor_lcd(1,0);
+	escreve_frase_ram_lcd("AGUARDE...");
+    
 }
 
 
@@ -300,7 +299,7 @@ void verifica_fence_externo(void)
     
     if(fence_flag[0].point || fence_flag[1].point)
     {
-        fence_flag[2].point = 1;
+        fence_flag[2].point = 0;
         monta_sd(4, "FORA");
     }
     else
@@ -308,9 +307,7 @@ void verifica_fence_externo(void)
         fence_flag[2].point = 0;
         monta_sd(4, "DENTRO");
     }
- 
 
-  
 }
 
 
@@ -327,13 +324,12 @@ void verifica_dados_operacionais(void)
     
    
     
-    if(!time_sd)
+    if(sinaliza_mcp2515.trigger)
     {
-
+        desliga_uart();
         flag_anomalia = 0;
-        
-//        MCP2515_RECEBE(0x30, 4, rpm);
-    }   
+        MCP2515_RECEBE(0x30, 4, rpm);
+    }
      
 //        posicao_cursor_lcd(1,0);
 //        escreve_frase_ram_lcd("enviando msg");
@@ -356,14 +352,17 @@ void disparo_gravacao(void)
     unsigned char *fix_gps;
     
 //    recebe_dados_gps();
-    fix_gps = fix();
+    
     if(!time_sd)
     {
+        sinaliza_mcp2515.trigger = 0;
         recebe_dados_gps();
+        fix_gps = fix();
         if(fix_gps[0] == '1')
         {     
             verifica_fence_externo();
             escrita_sdcard();
+            MCP2515_INIT();
         }
         else
         {
@@ -371,14 +370,12 @@ void disparo_gravacao(void)
         }
         
 
-        time_sd = 1000;
-//      time_recovery = 5000;
-            
-//            flag_anomalia = 0;
-//            MCP2515_INIT(); 
+        time_sd = 22000;
+        sinaliza_mcp2515.trigger = 1;   
+
+         
     } 
 
-//    recebe_dados_gps();
 
 }
 
@@ -525,8 +522,8 @@ void troca_de_tela(void)
 void recebe_dados_gps(void)
 {
     unsigned char flag_gps = 0;
-    PORTBbits.RB3 = 1;
     desliga_SPI();
+    PORTBbits.RB3 = 1;
     inicializa_uart();
     
     
@@ -535,8 +532,8 @@ void recebe_dados_gps(void)
         flag_gps = verifica_recep_gps();
     }
 
-    
+    PORTBbits.RB3 = 0;
     desliga_uart();
     inicializa_SPI();
-    PORTBbits.RB3 = 0;
+    
 }

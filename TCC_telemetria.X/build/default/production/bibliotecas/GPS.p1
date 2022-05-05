@@ -3688,8 +3688,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 50: typedef struct{
 [; ;SDCard.h: 51: unsigned char data[7];
 [; ;SDCard.h: 52: unsigned char hora[11];
-[; ;SDCard.h: 53: unsigned char data_name[4];
-[; ;SDCard.h: 54: unsigned char hora_name[4];
+[; ;SDCard.h: 53: unsigned char data_name[2];
+[; ;SDCard.h: 54: unsigned char hora_name[2];
 [; ;SDCard.h: 55: unsigned char lt[13];
 [; ;SDCard.h: 56: unsigned char lo[13];
 [; ;SDCard.h: 57: unsigned char rpm[4];
@@ -3972,12 +3972,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 "124
 [e $ ! && == -> _Term `i -> 9 `i == -> _SentenceType `i -> 1 `i 396  ]
 {
-[; ;GPS.c: 125: gps_flag[3].flag = 1;
+[; ;GPS.c: 125: stringcpy(buffer, rawDate, 0);
 "125
-[e = . *U + &U _gps_flag * -> -> -> 3 `i `ui `ux -> -> # *U &U _gps_flag `ui `ux 0 -> -> 1 `i `uc ]
-[; ;GPS.c: 126: stringcpy(buffer, rawDate, 0);
-"126
 [e ( _stringcpy (3 , , &U _buffer &U _rawDate -> 0 `i ]
+[; ;GPS.c: 126: gps_flag[3].flag = 1;
+"126
+[e = . *U + &U _gps_flag * -> -> -> 3 `i `ui `ux -> -> # *U &U _gps_flag `ui `ux 0 -> -> 1 `i `uc ]
 "127
 }
 [e :U 396 ]

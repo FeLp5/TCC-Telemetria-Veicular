@@ -3643,8 +3643,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 50: typedef struct{
 [; ;SDCard.h: 51: unsigned char data[7];
 [; ;SDCard.h: 52: unsigned char hora[11];
-[; ;SDCard.h: 53: unsigned char data_name[4];
-[; ;SDCard.h: 54: unsigned char hora_name[4];
+[; ;SDCard.h: 53: unsigned char data_name[2];
+[; ;SDCard.h: 54: unsigned char hora_name[2];
 [; ;SDCard.h: 55: unsigned char lt[13];
 [; ;SDCard.h: 56: unsigned char lo[13];
 [; ;SDCard.h: 57: unsigned char rpm[4];

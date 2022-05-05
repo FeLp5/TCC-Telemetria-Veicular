@@ -122,8 +122,8 @@ int GPSRead(unsigned char buff)
 
       // Date
       if(Term == 9 && SentenceType == _GPRMC_) {
-        gps_flag[3].flag = 1;
         stringcpy(buffer, rawDate, 0);
+        gps_flag[3].flag = 1;
       }
 
       // Satellites

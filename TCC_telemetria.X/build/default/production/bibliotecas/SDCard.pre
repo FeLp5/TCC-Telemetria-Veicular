@@ -5739,8 +5739,8 @@ typedef unsigned int uint16_t;
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
-unsigned char data_name[4];
-unsigned char hora_name[4];
+unsigned char data_name[2];
+unsigned char hora_name[2];
 unsigned char lt[13];
 unsigned char lo[13];
 unsigned char rpm[4];
@@ -5998,7 +5998,7 @@ void escreve_inteiro_uart(int valor);
 void inicializa_uart(void);
 
 # 34 "bibliotecas/SDCard.c"
-BYTE filename[15];
+BYTE filename[20];
 FATFS fs;
 FIL fil;
 BYTE dado_arquivo[20];
@@ -6009,7 +6009,10 @@ unsigned char data_hoje;
 # 48
 void sdc_wait_ready(void);
 
-# 59
+void data_nome (unsigned char *p_buff);
+void hora_nome (unsigned char *p_buff);
+
+# 60
 BYTE response(void)
 {
 unsigned char buff;
@@ -6018,7 +6021,7 @@ buff= leitura_SPI();
 return buff;
 }
 
-# 74
+# 75
 void dummy_clocks(unsigned char n)
 {
 unsigned int i;
@@ -6031,7 +6034,7 @@ LATBbits.LATB5 = 0;
 }
 }
 
-# 92
+# 93
 void proceed(void)
 {
 LATBbits.LATB5 = 0;
@@ -6039,7 +6042,7 @@ escreve_SPI(0xFF);
 LATBbits.LATB5 = 1;
 }
 
-# 105
+# 106
 static BYTE wait_ready (void)
 {
 BYTE res;
@@ -6053,7 +6056,7 @@ while ((res != 0xFF) && (--timeout));
 return res;
 }
 
-# 125
+# 126
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC)
 {
 unsigned char argument;
@@ -6078,7 +6081,7 @@ escreve_SPI(argument);
 escreve_SPI(CRC);
 }
 
-# 160
+# 161
 void sdcard_init(void)
 {
 desliga_uart();
@@ -6118,26 +6121,34 @@ f_close(&fil);
 return;
 }
 
-# 206
+# 207
 void escrita_sdcard()
 {
 unsigned char *fix_gps;
+unsigned char i, j;
 static unsigned char f_fix = 0;
 WORD bw;
 PORTBbits.RB3 = 0;
 
-inicializa_SPI();
+
+dados_gps_to_sd();
 f_mount(0,&fs);
 
 if(!f_fix)
 {
 
-strcpy(filename, "teste");
-strcat(filename, "23");
-
+if(string_dado.data_name[0] != ' ' && string_dado.hora_name[0] != ' ')
+{
+data_nome(string_dado.data);
+hora_nome(string_dado.hora);
 strcat(filename, ".tlm");
 f_fix = 1;
 }
+
+
+}
+if(f_fix)
+{
 
 if (f_open(&fil, filename, 0x02 ) == FR_OK)
 {
@@ -6154,15 +6165,15 @@ f_open(&fil, filename, 0x08 );
 f_close(&fil);
 
 }
-
+}
 PORTBbits.RB3 = 1;
-desliga_SPI();
+
 
 
 return;
 }
 
-# 257
+# 266
 char *leitura_sdcard(unsigned char num_spot)
 {
 
@@ -6191,7 +6202,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 298
+# 307
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;
@@ -6248,7 +6259,7 @@ break;
 
 
 case 6:
-for(i=0; i<4;i++)
+for(i=0; i<6;i++)
 {
 string_dado.data_name[i] = *dado;
 dado++;
@@ -6258,4 +6269,26 @@ break;
 }
 
 return;
+}
+
+
+void data_nome (unsigned char *p_buff)
+{
+unsigned char i;
+for(i=0; i<4;i++)
+{
+filename[i] = *p_buff;
+p_buff++;
+}
+
+}
+
+void hora_nome (unsigned char *p_buff)
+{
+unsigned char i;
+for(i=4; i<8;i++)
+{
+filename[i] = *p_buff;
+p_buff++;
+}
 }

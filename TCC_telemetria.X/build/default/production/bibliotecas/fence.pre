@@ -7,6 +7,12 @@ typedef struct
 unsigned char point:1;
 }bit_field;
 
+
+typedef struct
+{
+unsigned char trigger:1;
+}bit_operacional;
+
 # 18 "C:\Program Files\Microchip\xc8\v2.30\pic\include\xc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -5878,8 +5884,8 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 extern char * ftoa(float f, int * status);
 
 # 33 "bibliotecas/fence.c"
-const unsigned char fence_diff_lat[4][11] = {"-2339.49579", "-2339.49579", "-2339.92237", "-2339.92237"};
-const unsigned char fence_diff_long[4][12] = {"-04632.23318", "-04631.75907", "-04631.75907", "-04632.23318"};
+const unsigned char fence_diff_lat[4][11] = {"-2339.48517", "-2339.48517", "-2339.71365", "-2339.71365"};
+const unsigned char fence_diff_long[4][12] = {"-04632.04264", "-04631.75907", "-04631.75907", "-04632.04264"};
 
 char temp_buff_lat[11];
 char temp_buff_long[12];

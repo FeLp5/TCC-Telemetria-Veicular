@@ -63,6 +63,11 @@ typedef struct
 }bit_field;
 
 
+typedef struct
+{
+    unsigned char trigger:1;
+}bit_operacional;
+
 //
 //
 //typedef struct

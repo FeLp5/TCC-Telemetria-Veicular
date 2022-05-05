@@ -31,7 +31,7 @@
 ******************************************************************************/
 
 // File to read================================================================= 
-BYTE filename[15];
+BYTE filename[20];
 FATFS fs;
 FIL fil;
 BYTE dado_arquivo[20];
@@ -47,7 +47,8 @@ unsigned char data_hoje;
 ******************************************************************************/
 void sdc_wait_ready(void);
 
-
+void data_nome (unsigned char *p_buff);
+void hora_nome (unsigned char *p_buff);
 
 /******************************************************************************
  * Funcao:		BYTE response(void)
@@ -206,41 +207,49 @@ void sdcard_init(void)
 void escrita_sdcard() 
 {
     unsigned char *fix_gps;
+    unsigned char i, j;
     static unsigned char f_fix = 0;
     WORD bw;
     PORTBbits.RB3 = 0;
 //    desliga_uart();
-    inicializa_SPI();
+//    inicializa_SPI();
+    dados_gps_to_sd();
     f_mount(0,&fs);
-
+    
     if(!f_fix)
     {  
 
-        strcpy(filename, "teste");
-        strcat(filename, "23");
-//        strcpy(filename, "teste");
-        strcat(filename, ".tlm");
-        f_fix = 1;
-    }
-   
-    if (f_open(&fil, filename, FA_WRITE ) == FR_OK)  /* Open or create a file */
-    {	
+        if(string_dado.data_name[0] != ' ' && string_dado.hora_name[0] != ' ')
+        {
+            data_nome(string_dado.data);
+            hora_nome(string_dado.hora);
+            strcat(filename, ".tlm");
+            f_fix = 1;
+        }
 
-        f_lseek(&fil, fsize(&fil));
-        fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s;f%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc", string_dado.fence);
-
-        /* Close the file */
-        f_close(&fil);	
-    }
-    else
+        
+    } 
+    if(f_fix)
     {
-        f_open(&fil, filename, FA_CREATE_ALWAYS );
-        f_close(&fil);
+        
+        if (f_open(&fil, filename, FA_WRITE ) == FR_OK)  /* Open or create a file */
+        {	
 
+            f_lseek(&fil, fsize(&fil));
+            fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s;f%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc", string_dado.fence);
+
+            /* Close the file */
+            f_close(&fil);	
+        }
+        else
+        {
+            f_open(&fil, filename, FA_CREATE_ALWAYS );
+            f_close(&fil);
+
+        }
     }
-
     PORTBbits.RB3 = 1; 
-    desliga_SPI();
+//    desliga_SPI();
 //    inicializa_uart();
     
     return;
@@ -351,7 +360,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
         
                 
         case 6:
-            for(i=0; i<4;i++)
+            for(i=0; i<6;i++)
             {
                 string_dado.data_name[i] = *dado;
                 dado++;
@@ -361,4 +370,26 @@ void monta_sd(unsigned char index, unsigned char *dado)
     }
     
     return;
+}
+
+
+void data_nome (unsigned char *p_buff)
+{
+    unsigned char i;
+    for(i=0; i<4;i++)
+    {
+        filename[i] = *p_buff;
+        p_buff++;
+    }
+//    strcpy(filename, string_dado.data_name);
+}
+
+void hora_nome (unsigned char *p_buff)
+{
+    unsigned char i;
+    for(i=4; i<8;i++)
+    {
+        filename[i] = *p_buff;
+        p_buff++;
+    }
 }

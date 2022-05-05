@@ -5870,8 +5870,8 @@ typedef unsigned int uint16_t;
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
-unsigned char data_name[4];
-unsigned char hora_name[4];
+unsigned char data_name[2];
+unsigned char hora_name[2];
 unsigned char lt[13];
 unsigned char lo[13];
 unsigned char rpm[4];
@@ -5981,8 +5981,8 @@ rawLongitude[0] = '-';
 
 # 124
 if(Term == 9 && SentenceType == 1) {
-gps_flag[3].flag = 1;
 stringcpy(buffer, rawDate, 0);
+gps_flag[3].flag = 1;
 }
 
 # 140

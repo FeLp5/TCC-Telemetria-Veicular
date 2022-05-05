@@ -50,8 +50,8 @@ extern "C" {
 typedef struct{
     unsigned char data[7];
     unsigned char hora[11];
-    unsigned char data_name[4];
-    unsigned char hora_name[4];
+    unsigned char data_name[2];
+    unsigned char hora_name[2];
     unsigned char lt[13];
     unsigned char lo[13];
     unsigned char rpm[4];

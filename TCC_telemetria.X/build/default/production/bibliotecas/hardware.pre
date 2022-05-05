@@ -5679,6 +5679,12 @@ typedef struct
 unsigned char point:1;
 }bit_field;
 
+
+typedef struct
+{
+unsigned char trigger:1;
+}bit_operacional;
+
 # 27 "bibliotecas/hardware.c"
 union Timers
 {
