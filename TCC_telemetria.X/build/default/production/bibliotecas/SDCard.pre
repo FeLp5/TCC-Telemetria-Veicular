@@ -5743,13 +5743,13 @@ unsigned char data_name[2];
 unsigned char hora_name[2];
 unsigned char lt[13];
 unsigned char lo[13];
-unsigned char rpm[4];
+
 unsigned char vel[3];
-unsigned char comb[3];
-unsigned char odometro_total[4];
+
+
 unsigned char dtc;
 unsigned char fence[6];
-
+long int VIN;
 }string_tel;
 
 # 72
@@ -5758,7 +5758,6 @@ void sdcard_init(void);
 
 void escrita_sdcard(void);
 char *leitura_sdcard(unsigned char num_spot);
-
 void monta_sd(unsigned char index, unsigned char *dado);
 BYTE response(void);
 void proceed(void);
@@ -5790,7 +5789,7 @@ extern void posicao_cursor_lcd(unsigned char linha, unsigned char coluna);
 extern void escreve_caractere_lcd(char data);
 
 # 261
-extern void escreve_inteiro_lcd(int valor);
+extern void escreve_inteiro_lcd(long int valor);
 
 # 276
 extern void escreve_float_lcd(float valor, char formatacao);
@@ -5976,6 +5975,7 @@ unsigned int GPSDay();
 char *Latitude(void);
 char *Longitude(void);
 char *fix(void);
+char *Speed(void);
 void dados_gps_to_sd(void);
 char verifica_recep_gps(void);
 
@@ -6134,13 +6134,16 @@ PORTBbits.RB3 = 0;
 dados_gps_to_sd();
 f_mount(0,&fs);
 
+
+
 if(!f_fix)
 {
 
 if(string_dado.data_name[0] != ' ' && string_dado.hora_name[0] != ' ')
 {
-data_nome(string_dado.data);
-hora_nome(string_dado.hora);
+
+
+strcpy(filename, "teste");
 strcat(filename, ".tlm");
 f_fix = 1;
 }
@@ -6154,8 +6157,7 @@ if (f_open(&fil, filename, 0x02 ) == FR_OK)
 {
 
 f_lseek(&fil, ((&fil)->fsize));
-fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s;f%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc", string_dado.fence);
-
+fprintf(&fil, "v%s;lt%ld;lo%s;r%s;c%s;k%s;h%s;d%s;f%s\n", string_dado.vel, string_dado.lt, string_dado.lo, "0", "0", "0", string_dado.hora, "N/A", string_dado.fence);
 
 f_close(&fil);
 }
@@ -6173,7 +6175,7 @@ PORTBbits.RB3 = 1;
 return;
 }
 
-# 266
+# 268
 char *leitura_sdcard(unsigned char num_spot)
 {
 
@@ -6190,7 +6192,6 @@ f_mount(0,&fs);
 if (f_open(&fil, "extfence.txt", 0x01 ) == FR_OK)
 {
 
-
 f_read(&fil, dado_arquivo, size, &br);
 
 f_close(&fil);
@@ -6202,7 +6203,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 307
+# 308
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;
@@ -6242,6 +6243,7 @@ dado++;
 break;
 
 case 4:
+
 for(i=0; i<size;i++)
 {
 string_dado.fence[i] = *dado;
@@ -6262,6 +6264,14 @@ case 6:
 for(i=0; i<6;i++)
 {
 string_dado.data_name[i] = *dado;
+dado++;
+}
+break;
+
+case 7:
+for(i=0; i<6;i++)
+{
+string_dado.vel[i] = *dado;
 dado++;
 }
 break;

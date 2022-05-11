@@ -258,7 +258,7 @@ extern void escreve_caractere_lcd(char data);
  *				escolhida com as funções posicao_cursor_lcd() ou 
  *				endereco_cursor_lcd().
  *****************************************************************************/
-extern void escreve_inteiro_lcd(int valor);
+extern void escreve_inteiro_lcd(long int valor);
 
 
 /******************************************************************************

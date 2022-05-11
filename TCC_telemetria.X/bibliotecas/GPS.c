@@ -28,7 +28,7 @@
 
 
 
-bit_field_gps gps_flag[5];
+bit_field_gps gps_flag[6];
 
 
 int GPRMC_ok = 0, GPGGA_ok = 0;
@@ -110,10 +110,11 @@ int GPSRead(unsigned char buff)
           rawLongitude[0] = '-';
       }
 
-//      // Speed;
-//      if((Term == 7) && (SentenceType == _GPRMC_)) {
-//        stringcpy(buffer, rawSpeed, 0);
-//      }
+      // Speed;
+      if((Term == 7) && (SentenceType == _GPRMC_)) {
+        stringcpy(buffer, rawSpeed, 0);
+        gps_flag[5].flag = 1;
+      }
 
       // Course
 //      if((Term == 8) && (SentenceType == _GPRMC_)) {
@@ -183,13 +184,13 @@ unsigned int GPSyear()
 
 char  *Latitude(void) 
 {   
-//    strcpy(rawLatitude,"-2339.91129");
+    strcpy(rawLatitude,"-2342.01673");
   return  rawLatitude;
 }
 //
 char *Longitude(void) 
 {
-//    strcpy(rawLongitude, "-04631.79790");
+    strcpy(rawLongitude, "-04630.24580");
   return rawLongitude;
 }
 
@@ -208,10 +209,10 @@ char *fix(void)
 //  return atoi(rawSatellites);
 //}
 //
-//float Speed()
-//{
-//  return (atof(rawSpeed) * 1.852);
-//}
+char *Speed()
+{
+  return rawSpeed;
+}
 //
 //float Course()
 //{
@@ -228,6 +229,7 @@ void dados_gps_to_sd(void)
     monta_sd(3, rawLongitude);
     monta_sd(5, rawTime);
     monta_sd(6, rawDate);
+    monta_sd(7, rawSpeed);
     return;
 }
 
@@ -235,13 +237,14 @@ void dados_gps_to_sd(void)
 char verifica_recep_gps(void)
 {
 //    gps_flag[0].flag = 1;
-    if(gps_flag[0].flag && gps_flag[1].flag && gps_flag[2].flag && gps_flag[3].flag && gps_flag[4].flag)
+    if(gps_flag[0].flag && gps_flag[1].flag && gps_flag[2].flag && gps_flag[3].flag && gps_flag[4].flag && gps_flag[5].flag)
     {        
         gps_flag[0].flag = 0;
         gps_flag[1].flag = 0;
         gps_flag[2].flag = 0;
         gps_flag[3].flag = 0;
         gps_flag[4].flag = 0;
+        gps_flag[5].flag = 0;
         return 1;
     }
     else

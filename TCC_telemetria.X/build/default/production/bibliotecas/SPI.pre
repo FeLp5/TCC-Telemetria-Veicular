@@ -5689,7 +5689,7 @@ extern void posicao_cursor_lcd(unsigned char linha, unsigned char coluna);
 extern void escreve_caractere_lcd(char data);
 
 # 261
-extern void escreve_inteiro_lcd(int valor);
+extern void escreve_inteiro_lcd(long int valor);
 
 # 276
 extern void escreve_float_lcd(float valor, char formatacao);

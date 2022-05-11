@@ -5765,7 +5765,7 @@ extern void posicao_cursor_lcd(unsigned char linha, unsigned char coluna);
 extern void escreve_caractere_lcd(char data);
 
 # 261
-extern void escreve_inteiro_lcd(int valor);
+extern void escreve_inteiro_lcd(long int valor);
 
 # 276
 extern void escreve_float_lcd(float valor, char formatacao);
@@ -6052,10 +6052,10 @@ delay();
 }
 
 # 376
-void escreve_inteiro_lcd(int valor)
+void escreve_inteiro_lcd(long int valor)
 {
 char texto[7] = "000000";
-itoa(texto,valor, 10);
+ltoa(texto,valor, 10);
 escreve_frase_ram_lcd(texto);
 }
 

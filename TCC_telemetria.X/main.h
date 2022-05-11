@@ -46,7 +46,7 @@
 #define TIME_10000_MS                10000
 
 
-#define TASK_TIMEOUT				10000  //time unit: ms
+#define TASK_TIMEOUT				65000  //time unit: ms
 
 #define BIT_0   0
 #define BIT_1   1

@@ -36,18 +36,18 @@ typedef struct
 
 typedef struct
 {
-    unsigned char fence_lat_deg[5];
-    unsigned char fence_long_deg[6];
-    unsigned char point_lat_deg[5];
-    unsigned char point_long_deg[6];
-    long int diff_lat_deg;
-    long int diff_long_deg;
-    unsigned char fence_lat_min[6];
-    unsigned char fence_long_min[6];
-    unsigned char point_lat_min[6];
-    unsigned char point_long_min[6];
-    long int diff_lat_min;
-    long int diff_long_min;
+//    unsigned char fence_lat_deg[5];
+//    unsigned char fence_long_deg[6];
+//    unsigned char point_lat_deg[5];
+//    unsigned char point_long_deg[6];
+    long int diff_lat;
+    long int diff_long;
+//    unsigned char fence_lat_min[6];
+//    unsigned char fence_long_min[6];
+//    unsigned char point_lat_min[6];
+//    unsigned char point_long_min[6];
+//    long long int diff_lat_min;
+//    long long int diff_long_min;
 }fence_ext_struct;
 
 /*****************************************************************************/
@@ -57,10 +57,10 @@ typedef struct
 ******************************************************************************/
 void armazena_latitude(void);
 void armazena_longitude(void);
-void verifica_diferenca_graus(unsigned char select_data);
-void verifica_diferenca_minutos(unsigned char select_data);
-void calcula_diff_graus(unsigned char select_data);
-void calcula_diff_minutos(unsigned char select_data);
+void verifica_diferenca(void);
+//void verifica_diferenca_minutos(unsigned char select_data);
+//void calcula_diff_graus(unsigned char select_data);
+//void calcula_diff_minutos(unsigned char select_data);
 unsigned char verifica_plausibilidade_long(void);
 unsigned char verifica_plausibilidade_lat(void);
 

@@ -220,6 +220,7 @@ unsigned int GPSDay();
 char *Latitude(void);
 char *Longitude(void);
 char *fix(void);
+char *Speed(void);
 void dados_gps_to_sd(void);
 char verifica_recep_gps(void);
 
@@ -5874,13 +5875,13 @@ unsigned char data_name[2];
 unsigned char hora_name[2];
 unsigned char lt[13];
 unsigned char lo[13];
-unsigned char rpm[4];
+
 unsigned char vel[3];
-unsigned char comb[3];
-unsigned char odometro_total[4];
+
+
 unsigned char dtc;
 unsigned char fence[6];
-
+long int VIN;
 }string_tel;
 
 # 72
@@ -5889,7 +5890,6 @@ void sdcard_init(void);
 
 void escrita_sdcard(void);
 char *leitura_sdcard(unsigned char num_spot);
-
 void monta_sd(unsigned char index, unsigned char *dado);
 BYTE response(void);
 void proceed(void);
@@ -5897,7 +5897,7 @@ void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 
 # 31 "bibliotecas/GPS.c"
-bit_field_gps gps_flag[5];
+bit_field_gps gps_flag[6];
 
 
 int GPRMC_ok = 0, GPGGA_ok = 0;
@@ -5979,13 +5979,19 @@ else
 rawLongitude[0] = '-';
 }
 
-# 124
+
+if((Term == 7) && (SentenceType == 1)) {
+stringcpy(buffer, rawSpeed, 0);
+gps_flag[5].flag = 1;
+}
+
+# 125
 if(Term == 9 && SentenceType == 1) {
 stringcpy(buffer, rawDate, 0);
 gps_flag[3].flag = 1;
 }
 
-# 140
+# 141
 if((Term == 6) && (SentenceType == 2)) {
 stringcpy(buffer, rawFix, 0);
 gps_flag[4].flag = 1;
@@ -6032,13 +6038,13 @@ return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
 
 char *Latitude(void)
 {
-
+strcpy(rawLatitude,"-2342.01673");
 return rawLatitude;
 }
 
 char *Longitude(void)
 {
-
+strcpy(rawLongitude, "-04630.24580");
 return rawLongitude;
 }
 
@@ -6047,7 +6053,13 @@ char *fix(void)
 return rawFix;
 }
 
-# 223
+# 212
+char *Speed()
+{
+return rawSpeed;
+}
+
+# 224
 void dados_gps_to_sd(void)
 {
 monta_sd(0, rawTime);
@@ -6056,6 +6068,7 @@ monta_sd(2, rawLatitude);
 monta_sd(3, rawLongitude);
 monta_sd(5, rawTime);
 monta_sd(6, rawDate);
+monta_sd(7, rawSpeed);
 return;
 }
 
@@ -6063,13 +6076,14 @@ return;
 char verifica_recep_gps(void)
 {
 
-if(gps_flag[0].flag && gps_flag[1].flag && gps_flag[2].flag && gps_flag[3].flag && gps_flag[4].flag)
+if(gps_flag[0].flag && gps_flag[1].flag && gps_flag[2].flag && gps_flag[3].flag && gps_flag[4].flag && gps_flag[5].flag)
 {
 gps_flag[0].flag = 0;
 gps_flag[1].flag = 0;
 gps_flag[2].flag = 0;
 gps_flag[3].flag = 0;
 gps_flag[4].flag = 0;
+gps_flag[5].flag = 0;
 return 1;
 }
 else

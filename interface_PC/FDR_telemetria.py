@@ -52,7 +52,7 @@ class Painel(wx.Frame):
         def abrir_relatorio(self):
             if vars.query == 0:
                 
-                print "acessado"
+                # print "acessado"
                 vars.requisicoes = []
                 vars.query = 1
                 
@@ -65,7 +65,7 @@ class Painel(wx.Frame):
         def abrir_grafico_velocidades(self):
             if vars.query == 0:
                 
-                print "acessado"
+                # print "acessado"
                 vars.requisicoes = []
                 vars.query = 1
                 thread = threading.Thread(target = pn_se.request_ruas)

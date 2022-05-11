@@ -3655,7 +3655,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 220: extern void endereco_cursor_lcd(unsigned char endereco);
 [; ;display_lcd.h: 236: extern void posicao_cursor_lcd(unsigned char linha, unsigned char coluna);
 [; ;display_lcd.h: 247: extern void escreve_caractere_lcd(char data);
-[; ;display_lcd.h: 261: extern void escreve_inteiro_lcd(int valor);
+[; ;display_lcd.h: 261: extern void escreve_inteiro_lcd(long int valor);
 [; ;display_lcd.h: 276: extern void escreve_float_lcd(float valor, char formatacao);
 [; ;display_lcd.h: 290: extern void escreve_frase_ram_lcd(char *buffer);
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);

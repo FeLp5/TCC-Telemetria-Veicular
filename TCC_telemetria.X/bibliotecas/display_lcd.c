@@ -373,10 +373,10 @@ void escreve_caractere_lcd(char data)
  *				escolhida com as funções posicao_cursor_lcd() ou 
  *				endereco_cursor_lcd().
  *****************************************************************************/
-void escreve_inteiro_lcd(int valor)
+void escreve_inteiro_lcd(long int valor)
 {
 	char texto[7] = "000000";
-    itoa(texto,valor, 10);
+    ltoa(texto,valor, 10);
 	escreve_frase_ram_lcd(texto);
 }
 

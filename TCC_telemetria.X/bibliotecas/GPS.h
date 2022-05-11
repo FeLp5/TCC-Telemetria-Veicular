@@ -93,6 +93,7 @@ unsigned int GPSDay();
 char *Latitude(void);
 char *Longitude(void);
 char *fix(void);
+char *Speed(void);
 void dados_gps_to_sd(void);
 char verifica_recep_gps(void);
 /*****************************************************************************/

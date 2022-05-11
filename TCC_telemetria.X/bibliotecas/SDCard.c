@@ -216,13 +216,16 @@ void escrita_sdcard()
     dados_gps_to_sd();
     f_mount(0,&fs);
     
+//    posicao_cursor_lcd(1,8);
+//    escreve_frase_ram_lcd(string_dado.vel);
     if(!f_fix)
     {  
 
         if(string_dado.data_name[0] != ' ' && string_dado.hora_name[0] != ' ')
         {
-            data_nome(string_dado.data);
-            hora_nome(string_dado.hora);
+//            data_nome(string_dado.data);
+//            hora_nome(string_dado.hora);
+            strcpy(filename, "teste");
             strcat(filename, ".tlm");
             f_fix = 1;
         }
@@ -236,8 +239,7 @@ void escrita_sdcard()
         {	
 
             f_lseek(&fil, fsize(&fil));
-            fprintf(&fil, "\nv%s;lt%s;lo%s;r%s;c%s;k%s;h%s;d%s;f%s", "string_dado.vel", string_dado.lt, string_dado.lo, "string_dado.rpm", "string_dado.comb", "string_dado.odometro_total", string_dado.hora, "string_dado.dtc", string_dado.fence);
-
+            fprintf(&fil, "v%s;lt%ld;lo%s;r%s;c%s;k%s;h%s;d%s;f%s\n", string_dado.vel, string_dado.lt, string_dado.lo, "0", "0", "0", string_dado.hora, "N/A", string_dado.fence);
             /* Close the file */
             f_close(&fil);	
         }
@@ -278,8 +280,7 @@ char *leitura_sdcard(unsigned char num_spot)
     
     if (f_open(&fil, "extfence.txt", FA_READ ) == FR_OK)  /* Open or create a file */
     {	
-//        offset = num_spot*39 + 7;
-//        f_lseek(&fil, offset);
+
         f_read(&fil, dado_arquivo, size, &br);
         /* Close the file */
         f_close(&fil);	
@@ -343,6 +344,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
         break;
         
         case 4:
+            //monta string do estado do fence
             for(i=0; i<size;i++)
             {
                 string_dado.fence[i] = *dado;
@@ -367,6 +369,14 @@ void monta_sd(unsigned char index, unsigned char *dado)
             }
         break;
         
+        case 7:
+            for(i=0; i<6;i++)
+            {
+                string_dado.vel[i] = *dado;
+                dado++;
+            }
+        break;
+           
     }
     
     return;
