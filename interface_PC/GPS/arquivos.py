@@ -46,20 +46,20 @@ class Painel_arquivos(wx.Panel):
             self.botao4.Hide()
             self.statxt_02.Show()
             
-            self.botao0.SetLabel(self.convert_data((titulo_bt[0])))
-            self.botao1.SetLabel(self.convert_data((titulo_bt[1])))
-            self.botao2.SetLabel(self.convert_data((titulo_bt[2])))
-            self.botao3.SetLabel(self.convert_data((titulo_bt[3])))
-            self.botao4.SetLabel(self.convert_data((titulo_bt[4])))
             if cont:
+                self.botao0.SetLabel(self.convert_data((titulo_bt[0])))
                 self.botao0.Show()
             if cont > 1:    
+                self.botao1.SetLabel(self.convert_data((titulo_bt[1])))
                 self.botao1.Show()
             if cont > 2: 
+                self.botao2.SetLabel(self.convert_data((titulo_bt[2])))
                 self.botao2.Show()
             if cont > 3:
+                self.botao3.SetLabel(self.convert_data((titulo_bt[3])))
                 self.botao3.Show()
             if cont > 4:
+                self.botao4.SetLabel(self.convert_data((titulo_bt[4])))
                 self.botao4.Show()
             if (cont > 5):
                 self.botao_mais.Show()
@@ -97,6 +97,8 @@ class Painel_arquivos(wx.Panel):
 
         # vars.titulo_bt = self.bt_camho[nbotao] 
         vars.caminho_bt = self.bt_camho[nbotao] # pegando o nome do arquivo e tornando global
+        vars.data_arquivo = self.convert_data_arquivo(vars.titulo_bt[nbotao])
+        print "DATA ARQUIVO" , vars.data_arquivo
         
     def nomes_botoes(self, pasta): # função para abrir os arquivos
 
@@ -178,6 +180,12 @@ class Painel_arquivos(wx.Panel):
         print(data_convertida)
         return str(data_convertida)
     
+    def convert_data_arquivo(self, data):
+        data_convertida = datetime.datetime.fromtimestamp(float(data)).strftime('%d/%m/%Y')
+        print(data_convertida)
+        return str(data_convertida)
+
+    
     # mostra a janela sobre com informações sobre o programa
     def sobre(self,e):
         dlg = wx.MessageDialog(self, "\n      FDR Telemetria      \n    Fatec Santo André     \n\nAbril de 2022 - Versão 0.1", "FDR Telemetria v0.1", wx.OK)
@@ -207,6 +215,20 @@ class Painel_arquivos(wx.Panel):
         incremento = 1
         vars.query = 0
         vars.num_dados = (len(lines))
+        
+        nome_arquivo = ''
+        velmax = 0
+        
+        # zerando os vetores
+        vars.vetor_velocidade = []
+        vars.vetor_rpm = []
+        vars.vetor_combustivel = []
+        vars.vetor_km = []
+        vars.vetor_tempo = []
+        vars.vetor_dtc = []
+        vars.latitude = [] 
+        vars.longitude = []
+        vars.vetor_fence = []
 
         # print("NUM DADOS",  vars.num_dados)
         
@@ -222,6 +244,8 @@ class Painel_arquivos(wx.Panel):
         self.vars_sdcard(lines, fator)
 
         self.requests_mapa(vars.num_dados, fator)
+        self.requests_mapa_fence()
+
         
         # self.request_ruas()
         
@@ -250,7 +274,7 @@ class Painel_arquivos(wx.Panel):
                 
                 ## tomtom - reverse geocode
                 ruas = "https://api.tomtom.com/search/2/reverseGeocode/" + vars.latitude[x] +"," + vars.longitude[x] + ".json?&key=" + vars.api_key_tom + "&returnSpeedLimit=true"
-                print(ruas)
+                # print(ruas)
                 
                 r = requests.get(ruas)
                 if r.status_code not in range(200, 299):
@@ -345,8 +369,9 @@ class Painel_arquivos(wx.Panel):
             vars.vetor_dtc.append(re.search('d(.+?);', linha).group(1))
             vars.latitude.append(self.latlong(re.search('lt(.+?);', linha).group(1)))
             vars.longitude.append(self.latlong(re.search('lo(.+?);', linha).group(1)))
-            print vars.latitude[x]
-            print vars.longitude[x]
+            vars.vetor_fence.append(re.search('f(.+?);', linha).group(1))
+            # print vars.latitude[x]
+            # print vars.longitude[x]
             
             if x == 0:
                 velocidade = vars.vetor_velocidade[0]
@@ -362,8 +387,9 @@ class Painel_arquivos(wx.Panel):
                 km_rodado = km
                 # print(tempo)
                 hora = tempo[0] + tempo[1]
-                hora = self.utm(hora)
+                # hora = self.utm(hora)
                 min = tempo[2] + tempo[3]
+                vars.hora_inicio = hora + "h" + min
 
             else:
                 velocidade = velocidade + "," + vars.vetor_velocidade[x]
@@ -453,17 +479,39 @@ class Painel_arquivos(wx.Panel):
                     # pegando as coordenadas e montando a string
                     coordenadas = coordenadas + vars.latitude[x] + "," + vars.longitude[x]  + "|" 
                     incremento = incremento + 1
-                    print(incremento)
+                    # print(incremento)
                     # velocidade_list
         ## google maps -- sem uso neste momento
         # roads retornará a velocidade da via
         # vars.roads = "https://roads.googleapis.com/v1/speedLimits?path=" + coordenadas  + "&key=" + vars.api_key
         # print(( "ROADS API -> ", vars.roads))
 
+
+
         # static_map - irá desenhar o mapa e a rota
         vars.static_map = "https://maps.googleapis.com/maps/api/staticmap?center=" + cordenada_central + "&scale=2&path=color:0x0000ff|weight:5|" + coordenadas + "&size=640x400&key=" + vars.api_key
-
-        print(( "STATIC_MAP API ->" , vars.static_map))
+        
+    def requests_mapa_fence(self):
+    
+        print "CORD 2", vars.coordenadas_fence_long[2]
+        
+        coordenadas_fence = ""
+        for x in range(len(vars.coordenadas_fence_long)-1) :
+            coordenadas_fence = coordenadas_fence + str(vars.coordenadas_fence_lat[x]) + "," + str(vars.coordenadas_fence_long[x]) + "|"
+        coordenadas_fence = coordenadas_fence + str(vars.coordenadas_fence_lat[x]) + "," + str(vars.coordenadas_fence_long[x + 1])
+        
+        print coordenadas_fence
+        
+        central_lat = (vars.coordenadas_fence_lat[0] + vars.coordenadas_fence_lat[2]) / 2
+        central_long = (vars.coordenadas_fence_long[0] + vars.coordenadas_fence_long[2]) / 2
+        
+        coordenada_central = str(central_lat) + "," + str(central_long)
+        print coordenada_central
+        
+        # static_map_fence - irá desenhar o mapa e um shape com o fence
+        vars.static_map_fence = "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenada_central + "&path=color:0xff0000ff|weight:1|fillcolor:0x0000ff80|" + coordenadas_fence + "&size=640x400&key=" + vars.api_key
+    
+        print(( "STATIC_MAP API ->" , vars.static_map_fence))
 
     def latlong(self, lt_lo):
         minutes = 0.0
@@ -485,12 +533,34 @@ class Painel_arquivos(wx.Panel):
         
         return str(decimal)	
         
+    def latlong_to_GPS(self, lt_lo):
+        minutes = 0.0
+        dec_deg = 0
+        decimal = 0.0
+
+        degrees = 0.0
+        # position = 0.0
+        lt_lo = float(lt_lo)
+        print("LATLONG ", lt_lo)
+        degrees = int(lt_lo)
+        print("GRAUS ", degrees)
+        minutes = lt_lo - (degrees)
+        print("MINUTES ", minutes)
+        dec_deg = minutes * 0.6;
+        print("Décimos de GRAUS ", dec_deg)
+        decimal = degrees + dec_deg;
+        # print("décimos ", decimal)
+        
+        print decimal
+        return str(decimal)	
+        
     def convert_velocidade(self, velocidade): # convertendo de nós para km/h
         velocidade = int(float(velocidade) * 1.852)
-        print velocidade
+        # print velocidade
         return str(velocidade)
     
     def utm(self, hora):
         hora = str(int(hora) - 3)
-        print hora
-        return hora
+        # print hora
+        # return hora
+        

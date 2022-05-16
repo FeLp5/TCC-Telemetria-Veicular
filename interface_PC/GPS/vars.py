@@ -8,7 +8,9 @@ size_window = wx.GetDisplaySize() # retorna uma tuple
 t_x, t_y = size_window
 
 cor_botoes = ""
+cor_botoes_ativos = "#BABABA"
 tema = ("", "", "")
+cor_fundo = ""
 
 #flags
 flag_iniciar = 0
@@ -25,9 +27,11 @@ vetor_combustivel = []
 vetor_dtc = []
 vetor_rpm = []
 vetor_tempo = []
+vetor_fence = []
 
 
 #dados coletados
+nome_arquivo = ''
 num_dados = 0
 km_rodado = 0
 consumo = 0
@@ -38,10 +42,12 @@ min_g = 0
 rpm = 0
 flag = 0
 velocidade = 0
-dtc = 'ok'
+dtc = '--'
+hora_inicio = ''
+data_arquivo = ''
 
 
-VIN = "9BWXXXXXXXXXXXXXX2345"
+VIN = "--"
 
 # itens da tela
 titulo_bt = 0000
@@ -53,6 +59,8 @@ caminho_bt = ''
 roads = ""
 static_map = ""
 ruas = ""
+static_map_fence = ""
+
 # nomes_das_ruas = []
 latitude = []
 longitude = []
@@ -72,6 +80,10 @@ speed_limit = []
 
 requisicao = 0
 
+coordenadas_fence = ((-46.5086835, -23.6931603), (-46.501404, -236931603), (-46.501404, -23.7000299), (-46.5086835, -23.7000299))
+
+coordenadas_fence_long = [-46.5086835, -46.501404, -46.501404, -46.5086835]
+coordenadas_fence_lat = [-23.6931603, -23.6931603, -23.7000299, -23.7000299]
 
 
 

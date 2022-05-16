@@ -9,7 +9,7 @@ import wx, os, re, datetime, time, threading
 from mapa import Mapa 
 from arquivos import Painel_arquivos
 from grafico_a import Painel_grafico_A
-from grafico_b import Painel_grafico_B
+from grafico_b import Mapa_fence
 from infos import Painel_infos
 from relatorio import Relatorio
 from inf_direito import Painel_inferior_direito
@@ -27,7 +27,7 @@ class Painel(wx.Frame):
         font.SetPointSize(9)
         
 
-        panel.SetBackgroundColour('')
+        panel.SetBackgroundColour(vars.cor_fundo)
         vbox = wx.BoxSizer(wx.VERTICAL)
         hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         vbox1 = wx.BoxSizer(wx.VERTICAL)
@@ -52,7 +52,7 @@ class Painel(wx.Frame):
         def abrir_relatorio(self):
             if vars.query == 0:
                 
-                print("acessado")
+                # print("acessado")
                 vars.requisicoes = []
                 
                 
@@ -65,7 +65,7 @@ class Painel(wx.Frame):
         def abrir_grafico_velocidades(self):
             if vars.query == 0:
                 
-                print("acessado")
+                # print("acessado")
                 vars.requisicoes = []
                 
                 thread = threading.Thread(target = pn_se.request_ruas)
@@ -88,42 +88,31 @@ class Painel(wx.Frame):
                 status_botoes(self)
     
                 if num_botao == 0:
-                    pn_se.botao0.SetBackgroundColour("gray")
-                    pn_se.botao0.SetForegroundColour("red")
+                    pn_se.botao0.SetBackgroundColour(vars.cor_botoes_ativos)
                 else:
                     pn_se.botao0.SetBackgroundColour("")
-                    pn_se.botao0.SetForegroundColour("")
-                    
+
                 if num_botao == 1:
-                    # pn_se.botao1.SetBackgroundColour("gray")
-                    pn_se.botao0.SetForegroundColour("red")
+                    pn_se.botao1.SetBackgroundColour(vars.cor_botoes_ativos)
                 else:
-                    # pn_se.botao1.SetBackgroundColour("")
-                    pn_se.botao0.SetForegroundColour("")
-                    
+                    pn_se.botao1.SetBackgroundColour("")
+
                 if num_botao == 2:
-                    # pn_se.botao2.SetBackgroundColour("gray")
-                    pn_se.botao0.SetForegroundColour("red")
+                    pn_se.botao2.SetBackgroundColour(vars.cor_botoes_ativos)
                 else:
-                    # pn_se.botao2.SetBackgroundColour("")
-                    pn_se.botao0.SetForegroundColour("")
+                    pn_se.botao2.SetBackgroundColour("")
                     
                 if num_botao == 3:
-                    # pn_se.botao3.SetBackgroundColour("gray")
-                    pn_se.botao0.SetForegroundColour("red")
+                    pn_se.botao3.SetBackgroundColour(vars.cor_botoes_ativos)
+
                 else:
-                    # pn_se.botao3.SetBackgroundColour("")
-                    pn_se.botao0.SetForegroundColour("")
-                    
+                    pn_se.botao3.SetBackgroundColour("")
+  
                 if num_botao == 4:
-                    # pn_se.botao4.SetBackgroundColour("gray")
-                    pn_se.botao0.SetForegroundColour("red")
+                    pn_se.botao4.SetBackgroundColour(vars.cor_botoes_ativos)
                 else:
-                    # pn_se.botao4.SetBackgroundColour("")
-                    pn_se.botao0.SetForegroundColour("")
-                
-            
-                
+                    pn_se.botao4.SetBackgroundColour("")
+
         pn_sm = Painel_infos(panel) #painel superior central
         pn_sd = wx.Panel(panel) #painel superior direito
         pn_sd.SetBackgroundColour('')
@@ -135,8 +124,8 @@ class Painel(wx.Frame):
         pn_id.SetBackgroundColour('')
         
         botao_grafico = wx.Button(pn_ie, wx.NewId(), "  Gráfico Velocidade", (10, 46 ), (160,24))
-        botao_graficoRPM = wx.Button(pn_ie, wx.NewId(), "  Gráfico Rotações", (10,80), (160,24))
-        botao_mapa = wx.Button(pn_ie, wx.NewId(), "Mapa", (10, 114 ), (160,24))
+        botao_graficoRPM = wx.Button(pn_ie, wx.NewId(), "Fence", (10,80), (160,24))
+        botao_mapa = wx.Button(pn_ie, wx.NewId(), "Rota", (10, 114 ), (160,24))
         botao_relatorio = wx.Button(pn_ie, wx.NewId(), "Relatório", (10, 148), (160,24))
         #ações botões
         botao_grafico.Bind(wx.EVT_BUTTON, abrir_grafico_velocidades)
@@ -152,8 +141,8 @@ class Painel(wx.Frame):
         # Menu Visualizar
         visualizar = wx.Menu()
         g_velocidades = visualizar.Append(wx.ID_ANY, "&Gráfico Velocidades")
-        g_rotacoes = visualizar.Append(wx.ID_ANY, "&Gráfico de Rotações")
-        g_mapa = visualizar.Append(wx.ID_ANY, "&Mapa")
+        g_rotacoes = visualizar.Append(wx.ID_ANY, "&Fence")
+        g_mapa = visualizar.Append(wx.ID_ANY, "&Rota")
         relatorio = visualizar.Append(wx.ID_ANY, "&Relatório")
         # Menu Ajuda
         ajuda_menu = wx.Menu()
@@ -225,6 +214,19 @@ class Painel(wx.Frame):
                 pn_se.tratamento(lines)
                 vars.arquivo_aberto = 1 # global arquivo_aberto -- flag
                 vars.caminho_bt = pathname # pegando o nome/caminho do arquivo e tornando global
+                
+                infos = str(os.stat(pathname)) # armazenando na variável os dados dos arquivos
+                
+                try:
+                    datam = re.search('st_mtime=(.+?),', infos).group(1)
+                    
+                except AttributeError:
+                    pass
+                    
+
+                vars.data_arquivo = datetime.datetime.fromtimestamp(float(datam)).strftime('%d/%m/%Y')
+                # print "DATA x ", vars.data_arquivo
+                 
                 status_botoes(self)
                 acao_botao_recente(self, -1) # apagando os destaques dos botões
                 
@@ -276,6 +278,7 @@ class Painel(wx.Frame):
         self.Close(True)  # Fecha o programa
 
 
+        
 def main():
 
     app = wx.App()

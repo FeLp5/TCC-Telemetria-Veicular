@@ -28,7 +28,7 @@ class Mapa(wx.Panel):
             endereco = os.path.dirname(os.path.realpath(__file__)) # pegando o endereço de execução para o html (css e imagens)
             endereco = "file://" + endereco + "/" # completando a string endereço para o html
             
-        mapa = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'> <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='pt' lang='pt-br'><head><link rel='stylesheet' href='css/style.css'></head> <body cellpadding=0 cellspacing=0><div  class='barra' style='width: 120px'><p class='painel'>ROTA</p></div><div class='mapa' style='width: " + str(largura_div) + "px; height: " +  str(altura_div)  + "px; border-radius: 5px;  overflow: hidden' ><img src='"+ url + "' style='height: 100%'></div></body>"
+        mapa = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'> <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='pt' lang='pt-br'><head><link rel='stylesheet' href='css/style.css'></head> <body cellpadding=0 cellspacing=0 style='background-color: " + vars.cor_fundo + "'><div  class='barra' style='width: 120px'><p class='painel'>ROTA</p></div><div class='mapa' style='width: " + str(largura_div) + "px; height: " +  str(altura_div)  + "px; border-radius: 5px;  overflow: hidden' ><img src='"+ url + "' style='height: 100%'></div></body>"
 
         self.html.SetPage(mapa, endereco) # montando a página html
 

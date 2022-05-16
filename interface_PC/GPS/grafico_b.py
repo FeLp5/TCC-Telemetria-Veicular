@@ -1,35 +1,46 @@
 # encoding: utf-8
-import wx
+import wx, os
 import vars
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
+from wx import html2 as webview
 
-class Painel_grafico_B(wx.Panel): #RPM
+class Mapa_fence(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-
-    def montar_grafico(self):
-        rpm = str(vars.rpm)
-        i = 0
-        rpm_list = rpm.split(',')
-        rpm_list = [int(i) for i in rpm_list]
-
-        figure = Figure()
+        self.SetBackgroundColour("")   
+        self.html = wx.html2.WebView.New(self)
         
-        axes = figure.add_subplot(111)
-        axes.set_title('Grafico de RPM ', fontstyle='italic')
-        canvas = FigureCanvas(self, -1, figure)
-        t_x, t_y = vars.size_window
-        canvas.SetSize((int(t_x/7*5), int(t_y/3*1.5)))
-        for x in range(len(rpm_list)):
-            if(x == 0):
-                item_b = "0"
-            else:
-                item_b = item_b + ", " + str(x);
+        self.largura = (vars.t_x/7*5)
+        self.altura = (vars.t_y/3*2) - 50
 
-        item_b = item_b.split(',')
-        item_b = [int(i) for i in item_b]
+        self.html.SetSize((self.largura, self.altura)) # definindo o tamanho
         
-        axes.bar(item_b, rpm_list, color="green")
+      
+    def atualiza_labels(self):
+        url = vars.static_map_fence
+        # url = ""
+        # self.html.LoadURL(url)
+        # print(vars.static_map)
+        
+        largura_div = 640
+        altura_div = self.altura - 40
 
- 
+        if (vars.arquivo_aberto == 1):
+            endereco = os.path.dirname(os.path.realpath(__file__)) # pegando o endereço de execução para o html (css e imagens)
+            endereco = "file://" + endereco + "/" # completando a string endereço para o html
+            
+        mapa = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'> <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='pt' lang='pt-br'><head><link rel='stylesheet' href='css/style.css'></head> <body cellpadding=0 cellspacing=0 style='background-color: " + vars.cor_fundo + "'><div  class='barra' style='width: 120px'><p class='painel'>FENCE</p></div><div class='mapa' style='width: " + str(largura_div) + "px; height: " +  str(altura_div)  + "px; border-radius: 5px;  overflow: hidden' ><img src='"+ url + "' style='height: 100%'></div></body>"
+
+        self.html.SetPage(mapa, endereco) # montando a página html
+
+
+        self.Show()
+        
+        # self.statxt_02.SetLabel(vars.roads)
+        # self.statxt_04.SetLabel(vars.static_map)
+      
+        # for x in range(len(vars.nomes_das_ruas)):
+        #     self.statxt_05 = wx.StaticText(self, -1, vars.nomes_das_ruas[0] , (700, 60), (-1, -1)) 
+      
+        
+      
+

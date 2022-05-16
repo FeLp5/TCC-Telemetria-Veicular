@@ -4,6 +4,10 @@ import vars
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 
+
+dimensao_x = vars.t_x/7*5
+dimensao_y = vars.t_y/3*2
+
 class Painel_grafico_A(wx.Panel):
 
     def __init__(self, parent): 
@@ -14,9 +18,9 @@ class Painel_grafico_A(wx.Panel):
         self.panel = wx.Panel(self)
         self.count = 0.0
         
-        self.statxt_aguarde = wx.StaticText(self, -1,  "" , (200, 6), (-1, -1))
+        self.statxt_aguarde = wx.StaticText(self, -1,  "" , ((dimensao_x/2) - 90, (dimensao_y/2)-150), (180, 6))
         self.statxt_aguarde.SetForegroundColour("black")
-        self.statxt_aguarde.SetLabel("AGUARDE POR FAVOR...\n Coletando informações...")
+        self.statxt_aguarde.SetLabel("     AGUARDE POR FAVOR   \n   Coletando informações...")
         
         def tempo_atingido(event):
             self.timer.Stop()
@@ -34,7 +38,7 @@ class Painel_grafico_A(wx.Panel):
         # self.html.SetPage(carreg, self.endereco) # montando a página html
             # print("x")
         
-        self.gauge = wx.Gauge(self, range=100, size=(180, 30))
+        self.gauge = wx.Gauge(self, range=100, size=(180, 30), pos=((dimensao_x /2) - 90, (dimensao_y/2) -130) )
         self.statxt_aguarde.Show()
         # self.html.SetPage("<body></body>", self.endereco) # montando a página html
         
@@ -85,7 +89,7 @@ class Painel_grafico_A(wx.Panel):
         # valor = self.GetSize()
         figure = Figure()
         axes = figure.add_subplot(111)
-        axes.set_title('Grafico de Velocidades', fontstyle='normal', fontsize="10", verticalalignment='baseline')
+        axes.set_title('Velocidades', fontstyle='normal', fontsize="10", verticalalignment='baseline')
         canvas = FigureCanvas(self, -1, figure)
         t_x, t_y = vars.size_window
         altura = int(t_y/3*1.5)
@@ -127,6 +131,8 @@ class Painel_grafico_A(wx.Panel):
         axes.set_ylabel('Velocidade Km/h')
         axes.set_xlabel('Medicoes')
         axes.set_ymargin(4)
+    
+
         
 
 
