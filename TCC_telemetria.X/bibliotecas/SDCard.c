@@ -223,9 +223,9 @@ void escrita_sdcard()
 
         if(string_dado.data_name[0] != ' ' && string_dado.hora_name[0] != ' ')
         {
-//            data_nome(string_dado.data);
-//            hora_nome(string_dado.hora);
-            strcpy(filename, "teste");
+            data_nome(string_dado.data);
+            hora_nome(string_dado.hora);
+//            strcpy(filename, "teste2");
             strcat(filename, ".tlm");
             f_fix = 1;
         }
@@ -239,7 +239,7 @@ void escrita_sdcard()
         {	
 
             f_lseek(&fil, fsize(&fil));
-            fprintf(&fil, "v%s;lt%ld;lo%s;r%s;c%s;k%s;h%s;d%s;f%s\n", string_dado.vel, string_dado.lt, string_dado.lo, "0", "0", "0", string_dado.hora, "N/A", string_dado.fence);
+            fprintf(&fil, "v%s;lt%s;lo%s;r0;c0;k0;h%s;dN/A;f%s;\n", string_dado.vel, string_dado.lt, string_dado.lo, string_dado.hora, string_dado.fence);
             /* Close the file */
             f_close(&fil);	
         }
@@ -328,7 +328,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
         break;
         
         case 2:
-            for(i=0; i<13;i++)
+            for(i=0; i<11;i++)
             {
                 string_dado.lt[i] = *dado;
                 dado++;
@@ -336,7 +336,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
         break;
         
        case 3:
-            for(i=0; i<13;i++)
+            for(i=0; i<12;i++)
             {
                 string_dado.lo[i] = *dado;
                 dado++;

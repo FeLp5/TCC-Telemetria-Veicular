@@ -58,11 +58,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _f_open `(E3237 ~T0 @X0 0 ef3`*S366`*Cuc`uc ]
 "168
 [v _f_close `(E3237 ~T0 @X0 0 ef1`*S366 ]
-"97 bibliotecas/GPS.h
+"102 bibliotecas/GPS.h
 [v _dados_gps_to_sd `(v ~T0 @X0 0 ef ]
-"37 C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\string.h
-[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"36
+"50 bibliotecas/SDCard.c
+[v _data_nome `(v ~T0 @X0 0 ef1`*uc ]
+"51
+[v _hora_nome `(v ~T0 @X0 0 ef1`*uc ]
+"36 C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\string.h
 [v _strcat `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 "167 bibliotecas/tff.h
 [v _f_lseek `(E3237 ~T0 @X0 0 ef2`*S366`ul ]
@@ -3812,7 +3814,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;GPS.h: 52: {
 [; ;GPS.h: 53: unsigned char flag:1;
 [; ;GPS.h: 54: }bit_field_gps;
-[; ;GPS.h: 72: void stringcpy(char *str1, char *str2, int dir);
+[; ;GPS.h: 72: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 [; ;GPS.h: 73: int GPSRead(unsigned char buff);
 [; ;GPS.h: 87: unsigned int GPSSecond();
 [; ;GPS.h: 88: unsigned int GPSMinute();
@@ -3820,12 +3822,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;GPS.h: 90: unsigned int GPSyear();
 [; ;GPS.h: 91: unsigned int GPSMonth();
 [; ;GPS.h: 92: unsigned int GPSDay();
-[; ;GPS.h: 93: char *Latitude(void);
-[; ;GPS.h: 94: char *Longitude(void);
-[; ;GPS.h: 95: char *fix(void);
-[; ;GPS.h: 96: char *Speed(void);
-[; ;GPS.h: 97: void dados_gps_to_sd(void);
-[; ;GPS.h: 98: char verifica_recep_gps(void);
+[; ;GPS.h: 93: void latitude_to_convert(unsigned char index);
+[; ;GPS.h: 94: void longitude_to_convert(unsigned char index);
+[; ;GPS.h: 95: char posicao_lat(void);
+[; ;GPS.h: 96: char posicao_long(void);
+[; ;GPS.h: 100: char *fix(void);
+[; ;GPS.h: 101: char *Speed(void);
+[; ;GPS.h: 102: void dados_gps_to_sd(void);
+[; ;GPS.h: 103: char verifica_recep_gps(void);
 [; ;uart.h: 40: void envia_dado_uart(char data);
 [; ;uart.h: 41: void desliga_uart(void);
 [; ;uart.h: 43: unsigned char verifica_buffer_uart(void);
@@ -4193,8 +4197,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _i `uc ~T0 @X0 1 a ]
 [v _j `uc ~T0 @X0 1 a ]
 "211
-[v F3493 `uc ~T0 @X0 1 s f_fix ]
-[i F3493
+[v F3498 `uc ~T0 @X0 1 s f_fix ]
+[i F3498
 -> -> 0 `i `uc
 ]
 "212
@@ -4214,7 +4218,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _f_mount (2 , -> -> 0 `i `uc &U _fs ]
 [; ;SDCard.c: 221: if(!f_fix)
 "221
-[e $ ! ! != -> F3493 `i -> -> -> 0 `i `uc `i 392  ]
+[e $ ! ! != -> F3498 `i -> -> -> 0 `i `uc `i 392  ]
 [; ;SDCard.c: 222: {
 "222
 {
@@ -4224,15 +4228,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.c: 225: {
 "225
 {
-[; ;SDCard.c: 228: strcpy(filename, "teste");
-"228
-[e ( _strcpy (2 , &U _filename :s 7C ]
+[; ;SDCard.c: 226: data_nome(string_dado.data);
+"226
+[e ( _data_nome (1 &U . _string_dado 0 ]
+[; ;SDCard.c: 227: hora_nome(string_dado.hora);
+"227
+[e ( _hora_nome (1 &U . _string_dado 1 ]
 [; ;SDCard.c: 229: strcat(filename, ".tlm");
 "229
-[e ( _strcat (2 , &U _filename :s 8C ]
+[e ( _strcat (2 , &U _filename :s 7C ]
 [; ;SDCard.c: 230: f_fix = 1;
 "230
-[e = F3493 -> -> 1 `i `uc ]
+[e = F3498 -> -> 1 `i `uc ]
 "231
 }
 [e :U 393 ]
@@ -4243,7 +4250,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.c: 234: }
 [; ;SDCard.c: 235: if(f_fix)
 "235
-[e $ ! != -> F3493 `i -> -> -> 0 `i `uc `i 394  ]
+[e $ ! != -> F3498 `i -> -> -> 0 `i `uc `i 394  ]
 [; ;SDCard.c: 236: {
 "236
 {
@@ -4256,9 +4263,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.c: 241: f_lseek(&fil, ((&fil)->fsize));
 "241
 [e ( _f_lseek (2 , &U _fil . *U &U _fil 5 ]
-[; ;SDCard.c: 242: fprintf(&fil, "v%s;lt%ld;lo%s;r%s;c%s;k%s;h%s;d%s;f%s\n", string_dado.vel, string_dado.lt, string_dado.lo, "0", "0", "0", string_dado.hora, "N/A", string_dado.fence);
+[; ;SDCard.c: 242: fprintf(&fil, "v%s;lt%s;lo%s;r0;c0;k0;h%s;dN/A;f%s;\n", string_dado.vel, string_dado.lt, string_dado.lo, string_dado.hora, string_dado.fence);
 "242
-[e ( _fprintf (1 , , , , , , , , , (. , &U _fil :s 9C &U . _string_dado 6 &U . _string_dado 4 &U . _string_dado 5 :s 10C :s 11C :s 12C &U . _string_dado 1 :s 13C &U . _string_dado 8 ]
+[e ( _fprintf (1 , , , , , (. , &U _fil :s 8C &U . _string_dado 6 &U . _string_dado 4 &U . _string_dado 5 &U . _string_dado 1 &U . _string_dado 8 ]
 [; ;SDCard.c: 244: f_close(&fil);
 "244
 [e ( _f_close (1 &U _fil ]
@@ -4308,8 +4315,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "269
 [f ]
 "271
-[v F3496 `uc ~T0 @X0 1 s size ]
-[i F3496
+[v F3501 `uc ~T0 @X0 1 s size ]
+[i F3501
 -> -> 88 `i `uc
 ]
 "272
@@ -4334,13 +4341,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _f_mount (2 , -> -> 0 `i `uc &U _fs ]
 [; ;SDCard.c: 281: if (f_open(&fil, "extfence.txt", 0x01 ) == FR_OK)
 "281
-[e $ ! == -> ( _f_open (3 , , &U _fil :s 14C -> -> 1 `i `uc `i -> . `E3237 0 `i 398  ]
+[e $ ! == -> ( _f_open (3 , , &U _fil :s 9C -> -> 1 `i `uc `i -> . `E3237 0 `i 398  ]
 [; ;SDCard.c: 282: {
 "282
 {
 [; ;SDCard.c: 284: f_read(&fil, dado_arquivo, size, &br);
 "284
-[e ( _f_read (4 , , , &U _fil -> &U _dado_arquivo `*v -> F3496 `ui -> &U _br `*ui ]
+[e ( _f_read (4 , , , &U _fil -> &U _dado_arquivo `*v -> F3501 `ui -> &U _br `*ui ]
 [; ;SDCard.c: 286: f_close(&fil);
 "286
 [e ( _f_close (1 &U _fil ]
@@ -4455,11 +4462,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.c: 330: case 2:
 "330
 [e :U 410 ]
-[; ;SDCard.c: 331: for(i=0; i<13;i++)
+[; ;SDCard.c: 331: for(i=0; i<11;i++)
 "331
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 13 `i 411  ]
+[e $ < -> _i `i -> 11 `i 411  ]
 [e $U 412  ]
 "332
 [e :U 411 ]
@@ -4475,7 +4482,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "331
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 13 `i 411  ]
+[e $ < -> _i `i -> 11 `i 411  ]
 [e :U 412 ]
 "335
 }
@@ -4486,11 +4493,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.c: 338: case 3:
 "338
 [e :U 414 ]
-[; ;SDCard.c: 339: for(i=0; i<13;i++)
+[; ;SDCard.c: 339: for(i=0; i<12;i++)
 "339
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 13 `i 415  ]
+[e $ < -> _i `i -> 12 `i 415  ]
 [e $U 416  ]
 "340
 [e :U 415 ]
@@ -4506,7 +4513,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "339
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 13 `i 415  ]
+[e $ < -> _i `i -> 12 `i 415  ]
 [e :U 416 ]
 "343
 }
@@ -4748,17 +4755,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 "405
 [e :UE 439 ]
 }
-[a 14C 101 120 116 102 101 110 99 101 46 116 120 116 0 ]
+[a 9C 101 120 116 102 101 110 99 101 46 116 120 116 0 ]
 [a 1C 69 114 114 111 32 97 111 32 109 111 110 116 97 114 0 ]
 [a 3C 69 114 114 111 32 97 111 32 99 114 105 97 114 0 ]
 [a 4C 111 32 97 114 113 117 105 118 111 0 ]
 [a 2C 111 32 83 105 115 116 101 109 97 32 100 101 32 97 114 113 117 105 118 111 0 ]
 [a 6C 111 32 99 97 114 116 97 111 0 ]
-[a 8C 46 116 108 109 0 ]
+[a 7C 46 116 108 109 0 ]
 [a 5C 86 101 114 105 102 105 113 117 101 0 ]
-[a 7C 116 101 115 116 101 0 ]
-[a 13C 78 47 65 0 ]
-[a 10C 48 0 ]
-[a 11C 48 0 ]
-[a 12C 48 0 ]
-[a 9C 118 37 115 59 108 116 37 108 100 59 108 111 37 115 59 114 37 115 59 99 37 115 59 107 37 115 59 104 37 115 59 100 37 115 59 102 37 115 10 0 ]
+[a 8C 118 37 115 59 108 116 37 115 59 108 111 37 115 59 114 48 59 99 48 59 107 48 59 104 37 115 59 100 78 47 65 59 102 37 115 59 10 0 ]

@@ -55,9 +55,14 @@ typedef struct
 /******************************************************************************
 * Prototipos das funções
 ******************************************************************************/
-void armazena_latitude(void);
-void armazena_longitude(void);
-void verifica_diferenca(void);
+//void armazena_latitude(void);
+//void armazena_long(void);
+//void armazena_lat(void);
+void armazena_ltlo(unsigned char *buffer, unsigned char index);
+//void armazena_longitude(void);
+void diferenca(unsigned char index);
+//void diferenca_long(void);
+//void diferenca_lat(void);
 //void verifica_diferenca_minutos(unsigned char select_data);
 //void calcula_diff_graus(unsigned char select_data);
 //void calcula_diff_minutos(unsigned char select_data);

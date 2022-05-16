@@ -80,9 +80,9 @@ unsigned int time_atualizacao;
 
 unsigned char flag_anomalia;
 
-unsigned char *point_buff_gps_lat;
+volatile unsigned char *point_buff_gps_lat;
 
-unsigned char *point_buff_gps_long;
+volatile unsigned char *point_buff_gps_long;
 
 /******************************************************************************
 * Prototipos das funcoes
@@ -181,14 +181,14 @@ void inicializa_tarefas(void)
 	These values do no change during execution*/
 	tempo_backup[0] = TIME_500_MS; 
     tempo_backup[1] = TIME_1000_MS;
-    tempo_backup[2] = TIME_2000_MS;
-	tempo_backup[3] = TIME_1000_MS;
+    tempo_backup[2] = TIME_5000_MS;
+//	tempo_backup[3] = TIME_1000_MS;
 	/*init recent temporization values of each task. 
 	They�re used to decide which task must be executed*/
 	tempo_tarefa[0] = TIME_500_MS;
     tempo_tarefa[1] = TIME_1000_MS;
     tempo_tarefa[2] = TIME_5000_MS;
-    tempo_tarefa[3] = TIME_5000_MS;
+//    tempo_tarefa[3] = TIME_5000_MS;
 	//It indicates that there�s no task executing
     tarefa_em_execucao = NO;
 }
@@ -215,6 +215,7 @@ void escalonador()
             tempo_tarefa[cont] = tempo_backup[cont];
         }
     }
+    dados_gps_to_sd();
 }
 /******************************************************************************
  * Funcao:		void main(void)
@@ -275,28 +276,16 @@ void mensagem_inicial(void)
 
 void verifica_fence_externo(void)
 {
-    armazena_latitude();
-    armazena_longitude();
+    while(!(verifica_recep_gps()));
     
-    verifica_diferenca();
-//    calcula_diff_graus(0);
-//    
-//    verifica_diferenca_graus(1);
-//    calcula_diff_graus(1);
-//    
-//    
-//    verifica_diferenca_minutos(0);
-//    calcula_diff_minutos(0);
-//    
-//    verifica_diferenca_minutos(1);
-//    calcula_diff_minutos(1);
-    
-    
+    longitude_to_convert(0);
+    latitude_to_convert(1);
     fence_flag[0].point = verifica_plausibilidade_long();
     fence_flag[1].point = verifica_plausibilidade_lat();
-    
-    
-    
+  
+
+  
+  
     if(fence_flag[0].point || fence_flag[1].point)
     {
         fence_flag[2].point = 1;
@@ -321,17 +310,36 @@ void verifica_fence_externo(void)
 void verifica_dados_operacionais(void)
 {
     unsigned char flag_gps = 0;
-   
+    unsigned char vel = 50;
+    static unsigned char contador;
+    static unsigned long int velocidade_media;
     
-    if(sinaliza_mcp2515.trigger)
-    {
-        verifica_fence_externo();
-        if((atoi(Speed)*1.852) > 50)
-        {
-           time_sd = 0; 
-        }
-    }
-     
+    unsigned int velocidade_atual = (atoi(Speed)*1.852);
+    verifica_fence_externo();
+    
+//        verifica_fence_externo();
+//    if( velocidade_atual > vel)
+//    {
+//        velocidade_media = velocidade_media + velocidade_atual;
+// 
+//    }
+//    contador++;
+//    if(contador == 8)
+//    {
+//        velocidade_media = velocidade_media>>3;
+//        if(velocidade_media> velocidade_atual)
+//        {
+//            
+//            
+//            
+//        }
+//        
+//        
+//        
+//        contador = 0;
+//    }
+//     
+    
 
     
 }
@@ -354,7 +362,7 @@ void disparo_gravacao(void)
     {
         sinaliza_mcp2515.trigger = 0;
         fix_gps = fix();
-        if(fix_gps[0] == '0')
+        if(fix_gps[0] == '1')
         {     
             verifica_fence_externo();
             grava_sd();
@@ -433,8 +441,8 @@ void troca_de_tela(void)
         {
             if(!time_atualizacao)
             {
-                point_buff_gps_lat = Latitude();
-                point_buff_gps_long = Longitude();
+//                latitude(&point_buff_gps_lat);
+//                longitude(&point_buff_gps_long);
                 posicao_cursor_lcd(1,4);
                 escreve_frase_ram_lcd(point_buff_gps_lat);
                 posicao_cursor_lcd(2,4);
@@ -447,8 +455,8 @@ void troca_de_tela(void)
             {
                 state = 2;
                 LIMPA_DISPLAY();
-                point_buff_gps_lat = Latitude();
-                point_buff_gps_long = Longitude();
+//                latitude(&point_buff_gps_lat);
+//                longitude(&point_buff_gps_long);
                 posicao_cursor_lcd(1,0);
                 escreve_frase_ram_lcd("lt:");
                 posicao_cursor_lcd(1,4);
@@ -616,12 +624,12 @@ void troca_de_tela(void)
 void grava_sd(void)
 {
     unsigned char flag_gps = 0;
+    PORTBbits.RB3 = 0;
     desliga_uart();
     inicializa_SPI();
-    PORTBbits.RB3 = 0;
     escrita_sdcard();
-    PORTBbits.RB3 = 1;
+    
     inicializa_uart();
     desliga_SPI();
-    
+    PORTBbits.RB3 = 1;
 }

@@ -69,7 +69,7 @@ typedef struct
 //float convert_to_degrees(float);
 
     
-void stringcpy(char *str1, char *str2, int dir);
+void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 int GPSRead(unsigned char buff);
 //uint8_t GPSSecond();
 //uint8_t GPSMinute();
@@ -90,8 +90,13 @@ unsigned int GPSHour();
 unsigned int GPSyear();
 unsigned int GPSMonth();
 unsigned int GPSDay();
-char *Latitude(void);
-char *Longitude(void);
+void latitude_to_convert(unsigned char index);
+void longitude_to_convert(unsigned char index);
+char posicao_lat(void);
+char posicao_long(void);
+//void latitude(unsigned char *p_lat);
+//void longitude(unsigned char *p_long);
+
 char *fix(void);
 char *Speed(void);
 void dados_gps_to_sd(void);

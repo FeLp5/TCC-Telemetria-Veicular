@@ -5887,6 +5887,7 @@ RCSTA = 0x90;
 
 void desliga_uart(void)
 {
+
 TRISCbits.RC6 = 1;
 TRISCbits.RC7 = 1;
 

@@ -4044,20 +4044,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;uart.c: 220: {
 [e :U _desliga_uart ]
 [f ]
-[; ;uart.c: 221: TRISCbits.RC6 = 1;
-"221
-[e = . . _TRISCbits 1 4 -> -> 1 `i `uc ]
-[; ;uart.c: 222: TRISCbits.RC7 = 1;
+[; ;uart.c: 222: TRISCbits.RC6 = 1;
 "222
+[e = . . _TRISCbits 1 4 -> -> 1 `i `uc ]
+[; ;uart.c: 223: TRISCbits.RC7 = 1;
+"223
 [e = . . _TRISCbits 1 5 -> -> 1 `i `uc ]
-[; ;uart.c: 225: TXSTA = 0x00;
-"225
+[; ;uart.c: 226: TXSTA = 0x00;
+"226
 [e = _TXSTA -> -> 0 `i `uc ]
-[; ;uart.c: 227: RCSTA = 0x00;
-"227
-[e = _RCSTA -> -> 0 `i `uc ]
-[; ;uart.c: 228: }
+[; ;uart.c: 228: RCSTA = 0x00;
 "228
+[e = _RCSTA -> -> 0 `i `uc ]
+[; ;uart.c: 229: }
+"229
 [e :UE 396 ]
 }
 [a 1C 13 10 0 ]

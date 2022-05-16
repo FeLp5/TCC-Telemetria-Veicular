@@ -5962,7 +5962,7 @@ unsigned char flag:1;
 }bit_field_gps;
 
 # 72
-void stringcpy(char *str1, char *str2, int dir);
+void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 int GPSRead(unsigned char buff);
 
 # 87
@@ -5972,8 +5972,13 @@ unsigned int GPSHour();
 unsigned int GPSyear();
 unsigned int GPSMonth();
 unsigned int GPSDay();
-char *Latitude(void);
-char *Longitude(void);
+void latitude_to_convert(unsigned char index);
+void longitude_to_convert(unsigned char index);
+char posicao_lat(void);
+char posicao_long(void);
+
+
+
 char *fix(void);
 char *Speed(void);
 void dados_gps_to_sd(void);
@@ -6141,9 +6146,9 @@ if(!f_fix)
 
 if(string_dado.data_name[0] != ' ' && string_dado.hora_name[0] != ' ')
 {
+data_nome(string_dado.data);
+hora_nome(string_dado.hora);
 
-
-strcpy(filename, "teste");
 strcat(filename, ".tlm");
 f_fix = 1;
 }
@@ -6157,7 +6162,7 @@ if (f_open(&fil, filename, 0x02 ) == FR_OK)
 {
 
 f_lseek(&fil, ((&fil)->fsize));
-fprintf(&fil, "v%s;lt%ld;lo%s;r%s;c%s;k%s;h%s;d%s;f%s\n", string_dado.vel, string_dado.lt, string_dado.lo, "0", "0", "0", string_dado.hora, "N/A", string_dado.fence);
+fprintf(&fil, "v%s;lt%s;lo%s;r0;c0;k0;h%s;dN/A;f%s;\n", string_dado.vel, string_dado.lt, string_dado.lo, string_dado.hora, string_dado.fence);
 
 f_close(&fil);
 }
@@ -6227,7 +6232,7 @@ dado++;
 break;
 
 case 2:
-for(i=0; i<13;i++)
+for(i=0; i<11;i++)
 {
 string_dado.lt[i] = *dado;
 dado++;
@@ -6235,7 +6240,7 @@ dado++;
 break;
 
 case 3:
-for(i=0; i<13;i++)
+for(i=0; i<12;i++)
 {
 string_dado.lo[i] = *dado;
 dado++;

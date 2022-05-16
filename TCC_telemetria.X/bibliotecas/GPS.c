@@ -25,25 +25,37 @@
 
 #include "GPS.h"
 #include "SDCard.h"
-
+#include "display_lcd.h"
+#include "fence.h"
 
 
 bit_field_gps gps_flag[6];
 
 
 int GPRMC_ok = 0, GPGGA_ok = 0;
+
 uint8_t char_number = 0, SentenceType = 0, Term;
-char sentence[6], rawTime[11], rawDate[7], rawSpeed[6], rawCourse[6], rawSatellites[3],
-     rawLatitude[13], rawLongitude[13], rawAltitude[7], buffer[12], rawFix[2];
 
+char sentence[6];
+char rawTime[11]; 
+char rawDate[7];
+char rawSpeed[6];
+char rawCourse[6];
+char rawSatellites[3];
+char rawAltitude[7];
+char buffer[12];
+char rawFix[2];
 
-void stringcpy(char *str1, char *str2, int dir)
+static char rawLatitude[11] = "00000000000";
+static char rawLongitude[12] = "000000000000";
+
+void stringcpy(char *str1, char *str2, int dir, unsigned char size)
 {
   uint8_t chr = 0;
 //  dir=0;
   do {
     str2[chr + dir] = str1[chr];
-  } while(str1[chr++] != '\0');
+  } while(str1[chr++] != '\0' && chr != size);
 }
 
 int GPSRead(unsigned char buff) 
@@ -69,7 +81,7 @@ int GPSRead(unsigned char buff)
     case ',':  // term end (new term start)
       buffer[char_number] = '\0';
       if(Term == 0) {
-        stringcpy(buffer, sentence, 0);
+        stringcpy(buffer, sentence, 0, 5);
         if(strcmp(sentence, "GPRMC") == 0)
           SentenceType = _GPRMC_;
         else if(strcmp(sentence, "GPGGA") == 0)
@@ -80,13 +92,14 @@ int GPSRead(unsigned char buff)
 
       // Time
       if(Term == 1 && SentenceType == _GPRMC_) {
-        stringcpy(buffer, rawTime, 0);
+        stringcpy(buffer, rawTime, 0, 6);
+
         gps_flag[0].flag = 1;
       }
 
       // Latitude
       if((Term == 3) && (SentenceType == _GPRMC_)) {
-        stringcpy(buffer, rawLatitude, 1);
+        stringcpy(buffer, rawLatitude, 1, 10);
         gps_flag[1].flag = 1;
       }
       // Latitude N/S
@@ -99,7 +112,7 @@ int GPSRead(unsigned char buff)
 
       // Longitude
       if((Term == 5) && (SentenceType == _GPRMC_)) {
-        stringcpy(buffer, rawLongitude, 1);
+        stringcpy(buffer, rawLongitude, 1, 11);
         gps_flag[2].flag = 1;
       }
       // Longitude E/W
@@ -112,7 +125,7 @@ int GPSRead(unsigned char buff)
 
       // Speed;
       if((Term == 7) && (SentenceType == _GPRMC_)) {
-        stringcpy(buffer, rawSpeed, 0);
+        stringcpy(buffer, rawSpeed, 0, 3);
         gps_flag[5].flag = 1;
       }
 
@@ -123,7 +136,7 @@ int GPSRead(unsigned char buff)
 
       // Date
       if(Term == 9 && SentenceType == _GPRMC_) {
-        stringcpy(buffer, rawDate, 0);
+        stringcpy(buffer, rawDate, 0, 6);
         gps_flag[3].flag = 1;
       }
 
@@ -139,7 +152,7 @@ int GPSRead(unsigned char buff)
 
       
      if((Term == 6) && (SentenceType == _GPGGA_)) {
-        stringcpy(buffer, rawFix, 0);
+        stringcpy(buffer, rawFix, 0, 2);
         gps_flag[4].flag = 1;
 //        rawFix = buffer;
       }
@@ -182,42 +195,85 @@ unsigned int GPSyear()
 }
 //
 
-char  *Latitude(void) 
+void latitude_to_convert(unsigned char index) 
 {   
-    strcpy(rawLatitude,"-2342.01673");
-  return  rawLatitude;
+    unsigned char i,j;
+    unsigned char latitude[9];//, teste[11] = "-2340.59642";
+//    strcpy(rawLatitude, "-2336.46650");
+    
+    j = 0;
+    for(i=0; i<12; i++)
+    {
+        if(rawLatitude[i] != '\0' && rawLatitude[i] != '-' && rawLatitude[i]!= '.' && j <9)
+        {
+        
+            latitude[j] = rawLatitude[i];
+            
+//            posicao_cursor_lcd(1,j);
+//            escreve_caractere_lcd(latitude[j]);
+//            __delay_ms(1000);
+            j++;
+            
+            
+        }   
+//        
+//        temp_buff_long++;
+    }
+    
+
+//    posicao_cursor_lcd(1,0);
+//    escreve_frase_ram_lcd(latitude);
+//    *p_lat = latitude;
+    armazena_ltlo(latitude, index);
 }
 //
-char *Longitude(void) 
+
+void longitude_to_convert(unsigned char index) 
 {
-    strcpy(rawLongitude, "-04630.24580");
-  return rawLongitude;
+    unsigned char i,j;
+    unsigned char longitude[11];
+//    strcpy(rawLongitude, "-04633.41479");
+    
+    j = 0;
+    for(i=0; i<12; i++)
+    {
+        if(rawLongitude[i] != '\0' && rawLongitude[i] != '-' && rawLongitude[i]!= '.' && j <10)
+        {
+        
+            longitude[j] = rawLongitude[i];
+            j++;
+        }   
+//        
+//        temp_buff_long++;
+    }
+   
+//    posicao_cursor_lcd(2,0);
+//    escreve_frase_ram_lcd(longitude);
+
+    armazena_ltlo(longitude, index);
+}
+
+char posicao_long(void) 
+{
+//   strcpy(rawLongitude, "-04633.94050");
+   return rawLongitude[0];
+}
+
+char posicao_lat(void) 
+{   
+//    strcpy(rawLatitude, "-2336.46653");
+    return rawLatitude[0];
 }
 
 char *fix(void)
 {
     return rawFix;
 }
-//
-//float Altitude()
-//{
-//  return atof(rawAltitude);
-//}
-//
-//uint8_t Satellites()
-//{
-//  return atoi(rawSatellites);
-//}
-//
+
 char *Speed()
 {
   return rawSpeed;
 }
-//
-//float Course()
-//{
-//  return atof(rawCourse);
-//}
 
 
 
@@ -229,7 +285,7 @@ void dados_gps_to_sd(void)
     monta_sd(3, rawLongitude);
     monta_sd(5, rawTime);
     monta_sd(6, rawDate);
-    monta_sd(7, rawSpeed);
+//    monta_sd(7, rawSpeed);
     return;
 }
 

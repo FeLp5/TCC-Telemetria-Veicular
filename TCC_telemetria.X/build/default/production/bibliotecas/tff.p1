@@ -3769,7 +3769,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;GPS.h: 52: {
 [; ;GPS.h: 53: unsigned char flag:1;
 [; ;GPS.h: 54: }bit_field_gps;
-[; ;GPS.h: 72: void stringcpy(char *str1, char *str2, int dir);
+[; ;GPS.h: 72: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 [; ;GPS.h: 73: int GPSRead(unsigned char buff);
 [; ;GPS.h: 87: unsigned int GPSSecond();
 [; ;GPS.h: 88: unsigned int GPSMinute();
@@ -3777,12 +3777,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;GPS.h: 90: unsigned int GPSyear();
 [; ;GPS.h: 91: unsigned int GPSMonth();
 [; ;GPS.h: 92: unsigned int GPSDay();
-[; ;GPS.h: 93: char *Latitude(void);
-[; ;GPS.h: 94: char *Longitude(void);
-[; ;GPS.h: 95: char *fix(void);
-[; ;GPS.h: 96: char *Speed(void);
-[; ;GPS.h: 97: void dados_gps_to_sd(void);
-[; ;GPS.h: 98: char verifica_recep_gps(void);
+[; ;GPS.h: 93: void latitude_to_convert(unsigned char index);
+[; ;GPS.h: 94: void longitude_to_convert(unsigned char index);
+[; ;GPS.h: 95: char posicao_lat(void);
+[; ;GPS.h: 96: char posicao_long(void);
+[; ;GPS.h: 100: char *fix(void);
+[; ;GPS.h: 101: char *Speed(void);
+[; ;GPS.h: 102: void dados_gps_to_sd(void);
+[; ;GPS.h: 103: char verifica_recep_gps(void);
 "60 bibliotecas/tff.c
 [v _FatFs `*S2 ~T0 @X0 1 s ]
 [; ;tff.c: 59: static

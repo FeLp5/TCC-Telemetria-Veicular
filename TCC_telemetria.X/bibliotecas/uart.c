@@ -218,6 +218,7 @@ void inicializa_uart(void)
 
 void desliga_uart(void)
 {
+    
 	PINO_TX    = 1; 				// Registrador responsavel pelo envio de dados via UART.
     PINO_RX    = 1; 				// Registrador responsavel pelo recebimento de dados via UART.
 	

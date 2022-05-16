@@ -31,11 +31,14 @@
 ******************************************************************************/
 
 
-const unsigned char fence_diff_lat[4][10]  = {"-234158961", "-234158961", "-234200179", "-234200179"};
-const unsigned char fence_diff_long[4][11] = {"-0463052101", "-0453008424", "-0453008424", "-0463052101"};
+const unsigned char fence_diff_lat[4][10]  = {"-233646653", "-233646653", "-234059642", "-234059642"};
+const unsigned char fence_diff_long[4][11] = {"-0463394050", "-0462941474", "-0462941474", "-0463394050"};
 
-char *temp_buff_lat; //=  "-2342.09112";
-char *temp_buff_long;// = "-04629.73479";
+char *temp_buff_long; //=  "-2342.09112";
+char *temp_buff_lat;
+
+//volatile unsigned char latitude_dado[9];
+volatile unsigned char dado[10];
 
 fence_ext_struct poligono_ext[2];
 //bit_field flag[3];
@@ -46,19 +49,10 @@ fence_ext_struct poligono_ext[2];
 ******************************************************************************/
 
 long int convert_to_int(const unsigned char *p_buff);
-long int convert_to_int_point(const unsigned char *p_buff);
+unsigned long long int convert_to_int_point_long(void);
+long int convert_to_int_point_lat(void);
 /*****************************************************************************/
 
-/******************************************************************************
- * Funcao:		void armazena_longitude(void)
- * Entrada:		Nenhuma (void)
- * Saída:		Nenhuma (void)
- * Descrição:	Armazena longitude no buffers
- *****************************************************************************/
-void armazena_longitude(void)
-{
-    temp_buff_long = Longitude();
-}
 
 
 /******************************************************************************
@@ -67,10 +61,79 @@ void armazena_longitude(void)
  * Saída:		Nenhuma (void)
  * Descrição:	Armazena longitude no buffers
  *****************************************************************************/
-void armazena_latitude(void)
+void armazena_ltlo(unsigned char *buffer, unsigned char index)
 {
-    temp_buff_lat = Latitude();
+//    longitude_to_convert(&temp_buff_long);
+    unsigned char i, j;
+//    static unsigned char index = 0;
+    
+    
+    
+    switch(index)
+    {
+        case 1:    
+            j = 0;
+            for(i=0; i<10; i++)
+            {
+                if(*buffer != '\0')
+                {
+
+                    dado[j] = *buffer;
+                    j++;
+                }   
+        //        
+                buffer++;
+            }
+    
+        break;
+        
+        default:
+            j = 0;
+            for(i=0; i<11; i++)
+            {
+                if(*buffer != '\0')
+                {
+
+                    dado[j] = *buffer;
+                    j++;
+                }   
+        //        
+                buffer++;
+            }
+        break;
+                    
+        
+    }
+
+    diferenca(index);
+    
+
+
+    
 }
+
+
+//void armazena_lat(void)
+//{
+//    unsigned char i, j;
+//    j = 0;    
+//    latitude_to_convert(&temp_buff_lat);
+//    for(i=0; i<10; i++)
+//    {
+//        if(*temp_buff_lat != '\0' && *temp_buff_lat != '-')
+//        {
+//        
+//            latitude_dado[i] = *temp_buff_lat;
+//            j++;
+//        }   
+////        
+//            
+//       temp_buff_lat++;
+//    }
+////    posicao_cursor_lcd(1,0);
+////    escreve_frase_ram_lcd(latitude_dado);
+//    
+//}
 
 
 /******************************************************************************
@@ -79,14 +142,39 @@ void armazena_latitude(void)
  * Saída:		Nenhuma (void)
  * Descrição:	Armazena longitude no buffers
  *****************************************************************************/
-void verifica_diferenca(void)
+void diferenca(unsigned char index)
 {
-    poligono_ext[0].diff_long = convert_to_int(fence_diff_long[0]) - convert_to_int_point(temp_buff_long);
+    unsigned long int valor_lat, valor_long;
+    
+    switch(index)
+    {
+        case 1:
+            valor_lat = convert_to_int_point_lat();
+            poligono_ext[0].diff_lat  = convert_to_int(fence_diff_lat[0]) - valor_lat;
+            poligono_ext[1].diff_lat  = convert_to_int(fence_diff_lat[2]) - valor_lat;
+            posicao_cursor_lcd(1,0);
+            escreve_inteiro_lcd(valor_lat);
+        break;
+        
+        default:
+            valor_long = convert_to_int_point_long();
+            poligono_ext[0].diff_long = convert_to_int(fence_diff_long[0]) - valor_long;
+            poligono_ext[1].diff_long = convert_to_int(fence_diff_long[2]) - valor_long;
+            posicao_cursor_lcd(2,0);
+            escreve_inteiro_lcd(valor_long);
+        break;
+    }
+    
+
+
+    
+    
+    
 //    posicao_cursor_lcd(1,0);
-//    escreve_inteiro_lcd(poligono_ext[0].diff_long);
-    poligono_ext[1].diff_long = convert_to_int(fence_diff_long[2]) - convert_to_int_point(temp_buff_long);
-    poligono_ext[0].diff_lat  = convert_to_int(fence_diff_lat[0]) - convert_to_int_point(temp_buff_lat);
-    poligono_ext[1].diff_lat  = convert_to_int(fence_diff_lat[2]) - convert_to_int_point(temp_buff_lat);
+//    escreve_inteiro_lcd(valor_long);
+//    posicao_cursor_lcd(2,0);
+//    escreve_inteiro_lcd(poligono_ext[1].diff_long );
+    
 }
 
 /******************************************************************************
@@ -155,72 +243,13 @@ void verifica_diferenca(void)
  * Saída:		Nenhuma (void)
  * Descrição:	Armazena longitude no buffers
  *****************************************************************************/
-//void verifica_diferenca_minutos(unsigned char select_data)
+//void diferenca_lat(void)
 //{
-//    unsigned char point, point_index_lat ,point_index_long;
-//    unsigned char i, j;
-//    
-//    point_index_lat = 0;
-//    point_index_long = 0;
-//    point = 0;
-//    switch(select_data)
-//    {
-//        case 1:
-//            while(point<4)
-//            {
-//                for(i=6; i<11; i++)
-//                {
-//                    if(point == 0 || point == 2)
-//                    {
-//                        if(point == 2 && !point_index_lat)
-//                        {
-//                            point_index_lat++;
-//                        }
-//                        for(j= 0; i < 11; j++)
-//                        {
-//                            poligono_ext[point_index_lat].fence_lat_min[j] = fence_diff_lat[point][i];
-//                            poligono_ext[point_index_lat].point_lat_min[j] = temp_buff_lat[i];
-//                                i++;
-//                        }
-//                    }
-//                    else
-//                    {
-//                        break;
-//                    }    
-//                }
-//                point++;
-//            }
-//            break;
-//            
-//        case 0:
-//            while(point<4)
-//            {
-//                for(i=7; i<12; i++)
-//                {
-//                    if(point == 0 || point == 2)
-//                    {
-//                        if(point == 2 && !point_index_long)
-//                        {
-//                            point_index_long++;
-//                        }
-//
-//                        for(j= 0; i < 12; j++)
-//                        {
-//                            poligono_ext[point_index_long].fence_long_min[j] = fence_diff_long[point][i];
-//                            poligono_ext[point_index_long].point_long_min[j] = temp_buff_long[i];
-//                            i++;
-//                        }
-//                    }
-//                    else
-//                    {
-//                        break;
-//                    }
-//
-//                }
-//                point++;
-//            }
-//            break;     
-//    }  
+//    unsigned long int valor_lat;
+//    valor_lat = convert_to_int_point_lat();
+//    poligono_ext[0].diff_lat  = convert_to_int(fence_diff_lat[0]) - valor_lat;
+//    poligono_ext[1].diff_lat  = convert_to_int(fence_diff_lat[2]) - valor_lat;
+   
 //}
 
 
@@ -281,7 +310,8 @@ void verifica_diferenca(void)
  *****************************************************************************/
 unsigned char verifica_plausibilidade_long(void)
 {
-    switch(temp_buff_long[0])
+    char posicao = posicao_long(); 
+    switch(posicao)
     {
         case '-':
             if(
@@ -311,7 +341,7 @@ unsigned char verifica_plausibilidade_long(void)
             }
             else if(
                     (poligono_ext[0].diff_long == 0 ||
-                    poligono_ext[0].diff_long == 0 ))
+                    poligono_ext[1].diff_long == 0 ))
             {
                 return 0;
             }
@@ -334,8 +364,8 @@ unsigned char verifica_plausibilidade_long(void)
  *****************************************************************************/
 unsigned char verifica_plausibilidade_lat(void)
 {
-    unsigned char flag = 0;
-    switch(temp_buff_lat[0])
+    char posicao = posicao_lat(); 
+    switch(posicao)
     {
         case '-':
             if(
@@ -345,11 +375,10 @@ unsigned char verifica_plausibilidade_lat(void)
                 return 0;
             }
             else if(
-                    (poligono_ext[0].diff_lat == 0 &&
-                    poligono_ext[0].diff_lat == 0)) 
+                    (poligono_ext[0].diff_lat == 0 ||
+                    poligono_ext[1].diff_lat == 0)) 
   
             {
-                
                 return 0;
             }
             else
@@ -366,14 +395,14 @@ unsigned char verifica_plausibilidade_lat(void)
                 return 0;
             }
             else if(
-                    (poligono_ext[0].diff_lat >= 0  &&  
+                    (poligono_ext[0].diff_lat >= 0  ||  
                     poligono_ext[1].diff_lat <= 0))
             {
                 return 0;
             }
             else if(
                     (poligono_ext[0].diff_lat == 0 ||
-                    poligono_ext[0].diff_lat == 0))
+                    poligono_ext[1].diff_lat == 0))
             {
                 return 0;
             }
@@ -390,36 +419,60 @@ unsigned char verifica_plausibilidade_lat(void)
 
 long int convert_to_int(const unsigned char *p_buff)
 {
-    unsigned char *convert;
 //    return strtol(p_buff, &convert, 10);
     p_buff++;
     return atol(p_buff);
 //    return atoi(p_buff);
 }
 
-long int convert_to_int_point(const unsigned char *p_buff)
+long int convert_to_int_point_lat(void)
 {
-    unsigned char temp_str[12], convert_str[10];
-    strcpy(temp_str, p_buff);
+    unsigned char **temp_str_lat = temp_buff_lat; 
+    unsigned char convert_str_lat[9];
+    
+    unsigned char i, j;
 
-    unsigned i, j;
     j= 0;
-    for(i=0; i<12;i++)
+    for(i=0; i<10;i++)
     {
-        if((temp_str[i] != '.') && (temp_str[i] != '-') && (temp_str[i] != '\0'))
+        if(dado[i] != '\0')
         {
 
-               convert_str[j] =  temp_str[i];
+               convert_str_lat[j] =  dado[i];
                j++;
         }  
-
     }
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd(convert_str);
-//    __delay_ms(1000);
-//    return strtol(p_buff, &convert, 10);
-    return (atol(convert_str));
+
+    return (atol(convert_str_lat));
+////    
+//
+//    
+//    
 //    return atoi(p_buff);
+}
+
+
+unsigned long long int convert_to_int_point_long(void)
+{
+    unsigned char *p;; 
+    unsigned char i, j;
+    unsigned char convert_str_long[10];
+    
+    
+    j = 0;
+    for(i=0; i<10;i++)
+    {
+        if(dado[i]  != '\0')
+        {
+
+               convert_str_long[j] =  dado[i];
+               j++;
+        } 
+    }
+//    posicao_cursor_lcd(2,0);
+//    escreve_frase_ram_lcd(convert_str_long);
+    return (atol(convert_str_long));
+    
 }
 
 /*Final do Arquivo modelo.c **************************************************/
