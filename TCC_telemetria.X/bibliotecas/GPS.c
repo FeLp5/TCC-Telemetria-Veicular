@@ -46,8 +46,8 @@ char rawAltitude[7];
 char buffer[12];
 char rawFix[2];
 
-static char rawLatitude[11] = "00000000000";
-static char rawLongitude[12] = "000000000000";
+char rawLatitude[11];
+char rawLongitude[12];
 
 void stringcpy(char *str1, char *str2, int dir, unsigned char size)
 {
@@ -55,7 +55,7 @@ void stringcpy(char *str1, char *str2, int dir, unsigned char size)
 //  dir=0;
   do {
     str2[chr + dir] = str1[chr];
-  } while(str1[chr++] != '\0' && chr != size);
+  } while(str1[chr++] != '\0');
 }
 
 int GPSRead(unsigned char buff) 
@@ -193,46 +193,31 @@ unsigned int GPSyear()
 {
   return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
 }
-//
+
 
 void latitude_to_convert(unsigned char index) 
 {   
     unsigned char i,j;
     unsigned char latitude[9];//, teste[11] = "-2340.59642";
-//    strcpy(rawLatitude, "-2336.46650");
+    strcpy(rawLatitude, "-2337.66653");
     
     j = 0;
     for(i=0; i<12; i++)
     {
         if(rawLatitude[i] != '\0' && rawLatitude[i] != '-' && rawLatitude[i]!= '.' && j <9)
         {
-        
             latitude[j] = rawLatitude[i];
-            
-//            posicao_cursor_lcd(1,j);
-//            escreve_caractere_lcd(latitude[j]);
-//            __delay_ms(1000);
             j++;
-            
-            
         }   
-//        
-//        temp_buff_long++;
     }
-    
-
-//    posicao_cursor_lcd(1,0);
-//    escreve_frase_ram_lcd(latitude);
-//    *p_lat = latitude;
     armazena_ltlo(latitude, index);
 }
-//
 
 void longitude_to_convert(unsigned char index) 
 {
     unsigned char i,j;
     unsigned char longitude[11];
-//    strcpy(rawLongitude, "-04633.41479");
+    strcpy(rawLongitude, "-04639.81479");
     
     j = 0;
     for(i=0; i<12; i++)
@@ -243,13 +228,7 @@ void longitude_to_convert(unsigned char index)
             longitude[j] = rawLongitude[i];
             j++;
         }   
-//        
-//        temp_buff_long++;
     }
-   
-//    posicao_cursor_lcd(2,0);
-//    escreve_frase_ram_lcd(longitude);
-
     armazena_ltlo(longitude, index);
 }
 
@@ -265,15 +244,43 @@ char posicao_lat(void)
     return rawLatitude[0];
 }
 
+
+char *latitude_to_display(void) 
+{   
+//    strcpy(rawLatitude, "-2336.46653");
+    return rawLatitude;
+}
+
+char *longitude_to_display(void) 
+{   
+//    strcpy(rawLatitude, "-2336.46653");
+    return rawLongitude;
+}
+
+
 char *fix(void)
 {
     return rawFix;
 }
 
+
+
+
 char *Speed()
 {
   return rawSpeed;
 }
+
+
+
+void mostra_dados_display(void)
+{
+    posicao_cursor_lcd(1,4);
+    escreve_frase_ram_lcd(rawLatitude);
+    posicao_cursor_lcd(2,4);
+    escreve_frase_ram_lcd(rawLongitude);
+}
+
 
 
 
@@ -285,9 +292,13 @@ void dados_gps_to_sd(void)
     monta_sd(3, rawLongitude);
     monta_sd(5, rawTime);
     monta_sd(6, rawDate);
-//    monta_sd(7, rawSpeed);
+    monta_sd(7, rawSpeed);
     return;
 }
+
+
+
+
 
 
 char verifica_recep_gps(void)

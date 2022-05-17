@@ -21,7 +21,6 @@
 #include "display_lcd.h"
 #include "tff.h"
 #include "diskio.h"
-//#include "SHRC.h"
 #include <string.h>
 #include "GPS.h"
 #include "uart.h"
@@ -29,24 +28,17 @@
 /******************************************************************************
 * Variaveis Globais
 ******************************************************************************/
-
-// File to read================================================================= 
 BYTE filename[20];
 FATFS fs;
 FIL fil;
 BYTE dado_arquivo[20];
-//fat_time *time;
 string_tel string_dado;
 unsigned char data_hoje;
-//char buff[] = "0, -23.303930933 , -42.3309330933, 800, 45, 12764, 0";
-
-
-
 /******************************************************************************
 * Prototipos das funcoes
 ******************************************************************************/
-void sdc_wait_ready(void);
 
+void sdc_wait_ready(void);
 void data_nome (unsigned char *p_buff);
 void hora_nome (unsigned char *p_buff);
 
@@ -109,9 +101,9 @@ static BYTE wait_ready (void)
 	DWORD timeout = 0x7FFF;
 	char msg[10];
 	
-	do
+	do{
 		res = leitura_SPI();
-	while ((res != 0xFF) && (--timeout));
+    }while ((res != 0xFF) && (--timeout));
 	
 	return res;
 }
@@ -211,35 +203,32 @@ void escrita_sdcard()
     static unsigned char f_fix = 0;
     WORD bw;
     PORTBbits.RB3 = 0;
-//    desliga_uart();
-//    inicializa_SPI();
     dados_gps_to_sd();
     f_mount(0,&fs);
-    
-//    posicao_cursor_lcd(1,8);
-//    escreve_frase_ram_lcd(string_dado.vel);
     if(!f_fix)
     {  
-
         if(string_dado.data_name[0] != ' ' && string_dado.hora_name[0] != ' ')
         {
-            data_nome(string_dado.data);
-            hora_nome(string_dado.hora);
-//            strcpy(filename, "teste2");
+//            data_nome(string_dado.data);
+//            hora_nome(string_dado.hora);
+            strcpy(filename, "teste3");
             strcat(filename, ".tlm");
             f_fix = 1;
         }
-
-        
     } 
+    
     if(f_fix)
     {
-        
         if (f_open(&fil, filename, FA_WRITE ) == FR_OK)  /* Open or create a file */
         {	
 
             f_lseek(&fil, fsize(&fil));
-            fprintf(&fil, "v%s;lt%s;lo%s;r0;c0;k0;h%s;dN/A;f%s;\n", string_dado.vel, string_dado.lt, string_dado.lo, string_dado.hora, string_dado.fence);
+            fprintf(&fil, "v%s;", string_dado.vel);
+            fprintf(&fil, "lt%c%s;lo%c%s;", posicao_lat() ,string_dado.lt, posicao_long(),string_dado.lo);
+            fprintf(&fil, "r0;c0;k0;");
+            fprintf(&fil, "h%s;dN/A;", string_dado.hora);
+            fprintf(&fil, "f%s;\n", string_dado.fence);
+            
             /* Close the file */
             f_close(&fil);	
         }
@@ -251,8 +240,6 @@ void escrita_sdcard()
         }
     }
     PORTBbits.RB3 = 1; 
-//    desliga_SPI();
-//    inicializa_uart();
     
     return;
 }
@@ -301,7 +288,7 @@ char *leitura_sdcard(unsigned char num_spot)
 
 /******************************************************************************
  * Funcao:		void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
- * Entrada:		unsigned char index, unsigned char *dado, float dado_localizacao
+ * Entrada:		unsigned char index, unsigned char *dado
  * Saida:		Nenhuma (void)
  * Descricao:	Realiza a transferencia das informacoes para gravar no sdcard
  *****************************************************************************/
@@ -328,26 +315,37 @@ void monta_sd(unsigned char index, unsigned char *dado)
         break;
         
         case 2:
+            dado++;
             for(i=0; i<11;i++)
             {
-                string_dado.lt[i] = *dado;
+                if(*dado != '-')
+                {
+                    string_dado.lt[i] = *dado;
+                }
                 dado++;
             }
         break;
         
        case 3:
+            dado++;
             for(i=0; i<12;i++)
             {
-                string_dado.lo[i] = *dado;
+                if(*dado != '-')
+                {
+                    string_dado.lo[i] = *dado;
+                }
                 dado++;
             }
         break;
         
         case 4:
             //monta string do estado do fence
-            for(i=0; i<size;i++)
+            for(i=0; i<6;i++)
             {
-                string_dado.fence[i] = *dado;
+                if(*dado != ' ' && *dado != '\0')
+                {
+                    string_dado.fence[i] = *dado;
+                }
                 dado++;
             }
         break;
@@ -362,7 +360,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
         
                 
         case 6:
-            for(i=0; i<6;i++)
+            for(i=0; i<4;i++)
             {
                 string_dado.data_name[i] = *dado;
                 dado++;
@@ -372,9 +370,14 @@ void monta_sd(unsigned char index, unsigned char *dado)
         case 7:
             for(i=0; i<6;i++)
             {
-                string_dado.vel[i] = *dado;
+                if(*dado != ' ' && *dado != '\0')
+                {
+                    string_dado.vel[i] = *dado;
+                }
+               
                 dado++;
             }
+
         break;
            
     }
@@ -393,6 +396,14 @@ void data_nome (unsigned char *p_buff)
     }
 //    strcpy(filename, string_dado.data_name);
 }
+
+
+/******************************************************************************
+ * Funcao:		void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
+ * Entrada:		unsigned char index, unsigned char *dado, float dado_localizacao
+ * Saida:		Nenhuma (void)
+ * Descricao:	Realiza a montagem do nome do arquivo
+ *****************************************************************************/
 
 void hora_nome (unsigned char *p_buff)
 {

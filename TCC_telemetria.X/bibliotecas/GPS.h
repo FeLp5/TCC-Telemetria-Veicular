@@ -55,35 +55,10 @@ typedef struct
 /******************************************************************************
 * Prototipos de funcoes
 ******************************************************************************/
-//void tratamento_uart(unsigned char received_char); 
-//void gps(void);
-//unsigned long int get_gpstime();
-//float get_latitude(unsigned char);
-//float get_longitude(unsigned char);
-//unsigned long int get_dt(unsigned char);
-//void convert_time_to_utc(unsigned long int);
-////void convert_time_to_utc(unsigned char *data);
-//void gps_sd(void);
-////void convert_time_to_utc(int *hora, int *min, int *seg);
-//unsigned char convert_to_date(unsigned char dt[]);
-//float convert_to_degrees(float);
 
-    
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 int GPSRead(unsigned char buff);
-//uint8_t GPSSecond();
-//uint8_t GPSMinute();
-//uint8_t GPSHour();
-//uint8_t GPSDay();
-//uint8_t GPSMonth();
-//uint8_t GPSyear();
-//float parse_rawDegree(char *term_);
-//float Latitude();
-//float Longitude();
-//float Altitude();
-//uint8_t Satellites();
-//float Speed();
-//float Course();
+
 unsigned int GPSSecond();
 unsigned int GPSMinute();
 unsigned int GPSHour();
@@ -94,13 +69,13 @@ void latitude_to_convert(unsigned char index);
 void longitude_to_convert(unsigned char index);
 char posicao_lat(void);
 char posicao_long(void);
-//void latitude(unsigned char *p_lat);
-//void longitude(unsigned char *p_long);
-
+char *latitude_to_display(void);
+char *longitude_to_display(void);
 char *fix(void);
 char *Speed(void);
 void dados_gps_to_sd(void);
 char verifica_recep_gps(void);
+void mostra_dados_display(void);
 /*****************************************************************************/
 
 #ifdef __cplusplus

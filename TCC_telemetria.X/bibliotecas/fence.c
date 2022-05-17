@@ -152,16 +152,16 @@ void diferenca(unsigned char index)
             valor_lat = convert_to_int_point_lat();
             poligono_ext[0].diff_lat  = convert_to_int(fence_diff_lat[0]) - valor_lat;
             poligono_ext[1].diff_lat  = convert_to_int(fence_diff_lat[2]) - valor_lat;
-            posicao_cursor_lcd(1,0);
-            escreve_inteiro_lcd(valor_lat);
+//            posicao_cursor_lcd(1,0);
+//            escreve_inteiro_lcd(valor_lat);
         break;
         
         default:
             valor_long = convert_to_int_point_long();
             poligono_ext[0].diff_long = convert_to_int(fence_diff_long[0]) - valor_long;
             poligono_ext[1].diff_long = convert_to_int(fence_diff_long[2]) - valor_long;
-            posicao_cursor_lcd(2,0);
-            escreve_inteiro_lcd(valor_long);
+//            posicao_cursor_lcd(2,0);
+//            escreve_inteiro_lcd(valor_long);
         break;
     }
     

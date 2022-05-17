@@ -213,8 +213,12 @@ void inicializa_uart(void)
     TXSTA = 0x20;  	/* Enable Transmit(TX) */ 
     RCSTA = 0x90;  	/* Enable Receive(RX) & Serial */
 }
-
-/*********************************FIM****************************************/
+/******************************************************************************
+ * Funcao:		void desliga_uart(void)
+ * Entrada:		Nenhuma.
+ * Saída:	    Nenhuma (void)
+ * Descrição:	Essa função desliga o periferico UART.
+ *****************************************************************************/
 
 void desliga_uart(void)
 {
@@ -226,4 +230,6 @@ void desliga_uart(void)
     TXSTA = 0x00;  	/* Enable Transmit(TX) */ 
     
     RCSTA = 0x00;  	/* Enable Receive(RX) & Serial */
+    RCREG = 0x00;
 }
+/*********************************FIM****************************************/

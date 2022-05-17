@@ -65,11 +65,19 @@ void inicializa_SPI(void)
     SSPCON1bits.SSPEN = 1;
 }
 
+/******************************************************************************
+ * Funcao:		void desliga_SPI(void)
+ * Entrada:		Nenhuma.
+ * Saída:	    Nenhuma (void)
+ * Descrição:	Essa função desliga o periferico SPI.
+ *****************************************************************************/
+
 void desliga_SPI(void)
 {
     SSPSTAT = 0x00;			// power on state 
 	SSPCON1 = 0x00;
     SSPCON1bits.SSPEN = 0;
+    SSPBUF  = 0x00;
 }
 
 
@@ -105,7 +113,7 @@ void escreve_SPI(unsigned char dado)
 //    while(!SSPSTATbits.BF);
 }
 
-
+/*********************************FIM****************************************/
 
  
 

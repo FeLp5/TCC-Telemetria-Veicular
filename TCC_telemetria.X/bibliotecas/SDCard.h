@@ -54,13 +54,9 @@ typedef struct{
     unsigned char hora_name[2];
     unsigned char lt[13];
     unsigned char lo[13];
-//    unsigned char rpm[4];
     unsigned char vel[3];
-//    unsigned char comb[3];
-//    unsigned char odometro_total[4];
     unsigned char dtc;
-    unsigned char fence[6];
-    long int VIN;
+    unsigned char fence[10];
 }string_tel;
 
 
@@ -70,8 +66,6 @@ typedef struct{
 * Prototipos das funções
 ******************************************************************************/
 void sdcard_init(void);
-//void escrita_sdcard(unsigned char *dado);
-//void escrita_sdcard(void);
 void escrita_sdcard(void);
 char *leitura_sdcard(unsigned char num_spot);
 void monta_sd(unsigned char index,  unsigned  char *dado);
