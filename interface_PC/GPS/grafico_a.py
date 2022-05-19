@@ -15,6 +15,12 @@ class Painel_grafico_A(wx.Panel):
         
         
     def atualiza(self):
+        
+        try:
+            self.canvas.Hide()
+        except:
+            pass
+            
         self.panel = wx.Panel(self)
         self.count = 0.0
         
@@ -44,7 +50,9 @@ class Painel_grafico_A(wx.Panel):
         
         
     def aguarda(self):
-        
+
+            
+
         self.j = 0
         print("aguarda")
         def tempo_alcancado(event):
@@ -81,22 +89,28 @@ class Painel_grafico_A(wx.Panel):
     def atual(self):
         
         i = 0
+        try:
+            self.canvas.Show()
+        except:
+            pass
+
+            
         velocidade = str(vars.velocidade)
         print(( velocidade ))
         velocidade_list = velocidade.split(',')
         velocidade_list = [int(i) for i in velocidade_list]
         print(( velocidade_list ))
         # valor = self.GetSize()
-        figure = Figure()
-        axes = figure.add_subplot(111)
-        axes.set_title('Velocidades', fontstyle='normal', fontsize="10", verticalalignment='baseline')
-        canvas = FigureCanvas(self, -1, figure)
+        self.figure = Figure()
+        self.axes = self.figure.add_subplot(111)
+        self.axes.set_title('Velocidades', fontstyle='normal', fontsize="10", verticalalignment='baseline')
+        self.canvas = FigureCanvas(self, -1, self.figure)
         t_x, t_y = vars.size_window
         altura = int(t_y/3*1.5)
         # print(("Altura " , altura))
         largura = int(t_x/7*5)
         # print(("Largura " , largura))
-        canvas.SetSize((largura, altura))
+        self.canvas.SetSize((largura, altura))
         
         # vars.speed_limit = [40,40,40,40,40,40]
         speed_limit = ''
@@ -124,13 +138,13 @@ class Painel_grafico_A(wx.Panel):
         item_a = item_a.split(',')
         item_a = [int(i) for i in item_a]
         
-        axes.bar(item_a, velocidade_list, color="gray")
-        axes.set_autoscale_on
-        axes.plot(item_a, speed_limit, 'r')
-        axes.legend(['Velocidade permitida', 'Velocidade atingida'])
-        axes.set_ylabel('Velocidade Km/h')
-        axes.set_xlabel('Medicoes')
-        axes.set_ymargin(4)
+        self.axes.bar(item_a, velocidade_list, color="gray")
+        self.axes.set_autoscale_on
+        self.axes.plot(item_a, speed_limit, 'r')
+        self.axes.legend(['Velocidade permitida', 'Velocidade atingida'])
+        self.axes.set_ylabel('Velocidade Km/h')
+        self.axes.set_xlabel('Medicoes')
+        self.axes.set_ymargin(4)
     
 
         

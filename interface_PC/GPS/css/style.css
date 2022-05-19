@@ -12,6 +12,7 @@ div img{margin: 1px;}
 div div{box-shadow: 0px 0px 0px #BCBCBC; height: 48px; background-color: white; width: 44%; border: 0px}
 p.text{font: 24px/24px square; padding-top: 3px}
 p.text2{font: 14px/16px square; padding-top: 10px}
+p.texto_tela{font: 12px/14px arial}
 
 table{border: 1px solid gray; padding: 0px; margin-left: 1%; font: 12px/14px arial; border-collapse: collapse; width: 98%; border: 2px solid }
 td{border: 1px solid gray; padding: 2px; margin: 0px;}

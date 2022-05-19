@@ -9,8 +9,8 @@ t_x, t_y = size_window
 
 cor_botoes = ""
 cor_botoes_ativos = "#BABABA"
-tema = ("", "", "")
-cor_fundo = ""
+# tema = ("", "", "")
+cor_fundo = "#CECECE"
 
 #flags
 flag_iniciar = 0

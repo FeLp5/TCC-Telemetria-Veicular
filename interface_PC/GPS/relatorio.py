@@ -13,7 +13,7 @@ class Relatorio(wx.Panel):
     flag_carreg = 0
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        self.SetBackgroundColour("")
+        self.SetBackgroundColour(vars.cor_fundo)
 
         self.html = wx.html2.WebView.New(self) # criando um novo WebView
         self.html.SetSize((vars.t_x/7*5, (vars.t_y/3*2)-40)) # definindo o tamanho

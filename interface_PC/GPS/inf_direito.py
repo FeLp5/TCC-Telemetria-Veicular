@@ -7,7 +7,7 @@ from relatorio import Relatorio
 import vars
 
 
-tema = ("", "", "")
+# tema = ("", "", "")
 
 
 class Painel_Branco(wx.Panel):
@@ -17,8 +17,8 @@ class Painel_Branco(wx.Panel):
 class Painel_inferior_direito(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)  
-        back_color, for_color, destaque = tema
-        self.SetBackgroundColour(back_color)   
+        # back_color, for_color, destaque = tema
+        self.SetBackgroundColour(vars.cor_fundo)   
         self.sizer = wx.BoxSizer()
         self.SetSizer(self.sizer)
     
