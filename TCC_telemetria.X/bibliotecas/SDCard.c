@@ -34,6 +34,15 @@ FIL fil;
 BYTE dado_arquivo[20];
 string_tel string_dado;
 unsigned char data_hoje;
+
+
+static unsigned char lt[12];
+static unsigned char lo[13];
+static unsigned char fence[7];
+static unsigned char vel[6];
+static unsigned char hora[6];
+static unsigned char data[6];
+
 /******************************************************************************
 * Prototipos das funcoes
 ******************************************************************************/
@@ -202,16 +211,16 @@ void escrita_sdcard()
     unsigned char i, j;
     static unsigned char f_fix = 0;
     WORD bw;
-    PORTBbits.RB3 = 0;
-    dados_gps_to_sd();
+//    PORTBbits.RB3 = 0;
+//    dados_gps_to_sd();
     f_mount(0,&fs);
     if(!f_fix)
     {  
-        if(string_dado.data_name[0] != ' ' && string_dado.hora_name[0] != ' ')
+        if(data[0] != ' ' && hora[0] != ' ')
         {
-//            data_nome(string_dado.data);
-//            hora_nome(string_dado.hora);
-            strcpy(filename, "teste3");
+//            data_nome(data);
+//            hora_nome(hora);
+            strcpy(filename, "teste3");;
             strcat(filename, ".tlm");
             f_fix = 1;
         }
@@ -223,11 +232,16 @@ void escrita_sdcard()
         {	
 
             f_lseek(&fil, fsize(&fil));
-            fprintf(&fil, "v%s;", string_dado.vel);
-            fprintf(&fil, "lt%c%s;lo%c%s;", posicao_lat() ,string_dado.lt, posicao_long(),string_dado.lo);
-            fprintf(&fil, "r0;c0;k0;");
-            fprintf(&fil, "h%s;dN/A;", string_dado.hora);
-            fprintf(&fil, "f%s;\n", string_dado.fence);
+
+//            posicao_cursor_lcd(1,0);
+//            escreve_frase_ram_lcd("???");
+            posicao_cursor_lcd(2,0);
+            escreve_frase_ram_lcd(lt);
+            fprintf(&fil, "v%s;lt%s;lo%s;", vel, lt, lo);
+            fprintf(&fil, "lt%s;lo%s;", lt, lo);
+//            fprintf(&fil, "r0;c0;k0;");
+            fprintf(&fil, "h%s;dN/A;", hora);
+            fprintf(&fil, "f%s;\n", fence);
             
             /* Close the file */
             f_close(&fil);	
@@ -239,7 +253,7 @@ void escrita_sdcard()
 
         }
     }
-    PORTBbits.RB3 = 1; 
+//    PORTBbits.RB3 = 1; 
     
     return;
 }
@@ -301,7 +315,10 @@ void monta_sd(unsigned char index, unsigned char *dado)
         case 0:
             for(i=0; i<6;i++)
             {
-                string_dado.hora[i] = *dado;
+                if(*dado != '\0' && *dado != '.')
+                {
+                   hora[i] = *dado; 
+                }
                 dado++;
             }
         break;
@@ -309,30 +326,33 @@ void monta_sd(unsigned char index, unsigned char *dado)
         case 1:
             for(i=0; i<6;i++)
             {
-                string_dado.data[i] = *dado;
-                dado++;
-            }
-        break;
-        
-        case 2:
-            dado++;
-            for(i=0; i<11;i++)
-            {
-                if(*dado != '-')
+                if(*dado != '\0')
                 {
-                    string_dado.lt[i] = *dado;
+                    data[i] = *dado;  
                 }
                 dado++;
             }
         break;
         
+        case 2:      
+            for(i=0; i<11;i++)
+            {
+                if(*dado != '\0')
+                {
+                    lt[i] = *dado;
+                }
+                dado++;
+            }
+            posicao_cursor_lcd(1,0);
+            escreve_frase_ram_lcd(lt);
+        break;
+        
        case 3:
-            dado++;
             for(i=0; i<12;i++)
             {
-                if(*dado != '-')
+                if(*dado != '\0')
                 {
-                    string_dado.lo[i] = *dado;
+                    lo[i] = *dado;
                 }
                 dado++;
             }
@@ -344,7 +364,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
             {
                 if(*dado != ' ' && *dado != '\0')
                 {
-                    string_dado.fence[i] = *dado;
+                    fence[i] = *dado;
                 }
                 dado++;
             }
@@ -372,7 +392,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
             {
                 if(*dado != ' ' && *dado != '\0')
                 {
-                    string_dado.vel[i] = *dado;
+                    vel[i] = *dado;
                 }
                
                 dado++;
@@ -394,7 +414,6 @@ void data_nome (unsigned char *p_buff)
         filename[i] = *p_buff;
         p_buff++;
     }
-//    strcpy(filename, string_dado.data_name);
 }
 
 

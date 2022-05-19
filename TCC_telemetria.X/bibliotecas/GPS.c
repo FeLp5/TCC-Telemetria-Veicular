@@ -46,8 +46,8 @@ char rawAltitude[7];
 char buffer[12];
 char rawFix[2];
 
-char rawLatitude[11];
-char rawLongitude[12];
+static char rawLatitude[12];
+static char rawLongitude[13];
 
 void stringcpy(char *str1, char *str2, int dir, unsigned char size)
 {
@@ -80,14 +80,21 @@ int GPSRead(unsigned char buff)
 
     case ',':  // term end (new term start)
       buffer[char_number] = '\0';
-      if(Term == 0) {
+      if(Term == 0) 
+      {
         stringcpy(buffer, sentence, 0, 5);
         if(strcmp(sentence, "GPRMC") == 0)
-          SentenceType = _GPRMC_;
+        {
+           SentenceType = _GPRMC_; 
+        }
         else if(strcmp(sentence, "GPGGA") == 0)
-               SentenceType = _GPGGA_;
-             else
-               SentenceType = _OTHER_;
+        {
+            SentenceType = _GPGGA_;
+        }
+        else
+        {
+            SentenceType = _OTHER_; 
+        }     
       }
 
       // Time
@@ -99,11 +106,15 @@ int GPSRead(unsigned char buff)
 
       // Latitude
       if((Term == 3) && (SentenceType == _GPRMC_)) {
-        stringcpy(buffer, rawLatitude, 1, 10);
+        if(rawFix[0] == '1')
+        {
+            stringcpy(buffer, rawLatitude, 1, 11);
+        }
         gps_flag[1].flag = 1;
       }
       // Latitude N/S
-      if((Term == 4) && (SentenceType == _GPRMC_)) {
+      if((Term == 4) && (SentenceType == _GPRMC_))
+      {
         if(buffer[0] == 'N')
           rawLatitude[0] = '0';
         else
@@ -112,7 +123,10 @@ int GPSRead(unsigned char buff)
 
       // Longitude
       if((Term == 5) && (SentenceType == _GPRMC_)) {
-        stringcpy(buffer, rawLongitude, 1, 11);
+          if(rawFix[0] == '1')
+          {
+               stringcpy(buffer, rawLongitude, 1, 11);
+          }
         gps_flag[2].flag = 1;
       }
       // Longitude E/W
@@ -129,36 +143,19 @@ int GPSRead(unsigned char buff)
         gps_flag[5].flag = 1;
       }
 
-      // Course
-//      if((Term == 8) && (SentenceType == _GPRMC_)) {
-//        stringcpy(buffer, rawCourse, 0);
-//      }
-
       // Date
       if(Term == 9 && SentenceType == _GPRMC_) {
         stringcpy(buffer, rawDate, 0, 6);
         gps_flag[3].flag = 1;
       }
-
-      // Satellites
-//      if((Term == 7) && (SentenceType == _GPGGA_)) {
-//        stringcpy(buffer, rawSatellites, 0);
-//      }
-
-      // Altitude
-//      if((Term == 9) && (SentenceType == _GPGGA_)) {
-//        stringcpy(buffer, rawAltitude, 0);
-//      }
-
       
      if((Term == 6) && (SentenceType == _GPGGA_)) {
         stringcpy(buffer, rawFix, 0, 2);
         gps_flag[4].flag = 1;
-//        rawFix = buffer;
       }
       Term++;
       char_number = 0;
-      break;
+    break;
 
     default:
       buffer[char_number++] = c;
@@ -167,39 +164,93 @@ int GPSRead(unsigned char buff)
 
   return 0;
 }
-//
-unsigned int GPSSecond() 
+
+
+
+
+/******************************************************************************
+ * Funcao:		unsigned int gps_segundos(void) 
+ * Entrada:		Nenhuma (void)
+ * Saida:		unsigned int
+ * Descricao:	retorna os segundos atuais
+ *****************************************************************************/
+unsigned int gps_segundos()
 {
   return ((rawTime[4] - '0') * 10 + (rawTime[5] - '0'));
 }
-unsigned int GPSMinute()
+
+/******************************************************************************
+ * Funcao:		unsigned int gps_minutos(void) 
+ * Entrada:		Nenhuma (void)
+ * Saida:		unsigned int
+ * Descricao:	retorna os minutos atuais
+ *****************************************************************************/
+unsigned int gps_minutos()
 {
   return ((rawTime[2] - '0') * 10 + (rawTime[3] - '0'));
 }
-unsigned int GPSHour()
+
+/******************************************************************************
+ * Funcao:		unsigned int gps_hora(void) 
+ * Entrada:		Nenhuma (void)
+ * Saida:		unsigned int
+ * Descricao:	retorna o hora atual
+ *****************************************************************************/
+
+unsigned int gps_hora()
 {
   return (((rawTime[0] - '0') * 10 + (rawTime[1] - '0')));
 }
-//
-unsigned int GPSDay() 
+
+/******************************************************************************
+ * Funcao:		unsigned int gps_dia(void) 
+ * Entrada:		Nenhuma (void)
+ * Saida:		unsigned int
+ * Descricao:	retorna o dia atual
+ *****************************************************************************/
+
+unsigned int gps_dia(void) 
 {
   return ((rawDate[0] - '0') * 10 + (rawDate[1] - '0'));
 }
-unsigned int GPSMonth() 
+
+
+/******************************************************************************
+ * Funcao:		unsigned int gps_mes(void) 
+ * Entrada:		Nenhuma (void)
+ * Saida:		unsigned int
+ * Descricao:	retorna o mes atual
+ *****************************************************************************/
+
+unsigned int gps_mes(void) 
 {
   return ((rawDate[2] - '0') * 10 + (rawDate[3] - '0'));
 }
-unsigned int GPSyear()
+
+/******************************************************************************
+ * Funcao:		unsigned int gps_ano(void)
+ * Entrada:		Nenhuma (void)
+ * Saida:		unsigned int
+ * Descricao:	retorna o ano tual
+ *****************************************************************************/
+
+unsigned int gps_ano(void)
 {
   return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
 }
 
+/******************************************************************************
+ * Funcao:		void latitude_to_convert(unsigned char index)
+ * Entrada:		Nenhuma (void)
+ * Saida:		Nenhuma (void)
+ * Descricao:	Envia latitude para a funcao do fence para conversao
+ *****************************************************************************/
 
-void latitude_to_convert(unsigned char index) 
+void latitude_to_convert(void) 
 {   
     unsigned char i,j;
     unsigned char latitude[9];//, teste[11] = "-2340.59642";
-    strcpy(rawLatitude, "-2337.66653");
+//    stringcpy("-2337.66653", rawLatitude, 0 , 11);
     
     j = 0;
     for(i=0; i<12; i++)
@@ -210,14 +261,21 @@ void latitude_to_convert(unsigned char index)
             j++;
         }   
     }
-    armazena_ltlo(latitude, index);
+    armazena_ltlo(latitude, 1);
 }
 
-void longitude_to_convert(unsigned char index) 
+/******************************************************************************
+ * Funcao:		void latitude_to_convert(unsigned char index)
+ * Entrada:		Nenhuma (void)
+ * Saida:		Nenhuma (void)
+ * Descricao:	Envia longitude para a funcao do fence para conversao
+ *****************************************************************************/
+
+void longitude_to_convert(void) 
 {
     unsigned char i,j;
     unsigned char longitude[11];
-    strcpy(rawLongitude, "-04639.81479");
+//    stringcpy("-04639.81479", rawLongitude, 0, 12);
     
     j = 0;
     for(i=0; i<12; i++)
@@ -229,7 +287,7 @@ void longitude_to_convert(unsigned char index)
             j++;
         }   
     }
-    armazena_ltlo(longitude, index);
+    armazena_ltlo(longitude, 0);
 }
 
 char posicao_long(void) 
@@ -244,17 +302,24 @@ char posicao_lat(void)
     return rawLatitude[0];
 }
 
-
-char *latitude_to_display(void) 
+char *latitude(void) 
 {   
-//    strcpy(rawLatitude, "-2336.46653");
     return rawLatitude;
 }
 
-char *longitude_to_display(void) 
+char *longitude(void) 
 {   
-//    strcpy(rawLatitude, "-2336.46653");
     return rawLongitude;
+}
+
+char *rawhora(void) 
+{   
+    return rawTime;
+}
+
+char *rawdata(void) 
+{   
+    return rawDate;
 }
 
 
@@ -264,13 +329,10 @@ char *fix(void)
 }
 
 
-
-
 char *Speed()
 {
   return rawSpeed;
 }
-
 
 
 void mostra_dados_display(void)
@@ -292,7 +354,7 @@ void dados_gps_to_sd(void)
     monta_sd(3, rawLongitude);
     monta_sd(5, rawTime);
     monta_sd(6, rawDate);
-    monta_sd(7, rawSpeed);
+//    monta_sd(7, rawSpeed);
     return;
 }
 
@@ -303,7 +365,6 @@ void dados_gps_to_sd(void)
 
 char verifica_recep_gps(void)
 {
-//    gps_flag[0].flag = 1;
     if(gps_flag[0].flag && gps_flag[1].flag && gps_flag[2].flag && gps_flag[3].flag && gps_flag[4].flag && gps_flag[5].flag)
     {        
         gps_flag[0].flag = 0;

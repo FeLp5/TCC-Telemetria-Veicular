@@ -156,7 +156,7 @@ void init_ports(void)
     TRISD = 0x00;           
     TRISA = 0b00000111; 
     TRISC = 0x01111111;
-    TRISE = 0b00000011;
+    TRISE = 0b00000111;
 
 }
 

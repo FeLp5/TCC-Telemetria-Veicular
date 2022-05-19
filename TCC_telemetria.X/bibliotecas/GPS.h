@@ -59,20 +59,26 @@ typedef struct
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 int GPSRead(unsigned char buff);
 
-unsigned int GPSSecond();
-unsigned int GPSMinute();
-unsigned int GPSHour();
-unsigned int GPSyear();
-unsigned int GPSMonth();
-unsigned int GPSDay();
-void latitude_to_convert(unsigned char index);
-void longitude_to_convert(unsigned char index);
+unsigned int gps_segundos();
+unsigned int gps_minutos();
+unsigned int gps_hora();
+unsigned int gps_ano();
+unsigned int gps_mes();
+unsigned int gps_dia();
+void latitude_to_convert(void);
+void longitude_to_convert(void);
 char posicao_lat(void);
 char posicao_long(void);
 char *latitude_to_display(void);
 char *longitude_to_display(void);
 char *fix(void);
 char *Speed(void);
+char *rawdata(void);
+char *rawhora(void);
+char *longitude(void);
+char *latitude(void);
+
+
 void dados_gps_to_sd(void);
 char verifica_recep_gps(void);
 void mostra_dados_display(void);

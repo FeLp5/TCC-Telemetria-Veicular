@@ -33,7 +33,7 @@
 
 #define NUM_CARACTERES				17
 
-#define NUMBER_OF_TASKS				4
+#define NUMBER_OF_TASKS				3
 
 #define TIME_150_MS					150   //time unit: ms
 #define TIME_50_MS                  50

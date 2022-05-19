@@ -52,11 +52,6 @@ typedef struct{
     unsigned char hora[11];
     unsigned char data_name[2];
     unsigned char hora_name[2];
-    unsigned char lt[13];
-    unsigned char lo[13];
-    unsigned char vel[3];
-    unsigned char dtc;
-    unsigned char fence[10];
 }string_tel;
 
 

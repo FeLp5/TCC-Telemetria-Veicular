@@ -811,12 +811,12 @@ DWORD get_fattime(void)
 {
     fat_time f_time;
     
-    f_time.hora = GPSHour() - 3;
-    f_time.min  = GPSMinute();
-    f_time.seg  = GPSSecond();
-    f_time.ano  = GPSyear() + 2000;
-    f_time.mes  = GPSMonth();
-    f_time.dia  = GPSDay();
+    f_time.hora = gps_hora() - 3;
+    f_time.min  = gps_minutos();
+    f_time.seg  = gps_segundos();
+    f_time.ano  = gps_ano() + 2000;
+    f_time.mes  = gps_mes();
+    f_time.dia  = gps_dia();
 // 
    return (DWORD)(f_time.ano - 60) << 25 |
           (DWORD)(f_time.mes) << 21 |
