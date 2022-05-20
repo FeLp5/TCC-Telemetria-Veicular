@@ -96,7 +96,12 @@ void troca_de_tela(void);
 void grava_sd(void);
 
 void recebe_dado_gps(void);
-//void stringcpy(char *str1, char *str2, int dir);
+
+static unsigned int dados_vel[3] = {0, 0, 0};
+static unsigned char dados_lat[3][11] = {"0000000000", "0000000000", "0000000000"};
+static unsigned char dados_long[3][12] = {"000000000000", "000000000000", "000000000000"};
+static unsigned char dados_hora[3][6] = {"000000", "000000", "000000"};
+static unsigned char dados_data[3][6] = {"000000", "000000", "000000"};
 
 /*****************************************************************************/
 /******************************************************************************
@@ -114,7 +119,7 @@ void __interrupt() isr(void)
     {
         PIR1bits.RCIF = 0;
         data_uart_recebe = recebe_dado_uart();
-        GPSRead(data_uart_recebe);
+        tratamento_uart(data_uart_recebe);
         PORTBbits.RB2 =	!PORTBbits.RB2;	
     } //End if interrupt Recepcao UART
 	
@@ -234,6 +239,7 @@ void main(void)
             sinaliza_int_timer = NO;  
             escalonador();			
         }    
+        gps();
     }
 }
 /******************************************************************************
@@ -282,7 +288,7 @@ void verifica_fence(void)
     if(fence_flag[0].point || fence_flag[1].point)
     {
         fence_flag[2].point = 1;
-        monta_sd(4, "FORA");
+        monta_sd(4, "FORA  ");
     }
     else
     {
@@ -302,86 +308,35 @@ void verifica_fence(void)
 
 void verifica_dados_operacionais(void)
 {
-    unsigned char flag_gps = 0;
-    unsigned char vel = 50;
-    unsigned char i = 0;
+    static unsigned char dado[6];
     static unsigned char contador_atual =0;
     static unsigned char contador_anterior =0;
-    static unsigned char contador_gravacoes = 0;
     static unsigned long int velocidade_media;
-    static unsigned long int velocidade_atual_int = 0;
-    
-    static unsigned char dados_vel[3][6] = {"000000", "000000", "000000"};
-    static unsigned char dados_lat[3][11] = {"0000000000", "0000000000", "0000000000"};
-    static unsigned char dados_long[3][12] = {"000000000000", "000000000000", "000000000000"};
-    static unsigned char dados_hora[3][6] = {"000000", "000000", "000000"};
-    static unsigned char dados_data[3][6] = {"000000", "000000", "000000"};
-    
-    static unsigned char *velocidade_atual;
-    velocidade_atual = Speed();
-//    posicao_cursor_lcd(1,0);
-//    escreve_inteiro_lcd(atoi(velocidade_atual)*1.852);
-//    posicao_cursor_lcd(2,0);
-//    escreve_inteiro_lcd(atoi(dados_vel[contador])*1.852);
-    verifica_fence();
-
+    static unsigned long int velocidade_atual_int = 0;    
+    static unsigned char *velocidade_atual;     
+//    verifica_fence();
     
     if(contador_atual >=3)
     {
-        time_sd = 0; 
-        monta_sd(0, dados_hora[contador_gravacoes]);
-        monta_sd(1, dados_data[contador_gravacoes]); 
-        monta_sd(2, dados_lat[contador_gravacoes]);
-        monta_sd(3, dados_long[contador_gravacoes]);
-        monta_sd(7, dados_vel[contador_gravacoes]);
-
-        contador_gravacoes++;
-        if(contador_gravacoes >=3)
-        {
-           contador_gravacoes = 0;
-           contador_atual = 0; 
-           contador_anterior  = contador_atual;
-        }
+        contador_atual = 0; 
+        contador_anterior  = contador_atual;
     }
     
-    
-    velocidade_atual_int = ((atoi(velocidade_atual)*1.852*100));
-    if((velocidade_atual_int >  atoi(dados_vel[2])) &&      
-        contador_atual<3)
+    velocidade_atual = Speed();
+    velocidade_atual_int = ((atoi(velocidade_atual)*1.852));
+    if((velocidade_atual_int > dados_vel[2]) && contador_atual<3)
     {
-//        ltoa(velocidade_atual,velocidade_atual_int/1.852 , 10);
-//        posicao_cursor_lcd(2,0);
-//        escreve_frase_ram_lcd(velocidade_atual);
-        if(velocidade_atual_int > atoi(dados_vel[contador_anterior]))
+        if(velocidade_atual_int > dados_vel[contador_anterior])
         {
-            strcpy(dados_vel[contador_atual], velocidade_atual);
+            dados_vel[contador_atual] = velocidade_atual_int;
             strcpy(dados_lat[contador_atual], latitude());
             strcpy(dados_long[contador_atual], longitude());
             strcpy(dados_hora[contador_atual], rawhora());
             strcpy(dados_data[contador_atual], rawdata());
-        }
-
-        
-        
-//        posicao_cursor_lcd(1,0);
-//        escreve_frase_ram_lcd(dados_lat[contador_atual]);
-//        
+        }   
         contador_anterior  = contador_atual;
         contador_atual++; 
     }
-
-
-//    if(!PORTEbits.RE2)
-//    {
-//        posicao_cursor_lcd(2,0);
-//        escreve_inteiro_lcd(velocidade_media);
-//        velocidade_media++;
-//    }
-//    else
-//    {
-//        velocidade_media = 0;
-//    }
-    
 }
 
 
@@ -395,17 +350,54 @@ void verifica_dados_operacionais(void)
 void disparo_gravacao(void)
 {
     unsigned char *fix_gps;
+    unsigned int v_max, index_max;
+    unsigned char i = 0;
+    unsigned char *velocidade[6];
     
+    v_max = atoi(dados_vel[0]);
+    index_max = 0;   
     if(!time_sd)
     {
+        verifica_fence();
         fix_gps = fix();
-        if(fix_gps[0] == '0')
+        fix_gps[0] = '1';
+        if(fix_gps[0] == '1')
         {     
-//            verifica_fence();
-            recebe_dado_gps();
-            dados_gps_to_sd();
-            grava_sd();
+            if(v_max> VELOCIDADE_LIMITE)
+            {
+                for(i=1; i<3; i++)
+                {
+                    if(v_max < atoi(dados_vel[i]))
+                    {
+                        v_max = atoi(dados_vel[i]);
+                        index_max = i;
+                    }           
+
+                }
+
+                monta_sd(0, dados_hora[index_max]);
+                monta_sd(1, dados_data[index_max]); 
+                monta_sd(2, dados_lat[index_max]);
+                monta_sd(3, dados_long[index_max]);
+                itoa(velocidade, dados_vel[index_max], 10);
+                monta_sd(7, velocidade);
+                
+                dados_vel[0] = 50;
+                dados_vel[1] = 50;
+                dados_vel[2] = 50;
+            }
+            else
+            {
+                dados_vel[0] = 50;
+                dados_vel[1] = 50;
+                dados_vel[2] = 50;
+               recebe_dado_gps();
+               dados_gps_to_sd();
+            } 
+               grava_sd();
         }
+        posicao_cursor_lcd(1,0);
+        escreve_inteiro_lcd(v_max);
         time_sd = 1000;
     } 
 }

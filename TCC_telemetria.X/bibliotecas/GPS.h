@@ -48,6 +48,17 @@ extern "C" {
 #define _OTHER_  3
 
     
+   
+#define GGA_BUFFER_SIZE 80
+#define GGA_POINTERS_SIZE 20
+
+#define RMC_BUFFER_SIZE  70
+#define RMC_POINTERS_SIZE 12
+    
+    
+    
+    
+    
 typedef struct
 {
     unsigned char flag:1;
@@ -57,7 +68,15 @@ typedef struct
 ******************************************************************************/
 
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
-int GPSRead(unsigned char buff);
+//int GPSRead(unsigned char buff);
+void gps(void);
+void get_gpstime(void);
+void get_latitude(void);
+void get_longitude(void);
+void get_rawdate(void);
+void get_rawspeed(void);
+void get_fix(void);
+void tratamento_uart(unsigned char received_char);
 
 unsigned int gps_segundos();
 unsigned int gps_minutos();

@@ -34,17 +34,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 "8 bibliotecas/integer.h
 [s S1 `ui 1 `ui 1 `ui 1 `uc 1 `uc 1 `ui 1 ]
 [n S1 . hora min seg dia mes ano ]
-"64 bibliotecas/GPS.h
+"83 bibliotecas/GPS.h
 [v _gps_hora `(ui ~T0 @X0 0 ef ]
-"63
+"82
 [v _gps_minutos `(ui ~T0 @X0 0 ef ]
-"62
+"81
 [v _gps_segundos `(ui ~T0 @X0 0 ef ]
-"65
+"84
 [v _gps_ano `(ui ~T0 @X0 0 ef ]
-"66
+"85
 [v _gps_mes `(ui ~T0 @X0 0 ef ]
-"67
+"86
 [v _gps_dia `(ui ~T0 @X0 0 ef ]
 "112 bibliotecas/tff.h
 [s S4 `us 1 `uc 1 `uc 1 `*S2 1 `ul 1 `ul 1 `us 1 `us 1 `ul 1 `ul 1 `*uc 1 ]
@@ -3765,33 +3765,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;display_lcd.h: 304: extern void escreve_frase_lcd(const char *buffer);
 [; ;display_lcd.h: 322: extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 [; ;display_lcd.h: 332: void converte_inteiro_matriz(unsigned int val, char* str );
-[; ;GPS.h: 51: typedef struct
-[; ;GPS.h: 52: {
-[; ;GPS.h: 53: unsigned char flag:1;
-[; ;GPS.h: 54: }bit_field_gps;
-[; ;GPS.h: 59: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
-[; ;GPS.h: 60: int GPSRead(unsigned char buff);
-[; ;GPS.h: 62: unsigned int gps_segundos();
-[; ;GPS.h: 63: unsigned int gps_minutos();
-[; ;GPS.h: 64: unsigned int gps_hora();
-[; ;GPS.h: 65: unsigned int gps_ano();
-[; ;GPS.h: 66: unsigned int gps_mes();
-[; ;GPS.h: 67: unsigned int gps_dia();
-[; ;GPS.h: 68: void latitude_to_convert(void);
-[; ;GPS.h: 69: void longitude_to_convert(void);
-[; ;GPS.h: 70: char posicao_lat(void);
-[; ;GPS.h: 71: char posicao_long(void);
-[; ;GPS.h: 72: char *latitude_to_display(void);
-[; ;GPS.h: 73: char *longitude_to_display(void);
-[; ;GPS.h: 74: char *fix(void);
-[; ;GPS.h: 75: char *Speed(void);
-[; ;GPS.h: 76: char *rawdata(void);
-[; ;GPS.h: 77: char *rawhora(void);
-[; ;GPS.h: 78: char *longitude(void);
-[; ;GPS.h: 79: char *latitude(void);
-[; ;GPS.h: 82: void dados_gps_to_sd(void);
-[; ;GPS.h: 83: char verifica_recep_gps(void);
-[; ;GPS.h: 84: void mostra_dados_display(void);
+[; ;GPS.h: 62: typedef struct
+[; ;GPS.h: 63: {
+[; ;GPS.h: 64: unsigned char flag:1;
+[; ;GPS.h: 65: }bit_field_gps;
+[; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
+[; ;GPS.h: 72: void gps(void);
+[; ;GPS.h: 73: void get_gpstime(void);
+[; ;GPS.h: 74: void get_latitude(void);
+[; ;GPS.h: 75: void get_longitude(void);
+[; ;GPS.h: 76: void get_rawdate(void);
+[; ;GPS.h: 77: void get_rawspeed(void);
+[; ;GPS.h: 78: void get_fix(void);
+[; ;GPS.h: 79: void tratamento_uart(unsigned char received_char);
+[; ;GPS.h: 81: unsigned int gps_segundos();
+[; ;GPS.h: 82: unsigned int gps_minutos();
+[; ;GPS.h: 83: unsigned int gps_hora();
+[; ;GPS.h: 84: unsigned int gps_ano();
+[; ;GPS.h: 85: unsigned int gps_mes();
+[; ;GPS.h: 86: unsigned int gps_dia();
+[; ;GPS.h: 87: void latitude_to_convert(void);
+[; ;GPS.h: 88: void longitude_to_convert(void);
+[; ;GPS.h: 89: char posicao_lat(void);
+[; ;GPS.h: 90: char posicao_long(void);
+[; ;GPS.h: 91: char *latitude_to_display(void);
+[; ;GPS.h: 92: char *longitude_to_display(void);
+[; ;GPS.h: 93: char *fix(void);
+[; ;GPS.h: 94: char *Speed(void);
+[; ;GPS.h: 95: char *rawdata(void);
+[; ;GPS.h: 96: char *rawhora(void);
+[; ;GPS.h: 97: char *longitude(void);
+[; ;GPS.h: 98: char *latitude(void);
+[; ;GPS.h: 101: void dados_gps_to_sd(void);
+[; ;GPS.h: 102: char verifica_recep_gps(void);
+[; ;GPS.h: 103: void mostra_dados_display(void);
 "60 bibliotecas/tff.c
 [v _FatFs `*S2 ~T0 @X0 1 s ]
 [; ;tff.c: 59: static

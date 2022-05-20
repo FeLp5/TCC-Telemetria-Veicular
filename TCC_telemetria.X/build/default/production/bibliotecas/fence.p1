@@ -10,16 +10,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _convert_to_int `(l ~T0 @X0 0 ef1`*Cuc ]
 "52
 [v _convert_to_int_point_long `(ul ~T0 @X0 0 ef ]
-"71 bibliotecas/GPS.h
+"90 bibliotecas/GPS.h
 [v _posicao_long `(uc ~T0 @X0 0 ef ]
-"70
+"89
 [v _posicao_lat `(uc ~T0 @X0 0 ef ]
 "69 C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h
 [v _atol `(l ~T0 @X0 0 ef1`*Cuc ]
-[; ;main.h: 60: typedef struct
-[; ;main.h: 61: {
-[; ;main.h: 62: unsigned char point:1;
-[; ;main.h: 63: }bit_field;
+[; ;main.h: 62: typedef struct
+[; ;main.h: 63: {
+[; ;main.h: 64: unsigned char point:1;
+[; ;main.h: 65: }bit_field;
 [; ;xc.h: 18: extern const char __xc8_OPTIM_SPEED;
 [; ;xc.h: 20: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -3590,33 +3590,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;fence.h: 63: void diferenca(unsigned char index);
 [; ;fence.h: 69: unsigned char verifica_plausibilidade_long(void);
 [; ;fence.h: 70: unsigned char verifica_plausibilidade_lat(void);
-[; ;GPS.h: 51: typedef struct
-[; ;GPS.h: 52: {
-[; ;GPS.h: 53: unsigned char flag:1;
-[; ;GPS.h: 54: }bit_field_gps;
-[; ;GPS.h: 59: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
-[; ;GPS.h: 60: int GPSRead(unsigned char buff);
-[; ;GPS.h: 62: unsigned int gps_segundos();
-[; ;GPS.h: 63: unsigned int gps_minutos();
-[; ;GPS.h: 64: unsigned int gps_hora();
-[; ;GPS.h: 65: unsigned int gps_ano();
-[; ;GPS.h: 66: unsigned int gps_mes();
-[; ;GPS.h: 67: unsigned int gps_dia();
-[; ;GPS.h: 68: void latitude_to_convert(void);
-[; ;GPS.h: 69: void longitude_to_convert(void);
-[; ;GPS.h: 70: char posicao_lat(void);
-[; ;GPS.h: 71: char posicao_long(void);
-[; ;GPS.h: 72: char *latitude_to_display(void);
-[; ;GPS.h: 73: char *longitude_to_display(void);
-[; ;GPS.h: 74: char *fix(void);
-[; ;GPS.h: 75: char *Speed(void);
-[; ;GPS.h: 76: char *rawdata(void);
-[; ;GPS.h: 77: char *rawhora(void);
-[; ;GPS.h: 78: char *longitude(void);
-[; ;GPS.h: 79: char *latitude(void);
-[; ;GPS.h: 82: void dados_gps_to_sd(void);
-[; ;GPS.h: 83: char verifica_recep_gps(void);
-[; ;GPS.h: 84: void mostra_dados_display(void);
+[; ;GPS.h: 62: typedef struct
+[; ;GPS.h: 63: {
+[; ;GPS.h: 64: unsigned char flag:1;
+[; ;GPS.h: 65: }bit_field_gps;
+[; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
+[; ;GPS.h: 72: void gps(void);
+[; ;GPS.h: 73: void get_gpstime(void);
+[; ;GPS.h: 74: void get_latitude(void);
+[; ;GPS.h: 75: void get_longitude(void);
+[; ;GPS.h: 76: void get_rawdate(void);
+[; ;GPS.h: 77: void get_rawspeed(void);
+[; ;GPS.h: 78: void get_fix(void);
+[; ;GPS.h: 79: void tratamento_uart(unsigned char received_char);
+[; ;GPS.h: 81: unsigned int gps_segundos();
+[; ;GPS.h: 82: unsigned int gps_minutos();
+[; ;GPS.h: 83: unsigned int gps_hora();
+[; ;GPS.h: 84: unsigned int gps_ano();
+[; ;GPS.h: 85: unsigned int gps_mes();
+[; ;GPS.h: 86: unsigned int gps_dia();
+[; ;GPS.h: 87: void latitude_to_convert(void);
+[; ;GPS.h: 88: void longitude_to_convert(void);
+[; ;GPS.h: 89: char posicao_lat(void);
+[; ;GPS.h: 90: char posicao_long(void);
+[; ;GPS.h: 91: char *latitude_to_display(void);
+[; ;GPS.h: 92: char *longitude_to_display(void);
+[; ;GPS.h: 93: char *fix(void);
+[; ;GPS.h: 94: char *Speed(void);
+[; ;GPS.h: 95: char *rawdata(void);
+[; ;GPS.h: 96: char *rawhora(void);
+[; ;GPS.h: 97: char *longitude(void);
+[; ;GPS.h: 98: char *latitude(void);
+[; ;GPS.h: 101: void dados_gps_to_sd(void);
+[; ;GPS.h: 102: char verifica_recep_gps(void);
+[; ;GPS.h: 103: void mostra_dados_display(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
@@ -3747,9 +3754,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SDCard.h: 68: void proceed(void);
 [; ;SDCard.h: 69: void dummy_clocks(unsigned char n);
 [; ;SDCard.h: 70: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-[v F3446 `Cuc ~T0 @X0 -> 10 `i t ]
+[v F3460 `Cuc ~T0 @X0 -> 10 `i t ]
 "34 bibliotecas/fence.c
-[v _fence_diff_lat `F3446 ~T0 @X0 -> 4 `i e ]
+[v _fence_diff_lat `F3460 ~T0 @X0 -> 4 `i e ]
 [i _fence_diff_lat
 :U ..
 :U ..
@@ -3803,9 +3810,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [; ;fence.c: 34: const unsigned char fence_diff_lat[4][10] = {"-233646653", "-233646653", "-234059642", "-234059642"};
-[v F3448 `Cuc ~T0 @X0 -> 11 `i t ]
+[v F3462 `Cuc ~T0 @X0 -> 11 `i t ]
 "35
-[v _fence_diff_long `F3448 ~T0 @X0 -> 4 `i e ]
+[v _fence_diff_long `F3462 ~T0 @X0 -> 4 `i e ]
 [i _fence_diff_long
 :U ..
 :U ..

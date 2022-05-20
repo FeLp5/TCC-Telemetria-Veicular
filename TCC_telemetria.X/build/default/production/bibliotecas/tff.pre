@@ -5917,15 +5917,23 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 51 "bibliotecas/GPS.h"
+# 62 "bibliotecas/GPS.h"
 typedef struct
 {
 unsigned char flag:1;
 }bit_field_gps;
 
-# 59
+# 70
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
-int GPSRead(unsigned char buff);
+
+void gps(void);
+void get_gpstime(void);
+void get_latitude(void);
+void get_longitude(void);
+void get_rawdate(void);
+void get_rawspeed(void);
+void get_fix(void);
+void tratamento_uart(unsigned char received_char);
 
 unsigned int gps_segundos();
 unsigned int gps_minutos();

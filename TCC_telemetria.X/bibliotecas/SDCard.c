@@ -38,9 +38,9 @@ unsigned char data_hoje;
 
 static unsigned char lt[12];
 static unsigned char lo[13];
-static unsigned char fence[7];
+static unsigned char fence[6];
 static unsigned char vel[6];
-static unsigned char hora[6];
+static unsigned char hora[7];
 static unsigned char data[6];
 
 /******************************************************************************
@@ -218,9 +218,9 @@ void escrita_sdcard()
     {  
         if(data[0] != ' ' && hora[0] != ' ')
         {
-//            data_nome(data);
-//            hora_nome(hora);
-            strcpy(filename, "teste3");;
+            data_nome(data);
+            hora_nome(hora);
+//            strcpy(filename, "teste3");;
             strcat(filename, ".tlm");
             f_fix = 1;
         }
@@ -232,15 +232,10 @@ void escrita_sdcard()
         {	
 
             f_lseek(&fil, fsize(&fil));
-
-//            posicao_cursor_lcd(1,0);
-//            escreve_frase_ram_lcd("???");
-            posicao_cursor_lcd(2,0);
-            escreve_frase_ram_lcd(lt);
             fprintf(&fil, "v%s;lt%s;lo%s;", vel, lt, lo);
-            fprintf(&fil, "lt%s;lo%s;", lt, lo);
-//            fprintf(&fil, "r0;c0;k0;");
-            fprintf(&fil, "h%s;dN/A;", hora);
+//            fprintf(&fil, "lt%s;lo%s;", lt, lo);
+            fprintf(&fil, "r0;c0;k0;");
+            fprintf(&fil, "h%s;dN/A;\n", hora);
             fprintf(&fil, "f%s;\n", fence);
             
             /* Close the file */
@@ -313,9 +308,9 @@ void monta_sd(unsigned char index, unsigned char *dado)
     switch(index)
     {
         case 0:
-            for(i=0; i<6;i++)
+            for(i=0; i<7;i++)
             {
-                if(*dado != '\0' && *dado != '.')
+                if(*dado != '\0')
                 {
                    hora[i] = *dado; 
                 }
@@ -343,8 +338,6 @@ void monta_sd(unsigned char index, unsigned char *dado)
                 }
                 dado++;
             }
-            posicao_cursor_lcd(1,0);
-            escreve_frase_ram_lcd(lt);
         break;
         
        case 3:

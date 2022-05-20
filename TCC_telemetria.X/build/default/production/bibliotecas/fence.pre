@@ -1,7 +1,7 @@
 
 # 1 "bibliotecas/fence.c"
 
-# 60 "bibliotecas/../main.h"
+# 62 "bibliotecas/../main.h"
 typedef struct
 {
 unsigned char point:1;
@@ -5741,15 +5741,23 @@ void diferenca(unsigned char index);
 unsigned char verifica_plausibilidade_long(void);
 unsigned char verifica_plausibilidade_lat(void);
 
-# 51 "bibliotecas/GPS.h"
+# 62 "bibliotecas/GPS.h"
 typedef struct
 {
 unsigned char flag:1;
 }bit_field_gps;
 
-# 59
+# 70
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
-int GPSRead(unsigned char buff);
+
+void gps(void);
+void get_gpstime(void);
+void get_latitude(void);
+void get_longitude(void);
+void get_rawdate(void);
+void get_rawspeed(void);
+void get_fix(void);
+void tratamento_uart(unsigned char received_char);
 
 unsigned int gps_segundos();
 unsigned int gps_minutos();
