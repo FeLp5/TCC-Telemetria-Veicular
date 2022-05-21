@@ -16,10 +16,7 @@ class Painel_grafico_A(wx.Panel):
         
     def atualiza(self):
         
-        try:
-            self.canvas.Hide()
-        except:
-            pass
+        # self.esconde_grafico()
             
         self.panel = wx.Panel(self)
         self.count = 0.0
@@ -50,8 +47,8 @@ class Painel_grafico_A(wx.Panel):
         
         
     def aguarda(self):
-
-            
+        
+        # self.esconde_grafico()
 
         self.j = 0
         print("aguarda")
@@ -89,10 +86,7 @@ class Painel_grafico_A(wx.Panel):
     def atual(self):
         
         i = 0
-        try:
-            self.canvas.Show()
-        except:
-            pass
+        # self.mostra_grafico()
 
             
         velocidade = str(vars.velocidade)
@@ -147,6 +141,19 @@ class Painel_grafico_A(wx.Panel):
         self.axes.set_ymargin(4)
     
 
+    def esconde_grafico(self):
+        for x in range(3):
+            try:
+                self.canvas.Hide()
+            except:
+                pass
+        
+    def mostra_grafico(self):
+        try:
+            self.canvas.Show()
+        except:
+            pass
+        
         
 
 

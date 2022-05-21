@@ -54,16 +54,16 @@ class Painel_inferior_direito(wx.Panel):
         
     def show_panel_two(self):
         self.panel_um.Hide()
-        
-        # self.painel_dois.Destroy()
+        self.panel_dois.esconde_grafico()# self.painel_dois.Destroy()
         
         # self.panel_dois = Painel_grafico_A(self)
         # self.sizer.Add(self.panel_dois, 1, wx.EXPAND)
-        
+        print "VARS QUERY", vars.query
         
         if vars.query == 0:
             self.panel_dois.atualiza()
         else:
+            self.panel_dois.mostra_grafico()
             self.panel_dois.atual()
 
         self.panel_dois.Show()
