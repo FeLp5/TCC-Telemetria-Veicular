@@ -213,9 +213,11 @@ void escrita_sdcard()
     WORD bw;
 //    PORTBbits.RB3 = 0;
 //    dados_gps_to_sd();
+   
     f_mount(0,&fs);
     if(!f_fix)
     {  
+        gps();
         if(data[0] != ' ' && hora[0] != ' ')
         {
             data_nome(data);
@@ -235,7 +237,7 @@ void escrita_sdcard()
             fprintf(&fil, "v%s;lt%s;lo%s;", vel, lt, lo);
 //            fprintf(&fil, "lt%s;lo%s;", lt, lo);
             fprintf(&fil, "r0;c0;k0;");
-            fprintf(&fil, "h%s;dN/A;\n", hora);
+            fprintf(&fil, "h%s;dN/A;", hora);
             fprintf(&fil, "f%s;\n", fence);
             
             /* Close the file */

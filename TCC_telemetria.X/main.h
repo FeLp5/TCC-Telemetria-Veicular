@@ -35,7 +35,7 @@
 
 #define NUMBER_OF_TASKS				3
 
-#define VELOCIDADE_LIMITE           50
+#define VELOCIDADE_LIMITE           0
 
 #define TIME_150_MS					150   //time unit: ms
 #define TIME_50_MS                  50

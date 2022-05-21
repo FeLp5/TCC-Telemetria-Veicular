@@ -13,6 +13,10 @@
 // * Versao/Data		: v00.01 - 26/09/2021 - versao inicial l
 //// GPS Library for CCS PIC C compiler
 //// http://simple-circuit.com/
+////
+//// GPS Information extraction using PIC18F4550 
+//    http://www.electronicwings.com
+//
 // *****************************************************************************/
 
 #define _GPRMC_  1
@@ -30,12 +34,8 @@
 
 
 bit_field_gps gps_flag[6];
-
-
 int GPRMC_ok = 0, GPGGA_ok = 0;
-
 uint8_t char_number = 0, SentenceType = 0, Term;
-
 char sentence[6];
 char rawTime[7]; 
 char rawDate[6];
@@ -45,7 +45,6 @@ char rawSatellites[3];
 char rawAltitude[7];
 char buffer[12];
 char rawFix[2];
-
 static char rawLatitude[12];
 static char rawLongitude[13];
 
@@ -63,30 +62,6 @@ void stringcpy(char *str1, char *str2, int dir, unsigned char size)
 
 
 
-///*
-//    GPS Information extraction using PIC18F4550 
-//    http://www.electronicwings.com
-//*/
-//
-//#include <pic18f4550.h>
-//#include <string.h>
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include "GPS.h"
-//#include "display_lcd.h"
-//#include "uart.h"
-//#include "SDCard.h"
-
-
-// Protótipos de funções
-unsigned long int get_dt(unsigned char);
-void convert_time_to_utc(unsigned long int);
-unsigned char convert_to_date(unsigned char dt[]);
-float convert_to_degrees(float);
-//float get_altitude(unsigned char);
-//float get_sv(unsigned char date_pointer);
-
-//
 ////variáveis
 char *teste;
 char gga_buffer[GGA_BUFFER_SIZE];              /* to store GGA string */
@@ -103,9 +78,9 @@ unsigned char rmc_pointers[RMC_POINTERS_SIZE];
 char comma_counter_gga;
 char comma_counter_rmc;
 
-char data_buffer[15];
+
 //char dt_buffer[6];
-char dado_buffer[7];    
+  
 //
 //
 volatile unsigned int gga_index;
@@ -116,13 +91,19 @@ volatile unsigned char is_it_rmc_string = 0;
 
 void gps(void)
 {
-    
-    get_gpstime();
-    get_latitude();
-    get_longitude();
-    get_rawdate();
-    get_rawspeed();
+    unsigned char *flag_fix;
     get_fix();
+    flag_fix = fix();
+    if(flag_fix[0] == '1')
+    {
+        get_gpstime();
+        get_latitude();
+        get_longitude();
+        get_rawdate();
+        get_rawspeed(); 
+    }
+
+   
 //	unsigned char data_out[34];
 //	unsigned long int time;
 //    unsigned long int date;
@@ -240,12 +221,11 @@ void gps(void)
 //
 //
 ///******************************************************************************
-// * Funcao:		unsigned long int get_gpstime()
+// * Funcao:		void get_gpstime(void)
 // * Entrada:		Nenhuma (void)
-// * Saida:		unsigned long int
+// * Saida:		    Nenhuma (void)
 // * Descricao:	Coleta a hora atual
 // *****************************************************************************/
-//
 void get_gpstime(void)
 {
 	unsigned char index;
@@ -259,7 +239,12 @@ void get_gpstime(void)
 	}
         
 }
-
+///******************************************************************************
+// * Funcao:		void get_latitude(void)
+// * Entrada:		Nenhuma (void)
+// * Saida:         Nenhuma (void)
+// * Descricao:	Coleta a a latitude
+// *****************************************************************************/
 
 void get_latitude(void)
 {
@@ -268,7 +253,7 @@ void get_latitude(void)
 //	unsigned long int _time;
 	index_lat = 1;
 	/* parse time in GGA string stored in buffer */
-	for(index = 10; gga_buffer[index] != ','; index++)
+	for(index = 10; index<20; index++)
 	{		
 		rawLatitude[index_lat] = gga_buffer[index];
         index_lat++;
@@ -291,7 +276,7 @@ void get_longitude(void)
 //	unsigned long int _time;
 	index_long = 1;
 	/* parse time in GGA string stored in buffer */
-	for(index = 23; gga_buffer[index] != ','; index++)
+	for(index = 23; index<34; index++)
 	{		
 		rawLongitude[index_long] = gga_buffer[index];
         index_long++;
@@ -313,7 +298,7 @@ void get_rawdate(void)
 //	unsigned long int _time;
 	index_date = 0;
 	/* parse time in GGA string stored in buffer */
-	for(index = 46; rmc_buffer[index] != ','; index++)
+	for(index = 46; index<52; index++)
 	{		
 		rawDate[index_date] = rmc_buffer[index];
         index_date++;
@@ -328,7 +313,7 @@ void get_rawspeed(void)
 //	unsigned long int _time;
 	index_speed = 0;
 	/* parse time in GGA string stored in buffer */
-	for(index = 39; rmc_buffer[index] != ','; index++)
+	for(index = 39; index<44; index++)
 	{		
 		rawSpeed[index_speed] = rmc_buffer[index];
         index_speed++;
@@ -342,7 +327,7 @@ void get_fix(void)
 //	unsigned long int _time;
 	index_fix = 0;
 	/* parse time in GGA string stored in buffer */
-	for(index = 37; gga_buffer[index] != ','; index++)
+	for(index = 37; index<39; index++)
 	{		
 		rawFix[index_fix] = gga_buffer[index];
         index_fix++;

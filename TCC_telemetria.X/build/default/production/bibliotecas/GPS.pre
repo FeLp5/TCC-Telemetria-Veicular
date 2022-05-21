@@ -5965,14 +5965,10 @@ void diferenca(unsigned char index);
 unsigned char verifica_plausibilidade_long(void);
 unsigned char verifica_plausibilidade_lat(void);
 
-# 32 "bibliotecas/GPS.c"
+# 36 "bibliotecas/GPS.c"
 bit_field_gps gps_flag[6];
-
-
 int GPRMC_ok = 0, GPGGA_ok = 0;
-
 uint8_t char_number = 0, SentenceType = 0, Term;
-
 char sentence[6];
 char rawTime[7];
 char rawDate[6];
@@ -5982,7 +5978,6 @@ char rawSatellites[3];
 char rawAltitude[7];
 char buffer[12];
 char rawFix[2];
-
 static char rawLatitude[12];
 static char rawLongitude[13];
 
@@ -5998,13 +5993,9 @@ chr++;
 } while(str1[chr] != '\0');
 }
 
-# 82
-unsigned long int get_dt(unsigned char);
-void convert_time_to_utc(unsigned long int);
-unsigned char convert_to_date(unsigned char dt[]);
-float convert_to_degrees(float);
 
-# 91
+
+
 char *teste;
 char gga_buffer[80];
 char rmc_buffer[70];
@@ -6020,11 +6011,7 @@ unsigned char rmc_pointers[12];
 char comma_counter_gga;
 char comma_counter_rmc;
 
-char data_buffer[15];
-
-char dado_buffer[7];
-
-
+# 86
 volatile unsigned int gga_index;
 volatile unsigned int rmc_index;
 
@@ -6033,18 +6020,22 @@ volatile unsigned char is_it_rmc_string = 0;
 
 void gps(void)
 {
-
+unsigned char *flag_fix;
+get_fix();
+flag_fix = fix();
+if(flag_fix[0] == '1')
+{
 get_gpstime();
 get_latitude();
 get_longitude();
 get_rawdate();
 get_rawspeed();
-get_fix();
-
-# 238
 }
 
-# 249
+# 219
+}
+
+# 229
 void get_gpstime(void)
 {
 unsigned char index;
@@ -6059,7 +6050,7 @@ rawTime[index] = gga_buffer[index];
 
 }
 
-
+# 249
 void get_latitude(void)
 {
 unsigned char index_lat, index;
@@ -6067,7 +6058,7 @@ unsigned char time_buffer[15];
 
 index_lat = 1;
 
-for(index = 10; gga_buffer[index] != ','; index++)
+for(index = 10; index<20; index++)
 {
 rawLatitude[index_lat] = gga_buffer[index];
 index_lat++;
@@ -6090,7 +6081,7 @@ unsigned char index_long, index;
 
 index_long = 1;
 
-for(index = 23; gga_buffer[index] != ','; index++)
+for(index = 23; index<34; index++)
 {
 rawLongitude[index_long] = gga_buffer[index];
 index_long++;
@@ -6112,7 +6103,7 @@ unsigned char index_date, index;
 
 index_date = 0;
 
-for(index = 46; rmc_buffer[index] != ','; index++)
+for(index = 46; index<52; index++)
 {
 rawDate[index_date] = rmc_buffer[index];
 index_date++;
@@ -6127,7 +6118,7 @@ unsigned char index_speed, index;
 
 index_speed = 0;
 
-for(index = 39; rmc_buffer[index] != ','; index++)
+for(index = 39; index<44; index++)
 {
 rawSpeed[index_speed] = rmc_buffer[index];
 index_speed++;
@@ -6141,7 +6132,7 @@ unsigned char index_fix, index;
 
 index_fix = 0;
 
-for(index = 37; gga_buffer[index] != ','; index++)
+for(index = 37; index<39; index++)
 {
 rawFix[index_fix] = gga_buffer[index];
 index_fix++;
@@ -6150,7 +6141,7 @@ posicao_cursor_lcd(2,0);
 escreve_caractere_lcd(rawFix[0]);
 }
 
-# 362
+# 347
 void tratamento_uart(unsigned char received_char)
 {
 if(received_char =='$'){
@@ -6203,43 +6194,43 @@ rmc_code[2] = received_char;
 }
 }
 
-# 545
+# 530
 unsigned int gps_segundos()
 {
 return ((rawTime[4] - '0') * 10 + (rawTime[5] - '0'));
 }
 
-# 556
+# 541
 unsigned int gps_minutos()
 {
 return ((rawTime[2] - '0') * 10 + (rawTime[3] - '0'));
 }
 
-# 568
+# 553
 unsigned int gps_hora()
 {
 return (((rawTime[0] - '0') * 10 + (rawTime[1] - '0')));
 }
 
-# 580
+# 565
 unsigned int gps_dia(void)
 {
 return ((rawDate[0] - '0') * 10 + (rawDate[1] - '0'));
 }
 
-# 593
+# 578
 unsigned int gps_mes(void)
 {
 return ((rawDate[2] - '0') * 10 + (rawDate[3] - '0'));
 }
 
-# 605
+# 590
 unsigned int gps_ano(void)
 {
 return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
 }
 
-# 617
+# 602
 void latitude_to_convert(void)
 {
 unsigned char i,j;
@@ -6258,7 +6249,7 @@ j++;
 armazena_ltlo(latitude, 1);
 }
 
-# 642
+# 627
 void longitude_to_convert(void)
 {
 unsigned char i,j;
@@ -6347,7 +6338,7 @@ monta_sd(7, rawSpeed);
 return;
 }
 
-# 735
+# 720
 char verifica_recep_gps(void)
 {
 if(gps_flag[0].flag && gps_flag[1].flag && gps_flag[2].flag && gps_flag[3].flag && gps_flag[4].flag && gps_flag[5].flag)

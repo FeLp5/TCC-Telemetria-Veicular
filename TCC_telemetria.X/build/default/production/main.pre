@@ -6380,10 +6380,10 @@ if(!time_sd)
 {
 verifica_fence();
 fix_gps = fix();
-fix_gps[0] = '1';
-if(fix_gps[0] == '1')
+
+if(*fix_gps == '1')
 {
-if(v_max> 50)
+if(v_max> 0)
 {
 for(i=1; i<3; i++)
 {
@@ -6416,8 +6416,8 @@ dados_gps_to_sd();
 }
 grava_sd();
 }
-posicao_cursor_lcd(1,0);
-escreve_inteiro_lcd(v_max);
+
+
 time_sd = 1000;
 }
 }
@@ -6427,6 +6427,7 @@ void troca_de_tela(void)
 {
 static unsigned char state = 0;
 static unsigned char last_state = 0;
+unsigned char *fix_signal;
 
 if(!PORTEbits.RE0 || (state == 1 ))
 {
@@ -6450,8 +6451,9 @@ posicao_cursor_lcd(1,15);
 escreve_inteiro_lcd(fence_flag[1].point);
 }
 
+fix_signal = fix();
 posicao_cursor_lcd(2,8);
-escreve_frase_ram_lcd(fix());
+escreve_caractere_lcd(fix_signal[0]);
 time_atualizacao = 10000;
 }
 
@@ -6478,17 +6480,17 @@ escreve_frase_ram_lcd("|");
 posicao_cursor_lcd(1,15);
 escreve_inteiro_lcd(fence_flag[1].point);
 }
-
+fix_signal = fix();
 posicao_cursor_lcd(2,0);
 escreve_frase_ram_lcd("FIX:");
 posicao_cursor_lcd(2,8);
-escreve_frase_ram_lcd(fix());
+escreve_caractere_lcd(fix_signal[0]);
 }
 last_state = 1;
 
 }
 
-# 486
+# 488
 if(!PORTEbits.RE1 || (state == 2))
 {
 if(!time_atualizacao)
@@ -6531,7 +6533,7 @@ last_state = 4;
 }
 }
 
-# 536
+# 538
 void grava_sd(void)
 {
 PORTBbits.RB3 = 0;
@@ -6543,7 +6545,7 @@ inicializa_uart();
 PORTBbits.RB3 = 1;
 }
 
-# 555
+# 557
 void recebe_dado_gps(void)
 {
 unsigned char flag_recebe = 0;

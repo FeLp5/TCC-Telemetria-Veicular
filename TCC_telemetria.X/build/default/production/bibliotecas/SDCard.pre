@@ -6143,9 +6143,11 @@ static unsigned char f_fix = 0;
 WORD bw;
 
 
+
 f_mount(0,&fs);
 if(!f_fix)
 {
+gps();
 if(data[0] != ' ' && hora[0] != ' ')
 {
 data_nome(data);
@@ -6165,7 +6167,7 @@ f_lseek(&fil, ((&fil)->fsize));
 fprintf(&fil, "v%s;lt%s;lo%s;", vel, lt, lo);
 
 fprintf(&fil, "r0;c0;k0;");
-fprintf(&fil, "h%s;dN/A;\n", hora);
+fprintf(&fil, "h%s;dN/A;", hora);
 fprintf(&fil, "f%s;\n", fence);
 
 
@@ -6183,7 +6185,7 @@ f_close(&fil);
 return;
 }
 
-# 264
+# 266
 char *leitura_sdcard(unsigned char num_spot)
 {
 
@@ -6211,7 +6213,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 304
+# 306
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;
@@ -6320,7 +6322,7 @@ p_buff++;
 }
 }
 
-# 420
+# 422
 void hora_nome (unsigned char *p_buff)
 {
 unsigned char i;
