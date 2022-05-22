@@ -38,7 +38,7 @@ unsigned char data_hoje;
 
 static unsigned char lt[12];
 static unsigned char lo[13];
-static unsigned char fence[6];
+static unsigned char fence;
 static unsigned char vel[6];
 static unsigned char hora[7];
 static unsigned char data[6];
@@ -222,7 +222,7 @@ void escrita_sdcard()
         {
             data_nome(data);
             hora_nome(hora);
-//            strcpy(filename, "teste3");;
+//            strcpy(filename, "teste4");;
             strcat(filename, ".tlm");
             f_fix = 1;
         }
@@ -235,10 +235,9 @@ void escrita_sdcard()
 
             f_lseek(&fil, fsize(&fil));
             fprintf(&fil, "v%s;lt%s;lo%s;", vel, lt, lo);
-//            fprintf(&fil, "lt%s;lo%s;", lt, lo);
             fprintf(&fil, "r0;c0;k0;");
             fprintf(&fil, "h%s;dN/A;", hora);
-            fprintf(&fil, "f%s;\n", fence);
+            fprintf(&fil, "f%c;\n", fence);
             
             /* Close the file */
             f_close(&fil);	
@@ -355,14 +354,7 @@ void monta_sd(unsigned char index, unsigned char *dado)
         
         case 4:
             //monta string do estado do fence
-            for(i=0; i<6;i++)
-            {
-                if(*dado != ' ' && *dado != '\0')
-                {
-                    fence[i] = *dado;
-                }
-                dado++;
-            }
+            fence = *dado;
         break;
                 
         case 5:

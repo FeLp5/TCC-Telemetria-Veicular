@@ -6015,7 +6015,7 @@ unsigned char data_hoje;
 
 static unsigned char lt[12];
 static unsigned char lo[13];
-static unsigned char fence[6];
+static unsigned char fence;
 static unsigned char vel[6];
 static unsigned char hora[7];
 static unsigned char data[6];
@@ -6165,10 +6165,9 @@ if (f_open(&fil, filename, 0x02 ) == FR_OK)
 
 f_lseek(&fil, ((&fil)->fsize));
 fprintf(&fil, "v%s;lt%s;lo%s;", vel, lt, lo);
-
 fprintf(&fil, "r0;c0;k0;");
 fprintf(&fil, "h%s;dN/A;", hora);
-fprintf(&fil, "f%s;\n", fence);
+fprintf(&fil, "f%c;\n", fence);
 
 
 f_close(&fil);
@@ -6185,7 +6184,7 @@ f_close(&fil);
 return;
 }
 
-# 266
+# 265
 char *leitura_sdcard(unsigned char num_spot)
 {
 
@@ -6213,7 +6212,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 306
+# 305
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;
@@ -6266,14 +6265,7 @@ break;
 
 case 4:
 
-for(i=0; i<6;i++)
-{
-if(*dado != ' ' && *dado != '\0')
-{
-fence[i] = *dado;
-}
-dado++;
-}
+fence = *dado;
 break;
 
 case 5:
@@ -6322,7 +6314,7 @@ p_buff++;
 }
 }
 
-# 422
+# 414
 void hora_nome (unsigned char *p_buff)
 {
 unsigned char i;

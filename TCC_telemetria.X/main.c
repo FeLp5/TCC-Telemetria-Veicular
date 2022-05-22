@@ -288,12 +288,12 @@ void verifica_fence(void)
     if(fence_flag[0].point || fence_flag[1].point)
     {
         fence_flag[2].point = 1;
-        monta_sd(4, "FORA  ");
+        monta_sd(4, "0");
     }
     else
     {
         fence_flag[2].point = 0;
-        monta_sd(4, "DENTRO");
+        monta_sd(4, "1");
     }
 
 }
@@ -398,7 +398,7 @@ void disparo_gravacao(void)
         }
 //        posicao_cursor_lcd(1,0);
 //        escreve_inteiro_lcd(v_max);
-        time_sd = 1000;
+        time_sd = 28000;
     } 
 }
 

@@ -5972,7 +5972,7 @@ void dummy_clocks(unsigned char n);
 void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 
 # 34 "bibliotecas/fence.c"
-const unsigned char fence_diff_lat[4][10] = {"-233646653", "-233646653", "-234059642", "-234059642"};
+const unsigned char fence_diff_lat[4][10] = {"-233646653", "-233646653", "-234189573", "-234189573"};
 const unsigned char fence_diff_long[4][11] = {"-0463394050", "-0462941474", "-0462941474", "-0463394050"};
 
 char *temp_buff_long;

@@ -4657,7 +4657,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 290: fence_flag[2].point = 1;
 "290
 [e = . *U + &U _fence_flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 -> -> 1 `i `uc ]
-[; ;main.c: 291: monta_sd(4, "FORA  ");
+[; ;main.c: 291: monta_sd(4, "0");
 "291
 [e ( _monta_sd (2 , -> -> 4 `i `uc -> :s 2C `*uc ]
 "292
@@ -4673,7 +4673,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 295: fence_flag[2].point = 0;
 "295
 [e = . *U + &U _fence_flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 -> -> 0 `i `uc ]
-[; ;main.c: 296: monta_sd(4, "DENTRO");
+[; ;main.c: 296: monta_sd(4, "1");
 "296
 [e ( _monta_sd (2 , -> -> 4 `i `uc -> :s 3C `*uc ]
 "297
@@ -4936,9 +4936,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 409 ]
 [; ;main.c: 398: }
-[; ;main.c: 401: time_sd = 1000;
+[; ;main.c: 401: time_sd = 28000;
 "401
-[e = _time_sd -> -> 1000 `i `ui ]
+[e = _time_sd -> -> 28000 `i `ui ]
 "402
 }
 [e :U 408 ]
@@ -5325,7 +5325,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [a 6C 124 0 ]
 [a 10C 124 0 ]
-[a 3C 68 69 78 84 82 79 0 ]
 [a 4C 68 69 78 84 82 79 0 ]
 [a 8C 68 69 78 84 82 79 0 ]
 [a 15C 66 50 58 76 84 76 79 0 ]
@@ -5336,5 +5335,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 13C 108 111 58 0 ]
 [a 11C 70 73 88 58 0 ]
 [a 7C 70 69 78 67 69 58 0 ]
+[a 3C 49 0 ]
+[a 2C 48 0 ]
 [a 1C 65 71 85 65 82 68 69 46 46 46 0 ]
-[a 2C 70 79 82 65 32 32 0 ]

@@ -16,13 +16,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _get_rawdate `(v ~T0 @X0 0 ef ]
 "77
 [v _get_rawspeed `(v ~T0 @X0 0 ef ]
-"236 bibliotecas/display_lcd.h
-[v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
-"247
-[v _escreve_caractere_lcd `(v ~T0 @X0 0 ef1`uc ]
 "61 bibliotecas/fence.h
 [v _armazena_ltlo `(v ~T0 @X0 0 ef2`*uc`uc ]
-"290 bibliotecas/display_lcd.h
+"236 bibliotecas/display_lcd.h
+[v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
+"290
 [v _escreve_frase_ram_lcd `(v ~T0 @X0 0 ef1`*uc ]
 "66 bibliotecas/SDCard.h
 [v _monta_sd `(v ~T0 @X0 0 ef2`uc`*uc ]
@@ -4260,12 +4258,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "334
 }
 [; ;GPS.c: 334: }
-[; ;GPS.c: 335: posicao_cursor_lcd(2,0);
-"335
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;GPS.c: 336: escreve_caractere_lcd(rawFix[0]);
-"336
-[e ( _escreve_caractere_lcd (1 *U + &U _rawFix * -> -> -> 0 `i `ui `ux -> -> # *U &U _rawFix `ui `ux ]
 [; ;GPS.c: 337: }
 "337
 [e :UE 401 ]

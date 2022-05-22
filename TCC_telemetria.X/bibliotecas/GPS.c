@@ -332,8 +332,8 @@ void get_fix(void)
 		rawFix[index_fix] = gga_buffer[index];
         index_fix++;
 	}
-    posicao_cursor_lcd(2,0);
-    escreve_caractere_lcd(rawFix[0]);
+//    posicao_cursor_lcd(2,0);
+//    escreve_caractere_lcd(rawFix[0]);
 }
 
 
