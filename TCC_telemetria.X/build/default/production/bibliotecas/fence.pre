@@ -1,7 +1,7 @@
 
 # 1 "bibliotecas/fence.c"
 
-# 62 "bibliotecas/../main.h"
+# 64 "bibliotecas/../main.h"
 typedef struct
 {
 unsigned char point:1;

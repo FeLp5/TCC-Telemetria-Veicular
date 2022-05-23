@@ -398,7 +398,7 @@ void disparo_gravacao(void)
         }
 //        posicao_cursor_lcd(1,0);
 //        escreve_inteiro_lcd(v_max);
-        time_sd = 28000;
+        time_sd = TEMPO_SD;
     } 
 }
 

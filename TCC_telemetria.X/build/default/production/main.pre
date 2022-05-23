@@ -5835,7 +5835,7 @@ DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
 DRESULT disk_ioctl (BYTE, BYTE, void*);
 void disk_timerproc (void);
 
-# 62 "main.h"
+# 64 "main.h"
 typedef struct
 {
 unsigned char point:1;
@@ -6383,7 +6383,7 @@ fix_gps = fix();
 
 if(*fix_gps == '1')
 {
-if(v_max> 0)
+if(v_max> 50)
 {
 for(i=1; i<3; i++)
 {

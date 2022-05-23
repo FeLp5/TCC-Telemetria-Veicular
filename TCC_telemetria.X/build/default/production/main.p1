@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"63 main.h
+"65 main.h
 [s S367 :1 `uc 1 ]
 [n S367 . point ]
 [v F3637 `(v ~T0 @X0 0 tf ]
@@ -3843,10 +3843,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.h: 39: DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
 [; ;diskio.h: 41: DRESULT disk_ioctl (BYTE, BYTE, void*);
 [; ;diskio.h: 42: void disk_timerproc (void);
-[; ;main.h: 62: typedef struct
-[; ;main.h: 63: {
-[; ;main.h: 64: unsigned char point:1;
-[; ;main.h: 65: }bit_field;
+[; ;main.h: 64: typedef struct
+[; ;main.h: 65: {
+[; ;main.h: 66: unsigned char point:1;
+[; ;main.h: 67: }bit_field;
 [; ;hardware.h: 34: void init_hardware(void);
 [; ;hardware.h: 35: void write_timer_zero(unsigned int timer0);
 [; ;hardware.h: 36: void open_timer0(unsigned char config);
@@ -4832,9 +4832,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 365: {
 "365
 {
-[; ;main.c: 366: if(v_max> 0)
+[; ;main.c: 366: if(v_max> 50)
 "366
-[e $ ! > _v_max -> -> 0 `i `ui 410  ]
+[e $ ! > _v_max -> -> 50 `i `ui 410  ]
 [; ;main.c: 367: {
 "367
 {

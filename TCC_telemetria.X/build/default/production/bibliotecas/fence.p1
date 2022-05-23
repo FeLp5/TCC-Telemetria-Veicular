@@ -16,10 +16,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _posicao_lat `(uc ~T0 @X0 0 ef ]
 "69 C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h
 [v _atol `(l ~T0 @X0 0 ef1`*Cuc ]
-[; ;main.h: 62: typedef struct
-[; ;main.h: 63: {
-[; ;main.h: 64: unsigned char point:1;
-[; ;main.h: 65: }bit_field;
+[; ;main.h: 64: typedef struct
+[; ;main.h: 65: {
+[; ;main.h: 66: unsigned char point:1;
+[; ;main.h: 67: }bit_field;
 [; ;xc.h: 18: extern const char __xc8_OPTIM_SPEED;
 [; ;xc.h: 20: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);

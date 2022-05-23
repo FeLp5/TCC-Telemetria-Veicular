@@ -222,7 +222,7 @@ void escrita_sdcard()
         {
             data_nome(data);
             hora_nome(hora);
-//            strcpy(filename, "teste4");;
+//            strcpy(filename, "testes");;
             strcat(filename, ".tlm");
             f_fix = 1;
         }

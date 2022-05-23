@@ -5673,7 +5673,7 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 62 "bibliotecas/../main.h"
+# 64 "bibliotecas/../main.h"
 typedef struct
 {
 unsigned char point:1;

@@ -3635,10 +3635,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.h: 39: void timer_dois(void);
 [; ;hardware.h: 44: typedef unsigned char uint8_t;
 [; ;hardware.h: 45: typedef unsigned int uint16_t;
-[; ;main.h: 62: typedef struct
-[; ;main.h: 63: {
-[; ;main.h: 64: unsigned char point:1;
-[; ;main.h: 65: }bit_field;
+[; ;main.h: 64: typedef struct
+[; ;main.h: 65: {
+[; ;main.h: 66: unsigned char point:1;
+[; ;main.h: 67: }bit_field;
 [; ;hardware.c: 27: union Timers
 [; ;hardware.c: 28: {
 [; ;hardware.c: 29: unsigned int lt;
