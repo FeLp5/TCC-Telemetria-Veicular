@@ -32,6 +32,7 @@ vetor_fence = []
 
 #dados coletados
 nome_arquivo = ''
+nome_arquivo_anterior = ''
 num_dados = 0
 km_rodado = 0
 consumo = 0

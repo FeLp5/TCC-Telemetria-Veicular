@@ -1,0 +1,33 @@
+{
+"summary":
+	{
+	"queryTime":27,"numResults":1
+	},
+"addresses":[
+	{
+	"address":		{
+		"buildingNumber":"358",
+		"streetNumber":"358",
+		"routeNumbers":[],
+		"street":"Avenida Bernardino de Campos",
+		"streetName":"Avenida Bernardino de Campos",
+		"streetNameAndNumber":"Avenida Bernardino de Campos, 358",
+		"speedLimit":"40.00KPH",
+		"countryCode":"BR",
+		"countrySubdivision": "São Paulo",
+		"municipality": "Santos",
+		"postalCode":"11065",
+		"municipalitySubdivision":"Campo Grande",
+		"country":"Brasil","countryCodeISO3":"BRA",
+		"freeformAddress":"Avenida Bernardino de Campos, 358, 11065-910, Santos",
+		"boundingBox":
+			{
+			"northEast":"-23.957065,-46.337892","southWest":"-23.958170,-46.338027","entity":"position"
+			},
+		"extendedPostalCode":"11065-910",
+		"localName":"Santos"
+		},
+	"position":"-23.957722,-46.337971"
+	}
+	]
+}

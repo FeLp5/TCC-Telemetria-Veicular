@@ -251,7 +251,7 @@ class Painel(wx.Frame):
  
             
         # Eventos dos botões da barra de menus
-        self.Bind(wx.EVT_MENU, pn_se.abrir_diretorio, menuOpen)
+        self.Bind(wx.EVT_MENU, botao_sdcard, menuOpen)
         self.Bind(wx.EVT_MENU, self.sair, menuExit)
         self.Bind(wx.EVT_MENU, pn_se.sobre, sobre)
         self.Bind(wx.EVT_MENU, abrir_grafico_velocidades, g_velocidades)

@@ -211,6 +211,7 @@ class Painel_arquivos(wx.Panel):
         vars.cidade = []
         vars.estado = []
         vars.speed_limit = []
+        vars.cancelado = 0
         # código para reduzir as requisições, podemos ajustar a quantidade de requisições por aqui
         incremento = 1
         vars.query = 0
@@ -262,7 +263,9 @@ class Painel_arquivos(wx.Panel):
     def request_ruas(self):
         if vars.requisicao != 0: #zerando a quantidade de requisições
             vars.requisicao = 0
-
+        
+        vars.nome_arquivo_anterior = vars.nome_arquivo
+        
         for x in range(vars.num_dados):
             speed_limit = '' # para armazenar o limite de velocidade a ser tratado
             speed_limit_temp = '' #para armazenar o limite temporário
@@ -341,9 +344,27 @@ class Painel_arquivos(wx.Panel):
                 except:
                     # print("ERRO")
                     pass
-                        
-          
+            
                 vars.requisicao += 1
+            
+            print "VARS QUERY", vars.query
+            if vars.nome_arquivo != vars.nome_arquivo_anterior: #cancelando as requisições feitas em segundo plano
+                print "Cancelado pelo usuário"  
+                vars.requisicao = 0
+                
+                vars.nome_rua = [] 
+                vars.cidade = [] 
+                vars.estado = []
+                vars.speed_limit = []
+                # vars.num_dados = 0
+                # vars.cancelado = 1
+                print "Requisição", vars.requisicao 
+                print "Num dados", vars.num_dados
+                print "FINALIZANDO THREAD", vars.query
+                break        
+                
+          
+                
         
             
                 
@@ -390,6 +411,7 @@ class Painel_arquivos(wx.Panel):
                 # hora = self.utm(hora)
                 min = tempo[2] + tempo[3]
                 vars.hora_inicio = hora + "h" + min
+                hora = tempo[0] + tempo[1]
 
             else:
                 velocidade = velocidade + "," + vars.vetor_velocidade[x]
@@ -419,25 +441,55 @@ class Painel_arquivos(wx.Panel):
                 
                     #pegando o tempo gasto, precisamos testar
                     tempo_gasto = vars.vetor_tempo[x]
+                    # hora_g = tempo_gasto[0] + tempo_gasto[1] + tempo_gasto[2] + tempo_gasto[3]
                     hora_g = tempo_gasto[0] + tempo_gasto[1]
                     min_g = tempo_gasto[2] + tempo_gasto[3]
                     
-                    # precisa ser testado
-                    if(int(hora) > int(hora_g) and flag == 0 ): #testando por causa da troca de 23h para 0h
-                        hora = int(hora) - 24
-                        flag = 1
+                    tempo_gasto = int(hora_g) * 60 + int(min_g) 
+                    hora_inicio = int(hora) * 60 + int(min)
                     
-                    hora_g = int(hora_g) - int(hora)
+                    print "T_GASTO", tempo_gasto
+                    print "Hora inicio", hora_inicio
+                    
+                    
+                    print "HORA", hora
+                    print "HORA GASTA", hora_g
+                    # precisa ser testado
+                    if(hora_inicio > tempo_gasto): #testando por causa da troca de 23h para 0h
+                        hora_inicio = hora_inicio - 1440
+                    
+                    tempo_gasto = int(tempo_gasto) - int(hora_inicio)
+                    hora_g = int(tempo_gasto / 60)
+                    min_g = tempo_gasto - (hora_g * 60)
+                    
+                    print "HORA G" , hora_g
+                    print "MIN G" , min_g
                     if  len(str(hora_g)) == 1:
                         hora_g = "0" + str(hora_g)
                     
-                    if(int(min_g) < int(min)):
-                        min_g = int(min_g) - int(min) + 60
-                    else:
-                        min_g = int(min_g) -int(min)
-                        
+                    # if(int(min_g) < int(min)):
+                    #     min_g = int(min_g) - int(min) + 60
+                    # else:
+                    #     min_g = int(min_g) -int(min)
+                    # hora_g = str(hora_g)
+                    # tamanho_str_hora = len(hora_g)
+                    # print "Tamanho_STR", tamanho_str_hora
+                    # if tamanho_str_hora == 1:
+                    #     min_g = "0" + hora_g
+                    #     hora_g = "00"
+                    # elif tamanho_str_hora == 2:
+                    #     min_g = hora_g
+                    #     hora_g = "00"
+                    # elif tamanho_str_hora == 3:
+                    #     hora_temp = hora_g
+                    #     hora_g = "0" + hora_temp[0]
+                    #     min_g = hora_temp[1] + hora_temp[2]
+                    #     
+                    
                     if len(str(min_g)) == 1:
                         min_g = "0" + str(min_g)
+                        
+                        
                         
                     vars.velocidade = velocidade # passando para global
                     vars.rpm = rpm # passando para global

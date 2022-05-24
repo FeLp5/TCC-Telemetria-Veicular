@@ -35,7 +35,7 @@ class Painel_infos(wx.Panel):
         fence_fora  = 0
         # porcentagem = 0
         for x in range(vars.num_dados):
-            if vars.vetor_fence[x] == "FORA":
+            if vars.vetor_fence[x] == '0':
                 print vars.vetor_fence[x]
                 fence_fora += 1
         
