@@ -229,6 +229,7 @@ void main(void)
 	mensagem_inicial();
     inicializa_tarefas();
     inicializa_uart();
+//    PORTBbits.RB3 = 0;
 
     T0CONbits.TMR0ON = 1;
     while(1)
@@ -275,7 +276,6 @@ void mensagem_inicial(void)
 
 void verifica_fence(void)
 {
-    
     recebe_dado_gps();
     longitude_to_convert();
     latitude_to_convert();
@@ -295,6 +295,7 @@ void verifica_fence(void)
         fence_flag[2].point = 0;
         monta_sd(4, "1");
     }
+    
 
 }
 
@@ -314,7 +315,7 @@ void verifica_dados_operacionais(void)
     static unsigned long int velocidade_media;
     static unsigned long int velocidade_atual_int = 0;    
     static unsigned char *velocidade_atual;     
-//    verifica_fence();
+    verifica_fence();
     
     if(contador_atual >=3)
     {
@@ -360,7 +361,7 @@ void disparo_gravacao(void)
     {
         verifica_fence();
         fix_gps = fix();
-//        fix_gps[0] = '1';
+        fix_gps[0] = '1';
         if(*fix_gps == '1')
         {     
             if(v_max> VELOCIDADE_LIMITE)

@@ -6275,6 +6275,7 @@ mensagem_inicial();
 inicializa_tarefas();
 inicializa_uart();
 
+
 T0CONbits.TMR0ON = 1;
 while(1)
 {
@@ -6288,7 +6289,7 @@ gps();
 }
 }
 
-# 251
+# 252
 void mensagem_inicial(void)
 {
 const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
@@ -6306,10 +6307,9 @@ escreve_frase_ram_lcd("AGUARDE...");
 
 }
 
-# 276
+# 277
 void verifica_fence(void)
 {
-
 recebe_dado_gps();
 longitude_to_convert();
 latitude_to_convert();
@@ -6330,9 +6330,10 @@ fence_flag[2].point = 0;
 monta_sd(4, "1");
 }
 
+
 }
 
-# 309
+# 310
 void verifica_dados_operacionais(void)
 {
 static unsigned char dado[6];
@@ -6341,7 +6342,7 @@ static unsigned char contador_anterior =0;
 static unsigned long int velocidade_media;
 static unsigned long int velocidade_atual_int = 0;
 static unsigned char *velocidade_atual;
-
+verifica_fence();
 
 if(contador_atual >=3)
 {
@@ -6366,7 +6367,7 @@ contador_atual++;
 }
 }
 
-# 350
+# 351
 void disparo_gravacao(void)
 {
 unsigned char *fix_gps;
@@ -6380,7 +6381,7 @@ if(!time_sd)
 {
 verifica_fence();
 fix_gps = fix();
-
+fix_gps[0] = '1';
 if(*fix_gps == '1')
 {
 if(v_max> 50)
@@ -6422,7 +6423,7 @@ time_sd = 28000;
 }
 }
 
-# 413
+# 414
 void troca_de_tela(void)
 {
 static unsigned char state = 0;
@@ -6490,7 +6491,7 @@ last_state = 1;
 
 }
 
-# 488
+# 489
 if(!PORTEbits.RE1 || (state == 2))
 {
 if(!time_atualizacao)
@@ -6533,7 +6534,7 @@ last_state = 4;
 }
 }
 
-# 538
+# 539
 void grava_sd(void)
 {
 PORTBbits.RB3 = 0;
@@ -6545,7 +6546,7 @@ inicializa_uart();
 PORTBbits.RB3 = 1;
 }
 
-# 557
+# 558
 void recebe_dado_gps(void)
 {
 unsigned char flag_recebe = 0;

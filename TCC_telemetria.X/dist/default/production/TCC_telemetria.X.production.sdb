@@ -360,19 +360,19 @@ FR_MKFS_ABORTED 13
 [v _escalonador escalonador `(v  1 e 1 0 ]
 "224
 [v _main main `(v  1 e 1 0 ]
-"251
+"252
 [v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
-"276
+"277
 [v _verifica_fence verifica_fence `(v  1 e 1 0 ]
-"309
+"310
 [v _verifica_dados_operacionais verifica_dados_operacionais `(v  1 e 1 0 ]
-"350
+"351
 [v _disparo_gravacao disparo_gravacao `(v  1 e 1 0 ]
-"413
+"414
 [v _troca_de_tela troca_de_tela `(v  1 e 1 0 ]
-"538
+"539
 [v _grava_sd grava_sd `(v  1 e 1 0 ]
-"557
+"558
 [v _recebe_dado_gps recebe_dado_gps `(v  1 e 1 0 ]
 "34 E:\Projetos\TCC_telemetria.X\bibliotecas/fence.c
 [v _fence_diff_lat fence_diff_lat `C[4][10]uc  1 e 40 0 ]
@@ -918,20 +918,20 @@ FR_MKFS_ABORTED 13
 "224
 [v _main main `(v  1 e 1 0 ]
 {
-"244
+"245
 } 0
-"251
+"252
 [v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
 {
-"254
+"255
 [v mensagem_inicial@msg_dois msg_dois `C[17]uc  1 a 17 34 ]
-"253
+"254
 [v mensagem_inicial@msg_linha_um msg_linha_um `C[17]uc  1 a 17 17 ]
-"252
-[v mensagem_inicial@F3687 F3687 `C[17]uc  1 s 17 F3687 ]
 "253
+[v mensagem_inicial@F3687 F3687 `C[17]uc  1 s 17 F3687 ]
+"254
 [v mensagem_inicial@F3689 F3689 `C[17]uc  1 s 17 F3689 ]
-"266
+"267
 } 0
 "71 E:\Projetos\TCC_telemetria.X\bibliotecas/display_lcd.c
 [v _init_lcd init_lcd `(v  1 e 1 0 ]
@@ -986,43 +986,43 @@ FR_MKFS_ABORTED 13
 [v escalonador@cont cont `uc  1 a 1 134 ]
 "217
 } 0
-"413
+"414
 [v _troca_de_tela troca_de_tela `(v  1 e 1 0 ]
 {
-"417
+"418
 [v troca_de_tela@fix_signal fix_signal `*.39uc  1 a 2 54 ]
-"415
-[v troca_de_tela@state state `uc  1 s 1 state ]
 "416
+[v troca_de_tela@state state `uc  1 s 1 state ]
+"417
 [v troca_de_tela@last_state last_state `uc  1 s 1 last_state ]
-"528
+"529
 } 0
-"350
+"351
 [v _disparo_gravacao disparo_gravacao `(v  1 e 1 0 ]
 {
-"355
+"356
 [v disparo_gravacao@velocidade velocidade `[6]*.2uc  1 a 12 0 ]
-"353
+"354
 [v disparo_gravacao@index_max index_max `ui  1 a 2 16 ]
 [v disparo_gravacao@v_max v_max `ui  1 a 2 14 ]
-"352
+"353
 [v disparo_gravacao@fix_gps fix_gps `*.39uc  1 a 2 12 ]
-"354
+"355
 [v disparo_gravacao@i i `uc  1 a 1 18 ]
-"403
+"404
 } 0
-"309
+"310
 [v _verifica_dados_operacionais verifica_dados_operacionais `(v  1 e 1 0 ]
 {
-"312
-[v verifica_dados_operacionais@contador_atual contador_atual `uc  1 s 1 contador_atual ]
 "313
+[v verifica_dados_operacionais@contador_atual contador_atual `uc  1 s 1 contador_atual ]
+"314
 [v verifica_dados_operacionais@contador_anterior contador_anterior `uc  1 s 1 contador_anterior ]
-"315
-[v verifica_dados_operacionais@velocidade_atual_int velocidade_atual_int `ul  1 s 4 velocidade_atual_int ]
 "316
+[v verifica_dados_operacionais@velocidade_atual_int velocidade_atual_int `ul  1 s 4 velocidade_atual_int ]
+"317
 [v verifica_dados_operacionais@velocidade_atual velocidade_atual `*.39uc  1 s 2 velocidade_atual ]
-"340
+"341
 } 0
 "8 C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcpy.c
 [v _strcpy strcpy `(*.39uc  1 e 2 0 ]
@@ -1148,10 +1148,10 @@ FR_MKFS_ABORTED 13
 [v escreve_cmd_lcd@comando comando `uc  1 a 1 11 ]
 "206
 } 0
-"276 E:\Projetos\TCC_telemetria.X\main.c
+"277 E:\Projetos\TCC_telemetria.X\main.c
 [v _verifica_fence verifica_fence `(v  1 e 1 0 ]
 {
-"299
+"300
 } 0
 "311 E:\Projetos\TCC_telemetria.X\bibliotecas/fence.c
 [v _verifica_plausibilidade_long verifica_plausibilidade_long `(uc  1 e 1 0 ]
@@ -1177,14 +1177,14 @@ FR_MKFS_ABORTED 13
 {
 "656
 } 0
-"557 E:\Projetos\TCC_telemetria.X\main.c
+"558 E:\Projetos\TCC_telemetria.X\main.c
 [v _recebe_dado_gps recebe_dado_gps `(v  1 e 1 0 ]
 {
-"560
+"561
 [v recebe_dado_gps@timeout timeout `uc  1 a 1 10 ]
-"559
+"560
 [v recebe_dado_gps@flag_recebe flag_recebe `uc  1 a 1 9 ]
-"566
+"567
 } 0
 "720 E:\Projetos\TCC_telemetria.X\bibliotecas/GPS.c
 [v _verifica_recep_gps verifica_recep_gps `(uc  1 e 1 0 ]
@@ -1313,10 +1313,10 @@ FR_MKFS_ABORTED 13
 [v ___lwdiv@divisor divisor `ui  1 p 2 11 ]
 "30
 } 0
-"538 E:\Projetos\TCC_telemetria.X\main.c
+"539 E:\Projetos\TCC_telemetria.X\main.c
 [v _grava_sd grava_sd `(v  1 e 1 0 ]
 {
-"547
+"548
 } 0
 "206 E:\Projetos\TCC_telemetria.X\bibliotecas/uart.c
 [v _inicializa_uart inicializa_uart `(v  1 e 1 0 ]
