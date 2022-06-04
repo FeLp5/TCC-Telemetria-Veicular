@@ -361,7 +361,7 @@ void disparo_gravacao(void)
     {
         verifica_fence();
         fix_gps = fix();
-        fix_gps[0] = '1';
+//        fix_gps[0] = '1';
         if(*fix_gps == '1')
         {     
             if(v_max> VELOCIDADE_LIMITE)

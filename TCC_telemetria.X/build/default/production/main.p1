@@ -4829,9 +4829,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 363: fix_gps = fix();
 "363
 [e = _fix_gps ( _fix ..  ]
-[; ;main.c: 364: fix_gps[0] = '1';
-"364
-[e = *U + _fix_gps * -> -> 0 `i `x -> -> # *U _fix_gps `i `x -> -> 49 `ui `uc ]
 [; ;main.c: 365: if(*fix_gps == '1')
 "365
 [e $ ! == -> *U _fix_gps `ui -> 49 `ui 409  ]
