@@ -3,7 +3,7 @@
  *
  * Descricao       	: Implementa o controle protocolo SPI
  *
- * Ambiente			    : MPLAB v3.51, XC8 versao 2.32, PIC18F4550
+ * Ambiente			    : MPLAB v3.51, XC8 versao 2.30, PIC18F4550
  *
  * Responsavel		: Souza, Deivide Conceição de
 			  Silva, Felipe Alves da

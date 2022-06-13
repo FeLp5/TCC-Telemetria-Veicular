@@ -3,7 +3,7 @@
  *
  * Descricao       	: 
  *
- * Ambiente			    : MPLAB v3.51, XC8 v2.32, PIC18F4550
+ * Ambiente			    : MPLAB v3.51, XC8 v2.30, PIC18F4550
  *
  * Responsavel		: Souza, Deivide Concei�ao de
                       Silva, Felipe Alves da
@@ -39,8 +39,6 @@
 #include "bibliotecas/fence.h"
 #include "stdlib.h"
 #include "string.h"
-//Biblioteca MCP2515=========
-#include "bibliotecas/MCP2515.h"
 //===========================
 
 /******************************************************************************

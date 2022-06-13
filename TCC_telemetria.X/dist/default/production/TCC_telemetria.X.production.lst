@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.30 build 20200825195618 
-                                                                                               Sat Jun 04 10:34:01 2022
+                                                                                               Mon Jun 13 12:07:26 2022
 
 Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9 
      1                           	processor	18F4550
@@ -363,7 +363,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
    349  006106                     __pmediumconst:
    350                           	callstack 0
    351  006106  00                 	db	0
-   352  006107                     mensagem_inicial@F3689:
+   352  006107                     mensagem_inicial@F3679:
    353                           	callstack 0
    354  006107  54                 	db	84
    355  006108  43                 	db	67
@@ -382,9 +382,9 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
    368  006115  00                 	db	0
    369  006116  00                 	db	0
    370  006117  00                 	db	0
-   371  006118                     __end_ofmensagem_inicial@F3689:
+   371  006118                     __end_ofmensagem_inicial@F3679:
    372                           	callstack 0
-   373  006118                     mensagem_inicial@F3687:
+   373  006118                     mensagem_inicial@F3677:
    374                           	callstack 0
    375  006118  46                 	db	70
    376  006119  41                 	db	65
@@ -403,7 +403,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
    389  006126  00                 	db	0
    390  006127  00                 	db	0
    391  006128  00                 	db	0
-   392  006129                     __end_ofmensagem_inicial@F3687:
+   392  006129                     __end_ofmensagem_inicial@F3677:
    393                           	callstack 0
    394  006129                     _fence_diff_long:
    395                           	callstack 0
@@ -2454,7 +2454,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   2440 ;;
   2441 ;; *************** function _main *****************
   2442 ;; Defined at:
-  2443 ;;		line 224 in file "main.c"
+  2443 ;;		line 222 in file "main.c"
   2444 ;; Parameters:    Size  Location     Type
   2445 ;;		None
   2446 ;; Auto vars:     Size  Location     Type
@@ -2493,49 +2493,49 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   2479  00577C                     _main:
   2480                           	callstack 13
   2481                           
-  2482                           ;main.c: 226: init_hardware();
+  2482                           ;main.c: 224: init_hardware();
   2483                           
   2484                           ;incstack = 0
   2485  00577C  ECA7  F02D         	call	_init_hardware	;wreg free
   2486                           
-  2487                           ;main.c: 227: T0CONbits.TMR0ON = 0;
+  2487                           ;main.c: 225: T0CONbits.TMR0ON = 0;
   2488  005780  9ED5               	bcf	213,7,c	;volatile
   2489                           
-  2490                           ;main.c: 228: init_lcd();
+  2490                           ;main.c: 226: init_lcd();
   2491  005782  EC01  F023         	call	_init_lcd	;wreg free
   2492                           
-  2493                           ;main.c: 229: mensagem_inicial();
+  2493                           ;main.c: 227: mensagem_inicial();
   2494  005786  EC50  F023         	call	_mensagem_inicial	;wreg free
   2495                           
-  2496                           ;main.c: 230: inicializa_tarefas();
+  2496                           ;main.c: 228: inicializa_tarefas();
   2497  00578A  EC0C  F029         	call	_inicializa_tarefas	;wreg free
   2498                           
   2499                           ; BSR set to: 1
-  2500                           ;main.c: 231: inicializa_uart();
+  2500                           ;main.c: 229: inicializa_uart();
   2501  00578E  ECCB  F02C         	call	_inicializa_uart	;wreg free
   2502                           
-  2503                           ;main.c: 234: T0CONbits.TMR0ON = 1;
+  2503                           ;main.c: 232: T0CONbits.TMR0ON = 1;
   2504  005792  8ED5               	bsf	213,7,c	;volatile
   2505  005794                     l13830:
   2506                           
-  2507                           ;main.c: 236: {;main.c: 238: if ((sinaliza_int_timer == 1) && (3))
+  2507                           ;main.c: 234: {;main.c: 236: if ((sinaliza_int_timer == 1) && (3))
   2508  005794  0100               	movlb	0	; () banked
   2509  005796  05F2               	decf	_sinaliza_int_timer& (0+255),w,b
   2510  005798  A4D8               	btfss	status,2,c
   2511  00579A  D004               	goto	l13836
   2512                           
   2513                           ; BSR set to: 0
-  2514                           ;main.c: 239: {;main.c: 240: sinaliza_int_timer = 0;
+  2514                           ;main.c: 237: {;main.c: 238: sinaliza_int_timer = 0;
   2515  00579C  0E00               	movlw	0
   2516  00579E  6FF2               	movwf	_sinaliza_int_timer& (0+255),b
   2517                           
   2518                           ; BSR set to: 0
-  2519                           ;main.c: 241: escalonador();
+  2519                           ;main.c: 239: escalonador();
   2520  0057A0  EC0A  F022         	call	_escalonador	;wreg free
   2521  0057A4                     l13836:
   2522                           
   2523                           ; BSR set to: 0
-  2524                           ;main.c: 242: };main.c: 243: gps();
+  2524                           ;main.c: 240: };main.c: 241: gps();
   2525  0057A4  EC28  F02B         	call	_gps	;wreg free
   2526  0057A8  D7F5               	goto	l13830
   2527  0057AA                     __end_of_main:
@@ -2543,7 +2543,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   2529                           
   2530 ;; *************** function _mensagem_inicial *****************
   2531 ;; Defined at:
-  2532 ;;		line 252 in file "main.c"
+  2532 ;;		line 250 in file "main.c"
   2533 ;; Parameters:    Size  Location     Type
   2534 ;;		None
   2535 ;; Auto vars:     Size  Location     Type
@@ -2580,17 +2580,17 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   2566  0046A0                     _mensagem_inicial:
   2567                           	callstack 25
   2568                           
-  2569                           ;main.c: 254: const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
+  2569                           ;main.c: 252: const unsigned char msg_linha_um[17] = "FATEC ST ANDRE";
   2570                           
   2571                           ;incstack = 0
-  2572  0046A0  0E18               	movlw	low mensagem_inicial@F3687
+  2572  0046A0  0E18               	movlw	low mensagem_inicial@F3677
   2573  0046A2  6EF6               	movwf	tblptrl,c
   2574  0046A4                     	if	1	;There is more than 1 active tblptr byte
-  2575  0046A4  0E61               	movlw	high mensagem_inicial@F3687
+  2575  0046A4  0E61               	movlw	high mensagem_inicial@F3677
   2576  0046A6  6EF7               	movwf	tblptrh,c
   2577  0046A8                     	endif
   2578  0046A8                     	if	1	;There are 3 active tblptr bytes
-  2579  0046A8  0E00               	movlw	low (mensagem_inicial@F3687 shr (0+16))
+  2579  0046A8  0E00               	movlw	low (mensagem_inicial@F3677 shr (0+16))
   2580  0046AA  6EF8               	movwf	tblptru,c
   2581  0046AC                     	endif
   2582  0046AC  EE20  F012         	lfsr	2,mensagem_inicial@msg_linha_um
@@ -2601,15 +2601,15 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   2587  0046B8  06E8               	decf	wreg,f,c
   2588  0046BA  E2FB               	bc	u16500
   2589                           
-  2590                           ;main.c: 255: const unsigned char msg_dois[17] = "TCC--TELEMTRIA";
-  2591  0046BC  0E07               	movlw	low mensagem_inicial@F3689
+  2590                           ;main.c: 253: const unsigned char msg_dois[17] = "TCC--TELEMTRIA";
+  2591  0046BC  0E07               	movlw	low mensagem_inicial@F3679
   2592  0046BE  6EF6               	movwf	tblptrl,c
   2593  0046C0                     	if	1	;There is more than 1 active tblptr byte
-  2594  0046C0  0E61               	movlw	high mensagem_inicial@F3689
+  2594  0046C0  0E61               	movlw	high mensagem_inicial@F3679
   2595  0046C2  6EF7               	movwf	tblptrh,c
   2596  0046C4                     	endif
   2597  0046C4                     	if	1	;There are 3 active tblptr bytes
-  2598  0046C4  0E00               	movlw	low (mensagem_inicial@F3689 shr (0+16))
+  2598  0046C4  0E00               	movlw	low (mensagem_inicial@F3679 shr (0+16))
   2599  0046C6  6EF8               	movwf	tblptru,c
   2600  0046C8                     	endif
   2601  0046C8  EE20  F023         	lfsr	2,mensagem_inicial@msg_dois
@@ -2620,31 +2620,31 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   2606  0046D4  06E8               	decf	wreg,f,c
   2607  0046D6  E2FB               	bc	u16510
   2608                           
-  2609                           ;main.c: 257: posicao_cursor_lcd(1,0);
+  2609                           ;main.c: 255: posicao_cursor_lcd(1,0);
   2610  0046D8  0E00               	movlw	0
   2611  0046DA  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   2612  0046DC  0E01               	movlw	1
   2613  0046DE  EC58  F027         	call	_posicao_cursor_lcd
   2614                           
-  2615                           ;main.c: 258: escreve_frase_ram_lcd(msg_linha_um);
+  2615                           ;main.c: 256: escreve_frase_ram_lcd(msg_linha_um);
   2616  0046E2  0E12               	movlw	low mensagem_inicial@msg_linha_um
   2617  0046E4  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   2618  0046E6  6A0E               	clrf	(escreve_frase_ram_lcd@buffer+1)^0,c
   2619  0046E8  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   2620                           
-  2621                           ;main.c: 260: posicao_cursor_lcd(2,0);
+  2621                           ;main.c: 258: posicao_cursor_lcd(2,0);
   2622  0046EC  0E00               	movlw	0
   2623  0046EE  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   2624  0046F0  0E02               	movlw	2
   2625  0046F2  EC58  F027         	call	_posicao_cursor_lcd
   2626                           
-  2627                           ;main.c: 261: escreve_frase_ram_lcd(msg_dois);
+  2627                           ;main.c: 259: escreve_frase_ram_lcd(msg_dois);
   2628  0046F6  0E23               	movlw	low mensagem_inicial@msg_dois
   2629  0046F8  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   2630  0046FA  6A0E               	clrf	(escreve_frase_ram_lcd@buffer+1)^0,c
   2631  0046FC  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   2632                           
-  2633                           ;main.c: 262: _delay((unsigned long)((1000)*(48000000/4000.0)));
+  2633                           ;main.c: 260: _delay((unsigned long)((1000)*(48000000/4000.0)));
   2634  004700  0E3D               	movlw	61
   2635  004702  6E11               	movwf	(??_mensagem_inicial+1)^0,c
   2636  004704  0EE1               	movlw	225
@@ -2658,17 +2658,17 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   2644  004712  2E11               	decfsz	(??_mensagem_inicial+1)^0,f,c
   2645  004714  D7FA               	bra	u16677
   2646                           
-  2647                           ;main.c: 263: escreve_cmd_lcd(0b00000001);
+  2647                           ;main.c: 261: escreve_cmd_lcd(0b00000001);
   2648  004716  0E01               	movlw	1
   2649  004718  EC2B  F024         	call	_escreve_cmd_lcd
   2650                           
-  2651                           ;main.c: 264: posicao_cursor_lcd(1,0);
+  2651                           ;main.c: 262: posicao_cursor_lcd(1,0);
   2652  00471C  0E00               	movlw	0
   2653  00471E  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   2654  004720  0E01               	movlw	1
   2655  004722  EC58  F027         	call	_posicao_cursor_lcd
   2656                           
-  2657                           ;main.c: 265: escreve_frase_ram_lcd("AGUARDE...");
+  2657                           ;main.c: 263: escreve_frase_ram_lcd("AGUARDE...");
   2658  004726  0EDB               	movlw	low STR_19
   2659  004728  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   2660  00472A  0E61               	movlw	high STR_19
@@ -3266,7 +3266,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3252                           
   3253 ;; *************** function _inicializa_tarefas *****************
   3254 ;; Defined at:
-  3255 ;;		line 174 in file "main.c"
+  3255 ;;		line 172 in file "main.c"
   3256 ;; Parameters:    Size  Location     Type
   3257 ;;		None
   3258 ;; Auto vars:     Size  Location     Type
@@ -3300,7 +3300,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3286  005218                     _inicializa_tarefas:
   3287                           	callstack 28
   3288                           
-  3289                           ;main.c: 177: p_tarefas[0] = verifica_dados_operacionais;
+  3289                           ;main.c: 175: p_tarefas[0] = verifica_dados_operacionais;
   3290                           
   3291                           ;incstack = 0
   3292  005218  0E0C               	movlw	low _verifica_dados_operacionais
@@ -3309,62 +3309,62 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3295  00521E  0E2F               	movlw	high _verifica_dados_operacionais
   3296  005220  6F3A               	movwf	(_p_tarefas+1)& (0+255),b
   3297                           
-  3298                           ;main.c: 178: p_tarefas[1] = disparo_gravacao;
+  3298                           ;main.c: 176: p_tarefas[1] = disparo_gravacao;
   3299  005222  0E10               	movlw	low _disparo_gravacao
   3300  005224  6F3B               	movwf	(_p_tarefas+2)& (0+255),b
   3301  005226  0E28               	movlw	high _disparo_gravacao
   3302  005228  6F3C               	movwf	(_p_tarefas+3)& (0+255),b
   3303                           
-  3304                           ;main.c: 179: p_tarefas[2] = troca_de_tela;
+  3304                           ;main.c: 177: p_tarefas[2] = troca_de_tela;
   3305  00522A  0EFC               	movlw	low _troca_de_tela
   3306  00522C  6F3D               	movwf	(_p_tarefas+4)& (0+255),b
   3307  00522E  0E1B               	movlw	high _troca_de_tela
   3308  005230  6F3E               	movwf	(_p_tarefas+5)& (0+255),b
   3309                           
   3310                           ; BSR set to: 1
-  3311                           ;main.c: 183: tempo_backup[0] = 500;
+  3311                           ;main.c: 181: tempo_backup[0] = 500;
   3312  005232  0E01               	movlw	1
   3313  005234  6F34               	movwf	(_tempo_backup+1)& (0+255),b
   3314  005236  0EF4               	movlw	244
   3315  005238  6F33               	movwf	_tempo_backup& (0+255),b
   3316                           
   3317                           ; BSR set to: 1
-  3318                           ;main.c: 184: tempo_backup[1] = 1000;
+  3318                           ;main.c: 182: tempo_backup[1] = 1000;
   3319  00523A  0E03               	movlw	3
   3320  00523C  6F36               	movwf	(_tempo_backup+3)& (0+255),b
   3321  00523E  0EE8               	movlw	232
   3322  005240  6F35               	movwf	(_tempo_backup+2)& (0+255),b
   3323                           
   3324                           ; BSR set to: 1
-  3325                           ;main.c: 185: tempo_backup[2] = 5000;
+  3325                           ;main.c: 183: tempo_backup[2] = 5000;
   3326  005242  0E13               	movlw	19
   3327  005244  6F38               	movwf	(_tempo_backup+5)& (0+255),b
   3328  005246  0E88               	movlw	136
   3329  005248  6F37               	movwf	(_tempo_backup+4)& (0+255),b
   3330                           
   3331                           ; BSR set to: 1
-  3332                           ;main.c: 188: tempo_tarefa[0] = 500;
+  3332                           ;main.c: 186: tempo_tarefa[0] = 500;
   3333  00524A  0E01               	movlw	1
   3334  00524C  6F2E               	movwf	(_tempo_tarefa+1)& (0+255),b
   3335  00524E  0EF4               	movlw	244
   3336  005250  6F2D               	movwf	_tempo_tarefa& (0+255),b
   3337                           
   3338                           ; BSR set to: 1
-  3339                           ;main.c: 189: tempo_tarefa[1] = 1000;
+  3339                           ;main.c: 187: tempo_tarefa[1] = 1000;
   3340  005252  0E03               	movlw	3
   3341  005254  6F30               	movwf	(_tempo_tarefa+3)& (0+255),b
   3342  005256  0EE8               	movlw	232
   3343  005258  6F2F               	movwf	(_tempo_tarefa+2)& (0+255),b
   3344                           
   3345                           ; BSR set to: 1
-  3346                           ;main.c: 190: tempo_tarefa[2] = 5000;
+  3346                           ;main.c: 188: tempo_tarefa[2] = 5000;
   3347  00525A  0E13               	movlw	19
   3348  00525C  6F32               	movwf	(_tempo_tarefa+5)& (0+255),b
   3349  00525E  0E88               	movlw	136
   3350  005260  6F31               	movwf	(_tempo_tarefa+4)& (0+255),b
   3351                           
   3352                           ; BSR set to: 1
-  3353                           ;main.c: 192: tarefa_em_execucao = 0;
+  3353                           ;main.c: 190: tarefa_em_execucao = 0;
   3354  005262  0E00               	movlw	0
   3355  005264  6E52               	movwf	_tarefa_em_execucao^0,c	;volatile
   3356                           
@@ -3375,7 +3375,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3361                           
   3362 ;; *************** function _escalonador *****************
   3363 ;; Defined at:
-  3364 ;;		line 203 in file "main.c"
+  3364 ;;		line 201 in file "main.c"
   3365 ;; Parameters:    Size  Location     Type
   3366 ;;		None
   3367 ;; Auto vars:     Size  Location     Type
@@ -3412,7 +3412,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3398                           	callstack 13
   3399                           
   3400                           ; BSR set to: 0
-  3401                           ;main.c: 205: unsigned char cont;;main.c: 206: for(cont = 0; cont<3;cont++)
+  3401                           ;main.c: 203: unsigned char cont;;main.c: 204: for(cont = 0; cont<3;cont++)
   3402                           
   3403                           ; BSR set to: 1
   3404                           ;incstack = 0
@@ -3421,7 +3421,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3407  004418                     l13800:
   3408                           
   3409                           ; BSR set to: 0
-  3410                           ;main.c: 207: {;main.c: 208: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
+  3410                           ;main.c: 205: {;main.c: 206: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
   3411  004418  51E6               	movf	escalonador@cont& (0+255),w,b
   3412  00441A  0D02               	mullw	2
   3413  00441C  0E39               	movlw	low _p_tarefas
@@ -3450,11 +3450,11 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3436  004446  D036               	goto	l13812
   3437                           
   3438                           ; BSR set to: 0
-  3439                           ;main.c: 209: {;main.c: 210: tarefa_em_execucao = 1;
+  3439                           ;main.c: 207: {;main.c: 208: tarefa_em_execucao = 1;
   3440  004448  0E01               	movlw	1
   3441  00444A  6E52               	movwf	_tarefa_em_execucao^0,c	;volatile
   3442                           
-  3443                           ;main.c: 211: timeout_tarefa = 65000;
+  3443                           ;main.c: 209: timeout_tarefa = 65000;
   3444  00444C  0EFD               	movlw	253
   3445  00444E  0101               	movlb	1	; () banked
   3446  004450  6F71               	movwf	(_timeout_tarefa+1)& (0+255),b
@@ -3462,7 +3462,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3448  004454  6F70               	movwf	_timeout_tarefa& (0+255),b
   3449                           
   3450                           ; BSR set to: 1
-  3451                           ;main.c: 212: p_tarefas[cont]();
+  3451                           ;main.c: 210: p_tarefas[cont]();
   3452  004456  0100               	movlb	0	; () banked
   3453  004458  51E6               	movf	escalonador@cont& (0+255),w,b
   3454  00445A  0D02               	mullw	2
@@ -3488,11 +3488,11 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3474  004484  0012               	return		;indir
   3475  004486                     u16649:
   3476                           
-  3477                           ;main.c: 213: tarefa_em_execucao = 0;
+  3477                           ;main.c: 211: tarefa_em_execucao = 0;
   3478  004486  0E00               	movlw	0
   3479  004488  6E52               	movwf	_tarefa_em_execucao^0,c	;volatile
   3480                           
-  3481                           ;main.c: 214: tempo_tarefa[cont] = tempo_backup[cont];
+  3481                           ;main.c: 212: tempo_tarefa[cont] = tempo_backup[cont];
   3482  00448A  0100               	movlb	0	; () banked
   3483  00448C  51E6               	movf	escalonador@cont& (0+255),w,b
   3484  00448E  0D02               	mullw	2
@@ -3527,7 +3527,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3513                           
   3514 ;; *************** function _troca_de_tela *****************
   3515 ;; Defined at:
-  3516 ;;		line 414 in file "main.c"
+  3516 ;;		line 412 in file "main.c"
   3517 ;; Parameters:    Size  Location     Type
   3518 ;;		None
   3519 ;; Auto vars:     Size  Location     Type
@@ -3571,8 +3571,8 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3557                           	callstack 23
   3558                           
   3559                           ; BSR set to: 0
-  3560                           ;main.c: 416: static unsigned char state = 0;;main.c: 417: static unsigned char last_sta
-      +                          te = 0;;main.c: 418: unsigned char *fix_signal;;main.c: 420: if(!PORTEbits.RE0 || (state
+  3560                           ;main.c: 414: static unsigned char state = 0;;main.c: 415: static unsigned char last_sta
+      +                          te = 0;;main.c: 416: unsigned char *fix_signal;;main.c: 418: if(!PORTEbits.RE0 || (state
       +                           == 1 ))
   3561                           
   3562                           ; BSR set to: 0
@@ -3587,56 +3587,56 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3571  001C06                     u16140:
   3572                           
   3573                           ; BSR set to: 0
-  3574                           ;main.c: 421: {;main.c: 423: if(!time_atualizacao)
+  3574                           ;main.c: 419: {;main.c: 421: if(!time_atualizacao)
   3575  001C06  51EA               	movf	_time_atualizacao& (0+255),w,b
   3576  001C08  11EB               	iorwf	(_time_atualizacao+1)& (0+255),w,b
   3577  001C0A  A4D8               	btfss	status,2,c
   3578  001C0C  D061               	goto	l13380
   3579                           
   3580                           ; BSR set to: 0
-  3581                           ;main.c: 424: {;main.c: 425: if(!fence_flag[2].point)
+  3581                           ;main.c: 422: {;main.c: 423: if(!fence_flag[2].point)
   3582  001C0E  B1E9               	btfsc	(_fence_flag+2)& (0+255),0,b
   3583  001C10  D00C               	goto	l13358
   3584                           
   3585                           ; BSR set to: 0
-  3586                           ;main.c: 426: {;main.c: 427: posicao_cursor_lcd(1,8);
+  3586                           ;main.c: 424: {;main.c: 425: posicao_cursor_lcd(1,8);
   3587  001C12  0E08               	movlw	8
   3588  001C14  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3589  001C16  0E01               	movlw	1
   3590  001C18  EC58  F027         	call	_posicao_cursor_lcd
   3591                           
-  3592                           ;main.c: 428: escreve_frase_ram_lcd("DENTRO");
+  3592                           ;main.c: 426: escreve_frase_ram_lcd("DENTRO");
   3593  001C1C  0E4F               	movlw	low STR_22
   3594  001C1E  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3595  001C20  0E62               	movlw	high STR_22
   3596  001C22  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3597  001C24  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3598                           
-  3599                           ;main.c: 429: }
+  3599                           ;main.c: 427: }
   3600  001C28  D03C               	goto	l13372
   3601  001C2A                     l13358:
   3602                           
   3603                           ; BSR set to: 0
-  3604                           ;main.c: 430: else;main.c: 431: {;main.c: 432: posicao_cursor_lcd(1,8);
+  3604                           ;main.c: 428: else;main.c: 429: {;main.c: 430: posicao_cursor_lcd(1,8);
   3605  001C2A  0E08               	movlw	8
   3606  001C2C  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3607  001C2E  0E01               	movlw	1
   3608  001C30  EC58  F027         	call	_posicao_cursor_lcd
   3609                           
-  3610                           ;main.c: 433: escreve_frase_ram_lcd("FORA");
+  3610                           ;main.c: 431: escreve_frase_ram_lcd("FORA");
   3611  001C34  0E61               	movlw	low STR_23
   3612  001C36  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3613  001C38  0E62               	movlw	high STR_23
   3614  001C3A  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3615  001C3C  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3616                           
-  3617                           ;main.c: 434: posicao_cursor_lcd(1,13);
+  3617                           ;main.c: 432: posicao_cursor_lcd(1,13);
   3618  001C40  0E0D               	movlw	13
   3619  001C42  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3620  001C44  0E01               	movlw	1
   3621  001C46  EC58  F027         	call	_posicao_cursor_lcd
   3622                           
-  3623                           ;main.c: 435: escreve_inteiro_lcd(fence_flag[0].point);
+  3623                           ;main.c: 433: escreve_inteiro_lcd(fence_flag[0].point);
   3624  001C4A  0100               	movlb	0	; () banked
   3625  001C4C  A1E7               	btfss	_fence_flag& (0+255),0,b
   3626  001C4E  D003               	goto	u16170
@@ -3653,26 +3653,26 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3637  001C60  6A2E               	clrf	(escreve_inteiro_lcd@valor+3)^0,c
   3638  001C62  ECB2  F02A         	call	_escreve_inteiro_lcd	;wreg free
   3639                           
-  3640                           ;main.c: 436: posicao_cursor_lcd(1,14);
+  3640                           ;main.c: 434: posicao_cursor_lcd(1,14);
   3641  001C66  0E0E               	movlw	14
   3642  001C68  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3643  001C6A  0E01               	movlw	1
   3644  001C6C  EC58  F027         	call	_posicao_cursor_lcd
   3645                           
-  3646                           ;main.c: 437: escreve_frase_ram_lcd("|");
+  3646                           ;main.c: 435: escreve_frase_ram_lcd("|");
   3647  001C70  0E7C               	movlw	low STR_24
   3648  001C72  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3649  001C74  0E62               	movlw	high STR_24
   3650  001C76  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3651  001C78  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3652                           
-  3653                           ;main.c: 438: posicao_cursor_lcd(1,15);
+  3653                           ;main.c: 436: posicao_cursor_lcd(1,15);
   3654  001C7C  0E0F               	movlw	15
   3655  001C7E  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3656  001C80  0E01               	movlw	1
   3657  001C82  EC58  F027         	call	_posicao_cursor_lcd
   3658                           
-  3659                           ;main.c: 439: escreve_inteiro_lcd(fence_flag[1].point);
+  3659                           ;main.c: 437: escreve_inteiro_lcd(fence_flag[1].point);
   3660  001C86  0100               	movlb	0	; () banked
   3661  001C88  A1E8               	btfss	(_fence_flag+1)& (0+255),0,b
   3662  001C8A  D003               	goto	u16180
@@ -3690,24 +3690,24 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3674  001C9E  ECB2  F02A         	call	_escreve_inteiro_lcd	;wreg free
   3675  001CA2                     l13372:
   3676                           
-  3677                           ;main.c: 440: };main.c: 442: fix_signal = fix();
+  3677                           ;main.c: 438: };main.c: 440: fix_signal = fix();
   3678  001CA2  EC23  F02E         	call	_fix	;wreg free
   3679  001CA6  C00A  F037         	movff	?_fix,troca_de_tela@fix_signal
   3680  001CAA  C00B  F038         	movff	?_fix+1,troca_de_tela@fix_signal+1
   3681                           
-  3682                           ;main.c: 443: posicao_cursor_lcd(2,8);
+  3682                           ;main.c: 441: posicao_cursor_lcd(2,8);
   3683  001CAE  0E08               	movlw	8
   3684  001CB0  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3685  001CB2  0E02               	movlw	2
   3686  001CB4  EC58  F027         	call	_posicao_cursor_lcd
   3687                           
-  3688                           ;main.c: 444: escreve_caractere_lcd(fix_signal[0]);
+  3688                           ;main.c: 442: escreve_caractere_lcd(fix_signal[0]);
   3689  001CB8  C037  FFD9         	movff	troca_de_tela@fix_signal,fsr2l
   3690  001CBC  C038  FFDA         	movff	troca_de_tela@fix_signal+1,fsr2h
   3691  001CC0  50DF               	movf	indf2,w,c
   3692  001CC2  ECE9  F025         	call	_escreve_caractere_lcd
   3693                           
-  3694                           ;main.c: 445: time_atualizacao = 10000;
+  3694                           ;main.c: 443: time_atualizacao = 10000;
   3695  001CC6  0E27               	movlw	39
   3696  001CC8  0100               	movlb	0	; () banked
   3697  001CCA  6FEB               	movwf	(_time_atualizacao+1)& (0+255),b
@@ -3716,78 +3716,78 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3700  001CD0                     l13380:
   3701                           
   3702                           ; BSR set to: 0
-  3703                           ;main.c: 446: };main.c: 448: if(last_state != 1)
+  3703                           ;main.c: 444: };main.c: 446: if(last_state != 1)
   3704  001CD0  044F               	decf	troca_de_tela@last_state^0,w,c
   3705  001CD2  B4D8               	btfsc	status,2,c
   3706  001CD4  D078               	goto	l13418
   3707                           
   3708                           ; BSR set to: 0
-  3709                           ;main.c: 449: {;main.c: 450: state = 1;
+  3709                           ;main.c: 447: {;main.c: 448: state = 1;
   3710  001CD6  0E01               	movlw	1
   3711  001CD8  6E50               	movwf	troca_de_tela@state^0,c
   3712                           
   3713                           ; BSR set to: 0
-  3714                           ;main.c: 451: escreve_cmd_lcd(0b00000001);
+  3714                           ;main.c: 449: escreve_cmd_lcd(0b00000001);
   3715  001CDA  0E01               	movlw	1
   3716  001CDC  EC2B  F024         	call	_escreve_cmd_lcd
   3717                           
-  3718                           ;main.c: 452: posicao_cursor_lcd(1,0);
+  3718                           ;main.c: 450: posicao_cursor_lcd(1,0);
   3719  001CE0  0E00               	movlw	0
   3720  001CE2  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3721  001CE4  0E01               	movlw	1
   3722  001CE6  EC58  F027         	call	_posicao_cursor_lcd
   3723                           
-  3724                           ;main.c: 453: escreve_frase_ram_lcd("FENCE:");
+  3724                           ;main.c: 451: escreve_frase_ram_lcd("FENCE:");
   3725  001CEA  0E48               	movlw	low STR_25
   3726  001CEC  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3727  001CEE  0E62               	movlw	high STR_25
   3728  001CF0  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3729  001CF2  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3730                           
-  3731                           ;main.c: 455: if(!fence_flag[2].point)
+  3731                           ;main.c: 453: if(!fence_flag[2].point)
   3732  001CF6  0100               	movlb	0	; () banked
   3733  001CF8  B1E9               	btfsc	(_fence_flag+2)& (0+255),0,b
   3734  001CFA  D00C               	goto	l13396
   3735                           
   3736                           ; BSR set to: 0
-  3737                           ;main.c: 456: {;main.c: 457: posicao_cursor_lcd(1,8);
+  3737                           ;main.c: 454: {;main.c: 455: posicao_cursor_lcd(1,8);
   3738  001CFC  0E08               	movlw	8
   3739  001CFE  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3740  001D00  0E01               	movlw	1
   3741  001D02  EC58  F027         	call	_posicao_cursor_lcd
   3742                           
-  3743                           ;main.c: 458: escreve_frase_ram_lcd("DENTRO");
+  3743                           ;main.c: 456: escreve_frase_ram_lcd("DENTRO");
   3744  001D06  0E4F               	movlw	low STR_22
   3745  001D08  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3746  001D0A  0E62               	movlw	high STR_22
   3747  001D0C  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3748  001D0E  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3749                           
-  3750                           ;main.c: 459: }
+  3750                           ;main.c: 457: }
   3751  001D12  D03C               	goto	l13410
   3752  001D14                     l13396:
   3753                           
   3754                           ; BSR set to: 0
-  3755                           ;main.c: 460: else;main.c: 461: {;main.c: 462: posicao_cursor_lcd(1,8);
+  3755                           ;main.c: 458: else;main.c: 459: {;main.c: 460: posicao_cursor_lcd(1,8);
   3756  001D14  0E08               	movlw	8
   3757  001D16  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3758  001D18  0E01               	movlw	1
   3759  001D1A  EC58  F027         	call	_posicao_cursor_lcd
   3760                           
-  3761                           ;main.c: 463: escreve_frase_ram_lcd("FORA");
+  3761                           ;main.c: 461: escreve_frase_ram_lcd("FORA");
   3762  001D1E  0E61               	movlw	low STR_23
   3763  001D20  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3764  001D22  0E62               	movlw	high STR_23
   3765  001D24  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3766  001D26  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3767                           
-  3768                           ;main.c: 464: posicao_cursor_lcd(1,13);
+  3768                           ;main.c: 462: posicao_cursor_lcd(1,13);
   3769  001D2A  0E0D               	movlw	13
   3770  001D2C  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3771  001D2E  0E01               	movlw	1
   3772  001D30  EC58  F027         	call	_posicao_cursor_lcd
   3773                           
-  3774                           ;main.c: 465: escreve_inteiro_lcd(fence_flag[0].point);
+  3774                           ;main.c: 463: escreve_inteiro_lcd(fence_flag[0].point);
   3775  001D34  0100               	movlb	0	; () banked
   3776  001D36  A1E7               	btfss	_fence_flag& (0+255),0,b
   3777  001D38  D003               	goto	u16210
@@ -3804,26 +3804,26 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3788  001D4A  6A2E               	clrf	(escreve_inteiro_lcd@valor+3)^0,c
   3789  001D4C  ECB2  F02A         	call	_escreve_inteiro_lcd	;wreg free
   3790                           
-  3791                           ;main.c: 466: posicao_cursor_lcd(1,14);
+  3791                           ;main.c: 464: posicao_cursor_lcd(1,14);
   3792  001D50  0E0E               	movlw	14
   3793  001D52  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3794  001D54  0E01               	movlw	1
   3795  001D56  EC58  F027         	call	_posicao_cursor_lcd
   3796                           
-  3797                           ;main.c: 467: escreve_frase_ram_lcd("|");
+  3797                           ;main.c: 465: escreve_frase_ram_lcd("|");
   3798  001D5A  0E7C               	movlw	low STR_24
   3799  001D5C  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3800  001D5E  0E62               	movlw	high STR_24
   3801  001D60  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3802  001D62  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3803                           
-  3804                           ;main.c: 468: posicao_cursor_lcd(1,15);
+  3804                           ;main.c: 466: posicao_cursor_lcd(1,15);
   3805  001D66  0E0F               	movlw	15
   3806  001D68  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3807  001D6A  0E01               	movlw	1
   3808  001D6C  EC58  F027         	call	_posicao_cursor_lcd
   3809                           
-  3810                           ;main.c: 469: escreve_inteiro_lcd(fence_flag[1].point);
+  3810                           ;main.c: 467: escreve_inteiro_lcd(fence_flag[1].point);
   3811  001D70  0100               	movlb	0	; () banked
   3812  001D72  A1E8               	btfss	(_fence_flag+1)& (0+255),0,b
   3813  001D74  D003               	goto	u16220
@@ -3841,43 +3841,43 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3825  001D88  ECB2  F02A         	call	_escreve_inteiro_lcd	;wreg free
   3826  001D8C                     l13410:
   3827                           
-  3828                           ;main.c: 470: };main.c: 471: fix_signal = fix();
+  3828                           ;main.c: 468: };main.c: 469: fix_signal = fix();
   3829  001D8C  EC23  F02E         	call	_fix	;wreg free
   3830  001D90  C00A  F037         	movff	?_fix,troca_de_tela@fix_signal
   3831  001D94  C00B  F038         	movff	?_fix+1,troca_de_tela@fix_signal+1
   3832                           
-  3833                           ;main.c: 472: posicao_cursor_lcd(2,0);
+  3833                           ;main.c: 470: posicao_cursor_lcd(2,0);
   3834  001D98  0E00               	movlw	0
   3835  001D9A  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3836  001D9C  0E02               	movlw	2
   3837  001D9E  EC58  F027         	call	_posicao_cursor_lcd
   3838                           
-  3839                           ;main.c: 473: escreve_frase_ram_lcd("FIX:");
+  3839                           ;main.c: 471: escreve_frase_ram_lcd("FIX:");
   3840  001DA2  0E5C               	movlw	low STR_29
   3841  001DA4  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3842  001DA6  0E62               	movlw	high STR_29
   3843  001DA8  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3844  001DAA  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3845                           
-  3846                           ;main.c: 474: posicao_cursor_lcd(2,8);
+  3846                           ;main.c: 472: posicao_cursor_lcd(2,8);
   3847  001DAE  0E08               	movlw	8
   3848  001DB0  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3849  001DB2  0E02               	movlw	2
   3850  001DB4  EC58  F027         	call	_posicao_cursor_lcd
   3851                           
-  3852                           ;main.c: 475: escreve_caractere_lcd(fix_signal[0]);
+  3852                           ;main.c: 473: escreve_caractere_lcd(fix_signal[0]);
   3853  001DB8  C037  FFD9         	movff	troca_de_tela@fix_signal,fsr2l
   3854  001DBC  C038  FFDA         	movff	troca_de_tela@fix_signal+1,fsr2h
   3855  001DC0  50DF               	movf	indf2,w,c
   3856  001DC2  ECE9  F025         	call	_escreve_caractere_lcd
   3857  001DC6                     l13418:
   3858                           
-  3859                           ;main.c: 476: };main.c: 477: last_state = 1;
+  3859                           ;main.c: 474: };main.c: 475: last_state = 1;
   3860  001DC6  0E01               	movlw	1
   3861  001DC8  6E4F               	movwf	troca_de_tela@last_state^0,c
   3862  001DCA                     l13420:
   3863                           
-  3864                           ;main.c: 479: };main.c: 489: if(!PORTEbits.RE1 || (state == 2))
+  3864                           ;main.c: 477: };main.c: 487: if(!PORTEbits.RE1 || (state == 2))
   3865  001DCA  A284               	btfss	132,1,c	;volatile
   3866  001DCC  D004               	goto	u16240
   3867  001DCE  0E02               	movlw	2
@@ -3886,7 +3886,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3870  001DD4  D033               	goto	l13452
   3871  001DD6                     u16240:
   3872                           
-  3873                           ;main.c: 490: {;main.c: 491: if(!time_atualizacao)
+  3873                           ;main.c: 488: {;main.c: 489: if(!time_atualizacao)
   3874  001DD6  0100               	movlb	0	; () banked
   3875  001DD8  51EA               	movf	_time_atualizacao& (0+255),w,b
   3876  001DDA  11EB               	iorwf	(_time_atualizacao+1)& (0+255),w,b
@@ -3894,13 +3894,13 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3878  001DDE  D009               	goto	l13432
   3879                           
   3880                           ; BSR set to: 0
-  3881                           ;main.c: 492: {;main.c: 493: recebe_dado_gps();
+  3881                           ;main.c: 490: {;main.c: 491: recebe_dado_gps();
   3882  001DE0  EC31  F02D         	call	_recebe_dado_gps	;wreg free
   3883                           
-  3884                           ;main.c: 494: mostra_dados_display();
+  3884                           ;main.c: 492: mostra_dados_display();
   3885  001DE4  ECEC  F02B         	call	_mostra_dados_display	;wreg free
   3886                           
-  3887                           ;main.c: 495: time_atualizacao = 2000;
+  3887                           ;main.c: 493: time_atualizacao = 2000;
   3888  001DE8  0E07               	movlw	7
   3889  001DEA  0100               	movlb	0	; () banked
   3890  001DEC  6FEB               	movwf	(_time_atualizacao+1)& (0+255),b
@@ -3909,95 +3909,95 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3893  001DF2                     l13432:
   3894                           
   3895                           ; BSR set to: 0
-  3896                           ;main.c: 496: };main.c: 499: if(last_state != 2)
+  3896                           ;main.c: 494: };main.c: 497: if(last_state != 2)
   3897  001DF2  0E02               	movlw	2
   3898  001DF4  184F               	xorwf	troca_de_tela@last_state^0,w,c
   3899  001DF6  B4D8               	btfsc	status,2,c
   3900  001DF8  D01F               	goto	l13450
   3901                           
   3902                           ; BSR set to: 0
-  3903                           ;main.c: 500: {;main.c: 501: state = 2;
+  3903                           ;main.c: 498: {;main.c: 499: state = 2;
   3904  001DFA  0E02               	movlw	2
   3905  001DFC  6E50               	movwf	troca_de_tela@state^0,c
   3906                           
   3907                           ; BSR set to: 0
-  3908                           ;main.c: 502: escreve_cmd_lcd(0b00000001);
+  3908                           ;main.c: 500: escreve_cmd_lcd(0b00000001);
   3909  001DFE  0E01               	movlw	1
   3910  001E00  EC2B  F024         	call	_escreve_cmd_lcd
   3911                           
-  3912                           ;main.c: 503: posicao_cursor_lcd(1,0);
+  3912                           ;main.c: 501: posicao_cursor_lcd(1,0);
   3913  001E04  0E00               	movlw	0
   3914  001E06  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3915  001E08  0E01               	movlw	1
   3916  001E0A  EC58  F027         	call	_posicao_cursor_lcd
   3917                           
-  3918                           ;main.c: 504: escreve_frase_ram_lcd("lt:");
+  3918                           ;main.c: 502: escreve_frase_ram_lcd("lt:");
   3919  001E0E  0E6F               	movlw	low STR_30
   3920  001E10  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3921  001E12  0E62               	movlw	high STR_30
   3922  001E14  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3923  001E16  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3924                           
-  3925                           ;main.c: 505: posicao_cursor_lcd(2,0);
+  3925                           ;main.c: 503: posicao_cursor_lcd(2,0);
   3926  001E1A  0E00               	movlw	0
   3927  001E1C  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3928  001E1E  0E02               	movlw	2
   3929  001E20  EC58  F027         	call	_posicao_cursor_lcd
   3930                           
-  3931                           ;main.c: 506: escreve_frase_ram_lcd("lo:");
+  3931                           ;main.c: 504: escreve_frase_ram_lcd("lo:");
   3932  001E24  0E6B               	movlw	low STR_31
   3933  001E26  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3934  001E28  0E62               	movlw	high STR_31
   3935  001E2A  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3936  001E2C  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3937                           
-  3938                           ;main.c: 507: recebe_dado_gps();
+  3938                           ;main.c: 505: recebe_dado_gps();
   3939  001E30  EC31  F02D         	call	_recebe_dado_gps	;wreg free
   3940                           
-  3941                           ;main.c: 508: mostra_dados_display();
+  3941                           ;main.c: 506: mostra_dados_display();
   3942  001E34  ECEC  F02B         	call	_mostra_dados_display	;wreg free
   3943  001E38                     l13450:
   3944                           
-  3945                           ;main.c: 509: };main.c: 510: last_state = 2;
+  3945                           ;main.c: 507: };main.c: 508: last_state = 2;
   3946  001E38  0E02               	movlw	2
   3947  001E3A  6E4F               	movwf	troca_de_tela@last_state^0,c
   3948  001E3C                     l13452:
   3949                           
-  3950                           ;main.c: 511: };main.c: 516: if(!state)
+  3950                           ;main.c: 509: };main.c: 514: if(!state)
   3951  001E3C  5050               	movf	troca_de_tela@state^0,w,c
   3952  001E3E  A4D8               	btfss	status,2,c
   3953  001E40  0012               	return	
   3954                           
-  3955                           ;main.c: 517: {;main.c: 518: if(last_state != 4)
+  3955                           ;main.c: 515: {;main.c: 516: if(last_state != 4)
   3956  001E42  0E04               	movlw	4
   3957  001E44  184F               	xorwf	troca_de_tela@last_state^0,w,c
   3958  001E46  B4D8               	btfsc	status,2,c
   3959  001E48  D019               	goto	l13462
   3960                           
-  3961                           ;main.c: 519: {;main.c: 520: escreve_cmd_lcd(0b00000001);
+  3961                           ;main.c: 517: {;main.c: 518: escreve_cmd_lcd(0b00000001);
   3962  001E4A  0E01               	movlw	1
   3963  001E4C  EC2B  F024         	call	_escreve_cmd_lcd
   3964                           
-  3965                           ;main.c: 521: posicao_cursor_lcd(1,0);
+  3965                           ;main.c: 519: posicao_cursor_lcd(1,0);
   3966  001E50  0E00               	movlw	0
   3967  001E52  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3968  001E54  0E01               	movlw	1
   3969  001E56  EC58  F027         	call	_posicao_cursor_lcd
   3970                           
-  3971                           ;main.c: 522: escreve_frase_ram_lcd("B1:FENCE");
+  3971                           ;main.c: 520: escreve_frase_ram_lcd("B1:FENCE");
   3972  001E5A  0E2E               	movlw	low STR_32
   3973  001E5C  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3974  001E5E  0E62               	movlw	high STR_32
   3975  001E60  6E0E               	movwf	(escreve_frase_ram_lcd@buffer+1)^0,c
   3976  001E62  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3977                           
-  3978                           ;main.c: 523: posicao_cursor_lcd(2,0);
+  3978                           ;main.c: 521: posicao_cursor_lcd(2,0);
   3979  001E66  0E00               	movlw	0
   3980  001E68  6E0D               	movwf	posicao_cursor_lcd@coluna^0,c
   3981  001E6A  0E02               	movlw	2
   3982  001E6C  EC58  F027         	call	_posicao_cursor_lcd
   3983                           
-  3984                           ;main.c: 524: escreve_frase_ram_lcd("B2:LTLO");
+  3984                           ;main.c: 522: escreve_frase_ram_lcd("B2:LTLO");
   3985  001E70  0E40               	movlw	low STR_33
   3986  001E72  6E0D               	movwf	escreve_frase_ram_lcd@buffer^0,c
   3987  001E74  0E62               	movlw	high STR_33
@@ -4005,7 +4005,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3989  001E78  ECBA  F028         	call	_escreve_frase_ram_lcd	;wreg free
   3990  001E7C                     l13462:
   3991                           
-  3992                           ;main.c: 526: };main.c: 527: last_state = 4;
+  3992                           ;main.c: 524: };main.c: 525: last_state = 4;
   3993  001E7C  0E04               	movlw	4
   3994  001E7E  6E4F               	movwf	troca_de_tela@last_state^0,c
   3995  001E80  0012               	return		;funcret
@@ -4014,7 +4014,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   3998                           
   3999 ;; *************** function _disparo_gravacao *****************
   4000 ;; Defined at:
-  4001 ;;		line 351 in file "main.c"
+  4001 ;;		line 349 in file "main.c"
   4002 ;; Parameters:    Size  Location     Type
   4003 ;;		None
   4004 ;; Auto vars:     Size  Location     Type
@@ -4063,7 +4063,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4047                           	callstack 13
   4048                           
   4049                           ; BSR set to: 0
-  4050                           ;main.c: 356: unsigned char *velocidade[6];;main.c: 358: v_max = atoi(dados_vel[0]);
+  4050                           ;main.c: 354: unsigned char *velocidade[6];;main.c: 356: v_max = atoi(dados_vel[0]);
   4051                           
   4052                           ; BSR set to: 0
   4053                           
@@ -4078,7 +4078,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4062  00282A  C010  F2F5         	movff	?_atoi,disparo_gravacao@v_max
   4063  00282E  C011  F2F6         	movff	?_atoi+1,disparo_gravacao@v_max+1
   4064                           
-  4065                           ;main.c: 359: index_max = 0;
+  4065                           ;main.c: 357: index_max = 0;
   4066  002832  0E00               	movlw	0
   4067  002834  0102               	movlb	2	; () banked
   4068  002836  6FF8               	movwf	(disparo_gravacao@index_max+1)& (0+255),b
@@ -4086,7 +4086,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4070  00283A  6FF7               	movwf	disparo_gravacao@index_max& (0+255),b
   4071                           
   4072                           ; BSR set to: 2
-  4073                           ;main.c: 360: if(!time_sd)
+  4073                           ;main.c: 358: if(!time_sd)
   4074  00283C  0101               	movlb	1	; () banked
   4075  00283E  516E               	movf	_time_sd& (0+255),w,b
   4076  002840  116F               	iorwf	(_time_sd+1)& (0+255),w,b
@@ -4094,15 +4094,15 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4078  002844  0012               	return	
   4079                           
   4080                           ; BSR set to: 1
-  4081                           ;main.c: 361: {;main.c: 362: verifica_fence();
+  4081                           ;main.c: 359: {;main.c: 360: verifica_fence();
   4082  002846  EC87  F027         	call	_verifica_fence	;wreg free
   4083                           
-  4084                           ;main.c: 363: fix_gps = fix();
+  4084                           ;main.c: 361: fix_gps = fix();
   4085  00284A  EC23  F02E         	call	_fix	;wreg free
   4086  00284E  C00A  F2F3         	movff	?_fix,disparo_gravacao@fix_gps
   4087  002852  C00B  F2F4         	movff	?_fix+1,disparo_gravacao@fix_gps+1
   4088                           
-  4089                           ;main.c: 365: if(*fix_gps == '1')
+  4089                           ;main.c: 363: if(*fix_gps == '1')
   4090  002856  C2F3  FFD9         	movff	disparo_gravacao@fix_gps,fsr2l
   4091  00285A  C2F4  FFDA         	movff	disparo_gravacao@fix_gps+1,fsr2h
   4092  00285E  0E31               	movlw	49
@@ -4110,7 +4110,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4094  002862  A4D8               	btfss	status,2,c
   4095  002864  D0DC               	goto	l13776
   4096                           
-  4097                           ;main.c: 366: {;main.c: 367: if(v_max> 50)
+  4097                           ;main.c: 364: {;main.c: 365: if(v_max> 50)
   4098  002866  0102               	movlb	2	; () banked
   4099  002868  51F6               	movf	(disparo_gravacao@v_max+1)& (0+255),w,b
   4100  00286A  E104               	bnz	u16590
@@ -4121,13 +4121,13 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4105  002874                     u16590:
   4106                           
   4107                           ; BSR set to: 2
-  4108                           ;main.c: 368: {;main.c: 369: for(i=1; i<3; i++)
+  4108                           ;main.c: 366: {;main.c: 367: for(i=1; i<3; i++)
   4109  002874  0E01               	movlw	1
   4110  002876  6FF9               	movwf	disparo_gravacao@i& (0+255),b
   4111  002878                     l13746:
   4112                           
   4113                           ; BSR set to: 2
-  4114                           ;main.c: 370: {;main.c: 371: if(v_max < atoi(dados_vel[i]))
+  4114                           ;main.c: 368: {;main.c: 369: if(v_max < atoi(dados_vel[i]))
   4115  002878  51F9               	movf	disparo_gravacao@i& (0+255),w,b
   4116  00287A  0D02               	mullw	2
   4117  00287C  0E27               	movlw	low _dados_vel
@@ -4155,7 +4155,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4139  0028B8  D022               	goto	l13752
   4140                           
   4141                           ; BSR set to: 2
-  4142                           ;main.c: 372: {;main.c: 373: v_max = atoi(dados_vel[i]);
+  4142                           ;main.c: 370: {;main.c: 371: v_max = atoi(dados_vel[i]);
   4143  0028BA  51F9               	movf	disparo_gravacao@i& (0+255),w,b
   4144  0028BC  0D02               	mullw	2
   4145  0028BE  0E27               	movlw	low _dados_vel
@@ -4177,7 +4177,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4161  0028EE  C010  F2F5         	movff	?_atoi,disparo_gravacao@v_max
   4162  0028F2  C011  F2F6         	movff	?_atoi+1,disparo_gravacao@v_max+1
   4163                           
-  4164                           ;main.c: 374: index_max = i;
+  4164                           ;main.c: 372: index_max = i;
   4165  0028F6  C2F9  F2F7         	movff	disparo_gravacao@i,disparo_gravacao@index_max
   4166  0028FA  0102               	movlb	2	; () banked
   4167  0028FC  6BF8               	clrf	(disparo_gravacao@index_max+1)& (0+255),b
@@ -4192,7 +4192,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4176  002904  D7B9               	goto	l13746
   4177                           
   4178                           ; BSR set to: 2
-  4179                           ;main.c: 375: };main.c: 377: };main.c: 379: monta_sd(0, dados_hora[index_max]);
+  4179                           ;main.c: 373: };main.c: 375: };main.c: 377: monta_sd(0, dados_hora[index_max]);
   4180  002906  C2F7  F00A         	movff	disparo_gravacao@index_max,___wmul@multiplier
   4181  00290A  C2F8  F00B         	movff	disparo_gravacao@index_max+1,___wmul@multiplier+1
   4182  00290E  0E00               	movlw	0
@@ -4209,7 +4209,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4193  002926  0E00               	movlw	0
   4194  002928  EC03  F00B         	call	_monta_sd
   4195                           
-  4196                           ;main.c: 380: monta_sd(1, dados_data[index_max]);
+  4196                           ;main.c: 378: monta_sd(1, dados_data[index_max]);
   4197  00292C  C2F7  F00A         	movff	disparo_gravacao@index_max,___wmul@multiplier
   4198  002930  C2F8  F00B         	movff	disparo_gravacao@index_max+1,___wmul@multiplier+1
   4199  002934  0E00               	movlw	0
@@ -4226,7 +4226,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4210  00294C  0E01               	movlw	1
   4211  00294E  EC03  F00B         	call	_monta_sd
   4212                           
-  4213                           ;main.c: 381: monta_sd(2, dados_lat[index_max]);
+  4213                           ;main.c: 379: monta_sd(2, dados_lat[index_max]);
   4214  002952  C2F7  F00A         	movff	disparo_gravacao@index_max,___wmul@multiplier
   4215  002956  C2F8  F00B         	movff	disparo_gravacao@index_max+1,___wmul@multiplier+1
   4216  00295A  0E00               	movlw	0
@@ -4243,7 +4243,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4227  002972  0E02               	movlw	2
   4228  002974  EC03  F00B         	call	_monta_sd
   4229                           
-  4230                           ;main.c: 382: monta_sd(3, dados_long[index_max]);
+  4230                           ;main.c: 380: monta_sd(3, dados_long[index_max]);
   4231  002978  C2F7  F00A         	movff	disparo_gravacao@index_max,___wmul@multiplier
   4232  00297C  C2F8  F00B         	movff	disparo_gravacao@index_max+1,___wmul@multiplier+1
   4233  002980  0E00               	movlw	0
@@ -4260,7 +4260,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4244  002998  0E03               	movlw	3
   4245  00299A  EC03  F00B         	call	_monta_sd
   4246                           
-  4247                           ;main.c: 383: itoa(velocidade, dados_vel[index_max], 10);
+  4247                           ;main.c: 381: itoa(velocidade, dados_vel[index_max], 10);
   4248  00299E  0EE7               	movlw	low disparo_gravacao@velocidade
   4249  0029A0  6E1A               	movwf	itoa@buf^0,c
   4250  0029A2  0E02               	movlw	high disparo_gravacao@velocidade
@@ -4283,7 +4283,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4267  0029C8  6E1E               	movwf	itoa@base^0,c
   4268  0029CA  ECEF  F02A         	call	_itoa	;wreg free
   4269                           
-  4270                           ;main.c: 384: monta_sd(7, velocidade);
+  4270                           ;main.c: 382: monta_sd(7, velocidade);
   4271  0029CE  0EE7               	movlw	low disparo_gravacao@velocidade
   4272  0029D0  6E10               	movwf	monta_sd@dado^0,c
   4273  0029D2  0E02               	movlw	high disparo_gravacao@velocidade
@@ -4291,7 +4291,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4275  0029D6  0E07               	movlw	7
   4276  0029D8  EC03  F00B         	call	_monta_sd
   4277                           
-  4278                           ;main.c: 386: dados_vel[0] = 50;
+  4278                           ;main.c: 384: dados_vel[0] = 50;
   4279  0029DC  0E00               	movlw	0
   4280  0029DE  0101               	movlb	1	; () banked
   4281  0029E0  6F28               	movwf	(_dados_vel+1)& (0+255),b
@@ -4299,56 +4299,56 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4283  0029E4  6F27               	movwf	_dados_vel& (0+255),b
   4284                           
   4285                           ; BSR set to: 1
-  4286                           ;main.c: 387: dados_vel[1] = 50;
+  4286                           ;main.c: 385: dados_vel[1] = 50;
   4287  0029E6  0E00               	movlw	0
   4288  0029E8  6F2A               	movwf	(_dados_vel+3)& (0+255),b
   4289  0029EA  0E32               	movlw	50
   4290  0029EC  6F29               	movwf	(_dados_vel+2)& (0+255),b
   4291                           
   4292                           ; BSR set to: 1
-  4293                           ;main.c: 388: dados_vel[2] = 50;
+  4293                           ;main.c: 386: dados_vel[2] = 50;
   4294  0029EE  0E00               	movlw	0
   4295  0029F0  6F2C               	movwf	(_dados_vel+5)& (0+255),b
   4296  0029F2  0E32               	movlw	50
   4297  0029F4  6F2B               	movwf	(_dados_vel+4)& (0+255),b
   4298                           
-  4299                           ;main.c: 389: }
+  4299                           ;main.c: 387: }
   4300  0029F6  D011               	goto	l13774
   4301  0029F8                     l13768:
   4302                           
   4303                           ; BSR set to: 2
-  4304                           ;main.c: 390: else;main.c: 391: {;main.c: 392: dados_vel[0] = 50;
+  4304                           ;main.c: 388: else;main.c: 389: {;main.c: 390: dados_vel[0] = 50;
   4305  0029F8  0E00               	movlw	0
   4306  0029FA  0101               	movlb	1	; () banked
   4307  0029FC  6F28               	movwf	(_dados_vel+1)& (0+255),b
   4308  0029FE  0E32               	movlw	50
   4309  002A00  6F27               	movwf	_dados_vel& (0+255),b
   4310                           
-  4311                           ;main.c: 393: dados_vel[1] = 50;
+  4311                           ;main.c: 391: dados_vel[1] = 50;
   4312  002A02  0E00               	movlw	0
   4313  002A04  6F2A               	movwf	(_dados_vel+3)& (0+255),b
   4314  002A06  0E32               	movlw	50
   4315  002A08  6F29               	movwf	(_dados_vel+2)& (0+255),b
   4316                           
-  4317                           ;main.c: 394: dados_vel[2] = 50;
+  4317                           ;main.c: 392: dados_vel[2] = 50;
   4318  002A0A  0E00               	movlw	0
   4319  002A0C  6F2C               	movwf	(_dados_vel+5)& (0+255),b
   4320  002A0E  0E32               	movlw	50
   4321  002A10  6F2B               	movwf	(_dados_vel+4)& (0+255),b
   4322                           
   4323                           ; BSR set to: 1
-  4324                           ;main.c: 395: recebe_dado_gps();
+  4324                           ;main.c: 393: recebe_dado_gps();
   4325  002A12  EC31  F02D         	call	_recebe_dado_gps	;wreg free
   4326                           
-  4327                           ;main.c: 396: dados_gps_to_sd();
+  4327                           ;main.c: 394: dados_gps_to_sd();
   4328  002A16  ECF6  F026         	call	_dados_gps_to_sd	;wreg free
   4329  002A1A                     l13774:
   4330                           
-  4331                           ;main.c: 397: };main.c: 398: grava_sd();
+  4331                           ;main.c: 395: };main.c: 396: grava_sd();
   4332  002A1A  EC9A  F02D         	call	_grava_sd	;wreg free
   4333  002A1E                     l13776:
   4334                           
-  4335                           ;main.c: 399: };main.c: 402: time_sd = 28000;
+  4335                           ;main.c: 397: };main.c: 400: time_sd = 28000;
   4336  002A1E  0E6D               	movlw	109
   4337  002A20  0101               	movlb	1	; () banked
   4338  002A22  6F6F               	movwf	(_time_sd+1)& (0+255),b
@@ -4362,7 +4362,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4346                           
   4347 ;; *************** function _verifica_dados_operacionais *****************
   4348 ;; Defined at:
-  4349 ;;		line 310 in file "main.c"
+  4349 ;;		line 308 in file "main.c"
   4350 ;; Parameters:    Size  Location     Type
   4351 ;;		None
   4352 ;; Auto vars:     Size  Location     Type
@@ -4408,37 +4408,37 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4392                           	callstack 20
   4393                           
   4394                           ; BSR set to: 0
-  4395                           ;main.c: 312: static unsigned char dado[6];;main.c: 313: static unsigned char contador_a
-      +                          tual =0;;main.c: 314: static unsigned char contador_anterior =0;;main.c: 315: static uns
-      +                          igned long int velocidade_media;;main.c: 316: static unsigned long int velocidade_atual_
-      +                          int = 0;;main.c: 317: static unsigned char *velocidade_atual;;main.c: 318: verifica_fenc
+  4395                           ;main.c: 310: static unsigned char dado[6];;main.c: 311: static unsigned char contador_a
+      +                          tual =0;;main.c: 312: static unsigned char contador_anterior =0;;main.c: 313: static uns
+      +                          igned long int velocidade_media;;main.c: 314: static unsigned long int velocidade_atual_
+      +                          int = 0;;main.c: 315: static unsigned char *velocidade_atual;;main.c: 316: verifica_fenc
       +                          e();
   4396                           
   4397                           ; BSR set to: 1
   4398                           ;incstack = 0
   4399  002F0C  EC87  F027         	call	_verifica_fence	;wreg free
   4400                           
-  4401                           ;main.c: 320: if(contador_atual >=3)
+  4401                           ;main.c: 318: if(contador_atual >=3)
   4402  002F10  0E02               	movlw	2
   4403  002F12  6451               	cpfsgt	verifica_dados_operacionais@contador_atual^0,c
   4404  002F14  D005               	goto	l13268
   4405                           
-  4406                           ;main.c: 321: {;main.c: 322: contador_atual = 0;
+  4406                           ;main.c: 319: {;main.c: 320: contador_atual = 0;
   4407  002F16  0E00               	movlw	0
   4408  002F18  6E51               	movwf	verifica_dados_operacionais@contador_atual^0,c
   4409                           
-  4410                           ;main.c: 323: contador_anterior = contador_atual;
+  4410                           ;main.c: 321: contador_anterior = contador_atual;
   4411  002F1A  0E00               	movlw	0
   4412  002F1C  0100               	movlb	0	; () banked
   4413  002F1E  6FF0               	movwf	verifica_dados_operacionais@contador_anterior& (0+255),b
   4414  002F20                     l13268:
   4415                           
-  4416                           ;main.c: 324: };main.c: 326: velocidade_atual = Speed();
+  4416                           ;main.c: 322: };main.c: 324: velocidade_atual = Speed();
   4417  002F20  EC1E  F02E         	call	_Speed	;wreg free
   4418  002F24  C00A  F166         	movff	?_Speed,verifica_dados_operacionais@velocidade_atual
   4419  002F28  C00B  F167         	movff	?_Speed+1,verifica_dados_operacionais@velocidade_atual+1
   4420                           
-  4421                           ;main.c: 327: velocidade_atual_int = ((atoi(velocidade_atual)*1.852));
+  4421                           ;main.c: 325: velocidade_atual_int = ((atoi(velocidade_atual)*1.852));
   4422  002F2C  0E0E               	movlw	14
   4423  002F2E  6E1F               	movwf	___ftmul@f2^0,c
   4424  002F30  0EED               	movlw	237
@@ -4469,7 +4469,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4449  002F82  C02D  F153         	movff	?___fttol+2,verifica_dados_operacionais@velocidade_atual_int+2
   4450  002F86  C02E  F154         	movff	?___fttol+3,verifica_dados_operacionais@velocidade_atual_int+3
   4451                           
-  4452                           ;main.c: 328: if((velocidade_atual_int > dados_vel[2]) && contador_atual<3)
+  4452                           ;main.c: 326: if((velocidade_atual_int > dados_vel[2]) && contador_atual<3)
   4453  002F8A  0101               	movlb	1	; () banked
   4454  002F8C  512B               	movf	(_dados_vel+4)& (0+255),w,b
   4455  002F8E  6E44               	movwf	??_verifica_dados_operacionais^0,c
@@ -4494,7 +4494,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4474  002FB0  0012               	return	
   4475                           
   4476                           ; BSR set to: 1
-  4477                           ;main.c: 329: {;main.c: 330: if(velocidade_atual_int > dados_vel[contador_anterior])
+  4477                           ;main.c: 327: {;main.c: 328: if(velocidade_atual_int > dados_vel[contador_anterior])
   4478  002FB2  0100               	movlb	0	; () banked
   4479  002FB4  51F0               	movf	verifica_dados_operacionais@contador_anterior& (0+255),w,b
   4480  002FB6  0D02               	mullw	2
@@ -4525,7 +4525,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4505  002FEC  D04C               	goto	l13288
   4506                           
   4507                           ; BSR set to: 1
-  4508                           ;main.c: 331: {;main.c: 332: dados_vel[contador_atual] = velocidade_atual_int;
+  4508                           ;main.c: 329: {;main.c: 330: dados_vel[contador_atual] = velocidade_atual_int;
   4509  002FEE  5051               	movf	verifica_dados_operacionais@contador_atual^0,w,c
   4510  002FF0  0D02               	mullw	2
   4511  002FF2  0E27               	movlw	low _dados_vel
@@ -4538,7 +4538,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4518  003002  C152  FFDD         	movff	verifica_dados_operacionais@velocidade_atual_int+1,postdec2
   4519                           
   4520                           ; BSR set to: 1
-  4521                           ;main.c: 333: strcpy(dados_lat[contador_atual], latitude());
+  4521                           ;main.c: 331: strcpy(dados_lat[contador_atual], latitude());
   4522  003006  5051               	movf	verifica_dados_operacionais@contador_atual^0,w,c
   4523  003008  0D0B               	mullw	11
   4524  00300A  0EA2               	movlw	low _dados_lat
@@ -4552,7 +4552,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4532  00301E  C00B  F00F         	movff	?_latitude+1,strcpy@from+1
   4533  003022  ECD5  F02B         	call	_strcpy	;wreg free
   4534                           
-  4535                           ;main.c: 334: strcpy(dados_long[contador_atual], longitude());
+  4535                           ;main.c: 332: strcpy(dados_long[contador_atual], longitude());
   4536  003026  5051               	movf	verifica_dados_operacionais@contador_atual^0,w,c
   4537  003028  0D0C               	mullw	12
   4538  00302A  0E7E               	movlw	low _dados_long
@@ -4566,7 +4566,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4546  00303E  C00B  F00F         	movff	?_longitude+1,strcpy@from+1
   4547  003042  ECD5  F02B         	call	_strcpy	;wreg free
   4548                           
-  4549                           ;main.c: 335: strcpy(dados_hora[contador_atual], rawhora());
+  4549                           ;main.c: 333: strcpy(dados_hora[contador_atual], rawhora());
   4550  003046  5051               	movf	verifica_dados_operacionais@contador_atual^0,w,c
   4551  003048  0D06               	mullw	6
   4552  00304A  0ED5               	movlw	low _dados_hora
@@ -4580,7 +4580,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4560  00305E  C00B  F00F         	movff	?_rawhora+1,strcpy@from+1
   4561  003062  ECD5  F02B         	call	_strcpy	;wreg free
   4562                           
-  4563                           ;main.c: 336: strcpy(dados_data[contador_atual], rawdata());
+  4563                           ;main.c: 334: strcpy(dados_data[contador_atual], rawdata());
   4564  003066  5051               	movf	verifica_dados_operacionais@contador_atual^0,w,c
   4565  003068  0D06               	mullw	6
   4566  00306A  0EC3               	movlw	low _dados_data
@@ -4595,11 +4595,11 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   4575  003082  ECD5  F02B         	call	_strcpy	;wreg free
   4576  003086                     l13288:
   4577                           
-  4578                           ;main.c: 337: };main.c: 338: contador_anterior = contador_atual;
+  4578                           ;main.c: 335: };main.c: 336: contador_anterior = contador_atual;
   4579  003086  C051  F0F0         	movff	verifica_dados_operacionais@contador_atual,verifica_dados_operacionais@contador_a
       +                          nterior
   4580                           
-  4581                           ;main.c: 339: contador_atual++;
+  4581                           ;main.c: 337: contador_atual++;
   4582  00308A  2A51               	incf	verifica_dados_operacionais@contador_atual^0,f,c
   4583  00308C  0012               	return		;funcret
   4584  00308E                     __end_of_verifica_dados_operacionais:
@@ -5938,7 +5938,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   5917                           
   5918 ;; *************** function _verifica_fence *****************
   5919 ;; Defined at:
-  5920 ;;		line 277 in file "main.c"
+  5920 ;;		line 275 in file "main.c"
   5921 ;; Parameters:    Size  Location     Type
   5922 ;;		None
   5923 ;; Auto vars:     Size  Location     Type
@@ -5978,19 +5978,19 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   5957  004F0E                     _verifica_fence:
   5958                           	callstack 20
   5959                           
-  5960                           ;main.c: 279: recebe_dado_gps();
+  5960                           ;main.c: 277: recebe_dado_gps();
   5961                           
   5962                           ;incstack = 0
   5963  004F0E  EC31  F02D         	call	_recebe_dado_gps	;wreg free
   5964                           
-  5965                           ;main.c: 280: longitude_to_convert();
+  5965                           ;main.c: 278: longitude_to_convert();
   5966  004F12  EC35  F025         	call	_longitude_to_convert	;wreg free
   5967                           
   5968                           ; BSR set to: 1
-  5969                           ;main.c: 281: latitude_to_convert();
+  5969                           ;main.c: 279: latitude_to_convert();
   5970  004F16  EC72  F025         	call	_latitude_to_convert	;wreg free
   5971                           
-  5972                           ;main.c: 282: fence_flag[0].point = verifica_plausibilidade_long();
+  5972                           ;main.c: 280: fence_flag[0].point = verifica_plausibilidade_long();
   5973  004F1A  EC28  F027         	call	_verifica_plausibilidade_long	;wreg free
   5974  004F1E  6E43               	movwf	??_verifica_fence^0,c
   5975  004F20  0100               	movlb	0	; () banked
@@ -6000,7 +6000,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   5979  004F28  1843               	xorwf	??_verifica_fence^0,w,c
   5980  004F2A  6FE7               	movwf	_fence_flag& (0+255),b
   5981                           
-  5982                           ;main.c: 283: fence_flag[1].point = verifica_plausibilidade_lat();
+  5982                           ;main.c: 281: fence_flag[1].point = verifica_plausibilidade_lat();
   5983  004F2C  ECAF  F025         	call	_verifica_plausibilidade_lat	;wreg free
   5984  004F30  6E43               	movwf	??_verifica_fence^0,c
   5985  004F32  0100               	movlb	0	; () banked
@@ -6011,7 +6011,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   5990  004F3C  6FE8               	movwf	(_fence_flag+1)& (0+255),b
   5991                           
   5992                           ; BSR set to: 0
-  5993                           ;main.c: 288: if(fence_flag[0].point || fence_flag[1].point)
+  5993                           ;main.c: 286: if(fence_flag[0].point || fence_flag[1].point)
   5994  004F3E  B1E7               	btfsc	_fence_flag& (0+255),0,b
   5995  004F40  D002               	goto	u15900
   5996                           
@@ -6021,11 +6021,11 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   6000  004F46                     u15900:
   6001                           
   6002                           ; BSR set to: 0
-  6003                           ;main.c: 289: {;main.c: 290: fence_flag[2].point = 1;
+  6003                           ;main.c: 287: {;main.c: 288: fence_flag[2].point = 1;
   6004  004F46  81E9               	bsf	(_fence_flag+2)& (0+255),0,b
   6005                           
   6006                           ; BSR set to: 0
-  6007                           ;main.c: 291: monta_sd(4, "0");
+  6007                           ;main.c: 289: monta_sd(4, "0");
   6008  004F48  0E7A               	movlw	low STR_20
   6009  004F4A  6E10               	movwf	monta_sd@dado^0,c
   6010  004F4C  0E62               	movlw	high STR_20
@@ -6033,16 +6033,16 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   6012  004F50  0E04               	movlw	4
   6013  004F52  EC03  F00B         	call	_monta_sd
   6014                           
-  6015                           ;main.c: 292: }
+  6015                           ;main.c: 290: }
   6016  004F56  0012               	return	
   6017  004F58                     l1573:
   6018                           
   6019                           ; BSR set to: 0
-  6020                           ;main.c: 293: else;main.c: 294: {;main.c: 295: fence_flag[2].point = 0;
+  6020                           ;main.c: 291: else;main.c: 292: {;main.c: 293: fence_flag[2].point = 0;
   6021  004F58  91E9               	bcf	(_fence_flag+2)& (0+255),0,b
   6022                           
   6023                           ; BSR set to: 0
-  6024                           ;main.c: 296: monta_sd(4, "1");
+  6024                           ;main.c: 294: monta_sd(4, "1");
   6025  004F5A  0E2C               	movlw	low (STR_3+8)
   6026  004F5C  6E10               	movwf	monta_sd@dado^0,c
   6027  004F5E  0E62               	movlw	high (STR_3+8)
@@ -6432,7 +6432,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   6404                           
   6405 ;; *************** function _recebe_dado_gps *****************
   6406 ;; Defined at:
-  6407 ;;		line 558 in file "main.c"
+  6407 ;;		line 556 in file "main.c"
   6408 ;; Parameters:    Size  Location     Type
   6409 ;;		None
   6410 ;; Auto vars:     Size  Location     Type
@@ -6469,27 +6469,27 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   6441  005A62                     _recebe_dado_gps:
   6442                           	callstack 24
   6443                           
-  6444                           ;main.c: 560: unsigned char flag_recebe = 0;
+  6444                           ;main.c: 558: unsigned char flag_recebe = 0;
   6445                           
   6446                           ; BSR set to: 1
   6447                           ;incstack = 0
   6448  005A62  0E00               	movlw	0
   6449  005A64  6E0A               	movwf	recebe_dado_gps@flag_recebe^0,c
   6450                           
-  6451                           ;main.c: 561: unsigned char timeout = 10;
+  6451                           ;main.c: 559: unsigned char timeout = 10;
   6452  005A66  0E0A               	movlw	10
   6453  005A68  6E0B               	movwf	recebe_dado_gps@timeout^0,c
   6454                           
-  6455                           ;main.c: 562: while(!flag_recebe && timeout>0)
+  6455                           ;main.c: 560: while(!flag_recebe && timeout>0)
   6456  005A6A  D004               	goto	l12972
   6457  005A6C                     l12968:
   6458                           
-  6459                           ;main.c: 563: {;main.c: 564: flag_recebe = verifica_recep_gps();
+  6459                           ;main.c: 561: {;main.c: 562: flag_recebe = verifica_recep_gps();
   6460  005A6C  EC6E  F02C         	call	_verifica_recep_gps	;wreg free
   6461  005A70  6E0A               	movwf	recebe_dado_gps@flag_recebe^0,c
   6462                           
   6463                           ; BSR set to: 1
-  6464                           ;main.c: 565: timeout--;
+  6464                           ;main.c: 563: timeout--;
   6465  005A72  060B               	decf	recebe_dado_gps@timeout^0,f,c
   6466  005A74                     l12972:
   6467  005A74  500A               	movf	recebe_dado_gps@flag_recebe^0,w,c
@@ -7981,7 +7981,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   7943                           
   7944 ;; *************** function _grava_sd *****************
   7945 ;; Defined at:
-  7946 ;;		line 539 in file "main.c"
+  7946 ;;		line 537 in file "main.c"
   7947 ;; Parameters:    Size  Location     Type
   7948 ;;		None
   7949 ;; Auto vars:     Size  Location     Type
@@ -8019,27 +8019,27 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
   7981  005B34                     _grava_sd:
   7982                           	callstack 13
   7983                           
-  7984                           ;main.c: 541: PORTBbits.RB3 = 0;
+  7984                           ;main.c: 539: PORTBbits.RB3 = 0;
   7985                           
   7986                           ;incstack = 0
   7987  005B34  9681               	bcf	129,3,c	;volatile
   7988                           
-  7989                           ;main.c: 542: desliga_uart();
+  7989                           ;main.c: 540: desliga_uart();
   7990  005B36  ECBB  F02D         	call	_desliga_uart	;wreg free
   7991                           
-  7992                           ;main.c: 543: inicializa_SPI();
+  7992                           ;main.c: 541: inicializa_SPI();
   7993  005B3A  EC41  F02D         	call	_inicializa_SPI	;wreg free
   7994                           
-  7995                           ;main.c: 544: escrita_sdcard();
+  7995                           ;main.c: 542: escrita_sdcard();
   7996  005B3E  EC02  F01B         	call	_escrita_sdcard	;wreg free
   7997                           
-  7998                           ;main.c: 545: desliga_SPI();
+  7998                           ;main.c: 543: desliga_SPI();
   7999  005B42  ECDD  F02D         	call	_desliga_SPI	;wreg free
   8000                           
-  8001                           ;main.c: 546: inicializa_uart();
+  8001                           ;main.c: 544: inicializa_uart();
   8002  005B46  ECCB  F02C         	call	_inicializa_uart	;wreg free
   8003                           
-  8004                           ;main.c: 547: PORTBbits.RB3 = 1;
+  8004                           ;main.c: 545: PORTBbits.RB3 = 1;
   8005  005B4A  8681               	bsf	129,3,c	;volatile
   8006  005B4C  0012               	return		;funcret
   8007  005B4E                     __end_of_grava_sd:
@@ -21923,7 +21923,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
  21862                           
  21863 ;; *************** function _isr *****************
  21864 ;; Defined at:
- 21865 ;;		line 113 in file "main.c"
+ 21865 ;;		line 111 in file "main.c"
  21866 ;; Parameters:    Size  Location     Type
  21867 ;;		None
  21868 ;; Auto vars:     Size  Location     Type
@@ -21974,25 +21974,25 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
  21913  003DCA  CFF3 F007          	movff	prodl,??_isr+4
  21914  003DCE  CFF4 F008          	movff	prodh,??_isr+5
  21915                           
- 21916                           ;main.c: 115: unsigned char cont;;main.c: 118: if (PIE1bits.RCIE && PIR1bits.RCIF)
+ 21916                           ;main.c: 113: unsigned char cont;;main.c: 116: if (PIE1bits.RCIE && PIR1bits.RCIF)
  21917  003DD2  BA9D               	btfsc	157,5,c	;volatile
  21918  003DD4  AA9E               	btfss	158,5,c	;volatile
  21919  003DD6  D015               	goto	i2l10088
  21920                           
- 21921                           ;main.c: 119: {;main.c: 120: PIR1bits.RCIF = 0;
+ 21921                           ;main.c: 117: {;main.c: 118: PIR1bits.RCIF = 0;
  21922  003DD8  9A9E               	bcf	158,5,c	;volatile
  21923                           
- 21924                           ;main.c: 121: data_uart_recebe = recebe_dado_uart();
+ 21924                           ;main.c: 119: data_uart_recebe = recebe_dado_uart();
  21925  003DDA  ECC4  F02D         	call	_recebe_dado_uart	;wreg free
  21926  003DDE  0100               	movlb	0	; () banked
  21927  003DE0  6FF3               	movwf	_data_uart_recebe& (0+255),b
  21928                           
  21929                           ; BSR set to: 0
- 21930                           ;main.c: 122: tratamento_uart(data_uart_recebe);
+ 21930                           ;main.c: 120: tratamento_uart(data_uart_recebe);
  21931  003DE2  51F3               	movf	_data_uart_recebe& (0+255),w,b
  21932  003DE4  EC59  F01D         	call	_tratamento_uart
  21933                           
- 21934                           ;main.c: 123: PORTBbits.RB2 = !PORTBbits.RB2;
+ 21934                           ;main.c: 121: PORTBbits.RB2 = !PORTBbits.RB2;
  21935  003DE8  B481               	btfsc	129,2,c	;volatile
  21936  003DEA  D003               	goto	i2u1117_40
  21937  003DEC  6A03               	clrf	??_isr^0,c
@@ -22010,25 +22010,25 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
  21949  003E00  6E81               	movwf	129,c	;volatile
  21950  003E02                     i2l10088:
  21951                           
- 21952                           ;main.c: 124: };main.c: 127: unsigned char cont;;main.c: 129: if (TMR0IF && T0IF)
+ 21952                           ;main.c: 122: };main.c: 125: unsigned char cont;;main.c: 127: if (TMR0IF && T0IF)
  21953  003E02  B4F2               	btfsc	4082,2,c	;volatile
  21954  003E04  A4F2               	btfss	4082,2,c	;volatile
  21955  003E06  D046               	goto	i2l10126
  21956                           
- 21957                           ;main.c: 130: {;main.c: 131: INTCONbits.TMR0IF = 0;
+ 21957                           ;main.c: 128: {;main.c: 129: INTCONbits.TMR0IF = 0;
  21958  003E08  94F2               	bcf	242,2,c	;volatile
  21959                           
- 21960                           ;main.c: 132: sinaliza_int_timer = 1;
+ 21960                           ;main.c: 130: sinaliza_int_timer = 1;
  21961  003E0A  0E01               	movlw	1
  21962  003E0C  0100               	movlb	0	; () banked
  21963  003E0E  6FF2               	movwf	_sinaliza_int_timer& (0+255),b
  21964                           
- 21965                           ;main.c: 134: for(cont= 0; cont<3;cont++)
+ 21965                           ;main.c: 132: for(cont= 0; cont<3;cont++)
  21966  003E10  0E00               	movlw	0
  21967  003E12  6E09               	movwf	isr@cont^0,c
  21968  003E14                     i2l10100:
  21969                           
- 21970                           ;main.c: 135: {;main.c: 136: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
+ 21970                           ;main.c: 133: {;main.c: 134: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
  21971  003E14  5009               	movf	isr@cont^0,w,c
  21972  003E16  0D02               	mullw	2
  21973  003E18  0E2D               	movlw	low _tempo_tarefa
@@ -22058,7 +22058,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
  21997  003E46  6409               	cpfsgt	isr@cont^0,c
  21998  003E48  D7E5               	goto	i2l10100
  21999                           
- 22000                           ;main.c: 138: };main.c: 139: if(time_sd > 0) time_sd--;
+ 22000                           ;main.c: 136: };main.c: 137: if(time_sd > 0) time_sd--;
  22001  003E4A  0101               	movlb	1	; () banked
  22002  003E4C  516E               	movf	_time_sd& (0+255),w,b
  22003  003E4E  116F               	iorwf	(_time_sd+1)& (0+255),w,b
@@ -22072,7 +22072,7 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
  22011  003E5A                     i2l10112:
  22012                           
  22013                           ; BSR set to: 1
- 22014                           ;main.c: 140: if(time_atualizacao > 0) time_atualizacao--;
+ 22014                           ;main.c: 138: if(time_atualizacao > 0) time_atualizacao--;
  22015  003E5A  0100               	movlb	0	; () banked
  22016  003E5C  51EA               	movf	_time_atualizacao& (0+255),w,b
  22017  003E5E  11EB               	iorwf	(_time_atualizacao+1)& (0+255),w,b
@@ -22086,36 +22086,36 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
  22025  003E6A                     i2l10116:
  22026                           
  22027                           ; BSR set to: 0
- 22028                           ;main.c: 142: if(tarefa_em_execucao == 1)
+ 22028                           ;main.c: 140: if(tarefa_em_execucao == 1)
  22029  003E6A  0452               	decf	_tarefa_em_execucao^0,w,c	;volatile
  22030  003E6C  A4D8               	btfss	status,2,c
  22031  003E6E  D00C               	goto	i2l10124
  22032                           
  22033                           ; BSR set to: 0
- 22034                           ;main.c: 143: {;main.c: 144: timeout_tarefa--;
+ 22034                           ;main.c: 141: {;main.c: 142: timeout_tarefa--;
  22035  003E70  0101               	movlb	1	; () banked
  22036  003E72  0770               	decf	_timeout_tarefa& (0+255),f,b
  22037  003E74  A0D8               	btfss	status,0,c
  22038  003E76  0771               	decf	(_timeout_tarefa+1)& (0+255),f,b
  22039                           
  22040                           ; BSR set to: 1
- 22041                           ;main.c: 145: if(!timeout_tarefa)
+ 22041                           ;main.c: 143: if(!timeout_tarefa)
  22042  003E78  5170               	movf	_timeout_tarefa& (0+255),w,b
  22043  003E7A  1171               	iorwf	(_timeout_tarefa+1)& (0+255),w,b
  22044  003E7C  A4D8               	btfss	status,2,c
  22045  003E7E  D004               	goto	i2l10124
  22046                           
  22047                           ; BSR set to: 1
- 22048                           ;main.c: 146: {;main.c: 148: PCLATH = 0;
+ 22048                           ;main.c: 144: {;main.c: 146: PCLATH = 0;
  22049  003E80  0E00               	movlw	0
  22050  003E82  6EFA               	movwf	250,c	;volatile
  22051                           
- 22052                           ;main.c: 149: PCL = 0;
+ 22052                           ;main.c: 147: PCL = 0;
  22053  003E84  0E00               	movlw	0
  22054  003E86  6EF9               	movwf	249,c	;volatile
  22055  003E88                     i2l10124:
  22056                           
- 22057                           ;main.c: 150: };main.c: 151: };main.c: 155: write_timer_zero(0x45);
+ 22057                           ;main.c: 148: };main.c: 149: };main.c: 153: write_timer_zero(0x45);
  22058  003E88  0E00               	movlw	0
  22059  003E8A  6E02               	movwf	(i2write_timer_zero@timer0+1)^0,c
  22060  003E8C  0E45               	movlw	69
@@ -22123,12 +22123,12 @@ Microchip MPLAB XC8 C Compiler v2.30 (Free license) build 20200825195618 Og9
  22062  003E90  EC28  F02E         	call	i2_write_timer_zero	;wreg free
  22063  003E94                     i2l10126:
  22064                           
- 22065                           ;main.c: 156: };main.c: 158: if (INT0IF && INT0IE)
+ 22065                           ;main.c: 154: };main.c: 156: if (INT0IF && INT0IE)
  22066  003E94  B2F2               	btfsc	4082,1,c	;volatile
  22067  003E96  A8F2               	btfss	4082,4,c	;volatile
  22068  003E98  D001               	goto	i2l1545
  22069                           
- 22070                           ;main.c: 159: {;main.c: 160: INT0IF = 0;
+ 22070                           ;main.c: 157: {;main.c: 158: INT0IF = 0;
  22071  003E9A  92F2               	bcf	4082,1,c	;volatile
  22072  003E9C                     i2l1545:
  22073  003E9C  C008  FFF4         	movff	??_isr+5,prodh
@@ -25083,7 +25083,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.30 build 20200825195618 
-Symbol Table                                                                                   Sat Jun 04 10:34:01 2022
+Symbol Table                                                                                   Mon Jun 13 12:07:26 2022
 
                               next_dir_entry@idx 007C                                     ?_get_rawdate 0001  
                        __end_of_mensagem_inicial 4734                              next_dir_entry@clust 007A  
@@ -25650,7 +25650,7 @@ Symbol Table                                                                    
                                   make_dirfile@a 001A                                    make_dirfile@b 0018  
                                   make_dirfile@c 001C                                    make_dirfile@n 001B  
                                   make_dirfile@t 0019                                          ?___wmul 000A  
-                          mensagem_inicial@F3687 6118                            mensagem_inicial@F3689 6107  
+                          mensagem_inicial@F3677 6118                            mensagem_inicial@F3679 6107  
                           ??_escreve_inteiro_lcd 002F                                          ?_f_open 0098  
                                      _fence_flag 00E7                                          ?_f_sync 0060  
                              __size_of_longitude 000A                                ??_disk_initialize 002A  
@@ -26102,6 +26102,6 @@ verifica_dados_operacionais@velocidade_atual_int 0151                           
                               sdc_disk_write@res 0025                                    ?_get_latitude 0001  
                                    ?_get_cluster 004A                                      f_write@sect 009A  
                                     f_write@wcnt 00A2                                     ?_disk_status 0001  
-                  __end_ofmensagem_inicial@F3687 6129                    __end_ofmensagem_inicial@F3689 6118  
+                  __end_ofmensagem_inicial@F3677 6129                    __end_ofmensagem_inicial@F3679 6118  
                                 escreve_SPI@dado 000B                                     ?_get_gpstime 0001  
                           disparo_gravacao@v_max 02F5  

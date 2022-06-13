@@ -8,7 +8,6 @@ bibliotecas/SDCard.h  \
 main.h  \
 bibliotecas/tff.h  \
 bibliotecas/integer.h  \
-bibliotecas/MCP2515.h  \
 bibliotecas/SPI.h  \
 bibliotecas/display_lcd.h  \
 bibliotecas/GPS.h  \

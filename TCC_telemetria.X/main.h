@@ -3,7 +3,7 @@
  *
  * Descri??o      	: Implementa a fun??o principal do projeto
  *
- * Ambiente			: MPLAB v3.51, XC8 versao 2.32, PIC18F4550
+ * Ambiente			: MPLAB v3.51, XC8 versao 2.30, PIC18F4550
  *
  * Responsável		: Torres, Weslley
  *

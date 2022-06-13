@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.30\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\TCC_telemetria.X.production.sym \
   --cmf=dist/default/production\TCC_telemetria.X.production.cmf -z \
-  -Q18F4550 -oC:\Users\Felipe\AppData\Local\Temp\s17gx2 \
+  -Q18F4550 -oC:\Users\Felipe\AppData\Local\Temp\s85sx2 \
   -Mdist/default/production/TCC_telemetria.X.production.map -E1 \
   -ver=XC8 Compiler -ASTACK=05B6h-07FFh -pstack=STACK -ACODE=00h-0627Fh \
   -ACONST=00h-0627Fh -ASMALLCONST=0800h-08FFhx90,06200h-0627Fh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Felipe\AppData\Local\Temp\s17gx8.obj \
+  C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj \
   dist/default/production\TCC_telemetria.X.production.obj 
 
 Object code version is 3.11
@@ -32,7 +32,7 @@ Machine type is 18F4550
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Felipe\AppData\Local\Temp\s17gx8.obj
+C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  E        E        4        4       0
@@ -1165,8 +1165,8 @@ __end_of_verifica_recep_gps                      text36       005904
 __end_of_wait_ready                              text111      0056BC
 __end_of_write_timer_zero                        text8        005C14
 __end_ofi2_write_timer_zero                      text133      005C5A
-__end_ofmensagem_inicial@F3687                   mediumconst  006129
-__end_ofmensagem_inicial@F3689                   mediumconst  006118
+__end_ofmensagem_inicial@F3677                   mediumconst  006129
+__end_ofmensagem_inicial@F3679                   mediumconst  006118
 __initialization                                 cinit        004368
 __mediumconst                                    mediumconst  006106
 __pbssBANK0                                      bssBANK0     0000E7
@@ -1863,8 +1863,8 @@ memset@c                                         cstackCOMRAM 00000C
 memset@n                                         cstackCOMRAM 00000E
 memset@p                                         cstackCOMRAM 000010
 memset@p1                                        cstackCOMRAM 00000A
-mensagem_inicial@F3687                           mediumconst  006118
-mensagem_inicial@F3689                           mediumconst  006107
+mensagem_inicial@F3677                           mediumconst  006118
+mensagem_inicial@F3679                           mediumconst  006107
 mensagem_inicial@msg_dois                        cstackCOMRAM 000023
 mensagem_inicial@msg_linha_um                    cstackCOMRAM 000012
 monta_sd@dado                                    cstackCOMRAM 000010
@@ -1980,7 +1980,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 224 in file "main.c"
+		line 222 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2015,7 +2015,7 @@ Total ram usage:        0 bytes
 
  *************** function _mensagem_inicial *****************
  Defined at:
-		line 252 in file "main.c"
+		line 250 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2293,7 +2293,7 @@ Total ram usage:        0 bytes
 
  *************** function _inicializa_tarefas *****************
  Defined at:
-		line 174 in file "main.c"
+		line 172 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2323,7 +2323,7 @@ Total ram usage:        0 bytes
 
  *************** function _escalonador *****************
  Defined at:
-		line 203 in file "main.c"
+		line 201 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2355,7 +2355,7 @@ Total ram usage:        3 bytes
 
  *************** function _troca_de_tela *****************
  Defined at:
-		line 414 in file "main.c"
+		line 412 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2394,7 +2394,7 @@ Total ram usage:        3 bytes
 
  *************** function _disparo_gravacao *****************
  Defined at:
-		line 351 in file "main.c"
+		line 349 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2438,7 +2438,7 @@ Total ram usage:       24 bytes
 
  *************** function _verifica_dados_operacionais *****************
  Defined at:
-		line 310 in file "main.c"
+		line 308 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2955,7 +2955,7 @@ Total ram usage:        1 bytes
 
  *************** function _verifica_fence *****************
  Defined at:
-		line 277 in file "main.c"
+		line 275 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3111,7 +3111,7 @@ Total ram usage:        0 bytes
 
  *************** function _recebe_dado_gps *****************
  Defined at:
-		line 558 in file "main.c"
+		line 556 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3572,7 +3572,7 @@ Total ram usage:        7 bytes
 
  *************** function _grava_sd *****************
  Defined at:
-		line 539 in file "main.c"
+		line 537 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6482,7 +6482,7 @@ Total ram usage:        6 bytes
 
  *************** function _isr *****************
  Defined at:
-		line 113 in file "main.c"
+		line 111 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6740,11 +6740,11 @@ bibliotecas/hardware.c
 bibliotecas/hardware.c estimated size: 126
 
 shared
-		mensagem_inicial@F3689		MEDIUMCONST    	6107	0000	17
 		__initialization		CODE           	4368	0000	162
-		mensagem_inicial@F3687		MEDIUMCONST    	6118	0000	17
+		mensagem_inicial@F3677		MEDIUMCONST    	6118	0000	17
 		_fence_diff_lat		MEDIUMCONST    	6155	0000	40
 		i2_write_timer_zero		CODE           	5C50	0000	10
+		mensagem_inicial@F3679		MEDIUMCONST    	6107	0000	17
 		_fence_diff_long		MEDIUMCONST    	6129	0000	44
 
 shared estimated size: 290
