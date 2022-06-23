@@ -167,9 +167,9 @@ text134 CODE 0 3AB2 3AB2 112 1
 text135 CODE 0 5B88 5B88 12 1
 bssBIGRAM BIGRAM 1 396 396 220 1
 bssCOMRAM COMRAM 1 4D 4D 9 1
-mediumconst MEDIUMCONST 0 6106 6106 17A 1
+mediumconst MEDIUMCONST 0 6100 6100 180 1
 config CONFIG 4 300000 300000 E 1
-$C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+$C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 idloc IDLOC 5 200000 200000 8 1
 init CODE 0 E E 4 1
 reset_vec CODE 0 0 0 4 1
@@ -191,13 +191,13 @@ BANK6 600-6FF 1
 BANK7 700-7FF 1
 CONST 4-7 1
 CONST 4D85-4D85 1
-CONST 5C6D-6105 1
+CONST 5C6D-60FF 1
 STACK 5B6-7FF 1
 SMALLCONST 4D85-4D85 1
-SMALLCONST 5C6D-6105 1
+SMALLCONST 5C6D-60FF 1
 CODE 4-7 1
 CODE 4D85-4D85 1
-CODE 5C6D-6105 1
+CODE 5C6D-60FF 1
 BIGRAM 57-5F 1
 BIGRAM 1FA-1FF 1
 BIGRAM 2FA-2FF 1
@@ -205,7 +205,7 @@ BIGRAM 5B6-7FF 1
 COMRAM 57-5F 1
 EEDATA F00000-F000FF 1
 MEDIUMCONST 4D85-4D85 1
-MEDIUMCONST 5C6D-6105 1
+MEDIUMCONST 5C6D-60FF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -220,7 +220,7 @@ MEDIUMCONST 5C6D-6105 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\TCC_telemetria.X.production.obj
-8 intcode CODE >35109:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
+8 intcode CODE >35116:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
 8 intcode CODE >111:E:\Projetos\TCC_telemetria.X\main.c
 5B88 text135 CODE >138:E:\Projetos\TCC_telemetria.X\bibliotecas/uart.c
 5B88 text135 CODE >140:E:\Projetos\TCC_telemetria.X\bibliotecas/uart.c
@@ -291,10 +291,10 @@ $dist/default/production\TCC_telemetria.X.production.obj
 3E78 intcode_body CODE >143:E:\Projetos\TCC_telemetria.X\main.c
 3E80 intcode_body CODE >146:E:\Projetos\TCC_telemetria.X\main.c
 3E84 intcode_body CODE >147:E:\Projetos\TCC_telemetria.X\main.c
-3E88 intcode_body CODE >153:E:\Projetos\TCC_telemetria.X\main.c
-3E94 intcode_body CODE >156:E:\Projetos\TCC_telemetria.X\main.c
-3E9A intcode_body CODE >158:E:\Projetos\TCC_telemetria.X\main.c
-3E9C intcode_body CODE >161:E:\Projetos\TCC_telemetria.X\main.c
+3E88 intcode_body CODE >152:E:\Projetos\TCC_telemetria.X\main.c
+3E94 intcode_body CODE >155:E:\Projetos\TCC_telemetria.X\main.c
+3E9A intcode_body CODE >157:E:\Projetos\TCC_telemetria.X\main.c
+3E9C intcode_body CODE >160:E:\Projetos\TCC_telemetria.X\main.c
 592A text131 CODE >15:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\Umul16.c
 592A text131 CODE >37:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\Umul16.c
 5936 text131 CODE >38:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\Umul16.c
@@ -1480,15 +1480,15 @@ FF6 text65 CODE >1840:E:\Projetos\TCC_telemetria.X\bibliotecas/tff.c
 59AE text50 CODE >213:E:\Projetos\TCC_telemetria.X\bibliotecas/uart.c
 59B2 text50 CODE >214:E:\Projetos\TCC_telemetria.X\bibliotecas/uart.c
 59B6 text50 CODE >215:E:\Projetos\TCC_telemetria.X\bibliotecas/uart.c
-5B34 text49 CODE >537:E:\Projetos\TCC_telemetria.X\main.c
-5B34 text49 CODE >539:E:\Projetos\TCC_telemetria.X\main.c
-5B36 text49 CODE >540:E:\Projetos\TCC_telemetria.X\main.c
-5B3A text49 CODE >541:E:\Projetos\TCC_telemetria.X\main.c
-5B3E text49 CODE >542:E:\Projetos\TCC_telemetria.X\main.c
-5B42 text49 CODE >543:E:\Projetos\TCC_telemetria.X\main.c
-5B46 text49 CODE >544:E:\Projetos\TCC_telemetria.X\main.c
-5B4A text49 CODE >545:E:\Projetos\TCC_telemetria.X\main.c
-5B4C text49 CODE >546:E:\Projetos\TCC_telemetria.X\main.c
+5B34 text49 CODE >534:E:\Projetos\TCC_telemetria.X\main.c
+5B34 text49 CODE >536:E:\Projetos\TCC_telemetria.X\main.c
+5B36 text49 CODE >537:E:\Projetos\TCC_telemetria.X\main.c
+5B3A text49 CODE >538:E:\Projetos\TCC_telemetria.X\main.c
+5B3E text49 CODE >539:E:\Projetos\TCC_telemetria.X\main.c
+5B42 text49 CODE >540:E:\Projetos\TCC_telemetria.X\main.c
+5B46 text49 CODE >541:E:\Projetos\TCC_telemetria.X\main.c
+5B4A text49 CODE >542:E:\Projetos\TCC_telemetria.X\main.c
+5B4C text49 CODE >543:E:\Projetos\TCC_telemetria.X\main.c
 5122 text48 CODE >7:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\lwdiv.c
 5122 text48 CODE >13:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\lwdiv.c
 512A text48 CODE >14:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\lwdiv.c
@@ -1637,13 +1637,13 @@ FF6 text65 CODE >1840:E:\Projetos\TCC_telemetria.X\bibliotecas/tff.c
 58FC text36 CODE >730:E:\Projetos\TCC_telemetria.X\bibliotecas/GPS.c
 5900 text36 CODE >735:E:\Projetos\TCC_telemetria.X\bibliotecas/GPS.c
 5902 text36 CODE >738:E:\Projetos\TCC_telemetria.X\bibliotecas/GPS.c
-5A62 text35 CODE >556:E:\Projetos\TCC_telemetria.X\main.c
-5A62 text35 CODE >558:E:\Projetos\TCC_telemetria.X\main.c
-5A66 text35 CODE >559:E:\Projetos\TCC_telemetria.X\main.c
-5A6A text35 CODE >560:E:\Projetos\TCC_telemetria.X\main.c
-5A6C text35 CODE >562:E:\Projetos\TCC_telemetria.X\main.c
-5A72 text35 CODE >563:E:\Projetos\TCC_telemetria.X\main.c
-5A74 text35 CODE >560:E:\Projetos\TCC_telemetria.X\main.c
+5A62 text35 CODE >553:E:\Projetos\TCC_telemetria.X\main.c
+5A62 text35 CODE >555:E:\Projetos\TCC_telemetria.X\main.c
+5A66 text35 CODE >556:E:\Projetos\TCC_telemetria.X\main.c
+5A6A text35 CODE >557:E:\Projetos\TCC_telemetria.X\main.c
+5A6C text35 CODE >559:E:\Projetos\TCC_telemetria.X\main.c
+5A72 text35 CODE >560:E:\Projetos\TCC_telemetria.X\main.c
+5A74 text35 CODE >557:E:\Projetos\TCC_telemetria.X\main.c
 5C62 text34 CODE >652:E:\Projetos\TCC_telemetria.X\bibliotecas/GPS.c
 5C62 text34 CODE >655:E:\Projetos\TCC_telemetria.X\bibliotecas/GPS.c
 5C66 text34 CODE >656:E:\Projetos\TCC_telemetria.X\bibliotecas/GPS.c
@@ -1669,20 +1669,20 @@ FF6 text65 CODE >1840:E:\Projetos\TCC_telemetria.X\bibliotecas/tff.c
 4E8A text31 CODE >331:E:\Projetos\TCC_telemetria.X\bibliotecas/fence.c
 4E8E text31 CODE >338:E:\Projetos\TCC_telemetria.X\bibliotecas/fence.c
 4EA6 text31 CODE >314:E:\Projetos\TCC_telemetria.X\bibliotecas/fence.c
-4F0E text30 CODE >275:E:\Projetos\TCC_telemetria.X\main.c
-4F0E text30 CODE >277:E:\Projetos\TCC_telemetria.X\main.c
-4F12 text30 CODE >278:E:\Projetos\TCC_telemetria.X\main.c
-4F16 text30 CODE >279:E:\Projetos\TCC_telemetria.X\main.c
-4F1A text30 CODE >280:E:\Projetos\TCC_telemetria.X\main.c
-4F2C text30 CODE >281:E:\Projetos\TCC_telemetria.X\main.c
-4F3E text30 CODE >286:E:\Projetos\TCC_telemetria.X\main.c
-4F46 text30 CODE >288:E:\Projetos\TCC_telemetria.X\main.c
-4F48 text30 CODE >289:E:\Projetos\TCC_telemetria.X\main.c
-4F56 text30 CODE >290:E:\Projetos\TCC_telemetria.X\main.c
-4F58 text30 CODE >291:E:\Projetos\TCC_telemetria.X\main.c
-4F58 text30 CODE >293:E:\Projetos\TCC_telemetria.X\main.c
-4F5A text30 CODE >294:E:\Projetos\TCC_telemetria.X\main.c
-4F68 text30 CODE >298:E:\Projetos\TCC_telemetria.X\main.c
+4F0E text30 CODE >274:E:\Projetos\TCC_telemetria.X\main.c
+4F0E text30 CODE >276:E:\Projetos\TCC_telemetria.X\main.c
+4F12 text30 CODE >277:E:\Projetos\TCC_telemetria.X\main.c
+4F16 text30 CODE >278:E:\Projetos\TCC_telemetria.X\main.c
+4F1A text30 CODE >279:E:\Projetos\TCC_telemetria.X\main.c
+4F2C text30 CODE >280:E:\Projetos\TCC_telemetria.X\main.c
+4F3E text30 CODE >285:E:\Projetos\TCC_telemetria.X\main.c
+4F46 text30 CODE >287:E:\Projetos\TCC_telemetria.X\main.c
+4F48 text30 CODE >288:E:\Projetos\TCC_telemetria.X\main.c
+4F56 text30 CODE >289:E:\Projetos\TCC_telemetria.X\main.c
+4F58 text30 CODE >290:E:\Projetos\TCC_telemetria.X\main.c
+4F58 text30 CODE >292:E:\Projetos\TCC_telemetria.X\main.c
+4F5A text30 CODE >293:E:\Projetos\TCC_telemetria.X\main.c
+4F68 text30 CODE >297:E:\Projetos\TCC_telemetria.X\main.c
 4856 text29 CODE >162:E:\Projetos\TCC_telemetria.X\bibliotecas/display_lcd.c
 4858 text29 CODE >165:E:\Projetos\TCC_telemetria.X\bibliotecas/display_lcd.c
 485A text29 CODE >166:E:\Projetos\TCC_telemetria.X\bibliotecas/display_lcd.c
@@ -1840,141 +1840,141 @@ FF6 text65 CODE >1840:E:\Projetos\TCC_telemetria.X\bibliotecas/tff.c
 57B4 text15 CODE >20:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcpy.c
 57B8 text15 CODE >21:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcpy.c
 57BC text15 CODE >19:C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcpy.c
-2F0C text14 CODE >308:E:\Projetos\TCC_telemetria.X\main.c
-2F0C text14 CODE >316:E:\Projetos\TCC_telemetria.X\main.c
-2F10 text14 CODE >318:E:\Projetos\TCC_telemetria.X\main.c
-2F16 text14 CODE >320:E:\Projetos\TCC_telemetria.X\main.c
-2F1A text14 CODE >321:E:\Projetos\TCC_telemetria.X\main.c
-2F20 text14 CODE >324:E:\Projetos\TCC_telemetria.X\main.c
-2F2C text14 CODE >325:E:\Projetos\TCC_telemetria.X\main.c
-2F8A text14 CODE >326:E:\Projetos\TCC_telemetria.X\main.c
-2FB2 text14 CODE >328:E:\Projetos\TCC_telemetria.X\main.c
-2FEE text14 CODE >330:E:\Projetos\TCC_telemetria.X\main.c
-3006 text14 CODE >331:E:\Projetos\TCC_telemetria.X\main.c
-3026 text14 CODE >332:E:\Projetos\TCC_telemetria.X\main.c
-3046 text14 CODE >333:E:\Projetos\TCC_telemetria.X\main.c
-3066 text14 CODE >334:E:\Projetos\TCC_telemetria.X\main.c
-3086 text14 CODE >336:E:\Projetos\TCC_telemetria.X\main.c
-308A text14 CODE >337:E:\Projetos\TCC_telemetria.X\main.c
-308C text14 CODE >339:E:\Projetos\TCC_telemetria.X\main.c
-2810 text13 CODE >349:E:\Projetos\TCC_telemetria.X\main.c
-2810 text13 CODE >356:E:\Projetos\TCC_telemetria.X\main.c
-2832 text13 CODE >357:E:\Projetos\TCC_telemetria.X\main.c
-283C text13 CODE >358:E:\Projetos\TCC_telemetria.X\main.c
-2846 text13 CODE >360:E:\Projetos\TCC_telemetria.X\main.c
-284A text13 CODE >361:E:\Projetos\TCC_telemetria.X\main.c
-2856 text13 CODE >363:E:\Projetos\TCC_telemetria.X\main.c
-2866 text13 CODE >365:E:\Projetos\TCC_telemetria.X\main.c
-2874 text13 CODE >367:E:\Projetos\TCC_telemetria.X\main.c
-2878 text13 CODE >369:E:\Projetos\TCC_telemetria.X\main.c
-28BA text13 CODE >371:E:\Projetos\TCC_telemetria.X\main.c
-28F6 text13 CODE >372:E:\Projetos\TCC_telemetria.X\main.c
-28FE text13 CODE >367:E:\Projetos\TCC_telemetria.X\main.c
-2906 text13 CODE >377:E:\Projetos\TCC_telemetria.X\main.c
-292C text13 CODE >378:E:\Projetos\TCC_telemetria.X\main.c
-2952 text13 CODE >379:E:\Projetos\TCC_telemetria.X\main.c
-2978 text13 CODE >380:E:\Projetos\TCC_telemetria.X\main.c
-299E text13 CODE >381:E:\Projetos\TCC_telemetria.X\main.c
-29CE text13 CODE >382:E:\Projetos\TCC_telemetria.X\main.c
-29DC text13 CODE >384:E:\Projetos\TCC_telemetria.X\main.c
-29E6 text13 CODE >385:E:\Projetos\TCC_telemetria.X\main.c
-29EE text13 CODE >386:E:\Projetos\TCC_telemetria.X\main.c
-29F6 text13 CODE >387:E:\Projetos\TCC_telemetria.X\main.c
-29F8 text13 CODE >390:E:\Projetos\TCC_telemetria.X\main.c
-2A02 text13 CODE >391:E:\Projetos\TCC_telemetria.X\main.c
-2A0A text13 CODE >392:E:\Projetos\TCC_telemetria.X\main.c
-2A12 text13 CODE >393:E:\Projetos\TCC_telemetria.X\main.c
-2A16 text13 CODE >394:E:\Projetos\TCC_telemetria.X\main.c
-2A1A text13 CODE >396:E:\Projetos\TCC_telemetria.X\main.c
-2A1E text13 CODE >400:E:\Projetos\TCC_telemetria.X\main.c
-2A28 text13 CODE >402:E:\Projetos\TCC_telemetria.X\main.c
-1BFC text12 CODE >412:E:\Projetos\TCC_telemetria.X\main.c
-1BFC text12 CODE >418:E:\Projetos\TCC_telemetria.X\main.c
-1C06 text12 CODE >421:E:\Projetos\TCC_telemetria.X\main.c
-1C0E text12 CODE >423:E:\Projetos\TCC_telemetria.X\main.c
-1C12 text12 CODE >425:E:\Projetos\TCC_telemetria.X\main.c
-1C1C text12 CODE >426:E:\Projetos\TCC_telemetria.X\main.c
-1C28 text12 CODE >427:E:\Projetos\TCC_telemetria.X\main.c
-1C2A text12 CODE >430:E:\Projetos\TCC_telemetria.X\main.c
-1C34 text12 CODE >431:E:\Projetos\TCC_telemetria.X\main.c
-1C40 text12 CODE >432:E:\Projetos\TCC_telemetria.X\main.c
-1C4A text12 CODE >433:E:\Projetos\TCC_telemetria.X\main.c
-1C66 text12 CODE >434:E:\Projetos\TCC_telemetria.X\main.c
-1C70 text12 CODE >435:E:\Projetos\TCC_telemetria.X\main.c
-1C7C text12 CODE >436:E:\Projetos\TCC_telemetria.X\main.c
-1C86 text12 CODE >437:E:\Projetos\TCC_telemetria.X\main.c
-1CA2 text12 CODE >440:E:\Projetos\TCC_telemetria.X\main.c
-1CAE text12 CODE >441:E:\Projetos\TCC_telemetria.X\main.c
-1CB8 text12 CODE >442:E:\Projetos\TCC_telemetria.X\main.c
-1CC6 text12 CODE >443:E:\Projetos\TCC_telemetria.X\main.c
-1CD0 text12 CODE >446:E:\Projetos\TCC_telemetria.X\main.c
-1CD6 text12 CODE >448:E:\Projetos\TCC_telemetria.X\main.c
-1CDA text12 CODE >449:E:\Projetos\TCC_telemetria.X\main.c
-1CE0 text12 CODE >450:E:\Projetos\TCC_telemetria.X\main.c
-1CEA text12 CODE >451:E:\Projetos\TCC_telemetria.X\main.c
-1CF6 text12 CODE >453:E:\Projetos\TCC_telemetria.X\main.c
-1CFC text12 CODE >455:E:\Projetos\TCC_telemetria.X\main.c
-1D06 text12 CODE >456:E:\Projetos\TCC_telemetria.X\main.c
-1D12 text12 CODE >457:E:\Projetos\TCC_telemetria.X\main.c
-1D14 text12 CODE >460:E:\Projetos\TCC_telemetria.X\main.c
-1D1E text12 CODE >461:E:\Projetos\TCC_telemetria.X\main.c
-1D2A text12 CODE >462:E:\Projetos\TCC_telemetria.X\main.c
-1D34 text12 CODE >463:E:\Projetos\TCC_telemetria.X\main.c
-1D50 text12 CODE >464:E:\Projetos\TCC_telemetria.X\main.c
-1D5A text12 CODE >465:E:\Projetos\TCC_telemetria.X\main.c
-1D66 text12 CODE >466:E:\Projetos\TCC_telemetria.X\main.c
-1D70 text12 CODE >467:E:\Projetos\TCC_telemetria.X\main.c
-1D8C text12 CODE >469:E:\Projetos\TCC_telemetria.X\main.c
-1D98 text12 CODE >470:E:\Projetos\TCC_telemetria.X\main.c
-1DA2 text12 CODE >471:E:\Projetos\TCC_telemetria.X\main.c
-1DAE text12 CODE >472:E:\Projetos\TCC_telemetria.X\main.c
-1DB8 text12 CODE >473:E:\Projetos\TCC_telemetria.X\main.c
-1DC6 text12 CODE >475:E:\Projetos\TCC_telemetria.X\main.c
-1DCA text12 CODE >487:E:\Projetos\TCC_telemetria.X\main.c
-1DD6 text12 CODE >489:E:\Projetos\TCC_telemetria.X\main.c
-1DE0 text12 CODE >491:E:\Projetos\TCC_telemetria.X\main.c
-1DE4 text12 CODE >492:E:\Projetos\TCC_telemetria.X\main.c
-1DE8 text12 CODE >493:E:\Projetos\TCC_telemetria.X\main.c
-1DF2 text12 CODE >497:E:\Projetos\TCC_telemetria.X\main.c
-1DFA text12 CODE >499:E:\Projetos\TCC_telemetria.X\main.c
-1DFE text12 CODE >500:E:\Projetos\TCC_telemetria.X\main.c
-1E04 text12 CODE >501:E:\Projetos\TCC_telemetria.X\main.c
-1E0E text12 CODE >502:E:\Projetos\TCC_telemetria.X\main.c
-1E1A text12 CODE >503:E:\Projetos\TCC_telemetria.X\main.c
-1E24 text12 CODE >504:E:\Projetos\TCC_telemetria.X\main.c
-1E30 text12 CODE >505:E:\Projetos\TCC_telemetria.X\main.c
-1E34 text12 CODE >506:E:\Projetos\TCC_telemetria.X\main.c
-1E38 text12 CODE >508:E:\Projetos\TCC_telemetria.X\main.c
-1E3C text12 CODE >514:E:\Projetos\TCC_telemetria.X\main.c
-1E42 text12 CODE >516:E:\Projetos\TCC_telemetria.X\main.c
-1E4A text12 CODE >518:E:\Projetos\TCC_telemetria.X\main.c
-1E50 text12 CODE >519:E:\Projetos\TCC_telemetria.X\main.c
-1E5A text12 CODE >520:E:\Projetos\TCC_telemetria.X\main.c
-1E66 text12 CODE >521:E:\Projetos\TCC_telemetria.X\main.c
-1E70 text12 CODE >522:E:\Projetos\TCC_telemetria.X\main.c
-1E7C text12 CODE >525:E:\Projetos\TCC_telemetria.X\main.c
-1E80 text12 CODE >527:E:\Projetos\TCC_telemetria.X\main.c
-4414 text11 CODE >201:E:\Projetos\TCC_telemetria.X\main.c
-4414 text11 CODE >204:E:\Projetos\TCC_telemetria.X\main.c
-4418 text11 CODE >206:E:\Projetos\TCC_telemetria.X\main.c
-4448 text11 CODE >208:E:\Projetos\TCC_telemetria.X\main.c
-444C text11 CODE >209:E:\Projetos\TCC_telemetria.X\main.c
-4456 text11 CODE >210:E:\Projetos\TCC_telemetria.X\main.c
-4486 text11 CODE >211:E:\Projetos\TCC_telemetria.X\main.c
-448A text11 CODE >212:E:\Projetos\TCC_telemetria.X\main.c
-44B4 text11 CODE >204:E:\Projetos\TCC_telemetria.X\main.c
-5218 text10 CODE >172:E:\Projetos\TCC_telemetria.X\main.c
-5218 text10 CODE >175:E:\Projetos\TCC_telemetria.X\main.c
-5222 text10 CODE >176:E:\Projetos\TCC_telemetria.X\main.c
-522A text10 CODE >177:E:\Projetos\TCC_telemetria.X\main.c
-5232 text10 CODE >181:E:\Projetos\TCC_telemetria.X\main.c
-523A text10 CODE >182:E:\Projetos\TCC_telemetria.X\main.c
-5242 text10 CODE >183:E:\Projetos\TCC_telemetria.X\main.c
-524A text10 CODE >186:E:\Projetos\TCC_telemetria.X\main.c
-5252 text10 CODE >187:E:\Projetos\TCC_telemetria.X\main.c
-525A text10 CODE >188:E:\Projetos\TCC_telemetria.X\main.c
-5262 text10 CODE >190:E:\Projetos\TCC_telemetria.X\main.c
-5266 text10 CODE >191:E:\Projetos\TCC_telemetria.X\main.c
+2F0C text14 CODE >307:E:\Projetos\TCC_telemetria.X\main.c
+2F0C text14 CODE >315:E:\Projetos\TCC_telemetria.X\main.c
+2F10 text14 CODE >317:E:\Projetos\TCC_telemetria.X\main.c
+2F16 text14 CODE >319:E:\Projetos\TCC_telemetria.X\main.c
+2F1A text14 CODE >320:E:\Projetos\TCC_telemetria.X\main.c
+2F20 text14 CODE >323:E:\Projetos\TCC_telemetria.X\main.c
+2F2C text14 CODE >324:E:\Projetos\TCC_telemetria.X\main.c
+2F8A text14 CODE >325:E:\Projetos\TCC_telemetria.X\main.c
+2FB2 text14 CODE >327:E:\Projetos\TCC_telemetria.X\main.c
+2FEE text14 CODE >329:E:\Projetos\TCC_telemetria.X\main.c
+3006 text14 CODE >330:E:\Projetos\TCC_telemetria.X\main.c
+3026 text14 CODE >331:E:\Projetos\TCC_telemetria.X\main.c
+3046 text14 CODE >332:E:\Projetos\TCC_telemetria.X\main.c
+3066 text14 CODE >333:E:\Projetos\TCC_telemetria.X\main.c
+3086 text14 CODE >335:E:\Projetos\TCC_telemetria.X\main.c
+308A text14 CODE >336:E:\Projetos\TCC_telemetria.X\main.c
+308C text14 CODE >338:E:\Projetos\TCC_telemetria.X\main.c
+2810 text13 CODE >348:E:\Projetos\TCC_telemetria.X\main.c
+2810 text13 CODE >355:E:\Projetos\TCC_telemetria.X\main.c
+2832 text13 CODE >356:E:\Projetos\TCC_telemetria.X\main.c
+283C text13 CODE >357:E:\Projetos\TCC_telemetria.X\main.c
+2846 text13 CODE >359:E:\Projetos\TCC_telemetria.X\main.c
+284A text13 CODE >360:E:\Projetos\TCC_telemetria.X\main.c
+2856 text13 CODE >362:E:\Projetos\TCC_telemetria.X\main.c
+2866 text13 CODE >364:E:\Projetos\TCC_telemetria.X\main.c
+2874 text13 CODE >366:E:\Projetos\TCC_telemetria.X\main.c
+2878 text13 CODE >368:E:\Projetos\TCC_telemetria.X\main.c
+28BA text13 CODE >370:E:\Projetos\TCC_telemetria.X\main.c
+28F6 text13 CODE >371:E:\Projetos\TCC_telemetria.X\main.c
+28FE text13 CODE >366:E:\Projetos\TCC_telemetria.X\main.c
+2906 text13 CODE >376:E:\Projetos\TCC_telemetria.X\main.c
+292C text13 CODE >377:E:\Projetos\TCC_telemetria.X\main.c
+2952 text13 CODE >378:E:\Projetos\TCC_telemetria.X\main.c
+2978 text13 CODE >379:E:\Projetos\TCC_telemetria.X\main.c
+299E text13 CODE >380:E:\Projetos\TCC_telemetria.X\main.c
+29CE text13 CODE >381:E:\Projetos\TCC_telemetria.X\main.c
+29DC text13 CODE >383:E:\Projetos\TCC_telemetria.X\main.c
+29E6 text13 CODE >384:E:\Projetos\TCC_telemetria.X\main.c
+29EE text13 CODE >385:E:\Projetos\TCC_telemetria.X\main.c
+29F6 text13 CODE >386:E:\Projetos\TCC_telemetria.X\main.c
+29F8 text13 CODE >389:E:\Projetos\TCC_telemetria.X\main.c
+2A02 text13 CODE >390:E:\Projetos\TCC_telemetria.X\main.c
+2A0A text13 CODE >391:E:\Projetos\TCC_telemetria.X\main.c
+2A12 text13 CODE >392:E:\Projetos\TCC_telemetria.X\main.c
+2A16 text13 CODE >393:E:\Projetos\TCC_telemetria.X\main.c
+2A1A text13 CODE >395:E:\Projetos\TCC_telemetria.X\main.c
+2A1E text13 CODE >397:E:\Projetos\TCC_telemetria.X\main.c
+2A28 text13 CODE >399:E:\Projetos\TCC_telemetria.X\main.c
+1BFC text12 CODE >409:E:\Projetos\TCC_telemetria.X\main.c
+1BFC text12 CODE >415:E:\Projetos\TCC_telemetria.X\main.c
+1C06 text12 CODE >418:E:\Projetos\TCC_telemetria.X\main.c
+1C0E text12 CODE >420:E:\Projetos\TCC_telemetria.X\main.c
+1C12 text12 CODE >422:E:\Projetos\TCC_telemetria.X\main.c
+1C1C text12 CODE >423:E:\Projetos\TCC_telemetria.X\main.c
+1C28 text12 CODE >424:E:\Projetos\TCC_telemetria.X\main.c
+1C2A text12 CODE >427:E:\Projetos\TCC_telemetria.X\main.c
+1C34 text12 CODE >428:E:\Projetos\TCC_telemetria.X\main.c
+1C40 text12 CODE >429:E:\Projetos\TCC_telemetria.X\main.c
+1C4A text12 CODE >430:E:\Projetos\TCC_telemetria.X\main.c
+1C66 text12 CODE >431:E:\Projetos\TCC_telemetria.X\main.c
+1C70 text12 CODE >432:E:\Projetos\TCC_telemetria.X\main.c
+1C7C text12 CODE >433:E:\Projetos\TCC_telemetria.X\main.c
+1C86 text12 CODE >434:E:\Projetos\TCC_telemetria.X\main.c
+1CA2 text12 CODE >437:E:\Projetos\TCC_telemetria.X\main.c
+1CAE text12 CODE >438:E:\Projetos\TCC_telemetria.X\main.c
+1CB8 text12 CODE >439:E:\Projetos\TCC_telemetria.X\main.c
+1CC6 text12 CODE >440:E:\Projetos\TCC_telemetria.X\main.c
+1CD0 text12 CODE >443:E:\Projetos\TCC_telemetria.X\main.c
+1CD6 text12 CODE >445:E:\Projetos\TCC_telemetria.X\main.c
+1CDA text12 CODE >446:E:\Projetos\TCC_telemetria.X\main.c
+1CE0 text12 CODE >447:E:\Projetos\TCC_telemetria.X\main.c
+1CEA text12 CODE >448:E:\Projetos\TCC_telemetria.X\main.c
+1CF6 text12 CODE >450:E:\Projetos\TCC_telemetria.X\main.c
+1CFC text12 CODE >452:E:\Projetos\TCC_telemetria.X\main.c
+1D06 text12 CODE >453:E:\Projetos\TCC_telemetria.X\main.c
+1D12 text12 CODE >454:E:\Projetos\TCC_telemetria.X\main.c
+1D14 text12 CODE >457:E:\Projetos\TCC_telemetria.X\main.c
+1D1E text12 CODE >458:E:\Projetos\TCC_telemetria.X\main.c
+1D2A text12 CODE >459:E:\Projetos\TCC_telemetria.X\main.c
+1D34 text12 CODE >460:E:\Projetos\TCC_telemetria.X\main.c
+1D50 text12 CODE >461:E:\Projetos\TCC_telemetria.X\main.c
+1D5A text12 CODE >462:E:\Projetos\TCC_telemetria.X\main.c
+1D66 text12 CODE >463:E:\Projetos\TCC_telemetria.X\main.c
+1D70 text12 CODE >464:E:\Projetos\TCC_telemetria.X\main.c
+1D8C text12 CODE >466:E:\Projetos\TCC_telemetria.X\main.c
+1D98 text12 CODE >467:E:\Projetos\TCC_telemetria.X\main.c
+1DA2 text12 CODE >468:E:\Projetos\TCC_telemetria.X\main.c
+1DAE text12 CODE >469:E:\Projetos\TCC_telemetria.X\main.c
+1DB8 text12 CODE >470:E:\Projetos\TCC_telemetria.X\main.c
+1DC6 text12 CODE >472:E:\Projetos\TCC_telemetria.X\main.c
+1DCA text12 CODE >484:E:\Projetos\TCC_telemetria.X\main.c
+1DD6 text12 CODE >486:E:\Projetos\TCC_telemetria.X\main.c
+1DE0 text12 CODE >488:E:\Projetos\TCC_telemetria.X\main.c
+1DE4 text12 CODE >489:E:\Projetos\TCC_telemetria.X\main.c
+1DE8 text12 CODE >490:E:\Projetos\TCC_telemetria.X\main.c
+1DF2 text12 CODE >494:E:\Projetos\TCC_telemetria.X\main.c
+1DFA text12 CODE >496:E:\Projetos\TCC_telemetria.X\main.c
+1DFE text12 CODE >497:E:\Projetos\TCC_telemetria.X\main.c
+1E04 text12 CODE >498:E:\Projetos\TCC_telemetria.X\main.c
+1E0E text12 CODE >499:E:\Projetos\TCC_telemetria.X\main.c
+1E1A text12 CODE >500:E:\Projetos\TCC_telemetria.X\main.c
+1E24 text12 CODE >501:E:\Projetos\TCC_telemetria.X\main.c
+1E30 text12 CODE >502:E:\Projetos\TCC_telemetria.X\main.c
+1E34 text12 CODE >503:E:\Projetos\TCC_telemetria.X\main.c
+1E38 text12 CODE >505:E:\Projetos\TCC_telemetria.X\main.c
+1E3C text12 CODE >511:E:\Projetos\TCC_telemetria.X\main.c
+1E42 text12 CODE >513:E:\Projetos\TCC_telemetria.X\main.c
+1E4A text12 CODE >515:E:\Projetos\TCC_telemetria.X\main.c
+1E50 text12 CODE >516:E:\Projetos\TCC_telemetria.X\main.c
+1E5A text12 CODE >517:E:\Projetos\TCC_telemetria.X\main.c
+1E66 text12 CODE >518:E:\Projetos\TCC_telemetria.X\main.c
+1E70 text12 CODE >519:E:\Projetos\TCC_telemetria.X\main.c
+1E7C text12 CODE >522:E:\Projetos\TCC_telemetria.X\main.c
+1E80 text12 CODE >524:E:\Projetos\TCC_telemetria.X\main.c
+4414 text11 CODE >200:E:\Projetos\TCC_telemetria.X\main.c
+4414 text11 CODE >203:E:\Projetos\TCC_telemetria.X\main.c
+4418 text11 CODE >205:E:\Projetos\TCC_telemetria.X\main.c
+4448 text11 CODE >207:E:\Projetos\TCC_telemetria.X\main.c
+444C text11 CODE >208:E:\Projetos\TCC_telemetria.X\main.c
+4456 text11 CODE >209:E:\Projetos\TCC_telemetria.X\main.c
+4486 text11 CODE >210:E:\Projetos\TCC_telemetria.X\main.c
+448A text11 CODE >211:E:\Projetos\TCC_telemetria.X\main.c
+44B4 text11 CODE >203:E:\Projetos\TCC_telemetria.X\main.c
+5218 text10 CODE >171:E:\Projetos\TCC_telemetria.X\main.c
+5218 text10 CODE >174:E:\Projetos\TCC_telemetria.X\main.c
+5222 text10 CODE >175:E:\Projetos\TCC_telemetria.X\main.c
+522A text10 CODE >176:E:\Projetos\TCC_telemetria.X\main.c
+5232 text10 CODE >180:E:\Projetos\TCC_telemetria.X\main.c
+523A text10 CODE >181:E:\Projetos\TCC_telemetria.X\main.c
+5242 text10 CODE >182:E:\Projetos\TCC_telemetria.X\main.c
+524A text10 CODE >185:E:\Projetos\TCC_telemetria.X\main.c
+5252 text10 CODE >186:E:\Projetos\TCC_telemetria.X\main.c
+525A text10 CODE >187:E:\Projetos\TCC_telemetria.X\main.c
+5262 text10 CODE >189:E:\Projetos\TCC_telemetria.X\main.c
+5266 text10 CODE >190:E:\Projetos\TCC_telemetria.X\main.c
 5BD8 text9 CODE >198:E:\Projetos\TCC_telemetria.X\bibliotecas/hardware.c
 5BD8 text9 CODE >200:E:\Projetos\TCC_telemetria.X\bibliotecas/hardware.c
 5BDC text9 CODE >201:E:\Projetos\TCC_telemetria.X\bibliotecas/hardware.c
@@ -2059,113 +2059,113 @@ FF6 text65 CODE >1840:E:\Projetos\TCC_telemetria.X\bibliotecas/tff.c
 4692 text2 CODE >151:E:\Projetos\TCC_telemetria.X\bibliotecas/display_lcd.c
 4698 text2 CODE >152:E:\Projetos\TCC_telemetria.X\bibliotecas/display_lcd.c
 469E text2 CODE >153:E:\Projetos\TCC_telemetria.X\bibliotecas/display_lcd.c
-46A0 text1 CODE >250:E:\Projetos\TCC_telemetria.X\main.c
-46A0 text1 CODE >252:E:\Projetos\TCC_telemetria.X\main.c
-46BC text1 CODE >253:E:\Projetos\TCC_telemetria.X\main.c
-46D8 text1 CODE >255:E:\Projetos\TCC_telemetria.X\main.c
-46E2 text1 CODE >256:E:\Projetos\TCC_telemetria.X\main.c
-46EC text1 CODE >258:E:\Projetos\TCC_telemetria.X\main.c
-46F6 text1 CODE >259:E:\Projetos\TCC_telemetria.X\main.c
-4700 text1 CODE >260:E:\Projetos\TCC_telemetria.X\main.c
-4716 text1 CODE >261:E:\Projetos\TCC_telemetria.X\main.c
-471C text1 CODE >262:E:\Projetos\TCC_telemetria.X\main.c
-4726 text1 CODE >263:E:\Projetos\TCC_telemetria.X\main.c
-4732 text1 CODE >265:E:\Projetos\TCC_telemetria.X\main.c
-577C text0 CODE >222:E:\Projetos\TCC_telemetria.X\main.c
-577C text0 CODE >224:E:\Projetos\TCC_telemetria.X\main.c
-5780 text0 CODE >225:E:\Projetos\TCC_telemetria.X\main.c
-5782 text0 CODE >226:E:\Projetos\TCC_telemetria.X\main.c
-5786 text0 CODE >227:E:\Projetos\TCC_telemetria.X\main.c
-578A text0 CODE >228:E:\Projetos\TCC_telemetria.X\main.c
-578E text0 CODE >229:E:\Projetos\TCC_telemetria.X\main.c
-5792 text0 CODE >232:E:\Projetos\TCC_telemetria.X\main.c
-5794 text0 CODE >236:E:\Projetos\TCC_telemetria.X\main.c
-579C text0 CODE >238:E:\Projetos\TCC_telemetria.X\main.c
-57A0 text0 CODE >239:E:\Projetos\TCC_telemetria.X\main.c
-57A4 text0 CODE >241:E:\Projetos\TCC_telemetria.X\main.c
-4368 cinit CODE >4532:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4368 cinit CODE >4534:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4368 cinit CODE >4537:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4368 cinit CODE >4829:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-436A cinit CODE >4830:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-436C cinit CODE >4831:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-436E cinit CODE >4832:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4370 cinit CODE >4833:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4372 cinit CODE >4834:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4374 cinit CODE >4835:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4378 cinit CODE >4836:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-437C cinit CODE >4837:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-437C cinit CODE >4838:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-437E cinit CODE >4839:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4382 cinit CODE >4840:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4384 cinit CODE >4841:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4386 cinit CODE >4842:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4388 cinit CODE >4846:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-438A cinit CODE >4847:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-438C cinit CODE >4848:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-438E cinit CODE >4849:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4390 cinit CODE >4850:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4392 cinit CODE >4851:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4394 cinit CODE >4852:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4398 cinit CODE >4853:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-439C cinit CODE >4854:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-439C cinit CODE >4855:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-439E cinit CODE >4856:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43A2 cinit CODE >4857:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43A4 cinit CODE >4858:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43A6 cinit CODE >4859:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43A8 cinit CODE >4863:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43AA cinit CODE >4864:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43AC cinit CODE >4865:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43AE cinit CODE >4866:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43B0 cinit CODE >4867:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43B2 cinit CODE >4868:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43B4 cinit CODE >4869:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43B6 cinit CODE >4870:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43BA cinit CODE >4874:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43BE cinit CODE >4875:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43C2 cinit CODE >4876:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43C2 cinit CODE >4877:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43C4 cinit CODE >4878:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43C6 cinit CODE >4879:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43C8 cinit CODE >4880:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43CA cinit CODE >4881:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43CC cinit CODE >4882:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43CE cinit CODE >4885:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43D2 cinit CODE >4886:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43D4 cinit CODE >4887:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43D4 cinit CODE >4888:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43D6 cinit CODE >4889:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43D8 cinit CODE >4890:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43DA cinit CODE >4893:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43DE cinit CODE >4894:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43E0 cinit CODE >4895:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43E0 cinit CODE >4896:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43E2 cinit CODE >4897:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43E4 cinit CODE >4898:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43E6 cinit CODE >4901:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43EA cinit CODE >4902:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43EC cinit CODE >4903:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43EC cinit CODE >4904:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43EE cinit CODE >4905:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43F0 cinit CODE >4906:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43F2 cinit CODE >4909:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43F6 cinit CODE >4910:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43F8 cinit CODE >4911:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43F8 cinit CODE >4912:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43FA cinit CODE >4913:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43FC cinit CODE >4914:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-43FE cinit CODE >4917:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4402 cinit CODE >4918:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4404 cinit CODE >4919:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4404 cinit CODE >4920:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4406 cinit CODE >4921:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4408 cinit CODE >4922:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-440A cinit CODE >4928:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-440A cinit CODE >4930:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-440C cinit CODE >4931:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-440E cinit CODE >4932:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
-4410 cinit CODE >4933:C:\Users\Felipe\AppData\Local\Temp\s85sx.as
+46A0 text1 CODE >249:E:\Projetos\TCC_telemetria.X\main.c
+46A0 text1 CODE >251:E:\Projetos\TCC_telemetria.X\main.c
+46BC text1 CODE >252:E:\Projetos\TCC_telemetria.X\main.c
+46D8 text1 CODE >254:E:\Projetos\TCC_telemetria.X\main.c
+46E2 text1 CODE >255:E:\Projetos\TCC_telemetria.X\main.c
+46EC text1 CODE >257:E:\Projetos\TCC_telemetria.X\main.c
+46F6 text1 CODE >258:E:\Projetos\TCC_telemetria.X\main.c
+4700 text1 CODE >259:E:\Projetos\TCC_telemetria.X\main.c
+4716 text1 CODE >260:E:\Projetos\TCC_telemetria.X\main.c
+471C text1 CODE >261:E:\Projetos\TCC_telemetria.X\main.c
+4726 text1 CODE >262:E:\Projetos\TCC_telemetria.X\main.c
+4732 text1 CODE >264:E:\Projetos\TCC_telemetria.X\main.c
+577C text0 CODE >221:E:\Projetos\TCC_telemetria.X\main.c
+577C text0 CODE >223:E:\Projetos\TCC_telemetria.X\main.c
+5780 text0 CODE >224:E:\Projetos\TCC_telemetria.X\main.c
+5782 text0 CODE >225:E:\Projetos\TCC_telemetria.X\main.c
+5786 text0 CODE >226:E:\Projetos\TCC_telemetria.X\main.c
+578A text0 CODE >227:E:\Projetos\TCC_telemetria.X\main.c
+578E text0 CODE >228:E:\Projetos\TCC_telemetria.X\main.c
+5792 text0 CODE >231:E:\Projetos\TCC_telemetria.X\main.c
+5794 text0 CODE >235:E:\Projetos\TCC_telemetria.X\main.c
+579C text0 CODE >237:E:\Projetos\TCC_telemetria.X\main.c
+57A0 text0 CODE >238:E:\Projetos\TCC_telemetria.X\main.c
+57A4 text0 CODE >240:E:\Projetos\TCC_telemetria.X\main.c
+4368 cinit CODE >4539:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4368 cinit CODE >4541:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4368 cinit CODE >4544:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4368 cinit CODE >4836:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+436A cinit CODE >4837:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+436C cinit CODE >4838:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+436E cinit CODE >4839:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4370 cinit CODE >4840:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4372 cinit CODE >4841:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4374 cinit CODE >4842:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4378 cinit CODE >4843:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+437C cinit CODE >4844:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+437C cinit CODE >4845:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+437E cinit CODE >4846:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4382 cinit CODE >4847:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4384 cinit CODE >4848:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4386 cinit CODE >4849:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4388 cinit CODE >4853:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+438A cinit CODE >4854:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+438C cinit CODE >4855:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+438E cinit CODE >4856:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4390 cinit CODE >4857:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4392 cinit CODE >4858:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4394 cinit CODE >4859:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4398 cinit CODE >4860:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+439C cinit CODE >4861:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+439C cinit CODE >4862:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+439E cinit CODE >4863:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43A2 cinit CODE >4864:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43A4 cinit CODE >4865:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43A6 cinit CODE >4866:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43A8 cinit CODE >4870:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43AA cinit CODE >4871:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43AC cinit CODE >4872:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43AE cinit CODE >4873:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43B0 cinit CODE >4874:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43B2 cinit CODE >4875:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43B4 cinit CODE >4876:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43B6 cinit CODE >4877:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43BA cinit CODE >4881:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43BE cinit CODE >4882:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43C2 cinit CODE >4883:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43C2 cinit CODE >4884:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43C4 cinit CODE >4885:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43C6 cinit CODE >4886:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43C8 cinit CODE >4887:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43CA cinit CODE >4888:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43CC cinit CODE >4889:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43CE cinit CODE >4892:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43D2 cinit CODE >4893:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43D4 cinit CODE >4894:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43D4 cinit CODE >4895:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43D6 cinit CODE >4896:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43D8 cinit CODE >4897:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43DA cinit CODE >4900:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43DE cinit CODE >4901:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43E0 cinit CODE >4902:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43E0 cinit CODE >4903:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43E2 cinit CODE >4904:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43E4 cinit CODE >4905:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43E6 cinit CODE >4908:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43EA cinit CODE >4909:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43EC cinit CODE >4910:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43EC cinit CODE >4911:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43EE cinit CODE >4912:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43F0 cinit CODE >4913:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43F2 cinit CODE >4916:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43F6 cinit CODE >4917:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43F8 cinit CODE >4918:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43F8 cinit CODE >4919:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43FA cinit CODE >4920:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43FC cinit CODE >4921:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+43FE cinit CODE >4924:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4402 cinit CODE >4925:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4404 cinit CODE >4926:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4404 cinit CODE >4927:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4406 cinit CODE >4928:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4408 cinit CODE >4929:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+440A cinit CODE >4935:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+440A cinit CODE >4937:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+440C cinit CODE >4938:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+440E cinit CODE >4939:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
+4410 cinit CODE >4940:C:\Users\Felipe\AppData\Local\Temp\s2t8x.as
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -2187,7 +2187,7 @@ __LdataBANK0 0 0 ABS 0 dataBANK0 dist/default/production\TCC_telemetria.X.produc
 __LdataBANK1 0 0 ABS 0 dataBANK1 dist/default/production\TCC_telemetria.X.production.obj
 __LdataBANK2 0 0 ABS 0 dataBANK2 dist/default/production\TCC_telemetria.X.production.obj
 sdc_disk_initialize@crc_number 23 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
-__Lmediumconst 6106 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+__Lmediumconst 6100 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
 ?_fprintf B1 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_gps_hora 5974 0 CODE 0 text120 dist/default/production\TCC_telemetria.X.production.obj
 __Hspace_0 6280 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
@@ -2208,7 +2208,7 @@ _escalonador 4414 0 CODE 0 text11 dist/default/production\TCC_telemetria.X.produ
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\TCC_telemetria.X.production.obj
 _recebe_dado_uart 5B88 0 CODE 0 text135 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_move_window 2BD4 0 CODE 0 text103 dist/default/production\TCC_telemetria.X.production.obj
-__mediumconst 6106 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+__mediumconst 6100 0 MEDIUMCONST 0 mediumconst C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 ___awtoft@sign 1B 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\TCC_telemetria.X.production.obj
 __size_of_dados_gps_to_sd 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
@@ -2242,7 +2242,7 @@ _TMR0 FD6 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _TMR2 FCC 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _TXEN 7D65 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _Term FC 0 BANK0 1 bssBANK0 dist/default/production\TCC_telemetria.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+___sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 _atoi 31F4 0 CODE 0 text129 dist/default/production\TCC_telemetria.X.production.obj
 _atol 3878 0 CODE 0 text44 dist/default/production\TCC_telemetria.X.production.obj
 _dado 110 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.production.obj
@@ -2256,7 +2256,7 @@ _sync 51C6 0 CODE 0 text102 dist/default/production\TCC_telemetria.X.production.
 _utoa 44BE 0 CODE 0 text46 dist/default/production\TCC_telemetria.X.production.obj
 btemp 56 0 COMRAM 1 temp dist/default/production\TCC_telemetria.X.production.obj
 __HbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\TCC_telemetria.X.production.obj
-start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+start E 0 CODE 0 init C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 __size_of___aldiv 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _put_cluster$1623 6A 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 _put_cluster$1624 6C 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
@@ -2280,8 +2280,8 @@ __size_of_sdc_disk_read 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.pro
 ltoa@buf 23 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 ltoa@val 24 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\TCC_telemetria.X.production.obj
-__end_ofmensagem_inicial@F3677 6129 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
-__end_ofmensagem_inicial@F3679 6118 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+__end_ofmensagem_inicial@F3677 6123 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+__end_ofmensagem_inicial@F3679 6112 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
 _get_fix 571C 0 CODE 0 text63 dist/default/production\TCC_telemetria.X.production.obj
 delay@contador_ext A 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 delay@contador_int B 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
@@ -2326,8 +2326,8 @@ _T0CONbits FD5 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 ttemp5 57 0 COMRAM 1 temp dist/default/production\TCC_telemetria.X.production.obj
 ttemp6 5A 0 COMRAM 1 temp dist/default/production\TCC_telemetria.X.production.obj
 ttemp7 5E 0 COMRAM 1 temp dist/default/production\TCC_telemetria.X.production.obj
-mensagem_inicial@F3677 6118 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
-mensagem_inicial@F3679 6107 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+mensagem_inicial@F3677 6112 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+mensagem_inicial@F3679 6101 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
 __LbssBIGRAM 0 0 ABS 0 bssBIGRAM dist/default/production\TCC_telemetria.X.production.obj
 __end_of_latitude 5C3C 0 CODE 0 text19 dist/default/production\TCC_telemetria.X.production.obj
 _rawAltitude 11A 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.production.obj
@@ -2338,11 +2338,11 @@ utoa@v 17 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.produ
 sdc_disk_write@buff 28 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __size_of_validate 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 __size_of_armazena_ltlo 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
-intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
-intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
-intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
-intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+__accesstop 60 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
+intlevel0 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
+intlevel1 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
+intlevel2 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
+intlevel3 0 0 CODE 0 text C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 __ptext100 574C 0 CODE 0 text100 dist/default/production\TCC_telemetria.X.production.obj
 __ptext101 5B9A 0 CODE 0 text101 dist/default/production\TCC_telemetria.X.production.obj
 __ptext102 51C6 0 CODE 0 text102 dist/default/production\TCC_telemetria.X.production.obj
@@ -2434,8 +2434,8 @@ _ADCON1 FC1 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 __size_of_posicao_lat 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _time_recovery 16C 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.production.obj
 _convert_to_int 5974 0 CODE 0 text43 dist/default/production\TCC_telemetria.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
+___intlo_sp 0 0 STACK 2 stack C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 __end_of_recebe_dado_uart 5B9A 0 CODE 0 text135 dist/default/production\TCC_telemetria.X.production.obj
 __size_of_verifica_recep_gps 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 __end_of_get_fattime 3604 0 CODE 0 text116 dist/default/production\TCC_telemetria.X.production.obj
@@ -2629,7 +2629,7 @@ _SPPCON F65 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _desliga_uart 5B76 0 CODE 0 text124 dist/default/production\TCC_telemetria.X.production.obj
 __pcstackBANK0 60 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 __pcstackBANK2 2E7 0 BANK2 1 cstackBANK2 dist/default/production\TCC_telemetria.X.production.obj
-_fence_diff_lat 6155 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+_fence_diff_lat 614F 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
 _SSPBUF FC9 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 __end_of_f_lseek F7E 0 CODE 0 text92 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_f_mount 538C 0 CODE 0 text91 dist/default/production\TCC_telemetria.X.production.obj
@@ -2704,7 +2704,7 @@ __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\TCC_telemetria.X.productio
 __Hbigram 0 0 ABS 0 bigram dist/default/production\TCC_telemetria.X.production.obj
 ?_get_fattime E 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 _GPGGA_ok 176 0 BANK1 1 bssBANK1 dist/default/production\TCC_telemetria.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 ltoa@base 28 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 sdc_reset@buff 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 wait_ready@timeout A 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
@@ -2805,7 +2805,7 @@ __LcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production\TCC_telemetria.X.pr
 __LcstackBANK2 0 0 ABS 0 cstackBANK2 dist/default/production\TCC_telemetria.X.production.obj
 __size_of_get_fattime 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 int$flags 56 0 COMRAM 1 temp dist/default/production\TCC_telemetria.X.production.obj
-__end_of_fence_diff_lat 617D 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+__end_of_fence_diff_lat 6177 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
 __end_of_escreve_frase_ram_lcd 51C6 0 CODE 0 text85 dist/default/production\TCC_telemetria.X.production.obj
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __end_of_trace_path 2102 0 CODE 0 text71 dist/default/production\TCC_telemetria.X.production.obj
@@ -3200,8 +3200,8 @@ escrita_sdcard@f_fix 53 0 COMRAM 1 bssCOMRAM dist/default/production\TCC_telemet
 auto_mount@p 82 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 escreve_cmd_lcd@comando C 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __size_of_verifica_fence 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
-stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
-stacklo 5B6 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+stackhi 7FF 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
+stacklo 5B6 0 ABS 0 - C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 __end_of_diferenca 413C 0 CODE 0 text40 dist/default/production\TCC_telemetria.X.production.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production\TCC_telemetria.X.production.obj
 _remove_chain 4562 0 CODE 0 text76 dist/default/production\TCC_telemetria.X.production.obj
@@ -3305,7 +3305,7 @@ __size_of_strcpy 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production
 __size_of_strlen 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
 _reserve_direntry 2102 0 CODE 0 text73 dist/default/production\TCC_telemetria.X.production.obj
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production\TCC_telemetria.X.production.obj
-__end_of_fence_diff_long 6155 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+__end_of_fence_diff_long 614F 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
 __pcinit 4368 0 CODE 0 cinit dist/default/production\TCC_telemetria.X.production.obj
 trace_path@clust 8D 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 ultoa@buf 17 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
@@ -3416,7 +3416,7 @@ __Ltext97 0 0 ABS 0 text97 dist/default/production\TCC_telemetria.X.production.o
 __Ltext98 0 0 ABS 0 text98 dist/default/production\TCC_telemetria.X.production.obj
 __Ltext99 0 0 ABS 0 text99 dist/default/production\TCC_telemetria.X.production.obj
 __end_of_check_fs 49E8 0 CODE 0 text88 dist/default/production\TCC_telemetria.X.production.obj
-__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+__ramtop 800 0 RAM 0 ramtop C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
 ___aldiv@dividend A 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 create_chain@fs 7E 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
 reserve_direntry@clust 94 0 BANK0 1 cstackBANK0 dist/default/production\TCC_telemetria.X.production.obj
@@ -3514,9 +3514,9 @@ __pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria
 sdc_disk_status@pdrv B 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 get_fix@index_fix A 0 COMRAM 1 cstackCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 __end_of_configura_baudrate_uart 3CCC 0 CODE 0 text51 dist/default/production\TCC_telemetria.X.production.obj
-_fence_diff_long 6129 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+_fence_diff_long 6123 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
 __size_of_escreve_cmd_lcd 0 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
-__pmediumconst 6106 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
+__pmediumconst 6100 0 MEDIUMCONST 0 mediumconst dist/default/production\TCC_telemetria.X.production.obj
 verifica_dados_operacionais@contador_atual 51 0 COMRAM 1 bssCOMRAM dist/default/production\TCC_telemetria.X.production.obj
 _filename 256 0 BANK2 1 bssBANK2 dist/default/production\TCC_telemetria.X.production.obj
 _SSPCON1 FC6 0 ABS 0 - dist/default/production\TCC_telemetria.X.production.obj
@@ -3737,7 +3737,7 @@ bssBANK2 1 200 200 FA 1
 bssBANK3 1 300 300 96 1
 intcode 0 8 8 4D7D 1
 bssBIGRAM 1 396 396 220 1
-mediumconst 0 6106 6106 17A 1
+mediumconst 0 6100 6100 180 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

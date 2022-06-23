@@ -149,7 +149,6 @@ void __interrupt() isr(void)
         }  
     
         //Please use HEX.
-//        write_timer_zero(0x0083);
           write_timer_zero(0x45);
     }
     
@@ -362,7 +361,7 @@ void disparo_gravacao(void)
 //        fix_gps[0] = '1';
         if(*fix_gps == '1')
         {     
-            if(v_max> VELOCIDADE_LIMITE)
+            if(v_max > VELOCIDADE_LIMITE)
             {
                 for(i=1; i<3; i++)
                 {
@@ -395,8 +394,6 @@ void disparo_gravacao(void)
             } 
             grava_sd();
         }
-//        posicao_cursor_lcd(1,0);
-//        escreve_inteiro_lcd(v_max);
         time_sd = TEMPO_SD;
     } 
 }
@@ -458,7 +455,7 @@ void troca_de_tela(void)
             else
             {
                 posicao_cursor_lcd(1,8);
-                escreve_frase_ram_lcd("FORA");
+                escreve_frase_ram_lcd("FORA ");
                 posicao_cursor_lcd(1,13);
                 escreve_inteiro_lcd(fence_flag[0].point);
                 posicao_cursor_lcd(1,14);

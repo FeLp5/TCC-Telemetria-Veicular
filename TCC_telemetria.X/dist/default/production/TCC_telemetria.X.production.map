@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.30\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\TCC_telemetria.X.production.sym \
   --cmf=dist/default/production\TCC_telemetria.X.production.cmf -z \
-  -Q18F4550 -oC:\Users\Felipe\AppData\Local\Temp\s85sx2 \
+  -Q18F4550 -oC:\Users\Felipe\AppData\Local\Temp\s2t8x2 \
   -Mdist/default/production/TCC_telemetria.X.production.map -E1 \
   -ver=XC8 Compiler -ASTACK=05B6h-07FFh -pstack=STACK -ACODE=00h-0627Fh \
   -ACONST=00h-0627Fh -ASMALLCONST=0800h-08FFhx90,06200h-0627Fh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj \
+  C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj \
   dist/default/production\TCC_telemetria.X.production.obj 
 
 Object code version is 3.11
@@ -32,7 +32,7 @@ Machine type is 18F4550
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Felipe\AppData\Local\Temp\s85sx8.obj
+C:\Users\Felipe\AppData\Local\Temp\s2t8x8.obj
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  E        E        4        4       0
@@ -42,7 +42,7 @@ dist/default/production\TCC_telemetria.X.production.obj
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 temp                                 56       56        1        1       1
-                mediumconst                        6106     6106      17A     3083       0
+                mediumconst                        6100     6100      180     3080       0
                 text135                            5B88     5B88       12     26C3       0
                 text134                            3AB2     3AB2      112        4       0
                 text133                            5C50     5C50        A     26C3       0
@@ -349,7 +349,7 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   SMALLCONST     
 
         CLASS   MEDIUMCONST    
-                mediumconst                        6106     6106      17A         0
+                mediumconst                        6100     6100      180         0
 
         CLASS   COMRAM         
                 temp                                 56       56        1         1
@@ -413,7 +413,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 bssBANK3                       000300  000096  000396       300       1  BANK3   
                 bssBIGRAM                      000396  000220  0005B6       396       1  BIGRAM  
                 text69                         004D86  000EE7  005C6D      26C3       0  CODE    
-                mediumconst                    006106  00017A  006280      3083       0  MEDIUMCO
+                mediumconst                    006100  000180  006280      3080       0  MEDIUMCO
 
 
 UNUSED ADDRESS RANGES
@@ -430,20 +430,20 @@ UNUSED ADDRESS RANGES
                          0005B6-0007FF              24A
         CODE             000004-000007                4
                          004D85-004D85                1
-                         005C6D-006105              499
+                         005C6D-0060FF              493
         COMRAM           000057-00005F                9
         CONST            000004-000007                4
                          004D85-004D85                1
-                         005C6D-006105              499
+                         005C6D-0060FF              493
         EEDATA           F00000-F000FF              100
         MEDIUMCONST      004D85-004D85                1
-                         005C6D-006105              499
+                         005C6D-0060FF              493
         RAM              0001FA-0001FF                6
                          0002FA-0002FF                6
                          0005B6-0007FF              100
         SFR              000F60-000FFF               A0
         SMALLCONST       004D85-004D85                1
-                         005C6D-006105              100
+                         005C6D-0060FF              100
         STACK            0005B6-0007FF              24A
 
                                   Symbol Table
@@ -804,7 +804,7 @@ __Lintentry                                      intentry     000000
 __Lintret                                        intret       000000
 __Lintsave_regs                                  intsave_regs 000000
 __Lirdata                                        irdata       000000
-__Lmediumconst                                   mediumconst  006106
+__Lmediumconst                                   mediumconst  006100
 __LnvFARRAM                                      nvFARRAM     000000
 __Lnvbit                                         nvbit        000000
 __Lnvrram                                        nvrram       000000
@@ -1080,8 +1080,8 @@ __end_of_f_mount                                 text91       00538C
 __end_of_f_open                                  text70       001606
 __end_of_f_sync                                  text98       003878
 __end_of_f_write                                 text68       0005A8
-__end_of_fence_diff_lat                          mediumconst  00617D
-__end_of_fence_diff_long                         mediumconst  006155
+__end_of_fence_diff_lat                          mediumconst  006177
+__end_of_fence_diff_long                         mediumconst  00614F
 __end_of_fix                                     text64       005C50
 __end_of_fprintf                                 text65       0012CC
 __end_of_fputc                                   text67       005564
@@ -1165,10 +1165,10 @@ __end_of_verifica_recep_gps                      text36       005904
 __end_of_wait_ready                              text111      0056BC
 __end_of_write_timer_zero                        text8        005C14
 __end_ofi2_write_timer_zero                      text133      005C5A
-__end_ofmensagem_inicial@F3677                   mediumconst  006129
-__end_ofmensagem_inicial@F3679                   mediumconst  006118
+__end_ofmensagem_inicial@F3677                   mediumconst  006123
+__end_ofmensagem_inicial@F3679                   mediumconst  006112
 __initialization                                 cinit        004368
-__mediumconst                                    mediumconst  006106
+__mediumconst                                    mediumconst  006100
 __pbssBANK0                                      bssBANK0     0000E7
 __pbssBANK1                                      bssBANK1     000100
 __pbssBANK2                                      bssBANK2     000200
@@ -1187,7 +1187,7 @@ __pidataBANK1                                    idataBANK1   005BCA
 __pidataBANK2                                    idataBANK2   004D1C
 __pintcode                                       intcode      000008
 __pintcode_body                                  intcode_body 003DC0
-__pmediumconst                                   mediumconst  006106
+__pmediumconst                                   mediumconst  006100
 __ptext0                                         text0        00577C
 __ptext1                                         text1        0046A0
 __ptext10                                        text10       005218
@@ -1520,8 +1520,8 @@ _f_open                                          text70       0012CC
 _f_sync                                          text98       003750
 _f_write                                         text68       000012
 _fence                                           bssBANK0     0000F5
-_fence_diff_lat                                  mediumconst  006155
-_fence_diff_long                                 mediumconst  006129
+_fence_diff_lat                                  mediumconst  00614F
+_fence_diff_long                                 mediumconst  006123
 _fence_flag                                      bssBANK0     0000E7
 _fil                                             bssBANK1     00017C
 _filename                                        bssBANK2     000256
@@ -1863,8 +1863,8 @@ memset@c                                         cstackCOMRAM 00000C
 memset@n                                         cstackCOMRAM 00000E
 memset@p                                         cstackCOMRAM 000010
 memset@p1                                        cstackCOMRAM 00000A
-mensagem_inicial@F3677                           mediumconst  006118
-mensagem_inicial@F3679                           mediumconst  006107
+mensagem_inicial@F3677                           mediumconst  006112
+mensagem_inicial@F3679                           mediumconst  006101
 mensagem_inicial@msg_dois                        cstackCOMRAM 000023
 mensagem_inicial@msg_linha_um                    cstackCOMRAM 000012
 monta_sd@dado                                    cstackCOMRAM 000010
@@ -1980,7 +1980,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 222 in file "main.c"
+		line 221 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2015,7 +2015,7 @@ Total ram usage:        0 bytes
 
  *************** function _mensagem_inicial *****************
  Defined at:
-		line 250 in file "main.c"
+		line 249 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2293,7 +2293,7 @@ Total ram usage:        0 bytes
 
  *************** function _inicializa_tarefas *****************
  Defined at:
-		line 172 in file "main.c"
+		line 171 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2323,7 +2323,7 @@ Total ram usage:        0 bytes
 
  *************** function _escalonador *****************
  Defined at:
-		line 201 in file "main.c"
+		line 200 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2355,7 +2355,7 @@ Total ram usage:        3 bytes
 
  *************** function _troca_de_tela *****************
  Defined at:
-		line 412 in file "main.c"
+		line 409 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2394,7 +2394,7 @@ Total ram usage:        3 bytes
 
  *************** function _disparo_gravacao *****************
  Defined at:
-		line 349 in file "main.c"
+		line 348 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2438,7 +2438,7 @@ Total ram usage:       24 bytes
 
  *************** function _verifica_dados_operacionais *****************
  Defined at:
-		line 308 in file "main.c"
+		line 307 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2955,7 +2955,7 @@ Total ram usage:        1 bytes
 
  *************** function _verifica_fence *****************
  Defined at:
-		line 275 in file "main.c"
+		line 274 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3111,7 +3111,7 @@ Total ram usage:        0 bytes
 
  *************** function _recebe_dado_gps *****************
  Defined at:
-		line 556 in file "main.c"
+		line 553 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3572,7 +3572,7 @@ Total ram usage:        7 bytes
 
  *************** function _grava_sd *****************
  Defined at:
-		line 537 in file "main.c"
+		line 534 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4874,7 +4874,7 @@ Total ram usage:        1 bytes
  Parameters:    Size  Location     Type
   buffer          2   12[COMRAM] PTR unsigned char 
 		 -> STR_33(8), STR_32(9), STR_31(4), STR_30(4), 
-		 -> STR_29(5), STR_28(2), STR_27(5), STR_26(7), 
+		 -> STR_29(5), STR_28(2), STR_27(6), STR_26(7), 
 		 -> STR_25(7), STR_24(2), STR_23(5), STR_22(7), 
 		 -> STR_19(11), mensagem_inicial@msg_dois(17), mensagem_inicial@msg_linha_um(17), STR_10(9), 
 		 -> STR_9(10), STR_8(10), STR_7(14), STR_6(21), 
@@ -6741,11 +6741,11 @@ bibliotecas/hardware.c estimated size: 126
 
 shared
 		__initialization		CODE           	4368	0000	162
-		mensagem_inicial@F3677		MEDIUMCONST    	6118	0000	17
-		_fence_diff_lat		MEDIUMCONST    	6155	0000	40
+		mensagem_inicial@F3677		MEDIUMCONST    	6112	0000	17
+		_fence_diff_lat		MEDIUMCONST    	614F	0000	40
 		i2_write_timer_zero		CODE           	5C50	0000	10
-		mensagem_inicial@F3679		MEDIUMCONST    	6107	0000	17
-		_fence_diff_long		MEDIUMCONST    	6129	0000	44
+		mensagem_inicial@F3679		MEDIUMCONST    	6101	0000	17
+		_fence_diff_long		MEDIUMCONST    	6123	0000	44
 
 shared estimated size: 290
 

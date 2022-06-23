@@ -354,25 +354,25 @@ FR_MKFS_ABORTED 13
 [v ___omul __omul `(ul  1 e 4 0 ]
 "111 E:\Projetos\TCC_telemetria.X\main.c
 [v _isr isr `IIH(v  1 e 1 0 ]
-"172
+"171
 [v _inicializa_tarefas inicializa_tarefas `(v  1 e 1 0 ]
-"201
+"200
 [v _escalonador escalonador `(v  1 e 1 0 ]
-"222
+"221
 [v _main main `(v  1 e 1 0 ]
-"250
+"249
 [v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
-"275
+"274
 [v _verifica_fence verifica_fence `(v  1 e 1 0 ]
-"308
+"307
 [v _verifica_dados_operacionais verifica_dados_operacionais `(v  1 e 1 0 ]
-"349
+"348
 [v _disparo_gravacao disparo_gravacao `(v  1 e 1 0 ]
-"412
+"409
 [v _troca_de_tela troca_de_tela `(v  1 e 1 0 ]
-"537
+"534
 [v _grava_sd grava_sd `(v  1 e 1 0 ]
-"556
+"553
 [v _recebe_dado_gps recebe_dado_gps `(v  1 e 1 0 ]
 "34 E:\Projetos\TCC_telemetria.X\bibliotecas/fence.c
 [v _fence_diff_lat fence_diff_lat `C[4][10]uc  1 e 40 0 ]
@@ -915,23 +915,23 @@ FR_MKFS_ABORTED 13
 [v _dados_hora dados_hora `[3][6]uc  1 s 18 dados_hora ]
 "102
 [v _dados_data dados_data `[3][6]uc  1 s 18 dados_data ]
-"222
+"221
 [v _main main `(v  1 e 1 0 ]
 {
-"243
+"242
 } 0
-"250
+"249
 [v _mensagem_inicial mensagem_inicial `(v  1 e 1 0 ]
 {
-"253
+"252
 [v mensagem_inicial@msg_dois msg_dois `C[17]uc  1 a 17 34 ]
-"252
-[v mensagem_inicial@msg_linha_um msg_linha_um `C[17]uc  1 a 17 17 ]
 "251
+[v mensagem_inicial@msg_linha_um msg_linha_um `C[17]uc  1 a 17 17 ]
+"250
 [v mensagem_inicial@F3677 F3677 `C[17]uc  1 s 17 F3677 ]
-"252
+"251
 [v mensagem_inicial@F3679 F3679 `C[17]uc  1 s 17 F3679 ]
-"265
+"264
 } 0
 "71 E:\Projetos\TCC_telemetria.X\bibliotecas/display_lcd.c
 [v _init_lcd init_lcd `(v  1 e 1 0 ]
@@ -974,55 +974,55 @@ FR_MKFS_ABORTED 13
 {
 "203
 } 0
-"172 E:\Projetos\TCC_telemetria.X\main.c
+"171 E:\Projetos\TCC_telemetria.X\main.c
 [v _inicializa_tarefas inicializa_tarefas `(v  1 e 1 0 ]
 {
-"191
+"190
 } 0
-"201
+"200
 [v _escalonador escalonador `(v  1 e 1 0 ]
 {
-"203
+"202
 [v escalonador@cont cont `uc  1 a 1 134 ]
-"215
+"214
 } 0
-"412
+"409
 [v _troca_de_tela troca_de_tela `(v  1 e 1 0 ]
 {
-"416
+"413
 [v troca_de_tela@fix_signal fix_signal `*.39uc  1 a 2 54 ]
-"414
+"411
 [v troca_de_tela@state state `uc  1 s 1 state ]
-"415
+"412
 [v troca_de_tela@last_state last_state `uc  1 s 1 last_state ]
-"527
+"524
 } 0
-"349
+"348
 [v _disparo_gravacao disparo_gravacao `(v  1 e 1 0 ]
 {
-"354
+"353
 [v disparo_gravacao@velocidade velocidade `[6]*.2uc  1 a 12 0 ]
-"352
+"351
 [v disparo_gravacao@index_max index_max `ui  1 a 2 16 ]
 [v disparo_gravacao@v_max v_max `ui  1 a 2 14 ]
-"351
+"350
 [v disparo_gravacao@fix_gps fix_gps `*.39uc  1 a 2 12 ]
-"353
+"352
 [v disparo_gravacao@i i `uc  1 a 1 18 ]
-"402
+"399
 } 0
-"308
+"307
 [v _verifica_dados_operacionais verifica_dados_operacionais `(v  1 e 1 0 ]
 {
-"311
+"310
 [v verifica_dados_operacionais@contador_atual contador_atual `uc  1 s 1 contador_atual ]
-"312
+"311
 [v verifica_dados_operacionais@contador_anterior contador_anterior `uc  1 s 1 contador_anterior ]
-"314
+"313
 [v verifica_dados_operacionais@velocidade_atual_int velocidade_atual_int `ul  1 s 4 velocidade_atual_int ]
-"315
+"314
 [v verifica_dados_operacionais@velocidade_atual velocidade_atual `*.39uc  1 s 2 velocidade_atual ]
-"339
+"338
 } 0
 "8 C:\Program Files\Microchip\xc8\v2.30\pic\sources\c90\common\strcpy.c
 [v _strcpy strcpy `(*.39uc  1 e 2 0 ]
@@ -1148,10 +1148,10 @@ FR_MKFS_ABORTED 13
 [v escreve_cmd_lcd@comando comando `uc  1 a 1 11 ]
 "206
 } 0
-"275 E:\Projetos\TCC_telemetria.X\main.c
+"274 E:\Projetos\TCC_telemetria.X\main.c
 [v _verifica_fence verifica_fence `(v  1 e 1 0 ]
 {
-"298
+"297
 } 0
 "311 E:\Projetos\TCC_telemetria.X\bibliotecas/fence.c
 [v _verifica_plausibilidade_long verifica_plausibilidade_long `(uc  1 e 1 0 ]
@@ -1177,14 +1177,14 @@ FR_MKFS_ABORTED 13
 {
 "656
 } 0
-"556 E:\Projetos\TCC_telemetria.X\main.c
+"553 E:\Projetos\TCC_telemetria.X\main.c
 [v _recebe_dado_gps recebe_dado_gps `(v  1 e 1 0 ]
 {
-"559
+"556
 [v recebe_dado_gps@timeout timeout `uc  1 a 1 10 ]
-"558
+"555
 [v recebe_dado_gps@flag_recebe flag_recebe `uc  1 a 1 9 ]
-"565
+"562
 } 0
 "720 E:\Projetos\TCC_telemetria.X\bibliotecas/GPS.c
 [v _verifica_recep_gps verifica_recep_gps `(uc  1 e 1 0 ]
@@ -1313,10 +1313,10 @@ FR_MKFS_ABORTED 13
 [v ___lwdiv@divisor divisor `ui  1 p 2 11 ]
 "30
 } 0
-"537 E:\Projetos\TCC_telemetria.X\main.c
+"534 E:\Projetos\TCC_telemetria.X\main.c
 [v _grava_sd grava_sd `(v  1 e 1 0 ]
 {
-"546
+"543
 } 0
 "206 E:\Projetos\TCC_telemetria.X\bibliotecas/uart.c
 [v _inicializa_uart inicializa_uart `(v  1 e 1 0 ]
@@ -2253,7 +2253,7 @@ FR_MKFS_ABORTED 13
 {
 "113
 [v isr@cont cont `uc  1 a 1 8 ]
-"161
+"160
 } 0
 "134 E:\Projetos\TCC_telemetria.X\bibliotecas/hardware.c
 [v i2_write_timer_zero write_timer_zero `(v  1 e 1 0 ]
