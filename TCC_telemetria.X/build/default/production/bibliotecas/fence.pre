@@ -6092,7 +6092,7 @@ return 1;
 }
 break;
 
-default:
+case '+':
 if(
 (poligono_ext[0].diff_long <= 0 &&
 poligono_ext[1].diff_long >= 0 ) )
@@ -6110,13 +6110,15 @@ else
 return 1;
 }
 break;
-
+default:
+return 1;
+break;
 }
 
 
 }
 
-# 365
+# 367
 unsigned char verifica_plausibilidade_lat(void)
 {
 char posicao = posicao_lat();
@@ -6143,7 +6145,7 @@ return 1;
 }
 break;
 
-default:
+case '+':
 if((poligono_ext[0].diff_lat >= 0 &&
 poligono_ext[1].diff_lat <= 0 ))
 {
@@ -6167,6 +6169,9 @@ return 1;
 }
 break;
 
+default:
+return 1;
+break;
 }
 
 
@@ -6200,7 +6205,7 @@ j++;
 
 return (atol(convert_str_lat));
 
-# 452
+# 457
 }
 
 

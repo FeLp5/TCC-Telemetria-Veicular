@@ -5007,7 +5007,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 427: posicao_cursor_lcd(1,8);
 "427
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 428: escreve_frase_ram_lcd("FORA");
+[; ;main.c: 428: escreve_frase_ram_lcd("FORA ");
 "428
 [e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
 [; ;main.c: 429: posicao_cursor_lcd(1,13);
@@ -5329,7 +5329,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 8C 68 69 78 84 82 79 0 ]
 [a 15C 66 50 58 76 84 76 79 0 ]
 [a 14C 66 49 58 70 69 78 67 69 0 ]
-[a 5C 70 79 82 65 0 ]
 [a 12C 108 116 58 0 ]
 [a 13C 108 111 58 0 ]
 [a 11C 70 73 88 58 0 ]
@@ -5337,4 +5336,5 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 3C 49 0 ]
 [a 2C 48 0 ]
 [a 1C 65 71 85 65 82 68 69 46 46 46 0 ]
+[a 5C 70 79 82 65 32 0 ]
 [a 9C 70 79 82 65 32 0 ]

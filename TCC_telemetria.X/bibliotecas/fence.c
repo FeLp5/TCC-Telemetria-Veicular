@@ -332,7 +332,7 @@ unsigned char verifica_plausibilidade_long(void)
             }
         break;
         
-        default:
+        case '+':
             if(
                (poligono_ext[0].diff_long <= 0  &&
                poligono_ext[1].diff_long >= 0 ) )
@@ -350,7 +350,9 @@ unsigned char verifica_plausibilidade_long(void)
                 return 1;
             }
         break;
-                
+        default:
+            return 1;
+        break;
     }
     
 
@@ -388,7 +390,7 @@ unsigned char verifica_plausibilidade_lat(void)
             }
         break;
         
-        default:
+        case '+':
             if((poligono_ext[0].diff_lat >= 0  &&
                poligono_ext[1].diff_lat <= 0 ))
             {
@@ -411,7 +413,10 @@ unsigned char verifica_plausibilidade_lat(void)
                 return 1;
             }
         break;
-                
+        
+        default:
+            return 1;
+        break;
     }
     
 
