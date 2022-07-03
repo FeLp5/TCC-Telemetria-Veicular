@@ -1,9 +1,10 @@
 /******************************************************************************
  * Nome do Arquivo 	: main.c
  *
- * Descricao       	: 
+ * Descricao       	: Executa as funções principais de tratamento dos dados, 
+ *                  verificação e gravação
  *
- * Ambiente			    : MPLAB v3.51, XC8 v2.30, PIC18F4550
+ * Ambiente			: MPLAB v3.51, XC8 v2.30, PIC18F4550
  *
  * Responsavel		: Souza, Deivide Conceiï¿½ao de
                       Silva, Felipe Alves da
@@ -21,7 +22,8 @@
  * 
  * 
  * Versao/Data		: v00.01 - 26/09/2021 - versao inicial l
- *
+ * Versao/Data		: v00.01 - 24/05/2022 - versao 2.0
+ * Versao/Data		: v00.01 - 01/07/2022 - versao 2.1
  *****************************************************************************/
 
 #include <xc.h>
@@ -40,7 +42,6 @@
 #include "stdlib.h"
 #include "string.h"
 //===========================
-
 /******************************************************************************
 * Variaveis Globais
 ******************************************************************************/
@@ -78,6 +79,12 @@ volatile unsigned char *point_buff_gps_lat;
 
 volatile unsigned char *point_buff_gps_long;
 
+static unsigned int dados_vel[3] = {0, 0, 0};
+static unsigned char dados_lat[3][11] = {"0000000000", "0000000000", "0000000000"};
+static unsigned char dados_long[3][12] = {"000000000000", "000000000000", "000000000000"};
+static unsigned char dados_hora[3][6] = {"000000", "000000", "000000"};
+static unsigned char dados_data[3][6] = {"000000", "000000", "000000"};
+
 /******************************************************************************
 * Prototipos das funcoes
 ******************************************************************************/
@@ -94,12 +101,6 @@ void troca_de_tela(void);
 void grava_sd(void);
 
 void recebe_dado_gps(void);
-
-static unsigned int dados_vel[3] = {0, 0, 0};
-static unsigned char dados_lat[3][11] = {"0000000000", "0000000000", "0000000000"};
-static unsigned char dados_long[3][12] = {"000000000000", "000000000000", "000000000000"};
-static unsigned char dados_hora[3][6] = {"000000", "000000", "000000"};
-static unsigned char dados_data[3][6] = {"000000", "000000", "000000"};
 
 /*****************************************************************************/
 /******************************************************************************
@@ -165,7 +166,7 @@ void __interrupt() isr(void)
  * Funcao:		void inicializa_tarefas(void)
  * Entrada:		Nenhuma (void)
  * Saida:		Nenhuma (void)
- * Descricao:	Inicializa o ponteiro de funï¿½ï¿½o e as temporizaï¿½ï¿½es de cada umas
+ * Descricao:	Inicializa o ponteiro de funcaoe as temporizacoes de cada umas
 				das tarefas.
  *****************************************************************************/ 
 void inicializa_tarefas(void)
@@ -226,7 +227,6 @@ void main(void)
 	mensagem_inicial();
     inicializa_tarefas();
     inicializa_uart();
-//    PORTBbits.RB3 = 0;
 
     T0CONbits.TMR0ON = 1;
     while(1)
@@ -268,7 +268,7 @@ void mensagem_inicial(void)
  * Funcao:		void verifica_dados(void)
  * Entrada:		Nenhuma (void)
  * Saida:		Nenhuma (void)
- * Descricao:	Verifica se o veiculo esta dentro do fence 
+ * Descricao:	Verifica se o veiculo esta dentro da cerca virtual (Fence)
  *****************************************************************************/
 
 void verifica_fence(void)
@@ -301,7 +301,8 @@ void verifica_fence(void)
  * Funcao:		void verifica_dados_operacionais(void)
  * Entrada:		Nenhuma (void)
  * Saida:		Nenhuma (void)
- * Descricao:	Verifica os dados operacionais do veiculo vindos da rede CAN
+ * Descricao:	Verifica a velocidade, caso a velocidade seja maior que a velocidade
+ * limite os dados sao salvos para gravar no SD Card.
  *****************************************************************************/
 
 void verifica_dados_operacionais(void)
@@ -343,7 +344,7 @@ void verifica_dados_operacionais(void)
  * Funcao:		void disparo_gravacao(void)
  * Entrada:		Nenhuma (void)
  * Saida:		Nenhuma (void)
- * Descricao:	Dispara uma gravacao no SDCard a cada 30 segundos
+ * Descricao:	Dispara uma gravacao no SDCard a cada 29 segundos
  *****************************************************************************/
 void disparo_gravacao(void)
 {

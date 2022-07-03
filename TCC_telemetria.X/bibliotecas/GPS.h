@@ -1,17 +1,23 @@
-/******************************************************************************
- * Nome do Arquivo 	: SPI.c
- *
- * Descricao       	: Implementa o controle protocolo SPI
- *
- * Ambiente			    : MPLAB v3.51, XC8 versao 2.32, PIC18F4550
- *
- * Responsavel		: Souza, Deivide Conceicao
-                      Silva, Felipe Alves da
-                      Souza, Ricardo de
-			  
- *
- * Versao/Data		: v00.01 - 26/09/2021 - versao inicial 
- ******************************************************************************/
+///******************************************************************************
+// * Nome do Arquivo 	: GPS.h
+// *
+// * Descricao       	: Implementa a interface para gravacao no sd card
+// *
+// * Ambiente			 : MPLAB v3.51, XC8 versao 2.30, PIC18F4550
+// *
+// * Responsavel		: Souza, Deivide Conceicao de
+//			              Silva, Felipe Alves da
+//			              Souza, Ricardo de 
+//			  
+// *
+// * Versao/Data		: v00.01 - 26/09/2021 - versao inicial l
+//// GPS Library for CCS PIC C compiler
+//// http://simple-circuit.com/
+////
+//// GPS Information extraction using PIC18F4550 
+//    http://www.electronicwings.com
+//
+// *****************************************************************************/
 
 
 

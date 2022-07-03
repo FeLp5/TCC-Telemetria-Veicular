@@ -200,13 +200,13 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 62 "bibliotecas/GPS.h"
+# 68 "bibliotecas/GPS.h"
 typedef struct
 {
 unsigned char flag:1;
 }bit_field_gps;
 
-# 70
+# 76
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 
 void gps(void);
@@ -242,7 +242,7 @@ void dados_gps_to_sd(void);
 char verifica_recep_gps(void);
 void mostra_dados_display(void);
 
-# 8 "bibliotecas/integer.h"
+# 60 "bibliotecas/integer.h"
 typedef struct{
 unsigned int hora;
 unsigned int min;
@@ -5885,7 +5885,7 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 50 "bibliotecas/SDCard.h"
+# 51 "bibliotecas/SDCard.h"
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
@@ -5893,10 +5893,10 @@ unsigned char data_name[2];
 unsigned char hora_name[2];
 }string_tel;
 
-# 63
+# 64
 void sdcard_init(void);
 void escrita_sdcard(void);
-char *leitura_sdcard(unsigned char num_spot);
+unsigned char *leitura_sdcard(unsigned char num_spot);
 void monta_sd(unsigned char index, unsigned char *dado);
 BYTE response(void);
 void proceed(void);
@@ -5965,7 +5965,7 @@ void diferenca(unsigned char index);
 unsigned char verifica_plausibilidade_long(void);
 unsigned char verifica_plausibilidade_lat(void);
 
-# 36 "bibliotecas/GPS.c"
+# 41 "bibliotecas/GPS.c"
 bit_field_gps gps_flag[6];
 int GPRMC_ok = 0, GPGGA_ok = 0;
 uint8_t char_number = 0, SentenceType = 0, Term;
@@ -5980,21 +5980,6 @@ char buffer[12];
 char rawFix[2];
 static char rawLatitude[12];
 static char rawLongitude[13];
-
-void stringcpy(char *str1, char *str2, int dir, unsigned char size)
-{
-uint8_t chr = 0;
-
-do {
-str2[chr + dir] = str1[chr];
-
-
-chr++;
-} while(str1[chr] != '\0');
-}
-
-
-
 
 char *teste;
 char gga_buffer[80];
@@ -6011,13 +5996,13 @@ unsigned char rmc_pointers[12];
 char comma_counter_gga;
 char comma_counter_rmc;
 
-# 86
 volatile unsigned int gga_index;
 volatile unsigned int rmc_index;
 
 volatile unsigned char is_it_gga_string = 0;
 volatile unsigned char is_it_rmc_string = 0;
 
+# 83
 void gps(void)
 {
 unsigned char *flag_fix;
@@ -6031,16 +6016,13 @@ get_longitude();
 get_rawdate();
 get_rawspeed();
 }
-
-# 219
 }
 
-# 229
+# 104
 void get_gpstime(void)
 {
 unsigned char index;
 unsigned char time_buffer[15];
-
 
 
 for(index = 0; index<6; index++)
@@ -6050,14 +6032,12 @@ rawTime[index] = gga_buffer[index];
 
 }
 
-# 249
+# 123
 void get_latitude(void)
 {
 unsigned char index_lat, index;
 unsigned char time_buffer[15];
-
 index_lat = 1;
-
 for(index = 10; index<20; index++)
 {
 rawLatitude[index_lat] = gga_buffer[index];
@@ -6074,13 +6054,11 @@ rawLatitude[0] = '-';
 
 }
 
-
+# 150
 void get_longitude(void)
 {
 unsigned char index_long, index;
-
 index_long = 1;
-
 for(index = 23; index<34; index++)
 {
 rawLongitude[index_long] = gga_buffer[index];
@@ -6097,27 +6075,23 @@ rawLongitude[0] = '-';
 
 }
 
+# 175
 void get_rawdate(void)
 {
 unsigned char index_date, index;
-
 index_date = 0;
-
 for(index = 46; index<52; index++)
 {
 rawDate[index_date] = rmc_buffer[index];
 index_date++;
 }
-
-
 }
 
+# 193
 void get_rawspeed(void)
 {
 unsigned char index_speed, index;
-
 index_speed = 0;
-
 for(index = 39; index<44; index++)
 {
 rawSpeed[index_speed] = rmc_buffer[index];
@@ -6125,23 +6099,19 @@ index_speed++;
 }
 }
 
-
+# 210
 void get_fix(void)
 {
 unsigned char index_fix, index;
-
 index_fix = 0;
-
 for(index = 37; index<39; index++)
 {
 rawFix[index_fix] = gga_buffer[index];
 index_fix++;
 }
-
-
 }
 
-# 347
+# 228
 void tratamento_uart(unsigned char received_char)
 {
 if(received_char =='$'){
@@ -6194,48 +6164,47 @@ rmc_code[2] = received_char;
 }
 }
 
-# 530
+# 288
 unsigned int gps_segundos()
 {
 return ((rawTime[4] - '0') * 10 + (rawTime[5] - '0'));
 }
 
-# 541
+# 299
 unsigned int gps_minutos()
 {
 return ((rawTime[2] - '0') * 10 + (rawTime[3] - '0'));
 }
 
-# 553
+# 311
 unsigned int gps_hora()
 {
 return (((rawTime[0] - '0') * 10 + (rawTime[1] - '0')));
 }
 
-# 565
+# 323
 unsigned int gps_dia(void)
 {
 return ((rawDate[0] - '0') * 10 + (rawDate[1] - '0'));
 }
 
-# 578
+# 336
 unsigned int gps_mes(void)
 {
 return ((rawDate[2] - '0') * 10 + (rawDate[3] - '0'));
 }
 
-# 590
+# 348
 unsigned int gps_ano(void)
 {
 return ((rawDate[4] - '0') * 10 + (rawDate[5] - '0'));
 }
 
-# 602
+# 360
 void latitude_to_convert(void)
 {
 unsigned char i,j;
 unsigned char latitude[9];
-
 
 j = 0;
 for(i=0; i<12; i++)
@@ -6249,12 +6218,11 @@ j++;
 armazena_ltlo(latitude, 1);
 }
 
-# 627
+# 384
 void longitude_to_convert(void)
 {
 unsigned char i,j;
 unsigned char longitude[11];
-
 
 j = 0;
 for(i=0; i<12; i++)
@@ -6269,51 +6237,55 @@ j++;
 armazena_ltlo(longitude, 0);
 }
 
+# 411
 char posicao_long(void)
 {
-
 return rawLongitude[0];
 }
 
+# 424
 char posicao_lat(void)
 {
-
 return rawLatitude[0];
 }
 
+# 435
 char *latitude(void)
 {
 return rawLatitude;
 }
 
+# 446
 char *longitude(void)
 {
 return rawLongitude;
 }
 
+# 457
 char *rawhora(void)
 {
 return rawTime;
 }
 
+# 468
 char *rawdata(void)
 {
 return rawDate;
 }
 
-
+# 480
 char *fix(void)
 {
 return rawFix;
 }
 
-
+# 491
 char *Speed()
 {
 return rawSpeed;
 }
 
-
+# 503
 void mostra_dados_display(void)
 {
 posicao_cursor_lcd(1,4);
@@ -6322,9 +6294,7 @@ posicao_cursor_lcd(2,4);
 escreve_frase_ram_lcd(rawLongitude);
 }
 
-
-
-
+# 519
 void dados_gps_to_sd(void)
 {
 
@@ -6338,7 +6308,7 @@ monta_sd(7, rawSpeed);
 return;
 }
 
-# 720
+# 541
 char verifica_recep_gps(void)
 {
 if(gps_flag[0].flag && gps_flag[1].flag && gps_flag[2].flag && gps_flag[3].flag && gps_flag[4].flag && gps_flag[5].flag)
@@ -6358,3 +6328,4 @@ return 0;
 }
 
 }
+

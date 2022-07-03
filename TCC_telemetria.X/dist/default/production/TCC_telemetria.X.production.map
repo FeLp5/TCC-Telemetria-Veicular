@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.30\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\TCC_telemetria.X.production.sym \
   --cmf=dist/default/production\TCC_telemetria.X.production.cmf -z \
-  -Q18F4550 -oC:\Users\Felipe\AppData\Local\Temp\s9bkx2 \
+  -Q18F4550 -oC:\Users\Felipe\AppData\Local\Temp\s8hgx2 \
   -Mdist/default/production/TCC_telemetria.X.production.map -E1 \
   -ver=XC8 Compiler -ASTACK=05B6h-07FFh -pstack=STACK -ACODE=00h-0627Fh \
   -ACONST=00h-0627Fh -ASMALLCONST=0800h-08FFhx90,06200h-0627Fh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Felipe\AppData\Local\Temp\s9bkx8.obj \
+  C:\Users\Felipe\AppData\Local\Temp\s8hgx8.obj \
   dist/default/production\TCC_telemetria.X.production.obj 
 
 Object code version is 3.11
@@ -32,7 +32,7 @@ Machine type is 18F4550
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Felipe\AppData\Local\Temp\s9bkx8.obj
+C:\Users\Felipe\AppData\Local\Temp\s8hgx8.obj
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  E        E        4        4       0
@@ -1528,7 +1528,7 @@ _filename                                        bssBANK2     000256
 _fix                                             text64       005C52
 _flag_anomalia                                   bssBANK0     0000F1
 _fprintf                                         text65       000F7E
-_fprintf$2226                                    cstackBANK0  0000CF
+_fprintf$2220                                    cstackBANK0  0000CF
 _fputc                                           text67       005530
 _fputs                                           text66       005080
 _fs                                              bssBIGRAM    000396
@@ -1567,7 +1567,7 @@ _init_ports                                      text4        005B0A
 _is_it_gga_string                                bssCOMRAM    000055
 _is_it_rmc_string                                bssCOMRAM    000054
 _isdigit                                         text130      005AEC
-_isdigit$3275                                    cstackCOMRAM 00000B
+_isdigit$3269                                    cstackCOMRAM 00000B
 _isr                                             intcode      000008
 _itoa                                            text45       0055EA
 _latitude                                        text19       005C3E
@@ -1580,7 +1580,7 @@ _lt                                              bssBANK1     0001B2
 _ltoa                                            text27       00546A
 _main                                            text0        005788
 _make_dirfile                                    text72       003356
-_make_dirfile$1733                               cstackCOMRAM 000016
+_make_dirfile$1727                               cstackCOMRAM 000016
 _memcmp                                          text89       004734
 _memcpy                                          text77       005426
 _memset                                          text79       005812
@@ -1599,8 +1599,8 @@ _posicao_lat                                     text34       005C6E
 _posicao_long                                    text32       005C74
 _proceed                                         text109      005BFE
 _put_cluster                                     text94       00237C
-_put_cluster$1623                                cstackBANK0  00006A
-_put_cluster$1624                                cstackBANK0  00006C
+_put_cluster$1617                                cstackBANK0  00006A
+_put_cluster$1618                                cstackBANK0  00006C
 _rawAltitude                                     bssBANK1     00011A
 _rawCourse                                       bssBANK1     00013F
 _rawDate                                         bssBANK1     0001E4
@@ -1644,8 +1644,8 @@ _time_recovery                                   bssBANK1     00016C
 _time_sd                                         bssBANK1     00016E
 _timeout_tarefa                                  bssBANK1     000170
 _trace_path                                      text71       001E82
-_trace_path$1780                                 cstackBANK0  000087
-_trace_path$1782                                 cstackBANK0  000089
+_trace_path$1774                                 cstackBANK0  000087
+_trace_path$1776                                 cstackBANK0  000089
 _tratamento_uart                                 text134      003AB2
 _troca_de_tela                                   text12       001BFC
 _ultoa                                           text28       003EB0
@@ -1980,7 +1980,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 221 in file "main.c"
+		line 222 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2293,7 +2293,7 @@ Total ram usage:        0 bytes
 
  *************** function _inicializa_tarefas *****************
  Defined at:
-		line 171 in file "main.c"
+		line 172 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2323,7 +2323,7 @@ Total ram usage:        0 bytes
 
  *************** function _escalonador *****************
  Defined at:
-		line 200 in file "main.c"
+		line 201 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2355,7 +2355,7 @@ Total ram usage:        3 bytes
 
  *************** function _troca_de_tela *****************
  Defined at:
-		line 409 in file "main.c"
+		line 410 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2394,7 +2394,7 @@ Total ram usage:        3 bytes
 
  *************** function _disparo_gravacao *****************
  Defined at:
-		line 348 in file "main.c"
+		line 349 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2438,7 +2438,7 @@ Total ram usage:       24 bytes
 
  *************** function _verifica_dados_operacionais *****************
  Defined at:
-		line 307 in file "main.c"
+		line 308 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2513,7 +2513,7 @@ Total ram usage:        6 bytes
 
  *************** function _rawhora *****************
  Defined at:
-		line 668 in file "bibliotecas/GPS.c"
+		line 457 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2543,7 +2543,7 @@ Total ram usage:        2 bytes
 
  *************** function _rawdata *****************
  Defined at:
-		line 673 in file "bibliotecas/GPS.c"
+		line 468 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2573,7 +2573,7 @@ Total ram usage:        2 bytes
 
  *************** function _longitude *****************
  Defined at:
-		line 663 in file "bibliotecas/GPS.c"
+		line 446 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2603,7 +2603,7 @@ Total ram usage:        2 bytes
 
  *************** function _latitude *****************
  Defined at:
-		line 658 in file "bibliotecas/GPS.c"
+		line 435 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2762,7 +2762,7 @@ Total ram usage:        8 bytes
 
  *************** function _Speed *****************
  Defined at:
-		line 685 in file "bibliotecas/GPS.c"
+		line 491 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2792,7 +2792,7 @@ Total ram usage:        2 bytes
 
  *************** function _mostra_dados_display *****************
  Defined at:
-		line 691 in file "bibliotecas/GPS.c"
+		line 503 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -2991,7 +2991,7 @@ Total ram usage:        1 bytes
 
  *************** function _verifica_plausibilidade_long *****************
  Defined at:
-		line 311 in file "bibliotecas/fence.c"
+		line 150 in file "bibliotecas/fence.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3021,7 +3021,7 @@ Total ram usage:        1 bytes
 
  *************** function _posicao_long *****************
  Defined at:
-		line 646 in file "bibliotecas/GPS.c"
+		line 411 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3051,7 +3051,7 @@ Total ram usage:        0 bytes
 
  *************** function _verifica_plausibilidade_lat *****************
  Defined at:
-		line 367 in file "bibliotecas/fence.c"
+		line 207 in file "bibliotecas/fence.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3081,7 +3081,7 @@ Total ram usage:        1 bytes
 
  *************** function _posicao_lat *****************
  Defined at:
-		line 652 in file "bibliotecas/GPS.c"
+		line 424 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3111,7 +3111,7 @@ Total ram usage:        0 bytes
 
  *************** function _recebe_dado_gps *****************
  Defined at:
-		line 553 in file "main.c"
+		line 554 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3144,7 +3144,7 @@ Total ram usage:        2 bytes
 
  *************** function _verifica_recep_gps *****************
  Defined at:
-		line 720 in file "bibliotecas/GPS.c"
+		line 541 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3174,7 +3174,7 @@ Total ram usage:        0 bytes
 
  *************** function _longitude_to_convert *****************
  Defined at:
-		line 627 in file "bibliotecas/GPS.c"
+		line 384 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3206,7 +3206,7 @@ Total ram usage:       14 bytes
 
  *************** function _latitude_to_convert *****************
  Defined at:
-		line 602 in file "bibliotecas/GPS.c"
+		line 360 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3272,7 +3272,7 @@ Total ram usage:        4 bytes
 
  *************** function _diferenca *****************
  Defined at:
-		line 145 in file "bibliotecas/fence.c"
+		line 119 in file "bibliotecas/fence.c"
  Parameters:    Size  Location     Type
   index           1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -3306,7 +3306,7 @@ Total ram usage:        9 bytes
 
  *************** function _convert_to_int_point_long *****************
  Defined at:
-		line 460 in file "bibliotecas/fence.c"
+		line 313 in file "bibliotecas/fence.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3339,7 +3339,7 @@ Total ram usage:       16 bytes
 
  *************** function _convert_to_int_point_lat *****************
  Defined at:
-		line 433 in file "bibliotecas/fence.c"
+		line 284 in file "bibliotecas/fence.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3373,7 +3373,7 @@ Total ram usage:       17 bytes
 
  *************** function _convert_to_int *****************
  Defined at:
-		line 425 in file "bibliotecas/fence.c"
+		line 271 in file "bibliotecas/fence.c"
  Parameters:    Size  Location     Type
   p_buff          2   35[COMRAM] PTR const unsigned char 
 		 -> fence_diff_long(44), fence_diff_lat(40), 
@@ -3572,7 +3572,7 @@ Total ram usage:        7 bytes
 
  *************** function _grava_sd *****************
  Defined at:
-		line 534 in file "main.c"
+		line 535 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3805,7 +3805,7 @@ Total ram usage:        6 bytes
 
  *************** function _hora_nome *****************
  Defined at:
-		line 414 in file "bibliotecas/SDCard.c"
+		line 417 in file "bibliotecas/SDCard.c"
  Parameters:    Size  Location     Type
   p_buff          2    9[COMRAM] PTR unsigned char 
 		 -> hora(7), 
@@ -3836,7 +3836,7 @@ Total ram usage:        3 bytes
 
  *************** function _gps *****************
  Defined at:
-		line 92 in file "bibliotecas/GPS.c"
+		line 83 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3874,7 +3874,7 @@ Total ram usage:        3 bytes
 
  *************** function _get_rawspeed *****************
  Defined at:
-		line 310 in file "bibliotecas/GPS.c"
+		line 193 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3905,7 +3905,7 @@ Total ram usage:        2 bytes
 
  *************** function _get_rawdate *****************
  Defined at:
-		line 295 in file "bibliotecas/GPS.c"
+		line 175 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3936,7 +3936,7 @@ Total ram usage:        2 bytes
 
  *************** function _get_longitude *****************
  Defined at:
-		line 273 in file "bibliotecas/GPS.c"
+		line 150 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3967,7 +3967,7 @@ Total ram usage:        2 bytes
 
  *************** function _get_latitude *****************
  Defined at:
-		line 249 in file "bibliotecas/GPS.c"
+		line 123 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -3999,7 +3999,7 @@ Total ram usage:        2 bytes
 
  *************** function _get_gpstime *****************
  Defined at:
-		line 229 in file "bibliotecas/GPS.c"
+		line 104 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4030,7 +4030,7 @@ Total ram usage:        1 bytes
 
  *************** function _get_fix *****************
  Defined at:
-		line 324 in file "bibliotecas/GPS.c"
+		line 210 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4061,7 +4061,7 @@ Total ram usage:        2 bytes
 
  *************** function _fix *****************
  Defined at:
-		line 679 in file "bibliotecas/GPS.c"
+		line 480 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6007,7 +6007,7 @@ Total ram usage:       52 bytes
 
  *************** function _gps_segundos *****************
  Defined at:
-		line 530 in file "bibliotecas/GPS.c"
+		line 288 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6037,7 +6037,7 @@ Total ram usage:        4 bytes
 
  *************** function _gps_minutos *****************
  Defined at:
-		line 541 in file "bibliotecas/GPS.c"
+		line 299 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6067,7 +6067,7 @@ Total ram usage:        4 bytes
 
  *************** function _gps_mes *****************
  Defined at:
-		line 578 in file "bibliotecas/GPS.c"
+		line 336 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6097,7 +6097,7 @@ Total ram usage:        4 bytes
 
  *************** function _gps_hora *****************
  Defined at:
-		line 553 in file "bibliotecas/GPS.c"
+		line 311 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6127,7 +6127,7 @@ Total ram usage:        4 bytes
 
  *************** function _gps_dia *****************
  Defined at:
-		line 565 in file "bibliotecas/GPS.c"
+		line 323 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6157,7 +6157,7 @@ Total ram usage:        4 bytes
 
  *************** function _gps_ano *****************
  Defined at:
-		line 590 in file "bibliotecas/GPS.c"
+		line 348 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6187,7 +6187,7 @@ Total ram usage:        4 bytes
 
  *************** function _data_nome *****************
  Defined at:
-		line 396 in file "bibliotecas/SDCard.c"
+		line 399 in file "bibliotecas/SDCard.c"
  Parameters:    Size  Location     Type
   p_buff          2    9[COMRAM] PTR unsigned char 
 		 -> data(6), 
@@ -6278,7 +6278,7 @@ Total ram usage:        0 bytes
 
  *************** function _dados_gps_to_sd *****************
  Defined at:
-		line 702 in file "bibliotecas/GPS.c"
+		line 519 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6308,7 +6308,7 @@ Total ram usage:        0 bytes
 
  *************** function _monta_sd *****************
  Defined at:
-		line 305 in file "bibliotecas/SDCard.c"
+		line 301 in file "bibliotecas/SDCard.c"
  Parameters:    Size  Location     Type
   index           1    wreg     unsigned char 
   dado            2   15[COMRAM] PTR unsigned char 
@@ -6482,7 +6482,7 @@ Total ram usage:        6 bytes
 
  *************** function _isr *****************
  Defined at:
-		line 111 in file "main.c"
+		line 112 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -6543,7 +6543,7 @@ Total ram usage:        2 bytes
 
  *************** function _tratamento_uart *****************
  Defined at:
-		line 347 in file "bibliotecas/GPS.c"
+		line 228 in file "bibliotecas/GPS.c"
  Parameters:    Size  Location     Type
   received_cha    1    wreg     unsigned char 
  Auto vars:     Size  Location     Type

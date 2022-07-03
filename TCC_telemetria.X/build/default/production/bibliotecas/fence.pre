@@ -5741,13 +5741,13 @@ void diferenca(unsigned char index);
 unsigned char verifica_plausibilidade_long(void);
 unsigned char verifica_plausibilidade_lat(void);
 
-# 62 "bibliotecas/GPS.h"
+# 68 "bibliotecas/GPS.h"
 typedef struct
 {
 unsigned char flag:1;
 }bit_field_gps;
 
-# 70
+# 76
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 
 void gps(void);
@@ -5891,7 +5891,7 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
-# 8 "bibliotecas/integer.h"
+# 60 "bibliotecas/integer.h"
 typedef struct{
 unsigned int hora;
 unsigned int min;
@@ -5953,7 +5953,7 @@ DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
 DRESULT disk_ioctl (BYTE, BYTE, void*);
 void disk_timerproc (void);
 
-# 50 "bibliotecas/SDCard.h"
+# 51 "bibliotecas/SDCard.h"
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
@@ -5961,10 +5961,10 @@ unsigned char data_name[2];
 unsigned char hora_name[2];
 }string_tel;
 
-# 63
+# 64
 void sdcard_init(void);
 void escrita_sdcard(void);
-char *leitura_sdcard(unsigned char num_spot);
+unsigned char *leitura_sdcard(unsigned char num_spot);
 void monta_sd(unsigned char index, unsigned char *dado);
 BYTE response(void);
 void proceed(void);
@@ -5991,11 +5991,7 @@ long int convert_to_int_point_lat(void);
 # 64
 void armazena_ltlo(unsigned char *buffer, unsigned char index)
 {
-
 unsigned char i, j;
-
-
-
 
 switch(index)
 {
@@ -6040,7 +6036,7 @@ diferenca(index);
 
 }
 
-# 145
+# 119
 void diferenca(unsigned char index)
 {
 unsigned long int valor_lat, valor_long;
@@ -6051,23 +6047,18 @@ case 1:
 valor_lat = convert_to_int_point_lat();
 poligono_ext[0].diff_lat = convert_to_int(fence_diff_lat[0]) - valor_lat;
 poligono_ext[1].diff_lat = convert_to_int(fence_diff_lat[2]) - valor_lat;
-
-
 break;
 
 default:
 valor_long = convert_to_int_point_long();
 poligono_ext[0].diff_long = convert_to_int(fence_diff_long[0]) - valor_long;
 poligono_ext[1].diff_long = convert_to_int(fence_diff_long[2]) - valor_long;
-
-
 break;
 }
 
-# 178
 }
 
-# 311
+# 150
 unsigned char verifica_plausibilidade_long(void)
 {
 char posicao = posicao_long();
@@ -6118,7 +6109,7 @@ break;
 
 }
 
-# 367
+# 207
 unsigned char verifica_plausibilidade_lat(void)
 {
 char posicao = posicao_lat();
@@ -6177,14 +6168,14 @@ break;
 
 }
 
+# 271
 long int convert_to_int(const unsigned char *p_buff)
 {
-
 p_buff++;
 return atol(p_buff);
-
 }
 
+# 284
 long int convert_to_int_point_lat(void)
 {
 unsigned char **temp_str_lat = temp_buff_lat;
@@ -6204,11 +6195,9 @@ j++;
 }
 
 return (atol(convert_str_lat));
-
-# 457
 }
 
-
+# 313
 unsigned long long int convert_to_int_point_long(void)
 {
 unsigned char *p;;
@@ -6226,7 +6215,6 @@ convert_str_long[j] = dado[i];
 j++;
 }
 }
-
 
 return (atol(convert_str_long));
 

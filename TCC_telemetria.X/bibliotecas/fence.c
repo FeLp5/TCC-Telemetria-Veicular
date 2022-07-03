@@ -56,19 +56,15 @@ long int convert_to_int_point_lat(void);
 
 
 /******************************************************************************
- * Funcao:		void armazena_latitude(void)
- * Entrada:		Nenhuma (void)
+ * Funcao:		void armazena_latitude(unsigned char *buffer, unsigned char index)
+ * Entrada:		unsigned char *buffer, unsigned char index
  * Saída:		Nenhuma (void)
- * Descrição:	Armazena longitude no buffers
+ * Descrição:	Armazena latitude/longitude no buffer para verificacao da Cerca
  *****************************************************************************/
 void armazena_ltlo(unsigned char *buffer, unsigned char index)
 {
-//    longitude_to_convert(&temp_buff_long);
     unsigned char i, j;
-//    static unsigned char index = 0;
-    
-    
-    
+
     switch(index)
     {
         case 1:    
@@ -113,34 +109,12 @@ void armazena_ltlo(unsigned char *buffer, unsigned char index)
 }
 
 
-//void armazena_lat(void)
-//{
-//    unsigned char i, j;
-//    j = 0;    
-//    latitude_to_convert(&temp_buff_lat);
-//    for(i=0; i<10; i++)
-//    {
-//        if(*temp_buff_lat != '\0' && *temp_buff_lat != '-')
-//        {
-//        
-//            latitude_dado[i] = *temp_buff_lat;
-//            j++;
-//        }   
-////        
-//            
-//       temp_buff_lat++;
-//    }
-////    posicao_cursor_lcd(1,0);
-////    escreve_frase_ram_lcd(latitude_dado);
-//    
-//}
-
-
 /******************************************************************************
- * Funcao:		void armazena_latitude(void)
- * Entrada:		Nenhuma (void)
+ * Funcao:		void armazena_latitude(unsigned char index)
+ * Entrada:		unsigned char
  * Saída:		Nenhuma (void)
- * Descrição:	Armazena longitude no buffers
+ * Descrição:	Calcula a diferença entre latitude/longitude do
+ *  ponto da cerca e latitude/longitude de onde o veiculo esta.
  *****************************************************************************/
 void diferenca(unsigned char index)
 {
@@ -152,161 +126,26 @@ void diferenca(unsigned char index)
             valor_lat = convert_to_int_point_lat();
             poligono_ext[0].diff_lat  = convert_to_int(fence_diff_lat[0]) - valor_lat;
             poligono_ext[1].diff_lat  = convert_to_int(fence_diff_lat[2]) - valor_lat;
-//            posicao_cursor_lcd(1,0);
-//            escreve_inteiro_lcd(valor_lat);
         break;
         
         default:
             valor_long = convert_to_int_point_long();
             poligono_ext[0].diff_long = convert_to_int(fence_diff_long[0]) - valor_long;
             poligono_ext[1].diff_long = convert_to_int(fence_diff_long[2]) - valor_long;
-//            posicao_cursor_lcd(2,0);
-//            escreve_inteiro_lcd(valor_long);
         break;
     }
-    
 
-
-    
-    
-    
-//    posicao_cursor_lcd(1,0);
-//    escreve_inteiro_lcd(valor_long);
-//    posicao_cursor_lcd(2,0);
-//    escreve_inteiro_lcd(poligono_ext[1].diff_long );
-    
 }
 
-/******************************************************************************
- * Funcao:		void leitura_chave(void)
- * Entrada:		Nenhuma (void)
- * Saida:		Nenhuma (void)
- * Descricao:	Realiza a leitura da chave em RC0
- *****************************************************************************/
-//void calcula_diff_graus(unsigned char select_data)
-//{
-//    unsigned char point, count;
-////    long int temp_var_deg;
-//    
-//    point = 0;
-//    count = 0;
-//    
-//    switch(select_data)
-//    {
-//        case 1:
-//                while(point<4)
-//                {
-//                    if(point == 0 || point == 2)
-//                    {
-//                        
-////                        poligono_ext[count].diff_lat_deg = atoi()
-//                        
-//                        poligono_ext[count].diff_lat_deg = diff_calc(poligono_ext[count].fence_lat_deg, poligono_ext[count].point_lat_deg);
-////                        posicao_cursor_lcd(1,0);
-////                        escreve_inteiro_lcd( poligono_ext[1].diff_lat_deg);
-////                        temp_var_deg = atoi(poligono_ext[count].point_lat_deg);
-////                        poligono_ext[count].diff_lat_deg = atoi(poligono_ext[count].fence_lat_deg);
-////                        poligono_ext[count].diff_lat_deg = poligono_ext[count].diff_lat_deg - temp_var_deg;            
-//
-//                        count++;
-//                    }
-//                    point++;
-//                }
-//        break;
-//        
-//        
-//        
-//        case 0:
-//                while(point<4)
-//                {
-//                    if(point == 0 || point == 2)
-//                    {     
-//                        poligono_ext[count].diff_long_deg = diff_calc(poligono_ext[count].fence_long_deg, poligono_ext[count].point_long_deg);
-//                        count++;
-//                    }
-//                    point++;
-//                }
-//        break;
-//    }
-//    
-//    
-//    
-//
-//    
-//}
-//
+
 
 
 /******************************************************************************
- * Funcao:		void armazena_latitude(void)
+ * Funcao:		unsigned char verifica_plausibilidade_long(void)
  * Entrada:		Nenhuma (void)
- * Saída:		Nenhuma (void)
- * Descrição:	Armazena longitude no buffers
- *****************************************************************************/
-//void diferenca_lat(void)
-//{
-//    unsigned long int valor_lat;
-//    valor_lat = convert_to_int_point_lat();
-//    poligono_ext[0].diff_lat  = convert_to_int(fence_diff_lat[0]) - valor_lat;
-//    poligono_ext[1].diff_lat  = convert_to_int(fence_diff_lat[2]) - valor_lat;
-   
-//}
-
-
-/******************************************************************************
- * Funcao:		void leitura_chave(void)
- * Entrada:		Nenhuma (void)
- * Saida:		Nenhuma (void)
- * Descricao:	Realiza a leitura da chave em RC0
- *****************************************************************************/
-//void calcula_diff_minutos(unsigned char select_data)
-//{
-//    unsigned char point, count;
-////    unsigned long int temp_var_deg;
-//    point = 0;
-//    count = 0;
-//    switch(select_data)
-//    {
-//        case 1:
-//            while(point<4)
-//            {
-//                if(point == 0 || point == 2)
-//                {
-//                    poligono_ext[count].diff_lat_min = diff_calc(poligono_ext[count].fence_lat_min, poligono_ext[count].point_lat_min);
-//
-////                    posicao_cursor_lcd(2,15);
-////                    escreve_inteiro_lcd(fence_flag[1].point);
-//    
-////                    poligono_ext[count].diff_lat_min = (atoi(poligono_ext[count].fence_lat_min)) - (atoi(poligono_ext[count].point_lat_min));
-//                    count++;
-//                }
-//                point++;
-//            }
-//        break;
-//        
-//        case 0:
-//            while(point<4)
-//            {
-//                if(point == 0 || point == 2)
-//                {
-//                    poligono_ext[count].diff_long_min = diff_calc(poligono_ext[count].fence_long_min, poligono_ext[count].point_long_min);
-////                    poligono_ext[count].diff_long_min = (atoi(poligono_ext[count].fence_long_min)) - (atoi(poligono_ext[count].point_long_min));
-//                    count++;
-//                }
-//                point++;
-//            }
-//        break; 
-//    }
-//    
-//
-//    
-//}
-
-/******************************************************************************
- * Funcao:		void verifica_plausibilidade(void)
- * Entrada:		Nenhuma (void)
- * Saída:		unsigned char: 0 - chave desligada/ 1 - chave ligada
- * Descrição:	Retorna estado da chave tres (RC2)
+ * Saída:		unsigned char
+ * Descrição:	Verifica a posicao do veiculo com relacao a longitude e retorna 
+ * um falor booleano
  *****************************************************************************/
 unsigned char verifica_plausibilidade_long(void)
 {
@@ -359,10 +198,11 @@ unsigned char verifica_plausibilidade_long(void)
 }
 
 /******************************************************************************
- * Funcao:		void verifica_plausibilidade(void)
+ * Funcao:		unsigned char verifica_plausibilidade_lat(void)
  * Entrada:		Nenhuma (void)
- * Saída:		unsigned char: 0 - chave desligada/ 1 - chave ligada
- * Descrição:	Retorna estado da chave tres (RC2)
+ * Saída:		unsigned char
+ * Descrição:	Verifica a posicao do veiculo com relacao a latitude e retorna 
+ * um falor booleano
  *****************************************************************************/
 unsigned char verifica_plausibilidade_lat(void)
 {
@@ -421,14 +261,25 @@ unsigned char verifica_plausibilidade_lat(void)
     
 
 }
+/******************************************************************************
+ * Funcao:		long int convert_to_int(const unsigned char *p_buff)
+ * Entrada:		Nenhuma (void)
+ * Saída:		long int
+ * Descrição:	Realiza a conversao de string para inteiro
+ *****************************************************************************/
 
 long int convert_to_int(const unsigned char *p_buff)
 {
-//    return strtol(p_buff, &convert, 10);
     p_buff++;
     return atol(p_buff);
-//    return atoi(p_buff);
 }
+
+/******************************************************************************
+ * Funcao:		long int convert_to_int_point_lat(void)
+ * Entrada:		Nenhuma (void)
+ * Saída:		long int
+ * Descrição:	Trata a string da latitude e realiza a conversao de string para inteiro
+ *****************************************************************************/
 
 long int convert_to_int_point_lat(void)
 {
@@ -449,13 +300,15 @@ long int convert_to_int_point_lat(void)
     }
 
     return (atol(convert_str_lat));
-////    
-//
-//    
-//    
-//    return atoi(p_buff);
 }
 
+
+/******************************************************************************
+ * Funcao:		long int convert_to_int_point_lat(void)
+ * Entrada:		Nenhuma (void)
+ * Saída:		long int
+ * Descrição:	Trata a string da longitude e realiza a conversao de string para inteiro
+ *****************************************************************************/
 
 unsigned long long int convert_to_int_point_long(void)
 {
@@ -474,8 +327,7 @@ unsigned long long int convert_to_int_point_long(void)
                j++;
         } 
     }
-//    posicao_cursor_lcd(2,0);
-//    escreve_frase_ram_lcd(convert_str_long);
+
     return (atol(convert_str_long));
     
 }

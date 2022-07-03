@@ -1,13 +1,13 @@
 /******************************************************************************
  * Nome do Arquivo 	: hardware.h
  *
- * Descrição       	: Implementa a configuração do hardware do microcontrolador
+ * Descricao       	: Implementa funcoes de acesso ao harware do uC
  *
- * Ambiente			: MPLAB v3.51, XC8 versao 2.32, PIC18F4550
+ * Ambiente			: MPLAB v3.51, XC8 v2.30, PIC18F4550
  *
- * Responsável		: Torres, Weslley
+ * Responsavel		: Torres, Weslley
  *
- * Versão/Data		: v00.01 - 16/08/2020 - versão inicial 
+ * Versao/Data		: v00.01 - 16/08/2020 - versao inicial 
  *
  *****************************************************************************/
 #ifndef __HARDWARE_H

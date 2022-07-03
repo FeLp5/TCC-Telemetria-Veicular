@@ -1,7 +1,7 @@
 
 # 1 "bibliotecas/SDCard.c"
 
-# 8 "bibliotecas/integer.h"
+# 60 "bibliotecas/integer.h"
 typedef struct{
 unsigned int hora;
 unsigned int min;
@@ -5735,7 +5735,7 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 50 "bibliotecas/SDCard.h"
+# 51 "bibliotecas/SDCard.h"
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
@@ -5743,10 +5743,10 @@ unsigned char data_name[2];
 unsigned char hora_name[2];
 }string_tel;
 
-# 63
+# 64
 void sdcard_init(void);
 void escrita_sdcard(void);
-char *leitura_sdcard(unsigned char num_spot);
+unsigned char *leitura_sdcard(unsigned char num_spot);
 void monta_sd(unsigned char index, unsigned char *dado);
 BYTE response(void);
 void proceed(void);
@@ -5944,13 +5944,13 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 62 "bibliotecas/GPS.h"
+# 68 "bibliotecas/GPS.h"
 typedef struct
 {
 unsigned char flag:1;
 }bit_field_gps;
 
-# 70
+# 76
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 
 void gps(void);
@@ -6135,14 +6135,12 @@ return;
 }
 
 # 208
-void escrita_sdcard()
+void escrita_sdcard(void)
 {
 unsigned char *fix_gps;
 unsigned char i, j;
 static unsigned char f_fix = 0;
 WORD bw;
-
-
 
 f_mount(0,&fs);
 if(!f_fix)
@@ -6152,7 +6150,6 @@ if(data[0] != ' ' && hora[0] != ' ')
 {
 data_nome(data);
 hora_nome(hora);
-
 strcat(filename, ".tlm");
 f_fix = 1;
 }
@@ -6180,11 +6177,10 @@ f_close(&fil);
 }
 }
 
-
 return;
 }
 
-# 265
+# 261
 char *leitura_sdcard(unsigned char num_spot)
 {
 
@@ -6212,7 +6208,7 @@ inicializa_uart();
 return (dado_arquivo);
 }
 
-# 305
+# 301
 void monta_sd(unsigned char index, unsigned char *dado)
 {
 unsigned char i, size;
@@ -6303,7 +6299,7 @@ break;
 return;
 }
 
-
+# 399
 void data_nome (unsigned char *p_buff)
 {
 unsigned char i;
@@ -6314,7 +6310,7 @@ p_buff++;
 }
 }
 
-# 414
+# 417
 void hora_nome (unsigned char *p_buff)
 {
 unsigned char i;
@@ -6324,3 +6320,4 @@ filename[i] = *p_buff;
 p_buff++;
 }
 }
+

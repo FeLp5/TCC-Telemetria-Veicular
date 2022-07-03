@@ -3,7 +3,7 @@
 // *
 // * Descricao       	: Implementa a interface para gravacao no sd card
 // *
-// * Ambiente			 : MPLAB, XC8 versao 1.45, PIC18F4550
+// * Ambiente			 : MPLAB, XC8 versao v2.30, PIC18F4550
 // *
 // * Responsavel		: Souza, Deivide Conceicao de
 //			              Silva, Felipe Alves da

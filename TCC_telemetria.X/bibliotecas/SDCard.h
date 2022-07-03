@@ -1,17 +1,18 @@
-/******************************************************************************
- * Nome do Arquivo 	: SPI.c
- *
- * Descricao       	: Implementa o controle protocolo SPI
- *
- * Ambiente			    : MPLAB v3.51, XC8 versao 2.30, PIC18F4550
- *
- * Responsavel		: Souza, Deivide Conceição de
-			  Silva, Felipe Alves da
-			  Souza, Ricardo de
-			  
- *
- * Versao/Data		: v00.01 - 26/09/2021 - versao inicial 
- ******************************************************************************/
+///******************************************************************************
+// * Nome do Arquivo 	: SDCard.h
+// *
+// * Descricao       	: Implementa a interface para gravacao no sd card
+// *
+// * Ambiente			 : MPLAB, XC8 versao v2.30, PIC18F4550
+// *
+// * Responsavel		: Souza, Deivide Conceicao de
+//			              Silva, Felipe Alves da
+//			              Souza, Ricardo de 
+//			  
+// *
+// * Versao/Data		: v00.01 - 26/09/2021 - versao inicial l
+// *
+// *****************************************************************************/
 
 
 
@@ -62,7 +63,7 @@ typedef struct{
 ******************************************************************************/
 void sdcard_init(void);
 void escrita_sdcard(void);
-char *leitura_sdcard(unsigned char num_spot);
+unsigned char *leitura_sdcard(unsigned char num_spot);
 void monta_sd(unsigned char index,  unsigned  char *dado);
 BYTE response(void);
 void proceed(void);

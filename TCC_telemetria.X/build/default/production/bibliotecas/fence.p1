@@ -10,9 +10,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _convert_to_int `(l ~T0 @X0 0 ef1`*Cuc ]
 "52
 [v _convert_to_int_point_long `(ul ~T0 @X0 0 ef ]
-"90 bibliotecas/GPS.h
+"96 bibliotecas/GPS.h
 [v _posicao_long `(uc ~T0 @X0 0 ef ]
-"89
+"95
 [v _posicao_lat `(uc ~T0 @X0 0 ef ]
 "69 C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h
 [v _atol `(l ~T0 @X0 0 ef1`*Cuc ]
@@ -3590,40 +3590,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;fence.h: 63: void diferenca(unsigned char index);
 [; ;fence.h: 69: unsigned char verifica_plausibilidade_long(void);
 [; ;fence.h: 70: unsigned char verifica_plausibilidade_lat(void);
-[; ;GPS.h: 62: typedef struct
-[; ;GPS.h: 63: {
-[; ;GPS.h: 64: unsigned char flag:1;
-[; ;GPS.h: 65: }bit_field_gps;
-[; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
-[; ;GPS.h: 72: void gps(void);
-[; ;GPS.h: 73: void get_gpstime(void);
-[; ;GPS.h: 74: void get_latitude(void);
-[; ;GPS.h: 75: void get_longitude(void);
-[; ;GPS.h: 76: void get_rawdate(void);
-[; ;GPS.h: 77: void get_rawspeed(void);
-[; ;GPS.h: 78: void get_fix(void);
-[; ;GPS.h: 79: void tratamento_uart(unsigned char received_char);
-[; ;GPS.h: 81: unsigned int gps_segundos();
-[; ;GPS.h: 82: unsigned int gps_minutos();
-[; ;GPS.h: 83: unsigned int gps_hora();
-[; ;GPS.h: 84: unsigned int gps_ano();
-[; ;GPS.h: 85: unsigned int gps_mes();
-[; ;GPS.h: 86: unsigned int gps_dia();
-[; ;GPS.h: 87: void latitude_to_convert(void);
-[; ;GPS.h: 88: void longitude_to_convert(void);
-[; ;GPS.h: 89: char posicao_lat(void);
-[; ;GPS.h: 90: char posicao_long(void);
-[; ;GPS.h: 91: char *latitude_to_display(void);
-[; ;GPS.h: 92: char *longitude_to_display(void);
-[; ;GPS.h: 93: char *fix(void);
-[; ;GPS.h: 94: char *Speed(void);
-[; ;GPS.h: 95: char *rawdata(void);
-[; ;GPS.h: 96: char *rawhora(void);
-[; ;GPS.h: 97: char *longitude(void);
-[; ;GPS.h: 98: char *latitude(void);
-[; ;GPS.h: 101: void dados_gps_to_sd(void);
-[; ;GPS.h: 102: char verifica_recep_gps(void);
-[; ;GPS.h: 103: void mostra_dados_display(void);
+[; ;GPS.h: 68: typedef struct
+[; ;GPS.h: 69: {
+[; ;GPS.h: 70: unsigned char flag:1;
+[; ;GPS.h: 71: }bit_field_gps;
+[; ;GPS.h: 76: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
+[; ;GPS.h: 78: void gps(void);
+[; ;GPS.h: 79: void get_gpstime(void);
+[; ;GPS.h: 80: void get_latitude(void);
+[; ;GPS.h: 81: void get_longitude(void);
+[; ;GPS.h: 82: void get_rawdate(void);
+[; ;GPS.h: 83: void get_rawspeed(void);
+[; ;GPS.h: 84: void get_fix(void);
+[; ;GPS.h: 85: void tratamento_uart(unsigned char received_char);
+[; ;GPS.h: 87: unsigned int gps_segundos();
+[; ;GPS.h: 88: unsigned int gps_minutos();
+[; ;GPS.h: 89: unsigned int gps_hora();
+[; ;GPS.h: 90: unsigned int gps_ano();
+[; ;GPS.h: 91: unsigned int gps_mes();
+[; ;GPS.h: 92: unsigned int gps_dia();
+[; ;GPS.h: 93: void latitude_to_convert(void);
+[; ;GPS.h: 94: void longitude_to_convert(void);
+[; ;GPS.h: 95: char posicao_lat(void);
+[; ;GPS.h: 96: char posicao_long(void);
+[; ;GPS.h: 97: char *latitude_to_display(void);
+[; ;GPS.h: 98: char *longitude_to_display(void);
+[; ;GPS.h: 99: char *fix(void);
+[; ;GPS.h: 100: char *Speed(void);
+[; ;GPS.h: 101: char *rawdata(void);
+[; ;GPS.h: 102: char *rawhora(void);
+[; ;GPS.h: 103: char *longitude(void);
+[; ;GPS.h: 104: char *latitude(void);
+[; ;GPS.h: 107: void dados_gps_to_sd(void);
+[; ;GPS.h: 108: char verifica_recep_gps(void);
+[; ;GPS.h: 109: void mostra_dados_display(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
@@ -3701,26 +3701,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdlib.h: 119: extern char * ltoa(char * buf, long val, int base);
 [; ;stdlib.h: 120: extern char * ultoa(char * buf, unsigned long val, int base);
 [; ;stdlib.h: 122: extern char * ftoa(float f, int * status);
-[; ;integer.h: 8: typedef struct{
-[; ;integer.h: 9: unsigned int hora;
-[; ;integer.h: 10: unsigned int min;
-[; ;integer.h: 11: unsigned int seg;
-[; ;integer.h: 12: unsigned char dia;
-[; ;integer.h: 13: unsigned char mes;
-[; ;integer.h: 14: unsigned int ano;
-[; ;integer.h: 15: }fat_time;
-[; ;integer.h: 17: typedef int INT;
-[; ;integer.h: 18: typedef unsigned int UINT;
-[; ;integer.h: 21: typedef signed char CHAR;
-[; ;integer.h: 22: typedef unsigned char UCHAR;
-[; ;integer.h: 23: typedef unsigned char BYTE;
-[; ;integer.h: 26: typedef short SHORT;
-[; ;integer.h: 27: typedef unsigned short USHORT;
-[; ;integer.h: 28: typedef unsigned short WORD;
-[; ;integer.h: 31: typedef long LONG;
-[; ;integer.h: 32: typedef unsigned long ULONG;
-[; ;integer.h: 33: typedef unsigned long DWORD;
-[; ;integer.h: 36: typedef enum { FALSE = 0, TRUE } BOOL;
+[; ;integer.h: 60: typedef struct{
+[; ;integer.h: 61: unsigned int hora;
+[; ;integer.h: 62: unsigned int min;
+[; ;integer.h: 63: unsigned int seg;
+[; ;integer.h: 64: unsigned char dia;
+[; ;integer.h: 65: unsigned char mes;
+[; ;integer.h: 66: unsigned int ano;
+[; ;integer.h: 67: }fat_time;
+[; ;integer.h: 69: typedef int INT;
+[; ;integer.h: 70: typedef unsigned int UINT;
+[; ;integer.h: 73: typedef signed char CHAR;
+[; ;integer.h: 74: typedef unsigned char UCHAR;
+[; ;integer.h: 75: typedef unsigned char BYTE;
+[; ;integer.h: 78: typedef short SHORT;
+[; ;integer.h: 79: typedef unsigned short USHORT;
+[; ;integer.h: 80: typedef unsigned short WORD;
+[; ;integer.h: 83: typedef long LONG;
+[; ;integer.h: 84: typedef unsigned long ULONG;
+[; ;integer.h: 85: typedef unsigned long DWORD;
+[; ;integer.h: 88: typedef enum { FALSE = 0, TRUE } BOOL;
 [; ;diskio.h: 14: typedef BYTE DSTATUS;
 [; ;diskio.h: 17: typedef enum {
 [; ;diskio.h: 18: RES_OK = 0,
@@ -3740,20 +3740,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;diskio.h: 39: DRESULT disk_write (BYTE, const BYTE*, DWORD, BYTE);
 [; ;diskio.h: 41: DRESULT disk_ioctl (BYTE, BYTE, void*);
 [; ;diskio.h: 42: void disk_timerproc (void);
-[; ;SDCard.h: 50: typedef struct{
-[; ;SDCard.h: 51: unsigned char data[7];
-[; ;SDCard.h: 52: unsigned char hora[11];
-[; ;SDCard.h: 53: unsigned char data_name[2];
-[; ;SDCard.h: 54: unsigned char hora_name[2];
-[; ;SDCard.h: 55: }string_tel;
-[; ;SDCard.h: 63: void sdcard_init(void);
-[; ;SDCard.h: 64: void escrita_sdcard(void);
-[; ;SDCard.h: 65: char *leitura_sdcard(unsigned char num_spot);
-[; ;SDCard.h: 66: void monta_sd(unsigned char index, unsigned char *dado);
-[; ;SDCard.h: 67: BYTE response(void);
-[; ;SDCard.h: 68: void proceed(void);
-[; ;SDCard.h: 69: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 70: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SDCard.h: 51: typedef struct{
+[; ;SDCard.h: 52: unsigned char data[7];
+[; ;SDCard.h: 53: unsigned char hora[11];
+[; ;SDCard.h: 54: unsigned char data_name[2];
+[; ;SDCard.h: 55: unsigned char hora_name[2];
+[; ;SDCard.h: 56: }string_tel;
+[; ;SDCard.h: 64: void sdcard_init(void);
+[; ;SDCard.h: 65: void escrita_sdcard(void);
+[; ;SDCard.h: 66: unsigned char *leitura_sdcard(unsigned char num_spot);
+[; ;SDCard.h: 67: void monta_sd(unsigned char index, unsigned char *dado);
+[; ;SDCard.h: 68: BYTE response(void);
+[; ;SDCard.h: 69: void proceed(void);
+[; ;SDCard.h: 70: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 71: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 [v F3460 `Cuc ~T0 @X0 -> 10 `i t ]
 "34 bibliotecas/fence.c
 [v _fence_diff_lat `F3460 ~T0 @X0 -> 4 `i e ]
@@ -3897,664 +3897,664 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _index `uc ~T0 @X0 1 r2 ]
 "65
 [f ]
-"67
+"66
 [v _i `uc ~T0 @X0 1 a ]
 [v _j `uc ~T0 @X0 1 a ]
-[; ;fence.c: 67: unsigned char i, j;
-[; ;fence.c: 72: switch(index)
-"72
+[; ;fence.c: 66: unsigned char i, j;
+[; ;fence.c: 68: switch(index)
+"68
 [e $U 374  ]
-[; ;fence.c: 73: {
-"73
+[; ;fence.c: 69: {
+"69
 {
-[; ;fence.c: 74: case 1:
-"74
+[; ;fence.c: 70: case 1:
+"70
 [e :U 375 ]
-[; ;fence.c: 75: j = 0;
-"75
+[; ;fence.c: 71: j = 0;
+"71
 [e = _j -> -> 0 `i `uc ]
-[; ;fence.c: 76: for(i=0; i<10; i++)
-"76
+[; ;fence.c: 72: for(i=0; i<10; i++)
+"72
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 10 `i 376  ]
 [e $U 377  ]
-"77
+"73
 [e :U 376 ]
-[; ;fence.c: 77: {
+[; ;fence.c: 73: {
 {
-[; ;fence.c: 78: if(*buffer != '\0')
-"78
+[; ;fence.c: 74: if(*buffer != '\0')
+"74
 [e $ ! != -> *U _buffer `ui -> 0 `ui 379  ]
-[; ;fence.c: 79: {
-"79
+[; ;fence.c: 75: {
+"75
 {
-[; ;fence.c: 81: dado[j] = *buffer;
-"81
+[; ;fence.c: 77: dado[j] = *buffer;
+"77
 [e = *U + &U _dado * -> _j `ux -> -> # *U &U _dado `ui `ux *U _buffer ]
-[; ;fence.c: 82: j++;
-"82
+[; ;fence.c: 78: j++;
+"78
 [e ++ _j -> -> 1 `i `uc ]
-"83
+"79
 }
 [e :U 379 ]
-[; ;fence.c: 83: }
-[; ;fence.c: 85: buffer++;
-"85
+[; ;fence.c: 79: }
+[; ;fence.c: 81: buffer++;
+"81
 [e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"86
+"82
 }
-"76
+"72
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 10 `i 376  ]
 [e :U 377 ]
-"86
+"82
 }
-[; ;fence.c: 86: }
-[; ;fence.c: 88: break;
-"88
+[; ;fence.c: 82: }
+[; ;fence.c: 84: break;
+"84
 [e $U 373  ]
-[; ;fence.c: 90: default:
-"90
+[; ;fence.c: 86: default:
+"86
 [e :U 380 ]
-[; ;fence.c: 91: j = 0;
-"91
+[; ;fence.c: 87: j = 0;
+"87
 [e = _j -> -> 0 `i `uc ]
-[; ;fence.c: 92: for(i=0; i<11; i++)
-"92
+[; ;fence.c: 88: for(i=0; i<11; i++)
+"88
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 11 `i 381  ]
 [e $U 382  ]
-"93
+"89
 [e :U 381 ]
-[; ;fence.c: 93: {
+[; ;fence.c: 89: {
 {
-[; ;fence.c: 94: if(*buffer != '\0')
-"94
+[; ;fence.c: 90: if(*buffer != '\0')
+"90
 [e $ ! != -> *U _buffer `ui -> 0 `ui 384  ]
-[; ;fence.c: 95: {
-"95
+[; ;fence.c: 91: {
+"91
 {
-[; ;fence.c: 97: dado[j] = *buffer;
-"97
+[; ;fence.c: 93: dado[j] = *buffer;
+"93
 [e = *U + &U _dado * -> _j `ux -> -> # *U &U _dado `ui `ux *U _buffer ]
-[; ;fence.c: 98: j++;
-"98
+[; ;fence.c: 94: j++;
+"94
 [e ++ _j -> -> 1 `i `uc ]
-"99
+"95
 }
 [e :U 384 ]
-[; ;fence.c: 99: }
-[; ;fence.c: 101: buffer++;
-"101
+[; ;fence.c: 95: }
+[; ;fence.c: 97: buffer++;
+"97
 [e ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-"102
+"98
 }
-"92
+"88
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 11 `i 381  ]
 [e :U 382 ]
+"98
+}
+[; ;fence.c: 98: }
+[; ;fence.c: 99: break;
+"99
+[e $U 373  ]
 "102
 }
 [; ;fence.c: 102: }
-[; ;fence.c: 103: break;
-"103
 [e $U 373  ]
-"106
-}
-[; ;fence.c: 106: }
-[e $U 373  ]
-"72
+"68
 [e :U 374 ]
 [e [\ _index , $ -> -> 1 `i `uc 375
  380 ]
-"106
+"102
 [e :U 373 ]
-[; ;fence.c: 108: diferenca(index);
-"108
+[; ;fence.c: 104: diferenca(index);
+"104
 [e ( _diferenca (1 _index ]
-[; ;fence.c: 113: }
-"113
+[; ;fence.c: 109: }
+"109
 [e :UE 372 ]
 }
-"145
+"119
 [v _diferenca `(v ~T0 @X0 1 ef1`uc ]
-"146
+"120
 {
-[; ;fence.c: 145: void diferenca(unsigned char index)
-[; ;fence.c: 146: {
+[; ;fence.c: 119: void diferenca(unsigned char index)
+[; ;fence.c: 120: {
 [e :U _diferenca ]
-"145
+"119
 [v _index `uc ~T0 @X0 1 r1 ]
-"146
+"120
 [f ]
-"147
+"121
 [v _valor_lat `ul ~T0 @X0 1 a ]
 [v _valor_long `ul ~T0 @X0 1 a ]
-[; ;fence.c: 147: unsigned long int valor_lat, valor_long;
-[; ;fence.c: 149: switch(index)
-"149
+[; ;fence.c: 121: unsigned long int valor_lat, valor_long;
+[; ;fence.c: 123: switch(index)
+"123
 [e $U 387  ]
-[; ;fence.c: 150: {
-"150
+[; ;fence.c: 124: {
+"124
 {
-[; ;fence.c: 151: case 1:
-"151
+[; ;fence.c: 125: case 1:
+"125
 [e :U 388 ]
-[; ;fence.c: 152: valor_lat = convert_to_int_point_lat();
-"152
+[; ;fence.c: 126: valor_lat = convert_to_int_point_lat();
+"126
 [e = _valor_lat -> ( _convert_to_int_point_lat ..  `ul ]
-[; ;fence.c: 153: poligono_ext[0].diff_lat = convert_to_int(fence_diff_lat[0]) - valor_lat;
-"153
+[; ;fence.c: 127: poligono_ext[0].diff_lat = convert_to_int(fence_diff_lat[0]) - valor_lat;
+"127
 [e = . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> - -> ( _convert_to_int (1 &U *U + &U _fence_diff_lat * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 10 `i `ui `ux `ul _valor_lat `l ]
-[; ;fence.c: 154: poligono_ext[1].diff_lat = convert_to_int(fence_diff_lat[2]) - valor_lat;
-"154
+[; ;fence.c: 128: poligono_ext[1].diff_lat = convert_to_int(fence_diff_lat[2]) - valor_lat;
+"128
 [e = . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> - -> ( _convert_to_int (1 &U *U + &U _fence_diff_lat * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _fence_diff_lat `ui -> -> 10 `i `ui `ux `ul _valor_lat `l ]
-[; ;fence.c: 157: break;
-"157
+[; ;fence.c: 129: break;
+"129
 [e $U 386  ]
-[; ;fence.c: 159: default:
-"159
+[; ;fence.c: 131: default:
+"131
 [e :U 389 ]
-[; ;fence.c: 160: valor_long = convert_to_int_point_long();
-"160
+[; ;fence.c: 132: valor_long = convert_to_int_point_long();
+"132
 [e = _valor_long ( _convert_to_int_point_long ..  ]
-[; ;fence.c: 161: poligono_ext[0].diff_long = convert_to_int(fence_diff_long[0]) - valor_long;
-"161
+[; ;fence.c: 133: poligono_ext[0].diff_long = convert_to_int(fence_diff_long[0]) - valor_long;
+"133
 [e = . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> - -> ( _convert_to_int (1 &U *U + &U _fence_diff_long * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 11 `i `ui `ux `ul _valor_long `l ]
-[; ;fence.c: 162: poligono_ext[1].diff_long = convert_to_int(fence_diff_long[2]) - valor_long;
-"162
+[; ;fence.c: 134: poligono_ext[1].diff_long = convert_to_int(fence_diff_long[2]) - valor_long;
+"134
 [e = . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> - -> ( _convert_to_int (1 &U *U + &U _fence_diff_long * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _fence_diff_long `ui -> -> 11 `i `ui `ux `ul _valor_long `l ]
-[; ;fence.c: 165: break;
-"165
+[; ;fence.c: 135: break;
+"135
 [e $U 386  ]
-"166
+"136
 }
-[; ;fence.c: 166: }
+[; ;fence.c: 136: }
 [e $U 386  ]
-"149
+"123
 [e :U 387 ]
 [e [\ _index , $ -> -> 1 `i `uc 388
  389 ]
-"166
+"136
 [e :U 386 ]
-[; ;fence.c: 178: }
-"178
+[; ;fence.c: 138: }
+"138
 [e :UE 385 ]
 }
-"311
+"150
 [v _verifica_plausibilidade_long `(uc ~T0 @X0 1 ef ]
-"312
+"151
 {
-[; ;fence.c: 311: unsigned char verifica_plausibilidade_long(void)
-[; ;fence.c: 312: {
+[; ;fence.c: 150: unsigned char verifica_plausibilidade_long(void)
+[; ;fence.c: 151: {
 [e :U _verifica_plausibilidade_long ]
 [f ]
-"313
+"152
 [v _posicao `uc ~T0 @X0 1 a ]
-[; ;fence.c: 313: char posicao = posicao_long();
+[; ;fence.c: 152: char posicao = posicao_long();
 [e = _posicao ( _posicao_long ..  ]
-[; ;fence.c: 314: switch(posicao)
-"314
+[; ;fence.c: 153: switch(posicao)
+"153
 [e $U 392  ]
-[; ;fence.c: 315: {
-"315
+[; ;fence.c: 154: {
+"154
 {
-[; ;fence.c: 316: case '-':
-"316
+[; ;fence.c: 155: case '-':
+"155
 [e :U 393 ]
-[; ;fence.c: 317: if(
-[; ;fence.c: 318: (poligono_ext[0].diff_long >= 0 &&
-[; ;fence.c: 319: poligono_ext[1].diff_long <= 0))
-"319
+[; ;fence.c: 156: if(
+[; ;fence.c: 157: (poligono_ext[0].diff_long >= 0 &&
+[; ;fence.c: 158: poligono_ext[1].diff_long <= 0))
+"158
 [e $ ! && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> -> 0 `i `l 394  ]
-[; ;fence.c: 320: {
-"320
+[; ;fence.c: 159: {
+"159
 {
-[; ;fence.c: 321: return 0;
-"321
+[; ;fence.c: 160: return 0;
+"160
 [e ) -> -> 0 `i `uc ]
 [e $UE 390  ]
-"322
+"161
 }
-[; ;fence.c: 322: }
+[; ;fence.c: 161: }
 [e $U 395  ]
-"323
+"162
 [e :U 394 ]
-[; ;fence.c: 323: else if(
-[; ;fence.c: 324: (poligono_ext[0].diff_long == 0 ||
-[; ;fence.c: 325: poligono_ext[1].diff_long == 0 ))
-"325
+[; ;fence.c: 162: else if(
+[; ;fence.c: 163: (poligono_ext[0].diff_long == 0 ||
+[; ;fence.c: 164: poligono_ext[1].diff_long == 0 ))
+"164
 [e $ ! || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> -> 0 `i `l 396  ]
-[; ;fence.c: 326: {
-"326
+[; ;fence.c: 165: {
+"165
 {
-[; ;fence.c: 327: return 0;
-"327
+[; ;fence.c: 166: return 0;
+"166
 [e ) -> -> 0 `i `uc ]
 [e $UE 390  ]
-"328
+"167
 }
-[; ;fence.c: 328: }
+[; ;fence.c: 167: }
 [e $U 397  ]
-"329
+"168
 [e :U 396 ]
-[; ;fence.c: 329: else
-[; ;fence.c: 330: {
-"330
+[; ;fence.c: 168: else
+[; ;fence.c: 169: {
+"169
 {
-[; ;fence.c: 331: return 1;
-"331
+[; ;fence.c: 170: return 1;
+"170
 [e ) -> -> 1 `i `uc ]
 [e $UE 390  ]
-"332
+"171
 }
 [e :U 397 ]
 [e :U 395 ]
-[; ;fence.c: 332: }
-[; ;fence.c: 333: break;
-"333
+[; ;fence.c: 171: }
+[; ;fence.c: 172: break;
+"172
 [e $U 391  ]
-[; ;fence.c: 335: case '+':
-"335
+[; ;fence.c: 174: case '+':
+"174
 [e :U 398 ]
-[; ;fence.c: 336: if(
-[; ;fence.c: 337: (poligono_ext[0].diff_long <= 0 &&
-[; ;fence.c: 338: poligono_ext[1].diff_long >= 0 ) )
-"338
+[; ;fence.c: 175: if(
+[; ;fence.c: 176: (poligono_ext[0].diff_long <= 0 &&
+[; ;fence.c: 177: poligono_ext[1].diff_long >= 0 ) )
+"177
 [e $ ! && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> -> 0 `i `l 399  ]
-[; ;fence.c: 339: {
-"339
+[; ;fence.c: 178: {
+"178
 {
-[; ;fence.c: 340: return 0;
-"340
+[; ;fence.c: 179: return 0;
+"179
 [e ) -> -> 0 `i `uc ]
 [e $UE 390  ]
-"341
+"180
 }
-[; ;fence.c: 341: }
+[; ;fence.c: 180: }
 [e $U 400  ]
-"342
+"181
 [e :U 399 ]
-[; ;fence.c: 342: else if(
-[; ;fence.c: 343: (poligono_ext[0].diff_long == 0 ||
-[; ;fence.c: 344: poligono_ext[1].diff_long == 0 ))
-"344
+[; ;fence.c: 181: else if(
+[; ;fence.c: 182: (poligono_ext[0].diff_long == 0 ||
+[; ;fence.c: 183: poligono_ext[1].diff_long == 0 ))
+"183
 [e $ ! || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 1 -> -> 0 `i `l 401  ]
-[; ;fence.c: 345: {
-"345
+[; ;fence.c: 184: {
+"184
 {
-[; ;fence.c: 346: return 0;
-"346
+[; ;fence.c: 185: return 0;
+"185
 [e ) -> -> 0 `i `uc ]
 [e $UE 390  ]
-"347
+"186
 }
-[; ;fence.c: 347: }
+[; ;fence.c: 186: }
 [e $U 402  ]
-"348
+"187
 [e :U 401 ]
-[; ;fence.c: 348: else
-[; ;fence.c: 349: {
-"349
+[; ;fence.c: 187: else
+[; ;fence.c: 188: {
+"188
 {
-[; ;fence.c: 350: return 1;
-"350
+[; ;fence.c: 189: return 1;
+"189
 [e ) -> -> 1 `i `uc ]
 [e $UE 390  ]
-"351
+"190
 }
 [e :U 402 ]
 [e :U 400 ]
-[; ;fence.c: 351: }
-[; ;fence.c: 352: break;
-"352
+[; ;fence.c: 190: }
+[; ;fence.c: 191: break;
+"191
 [e $U 391  ]
-[; ;fence.c: 353: default:
-"353
+[; ;fence.c: 192: default:
+"192
 [e :U 403 ]
-[; ;fence.c: 354: return 1;
-"354
+[; ;fence.c: 193: return 1;
+"193
 [e ) -> -> 1 `i `uc ]
 [e $UE 390  ]
-[; ;fence.c: 355: break;
-"355
+[; ;fence.c: 194: break;
+"194
 [e $U 391  ]
-"356
+"195
 }
-[; ;fence.c: 356: }
+[; ;fence.c: 195: }
 [e $U 391  ]
-"314
+"153
 [e :U 392 ]
 [e [\ _posicao , $ -> -> 45 `ui `uc 393
  , $ -> -> 43 `ui `uc 398
  403 ]
-"356
+"195
 [e :U 391 ]
-[; ;fence.c: 359: }
-"359
+[; ;fence.c: 198: }
+"198
 [e :UE 390 ]
 }
-"367
+"207
 [v _verifica_plausibilidade_lat `(uc ~T0 @X0 1 ef ]
-"368
+"208
 {
-[; ;fence.c: 367: unsigned char verifica_plausibilidade_lat(void)
-[; ;fence.c: 368: {
+[; ;fence.c: 207: unsigned char verifica_plausibilidade_lat(void)
+[; ;fence.c: 208: {
 [e :U _verifica_plausibilidade_lat ]
 [f ]
-"369
+"209
 [v _posicao `uc ~T0 @X0 1 a ]
-[; ;fence.c: 369: char posicao = posicao_lat();
+[; ;fence.c: 209: char posicao = posicao_lat();
 [e = _posicao ( _posicao_lat ..  ]
-[; ;fence.c: 370: switch(posicao)
-"370
+[; ;fence.c: 210: switch(posicao)
+"210
 [e $U 406  ]
-[; ;fence.c: 371: {
-"371
+[; ;fence.c: 211: {
+"211
 {
-[; ;fence.c: 372: case '-':
-"372
+[; ;fence.c: 212: case '-':
+"212
 [e :U 407 ]
-[; ;fence.c: 373: if(
-[; ;fence.c: 374: ( poligono_ext[0].diff_lat <= 0 &&
-[; ;fence.c: 375: poligono_ext[1].diff_lat >= 0))
-"375
+[; ;fence.c: 213: if(
+[; ;fence.c: 214: ( poligono_ext[0].diff_lat <= 0 &&
+[; ;fence.c: 215: poligono_ext[1].diff_lat >= 0))
+"215
 [e $ ! && <= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l >= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l 408  ]
-[; ;fence.c: 376: {
-"376
+[; ;fence.c: 216: {
+"216
 {
-[; ;fence.c: 377: return 0;
-"377
+[; ;fence.c: 217: return 0;
+"217
 [e ) -> -> 0 `i `uc ]
 [e $UE 404  ]
-"378
+"218
 }
-[; ;fence.c: 378: }
+[; ;fence.c: 218: }
 [e $U 409  ]
-"379
+"219
 [e :U 408 ]
-[; ;fence.c: 379: else if(
-[; ;fence.c: 380: (poligono_ext[0].diff_lat == 0 ||
-[; ;fence.c: 381: poligono_ext[1].diff_lat == 0))
-"381
+[; ;fence.c: 219: else if(
+[; ;fence.c: 220: (poligono_ext[0].diff_lat == 0 ||
+[; ;fence.c: 221: poligono_ext[1].diff_lat == 0))
+"221
 [e $ ! || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l 410  ]
-[; ;fence.c: 383: {
-"383
+[; ;fence.c: 223: {
+"223
 {
-[; ;fence.c: 384: return 0;
-"384
+[; ;fence.c: 224: return 0;
+"224
 [e ) -> -> 0 `i `uc ]
 [e $UE 404  ]
-"385
+"225
 }
-[; ;fence.c: 385: }
+[; ;fence.c: 225: }
 [e $U 411  ]
-"386
+"226
 [e :U 410 ]
-[; ;fence.c: 386: else
-[; ;fence.c: 387: {
-"387
+[; ;fence.c: 226: else
+[; ;fence.c: 227: {
+"227
 {
-[; ;fence.c: 389: return 1;
-"389
+[; ;fence.c: 229: return 1;
+"229
 [e ) -> -> 1 `i `uc ]
 [e $UE 404  ]
-"390
+"230
 }
 [e :U 411 ]
 [e :U 409 ]
-[; ;fence.c: 390: }
-[; ;fence.c: 391: break;
-"391
+[; ;fence.c: 230: }
+[; ;fence.c: 231: break;
+"231
 [e $U 405  ]
-[; ;fence.c: 393: case '+':
-"393
+[; ;fence.c: 233: case '+':
+"233
 [e :U 412 ]
-[; ;fence.c: 394: if((poligono_ext[0].diff_lat >= 0 &&
-[; ;fence.c: 395: poligono_ext[1].diff_lat <= 0 ))
-"395
+[; ;fence.c: 234: if((poligono_ext[0].diff_lat >= 0 &&
+[; ;fence.c: 235: poligono_ext[1].diff_lat <= 0 ))
+"235
 [e $ ! && >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l 413  ]
-[; ;fence.c: 396: {
-"396
+[; ;fence.c: 236: {
+"236
 {
-[; ;fence.c: 397: return 0;
-"397
+[; ;fence.c: 237: return 0;
+"237
 [e ) -> -> 0 `i `uc ]
 [e $UE 404  ]
-"398
+"238
 }
-[; ;fence.c: 398: }
+[; ;fence.c: 238: }
 [e $U 414  ]
-"399
+"239
 [e :U 413 ]
-[; ;fence.c: 399: else if(
-[; ;fence.c: 400: (poligono_ext[0].diff_lat >= 0 ||
-[; ;fence.c: 401: poligono_ext[1].diff_lat <= 0))
-"401
+[; ;fence.c: 239: else if(
+[; ;fence.c: 240: (poligono_ext[0].diff_lat >= 0 ||
+[; ;fence.c: 241: poligono_ext[1].diff_lat <= 0))
+"241
 [e $ ! || >= . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l <= . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l 415  ]
-[; ;fence.c: 402: {
-"402
+[; ;fence.c: 242: {
+"242
 {
-[; ;fence.c: 403: return 0;
-"403
+[; ;fence.c: 243: return 0;
+"243
 [e ) -> -> 0 `i `uc ]
 [e $UE 404  ]
-"404
+"244
 }
-[; ;fence.c: 404: }
+[; ;fence.c: 244: }
 [e $U 416  ]
-"405
+"245
 [e :U 415 ]
-[; ;fence.c: 405: else if(
-[; ;fence.c: 406: (poligono_ext[0].diff_lat == 0 ||
-[; ;fence.c: 407: poligono_ext[1].diff_lat == 0))
-"407
+[; ;fence.c: 245: else if(
+[; ;fence.c: 246: (poligono_ext[0].diff_lat == 0 ||
+[; ;fence.c: 247: poligono_ext[1].diff_lat == 0))
+"247
 [e $ ! || == . *U + &U _poligono_ext * -> -> -> 0 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l == . *U + &U _poligono_ext * -> -> -> 1 `i `ui `ux -> -> # *U &U _poligono_ext `ui `ux 0 -> -> 0 `i `l 417  ]
-[; ;fence.c: 408: {
-"408
+[; ;fence.c: 248: {
+"248
 {
-[; ;fence.c: 409: return 0;
-"409
+[; ;fence.c: 249: return 0;
+"249
 [e ) -> -> 0 `i `uc ]
 [e $UE 404  ]
-"410
+"250
 }
-[; ;fence.c: 410: }
+[; ;fence.c: 250: }
 [e $U 418  ]
-"411
+"251
 [e :U 417 ]
-[; ;fence.c: 411: else
-[; ;fence.c: 412: {
-"412
+[; ;fence.c: 251: else
+[; ;fence.c: 252: {
+"252
 {
-[; ;fence.c: 413: return 1;
-"413
+[; ;fence.c: 253: return 1;
+"253
 [e ) -> -> 1 `i `uc ]
 [e $UE 404  ]
-"414
+"254
 }
 [e :U 418 ]
 [e :U 416 ]
 [e :U 414 ]
-[; ;fence.c: 414: }
-[; ;fence.c: 415: break;
-"415
+[; ;fence.c: 254: }
+[; ;fence.c: 255: break;
+"255
 [e $U 405  ]
-[; ;fence.c: 417: default:
-"417
+[; ;fence.c: 257: default:
+"257
 [e :U 419 ]
-[; ;fence.c: 418: return 1;
-"418
+[; ;fence.c: 258: return 1;
+"258
 [e ) -> -> 1 `i `uc ]
 [e $UE 404  ]
-[; ;fence.c: 419: break;
-"419
+[; ;fence.c: 259: break;
+"259
 [e $U 405  ]
-"420
+"260
 }
-[; ;fence.c: 420: }
+[; ;fence.c: 260: }
 [e $U 405  ]
-"370
+"210
 [e :U 406 ]
 [e [\ _posicao , $ -> -> 45 `ui `uc 407
  , $ -> -> 43 `ui `uc 412
  419 ]
-"420
+"260
 [e :U 405 ]
-[; ;fence.c: 423: }
-"423
+[; ;fence.c: 263: }
+"263
 [e :UE 404 ]
 }
-"425
+"271
 [v _convert_to_int `(l ~T0 @X0 1 ef1`*Cuc ]
-"426
+"272
 {
-[; ;fence.c: 425: long int convert_to_int(const unsigned char *p_buff)
-[; ;fence.c: 426: {
+[; ;fence.c: 271: long int convert_to_int(const unsigned char *p_buff)
+[; ;fence.c: 272: {
 [e :U _convert_to_int ]
-"425
+"271
 [v _p_buff `*Cuc ~T0 @X0 1 r1 ]
-"426
+"272
 [f ]
-[; ;fence.c: 428: p_buff++;
-"428
+[; ;fence.c: 273: p_buff++;
+"273
 [e ++ _p_buff * -> -> 1 `i `x -> -> # *U _p_buff `i `x ]
-[; ;fence.c: 429: return atol(p_buff);
-"429
+[; ;fence.c: 274: return atol(p_buff);
+"274
 [e ) ( _atol (1 _p_buff ]
 [e $UE 420  ]
-[; ;fence.c: 431: }
-"431
+[; ;fence.c: 275: }
+"275
 [e :UE 420 ]
 }
-"433
+"284
 [v _convert_to_int_point_lat `(l ~T0 @X0 1 ef ]
-"434
+"285
 {
-[; ;fence.c: 433: long int convert_to_int_point_lat(void)
-[; ;fence.c: 434: {
+[; ;fence.c: 284: long int convert_to_int_point_lat(void)
+[; ;fence.c: 285: {
 [e :U _convert_to_int_point_lat ]
 [f ]
-"435
+"286
 [v _temp_str_lat `**uc ~T0 @X0 1 a ]
-[; ;fence.c: 435: unsigned char **temp_str_lat = temp_buff_lat;
+[; ;fence.c: 286: unsigned char **temp_str_lat = temp_buff_lat;
 [e = _temp_str_lat -> _temp_buff_lat `**uc ]
-"436
+"287
 [v _convert_str_lat `uc ~T0 @X0 -> 9 `i a ]
-"438
+"289
 [v _i `uc ~T0 @X0 1 a ]
 [v _j `uc ~T0 @X0 1 a ]
-[; ;fence.c: 436: unsigned char convert_str_lat[9];
-[; ;fence.c: 438: unsigned char i, j;
-[; ;fence.c: 440: j= 0;
-"440
+[; ;fence.c: 287: unsigned char convert_str_lat[9];
+[; ;fence.c: 289: unsigned char i, j;
+[; ;fence.c: 291: j= 0;
+"291
 [e = _j -> -> 0 `i `uc ]
-[; ;fence.c: 441: for(i=0; i<10;i++)
-"441
+[; ;fence.c: 292: for(i=0; i<10;i++)
+"292
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 10 `i 422  ]
 [e $U 423  ]
-"442
+"293
 [e :U 422 ]
-[; ;fence.c: 442: {
+[; ;fence.c: 293: {
 {
-[; ;fence.c: 443: if(dado[i] != '\0')
-"443
+[; ;fence.c: 294: if(dado[i] != '\0')
+"294
 [e $ ! != -> *U + &U _dado * -> _i `ux -> -> # *U &U _dado `ui `ux `ui -> 0 `ui 425  ]
-[; ;fence.c: 444: {
-"444
+[; ;fence.c: 295: {
+"295
 {
-[; ;fence.c: 446: convert_str_lat[j] = dado[i];
-"446
+[; ;fence.c: 297: convert_str_lat[j] = dado[i];
+"297
 [e = *U + &U _convert_str_lat * -> _j `ux -> -> # *U &U _convert_str_lat `ui `ux *U + &U _dado * -> _i `ux -> -> # *U &U _dado `ui `ux ]
-[; ;fence.c: 447: j++;
-"447
+[; ;fence.c: 298: j++;
+"298
 [e ++ _j -> -> 1 `i `uc ]
-"448
+"299
 }
 [e :U 425 ]
-"449
+"300
 }
-"441
+"292
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 10 `i 422  ]
 [e :U 423 ]
-"449
+"300
 }
-[; ;fence.c: 448: }
-[; ;fence.c: 449: }
-[; ;fence.c: 451: return (atol(convert_str_lat));
-"451
+[; ;fence.c: 299: }
+[; ;fence.c: 300: }
+[; ;fence.c: 302: return (atol(convert_str_lat));
+"302
 [e ) ( _atol (1 -> &U _convert_str_lat `*Cuc ]
 [e $UE 421  ]
-[; ;fence.c: 457: }
-"457
+[; ;fence.c: 303: }
+"303
 [e :UE 421 ]
 }
-"460
+"313
 [v _convert_to_int_point_long `(ul ~T0 @X0 1 ef ]
-"461
+"314
 {
-[; ;fence.c: 460: unsigned long long int convert_to_int_point_long(void)
-[; ;fence.c: 461: {
+[; ;fence.c: 313: unsigned long long int convert_to_int_point_long(void)
+[; ;fence.c: 314: {
 [e :U _convert_to_int_point_long ]
 [f ]
-"462
+"315
 [v _p `*uc ~T0 @X0 1 a ]
-[; ;fence.c: 462: unsigned char *p;;
-"463
+[; ;fence.c: 315: unsigned char *p;;
+"316
 [v _i `uc ~T0 @X0 1 a ]
 [v _j `uc ~T0 @X0 1 a ]
-"464
+"317
 [v _convert_str_long `uc ~T0 @X0 -> 10 `i a ]
-[; ;fence.c: 463: unsigned char i, j;
-[; ;fence.c: 464: unsigned char convert_str_long[10];
-[; ;fence.c: 467: j = 0;
-"467
+[; ;fence.c: 316: unsigned char i, j;
+[; ;fence.c: 317: unsigned char convert_str_long[10];
+[; ;fence.c: 320: j = 0;
+"320
 [e = _j -> -> 0 `i `uc ]
-[; ;fence.c: 468: for(i=0; i<10;i++)
-"468
+[; ;fence.c: 321: for(i=0; i<10;i++)
+"321
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 10 `i 427  ]
 [e $U 428  ]
-"469
+"322
 [e :U 427 ]
-[; ;fence.c: 469: {
+[; ;fence.c: 322: {
 {
-[; ;fence.c: 470: if(dado[i] != '\0')
-"470
+[; ;fence.c: 323: if(dado[i] != '\0')
+"323
 [e $ ! != -> *U + &U _dado * -> _i `ux -> -> # *U &U _dado `ui `ux `ui -> 0 `ui 430  ]
-[; ;fence.c: 471: {
-"471
+[; ;fence.c: 324: {
+"324
 {
-[; ;fence.c: 473: convert_str_long[j] = dado[i];
-"473
+[; ;fence.c: 326: convert_str_long[j] = dado[i];
+"326
 [e = *U + &U _convert_str_long * -> _j `ux -> -> # *U &U _convert_str_long `ui `ux *U + &U _dado * -> _i `ux -> -> # *U &U _dado `ui `ux ]
-[; ;fence.c: 474: j++;
-"474
+[; ;fence.c: 327: j++;
+"327
 [e ++ _j -> -> 1 `i `uc ]
-"475
+"328
 }
 [e :U 430 ]
-"476
+"329
 }
-"468
+"321
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 10 `i 427  ]
 [e :U 428 ]
-"476
+"329
 }
-[; ;fence.c: 475: }
-[; ;fence.c: 476: }
-[; ;fence.c: 479: return (atol(convert_str_long));
-"479
+[; ;fence.c: 328: }
+[; ;fence.c: 329: }
+[; ;fence.c: 331: return (atol(convert_str_long));
+"331
 [e ) -> ( _atol (1 -> &U _convert_str_long `*Cuc `ul ]
 [e $UE 426  ]
-[; ;fence.c: 481: }
-"481
+[; ;fence.c: 333: }
+"333
 [e :UE 426 ]
 }

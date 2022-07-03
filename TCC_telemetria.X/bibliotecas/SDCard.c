@@ -205,14 +205,12 @@ void sdcard_init(void)
  * Saida:		Nenhuma (void)
  * Descricao:	Realiza a escrita dos arquivos no sdcard
  *****************************************************************************/
-void escrita_sdcard() 
+void escrita_sdcard(void) 
 {
     unsigned char *fix_gps;
     unsigned char i, j;
     static unsigned char f_fix = 0;
     WORD bw;
-//    PORTBbits.RB3 = 0;
-//    dados_gps_to_sd();
    
     f_mount(0,&fs);
     if(!f_fix)
@@ -222,7 +220,6 @@ void escrita_sdcard()
         {
             data_nome(data);
             hora_nome(hora);
-//            strcpy(filename, "testes");;
             strcat(filename, ".tlm");
             f_fix = 1;
         }
@@ -249,7 +246,6 @@ void escrita_sdcard()
 
         }
     }
-//    PORTBbits.RB3 = 1; 
     
     return;
 }
@@ -257,10 +253,10 @@ void escrita_sdcard()
 
 
 /******************************************************************************
- * Funcao:		void leitura_sdcard(void)
- * Entrada:		Nenhuma (void)
- * Saida:		Nenhuma (void)
- * Descricao:	Realiza a leitura dos arquivos no sdcard
+ * Funcao:		unsigned char *leitura_sdcard(unsigned char num_spot) 
+ * Entrada:		unsigned char num_spot
+ * Saida:		unsigned char *
+ * Descricao:	Realiza a leitura dos arquivos no sdcard e retorna um ponteiro
  *****************************************************************************/
 char *leitura_sdcard(unsigned char num_spot) 
 {
@@ -297,7 +293,7 @@ char *leitura_sdcard(unsigned char num_spot)
 
 
 /******************************************************************************
- * Funcao:		void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
+ * Funcao:		void monta_sd(unsigned char index, unsigned char *dado)
  * Entrada:		unsigned char index, unsigned char *dado
  * Saida:		Nenhuma (void)
  * Descricao:	Realiza a transferencia das informacoes para gravar no sdcard
@@ -393,6 +389,13 @@ void monta_sd(unsigned char index, unsigned char *dado)
 }
 
 
+/******************************************************************************
+ * Funcao:		void data_nome (unsigned char *p_buff)
+ * Entrada:		unsigned char *p_buff
+ * Saida:		Nenhuma (void)
+ * Descricao:	Realiza o tratamento da data para montar o nome do arquivo
+ *****************************************************************************/
+
 void data_nome (unsigned char *p_buff)
 {
     unsigned char i;
@@ -405,10 +408,10 @@ void data_nome (unsigned char *p_buff)
 
 
 /******************************************************************************
- * Funcao:		void monta_sd(unsigned char index, unsigned char *dado, float dado_localizacao)
- * Entrada:		unsigned char index, unsigned char *dado, float dado_localizacao
+ * Funcao:		void data_nome (unsigned char *p_buff)
+ * Entrada:		unsigned char *p_buff
  * Saida:		Nenhuma (void)
- * Descricao:	Realiza a montagem do nome do arquivo
+ * Descricao:	Realiza o tratamento da hora para montar o nome do arquivo
  *****************************************************************************/
 
 void hora_nome (unsigned char *p_buff)
@@ -420,3 +423,5 @@ void hora_nome (unsigned char *p_buff)
         p_buff++;
     }
 }
+
+/*Final do Arquivo modelo.c **************************************************/

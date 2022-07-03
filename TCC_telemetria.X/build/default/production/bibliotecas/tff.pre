@@ -36,7 +36,7 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 8 "bibliotecas/integer.h"
+# 60 "bibliotecas/integer.h"
 typedef struct{
 unsigned int hora;
 unsigned int min;
@@ -5917,13 +5917,13 @@ extern void cria_caractere_lcd(unsigned char endereco, const char *buffer);
 # 332
 void converte_inteiro_matriz(unsigned int val, char* str );
 
-# 62 "bibliotecas/GPS.h"
+# 68 "bibliotecas/GPS.h"
 typedef struct
 {
 unsigned char flag:1;
 }bit_field_gps;
 
-# 70
+# 76
 void stringcpy(char *str1, char *str2, int dir, unsigned char size);
 
 void gps(void);

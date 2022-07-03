@@ -3,7 +3,7 @@
  *
  * Descricao       	: Implementa funcoes de acesso ao harware do uC
  *
- * Ambiente			: MPLAB v3.51, XC8 v2.32, PIC18F4550
+ * Ambiente			: MPLAB v3.51, XC8 v2.30, PIC18F4550
  *
  * Responsavel		: Torres, Weslley
  *

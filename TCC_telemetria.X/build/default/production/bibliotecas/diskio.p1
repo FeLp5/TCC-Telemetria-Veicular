@@ -10,11 +10,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _sdc_disk_read `(E25 ~T0 @X0 0 ef3`*uc`ul`uc ]
 "30
 [v _sdc_disk_write `(E25 ~T0 @X0 0 ef3`*Cuc`ul`uc ]
-"70 bibliotecas/SDCard.h
+"71 bibliotecas/SDCard.h
 [v _command `(v ~T0 @X0 0 ef3`uc`ul`uc ]
-"68
+"69
 [v _proceed `(v ~T0 @X0 0 ef ]
-"67
+"68
 [v _response `(uc ~T0 @X0 0 ef ]
 "236 bibliotecas/display_lcd.h
 [v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
@@ -24,7 +24,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "12 C:\Program Files\Microchip\xc8\v2.30\pic\include\builtins.h
 [v __delay `JF3089 ~T0 @X0 0 e ]
 [p i __delay ]
-"69 bibliotecas/SDCard.h
+"70 bibliotecas/SDCard.h
 [v _dummy_clocks `(v ~T0 @X0 0 ef1`uc ]
 "3192 C:\Program Files\Microchip\xc8\v2.30\pic\include\proc\pic18f4550.h
 [s S129 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -55,26 +55,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 "595 bibliotecas/diskio.c
 [c E3231 0 1 2 3 4 5 6 7 8 9 10 11 12 13 .. ]
 [n E3231 . FR_OK FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_INVALID_DRIVE FR_DENIED FR_EXIST FR_RW_ERROR FR_WRITE_PROTECTED FR_NOT_ENABLED FR_NO_FILESYSTEM FR_INVALID_OBJECT FR_MKFS_ABORTED  ]
-[; ;integer.h: 8: typedef struct{
-[; ;integer.h: 9: unsigned int hora;
-[; ;integer.h: 10: unsigned int min;
-[; ;integer.h: 11: unsigned int seg;
-[; ;integer.h: 12: unsigned char dia;
-[; ;integer.h: 13: unsigned char mes;
-[; ;integer.h: 14: unsigned int ano;
-[; ;integer.h: 15: }fat_time;
-[; ;integer.h: 17: typedef int INT;
-[; ;integer.h: 18: typedef unsigned int UINT;
-[; ;integer.h: 21: typedef signed char CHAR;
-[; ;integer.h: 22: typedef unsigned char UCHAR;
-[; ;integer.h: 23: typedef unsigned char BYTE;
-[; ;integer.h: 26: typedef short SHORT;
-[; ;integer.h: 27: typedef unsigned short USHORT;
-[; ;integer.h: 28: typedef unsigned short WORD;
-[; ;integer.h: 31: typedef long LONG;
-[; ;integer.h: 32: typedef unsigned long ULONG;
-[; ;integer.h: 33: typedef unsigned long DWORD;
-[; ;integer.h: 36: typedef enum { FALSE = 0, TRUE } BOOL;
+[; ;integer.h: 60: typedef struct{
+[; ;integer.h: 61: unsigned int hora;
+[; ;integer.h: 62: unsigned int min;
+[; ;integer.h: 63: unsigned int seg;
+[; ;integer.h: 64: unsigned char dia;
+[; ;integer.h: 65: unsigned char mes;
+[; ;integer.h: 66: unsigned int ano;
+[; ;integer.h: 67: }fat_time;
+[; ;integer.h: 69: typedef int INT;
+[; ;integer.h: 70: typedef unsigned int UINT;
+[; ;integer.h: 73: typedef signed char CHAR;
+[; ;integer.h: 74: typedef unsigned char UCHAR;
+[; ;integer.h: 75: typedef unsigned char BYTE;
+[; ;integer.h: 78: typedef short SHORT;
+[; ;integer.h: 79: typedef unsigned short USHORT;
+[; ;integer.h: 80: typedef unsigned short WORD;
+[; ;integer.h: 83: typedef long LONG;
+[; ;integer.h: 84: typedef unsigned long ULONG;
+[; ;integer.h: 85: typedef unsigned long DWORD;
+[; ;integer.h: 88: typedef enum { FALSE = 0, TRUE } BOOL;
 [; ;diskio.h: 14: typedef BYTE DSTATUS;
 [; ;diskio.h: 17: typedef enum {
 [; ;diskio.h: 18: RES_OK = 0,
@@ -3640,20 +3640,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hardware.h: 39: void timer_dois(void);
 [; ;hardware.h: 44: typedef unsigned char uint8_t;
 [; ;hardware.h: 45: typedef unsigned int uint16_t;
-[; ;SDCard.h: 50: typedef struct{
-[; ;SDCard.h: 51: unsigned char data[7];
-[; ;SDCard.h: 52: unsigned char hora[11];
-[; ;SDCard.h: 53: unsigned char data_name[2];
-[; ;SDCard.h: 54: unsigned char hora_name[2];
-[; ;SDCard.h: 55: }string_tel;
-[; ;SDCard.h: 63: void sdcard_init(void);
-[; ;SDCard.h: 64: void escrita_sdcard(void);
-[; ;SDCard.h: 65: char *leitura_sdcard(unsigned char num_spot);
-[; ;SDCard.h: 66: void monta_sd(unsigned char index, unsigned char *dado);
-[; ;SDCard.h: 67: BYTE response(void);
-[; ;SDCard.h: 68: void proceed(void);
-[; ;SDCard.h: 69: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 70: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;SDCard.h: 51: typedef struct{
+[; ;SDCard.h: 52: unsigned char data[7];
+[; ;SDCard.h: 53: unsigned char hora[11];
+[; ;SDCard.h: 54: unsigned char data_name[2];
+[; ;SDCard.h: 55: unsigned char hora_name[2];
+[; ;SDCard.h: 56: }string_tel;
+[; ;SDCard.h: 64: void sdcard_init(void);
+[; ;SDCard.h: 65: void escrita_sdcard(void);
+[; ;SDCard.h: 66: unsigned char *leitura_sdcard(unsigned char num_spot);
+[; ;SDCard.h: 67: void monta_sd(unsigned char index, unsigned char *dado);
+[; ;SDCard.h: 68: BYTE response(void);
+[; ;SDCard.h: 69: void proceed(void);
+[; ;SDCard.h: 70: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 71: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
 [; ;display_lcd.h: 199: extern void init_lcd(void);
 [; ;display_lcd.h: 208: extern void escreve_cmd_lcd(unsigned char comando);
 [; ;display_lcd.h: 220: extern void endereco_cursor_lcd(unsigned char endereco);

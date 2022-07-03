@@ -14,7 +14,6 @@
       <itemPath>bibliotecas/integer.h</itemPath>
       <itemPath>bibliotecas/tff.h</itemPath>
       <itemPath>bibliotecas/uart.h</itemPath>
-      <itemPath>bibliotecas/MCP2515.h</itemPath>
       <itemPath>bibliotecas/fence.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"

@@ -1,5 +1,5 @@
 /******************************************************************************
- * Nome do Arquivo 	: SPI.c
+ * Nome do Arquivo 	: SPI.h
  *
  * Descricao       	: Implementa o controle protocolo SPI
  *

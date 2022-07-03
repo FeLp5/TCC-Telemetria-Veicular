@@ -1,7 +1,7 @@
 
 # 1 "bibliotecas/diskio.c"
 
-# 8 "bibliotecas/integer.h"
+# 60 "bibliotecas/integer.h"
 typedef struct{
 unsigned int hora;
 unsigned int min;
@@ -5735,7 +5735,7 @@ void timer_dois(void);
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
-# 50 "bibliotecas/SDCard.h"
+# 51 "bibliotecas/SDCard.h"
 typedef struct{
 unsigned char data[7];
 unsigned char hora[11];
@@ -5743,10 +5743,10 @@ unsigned char data_name[2];
 unsigned char hora_name[2];
 }string_tel;
 
-# 63
+# 64
 void sdcard_init(void);
 void escrita_sdcard(void);
-char *leitura_sdcard(unsigned char num_spot);
+unsigned char *leitura_sdcard(unsigned char num_spot);
 void monta_sd(unsigned char index, unsigned char *dado);
 BYTE response(void);
 void proceed(void);

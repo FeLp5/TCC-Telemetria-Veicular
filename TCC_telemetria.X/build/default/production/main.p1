@@ -29,7 +29,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR1bits `VS172 ~T0 @X0 0 e@3998 ]
 "49 bibliotecas/uart.h
 [v _recebe_dado_uart `(uc ~T0 @X0 0 ef ]
-"79 bibliotecas/GPS.h
+"85 bibliotecas/GPS.h
 [v _tratamento_uart `(v ~T0 @X0 0 ef1`uc ]
 "2460 C:\Program Files\Microchip\xc8\v2.30\pic\include\proc\pic18f4550.h
 [s S102 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -73,11 +73,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INT0IF `Vb ~T0 @X0 0 e@32657 ]
 "9826
 [v _INT0IE `Vb ~T0 @X0 0 e@32660 ]
-"88 main.c
+"95 main.c
 [v _verifica_dados_operacionais `(v ~T0 @X0 0 ef ]
-"90
+"97
 [v _disparo_gravacao `(v ~T0 @X0 0 ef ]
-"92
+"99
 [v _troca_de_tela `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "34 bibliotecas/hardware.h
@@ -95,11 +95,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _T0CONbits `VS341 ~T0 @X0 0 e@4053 ]
 "199 bibliotecas/display_lcd.h
 [v _init_lcd `(v ~T0 @X0 0 ef ]
-"84 main.c
+"91 main.c
 [v _mensagem_inicial `(v ~T0 @X0 0 ef ]
 "55 bibliotecas/uart.h
 [v _inicializa_uart `(v ~T0 @X0 0 ef ]
-"72 bibliotecas/GPS.h
+"78 bibliotecas/GPS.h
 [v _gps `(v ~T0 @X0 0 ef ]
 "236 bibliotecas/display_lcd.h
 [v _posicao_cursor_lcd `(v ~T0 @X0 0 ef2`uc`uc ]
@@ -111,39 +111,39 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i __delay ]
 "208 bibliotecas/display_lcd.h
 [v _escreve_cmd_lcd `(v ~T0 @X0 0 ef1`uc ]
-"96 main.c
+"103 main.c
 [v _recebe_dado_gps `(v ~T0 @X0 0 ef ]
-"88 bibliotecas/GPS.h
+"94 bibliotecas/GPS.h
 [v _longitude_to_convert `(v ~T0 @X0 0 ef ]
-"87
+"93
 [v _latitude_to_convert `(v ~T0 @X0 0 ef ]
 "69 bibliotecas/fence.h
 [v _verifica_plausibilidade_long `(uc ~T0 @X0 0 ef ]
 "70
 [v _verifica_plausibilidade_lat `(uc ~T0 @X0 0 ef ]
-"66 bibliotecas/SDCard.h
+"67 bibliotecas/SDCard.h
 [v _monta_sd `(v ~T0 @X0 0 ef2`uc`*uc ]
-"94 bibliotecas/GPS.h
+"100 bibliotecas/GPS.h
 [v _Speed `(*uc ~T0 @X0 0 ef ]
 "67 C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
 "37 C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\string.h
 [v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"98 bibliotecas/GPS.h
+"104 bibliotecas/GPS.h
 [v _latitude `(*uc ~T0 @X0 0 ef ]
-"97
+"103
 [v _longitude `(*uc ~T0 @X0 0 ef ]
-"96
+"102
 [v _rawhora `(*uc ~T0 @X0 0 ef ]
-"95
+"101
 [v _rawdata `(*uc ~T0 @X0 0 ef ]
-"93
+"99
 [v _fix `(*uc ~T0 @X0 0 ef ]
 "113 C:\Program Files\Microchip\xc8\v2.30\pic\include\c90\stdlib.h
 [v _itoa `(*uc ~T0 @X0 0 ef3`*uc`i`i ]
-"101 bibliotecas/GPS.h
+"107 bibliotecas/GPS.h
 [v _dados_gps_to_sd `(v ~T0 @X0 0 ef ]
-"94 main.c
+"101 main.c
 [v _grava_sd `(v ~T0 @X0 0 ef ]
 "2833 C:\Program Files\Microchip\xc8\v2.30\pic\include\proc\pic18f4550.h
 [s S116 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
@@ -169,17 +169,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _escreve_inteiro_lcd `(v ~T0 @X0 0 ef1`l ]
 "247
 [v _escreve_caractere_lcd `(v ~T0 @X0 0 ef1`uc ]
-"103 bibliotecas/GPS.h
+"109 bibliotecas/GPS.h
 [v _mostra_dados_display `(v ~T0 @X0 0 ef ]
 "41 bibliotecas/uart.h
 [v _desliga_uart `(v ~T0 @X0 0 ef ]
 "50 bibliotecas/SPI.h
 [v _inicializa_SPI `(v ~T0 @X0 0 ef ]
-"64 bibliotecas/SDCard.h
+"65 bibliotecas/SDCard.h
 [v _escrita_sdcard `(v ~T0 @X0 0 ef ]
 "52 bibliotecas/SPI.h
 [v _desliga_SPI `(v ~T0 @X0 0 ef ]
-"102 bibliotecas/GPS.h
+"108 bibliotecas/GPS.h
 [v _verifica_recep_gps `(uc ~T0 @X0 0 ef ]
 [; ;xc.h: 18: extern const char __xc8_OPTIM_SPEED;
 [; ;xc.h: 20: extern double __fpnormalize(double);
@@ -3719,26 +3719,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 158: __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer supported. Please use the MPLAB X MCC."))) void Write_b_eep(unsigned int badd, unsigned char bdat);
 [; ;pic18.h: 192: unsigned char __t1rd16on(void);
 [; ;pic18.h: 193: unsigned char __t3rd16on(void);
-[; ;integer.h: 8: typedef struct{
-[; ;integer.h: 9: unsigned int hora;
-[; ;integer.h: 10: unsigned int min;
-[; ;integer.h: 11: unsigned int seg;
-[; ;integer.h: 12: unsigned char dia;
-[; ;integer.h: 13: unsigned char mes;
-[; ;integer.h: 14: unsigned int ano;
-[; ;integer.h: 15: }fat_time;
-[; ;integer.h: 17: typedef int INT;
-[; ;integer.h: 18: typedef unsigned int UINT;
-[; ;integer.h: 21: typedef signed char CHAR;
-[; ;integer.h: 22: typedef unsigned char UCHAR;
-[; ;integer.h: 23: typedef unsigned char BYTE;
-[; ;integer.h: 26: typedef short SHORT;
-[; ;integer.h: 27: typedef unsigned short USHORT;
-[; ;integer.h: 28: typedef unsigned short WORD;
-[; ;integer.h: 31: typedef long LONG;
-[; ;integer.h: 32: typedef unsigned long ULONG;
-[; ;integer.h: 33: typedef unsigned long DWORD;
-[; ;integer.h: 36: typedef enum { FALSE = 0, TRUE } BOOL;
+[; ;integer.h: 60: typedef struct{
+[; ;integer.h: 61: unsigned int hora;
+[; ;integer.h: 62: unsigned int min;
+[; ;integer.h: 63: unsigned int seg;
+[; ;integer.h: 64: unsigned char dia;
+[; ;integer.h: 65: unsigned char mes;
+[; ;integer.h: 66: unsigned int ano;
+[; ;integer.h: 67: }fat_time;
+[; ;integer.h: 69: typedef int INT;
+[; ;integer.h: 70: typedef unsigned int UINT;
+[; ;integer.h: 73: typedef signed char CHAR;
+[; ;integer.h: 74: typedef unsigned char UCHAR;
+[; ;integer.h: 75: typedef unsigned char BYTE;
+[; ;integer.h: 78: typedef short SHORT;
+[; ;integer.h: 79: typedef unsigned short USHORT;
+[; ;integer.h: 80: typedef unsigned short WORD;
+[; ;integer.h: 83: typedef long LONG;
+[; ;integer.h: 84: typedef unsigned long ULONG;
+[; ;integer.h: 85: typedef unsigned long DWORD;
+[; ;integer.h: 88: typedef enum { FALSE = 0, TRUE } BOOL;
 [; ;tff.h: 67: typedef WORD CLUST;
 [; ;tff.h: 74: typedef struct _FATFS {
 [; ;tff.h: 75: WORD id;
@@ -3879,54 +3879,54 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;SPI.h: 52: void desliga_SPI(void);
 [; ;SPI.h: 54: unsigned char leitura_SPI(void);
 [; ;SPI.h: 56: void escreve_SPI(unsigned char dado);
-[; ;SDCard.h: 50: typedef struct{
-[; ;SDCard.h: 51: unsigned char data[7];
-[; ;SDCard.h: 52: unsigned char hora[11];
-[; ;SDCard.h: 53: unsigned char data_name[2];
-[; ;SDCard.h: 54: unsigned char hora_name[2];
-[; ;SDCard.h: 55: }string_tel;
-[; ;SDCard.h: 63: void sdcard_init(void);
-[; ;SDCard.h: 64: void escrita_sdcard(void);
-[; ;SDCard.h: 65: char *leitura_sdcard(unsigned char num_spot);
-[; ;SDCard.h: 66: void monta_sd(unsigned char index, unsigned char *dado);
-[; ;SDCard.h: 67: BYTE response(void);
-[; ;SDCard.h: 68: void proceed(void);
-[; ;SDCard.h: 69: void dummy_clocks(unsigned char n);
-[; ;SDCard.h: 70: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
-[; ;GPS.h: 62: typedef struct
-[; ;GPS.h: 63: {
-[; ;GPS.h: 64: unsigned char flag:1;
-[; ;GPS.h: 65: }bit_field_gps;
-[; ;GPS.h: 70: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
-[; ;GPS.h: 72: void gps(void);
-[; ;GPS.h: 73: void get_gpstime(void);
-[; ;GPS.h: 74: void get_latitude(void);
-[; ;GPS.h: 75: void get_longitude(void);
-[; ;GPS.h: 76: void get_rawdate(void);
-[; ;GPS.h: 77: void get_rawspeed(void);
-[; ;GPS.h: 78: void get_fix(void);
-[; ;GPS.h: 79: void tratamento_uart(unsigned char received_char);
-[; ;GPS.h: 81: unsigned int gps_segundos();
-[; ;GPS.h: 82: unsigned int gps_minutos();
-[; ;GPS.h: 83: unsigned int gps_hora();
-[; ;GPS.h: 84: unsigned int gps_ano();
-[; ;GPS.h: 85: unsigned int gps_mes();
-[; ;GPS.h: 86: unsigned int gps_dia();
-[; ;GPS.h: 87: void latitude_to_convert(void);
-[; ;GPS.h: 88: void longitude_to_convert(void);
-[; ;GPS.h: 89: char posicao_lat(void);
-[; ;GPS.h: 90: char posicao_long(void);
-[; ;GPS.h: 91: char *latitude_to_display(void);
-[; ;GPS.h: 92: char *longitude_to_display(void);
-[; ;GPS.h: 93: char *fix(void);
-[; ;GPS.h: 94: char *Speed(void);
-[; ;GPS.h: 95: char *rawdata(void);
-[; ;GPS.h: 96: char *rawhora(void);
-[; ;GPS.h: 97: char *longitude(void);
-[; ;GPS.h: 98: char *latitude(void);
-[; ;GPS.h: 101: void dados_gps_to_sd(void);
-[; ;GPS.h: 102: char verifica_recep_gps(void);
-[; ;GPS.h: 103: void mostra_dados_display(void);
+[; ;SDCard.h: 51: typedef struct{
+[; ;SDCard.h: 52: unsigned char data[7];
+[; ;SDCard.h: 53: unsigned char hora[11];
+[; ;SDCard.h: 54: unsigned char data_name[2];
+[; ;SDCard.h: 55: unsigned char hora_name[2];
+[; ;SDCard.h: 56: }string_tel;
+[; ;SDCard.h: 64: void sdcard_init(void);
+[; ;SDCard.h: 65: void escrita_sdcard(void);
+[; ;SDCard.h: 66: unsigned char *leitura_sdcard(unsigned char num_spot);
+[; ;SDCard.h: 67: void monta_sd(unsigned char index, unsigned char *dado);
+[; ;SDCard.h: 68: BYTE response(void);
+[; ;SDCard.h: 69: void proceed(void);
+[; ;SDCard.h: 70: void dummy_clocks(unsigned char n);
+[; ;SDCard.h: 71: void command(unsigned char CMD, unsigned long int arg, unsigned char CRC);
+[; ;GPS.h: 68: typedef struct
+[; ;GPS.h: 69: {
+[; ;GPS.h: 70: unsigned char flag:1;
+[; ;GPS.h: 71: }bit_field_gps;
+[; ;GPS.h: 76: void stringcpy(char *str1, char *str2, int dir, unsigned char size);
+[; ;GPS.h: 78: void gps(void);
+[; ;GPS.h: 79: void get_gpstime(void);
+[; ;GPS.h: 80: void get_latitude(void);
+[; ;GPS.h: 81: void get_longitude(void);
+[; ;GPS.h: 82: void get_rawdate(void);
+[; ;GPS.h: 83: void get_rawspeed(void);
+[; ;GPS.h: 84: void get_fix(void);
+[; ;GPS.h: 85: void tratamento_uart(unsigned char received_char);
+[; ;GPS.h: 87: unsigned int gps_segundos();
+[; ;GPS.h: 88: unsigned int gps_minutos();
+[; ;GPS.h: 89: unsigned int gps_hora();
+[; ;GPS.h: 90: unsigned int gps_ano();
+[; ;GPS.h: 91: unsigned int gps_mes();
+[; ;GPS.h: 92: unsigned int gps_dia();
+[; ;GPS.h: 93: void latitude_to_convert(void);
+[; ;GPS.h: 94: void longitude_to_convert(void);
+[; ;GPS.h: 95: char posicao_lat(void);
+[; ;GPS.h: 96: char posicao_long(void);
+[; ;GPS.h: 97: char *latitude_to_display(void);
+[; ;GPS.h: 98: char *longitude_to_display(void);
+[; ;GPS.h: 99: char *fix(void);
+[; ;GPS.h: 100: char *Speed(void);
+[; ;GPS.h: 101: char *rawdata(void);
+[; ;GPS.h: 102: char *rawhora(void);
+[; ;GPS.h: 103: char *longitude(void);
+[; ;GPS.h: 104: char *latitude(void);
+[; ;GPS.h: 107: void dados_gps_to_sd(void);
+[; ;GPS.h: 108: char verifica_recep_gps(void);
+[; ;GPS.h: 109: void mostra_dados_display(void);
 [; ;fence.h: 30: typedef struct
 [; ;fence.h: 31: {
 [; ;fence.h: 32: unsigned char point:1;
@@ -4017,56 +4017,49 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strichr(const char *, int);
 [; ;string.h: 59: extern char * strrchr(const char *, int);
 [; ;string.h: 60: extern char * strrichr(const char *, int);
-"48 main.c
+"49 main.c
 [v _fence_flag `S367 ~T0 @X0 -> 3 `i e ]
-[; ;main.c: 48: bit_field fence_flag[3];
-"50
+[; ;main.c: 49: bit_field fence_flag[3];
+"51
 [v _data_uart_recebe `uc ~T0 @X0 1 e ]
-[; ;main.c: 50: unsigned char data_uart_recebe;
-"53
+[; ;main.c: 51: unsigned char data_uart_recebe;
+"54
 [v _p_tarefas `*F3627 ~T0 @X0 -> 3 `i e ]
-[; ;main.c: 53: void (*p_tarefas[3])(void);
-"56
+[; ;main.c: 54: void (*p_tarefas[3])(void);
+"57
 [v _tempo_backup `ui ~T0 @X0 -> 3 `i e ]
-[; ;main.c: 56: unsigned int tempo_backup[3];
-"59
+[; ;main.c: 57: unsigned int tempo_backup[3];
+"60
 [v _tempo_tarefa `ui ~T0 @X0 -> 3 `i e ]
-[; ;main.c: 59: unsigned int tempo_tarefa[3];
-"62
+[; ;main.c: 60: unsigned int tempo_tarefa[3];
+"63
 [v _sinaliza_int_timer `uc ~T0 @X0 1 e ]
-[; ;main.c: 62: unsigned char sinaliza_int_timer;
-"65
+[; ;main.c: 63: unsigned char sinaliza_int_timer;
+"66
 [v _tarefa_em_execucao `Vuc ~T0 @X0 1 e ]
-[; ;main.c: 65: volatile char tarefa_em_execucao;
-"68
+[; ;main.c: 66: volatile char tarefa_em_execucao;
+"69
 [v _timeout_tarefa `ui ~T0 @X0 1 e ]
-[; ;main.c: 68: unsigned int timeout_tarefa;
-"70
-[v _time_sd `ui ~T0 @X0 1 e ]
-[; ;main.c: 70: unsigned int time_sd;
+[; ;main.c: 69: unsigned int timeout_tarefa;
 "71
+[v _time_sd `ui ~T0 @X0 1 e ]
+[; ;main.c: 71: unsigned int time_sd;
+"72
 [v _time_recovery `ui ~T0 @X0 1 e ]
-[; ;main.c: 71: unsigned int time_recovery;
-"73
+[; ;main.c: 72: unsigned int time_recovery;
+"74
 [v _time_atualizacao `ui ~T0 @X0 1 e ]
-[; ;main.c: 73: unsigned int time_atualizacao;
-"75
+[; ;main.c: 74: unsigned int time_atualizacao;
+"76
 [v _flag_anomalia `uc ~T0 @X0 1 e ]
-[; ;main.c: 75: unsigned char flag_anomalia;
-"77
+[; ;main.c: 76: unsigned char flag_anomalia;
+"78
 [v _point_buff_gps_lat `*Vuc ~T0 @X0 1 e ]
-[; ;main.c: 77: volatile unsigned char *point_buff_gps_lat;
-"79
+[; ;main.c: 78: volatile unsigned char *point_buff_gps_lat;
+"80
 [v _point_buff_gps_long `*Vuc ~T0 @X0 1 e ]
-[; ;main.c: 79: volatile unsigned char *point_buff_gps_long;
-[; ;main.c: 84: void mensagem_inicial(void);
-[; ;main.c: 86: void verifica_fence(void);
-[; ;main.c: 88: void verifica_dados_operacionais(void);
-[; ;main.c: 90: void disparo_gravacao(void);
-[; ;main.c: 92: void troca_de_tela(void);
-[; ;main.c: 94: void grava_sd(void);
-[; ;main.c: 96: void recebe_dado_gps(void);
-"98
+[; ;main.c: 80: volatile unsigned char *point_buff_gps_long;
+"82
 [v _dados_vel `ui ~T0 @X0 -> 3 `i s ]
 [i _dados_vel
 :U ..
@@ -4075,10 +4068,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ..
 ]
-[; ;main.c: 98: static unsigned int dados_vel[3] = {0, 0, 0};
-[v F3656 `uc ~T0 @X0 -> 11 `i t ]
-"99
-[v _dados_lat `F3656 ~T0 @X0 -> 3 `i s ]
+[; ;main.c: 82: static unsigned int dados_vel[3] = {0, 0, 0};
+[v F3642 `uc ~T0 @X0 -> 11 `i t ]
+"83
+[v _dados_lat `F3642 ~T0 @X0 -> 3 `i s ]
 [i _dados_lat
 :U ..
 :U ..
@@ -4122,10 +4115,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 99: static unsigned char dados_lat[3][11] = {"0000000000", "0000000000", "0000000000"};
-[v F3658 `uc ~T0 @X0 -> 12 `i t ]
-"100
-[v _dados_long `F3658 ~T0 @X0 -> 3 `i s ]
+[; ;main.c: 83: static unsigned char dados_lat[3][11] = {"0000000000", "0000000000", "0000000000"};
+[v F3644 `uc ~T0 @X0 -> 12 `i t ]
+"84
+[v _dados_long `F3644 ~T0 @X0 -> 3 `i s ]
 [i _dados_long
 :U ..
 :U ..
@@ -4172,10 +4165,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 100: static unsigned char dados_long[3][12] = {"000000000000", "000000000000", "000000000000"};
-[v F3660 `uc ~T0 @X0 -> 6 `i t ]
-"101
-[v _dados_hora `F3660 ~T0 @X0 -> 3 `i s ]
+[; ;main.c: 84: static unsigned char dados_long[3][12] = {"000000000000", "000000000000", "000000000000"};
+[v F3646 `uc ~T0 @X0 -> 6 `i t ]
+"85
+[v _dados_hora `F3646 ~T0 @X0 -> 3 `i s ]
 [i _dados_hora
 :U ..
 :U ..
@@ -4204,10 +4197,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 101: static unsigned char dados_hora[3][6] = {"000000", "000000", "000000"};
-[v F3662 `uc ~T0 @X0 -> 6 `i t ]
-"102
-[v _dados_data `F3662 ~T0 @X0 -> 3 `i s ]
+[; ;main.c: 85: static unsigned char dados_hora[3][6] = {"000000", "000000", "000000"};
+[v F3648 `uc ~T0 @X0 -> 6 `i t ]
+"86
+[v _dados_data `F3648 ~T0 @X0 -> 3 `i s ]
 [i _dados_data
 :U ..
 :U ..
@@ -4236,268 +4229,275 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 102: static unsigned char dados_data[3][6] = {"000000", "000000", "000000"};
+[; ;main.c: 86: static unsigned char dados_data[3][6] = {"000000", "000000", "000000"};
+[; ;main.c: 91: void mensagem_inicial(void);
+[; ;main.c: 93: void verifica_fence(void);
+[; ;main.c: 95: void verifica_dados_operacionais(void);
+[; ;main.c: 97: void disparo_gravacao(void);
+[; ;main.c: 99: void troca_de_tela(void);
+[; ;main.c: 101: void grava_sd(void);
+[; ;main.c: 103: void recebe_dado_gps(void);
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"111
-[v _isr `(v ~T41 @X0 1 ef ]
 "112
+[v _isr `(v ~T41 @X0 1 ef ]
+"113
 {
-[; ;main.c: 111: void __interrupt() isr(void)
-[; ;main.c: 112: {
+[; ;main.c: 112: void __interrupt() isr(void)
+[; ;main.c: 113: {
 [e :U _isr ]
 [f ]
-"113
+"114
 [v _cont `uc ~T0 @X0 1 a ]
-[; ;main.c: 113: unsigned char cont;
-[; ;main.c: 116: if (PIE1bits.RCIE && PIR1bits.RCIF)
-"116
-[e $ ! && != -> . . _PIE1bits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 377  ]
-[; ;main.c: 117: {
+[; ;main.c: 114: unsigned char cont;
+[; ;main.c: 117: if (PIE1bits.RCIE && PIR1bits.RCIF)
 "117
-{
-[; ;main.c: 118: PIR1bits.RCIF = 0;
+[e $ ! && != -> . . _PIE1bits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 377  ]
+[; ;main.c: 118: {
 "118
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 119: data_uart_recebe = recebe_dado_uart();
+{
+[; ;main.c: 119: PIR1bits.RCIF = 0;
 "119
-[e = _data_uart_recebe ( _recebe_dado_uart ..  ]
-[; ;main.c: 120: tratamento_uart(data_uart_recebe);
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 120: data_uart_recebe = recebe_dado_uart();
 "120
-[e ( _tratamento_uart (1 _data_uart_recebe ]
-[; ;main.c: 121: PORTBbits.RB2 = !PORTBbits.RB2;
+[e = _data_uart_recebe ( _recebe_dado_uart ..  ]
+[; ;main.c: 121: tratamento_uart(data_uart_recebe);
 "121
-[e = . . _PORTBbits 0 2 -> -> ! != -> . . _PORTBbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[e ( _tratamento_uart (1 _data_uart_recebe ]
+[; ;main.c: 122: PORTBbits.RB2 = !PORTBbits.RB2;
 "122
+[e = . . _PORTBbits 0 2 -> -> ! != -> . . _PORTBbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+"123
 }
 [e :U 377 ]
-[; ;main.c: 122: }
-[; ;main.c: 125: unsigned char cont;
-[; ;main.c: 127: if (TMR0IF && T0IF)
-"127
-[e $ ! && _TMR0IF _T0IF 378  ]
-[; ;main.c: 128: {
+[; ;main.c: 123: }
+[; ;main.c: 126: unsigned char cont;
+[; ;main.c: 128: if (TMR0IF && T0IF)
 "128
-{
-[; ;main.c: 129: INTCONbits.TMR0IF = 0;
+[e $ ! && _TMR0IF _T0IF 378  ]
+[; ;main.c: 129: {
 "129
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 130: sinaliza_int_timer = 1;
+{
+[; ;main.c: 130: INTCONbits.TMR0IF = 0;
 "130
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 131: sinaliza_int_timer = 1;
+"131
 [e = _sinaliza_int_timer -> -> 1 `i `uc ]
-[; ;main.c: 132: for(cont= 0; cont<3;cont++)
-"132
+[; ;main.c: 133: for(cont= 0; cont<3;cont++)
+"133
 {
 [e = _cont -> -> 0 `i `uc ]
 [e $ < -> _cont `i -> 3 `i 379  ]
 [e $U 380  ]
-"133
-[e :U 379 ]
-[; ;main.c: 133: {
-{
-[; ;main.c: 134: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
 "134
+[e :U 379 ]
+[; ;main.c: 134: {
+{
+[; ;main.c: 135: if(tempo_tarefa[cont]>0) tempo_tarefa[cont]--;
+"135
 [e $ ! > *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 382  ]
 [e -- *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1 `i `ui ]
 [e :U 382 ]
-"136
+"137
 }
-"132
+"133
 [e ++ _cont -> -> 1 `i `uc ]
 [e $ < -> _cont `i -> 3 `i 379  ]
 [e :U 380 ]
-"136
-}
-[; ;main.c: 136: }
-[; ;main.c: 137: if(time_sd > 0) time_sd--;
 "137
+}
+[; ;main.c: 137: }
+[; ;main.c: 138: if(time_sd > 0) time_sd--;
+"138
 [e $ ! > _time_sd -> -> 0 `i `ui 383  ]
 [e -- _time_sd -> -> 1 `i `ui ]
 [e :U 383 ]
-[; ;main.c: 138: if(time_atualizacao > 0) time_atualizacao--;
-"138
+[; ;main.c: 139: if(time_atualizacao > 0) time_atualizacao--;
+"139
 [e $ ! > _time_atualizacao -> -> 0 `i `ui 384  ]
 [e -- _time_atualizacao -> -> 1 `i `ui ]
 [e :U 384 ]
-[; ;main.c: 140: if(tarefa_em_execucao == 1)
-"140
-[e $ ! == -> _tarefa_em_execucao `i -> 1 `i 385  ]
-[; ;main.c: 141: {
+[; ;main.c: 141: if(tarefa_em_execucao == 1)
 "141
-{
-[; ;main.c: 142: timeout_tarefa--;
+[e $ ! == -> _tarefa_em_execucao `i -> 1 `i 385  ]
+[; ;main.c: 142: {
 "142
-[e -- _timeout_tarefa -> -> 1 `i `ui ]
-[; ;main.c: 143: if(!timeout_tarefa)
-"143
-[e $ ! ! != _timeout_tarefa -> -> 0 `i `ui 386  ]
-[; ;main.c: 144: {
-"144
 {
-[; ;main.c: 146: PCLATH = 0;
-"146
-[e = _PCLATH -> -> 0 `i `uc ]
-[; ;main.c: 147: PCL = 0;
+[; ;main.c: 143: timeout_tarefa--;
+"143
+[e -- _timeout_tarefa -> -> 1 `i `ui ]
+[; ;main.c: 144: if(!timeout_tarefa)
+"144
+[e $ ! ! != _timeout_tarefa -> -> 0 `i `ui 386  ]
+[; ;main.c: 145: {
+"145
+{
+[; ;main.c: 147: PCLATH = 0;
 "147
-[e = _PCL -> -> 0 `i `uc ]
+[e = _PCLATH -> -> 0 `i `uc ]
+[; ;main.c: 148: PCL = 0;
 "148
-}
-[e :U 386 ]
+[e = _PCL -> -> 0 `i `uc ]
 "149
 }
+[e :U 386 ]
+"150
+}
 [e :U 385 ]
-[; ;main.c: 148: }
 [; ;main.c: 149: }
-[; ;main.c: 152: write_timer_zero(0x45);
-"152
-[e ( _write_timer_zero (1 -> -> 69 `i `ui ]
+[; ;main.c: 150: }
+[; ;main.c: 153: write_timer_zero(0x45);
 "153
+[e ( _write_timer_zero (1 -> -> 69 `i `ui ]
+"154
 }
 [e :U 378 ]
-[; ;main.c: 153: }
-[; ;main.c: 155: if (INT0IF && INT0IE)
-"155
-[e $ ! && _INT0IF _INT0IE 387  ]
-[; ;main.c: 156: {
+[; ;main.c: 154: }
+[; ;main.c: 156: if (INT0IF && INT0IE)
 "156
-{
-[; ;main.c: 157: INT0IF = 0;
+[e $ ! && _INT0IF _INT0IE 387  ]
+[; ;main.c: 157: {
 "157
+{
+[; ;main.c: 158: INT0IF = 0;
+"158
 [e = _INT0IF -> -> 0 `i `b ]
-"159
+"160
 }
 [e :U 387 ]
-[; ;main.c: 159: }
 [; ;main.c: 160: }
-"160
+[; ;main.c: 161: }
+"161
 [e :UE 376 ]
 }
-"171
-[v _inicializa_tarefas `(v ~T0 @X0 1 ef ]
 "172
+[v _inicializa_tarefas `(v ~T0 @X0 1 ef ]
+"173
 {
-[; ;main.c: 171: void inicializa_tarefas(void)
-[; ;main.c: 172: {
+[; ;main.c: 172: void inicializa_tarefas(void)
+[; ;main.c: 173: {
 [e :U _inicializa_tarefas ]
 [f ]
-[; ;main.c: 174: p_tarefas[0] = verifica_dados_operacionais;
-"174
-[e = *U + &U _p_tarefas * -> -> -> 0 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _verifica_dados_operacionais ]
-[; ;main.c: 175: p_tarefas[1] = disparo_gravacao;
+[; ;main.c: 175: p_tarefas[0] = verifica_dados_operacionais;
 "175
-[e = *U + &U _p_tarefas * -> -> -> 1 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _disparo_gravacao ]
-[; ;main.c: 176: p_tarefas[2] = troca_de_tela;
+[e = *U + &U _p_tarefas * -> -> -> 0 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _verifica_dados_operacionais ]
+[; ;main.c: 176: p_tarefas[1] = disparo_gravacao;
 "176
+[e = *U + &U _p_tarefas * -> -> -> 1 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _disparo_gravacao ]
+[; ;main.c: 177: p_tarefas[2] = troca_de_tela;
+"177
 [e = *U + &U _p_tarefas * -> -> -> 2 `i `ui `ux -> -> # *U &U _p_tarefas `ui `ux &U _troca_de_tela ]
-[; ;main.c: 180: tempo_backup[0] = 500;
-"180
-[e = *U + &U _tempo_backup * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 500 `i `ui ]
-[; ;main.c: 181: tempo_backup[1] = 1000;
+[; ;main.c: 181: tempo_backup[0] = 500;
 "181
-[e = *U + &U _tempo_backup * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 1000 `i `ui ]
-[; ;main.c: 182: tempo_backup[2] = 5000;
+[e = *U + &U _tempo_backup * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 500 `i `ui ]
+[; ;main.c: 182: tempo_backup[1] = 1000;
 "182
+[e = *U + &U _tempo_backup * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 1000 `i `ui ]
+[; ;main.c: 183: tempo_backup[2] = 5000;
+"183
 [e = *U + &U _tempo_backup * -> -> -> 2 `i `ui `ux -> -> # *U &U _tempo_backup `ui `ux -> -> 5000 `i `ui ]
-[; ;main.c: 185: tempo_tarefa[0] = 500;
-"185
-[e = *U + &U _tempo_tarefa * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 500 `i `ui ]
-[; ;main.c: 186: tempo_tarefa[1] = 1000;
+[; ;main.c: 186: tempo_tarefa[0] = 500;
 "186
-[e = *U + &U _tempo_tarefa * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1000 `i `ui ]
-[; ;main.c: 187: tempo_tarefa[2] = 5000;
+[e = *U + &U _tempo_tarefa * -> -> -> 0 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 500 `i `ui ]
+[; ;main.c: 187: tempo_tarefa[1] = 1000;
 "187
+[e = *U + &U _tempo_tarefa * -> -> -> 1 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 1000 `i `ui ]
+[; ;main.c: 188: tempo_tarefa[2] = 5000;
+"188
 [e = *U + &U _tempo_tarefa * -> -> -> 2 `i `ui `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 5000 `i `ui ]
-[; ;main.c: 189: tarefa_em_execucao = 0;
-"189
-[e = _tarefa_em_execucao -> -> 0 `i `uc ]
-[; ;main.c: 190: }
+[; ;main.c: 190: tarefa_em_execucao = 0;
 "190
+[e = _tarefa_em_execucao -> -> 0 `i `uc ]
+[; ;main.c: 191: }
+"191
 [e :UE 388 ]
 }
-"200
-[v _escalonador `(v ~T0 @X0 1 ef ]
 "201
+[v _escalonador `(v ~T0 @X0 1 ef ]
+"202
 {
-[; ;main.c: 200: void escalonador()
-[; ;main.c: 201: {
+[; ;main.c: 201: void escalonador()
+[; ;main.c: 202: {
 [e :U _escalonador ]
 [f ]
-"202
-[v _cont `uc ~T0 @X0 1 a ]
-[; ;main.c: 202: unsigned char cont;
-[; ;main.c: 203: for(cont = 0; cont<3;cont++)
 "203
+[v _cont `uc ~T0 @X0 1 a ]
+[; ;main.c: 203: unsigned char cont;
+[; ;main.c: 204: for(cont = 0; cont<3;cont++)
+"204
 {
 [e = _cont -> -> 0 `i `uc ]
 [e $ < -> _cont `i -> 3 `i 390  ]
 [e $U 391  ]
-"204
-[e :U 390 ]
-[; ;main.c: 204: {
-{
-[; ;main.c: 205: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
 "205
-[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F3627 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 393  ]
-[; ;main.c: 206: {
-"206
+[e :U 390 ]
+[; ;main.c: 205: {
 {
-[; ;main.c: 207: tarefa_em_execucao = 1;
+[; ;main.c: 206: if((p_tarefas[cont]!= 0 ) && tempo_tarefa[cont] == 0)
+"206
+[e $ ! && != *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux -> -> 0 `i `*F3627 == *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux -> -> 0 `i `ui 393  ]
+[; ;main.c: 207: {
 "207
-[e = _tarefa_em_execucao -> -> 1 `i `uc ]
-[; ;main.c: 208: timeout_tarefa = 65000;
+{
+[; ;main.c: 208: tarefa_em_execucao = 1;
 "208
-[e = _timeout_tarefa -> -> 65000 `l `ui ]
-[; ;main.c: 209: p_tarefas[cont]();
+[e = _tarefa_em_execucao -> -> 1 `i `uc ]
+[; ;main.c: 209: timeout_tarefa = 65000;
 "209
-[e ( *U *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux ..  ]
-[; ;main.c: 210: tarefa_em_execucao = 0;
+[e = _timeout_tarefa -> -> 65000 `l `ui ]
+[; ;main.c: 210: p_tarefas[cont]();
 "210
-[e = _tarefa_em_execucao -> -> 0 `i `uc ]
-[; ;main.c: 211: tempo_tarefa[cont] = tempo_backup[cont];
+[e ( *U *U + &U _p_tarefas * -> _cont `ux -> -> # *U &U _p_tarefas `ui `ux ..  ]
+[; ;main.c: 211: tarefa_em_execucao = 0;
 "211
-[e = *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux *U + &U _tempo_backup * -> _cont `ux -> -> # *U &U _tempo_backup `ui `ux ]
+[e = _tarefa_em_execucao -> -> 0 `i `uc ]
+[; ;main.c: 212: tempo_tarefa[cont] = tempo_backup[cont];
 "212
-}
-[e :U 393 ]
+[e = *U + &U _tempo_tarefa * -> _cont `ux -> -> # *U &U _tempo_tarefa `ui `ux *U + &U _tempo_backup * -> _cont `ux -> -> # *U &U _tempo_backup `ui `ux ]
 "213
 }
-"203
+[e :U 393 ]
+"214
+}
+"204
 [e ++ _cont -> -> 1 `i `uc ]
 [e $ < -> _cont `i -> 3 `i 390  ]
 [e :U 391 ]
-"213
+"214
 }
-[; ;main.c: 212: }
 [; ;main.c: 213: }
 [; ;main.c: 214: }
-"214
+[; ;main.c: 215: }
+"215
 [e :UE 389 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"221
-[v _main `(v ~T0 @X0 1 ef ]
 "222
+[v _main `(v ~T0 @X0 1 ef ]
+"223
 {
-[; ;main.c: 221: void main(void)
-[; ;main.c: 222: {
+[; ;main.c: 222: void main(void)
+[; ;main.c: 223: {
 [e :U _main ]
 [f ]
-[; ;main.c: 223: init_hardware();
-"223
-[e ( _init_hardware ..  ]
-[; ;main.c: 224: T0CONbits.TMR0ON = 0;
+[; ;main.c: 224: init_hardware();
 "224
-[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 225: init_lcd();
+[e ( _init_hardware ..  ]
+[; ;main.c: 225: T0CONbits.TMR0ON = 0;
 "225
-[e ( _init_lcd ..  ]
-[; ;main.c: 226: mensagem_inicial();
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 226: init_lcd();
 "226
-[e ( _mensagem_inicial ..  ]
-[; ;main.c: 227: inicializa_tarefas();
+[e ( _init_lcd ..  ]
+[; ;main.c: 227: mensagem_inicial();
 "227
-[e ( _inicializa_tarefas ..  ]
-[; ;main.c: 228: inicializa_uart();
+[e ( _mensagem_inicial ..  ]
+[; ;main.c: 228: inicializa_tarefas();
 "228
+[e ( _inicializa_tarefas ..  ]
+[; ;main.c: 229: inicializa_uart();
+"229
 [e ( _inicializa_uart ..  ]
 [; ;main.c: 231: T0CONbits.TMR0ON = 1;
 "231
@@ -4681,646 +4681,646 @@ Version 3.2 HI-TECH Software Intermediate Code
 "297
 [e :UE 400 ]
 }
-"307
-[v _verifica_dados_operacionais `(v ~T0 @X0 1 ef ]
 "308
+[v _verifica_dados_operacionais `(v ~T0 @X0 1 ef ]
+"309
 {
-[; ;main.c: 307: void verifica_dados_operacionais(void)
-[; ;main.c: 308: {
+[; ;main.c: 308: void verifica_dados_operacionais(void)
+[; ;main.c: 309: {
 [e :U _verifica_dados_operacionais ]
 [f ]
-"309
-[v F3683 `uc ~T0 @X0 -> 6 `i s dado ]
 "310
+[v F3683 `uc ~T0 @X0 -> 6 `i s dado ]
+"311
 [v F3684 `uc ~T0 @X0 1 s contador_atual ]
 [i F3684
 -> -> 0 `i `uc
 ]
-"311
+"312
 [v F3685 `uc ~T0 @X0 1 s contador_anterior ]
 [i F3685
 -> -> 0 `i `uc
 ]
-"312
-[v F3686 `ul ~T0 @X0 1 s velocidade_media ]
 "313
+[v F3686 `ul ~T0 @X0 1 s velocidade_media ]
+"314
 [v F3687 `ul ~T0 @X0 1 s velocidade_atual_int ]
 [i F3687
 -> -> -> 0 `i `l `ul
 ]
-"314
-[v F3688 `*uc ~T0 @X0 1 s velocidade_atual ]
-[; ;main.c: 309: static unsigned char dado[6];
-[; ;main.c: 310: static unsigned char contador_atual =0;
-[; ;main.c: 311: static unsigned char contador_anterior =0;
-[; ;main.c: 312: static unsigned long int velocidade_media;
-[; ;main.c: 313: static unsigned long int velocidade_atual_int = 0;
-[; ;main.c: 314: static unsigned char *velocidade_atual;
-[; ;main.c: 315: verifica_fence();
 "315
+[v F3688 `*uc ~T0 @X0 1 s velocidade_atual ]
+[; ;main.c: 310: static unsigned char dado[6];
+[; ;main.c: 311: static unsigned char contador_atual =0;
+[; ;main.c: 312: static unsigned char contador_anterior =0;
+[; ;main.c: 313: static unsigned long int velocidade_media;
+[; ;main.c: 314: static unsigned long int velocidade_atual_int = 0;
+[; ;main.c: 315: static unsigned char *velocidade_atual;
+[; ;main.c: 316: verifica_fence();
+"316
 [e ( _verifica_fence ..  ]
-[; ;main.c: 317: if(contador_atual >=3)
-"317
-[e $ ! >= -> F3684 `i -> 3 `i 404  ]
-[; ;main.c: 318: {
+[; ;main.c: 318: if(contador_atual >=3)
 "318
-{
-[; ;main.c: 319: contador_atual = 0;
+[e $ ! >= -> F3684 `i -> 3 `i 404  ]
+[; ;main.c: 319: {
 "319
-[e = F3684 -> -> 0 `i `uc ]
-[; ;main.c: 320: contador_anterior = contador_atual;
+{
+[; ;main.c: 320: contador_atual = 0;
 "320
-[e = F3685 F3684 ]
+[e = F3684 -> -> 0 `i `uc ]
+[; ;main.c: 321: contador_anterior = contador_atual;
 "321
+[e = F3685 F3684 ]
+"322
 }
 [e :U 404 ]
-[; ;main.c: 321: }
-[; ;main.c: 323: velocidade_atual = Speed();
-"323
-[e = F3688 ( _Speed ..  ]
-[; ;main.c: 324: velocidade_atual_int = ((atoi(velocidade_atual)*1.852));
+[; ;main.c: 322: }
+[; ;main.c: 324: velocidade_atual = Speed();
 "324
-[e = F3687 -> * -> ( _atoi (1 -> F3688 `*Cuc `d .1.852 `ul ]
-[; ;main.c: 325: if((velocidade_atual_int > dados_vel[2]) && contador_atual<3)
+[e = F3688 ( _Speed ..  ]
+[; ;main.c: 325: velocidade_atual_int = ((atoi(velocidade_atual)*1.852));
 "325
-[e $ ! && > F3687 -> *U + &U _dados_vel * -> -> -> 2 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux `ul < -> F3684 `i -> 3 `i 405  ]
-[; ;main.c: 326: {
+[e = F3687 -> * -> ( _atoi (1 -> F3688 `*Cuc `d .1.852 `ul ]
+[; ;main.c: 326: if((velocidade_atual_int > dados_vel[2]) && contador_atual<3)
 "326
-{
-[; ;main.c: 327: if(velocidade_atual_int > dados_vel[contador_anterior])
+[e $ ! && > F3687 -> *U + &U _dados_vel * -> -> -> 2 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux `ul < -> F3684 `i -> 3 `i 405  ]
+[; ;main.c: 327: {
 "327
-[e $ ! > F3687 -> *U + &U _dados_vel * -> F3685 `ux -> -> # *U &U _dados_vel `ui `ux `ul 406  ]
-[; ;main.c: 328: {
-"328
 {
-[; ;main.c: 329: dados_vel[contador_atual] = velocidade_atual_int;
+[; ;main.c: 328: if(velocidade_atual_int > dados_vel[contador_anterior])
+"328
+[e $ ! > F3687 -> *U + &U _dados_vel * -> F3685 `ux -> -> # *U &U _dados_vel `ui `ux `ul 406  ]
+[; ;main.c: 329: {
 "329
-[e = *U + &U _dados_vel * -> F3684 `ux -> -> # *U &U _dados_vel `ui `ux -> F3687 `ui ]
-[; ;main.c: 330: strcpy(dados_lat[contador_atual], latitude());
+{
+[; ;main.c: 330: dados_vel[contador_atual] = velocidade_atual_int;
 "330
-[e ( _strcpy (2 , &U *U + &U _dados_lat * -> F3684 `ux -> * -> # *U &U *U &U _dados_lat `ui -> -> 11 `i `ui `ux -> ( _latitude ..  `*Cuc ]
-[; ;main.c: 331: strcpy(dados_long[contador_atual], longitude());
+[e = *U + &U _dados_vel * -> F3684 `ux -> -> # *U &U _dados_vel `ui `ux -> F3687 `ui ]
+[; ;main.c: 331: strcpy(dados_lat[contador_atual], latitude());
 "331
-[e ( _strcpy (2 , &U *U + &U _dados_long * -> F3684 `ux -> * -> # *U &U *U &U _dados_long `ui -> -> 12 `i `ui `ux -> ( _longitude ..  `*Cuc ]
-[; ;main.c: 332: strcpy(dados_hora[contador_atual], rawhora());
+[e ( _strcpy (2 , &U *U + &U _dados_lat * -> F3684 `ux -> * -> # *U &U *U &U _dados_lat `ui -> -> 11 `i `ui `ux -> ( _latitude ..  `*Cuc ]
+[; ;main.c: 332: strcpy(dados_long[contador_atual], longitude());
 "332
-[e ( _strcpy (2 , &U *U + &U _dados_hora * -> F3684 `ux -> * -> # *U &U *U &U _dados_hora `ui -> -> 6 `i `ui `ux -> ( _rawhora ..  `*Cuc ]
-[; ;main.c: 333: strcpy(dados_data[contador_atual], rawdata());
+[e ( _strcpy (2 , &U *U + &U _dados_long * -> F3684 `ux -> * -> # *U &U *U &U _dados_long `ui -> -> 12 `i `ui `ux -> ( _longitude ..  `*Cuc ]
+[; ;main.c: 333: strcpy(dados_hora[contador_atual], rawhora());
 "333
-[e ( _strcpy (2 , &U *U + &U _dados_data * -> F3684 `ux -> * -> # *U &U *U &U _dados_data `ui -> -> 6 `i `ui `ux -> ( _rawdata ..  `*Cuc ]
+[e ( _strcpy (2 , &U *U + &U _dados_hora * -> F3684 `ux -> * -> # *U &U *U &U _dados_hora `ui -> -> 6 `i `ui `ux -> ( _rawhora ..  `*Cuc ]
+[; ;main.c: 334: strcpy(dados_data[contador_atual], rawdata());
 "334
+[e ( _strcpy (2 , &U *U + &U _dados_data * -> F3684 `ux -> * -> # *U &U *U &U _dados_data `ui -> -> 6 `i `ui `ux -> ( _rawdata ..  `*Cuc ]
+"335
 }
 [e :U 406 ]
-[; ;main.c: 334: }
-[; ;main.c: 335: contador_anterior = contador_atual;
-"335
-[e = F3685 F3684 ]
-[; ;main.c: 336: contador_atual++;
+[; ;main.c: 335: }
+[; ;main.c: 336: contador_anterior = contador_atual;
 "336
-[e ++ F3684 -> -> 1 `i `uc ]
+[e = F3685 F3684 ]
+[; ;main.c: 337: contador_atual++;
 "337
+[e ++ F3684 -> -> 1 `i `uc ]
+"338
 }
 [e :U 405 ]
-[; ;main.c: 337: }
 [; ;main.c: 338: }
-"338
+[; ;main.c: 339: }
+"339
 [e :UE 403 ]
 }
-"348
-[v _disparo_gravacao `(v ~T0 @X0 1 ef ]
 "349
+[v _disparo_gravacao `(v ~T0 @X0 1 ef ]
+"350
 {
-[; ;main.c: 348: void disparo_gravacao(void)
-[; ;main.c: 349: {
+[; ;main.c: 349: void disparo_gravacao(void)
+[; ;main.c: 350: {
 [e :U _disparo_gravacao ]
 [f ]
-"350
-[v _fix_gps `*uc ~T0 @X0 1 a ]
 "351
+[v _fix_gps `*uc ~T0 @X0 1 a ]
+"352
 [v _v_max `ui ~T0 @X0 1 a ]
 [v _index_max `ui ~T0 @X0 1 a ]
-"352
-[v _i `uc ~T0 @X0 1 a ]
-[; ;main.c: 350: unsigned char *fix_gps;
-[; ;main.c: 351: unsigned int v_max, index_max;
-[; ;main.c: 352: unsigned char i = 0;
-[e = _i -> -> 0 `i `uc ]
 "353
+[v _i `uc ~T0 @X0 1 a ]
+[; ;main.c: 351: unsigned char *fix_gps;
+[; ;main.c: 352: unsigned int v_max, index_max;
+[; ;main.c: 353: unsigned char i = 0;
+[e = _i -> -> 0 `i `uc ]
+"354
 [v _velocidade `*uc ~T0 @X0 -> 6 `i a ]
-[; ;main.c: 353: unsigned char *velocidade[6];
-[; ;main.c: 355: v_max = atoi(dados_vel[0]);
-"355
-[e = _v_max -> ( _atoi (1 -> *U + &U _dados_vel * -> -> -> 0 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux `*Cuc `ui ]
-[; ;main.c: 356: index_max = 0;
+[; ;main.c: 354: unsigned char *velocidade[6];
+[; ;main.c: 356: v_max = atoi(dados_vel[0]);
 "356
-[e = _index_max -> -> 0 `i `ui ]
-[; ;main.c: 357: if(!time_sd)
+[e = _v_max -> ( _atoi (1 -> *U + &U _dados_vel * -> -> -> 0 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux `*Cuc `ui ]
+[; ;main.c: 357: index_max = 0;
 "357
-[e $ ! ! != _time_sd -> -> 0 `i `ui 408  ]
-[; ;main.c: 358: {
+[e = _index_max -> -> 0 `i `ui ]
+[; ;main.c: 358: if(!time_sd)
 "358
-{
-[; ;main.c: 359: verifica_fence();
+[e $ ! ! != _time_sd -> -> 0 `i `ui 408  ]
+[; ;main.c: 359: {
 "359
-[e ( _verifica_fence ..  ]
-[; ;main.c: 360: fix_gps = fix();
+{
+[; ;main.c: 360: verifica_fence();
 "360
+[e ( _verifica_fence ..  ]
+[; ;main.c: 361: fix_gps = fix();
+"361
 [e = _fix_gps ( _fix ..  ]
-[; ;main.c: 362: if(*fix_gps == '1')
-"362
-[e $ ! == -> *U _fix_gps `ui -> 49 `ui 409  ]
-[; ;main.c: 363: {
+[; ;main.c: 363: if(*fix_gps == '1')
 "363
-{
-[; ;main.c: 364: if(v_max > 50)
+[e $ ! == -> *U _fix_gps `ui -> 49 `ui 409  ]
+[; ;main.c: 364: {
 "364
-[e $ ! > _v_max -> -> 50 `i `ui 410  ]
-[; ;main.c: 365: {
-"365
 {
-[; ;main.c: 366: for(i=1; i<3; i++)
+[; ;main.c: 365: if(v_max > 50)
+"365
+[e $ ! > _v_max -> -> 50 `i `ui 410  ]
+[; ;main.c: 366: {
 "366
+{
+[; ;main.c: 367: for(i=1; i<3; i++)
+"367
 {
 [e = _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 3 `i 411  ]
 [e $U 412  ]
-"367
-[e :U 411 ]
-[; ;main.c: 367: {
-{
-[; ;main.c: 368: if(v_max < atoi(dados_vel[i]))
 "368
-[e $ ! < _v_max -> ( _atoi (1 -> *U + &U _dados_vel * -> _i `ux -> -> # *U &U _dados_vel `ui `ux `*Cuc `ui 414  ]
-[; ;main.c: 369: {
-"369
+[e :U 411 ]
+[; ;main.c: 368: {
 {
-[; ;main.c: 370: v_max = atoi(dados_vel[i]);
+[; ;main.c: 369: if(v_max < atoi(dados_vel[i]))
+"369
+[e $ ! < _v_max -> ( _atoi (1 -> *U + &U _dados_vel * -> _i `ux -> -> # *U &U _dados_vel `ui `ux `*Cuc `ui 414  ]
+[; ;main.c: 370: {
 "370
-[e = _v_max -> ( _atoi (1 -> *U + &U _dados_vel * -> _i `ux -> -> # *U &U _dados_vel `ui `ux `*Cuc `ui ]
-[; ;main.c: 371: index_max = i;
+{
+[; ;main.c: 371: v_max = atoi(dados_vel[i]);
 "371
-[e = _index_max -> _i `ui ]
+[e = _v_max -> ( _atoi (1 -> *U + &U _dados_vel * -> _i `ux -> -> # *U &U _dados_vel `ui `ux `*Cuc `ui ]
+[; ;main.c: 372: index_max = i;
 "372
+[e = _index_max -> _i `ui ]
+"373
 }
 [e :U 414 ]
-"374
+"375
 }
-"366
+"367
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 3 `i 411  ]
 [e :U 412 ]
-"374
+"375
 }
-[; ;main.c: 372: }
-[; ;main.c: 374: }
-[; ;main.c: 376: monta_sd(0, dados_hora[index_max]);
-"376
-[e ( _monta_sd (2 , -> -> 0 `i `uc &U *U + &U _dados_hora * -> _index_max `ux -> * -> # *U &U *U &U _dados_hora `ui -> -> 6 `i `ui `ux ]
-[; ;main.c: 377: monta_sd(1, dados_data[index_max]);
+[; ;main.c: 373: }
+[; ;main.c: 375: }
+[; ;main.c: 377: monta_sd(0, dados_hora[index_max]);
 "377
-[e ( _monta_sd (2 , -> -> 1 `i `uc &U *U + &U _dados_data * -> _index_max `ux -> * -> # *U &U *U &U _dados_data `ui -> -> 6 `i `ui `ux ]
-[; ;main.c: 378: monta_sd(2, dados_lat[index_max]);
+[e ( _monta_sd (2 , -> -> 0 `i `uc &U *U + &U _dados_hora * -> _index_max `ux -> * -> # *U &U *U &U _dados_hora `ui -> -> 6 `i `ui `ux ]
+[; ;main.c: 378: monta_sd(1, dados_data[index_max]);
 "378
-[e ( _monta_sd (2 , -> -> 2 `i `uc &U *U + &U _dados_lat * -> _index_max `ux -> * -> # *U &U *U &U _dados_lat `ui -> -> 11 `i `ui `ux ]
-[; ;main.c: 379: monta_sd(3, dados_long[index_max]);
+[e ( _monta_sd (2 , -> -> 1 `i `uc &U *U + &U _dados_data * -> _index_max `ux -> * -> # *U &U *U &U _dados_data `ui -> -> 6 `i `ui `ux ]
+[; ;main.c: 379: monta_sd(2, dados_lat[index_max]);
 "379
-[e ( _monta_sd (2 , -> -> 3 `i `uc &U *U + &U _dados_long * -> _index_max `ux -> * -> # *U &U *U &U _dados_long `ui -> -> 12 `i `ui `ux ]
-[; ;main.c: 380: itoa(velocidade, dados_vel[index_max], 10);
+[e ( _monta_sd (2 , -> -> 2 `i `uc &U *U + &U _dados_lat * -> _index_max `ux -> * -> # *U &U *U &U _dados_lat `ui -> -> 11 `i `ui `ux ]
+[; ;main.c: 380: monta_sd(3, dados_long[index_max]);
 "380
-[e ( _itoa (3 , , -> &U _velocidade `*uc -> *U + &U _dados_vel * -> _index_max `ux -> -> # *U &U _dados_vel `ui `ux `i -> 10 `i ]
-[; ;main.c: 381: monta_sd(7, velocidade);
+[e ( _monta_sd (2 , -> -> 3 `i `uc &U *U + &U _dados_long * -> _index_max `ux -> * -> # *U &U *U &U _dados_long `ui -> -> 12 `i `ui `ux ]
+[; ;main.c: 381: itoa(velocidade, dados_vel[index_max], 10);
 "381
+[e ( _itoa (3 , , -> &U _velocidade `*uc -> *U + &U _dados_vel * -> _index_max `ux -> -> # *U &U _dados_vel `ui `ux `i -> 10 `i ]
+[; ;main.c: 382: monta_sd(7, velocidade);
+"382
 [e ( _monta_sd (2 , -> -> 7 `i `uc -> &U _velocidade `*uc ]
-[; ;main.c: 383: dados_vel[0] = 50;
-"383
-[e = *U + &U _dados_vel * -> -> -> 0 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
-[; ;main.c: 384: dados_vel[1] = 50;
+[; ;main.c: 384: dados_vel[0] = 50;
 "384
-[e = *U + &U _dados_vel * -> -> -> 1 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
-[; ;main.c: 385: dados_vel[2] = 50;
-"385
-[e = *U + &U _dados_vel * -> -> -> 2 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
-"386
-}
-[; ;main.c: 386: }
-[e $U 415  ]
-"387
-[e :U 410 ]
-[; ;main.c: 387: else
-[; ;main.c: 388: {
-"388
-{
-[; ;main.c: 389: dados_vel[0] = 50;
-"389
 [e = *U + &U _dados_vel * -> -> -> 0 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
-[; ;main.c: 390: dados_vel[1] = 50;
-"390
+[; ;main.c: 385: dados_vel[1] = 50;
+"385
 [e = *U + &U _dados_vel * -> -> -> 1 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
-[; ;main.c: 391: dados_vel[2] = 50;
-"391
+[; ;main.c: 386: dados_vel[2] = 50;
+"386
 [e = *U + &U _dados_vel * -> -> -> 2 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
-[; ;main.c: 392: recebe_dado_gps();
+"387
+}
+[; ;main.c: 387: }
+[e $U 415  ]
+"388
+[e :U 410 ]
+[; ;main.c: 388: else
+[; ;main.c: 389: {
+"389
+{
+[; ;main.c: 390: dados_vel[0] = 50;
+"390
+[e = *U + &U _dados_vel * -> -> -> 0 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
+[; ;main.c: 391: dados_vel[1] = 50;
+"391
+[e = *U + &U _dados_vel * -> -> -> 1 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
+[; ;main.c: 392: dados_vel[2] = 50;
 "392
-[e ( _recebe_dado_gps ..  ]
-[; ;main.c: 393: dados_gps_to_sd();
+[e = *U + &U _dados_vel * -> -> -> 2 `i `ui `ux -> -> # *U &U _dados_vel `ui `ux -> -> 50 `i `ui ]
+[; ;main.c: 393: recebe_dado_gps();
 "393
-[e ( _dados_gps_to_sd ..  ]
+[e ( _recebe_dado_gps ..  ]
+[; ;main.c: 394: dados_gps_to_sd();
 "394
+[e ( _dados_gps_to_sd ..  ]
+"395
 }
 [e :U 415 ]
-[; ;main.c: 394: }
-[; ;main.c: 395: grava_sd();
-"395
-[e ( _grava_sd ..  ]
+[; ;main.c: 395: }
+[; ;main.c: 396: grava_sd();
 "396
+[e ( _grava_sd ..  ]
+"397
 }
 [e :U 409 ]
-[; ;main.c: 396: }
-[; ;main.c: 397: time_sd = 28000;
-"397
-[e = _time_sd -> -> 28000 `i `ui ]
+[; ;main.c: 397: }
+[; ;main.c: 398: time_sd = 28000;
 "398
+[e = _time_sd -> -> 28000 `i `ui ]
+"399
 }
 [e :U 408 ]
-[; ;main.c: 398: }
 [; ;main.c: 399: }
-"399
+[; ;main.c: 400: }
+"400
 [e :UE 407 ]
 }
-"409
-[v _troca_de_tela `(v ~T0 @X0 1 ef ]
 "410
+[v _troca_de_tela `(v ~T0 @X0 1 ef ]
+"411
 {
-[; ;main.c: 409: void troca_de_tela(void)
-[; ;main.c: 410: {
+[; ;main.c: 410: void troca_de_tela(void)
+[; ;main.c: 411: {
 [e :U _troca_de_tela ]
 [f ]
-"411
+"412
 [v F3696 `uc ~T0 @X0 1 s state ]
 [i F3696
 -> -> 0 `i `uc
 ]
-"412
+"413
 [v F3697 `uc ~T0 @X0 1 s last_state ]
 [i F3697
 -> -> 0 `i `uc
 ]
-"413
+"414
 [v _fix_signal `*uc ~T0 @X0 1 a ]
-[; ;main.c: 411: static unsigned char state = 0;
-[; ;main.c: 412: static unsigned char last_state = 0;
-[; ;main.c: 413: unsigned char *fix_signal;
-[; ;main.c: 415: if(!PORTEbits.RE0 || (state == 1 ))
-"415
-[e $ ! || ! != -> . . _PORTEbits 0 0 `i -> -> -> 0 `i `Vuc `i == -> F3696 `i -> 1 `i 417  ]
-[; ;main.c: 416: {
+[; ;main.c: 412: static unsigned char state = 0;
+[; ;main.c: 413: static unsigned char last_state = 0;
+[; ;main.c: 414: unsigned char *fix_signal;
+[; ;main.c: 416: if(!PORTEbits.RE0 || (state == 1 ))
 "416
+[e $ ! || ! != -> . . _PORTEbits 0 0 `i -> -> -> 0 `i `Vuc `i == -> F3696 `i -> 1 `i 417  ]
+[; ;main.c: 417: {
+"417
 {
-[; ;main.c: 418: if(!time_atualizacao)
-"418
-[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 418  ]
-[; ;main.c: 419: {
+[; ;main.c: 419: if(!time_atualizacao)
 "419
-{
-[; ;main.c: 420: if(!fence_flag[2].point)
+[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 418  ]
+[; ;main.c: 420: {
 "420
-[e $ ! ! != -> . *U + &U _fence_flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 419  ]
-[; ;main.c: 421: {
+{
+[; ;main.c: 421: if(!fence_flag[2].point)
 "421
-{
-[; ;main.c: 422: posicao_cursor_lcd(1,8);
+[e $ ! ! != -> . *U + &U _fence_flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 419  ]
+[; ;main.c: 422: {
 "422
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 423: escreve_frase_ram_lcd("DENTRO");
-"423
-[e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
-"424
-}
-[; ;main.c: 424: }
-[e $U 420  ]
-"425
-[e :U 419 ]
-[; ;main.c: 425: else
-[; ;main.c: 426: {
-"426
 {
-[; ;main.c: 427: posicao_cursor_lcd(1,8);
-"427
+[; ;main.c: 423: posicao_cursor_lcd(1,8);
+"423
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 428: escreve_frase_ram_lcd("FORA ");
+[; ;main.c: 424: escreve_frase_ram_lcd("DENTRO");
+"424
+[e ( _escreve_frase_ram_lcd (1 -> :s 4C `*uc ]
+"425
+}
+[; ;main.c: 425: }
+[e $U 420  ]
+"426
+[e :U 419 ]
+[; ;main.c: 426: else
+[; ;main.c: 427: {
+"427
+{
+[; ;main.c: 428: posicao_cursor_lcd(1,8);
 "428
-[e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
-[; ;main.c: 429: posicao_cursor_lcd(1,13);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
+[; ;main.c: 429: escreve_frase_ram_lcd("FORA ");
 "429
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 13 `i `uc ]
-[; ;main.c: 430: escreve_inteiro_lcd(fence_flag[0].point);
+[e ( _escreve_frase_ram_lcd (1 -> :s 5C `*uc ]
+[; ;main.c: 430: posicao_cursor_lcd(1,13);
 "430
-[e ( _escreve_inteiro_lcd (1 -> . *U + &U _fence_flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `l ]
-[; ;main.c: 431: posicao_cursor_lcd(1,14);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 13 `i `uc ]
+[; ;main.c: 431: escreve_inteiro_lcd(fence_flag[0].point);
 "431
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
-[; ;main.c: 432: escreve_frase_ram_lcd("|");
+[e ( _escreve_inteiro_lcd (1 -> . *U + &U _fence_flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `l ]
+[; ;main.c: 432: posicao_cursor_lcd(1,14);
 "432
-[e ( _escreve_frase_ram_lcd (1 -> :s 6C `*uc ]
-[; ;main.c: 433: posicao_cursor_lcd(1,15);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
+[; ;main.c: 433: escreve_frase_ram_lcd("|");
 "433
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 15 `i `uc ]
-[; ;main.c: 434: escreve_inteiro_lcd(fence_flag[1].point);
+[e ( _escreve_frase_ram_lcd (1 -> :s 6C `*uc ]
+[; ;main.c: 434: posicao_cursor_lcd(1,15);
 "434
-[e ( _escreve_inteiro_lcd (1 -> . *U + &U _fence_flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `l ]
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 15 `i `uc ]
+[; ;main.c: 435: escreve_inteiro_lcd(fence_flag[1].point);
 "435
+[e ( _escreve_inteiro_lcd (1 -> . *U + &U _fence_flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `l ]
+"436
 }
 [e :U 420 ]
-[; ;main.c: 435: }
-[; ;main.c: 437: fix_signal = fix();
-"437
-[e = _fix_signal ( _fix ..  ]
-[; ;main.c: 438: posicao_cursor_lcd(2,8);
+[; ;main.c: 436: }
+[; ;main.c: 438: fix_signal = fix();
 "438
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 439: escreve_caractere_lcd(fix_signal[0]);
+[e = _fix_signal ( _fix ..  ]
+[; ;main.c: 439: posicao_cursor_lcd(2,8);
 "439
-[e ( _escreve_caractere_lcd (1 *U + _fix_signal * -> -> 0 `i `x -> -> # *U _fix_signal `i `x ]
-[; ;main.c: 440: time_atualizacao = 10000;
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 8 `i `uc ]
+[; ;main.c: 440: escreve_caractere_lcd(fix_signal[0]);
 "440
-[e = _time_atualizacao -> -> 10000 `i `ui ]
+[e ( _escreve_caractere_lcd (1 *U + _fix_signal * -> -> 0 `i `x -> -> # *U _fix_signal `i `x ]
+[; ;main.c: 441: time_atualizacao = 10000;
 "441
+[e = _time_atualizacao -> -> 10000 `i `ui ]
+"442
 }
 [e :U 418 ]
-[; ;main.c: 441: }
-[; ;main.c: 443: if(last_state != 1)
-"443
-[e $ ! != -> F3697 `i -> 1 `i 421  ]
-[; ;main.c: 444: {
+[; ;main.c: 442: }
+[; ;main.c: 444: if(last_state != 1)
 "444
-{
-[; ;main.c: 445: state = 1;
+[e $ ! != -> F3697 `i -> 1 `i 421  ]
+[; ;main.c: 445: {
 "445
-[e = F3696 -> -> 1 `i `uc ]
-[; ;main.c: 446: escreve_cmd_lcd(0b00000001);
+{
+[; ;main.c: 446: state = 1;
 "446
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 447: posicao_cursor_lcd(1,0);
+[e = F3696 -> -> 1 `i `uc ]
+[; ;main.c: 447: escreve_cmd_lcd(0b00000001);
 "447
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 448: escreve_frase_ram_lcd("FENCE:");
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 448: posicao_cursor_lcd(1,0);
 "448
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 449: escreve_frase_ram_lcd("FENCE:");
+"449
 [e ( _escreve_frase_ram_lcd (1 -> :s 7C `*uc ]
-[; ;main.c: 450: if(!fence_flag[2].point)
-"450
-[e $ ! ! != -> . *U + &U _fence_flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 422  ]
-[; ;main.c: 451: {
+[; ;main.c: 451: if(!fence_flag[2].point)
 "451
-{
-[; ;main.c: 452: posicao_cursor_lcd(1,8);
+[e $ ! ! != -> . *U + &U _fence_flag * -> -> -> 2 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `i -> -> -> 0 `i `uc `i 422  ]
+[; ;main.c: 452: {
 "452
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 453: escreve_frase_ram_lcd("DENTRO");
-"453
-[e ( _escreve_frase_ram_lcd (1 -> :s 8C `*uc ]
-"454
-}
-[; ;main.c: 454: }
-[e $U 423  ]
-"455
-[e :U 422 ]
-[; ;main.c: 455: else
-[; ;main.c: 456: {
-"456
 {
-[; ;main.c: 457: posicao_cursor_lcd(1,8);
-"457
+[; ;main.c: 453: posicao_cursor_lcd(1,8);
+"453
 [e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 458: escreve_frase_ram_lcd("FORA ");
+[; ;main.c: 454: escreve_frase_ram_lcd("DENTRO");
+"454
+[e ( _escreve_frase_ram_lcd (1 -> :s 8C `*uc ]
+"455
+}
+[; ;main.c: 455: }
+[e $U 423  ]
+"456
+[e :U 422 ]
+[; ;main.c: 456: else
+[; ;main.c: 457: {
+"457
+{
+[; ;main.c: 458: posicao_cursor_lcd(1,8);
 "458
-[e ( _escreve_frase_ram_lcd (1 -> :s 9C `*uc ]
-[; ;main.c: 459: posicao_cursor_lcd(1,13);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
+[; ;main.c: 459: escreve_frase_ram_lcd("FORA ");
 "459
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 13 `i `uc ]
-[; ;main.c: 460: escreve_inteiro_lcd(fence_flag[0].point);
+[e ( _escreve_frase_ram_lcd (1 -> :s 9C `*uc ]
+[; ;main.c: 460: posicao_cursor_lcd(1,13);
 "460
-[e ( _escreve_inteiro_lcd (1 -> . *U + &U _fence_flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `l ]
-[; ;main.c: 461: posicao_cursor_lcd(1,14);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 13 `i `uc ]
+[; ;main.c: 461: escreve_inteiro_lcd(fence_flag[0].point);
 "461
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
-[; ;main.c: 462: escreve_frase_ram_lcd("|");
+[e ( _escreve_inteiro_lcd (1 -> . *U + &U _fence_flag * -> -> -> 0 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `l ]
+[; ;main.c: 462: posicao_cursor_lcd(1,14);
 "462
-[e ( _escreve_frase_ram_lcd (1 -> :s 10C `*uc ]
-[; ;main.c: 463: posicao_cursor_lcd(1,15);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 14 `i `uc ]
+[; ;main.c: 463: escreve_frase_ram_lcd("|");
 "463
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 15 `i `uc ]
-[; ;main.c: 464: escreve_inteiro_lcd(fence_flag[1].point);
+[e ( _escreve_frase_ram_lcd (1 -> :s 10C `*uc ]
+[; ;main.c: 464: posicao_cursor_lcd(1,15);
 "464
-[e ( _escreve_inteiro_lcd (1 -> . *U + &U _fence_flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `l ]
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 15 `i `uc ]
+[; ;main.c: 465: escreve_inteiro_lcd(fence_flag[1].point);
 "465
+[e ( _escreve_inteiro_lcd (1 -> . *U + &U _fence_flag * -> -> -> 1 `i `ui `ux -> -> # *U &U _fence_flag `ui `ux 0 `l ]
+"466
 }
 [e :U 423 ]
-[; ;main.c: 465: }
-[; ;main.c: 466: fix_signal = fix();
-"466
-[e = _fix_signal ( _fix ..  ]
-[; ;main.c: 467: posicao_cursor_lcd(2,0);
+[; ;main.c: 466: }
+[; ;main.c: 467: fix_signal = fix();
 "467
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 468: escreve_frase_ram_lcd("FIX:");
+[e = _fix_signal ( _fix ..  ]
+[; ;main.c: 468: posicao_cursor_lcd(2,0);
 "468
-[e ( _escreve_frase_ram_lcd (1 -> :s 11C `*uc ]
-[; ;main.c: 469: posicao_cursor_lcd(2,8);
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 469: escreve_frase_ram_lcd("FIX:");
 "469
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 8 `i `uc ]
-[; ;main.c: 470: escreve_caractere_lcd(fix_signal[0]);
+[e ( _escreve_frase_ram_lcd (1 -> :s 11C `*uc ]
+[; ;main.c: 470: posicao_cursor_lcd(2,8);
 "470
-[e ( _escreve_caractere_lcd (1 *U + _fix_signal * -> -> 0 `i `x -> -> # *U _fix_signal `i `x ]
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 8 `i `uc ]
+[; ;main.c: 471: escreve_caractere_lcd(fix_signal[0]);
 "471
+[e ( _escreve_caractere_lcd (1 *U + _fix_signal * -> -> 0 `i `x -> -> # *U _fix_signal `i `x ]
+"472
 }
 [e :U 421 ]
-[; ;main.c: 471: }
-[; ;main.c: 472: last_state = 1;
-"472
+[; ;main.c: 472: }
+[; ;main.c: 473: last_state = 1;
+"473
 [e = F3697 -> -> 1 `i `uc ]
-"474
+"475
 }
 [e :U 417 ]
-[; ;main.c: 474: }
-[; ;main.c: 484: if(!PORTEbits.RE1 || (state == 2))
-"484
-[e $ ! || ! != -> . . _PORTEbits 0 1 `i -> -> -> 0 `i `Vuc `i == -> F3696 `i -> 2 `i 424  ]
-[; ;main.c: 485: {
+[; ;main.c: 475: }
+[; ;main.c: 485: if(!PORTEbits.RE1 || (state == 2))
 "485
-{
-[; ;main.c: 486: if(!time_atualizacao)
+[e $ ! || ! != -> . . _PORTEbits 0 1 `i -> -> -> 0 `i `Vuc `i == -> F3696 `i -> 2 `i 424  ]
+[; ;main.c: 486: {
 "486
-[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 425  ]
-[; ;main.c: 487: {
-"487
 {
-[; ;main.c: 488: recebe_dado_gps();
+[; ;main.c: 487: if(!time_atualizacao)
+"487
+[e $ ! ! != _time_atualizacao -> -> 0 `i `ui 425  ]
+[; ;main.c: 488: {
 "488
-[e ( _recebe_dado_gps ..  ]
-[; ;main.c: 489: mostra_dados_display();
+{
+[; ;main.c: 489: recebe_dado_gps();
 "489
-[e ( _mostra_dados_display ..  ]
-[; ;main.c: 490: time_atualizacao = 2000;
+[e ( _recebe_dado_gps ..  ]
+[; ;main.c: 490: mostra_dados_display();
 "490
-[e = _time_atualizacao -> -> 2000 `i `ui ]
+[e ( _mostra_dados_display ..  ]
+[; ;main.c: 491: time_atualizacao = 2000;
 "491
+[e = _time_atualizacao -> -> 2000 `i `ui ]
+"492
 }
 [e :U 425 ]
-[; ;main.c: 491: }
-[; ;main.c: 494: if(last_state != 2)
-"494
-[e $ ! != -> F3697 `i -> 2 `i 426  ]
-[; ;main.c: 495: {
+[; ;main.c: 492: }
+[; ;main.c: 495: if(last_state != 2)
 "495
-{
-[; ;main.c: 496: state = 2;
+[e $ ! != -> F3697 `i -> 2 `i 426  ]
+[; ;main.c: 496: {
 "496
-[e = F3696 -> -> 2 `i `uc ]
-[; ;main.c: 497: escreve_cmd_lcd(0b00000001);
+{
+[; ;main.c: 497: state = 2;
 "497
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 498: posicao_cursor_lcd(1,0);
+[e = F3696 -> -> 2 `i `uc ]
+[; ;main.c: 498: escreve_cmd_lcd(0b00000001);
 "498
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 499: escreve_frase_ram_lcd("lt:");
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 499: posicao_cursor_lcd(1,0);
 "499
-[e ( _escreve_frase_ram_lcd (1 -> :s 12C `*uc ]
-[; ;main.c: 500: posicao_cursor_lcd(2,0);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 500: escreve_frase_ram_lcd("lt:");
 "500
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 501: escreve_frase_ram_lcd("lo:");
+[e ( _escreve_frase_ram_lcd (1 -> :s 12C `*uc ]
+[; ;main.c: 501: posicao_cursor_lcd(2,0);
 "501
-[e ( _escreve_frase_ram_lcd (1 -> :s 13C `*uc ]
-[; ;main.c: 502: recebe_dado_gps();
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 502: escreve_frase_ram_lcd("lo:");
 "502
-[e ( _recebe_dado_gps ..  ]
-[; ;main.c: 503: mostra_dados_display();
+[e ( _escreve_frase_ram_lcd (1 -> :s 13C `*uc ]
+[; ;main.c: 503: recebe_dado_gps();
 "503
-[e ( _mostra_dados_display ..  ]
+[e ( _recebe_dado_gps ..  ]
+[; ;main.c: 504: mostra_dados_display();
 "504
+[e ( _mostra_dados_display ..  ]
+"505
 }
 [e :U 426 ]
-[; ;main.c: 504: }
-[; ;main.c: 505: last_state = 2;
-"505
-[e = F3697 -> -> 2 `i `uc ]
+[; ;main.c: 505: }
+[; ;main.c: 506: last_state = 2;
 "506
+[e = F3697 -> -> 2 `i `uc ]
+"507
 }
 [e :U 424 ]
-[; ;main.c: 506: }
-[; ;main.c: 511: if(!state)
-"511
-[e $ ! ! != -> F3696 `i -> -> -> 0 `i `uc `i 427  ]
-[; ;main.c: 512: {
+[; ;main.c: 507: }
+[; ;main.c: 512: if(!state)
 "512
-{
-[; ;main.c: 513: if(last_state != 4)
+[e $ ! ! != -> F3696 `i -> -> -> 0 `i `uc `i 427  ]
+[; ;main.c: 513: {
 "513
-[e $ ! != -> F3697 `i -> 4 `i 428  ]
-[; ;main.c: 514: {
-"514
 {
-[; ;main.c: 515: escreve_cmd_lcd(0b00000001);
+[; ;main.c: 514: if(last_state != 4)
+"514
+[e $ ! != -> F3697 `i -> 4 `i 428  ]
+[; ;main.c: 515: {
 "515
-[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
-[; ;main.c: 516: posicao_cursor_lcd(1,0);
+{
+[; ;main.c: 516: escreve_cmd_lcd(0b00000001);
 "516
-[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 517: escreve_frase_ram_lcd("B1:FENCE");
+[e ( _escreve_cmd_lcd (1 -> -> 1 `i `uc ]
+[; ;main.c: 517: posicao_cursor_lcd(1,0);
 "517
-[e ( _escreve_frase_ram_lcd (1 -> :s 14C `*uc ]
-[; ;main.c: 518: posicao_cursor_lcd(2,0);
+[e ( _posicao_cursor_lcd (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 518: escreve_frase_ram_lcd("B1:FENCE");
 "518
-[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 519: escreve_frase_ram_lcd("B2:LTLO");
+[e ( _escreve_frase_ram_lcd (1 -> :s 14C `*uc ]
+[; ;main.c: 519: posicao_cursor_lcd(2,0);
 "519
+[e ( _posicao_cursor_lcd (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+[; ;main.c: 520: escreve_frase_ram_lcd("B2:LTLO");
+"520
 [e ( _escreve_frase_ram_lcd (1 -> :s 15C `*uc ]
-"521
+"522
 }
 [e :U 428 ]
-[; ;main.c: 521: }
-[; ;main.c: 522: last_state = 4;
-"522
-[e = F3697 -> -> 4 `i `uc ]
+[; ;main.c: 522: }
+[; ;main.c: 523: last_state = 4;
 "523
+[e = F3697 -> -> 4 `i `uc ]
+"524
 }
 [e :U 427 ]
-[; ;main.c: 523: }
 [; ;main.c: 524: }
-"524
+[; ;main.c: 525: }
+"525
 [e :UE 416 ]
 }
-"534
-[v _grava_sd `(v ~T0 @X0 1 ef ]
 "535
+[v _grava_sd `(v ~T0 @X0 1 ef ]
+"536
 {
-[; ;main.c: 534: void grava_sd(void)
-[; ;main.c: 535: {
+[; ;main.c: 535: void grava_sd(void)
+[; ;main.c: 536: {
 [e :U _grava_sd ]
 [f ]
-[; ;main.c: 536: PORTBbits.RB3 = 0;
-"536
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 537: desliga_uart();
+[; ;main.c: 537: PORTBbits.RB3 = 0;
 "537
-[e ( _desliga_uart ..  ]
-[; ;main.c: 538: inicializa_SPI();
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+[; ;main.c: 538: desliga_uart();
 "538
-[e ( _inicializa_SPI ..  ]
-[; ;main.c: 539: escrita_sdcard();
+[e ( _desliga_uart ..  ]
+[; ;main.c: 539: inicializa_SPI();
 "539
-[e ( _escrita_sdcard ..  ]
-[; ;main.c: 540: desliga_SPI();
+[e ( _inicializa_SPI ..  ]
+[; ;main.c: 540: escrita_sdcard();
 "540
-[e ( _desliga_SPI ..  ]
-[; ;main.c: 541: inicializa_uart();
+[e ( _escrita_sdcard ..  ]
+[; ;main.c: 541: desliga_SPI();
 "541
-[e ( _inicializa_uart ..  ]
-[; ;main.c: 542: PORTBbits.RB3 = 1;
+[e ( _desliga_SPI ..  ]
+[; ;main.c: 542: inicializa_uart();
 "542
-[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 543: }
+[e ( _inicializa_uart ..  ]
+[; ;main.c: 543: PORTBbits.RB3 = 1;
 "543
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 544: }
+"544
 [e :UE 429 ]
 }
-"553
-[v _recebe_dado_gps `(v ~T0 @X0 1 ef ]
 "554
+[v _recebe_dado_gps `(v ~T0 @X0 1 ef ]
+"555
 {
-[; ;main.c: 553: void recebe_dado_gps(void)
-[; ;main.c: 554: {
+[; ;main.c: 554: void recebe_dado_gps(void)
+[; ;main.c: 555: {
 [e :U _recebe_dado_gps ]
 [f ]
-"555
-[v _flag_recebe `uc ~T0 @X0 1 a ]
-[; ;main.c: 555: unsigned char flag_recebe = 0;
-[e = _flag_recebe -> -> 0 `i `uc ]
 "556
-[v _timeout `uc ~T0 @X0 1 a ]
-[; ;main.c: 556: unsigned char timeout = 10;
-[e = _timeout -> -> 10 `i `uc ]
-[; ;main.c: 557: while(!flag_recebe && timeout>0)
+[v _flag_recebe `uc ~T0 @X0 1 a ]
+[; ;main.c: 556: unsigned char flag_recebe = 0;
+[e = _flag_recebe -> -> 0 `i `uc ]
 "557
+[v _timeout `uc ~T0 @X0 1 a ]
+[; ;main.c: 557: unsigned char timeout = 10;
+[e = _timeout -> -> 10 `i `uc ]
+[; ;main.c: 558: while(!flag_recebe && timeout>0)
+"558
 [e $U 431  ]
 [e :U 432 ]
-[; ;main.c: 558: {
-"558
-{
-[; ;main.c: 559: flag_recebe = verifica_recep_gps();
+[; ;main.c: 559: {
 "559
-[e = _flag_recebe ( _verifica_recep_gps ..  ]
-[; ;main.c: 560: timeout--;
+{
+[; ;main.c: 560: flag_recebe = verifica_recep_gps();
 "560
-[e -- _timeout -> -> 1 `i `uc ]
+[e = _flag_recebe ( _verifica_recep_gps ..  ]
+[; ;main.c: 561: timeout--;
 "561
+[e -- _timeout -> -> 1 `i `uc ]
+"562
 }
 [e :U 431 ]
-"557
+"558
 [e $ && ! != -> _flag_recebe `i -> -> -> 0 `i `uc `i > -> _timeout `i -> 0 `i 432  ]
 [e :U 433 ]
-[; ;main.c: 561: }
 [; ;main.c: 562: }
-"562
+[; ;main.c: 563: }
+"563
 [e :UE 430 ]
 }
 [a 6C 124 0 ]
