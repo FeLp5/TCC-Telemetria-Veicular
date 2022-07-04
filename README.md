@@ -18,4 +18,4 @@
 <p>Código da Interface Gráfica desenvolvida em Python v2.7</p>
 <p>Biblioteca wx.Phyton, MatPlotLib</p>
 <p>API's Tom Tom e Google*</p>
-<p style='font: 8px/10px Arial'>* Necessário obtenção de credenciais das API's para funcionamento do programa</p>
+<p style='font: 6px/8px Arial'>* Necessário obtenção de credenciais das API's para funcionamento do programa</p>
