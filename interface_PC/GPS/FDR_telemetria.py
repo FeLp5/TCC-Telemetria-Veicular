@@ -3,13 +3,11 @@
 
 import wx, os, re, datetime, time, threading
 
-
 #importando as classes em python
-# from mapa import Mapa 
 from mapa import Mapa 
 from arquivos import Painel_arquivos
-from grafico_a import Painel_grafico_A
-from grafico_b import Mapa_fence
+from grafico import Painel_grafico
+from mapa_fence import Mapa_fence
 from infos import Painel_infos
 from relatorio import Relatorio
 from inf_direito import Painel_inferior_direito
@@ -17,6 +15,15 @@ import vars
 
 class Painel(wx.Frame):
     def __init__(self, parent, id, title, flag ):
+        
+        print ("\n ####### FDR TELEMETRIA V0.1 #######")
+        print (" #######  FATEC SANTO ANDRÉ  #######\n") # imprimindo no terminal apenas estético
+
+        # informando que as credenciais das apis precisam ser definidas para uso desta interface
+        if vars.api_key == " " or vars.secret_key == " " or vars.api_key_tom == " ":
+             wx.LogMessage("Para a utilização desta interface é\nnecessário inserir as credenciais das\nAPI's Tom Tom e Google no\narquivo vars.py")
+        
+        
         super(Painel, self).__init__(parent, title=title, size = vars.size_window)
 
         self.Centre()
@@ -25,7 +32,6 @@ class Painel(wx.Frame):
         border = 1 # tamanho da borda da frame
         font = wx.SystemSettings.GetFont(wx.SYS_SYSTEM_FONT)
         font.SetPointSize(9)
-        
 
         panel.SetBackgroundColour(vars.cor_fundo)
         vbox = wx.BoxSizer(wx.VERTICAL)
@@ -35,12 +41,8 @@ class Painel(wx.Frame):
 
         pn_se = Painel_arquivos(panel) # painel superior esquerdo
         pn_se.SetBackgroundColour('')
-        
         pn_se.mostrar_botoes(0, vars.titulo_bt, "", "") # chamando o metodo mostrar botoes
         
-        # abre a janela para selecionar um arquivo
-
-  
         def botao_sdcard(self):
              pn_se.abrir_diretorio(self)
              status_botoes(self)
@@ -51,12 +53,7 @@ class Painel(wx.Frame):
 
         def abrir_relatorio(self):
             if vars.query == 0:
-                
-                # print("acessado")
                 vars.requisicoes = []
-                
-                
-                # pn_se.request_ruas()
                 thread = threading.Thread(target = pn_se.request_ruas)
                 thread.start()
                 
@@ -64,18 +61,14 @@ class Painel(wx.Frame):
         
         def abrir_grafico_velocidades(self):
             if vars.query == 0:
-                
-                # print("acessado")
                 vars.requisicoes = []
-                
                 thread = threading.Thread(target = pn_se.request_ruas)
                 thread.start()
                 
             pn_id.show_panel_two()
         
         def acao_botao_recente(Event, num_botao): # para mostrar qual botão foi selecionado
-            # print("NUM" , num_botao)
-            
+
             if num_botao == -1:
                 pn_se.botao0.SetBackgroundColour("")
                 pn_se.botao1.SetBackgroundColour("")
@@ -117,16 +110,17 @@ class Painel(wx.Frame):
         pn_sd = wx.Panel(panel) #painel superior direito
         pn_sd.SetBackgroundColour('')
         
-        pn_ie = wx.Panel(panel) #painel inferior esquerdo
+        pn_ie = wx.Panel(panel) #painel inferior direito
         pn_ie.SetBackgroundColour('')
         
-        pn_id = Painel_inferior_direito(panel) #painel inferior direito
+        pn_id = Painel_inferior_direito(panel) #painel inferior esquerdo
         pn_id.SetBackgroundColour('')
         
         botao_grafico = wx.Button(pn_ie, wx.NewId(), "  Gráfico Velocidade", (10, 46 ), (160,24))
         botao_graficoRPM = wx.Button(pn_ie, wx.NewId(), "Fence", (10,80), (160,24))
         botao_mapa = wx.Button(pn_ie, wx.NewId(), "Rota", (10, 114 ), (160,24))
         botao_relatorio = wx.Button(pn_ie, wx.NewId(), "Relatório", (10, 148), (160,24))
+        
         #ações botões
         botao_grafico.Bind(wx.EVT_BUTTON, abrir_grafico_velocidades)
         botao_graficoRPM.Bind(wx.EVT_BUTTON, pn_id.show_panel_tres)
@@ -138,12 +132,14 @@ class Painel(wx.Frame):
         # Menu Arquivo
         menuOpen = filemenu.Append(wx.ID_OPEN, "&Selecionar o SDCard","Selecionar o SDCard")
         menuExit = filemenu.Append(wx.ID_EXIT,"S&air"," Fechar o programa")
+        
         # Menu Visualizar
         visualizar = wx.Menu()
         g_velocidades = visualizar.Append(wx.ID_ANY, "&Gráfico Velocidades")
         g_rotacoes = visualizar.Append(wx.ID_ANY, "&Fence")
         g_mapa = visualizar.Append(wx.ID_ANY, "&Rota")
         relatorio = visualizar.Append(wx.ID_ANY, "&Relatório")
+        
         # Menu Ajuda
         ajuda_menu = wx.Menu()
         ajuda = ajuda_menu.Append(wx.ID_ANY, "&Ajuda")
@@ -200,13 +196,11 @@ class Painel(wx.Frame):
                     return    
                 # carregando o arquivo selecionado
                 pathname = fileDialog.GetPath()
-                # vars.iniciado 
-    
+
                 try:
                     with open(pathname, 'r') as file:
                         lines = file.readlines()
                         self.lines = lines
-                        
 
                 except IOError:
                     wx.LogError("Não foi possível abrir o arquivo '%s'." % newfile)
@@ -222,11 +216,8 @@ class Painel(wx.Frame):
                     
                 except AttributeError:
                     pass
-                    
 
                 vars.data_arquivo = datetime.datetime.fromtimestamp(float(datam)).strftime('%d/%m/%Y')
-                # print "DATA x ", vars.data_arquivo
-                 
                 status_botoes(self)
                 acao_botao_recente(self, -1) # apagando os destaques dos botões
                 
@@ -248,8 +239,6 @@ class Painel(wx.Frame):
         hbox2.Add(pn_id, 2, wx.ALL | wx.EXPAND, border)
         panel.SetSizer(vbox)
             
- 
-            
         # Eventos dos botões da barra de menus
         self.Bind(wx.EVT_MENU, botao_sdcard, menuOpen)
         self.Bind(wx.EVT_MENU, self.sair, menuExit)
@@ -258,9 +247,6 @@ class Painel(wx.Frame):
         self.Bind(wx.EVT_MENU, pn_id.show_panel_tres, g_rotacoes)
         self.Bind(wx.EVT_MENU, pn_id.show_panel_four, g_mapa)
         self.Bind(wx.EVT_MENU, abrir_relatorio, relatorio)
-        
-        
-
 
         #logos
         imageFile = 'imagens/logo_fatec.png'
@@ -276,7 +262,6 @@ class Painel(wx.Frame):
 
     def sair(self,e):
         self.Close(True)  # Fecha o programa
-
 
         
 def main():

@@ -1,8 +1,8 @@
 # encoding: utf-8
 import wx, time
 from mapa import Mapa
-from grafico_a import Painel_grafico_A
-from grafico_b import Mapa_fence
+from grafico import Painel_grafico
+from mapa_fence import Mapa_fence
 from relatorio import Relatorio
 import vars
 
@@ -25,7 +25,7 @@ class Painel_inferior_direito(wx.Panel):
         self.panel_um = Painel_Branco(self)
         self.sizer.Add(self.panel_um, 1, wx.EXPAND)
 
-        self.panel_dois = Painel_grafico_A(self)
+        self.panel_dois = Painel_grafico(self)
         self.sizer.Add(self.panel_dois, 1, wx.EXPAND)
 
         self.panel_tres = Mapa_fence(self)
@@ -55,10 +55,6 @@ class Painel_inferior_direito(wx.Panel):
     def show_panel_two(self):
         self.panel_um.Hide()
         self.panel_dois.esconde_grafico()# self.painel_dois.Destroy()
-        
-        # self.panel_dois = Painel_grafico_A(self)
-        # self.sizer.Add(self.panel_dois, 1, wx.EXPAND)
-        print "VARS QUERY", vars.query
         
         if vars.query == 0:
             self.panel_dois.atualiza()
@@ -92,7 +88,6 @@ class Painel_inferior_direito(wx.Panel):
         
 
     def show_panel_five(self):
-        # print("<<<<<")
         self.panel_um.Hide()
         self.panel_dois.Hide()
         self.panel_tres.Hide()

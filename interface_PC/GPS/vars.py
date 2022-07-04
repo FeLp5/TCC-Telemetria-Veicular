@@ -9,16 +9,12 @@ t_x, t_y = size_window
 
 cor_botoes = ""
 cor_botoes_ativos = "#BABABA"
-# tema = ("", "", "")
-cor_fundo = "#CECECE"
+cor_fundo = ""
 
 #flags
 flag_iniciar = 0
 criou_botoes = 0
 arquivo_aberto = 0
-# iniciado = 0
-# mudanca = 0
-
 
 #vetores
 vetor_velocidade = [] 
@@ -28,7 +24,6 @@ vetor_dtc = []
 vetor_rpm = []
 vetor_tempo = []
 vetor_fence = []
-
 
 #dados coletados
 nome_arquivo = ''
@@ -47,14 +42,11 @@ dtc = '--'
 hora_inicio = ''
 data_arquivo = ''
 
-
 VIN = "--"
 
 # itens da tela
 titulo_bt = 0000
 caminho_bt = ''
-
-
 
 # dados para as apis
 roads = ""
@@ -67,10 +59,10 @@ latitude = []
 longitude = []
 
 #credenciais apis
-api_key="AIzaSyBMnrCuQWbuZlsYWl1l4D86wTzFUVT_EHU"
-secret_key="PqTf169GaYbiKoLY-6URq2N2RHc="
+api_key=" " #insira aqui a credencial api google
+secret_key=" " # insira aqui a chave secreta api google 
 
-api_key_tom = "hA4agzFVTHHbGuTurS0H2HHxgJYuQe4X"
+api_key_tom = " " #insira aqui a credencial api tom tom 
 
 # variáveis para reverse geocode
 query = 0
@@ -81,10 +73,12 @@ speed_limit = []
 
 requisicao = 0
 
-coordenadas_fence = ((-46.5086835, -23.6931603), (-46.501404, -236931603), (-46.501404, -23.7000299), (-46.5086835, -23.7000299))
-
-coordenadas_fence_long = [-46.5086835, -46.501404, -46.501404, -46.5086835]
+#fence definido dentro do código, em uma segunda fase será obtido lendo o SD
+coordenadas_fence_long = [-46.5086835, -46.501404, -46.501404, -46.5086835] 
 coordenadas_fence_lat = [-23.6931603, -23.6931603, -23.7000299, -23.7000299]
+
+
+
 
 
 

@@ -1,6 +1,0 @@
-{
-    batchItems": [
-        {"query": "/reverseGeocode/-23.613197,-46.544090.json"},
-        {"query": "/reverseGeocode/-23.615283,-46.543633.json"},
-    ]
-}
