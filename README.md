@@ -17,5 +17,5 @@
 <h2>Software Interface Gráfica</h2>
 <p>Código da Interface Gráfica desenvolvida em Python v2.7</p>
 <p>Biblioteca wx.Phyton, MatPlotLib</p>
-<p>API's Tom Tom e Google *</p>
-<p><small>Necessário obtenção de credenciais das API's para funcionamento do programa</small></p>
+<p>API's Tom Tom e Google*</p>
+<p style='font: 8px/10px Arial'>* Necessário obtenção de credenciais das API's para funcionamento do programa</p>
