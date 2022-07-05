@@ -7,9 +7,11 @@ app = wx.App(False) # Criando um objeto wx.App
 size_window = wx.GetDisplaySize() # retorna uma tuple
 t_x, t_y = size_window
 
-cor_botoes = ""
+cor_botoes = "#F6F5F4"
+cor_botoes_texto = "black"
+cor_botoes_desabilitado = "gray"
 cor_botoes_ativos = "#BABABA"
-cor_fundo = ""
+cor_fundo = "white"
 
 #flags
 flag_iniciar = 0
@@ -76,8 +78,6 @@ requisicao = 0
 #fence definido dentro do código, em uma segunda fase será obtido lendo o SD
 coordenadas_fence_long = [-46.5086835, -46.501404, -46.501404, -46.5086835] 
 coordenadas_fence_lat = [-23.6931603, -23.6931603, -23.7000299, -23.7000299]
-
-
 
 
 

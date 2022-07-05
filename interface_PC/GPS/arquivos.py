@@ -18,12 +18,15 @@ class Painel_arquivos(wx.Panel):
         if(vars.flag_iniciar == 0 and vars.criou_botoes == 0):
             titulo_bt = [0] * 5
             self.statxt_02 = wx.StaticText(self, -1, "Trajetos Recentes" , (16, 10), (-1, -1))
+            self.statxt_02.SetForegroundColour(vars.cor_botoes_texto)
             self.botao0 = wx.Button(self, wx.ID_ANY, self.convert_data((titulo_bt[0])), (10, 42), size = (-1,20)) 
             self.botao1 = wx.Button(self, wx.ID_ANY, self.convert_data((titulo_bt[1])), (10, 64), size = (-1,20))
             self.botao2 = wx.Button(self, wx.ID_ANY, self.convert_data((titulo_bt[2])), (10, 86), size = (-1,20))
             self.botao3 = wx.Button(self, wx.ID_ANY, self.convert_data((titulo_bt[3])), (10, 108), size = (-1,20))
             self.botao4 = wx.Button(self, wx.ID_ANY, self.convert_data((titulo_bt[4])), (10, 130), size = (-1,20))
             self.botao_mais = wx.Button(self, wx.NewId(), "Mais antigos", (10, 162),(-1,20))
+            self.botao_mais.SetBackgroundColour(vars.cor_botoes)
+            self.botao_mais.SetForegroundColour(vars.cor_botoes_texto)
 
             self.botao0.Hide()
             self.botao1.Hide()
@@ -34,7 +37,10 @@ class Painel_arquivos(wx.Panel):
             self.botao_mais.Hide()
             
             self.statxt_01 = wx.StaticText(self, -1, "Clique em abrir SD Card \npara abrir os arquivos \nde telemetria" , (16, 100), (-1, -1)) 
+            self.statxt_01.SetForegroundColour(vars.cor_botoes_texto)
             self.botao_sdcard = wx.Button(self, wx.NewId(), "Abrir SD Card", (10, count + 32),(-1,20))
+            self.botao_sdcard.SetBackgroundColour(vars.cor_botoes)
+            self.botao_sdcard.SetForegroundColour(vars.cor_botoes_texto)
             self.Layout()
             vars.criou_botoes = 1
          
@@ -206,17 +212,8 @@ class Painel_arquivos(wx.Panel):
         vars.longitude = []
         vars.vetor_fence = []
 
-        # gerando um fator para diminuir requisições
-        fator = 0
-        if (len(lines) < 250):
-            fator = 10
-        if(len(lines) < 100):
-            fator = 4
-        if(len(lines) < 50):
-            fator = 1
-        
-        self.vars_sdcard(lines, fator)
-        self.requests_mapa(vars.num_dados, fator)
+        self.vars_sdcard(lines)
+        self.requests_mapa(vars.num_dados)
         self.requests_mapa_fence()
 
     #funçao que retorna os nomes das ruas
@@ -274,7 +271,7 @@ class Painel_arquivos(wx.Panel):
                 vars.speed_limit = []
                 break        
 
-    def vars_sdcard (self, lines, fator):
+    def vars_sdcard (self, lines):
         for x in range(len(lines)):
             linha = lines[x] # selecionando a linha a ser percorrida
             
@@ -361,7 +358,7 @@ class Painel_arquivos(wx.Panel):
                     vars.hora_g = hora_g # passando para global
                     vars.min_g = min_g # passando para global
                     
-    def requests_mapa (self, nlinhas, fator):
+    def requests_mapa (self, nlinhas):
         coordenadas = "" # criando a variável 
         cordenada_central = "" # criando a variável 
         incremento = 0
@@ -379,7 +376,7 @@ class Painel_arquivos(wx.Panel):
                 coordenadas = coordenadas + vars.latitude[x] + "," + vars.longitude[x]  
             else: 
                 # tentando economizar as requisições
-                if(x == incremento * fator):
+                if(x == incremento):
                     # pegando as coordenadas e montando a string
                     coordenadas = coordenadas + vars.latitude[x] + "," + vars.longitude[x]  + "|" 
                     incremento = incremento + 1

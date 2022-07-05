@@ -40,7 +40,7 @@ class Painel(wx.Frame):
         hbox2 = wx.BoxSizer(wx.HORIZONTAL)
 
         pn_se = Painel_arquivos(panel) # painel superior esquerdo
-        pn_se.SetBackgroundColour('')
+        pn_se.SetBackgroundColour(vars.cor_fundo)
         pn_se.mostrar_botoes(0, vars.titulo_bt, "", "") # chamando o metodo mostrar botoes
         
         def botao_sdcard(self):
@@ -70,11 +70,16 @@ class Painel(wx.Frame):
         def acao_botao_recente(Event, num_botao): # para mostrar qual botão foi selecionado
 
             if num_botao == -1:
-                pn_se.botao0.SetBackgroundColour("")
-                pn_se.botao1.SetBackgroundColour("")
-                pn_se.botao2.SetBackgroundColour("")                
-                pn_se.botao3.SetBackgroundColour("")
-                pn_se.botao4.SetBackgroundColour("")
+                pn_se.botao0.SetBackgroundColour(vars.cor_botoes)
+                pn_se.botao0.SetForegroundColour(vars.cor_botoes_texto)
+                pn_se.botao1.SetBackgroundColour(vars.cor_botoes)
+                pn_se.botao1.SetForegroundColour(vars.cor_botoes_texto)
+                pn_se.botao2.SetBackgroundColour(vars.cor_botoes)  
+                pn_se.botao2.SetForegroundColour(vars.cor_botoes_texto)              
+                pn_se.botao3.SetBackgroundColour(vars.cor_botoes)
+                pn_se.botao3.SetForegroundColour(vars.cor_botoes_texto)
+                pn_se.botao4.SetBackgroundColour(vars.cor_botoes)
+                pn_se.botao4.SetForegroundColour(vars.cor_botoes_texto)
 
             else:
                 pn_se.abrir_recentes(num_botao)
@@ -83,44 +88,54 @@ class Painel(wx.Frame):
                 if num_botao == 0:
                     pn_se.botao0.SetBackgroundColour(vars.cor_botoes_ativos)
                 else:
-                    pn_se.botao0.SetBackgroundColour("")
+                    pn_se.botao0.SetBackgroundColour(vars.cor_botoes)
 
                 if num_botao == 1:
                     pn_se.botao1.SetBackgroundColour(vars.cor_botoes_ativos)
                 else:
-                    pn_se.botao1.SetBackgroundColour("")
+                    pn_se.botao1.SetBackgroundColour(vars.cor_botoes)
 
                 if num_botao == 2:
                     pn_se.botao2.SetBackgroundColour(vars.cor_botoes_ativos)
                 else:
-                    pn_se.botao2.SetBackgroundColour("")
+                    pn_se.botao2.SetBackgroundColour(vars.cor_botoes)
                     
                 if num_botao == 3:
                     pn_se.botao3.SetBackgroundColour(vars.cor_botoes_ativos)
 
                 else:
-                    pn_se.botao3.SetBackgroundColour("")
+                    pn_se.botao3.SetBackgroundColour(vars.cor_botoes)
   
                 if num_botao == 4:
                     pn_se.botao4.SetBackgroundColour(vars.cor_botoes_ativos)
                 else:
-                    pn_se.botao4.SetBackgroundColour("")
+                    pn_se.botao4.SetBackgroundColour(vars.cor_botoes)
 
         pn_sm = Painel_infos(panel) #painel superior central
         pn_sd = wx.Panel(panel) #painel superior direito
-        pn_sd.SetBackgroundColour('')
+        pn_sd.SetBackgroundColour(vars.cor_fundo)
         
         pn_ie = wx.Panel(panel) #painel inferior direito
-        pn_ie.SetBackgroundColour('')
+        pn_ie.SetBackgroundColour(vars.cor_fundo)
         
         pn_id = Painel_inferior_direito(panel) #painel inferior esquerdo
-        pn_id.SetBackgroundColour('')
+        pn_id.SetBackgroundColour(vars.cor_fundo)
         
         botao_grafico = wx.Button(pn_ie, wx.NewId(), "  Gráfico Velocidade", (10, 46 ), (160,24))
         botao_graficoRPM = wx.Button(pn_ie, wx.NewId(), "Fence", (10,80), (160,24))
         botao_mapa = wx.Button(pn_ie, wx.NewId(), "Rota", (10, 114 ), (160,24))
         botao_relatorio = wx.Button(pn_ie, wx.NewId(), "Relatório", (10, 148), (160,24))
         
+        
+        botao_grafico.SetBackgroundColour(vars.cor_botoes)
+        botao_grafico.SetForegroundColour(vars.cor_botoes_desabilitado)
+        botao_graficoRPM.SetBackgroundColour(vars.cor_botoes)
+        botao_graficoRPM.SetForegroundColour(vars.cor_botoes_desabilitado)
+        botao_mapa.SetBackgroundColour(vars.cor_botoes)
+        botao_mapa.SetForegroundColour(vars.cor_botoes_desabilitado)
+        botao_relatorio.SetBackgroundColour(vars.cor_botoes)
+        botao_relatorio.SetForegroundColour(vars.cor_botoes_desabilitado)
+
         #ações botões
         botao_grafico.Bind(wx.EVT_BUTTON, abrir_grafico_velocidades)
         botao_graficoRPM.Bind(wx.EVT_BUTTON, pn_id.show_panel_tres)
@@ -188,6 +203,14 @@ class Painel(wx.Frame):
                 g_rotacoes.Enable(True)
                 g_mapa.Enable(True)
                 relatorio.Enable(True)
+                botao_grafico.SetBackgroundColour(vars.cor_botoes)
+                botao_grafico.SetForegroundColour(vars.cor_botoes_texto)
+                botao_graficoRPM.SetBackgroundColour(vars.cor_botoes)
+                botao_graficoRPM.SetForegroundColour(vars.cor_botoes_texto)
+                botao_mapa.SetBackgroundColour(vars.cor_botoes)
+                botao_mapa.SetForegroundColour(vars.cor_botoes_texto)
+                botao_relatorio.SetBackgroundColour(vars.cor_botoes)
+                botao_relatorio.SetForegroundColour(vars.cor_botoes_texto)
                     
         def abrir_arquivos(event):
             with wx.FileDialog(self, "Abrir arquivo de telemetria", wildcard="arquivos tlm  (*.tlm)|*.tlm",
